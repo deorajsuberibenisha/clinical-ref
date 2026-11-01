@@ -1,10 +1,10 @@
-// Paste your Firebase web-app settings here, then commit.
-// Firebase console -> Project settings (gear) -> Your apps -> Web app -> "SDK setup and configuration" -> Config
+// Firebase web-app settings for Bhutan Clinical Reference (project: bhutan-clinical-ref).
+// These identify the project; access is controlled by the Firestore security rules.
 window.FIREBASE_CONFIG = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
-  projectId: "PASTE_PROJECT_ID",
-  storageBucket: "PASTE_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "PASTE_SENDER_ID",
-  appId: "PASTE_APP_ID"
+  apiKey: "AIzaSyAh-M2xbx6gIP5JYIm1RnKlxoY8kUqw8tU",
+  authDomain: "bhutan-clinical-ref.firebaseapp.com",
+  projectId: "bhutan-clinical-ref",
+  storageBucket: "bhutan-clinical-ref.firebasestorage.app",
+  messagingSenderId: "832549318807",
+  appId: "1:832549318807:web:c6bdea2272cfc8b89fb9d2"
 };
