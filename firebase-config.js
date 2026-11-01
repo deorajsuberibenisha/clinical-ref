@@ -8,3 +8,10 @@ window.FIREBASE_CONFIG = {
   messagingSenderId: "832549318807",
   appId: "1:832549318807:web:c6bdea2272cfc8b89fb9d2"
 };
+
+// Keyboard fix (1 Nov 2026): name, email and password boxes use the normal letter keyboard.
+document.addEventListener("DOMContentLoaded", function () {
+  var fix = function () { document.querySelectorAll('input[inputmode="decimal"]').forEach(function (i) { if (i.type === "text" || i.type === "email" || i.type === "password" || i.type === "search") { if (!/^pat_/.test(i.id)) i.removeAttribute("inputmode"); } }); };
+  fix();
+  new MutationObserver(fix).observe(document.body, {childList: true, subtree: true});
+});
