@@ -4192,6 +4192,7 @@ async function commLoadMe() {
   const u = COMM.user, db = COMM.db;
   const [p, a] = await Promise.all([db.collection("users").doc(u.uid).get(), u.emailVerified ? db.collection("admins").doc(u.uid).get().catch(() => null) : null]);
   COMM.profile = p && p.exists ? p.data() : null; COMM.isAdmin = !!(a && a.exists);
+  if (!COMM.profile) { const pp = store.get("pendingProfile", null); if (pp && pp.name) { try { const d = {...pp, approved: false, created: COMM.fb.firestore.FieldValue.serverTimestamp()}; await db.collection("users").doc(u.uid).set(d); await db.collection("users").doc(u.uid).collection("private").doc("contact").set({email: u.email}); store.set("pendingProfile", null); COMM.profile = {...d, created: null}; } catch (e) {} } }
 }
 const commMember = () => COMM.state === "in" && (COMM.isAdmin || (COMM.profile && COMM.profile.approved));
 function commErr(e) {
@@ -4252,10 +4253,11 @@ function authView() {
 function profileView() {
   const p = COMM.profile || {}, u = COMM.user, approved = COMM.isAdmin || p.approved;
   return `<h1 class="vt">My profile</h1>
+    ${COMM.profile ? "" : `<div class="warn"><b>Please complete your profile below</b> (name, designation, workplace) and tap <b>Save profile</b> — the administrator can only approve you after this.</div>`}
     ${approved ? "" : `<div class="flag">Your account is <b>waiting for approval</b> by the administrator. You can edit your profile meanwhile; chat rooms open once approved.</div>`}
     <div class="card profcard"><div class="avatar">${esc((p.name || u.email || "?").replace(/^dr\.?\s*/i, "").slice(0, 1).toUpperCase())}</div><div><b>${esc(p.name || "(no name)")}</b>${COMM.isAdmin ? ' <span class="pill">Administrator</span>' : approved ? ' <span class="pill ok">Member</span>' : ' <span class="pill wait">Pending</span>'}<div class="small muted">${esc(p.role || "")}${p.place ? " · " + esc(p.place) : ""}${p.regno ? " · Reg. " + esc(p.regno) : ""}</div><div class="small muted">${esc(u.email)}</div></div></div>
     <div class="btnrow">${approved ? `<a class="btn btn-big" href="#chat">${ICON.chat} Open chat rooms</a>` : ""}${COMM.isAdmin ? `<a class="btn" href="#members">Members & approvals</a>` : ""}</div>
-    <details class="card"><summary><b>Edit profile</b></summary><div class="fgrid">${field("c_name", "Full name", {type: "text", value: p.name || ""})}${field("c_role", "Designation", {options: ROLES.map(r => [r, r]), value: p.role || ROLES[0]})}${field("c_place", "Workplace", {type: "text", value: p.place || ""})}${field("c_reg", "Registration no.", {type: "text", value: p.regno || ""})}</div><button class="btn" id="c_save">Save profile</button><p class="small muted">Your name, designation and workplace are visible to other members; your email is not.</p></details>
+    <details class="card"${COMM.profile ? "" : " open"}><summary><b>Edit profile</b></summary><div class="fgrid">${field("c_name", "Full name", {type: "text", value: p.name || ""})}${field("c_role", "Designation", {options: ROLES.map(r => [r, r]), value: p.role || ROLES[0]})}${field("c_place", "Workplace", {type: "text", value: p.place || ""})}${field("c_reg", "Registration no.", {type: "text", value: p.regno || ""})}</div><button class="btn" id="c_save">Save profile</button><p class="small muted">Your name, designation and workplace are visible to other members; your email is not.</p></details>
     <div class="card">${setRow("Sync my notes", "Keep notes the same on all your devices", `<label class="sw"><input type="checkbox" id="c_sync"${COMM.syncOn ? " checked" : ""}><span></span></label>`)}${setRow("Sync now", "", `<button class="btn" id="c_syncnow">Sync</button>`)}${setRow("User ID", "Needed once by the administrator", `<span class="mono small">${esc(u.uid)}</span>`)}${setRow("Sign out", "", `<button class="btn" id="c_out">Sign out</button>`)}${setRow("Delete my account", "Removes your profile and sign-in", `<button class="btn btn-danger" id="c_del">Delete…</button>`)}</div><div id="c_msg" class="small"></div>`;
 }
 function roomsView() {
@@ -4294,10 +4296,13 @@ function bindComm(view, arg) {
       const name = $("#c_name").value.trim(); if (name.length < 2) return commMsg("Enter your full name.", true);
       if (pw.length < 8) return commMsg("Password must be at least 8 characters.", true);
       if (!$("#c_agree").checked) return commMsg("Please accept the professional conduct statement.", true);
+      const prof = {name, role: $("#c_role").value, place: $("#c_place").value.trim().slice(0, 80), regno: $("#c_reg").value.trim().slice(0, 40), approved: false, created: COMM.fb.firestore.FieldValue.serverTimestamp()};
+      store.set("pendingProfile", {...prof, created: null});
       const cred = await COMM.auth.createUserWithEmailAndPassword(email, pw), u = cred.user;
       try { await u.updateProfile({displayName: name}); } catch (e) {}
-      await COMM.db.collection("users").doc(u.uid).set({name, role: $("#c_role").value, place: $("#c_place").value.trim().slice(0, 80), regno: $("#c_reg").value.trim().slice(0, 40), approved: false, created: COMM.fb.firestore.FieldValue.serverTimestamp()});
-      await COMM.db.collection("users").doc(u.uid).collection("private").doc("contact").set({email});
+      try { await u.getIdToken(true); } catch (e) {}
+      const retry = async fn => { for (let i = 0; i < 4; i++) { try { return await fn(); } catch (e) { if (i === 3) throw e; await new Promise(r => setTimeout(r, 800 * (i + 1))); } } };
+      try { await retry(() => COMM.db.collection("users").doc(u.uid).set(prof)); await retry(() => COMM.db.collection("users").doc(u.uid).collection("private").doc("contact").set({email})); store.set("pendingProfile", null); } catch (e) { /* saved after verification instead */ }
       await u.sendEmailVerification();
       await commLoadMe(); COMM.state = "verify"; route();
     });
