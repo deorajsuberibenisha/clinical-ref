@@ -1,5 +1,5 @@
-// offline cache — version 9f0c2cb38a
-const C = "bcr-9f0c2cb38a";
+// offline cache — version 479f92ba5f
+const C = "bcr-479f92ba5f";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./firebase-sdk.js", "./firebase-config.js", "./icon-192.png", "./icon-512.png", "./maskable-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(C).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== C).map(k => caches.delete(k)))).then(() => self.clients.claim())); });

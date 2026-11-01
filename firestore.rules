@@ -1,19 +1,25 @@
 rules_version = '2';
-// Bhutan Clinical Reference — community security rules.
-// Members must verify their email and be approved by an administrator (a document in /admins/{uid}) before using chat rooms.
+// Bhutan Clinical Reference — community security rules (v4: professional + public accounts, public rooms, photos, files, voice messages).
+// Health professionals must verify their email and be approved by an administrator (a document in /admins/{uid}) before using the professional rooms.
+// Public members (kind == 'public') only reach rooms whose 'audience' field is 'public'.
 service cloud.firestore {
   match /databases/{database}/documents {
     function authed() { return request.auth != null; }
     function verified() { return authed() && request.auth.token.email_verified == true; }
     function isAdmin() { return verified() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
     function myProfile() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
-    function isApproved() { return verified() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && myProfile().approved == true; }
+    function hasProfile() { return verified() && exists(/databases/$(database)/documents/users/$(request.auth.uid)); }
+    function isApproved() { return hasProfile() && myProfile().approved == true && myProfile().get('kind', 'pro') != 'public'; }
     function member() { return isAdmin() || isApproved(); }
     function okText(v, max) { return v is string && v.size() <= max; }
+    function publicRoom(room) { return get(/databases/$(database)/documents/rooms/$(room)).data.get('audience', '') == 'public'; }
+    function canRoom(room) { return member() || (hasProfile() && publicRoom(room)); }
     function okProfile(d) {
-      return d.keys().hasOnly(['name', 'role', 'place', 'regno', 'approved', 'created'])
+      return d.keys().hasOnly(['name', 'role', 'place', 'regno', 'approved', 'created', 'photo', 'kind', 'bio'])
         && okText(d.name, 80) && d.name.size() > 1
         && okText(d.get('role', ''), 60) && okText(d.get('place', ''), 80) && okText(d.get('regno', ''), 40)
+        && okText(d.get('photo', ''), 90000) && okText(d.get('bio', ''), 160)
+        && d.get('kind', 'pro') in ['pro', 'public']
         && d.approved is bool;
     }
 
@@ -40,20 +46,76 @@ service cloud.firestore {
     }
 
     match /rooms/{room} {
-      allow read: if member();
-      allow write: if isAdmin();
+      allow read: if member() || (hasProfile() && resource.data.audience == 'public');
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin()
+        || (canRoom(room)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lastTs', 'lastText', 'lastBy'])
+            && okText(request.resource.data.get('lastText', ''), 120)
+            && okText(request.resource.data.get('lastBy', ''), 80));
+
       match /messages/{msg} {
-        allow read: if member();
-        allow create: if member()
-          && request.resource.data.keys().hasOnly(['uid', 'name', 'role', 'text', 'ts'])
+        allow read: if canRoom(room);
+        allow create: if canRoom(room)
+          && request.resource.data.keys().hasOnly(['uid', 'name', 'role', 'text', 'ts', 'img', 'reply', 'file'])
           && request.resource.data.uid == request.auth.uid
           && request.resource.data.name == myProfile().name
-          && okText(request.resource.data.text, 2000) && request.resource.data.text.size() > 0
+          && okText(request.resource.data.text, 4000)
+          && (request.resource.data.text.size() > 0 || ('img' in request.resource.data) || ('file' in request.resource.data))
           && okText(request.resource.data.role, 60)
           && request.resource.data.ts == request.time
+          && (!('img' in request.resource.data)
+              || (request.resource.data.img is map
+                  && request.resource.data.img.keys().hasOnly(['id', 'thumb', 'w', 'h'])
+                  && okText(request.resource.data.img.thumb, 60000)))
+          && (!('file' in request.resource.data)
+              || (request.resource.data.file is map
+                  && request.resource.data.file.keys().hasOnly(['id', 'name', 'type', 'size', 'dur'])
+                  && okText(request.resource.data.file.id, 40) && okText(request.resource.data.file.name, 200)
+                  && okText(request.resource.data.file.type, 100) && request.resource.data.file.size is int))
+          && (!('reply' in request.resource.data)
+              || (request.resource.data.reply is map
+                  && request.resource.data.reply.keys().hasOnly(['id', 'name', 'text'])
+                  && okText(request.resource.data.reply.text, 200)))
           && (isAdmin() || get(/databases/$(database)/documents/rooms/$(room)).data.get('readonly', false) == false);
         allow delete: if isAdmin() || (verified() && resource.data.uid == request.auth.uid);
         allow update: if false;
+      }
+
+      match /media/{mid} {
+        allow read: if canRoom(room);
+        allow create: if canRoom(room)
+          && request.resource.data.keys().hasOnly(['uid', 'data', 'w', 'h', 'ts'])
+          && request.resource.data.uid == request.auth.uid
+          && okText(request.resource.data.data, 950000)
+          && (isAdmin() || get(/databases/$(database)/documents/rooms/$(room)).data.get('readonly', false) == false);
+        allow delete: if isAdmin() || (verified() && resource.data.uid == request.auth.uid);
+        allow update: if false;
+      }
+
+      // any file type (PDF, documents, audio, video, voice messages) — up to 10 MB, split into parts of ≤600 KB
+      match /files/{fid} {
+        allow read: if canRoom(room);
+        allow create: if canRoom(room)
+          && request.resource.data.keys().hasOnly(['uid', 'name', 'type', 'size', 'n', 'ts'])
+          && request.resource.data.uid == request.auth.uid
+          && okText(request.resource.data.name, 200) && okText(request.resource.data.type, 100)
+          && request.resource.data.size is int && request.resource.data.size <= 10485760
+          && request.resource.data.n is int && request.resource.data.n >= 1 && request.resource.data.n <= 20
+          && (isAdmin() || get(/databases/$(database)/documents/rooms/$(room)).data.get('readonly', false) == false);
+        allow delete: if isAdmin() || (verified() && resource.data.uid == request.auth.uid);
+        allow update: if false;
+
+        match /p/{part} {
+          allow read: if canRoom(room);
+          allow create: if canRoom(room)
+            && request.resource.data.keys().hasOnly(['uid', 'i', 'd'])
+            && request.resource.data.uid == request.auth.uid
+            && get(/databases/$(database)/documents/rooms/$(room)/files/$(fid)).data.uid == request.auth.uid
+            && okText(request.resource.data.d, 900000);
+          allow delete: if isAdmin() || (verified() && resource.data.uid == request.auth.uid);
+          allow update: if false;
+        }
       }
     }
   }
