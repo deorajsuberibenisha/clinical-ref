@@ -1,0 +1,60 @@
+rules_version = '2';
+// Bhutan Clinical Reference — community security rules.
+// Members must verify their email and be approved by an administrator (a document in /admins/{uid}) before using chat rooms.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function authed() { return request.auth != null; }
+    function verified() { return authed() && request.auth.token.email_verified == true; }
+    function isAdmin() { return verified() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    function myProfile() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
+    function isApproved() { return verified() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && myProfile().approved == true; }
+    function member() { return isAdmin() || isApproved(); }
+    function okText(v, max) { return v is string && v.size() <= max; }
+    function okProfile(d) {
+      return d.keys().hasOnly(['name', 'role', 'place', 'regno', 'approved', 'created'])
+        && okText(d.name, 80) && d.name.size() > 1
+        && okText(d.get('role', ''), 60) && okText(d.get('place', ''), 80) && okText(d.get('regno', ''), 40)
+        && d.approved is bool;
+    }
+
+    match /admins/{uid} {
+      allow read: if verified();
+      allow write: if false;            // add administrators in the Firebase console only
+    }
+
+    match /users/{uid} {
+      allow read: if verified() || (authed() && request.auth.uid == uid);
+      allow create: if authed() && request.auth.uid == uid && okProfile(request.resource.data) && request.resource.data.approved == false;
+      allow update: if (authed() && request.auth.uid == uid && okProfile(request.resource.data)
+                        && request.resource.data.approved == resource.data.approved)
+                    || isAdmin();
+      allow delete: if isAdmin() || (authed() && request.auth.uid == uid);
+
+      match /private/{doc} {
+        allow read, write: if (authed() && request.auth.uid == uid) || isAdmin();
+      }
+      match /notes/{note} {
+        allow read, write: if authed() && request.auth.uid == uid
+                          && (request.resource == null || request.resource.data.size() <= 6);
+      }
+    }
+
+    match /rooms/{room} {
+      allow read: if member();
+      allow write: if isAdmin();
+      match /messages/{msg} {
+        allow read: if member();
+        allow create: if member()
+          && request.resource.data.keys().hasOnly(['uid', 'name', 'role', 'text', 'ts'])
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.name == myProfile().name
+          && okText(request.resource.data.text, 2000) && request.resource.data.text.size() > 0
+          && okText(request.resource.data.role, 60)
+          && request.resource.data.ts == request.time
+          && (isAdmin() || get(/databases/$(database)/documents/rooms/$(room)).data.get('readonly', false) == false);
+        allow delete: if isAdmin() || (verified() && resource.data.uid == request.auth.uid);
+        allow update: if false;
+      }
+    }
+  }
+}
