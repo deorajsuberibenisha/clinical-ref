@@ -1,5 +1,5 @@
 rules_version = '2';
-// Bhutan Clinical Reference — community security rules (v4: professional + public accounts, public rooms, photos, files, voice messages).
+// Bhutan Clinical Reference — community security rules (v5: + auto-deleting messages via expireAt and administrator clean-up).
 // Health professionals must verify their email and be approved by an administrator (a document in /admins/{uid}) before using the professional rooms.
 // Public members (kind == 'public') only reach rooms whose 'audience' field is 'public'.
 service cloud.firestore {
@@ -12,6 +12,7 @@ service cloud.firestore {
     function isApproved() { return hasProfile() && myProfile().approved == true && myProfile().get('kind', 'pro') != 'public'; }
     function member() { return isAdmin() || isApproved(); }
     function okText(v, max) { return v is string && v.size() <= max; }
+    function okExp(d) { return !('expireAt' in d) || d.expireAt is timestamp; }
     function publicRoom(room) { return get(/databases/$(database)/documents/rooms/$(room)).data.get('audience', '') == 'public'; }
     function canRoom(room) { return member() || (hasProfile() && publicRoom(room)); }
     function okProfile(d) {
@@ -57,7 +58,7 @@ service cloud.firestore {
       match /messages/{msg} {
         allow read: if canRoom(room);
         allow create: if canRoom(room)
-          && request.resource.data.keys().hasOnly(['uid', 'name', 'role', 'text', 'ts', 'img', 'reply', 'file'])
+          && request.resource.data.keys().hasOnly(['uid', 'name', 'role', 'text', 'ts', 'img', 'reply', 'file', 'expireAt']) && okExp(request.resource.data)
           && request.resource.data.uid == request.auth.uid
           && request.resource.data.name == myProfile().name
           && okText(request.resource.data.text, 4000)
@@ -85,7 +86,7 @@ service cloud.firestore {
       match /media/{mid} {
         allow read: if canRoom(room);
         allow create: if canRoom(room)
-          && request.resource.data.keys().hasOnly(['uid', 'data', 'w', 'h', 'ts'])
+          && request.resource.data.keys().hasOnly(['uid', 'data', 'w', 'h', 'ts', 'expireAt']) && okExp(request.resource.data)
           && request.resource.data.uid == request.auth.uid
           && okText(request.resource.data.data, 950000)
           && (isAdmin() || get(/databases/$(database)/documents/rooms/$(room)).data.get('readonly', false) == false);
@@ -97,7 +98,7 @@ service cloud.firestore {
       match /files/{fid} {
         allow read: if canRoom(room);
         allow create: if canRoom(room)
-          && request.resource.data.keys().hasOnly(['uid', 'name', 'type', 'size', 'n', 'ts'])
+          && request.resource.data.keys().hasOnly(['uid', 'name', 'type', 'size', 'n', 'ts', 'expireAt']) && okExp(request.resource.data)
           && request.resource.data.uid == request.auth.uid
           && okText(request.resource.data.name, 200) && okText(request.resource.data.type, 100)
           && request.resource.data.size is int && request.resource.data.size <= 10485760
@@ -109,7 +110,7 @@ service cloud.firestore {
         match /p/{part} {
           allow read: if canRoom(room);
           allow create: if canRoom(room)
-            && request.resource.data.keys().hasOnly(['uid', 'i', 'd'])
+            && request.resource.data.keys().hasOnly(['uid', 'i', 'd', 'expireAt']) && okExp(request.resource.data)
             && request.resource.data.uid == request.auth.uid
             && get(/databases/$(database)/documents/rooms/$(room)/files/$(fid)).data.uid == request.auth.uid
             && okText(request.resource.data.d, 900000);
