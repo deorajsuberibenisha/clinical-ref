@@ -134,6 +134,7 @@ details.more summary{cursor:pointer;color:var(--accent);font-weight:600;font-siz
 .fi input,.fi select{padding:8px 9px;border:1px solid var(--line);border-radius:9px;background:var(--panel);font-size:16px;width:100%}
 .fi .u{font-size:12px;color:var(--muted)}
 .gcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px}.gchart{margin:0;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--panel)}.gchart svg{display:block;width:100%;height:auto;margin-top:6px}
+.gsrow{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line)}.gsrow label{display:flex;gap:8px;align-items:flex-start}.gsrow input{margin-top:4px;flex:none;width:auto}.gsrow button{flex:none}
 .agein{display:flex;gap:6px}.agein input{flex:1;min-width:0}.fi .agein select{width:auto;flex:none}
 .res{margin-top:12px;border-radius:10px;background:var(--accent-soft);padding:12px 14px}
 .res .rv{font-size:22px;font-weight:700;color:var(--accent)}
@@ -2450,6 +2451,7 @@ function runGrowth() {
   }
   if (!out.length) out.push(`<div class="card muted">Enter weight, length/height, head circumference or MUAC to plot this patient.</div>`);
   $("#gres").innerHTML = out.join("") + (days <= 6940 ? growthCharts({days, sex, w, h, hc, oed, name: sval("gname").trim()}) : `<div class="card muted">WHO growth graphs cover 0–19 years.</div>`) + bpSection({days, sex, h, sbp: val("gsbp"), dbp: val("gdbp")});
+  $("#gres").insertAdjacentHTML("beforeend", growthSummary({days, sex, w, h, h0, hc, mu, oed, name: sval("gname").trim()}));
 }
 /* live centile graphs: WHO curves from the LMS tables, patient plotted on top */
 const GC_LINES = [[97, 1.881], [85, 1.036], [50, 0], [15, -1.036], [3, -1.881]];
@@ -2526,8 +2528,10 @@ function bpCentile(v, r) {
   const z = v >= r[1] ? 1.2816 + (v - r[1]) / (r[2] - r[1]) * 0.3634 : (v - r[0]) / ((r[1] - r[0]) / 1.2816);
   return `about the ${centileText(z)} centile (estimated)`;
 }
+let BP_LINES = [];
 function bpSection(p) {
   const {days, sex, h, sbp, dbp} = p, yr = Math.floor((days + 1) / 365.25);
+  BP_LINES = [];
   if (days < 365 || yr > 17) return sbp || dbp ? `<div class="card muted">AAP 2017 BP tables cover ages 1 to 17 years.</div>` : "";
   const T = BP2017[sex], row = T[yr];
   const col = h ? row.cm.reduce((b, c, i) => Math.abs(c - h) < Math.abs(row.cm[b] - h) ? i : b, 0) : 3, HP = ["5th", "10th", "25th", "50th", "75th", "90th", "95th"];
@@ -2544,11 +2548,48 @@ function bpSection(p) {
   const cell = (a, i) => `<td${i === col ? ' style="font-weight:700;background:var(--accent-soft)"' : ""}>${a}</td>`;
   const tr = (lab, a) => `<tr><th>${lab}</th>${a.map(cell).join("")}</tr>`;
   const tbl = (name, rows) => `<div style="overflow-x:auto;margin-top:8px"><table><thead><tr><th>${name}</th>${HP.map(x => `<th>${x}</th>`).join("")}</tr></thead><tbody>${tr("Height (cm)", row.cm)}${tr("50th", rows[0])}${tr("90th", rows[1])}${tr("95th", rows[2])}${tr("95th + 12", rows[2].map(x => x + 12))}</tbody></table></div>`;
+  if (any) { BP_LINES.push(["BP", `BP ${sbp ?? "-"}/${dbp ?? "-"} mmHg (AAP 2017): ${ST[stage]}`]); if (sbp != null) BP_LINES.push(["Systolic", `Systolic ${fmtN(sbp)} mmHg: ${bpCentile(sbp, S)}`]); if (dbp != null) BP_LINES.push(["Diastolic", `Diastolic ${fmtN(dbp)} mmHg: ${bpCentile(dbp, D)}`]); BP_LINES.push(["BP height column", h ? `BP height column: ${HP[col]} (closest to ${fmtN(h)} cm)` : "BP height column: 50th (height not entered)"]); }
   const col3 = [`<b style="color:var(--accent)">`, `<b style="color:var(--saffron)">`, `<b style="color:var(--red)">`, `<b style="color:var(--red)">`][stage];
   const act = stage === 3 ? "Confirm with a manual reading. If symptomatic, or BP is more than 30 mmHg above the 95th (over 180/120 in an adolescent), send to the emergency department." : stage ? "Confirm with a manual reading, using the right cuff size. AAP needs high readings on 3 separate visits to diagnose hypertension." : "";
   return `<h2 style="margin-top:18px">Blood pressure (AAP 2017)</h2><div class="card">${any ? `${col3}${ST[stage]}</b>${act ? `<div class="small" style="margin-top:6px">${act}</div>` : ""}` : "Enter systolic and diastolic BP to get the AAP stage."}<div class="small muted" style="margin-top:6px">Age ${yr} y, ${sex === "1" ? "boy" : "girl"}, ${h ? `${HP[col]} height column (closest to ${fmtN(h)} cm)` : "height not entered: 50th height column used"}. ${teen ? "From 13 years AAP uses fixed cut-offs: 120/80, 130/80, 140/90." : "Under 13 years AAP uses the centile or the fixed cut-off, whichever is lower."}</div></div><div class="gcgrid" style="margin-top:12px">${chart("Systolic BP by age", sbp, q => q.s.map(a => a[col]), S, "Systolic BP (mmHg)")}${chart("Diastolic BP by age", dbp, q => q.d.map(a => a[col]), D, "Diastolic BP (mmHg)")}</div>${tbl("Systolic, mmHg", row.s)}${tbl("Diastolic, mmHg", row.d)}<p class="small muted">AAP 2017 (Flynn et al., Pediatrics 140(3):e20171904), Tables 4 and 5, from normal-weight children. The table gives only the 50th, 90th, 95th and 95th + 12; a centile below the 95th is estimated between them, so go by the stage. The highlighted column is the one used.</p>`;
 }
-function bindGrowth() { bindAll($(".view"), runGrowth); }
+/* copy-ready patient summary: one tickable line per finding */
+const GS_OFF = new Set();
+let GS_LINES = [];
+function growthSummary(p) {
+  const {days, sex, w, h, h0, hc, mu, oed, name} = p, months = days / 30.4375, under5 = days <= 1826, L = [];
+  const add = (k, t) => L.push({k, t});
+  const txt = s => String(s || "").replace(/<[^>]*>/g, "").trim();
+  const zt = (label, val, l, adj, cls) => { if (!l) return; const z = zLMS(val, l, adj); add(label, `${label}: ${val} kg, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(cls(z))}`); };
+  add("Patient", `Patient: ${[name, ageText(months), sex === "1" ? "boy" : "girl"].filter(Boolean).join(", ")}`);
+  if (oed) add("Oedema", "Bilateral pitting oedema: severe acute malnutrition regardless of z-scores");
+  if (w && !oed) { if (under5) zt("Weight-for-age", w, lmsAt("wfa", sex, days, false), true, CL.wa); else if (months <= 120) zt("Weight-for-age", w, lmsAt("wfa07", sex, months, true), true, CL.wa); }
+  if (h) { const n = days < 731 ? "Length-for-age" : "Height-for-age"; if (under5) { const l = lmsAt("lhfa", sex, days, false); if (l) { const z = zLMS(h, l, false); add(n, `${n}: ${h0} cm, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(CL.ha(z))}`); } } else if (months <= 228) { const l = lmsAt("hfa07", sex, months, true); if (l) { const z = zLMS(h, l, false); add(n, `${n}: ${h0} cm, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(CL.ha(z))}`); } } }
+  if (w && h && under5 && !oed) { const useL = days < 731, l = lmsAt(useL ? "wfl" : "wfh", sex, h, true); if (l) { const z = zLMS(w, l, true), n = useL ? "Weight-for-length" : "Weight-for-height"; add(n, `${n}: ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(CL.wh(z))}`); } }
+  if (w && h && !oed) { const bmi = w / Math.pow(h / 100, 2), l = under5 ? lmsAt("bfa", sex, days, false) : months <= 228 ? lmsAt("bfa07", sex, months, true) : null; if (l) { const z = zLMS(bmi, l, true); add("BMI-for-age", `BMI-for-age: ${fmtN(bmi)} kg/m², ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt((under5 ? CL.b5 : CL.b19)(z))}`); } }
+  if (hc && under5) { const l = lmsAt("hcfa", sex, days, false); if (l) { const z = zLMS(hc, l, false); add("Head circumference", `Head circumference: ${hc} cm, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(CL.hc(z))}`); } }
+  if (mu) add("MUAC", `MUAC: ${mu} cm${months >= 6 && months < 60 ? (mu < 11.5 ? ", SAM" : mu < 12.5 ? ", MAM" : ", no acute malnutrition by MUAC") : ""}`);
+  BP_LINES.forEach(x => add(x[0], x[1]));
+  if (L.length > 1) add("Reference", `Reference: WHO growth standards${BP_LINES.length ? "; AAP 2017 BP tables" : ""}`);
+  GS_LINES = L;
+  if (L.length < 2) return "";
+  return `<h2 style="margin-top:18px">Patient summary</h2><div class="card"><p class="small muted" style="margin-top:0">Untick what you don't need, then copy. Use Copy on a line for just that line.</p>${L.map((x, i) => `<div class="gsrow"><label><input type="checkbox" data-gs="${i}"${GS_OFF.has(x.k) ? "" : " checked"}> <span>${esc(x.t)}</span></label><button type="button" class="chip" data-gc="${i}">Copy</button></div>`).join("")}<div style="margin-top:10px;display:flex;gap:10px;align-items:center"><button type="button" class="chip" data-gc="all"><b>Copy selected</b></button><span class="small muted" id="gsmsg"></span></div></div>`;
+}
+async function gsCopy(t) {
+  const m = $("#gsmsg");
+  let ok = false;
+  try { await navigator.clipboard.writeText(t); ok = true; } catch (e) {
+    const a = document.createElement("textarea"); a.value = t; a.style.position = "fixed"; a.style.opacity = "0"; document.body.appendChild(a); a.select();
+    try { ok = document.execCommand("copy"); } catch (x) { ok = false; } a.remove();
+  }
+  if (m) m.textContent = ok ? "Copied" : "Copy failed: select the text and copy by hand";
+}
+function bindSummary() {
+  const r = $("#gres");
+  r.addEventListener("change", e => { const c = e.target.closest("[data-gs]"); if (!c) return; const k = GS_LINES[+c.dataset.gs].k; if (c.checked) GS_OFF.delete(k); else GS_OFF.add(k); });
+  r.addEventListener("click", e => { const b = e.target.closest("[data-gc]"); if (!b) return; gsCopy(b.dataset.gc === "all" ? GS_LINES.filter(x => !GS_OFF.has(x.k)).map(x => x.t).join("\n") : GS_LINES[+b.dataset.gc].t); });
+}
+function bindGrowth() { bindSummary(); bindAll($(".view"), runGrowth); }
 
 /* ===== emergency & common-case protocols ===== */
 /* H.kg(perKg, unit, {max, conc:[amount per mL, label], min, round}) → live dose for current weight */
