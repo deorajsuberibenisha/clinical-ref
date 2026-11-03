@@ -135,6 +135,16 @@ details.more summary{cursor:pointer;color:var(--accent);font-weight:600;font-siz
 .fi .u{font-size:12px;color:var(--muted)}
 .gcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px}.gchart{margin:0;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--panel)}.gchart svg{display:block;width:100%;height:auto;margin-top:6px}
 .gsrow{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line)}.gsrow label{display:flex;gap:8px;align-items:flex-start}.gsrow input{margin-top:4px;flex:none;width:auto}.gsrow button{flex:none}
+.tbanner{display:block;margin:0 0 12px;padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--teal2) 10%,var(--panel));border:1px solid var(--teal2);text-decoration:none;color:var(--ink)}.tbanner b{display:block;color:var(--teal2)}.tbanner span{font-size:13px;color:var(--muted)}
+.thead .tmeta{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 6px}.tmeta span,.tmeta a{font-size:12px;padding:3px 9px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);text-decoration:none;color:var(--ink)}.tmeta .temerg{background:var(--red-soft);color:var(--red);border-color:transparent}
+.ttoc{position:sticky;top:0;z-index:3;display:flex;gap:6px;overflow-x:auto;padding:8px 0;margin:8px 0;background:var(--bg);scrollbar-width:none}.ttoc a{flex:none;font-size:12.5px;padding:5px 10px;border-radius:99px;border:1px solid var(--line);background:var(--panel);text-decoration:none;color:var(--ink);white-space:nowrap}.ttoc .ttocards{background:color-mix(in srgb,var(--purple2) 12%,var(--panel));color:var(--purple2);border-color:transparent}
+.tsec{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:12px 0;scroll-margin-top:56px}.tsec h2{margin:2px 0 8px;font-size:18px}.tsec h3{margin:12px 0 6px;font-size:15px;color:var(--teal2)}.tsec ul{margin:4px 0;padding-left:20px}.tsec li{margin:4px 0}
+.ttab{width:100%;border-collapse:collapse;font-size:14px}.ttab th,.ttab td{border:1px solid var(--line);padding:6px 8px;vertical-align:top;text-align:left}.ttab th{background:var(--panel2)}
+.tqa>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}.tqa span{color:var(--muted)}
+@media (max-width:640px){.tqa>div{grid-template-columns:1fr;gap:2px}.tsec{padding:10px 12px}.ttab{min-width:540px;font-size:13.5px}}
+.tsrc{display:inline-block;font-size:10.5px;font-weight:700;padding:0 5px;margin-left:2px;border-radius:5px;background:color-mix(in srgb,var(--blue2) 12%,transparent);color:var(--blue2);text-decoration:none;vertical-align:1px}
+.tsrcs li{margin:4px 0}
+.fcbox{margin-top:12px;min-height:180px}.fcq{font-size:18px;font-weight:600;margin:10px 0 14px}.fca{font-size:16px;margin:8px 0;padding:10px;border-radius:10px;background:color-mix(in srgb,var(--okgreen) 9%,transparent)}.fcrate{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .agein{display:flex;gap:6px}.agein input{flex:1;min-width:0}.fi .agein select{width:auto;flex:none}
 .res{margin-top:12px;border-radius:10px;background:var(--accent-soft);padding:12px 14px}
 .res .rv{font-size:22px;font-weight:700;color:var(--accent)}
@@ -305,6 +315,47 @@ body[data-view="home"] .topbar{display:none}
 }
 
 /* ===== home v2: illustrated ===== */
+[data-view="home2"] .topbar{display:none}[data-view="home2"] .pbar{display:none}
+:root{--navy:#153b63;--teal2:#087f8c;--blue2:#2879b8;--emred:#c93445;--okgreen:#168568;--purple2:#7356a8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--navy:#1d4a78;--teal2:#3fb3bf;--blue2:#6aa9dd;--emred:#ef7b88;--okgreen:#5cc4a3;--purple2:#b39ae0}}
+:root[data-theme="dark"]{--navy:#1d4a78;--teal2:#3fb3bf;--blue2:#6aa9dd;--emred:#ef7b88;--okgreen:#5cc4a3;--purple2:#b39ae0}
+.h2-head{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(135deg,#123456,#153b63 60%,#1c4f80);color:#fff;padding:20px 22px 20px}
+.h2-art{position:absolute;right:0;bottom:0;width:min(640px,100%);height:100%;pointer-events:none}
+.h2-top{position:relative;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.h2-brand h1{margin:0;font:600 28px/1.1 "Source Serif 4",Georgia,serif;color:#fff}
+.h2-brand p{margin:6px 0 0;color:#cfe0f0;font-size:14px}
+.h2-me .mecard{color:#fff}.h2-me .hh-greet{color:#bfe3f0}
+.h2-search{position:relative;margin-top:16px;max-width:720px;background:#fff;border-radius:12px}
+.h2-search input{color:#182433}
+.h2-head .instbtn{position:relative;margin-top:10px}
+.h2-mods{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:16px 0 4px}
+.h2-mod{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:14px 14px 12px;border-radius:14px;background:var(--panel);border:1px solid var(--line);border-bottom:3px solid var(--mc);text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
+.h2-mod:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(21,59,99,.12)}
+.h2-mod b{font-size:16px;line-height:1.2}.h2-mod small{color:var(--muted);font-size:12px;line-height:1.3}
+.h2-mi{display:grid;place-items:center;width:40px;height:40px;border-radius:11px;background:color-mix(in srgb,var(--mc) 12%,transparent);color:var(--mc)}
+.h2-mi svg{width:24px;height:24px}
+.c-blue{--mc:var(--blue2)}.c-teal{--mc:var(--teal2)}.c-green{--mc:var(--okgreen)}.c-red{--mc:var(--emred)}.c-navy{--mc:var(--navy)}.c-purple{--mc:var(--purple2)}
+:root[data-theme="dark"] .c-navy,.c-navy{--mc:var(--blue2)}
+.h2-sec{display:flex;justify-content:space-between;align-items:baseline;margin:20px 0 10px}
+.h2-sec h2{display:flex;align-items:center;gap:8px;margin:0;font-size:19px}
+.h2-sec a{font-weight:600;text-decoration:none;color:var(--blue2)}
+.h2-hi{width:20px;height:20px;color:var(--teal2)}
+.h2-specs{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
+.h2-spec{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:7px;padding:12px 6px 10px;text-align:center;border-radius:12px;background:var(--panel);border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:13px;font-weight:600;line-height:1.25;min-height:96px}
+.h2-spec:hover{border-color:var(--teal2)}
+.h2-si{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:color-mix(in srgb,var(--teal2) 10%,transparent);color:var(--teal2)}
+.h2-si svg{width:23px;height:23px}
+.h2-all{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+.h2-quick{display:grid;grid-template-columns:200px repeat(6,1fr);gap:0;margin-top:16px;border-radius:14px;background:var(--panel);border:1px solid var(--line);overflow:hidden}
+.h2-qh{display:flex;align-items:center;padding:14px 16px;font-weight:700;background:color-mix(in srgb,var(--blue2) 9%,transparent);color:var(--navy)}
+:root[data-theme="dark"] .h2-qh{color:var(--blue2)}
+.h2-q{display:flex;flex-direction:column;align-items:center;gap:3px;padding:12px 6px;text-align:center;text-decoration:none;color:var(--ink);border-left:1px solid var(--line)}
+.h2-q b{font-size:13px;line-height:1.2}.h2-q small{font-size:11px;color:var(--muted)}
+.h2-qi{color:var(--navy)}:root[data-theme="dark"] .h2-qi{color:var(--blue2)}
+.h2-qi svg{width:24px;height:24px}
+.h2-vi{display:inline-grid;place-items:center;width:34px;height:34px;margin-right:8px;vertical-align:-6px;border-radius:50%;background:color-mix(in srgb,var(--teal2) 12%,transparent);color:var(--teal2)}.h2-vi svg{width:20px;height:20px}
+@media (max-width:1100px){.h2-mods{grid-template-columns:repeat(3,1fr)}.h2-specs{grid-template-columns:repeat(6,1fr)}.h2-quick{grid-template-columns:repeat(3,1fr)}.h2-qh{grid-column:1/-1}.h2-q{border-top:1px solid var(--line)}}
+@media (max-width:640px){.h2-head{padding:16px 14px;border-radius:14px}.h2-brand h1{font-size:22px}.h2-brand p{font-size:13px}.h2-mods{grid-template-columns:repeat(2,1fr);gap:10px}.h2-mod{padding:12px}.h2-mod b{font-size:15px}.h2-specs{grid-template-columns:repeat(3,1fr);gap:8px}.h2-spec{font-size:12px;min-height:88px}.h2-me .mctx{display:none}}
 .homehero{position:relative;overflow:hidden;border-radius:22px;margin:2px 0 0;min-height:380px;color:#fff;box-shadow:0 10px 30px rgba(6,42,45,.25);background:#0a3440}
 .hero-art{position:absolute;inset:0;width:100%;height:100%}
 .hh-in{position:relative;padding:30px 30px 22px;max-width:640px}
@@ -4600,6 +4651,400 @@ function homeView() {
 
 let DEFER_INSTALL = null;
 window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); DEFER_INSTALL = e; const b = document.getElementById("installbtn"); if (b) b.hidden = false; });
+/* ===== redesigned home (preview at #home2): one search, six modules, specialties, quick tools ===== */
+const SI = p => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const IC2 = {
+  drugs: SI('<path d="M10.5 20.5 3.5 13.5a5 5 0 0 1 7-7l7 7a5 5 0 0 1-7 7Z"/><path d="m8.5 8.5 7 7"/>'),
+  guide: SI('<path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5v-15Z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20"/><path d="M8 7h8M8 11h6"/>'),
+  calc: SI('<rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6.5h8M8.5 11h.01M12 11h.01M15.5 11h.01M8.5 14.5h.01M12 14.5h.01M15.5 14.5h.01M8.5 18h.01M12 18h3.5"/>'),
+  emerg: SI('<path d="M3 12h4l2-5 4 10 2-5h6"/>'),
+  imaging: SI('<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 6v12M9 8.5c-2 0-3 1.5-3 4.5s1 4 3 4M15 8.5c2 0 3 1.5 3 4.5s-1 4-3 4M9 11h-1M9 14h-2M15 11h1M15 14h2"/>'),
+  learn: SI('<path d="M2.5 9 12 4.5 21.5 9 12 13.5 2.5 9Z"/><path d="M6.5 11v5c1.6 1.4 3.4 2 5.5 2s3.9-.6 5.5-2v-5"/><path d="M21.5 9v5.5"/>'),
+  med: SI('<path d="M9 3v6H3v6h6v6h6v-6h6V9h-6V3H9Z"/>'),
+  child: SI('<circle cx="12" cy="7" r="3.5"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M10.6 6.2c.5.5 2.3.5 2.8 0"/>'),
+  baby: SI('<circle cx="12" cy="9" r="5"/><path d="M10 9h.01M14 9h.01M10.5 11.5c.9.6 2.1.6 3 0"/><path d="M7 18.5c1.3 1.6 3 2.5 5 2.5s3.7-.9 5-2.5"/>'),
+  obg: SI('<circle cx="12" cy="5" r="2.5"/><path d="M12 7.5v4M9 21v-6.5a4.5 4.5 0 0 1 4.6-4.5c2.2.1 3.9 2 3.9 4.2 0 2.4-2 4.3-4.4 4.3H12v2.5"/>'),
+  surg: SI('<path d="M4 20 15.5 8.5"/><path d="M14 7l3-3 3 3-3 3"/><path d="M4 20h4"/>'),
+  ortho: SI('<path d="M8 3.5a2 2 0 0 0-3.5 1.6A2 2 0 0 0 4 8.5c1 .8 2.3.6 3-.2l8.8 8.8c-.8.7-1 2-.2 3a2 2 0 0 0 3.4-.5 2 2 0 0 0 1.6-3.5c-.8-.8-2-.8-2.8-.1L9 7.2c.7-.8.9-2 .1-2.8-.3-.4-.7-.8-1.1-.9Z"/>'),
+  eye: SI('<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'),
+  ent: SI('<path d="M8 15c0-2 1-3 2.5-4.5S13 8 13 6.5A3.5 3.5 0 0 0 6 6.5"/><path d="M13 6.5c0 3-4 5-4 9 0 2 1.3 3.5 3 3.5s2.5-1 3-2.5"/><path d="M16.5 4a6 6 0 0 1 2 4.5M19.5 2a9.5 9.5 0 0 1 2.5 6.5"/>'),
+  tooth: SI('<path d="M7 3c-2.5 0-4 2-4 4.5 0 3 1.5 4.5 2 7 .4 2.3.8 6.5 2.5 6.5S9.5 16 12 16s2.8 5 4.5 5 2.1-4.2 2.5-6.5c.5-2.5 2-4 2-7C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3Z"/>'),
+  heart: SI('<path d="M12 20s-7.5-4.6-9.3-9.2C1.4 7.5 3.4 4 6.9 4c2 0 3.6 1.1 5.1 3 1.5-1.9 3.1-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8C19.5 15.4 12 20 12 20Z"/><path d="M3.5 12h4l1.5-3 3 6 1.5-3h7"/>'),
+  lung: SI('<path d="M12 3v8M12 11c0 2-2 2.5-3 2"/><path d="M12 11c0 2 2 2.5 3 2"/><path d="M8.5 7C5 7 3 12 3 16.5 3 19 4.5 20 6 20c2.5 0 3.5-1.7 3.5-4V9"/><path d="M15.5 7C19 7 21 12 21 16.5c0 2.5-1.5 3.5-3 3.5-2.5 0-3.5-1.7-3.5-4V9"/>'),
+  kidney: SI('<path d="M9.5 4C6 4 4 7 4 11.5S6 20 9 20c2 0 3-1.5 3-3.5 0-1.5-1.5-2.5-1.5-4.5S12 9.5 12 8c0-2.2-1-4-2.5-4Z"/><path d="M14.5 4C18 4 20 7 20 11.5S18 20 15 20"/><path d="M12 12h3v9"/>'),
+  liver: SI('<path d="M3 9c0-2.5 2-4 5-4h9c2.8 0 4 1.8 4 3.8 0 4.5-5.5 10.2-10 10.2-2 0-2.5-1.5-3.5-3S3 13 3 9Z"/><path d="M11 5v6c0 2 1.5 3 3 3"/>'),
+  brain: SI('<path d="M9.5 4A3 3 0 0 0 6.5 7a3 3 0 0 0-2 5 3 3 0 0 0 1.5 5 3 3 0 0 0 3.5 3c1.4 0 2.5-1 2.5-2.5V6.5A2.5 2.5 0 0 0 9.5 4Z"/><path d="M14.5 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-1.5 5 3 3 0 0 1-3.5 3c-1.4 0-2.5-1-2.5-2.5"/><path d="M8.5 10.5h1.5M14 10.5h1.5M8 15h2M14 15h2"/>'),
+  head: SI('<path d="M5 19v-3.5C3.7 14.3 3 12.6 3 10.8 3 6.5 6.6 3 11 3c4.1 0 7.5 3 7.5 7 0 .8.9 1.6 1.5 2.5l-1.5.8V16a2 2 0 0 1-2 2H15v3"/><path d="M9 8.5c1-1.3 3-1.3 4 0M8 11.5h5"/>'),
+  uro: SI('<path d="M8 3c-2.8 0-4.5 2.5-4.5 6S5.2 15 8 15c1.5 0 2-1 2-2.5 0-1-1-1.8-1-3.5S10 6.5 10 5c0-1.2-.8-2-2-2Z"/><path d="M16 3c2.8 0 4.5 2.5 4.5 6S18.8 15 16 15"/><path d="M10 12l2 3v3M16 15l-4 3"/><path d="M10.5 18h3v3h-3z"/>'),
+  skin: SI('<path d="M3 17h18M3 13.5h18M7 13.5V10M12 13.5V8M17 13.5V10.5"/><path d="M5 21h14"/><circle cx="12" cy="6" r="2"/>'),
+  ribbon: SI('<path d="M12 9.5C10.5 7 9.5 5.5 9.5 4.5a2.5 2.5 0 0 1 5 0c0 1-1 2.5-2.5 5Z"/><path d="M12 9.5 6.5 21M12 9.5 17.5 21M9.3 15l5.4-.1"/>'),
+  gland: SI('<path d="M12 6v12"/><path d="M12 9c-1-3-4-4.5-6-3S3.5 11 5 15s5 4 7 1.5"/><path d="M12 9c1-3 4-4.5 6-3s2.5 5 1 9-5 4-7 1.5"/>'),
+  joint: SI('<path d="M9 2.5v5.5a3 3 0 0 0 6 0V2.5"/><path d="M9 21.5V16a3 3 0 0 1 6 0v5.5"/><path d="M7.5 12h9"/>'),
+  germ: SI('<circle cx="12" cy="12" r="5"/><path d="M12 2.5v4.5M12 17v4.5M2.5 12H7M17 12h4.5M5.3 5.3l3.2 3.2M15.5 15.5l3.2 3.2M5.3 18.7l3.2-3.2M15.5 8.5l3.2-3.2"/><circle cx="10.5" cy="11" r=".6"/><circle cx="13.5" cy="13.5" r=".6"/>'),
+  rehab: SI('<circle cx="11" cy="4.5" r="2"/><path d="M11 7v6l4 3v5"/><path d="M11 13l-3 3v5M8 9.5l3-.5 3 2.5"/><path d="M17.5 12v9M20.5 12v9M17.5 14h3"/>'),
+  people: SI('<circle cx="8.5" cy="7.5" r="3"/><path d="M2.5 19.5a6 6 0 0 1 12 0"/><circle cx="17" cy="8.5" r="2.5"/><path d="M15.5 13.5a5 5 0 0 1 6 5"/>'),
+  palliative: SI('<path d="M12 11s-4-2.6-4-5.2C8 4.2 9.2 3 10.6 3c.7 0 1.1.3 1.4.8.3-.5.7-.8 1.4-.8C14.8 3 16 4.2 16 5.8 16 8.4 12 11 12 11Z"/><path d="M3 15.5h3.5l3.5 1.5h3a1.5 1.5 0 0 1 0 3H10"/><path d="M13 20h3.5l4.5-3a1.5 1.5 0 0 0-1.8-2.4L16 16.5"/>'),
+  mind: SI('<path d="M12 21v-3.5M8 17.5H6a2 2 0 0 1-2-2V12l-1.5-.8C3 8 5.5 3 11 3c4.4 0 7.5 3.2 7.5 7.2 0 3.3-2 5.1-3.5 6V21"/><path d="M9.5 10a2.5 2.5 0 0 1 5 0c0 1.5-2.5 1.8-2.5 3.5"/>'),
+  ambul: SI('<path d="M3 16V7.5A1.5 1.5 0 0 1 4.5 6H13v10"/><path d="M13 9h4l3 4v3h-2"/><circle cx="7" cy="17" r="2"/><circle cx="16" cy="17" r="2"/><path d="M9 17h5M8 8.5v4M6 10.5h4"/>'),
+  growth: SI('<path d="M3 20h18"/><path d="M5 20V12M10 20V8M15 20v-6M20 20V5"/>'),
+  drop: SI('<path d="M12 2.7s6 6.4 6 11.3a6 6 0 0 1-12 0c0-4.9 6-11.3 6-11.3Z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/>'),
+  vent: SI('<rect x="3" y="4" width="14" height="12" rx="2"/><path d="M6 10h2l1-2.5L11 12l1-2h2"/><path d="M17 8h2.5a1.5 1.5 0 0 1 1.5 1.5V20M7 16v4h14"/>'),
+  lab: SI('<path d="M9 3h6M10 3v6.5L5 18.5A1.7 1.7 0 0 0 6.5 21h11a1.7 1.7 0 0 0 1.5-2.5L14 9.5V3"/><path d="M7.5 14h9"/>'),
+  score: SI('<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 3v2h8V3M8 10l2 2 3.5-4M8 16h8"/>'),
+  equip: SI('<path d="M5 3v7a4 4 0 0 0 8 0V3"/><path d="M9 14v2a5 5 0 0 0 10 0v-2"/><circle cx="19" cy="12" r="2"/><path d="M4 3h2M12 3h2"/>'),
+  bell: SI('<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16Z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>')
+};
+const MODULES2 = [
+  ["#drugs", "drugs", "Drugs", "Doses · Forms · Interactions", "c-blue"],
+  ["#stg", "guide", "Guidelines", "STG Bhutan · MoH · WHO", "c-teal"],
+  ["#calc", "calc", "Calculators", "Doses · Scores · Fluids", "c-green"],
+  ["#protocols", "emerg", "Emergency", "Protocols · Algorithms", "c-red"],
+  ["#imaging", "imaging", "Clinical Imaging", "X-ray · ECG · Echo · ABG", "c-navy"],
+  ["#learn", "learn", "Learning", "Guides · Cases · Study", "c-purple"]
+];
+/* id, name, icon, STG chapters, guideline books, condition-name pattern */
+const SPECS = [
+  ["medicine", "Medicine", "med", [2, 3, 4, 5, 6, 7], ["dm", "htn", "stroke", "penh", "penb"], null],
+  ["paeds", "Paediatrics", "child", [12], ["my_opd", "tbped", "picu", "picu_ref", "picu_drugs", "picu_sed", "w_pbhc", "w_sbi", "w_pnd", "w_wasting", "feedchart"], /child|paediatric|pediatric|infant|croup|bronchiolitis|febrile seizure|measles|malnutrition|SAM\b/i],
+  ["neo", "Neonatology (NICU)", "baby", [], ["nicu", "w_mcpc", "w_pnd"], /neonat|newborn|young infant|jaundice|prematur/i],
+  ["obg", "Obstetrics & Gynaecology", "obg", [11], ["pph", "cs", "can", "infert", "w_pph", "colpo", "cascr"], /pregnan|obstet|eclampsia|haemorrhage|postpartum|antenatal|labour|gyna|menstru|abortion/i],
+  ["surg", "Surgery", "surg", [], ["emb", "emkits"], /trauma|burn|obstruction|peritonitis|appendic|hernia|haemorrhoid|fissure|abscess|wound|soft tissue|acute abdomen/i],
+  ["ortho", "Orthopaedics", "ortho", [13], [], /fracture|sprain|arthritis|back pain|osteo|gout|dislocation/i],
+  ["eye", "Ophthalmology", "eye", [15], [], /eye|conjunctiv|cataract|glaucoma|corneal|stye|chalazion|uveitis/i],
+  ["ent", "ENT", "ent", [14], [], /ear|otitis|sinusitis|pharyngitis|tonsil|epistaxis|nose|cerumen/i],
+  ["dental", "Dental", "tooth", [17], [], /dental|tooth|oral|caries|gingiv|mouth ulcer/i],
+  ["cardio", "Cardiology", "heart", [2], ["htn"], /cardiac|heart|hypertension|angina|myocard|arrhythm|rheumatic|endocarditis/i],
+  ["resp", "Pulmonology & Critical Care", "lung", [3], ["my_pards", "my_pardsnote", "my_pardschart", "picu"], /asthma|copd|pneumonia|respiratory|ards|pleural|bronch/i],
+  ["neph", "Nephrology", "kidney", [6], [], /kidney|renal|nephr|urinary tract|uti|aki|dialysis/i],
+  ["gi", "Gastroenterology & Hepatology", "liver", [4], ["gastric"], /hepat|liver|cirrho|gastr|diarrh|dysentery|peptic|pancrea|jaundice|constipation|vomiting/i],
+  ["neuro", "Neurology", "brain", [7], ["stroke"], /stroke|epilep|seizure|status|headache|meningitis|neuropathy|parkinson/i],
+  ["nsurg", "Neurosurgery", "head", [], [], /head injury|head trauma|raised intracranial|spinal injury/i],
+  ["uro", "Urology", "uro", [], [], /urinary retention|renal colic|stone|prostat|hydrocele|testic/i],
+  ["derm", "Dermatology & Venereology", "skin", [16, 9], [], /skin|eczema|scabies|urticaria|fungal|impetigo|psoriasis|sexually|syphilis|vitiligo/i],
+  ["onc", "Oncology & Haematology", "ribbon", [], ["cascr", "gastric", "colpo"], /anaemia|anemia|cancer|leuk|lymphoma|bleeding disorder|thalass|transfus/i],
+  ["endo", "Endocrinology & Metabolism", "gland", [5], ["dm"], /diabet|thyroid|dka|hypogly|adrenal|obesity|dyslip|calcium|sodium|potassium|magnesium/i],
+  ["rheum", "Rheumatology", "joint", [], [], /arthritis|gout|lupus|rheumat|vasculitis/i],
+  ["id", "Infectious Diseases", "germ", [8, 9], ["nag", "mdro", "malaria", "dengue", "rabies", "zoon", "leish", "mpox", "tb", "drtb", "hiv", "hivct", "prep", "w_arbo", "w_aware"], /infect|sepsis|malaria|dengue|typhoid|scrub|tuberc|hiv|rabies|leptosp|cholera|measles|varicella|hepatitis/i],
+  ["psych", "Psychiatry", "mind", [10], [], /depress|anxiety|psych|alcohol|suicid|substance|bipolar|schizo/i],
+  ["emerg", "Emergency Medicine", "ambul", [1], ["emb", "sepsis", "snake", "emkits"], /poison|snake|bite|shock|anaph|arrest|trauma|burn|drowning|choking|organophos/i],
+  ["rehab", "Rehabilitation Medicine", "rehab", [], [], /rehabilit|disab|physiother/i],
+  ["ph", "Public Health & PHC", "people", [], ["ncds", "penh", "penb", "tobacco", "w_aware", "zoon"], /screening|immunis|vaccin|nutrition|tobacco/i],
+  ["pall", "Palliative Care", "palliative", [18], [], /palliat|end of life|pain relief/i]
+];
+const SPEC_BY = Object.fromEntries(SPECS.map(s => [s[0], s]));
+const QUICK2 = [["#growth", "growth", "Growth & BP", "WHO · AAP centiles"], ["#fluids", "drop", "Fluids & Infusions", "Electrolytes · rates"], ["#vent", "vent", "Ventilation", "Modes · settings"], ["#imaging", "lab", "Blood gas & labs", "ABG · electrolytes"], ["#calc", "score", "Clinical Scores", "GCS · PEWS · more"], ["#equip", "equip", "Equipment", "Sizes · checklists"]];
+const DZONG_SVG = `<svg class="h2-art" viewBox="0 0 600 160" preserveAspectRatio="xMaxYMax slice" aria-hidden="true"><path d="M0 160 L90 70 L140 105 L230 30 L300 90 L360 55 L460 120 L520 80 L600 120 L600 160 Z" fill="rgba(255,255,255,.07)"/><path d="M0 160 L120 105 L200 130 L290 85 L380 125 L470 95 L600 140 L600 160 Z" fill="rgba(255,255,255,.08)"/><path d="M215 34 l15 -4 15 4 M222 32 v6 M238 32 v6" stroke="rgba(255,255,255,.35)" stroke-width="2" fill="none"/><g transform="translate(410 76)" fill="rgba(255,255,255,.16)"><path d="M0 52 V24 h80 v28 Z"/><path d="M-6 26 L40 8 L86 26 Z"/><path d="M20 24 V12 h40 v12 Z"/><path d="M14 13 L40 0 L66 13 Z"/><rect x="10" y="32" width="8" height="8" fill="rgba(21,59,99,.6)"/><rect x="36" y="32" width="8" height="8" fill="rgba(21,59,99,.6)"/><rect x="62" y="32" width="8" height="8" fill="rgba(21,59,99,.6)"/><path d="M-6 30 h92" stroke="rgba(176,74,46,.55)" stroke-width="4"/></g></svg>`;
+function homeView2() {
+  const rec = recentAll(), pr = new Set(PROTOCOLS.map(p => p.id)), mine = GL.books.filter(b => b.cat === "mine");
+  const tile = ([id, n, ic]) => `<a class="h2-spec" href="#spec/${id}"><span class="h2-si">${IC2[ic]}</span><span>${esc(n)}</span></a>`;
+  return `<section class="h2-head">${DZONG_SVG}<div class="h2-top"><div class="h2-brand"><h1>Bhutan Clinical Reference</h1><p>A clinical companion for Bhutanese clinicians</p></div><div id="hhme" class="h2-me">${meHeroInner()}</div></div>
+    <div class="search hero-s h2-search">${ICON.search}<input id="hq" type="search" placeholder="Search diseases, drugs, guidelines, calculators, protocols…" autocomplete="off" aria-label="Search the whole app"></div>
+    <button class="instbtn" id="installbtn" hidden>Install app on this device</button></section>
+    <div class="h2-mods">${MODULES2.map(([h, ic, t, s, c]) => `<a class="h2-mod ${c}" href="${h}"><span class="h2-mi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
+    ${pinsHtml()}
+    <div class="h2-sec"><h2>${IC2.med.replace("<svg", '<svg class="h2-hi"')}Clinical specialties</h2><a href="#specs">View all</a></div>
+    <div class="h2-specs">${SPECS.slice(0, 24).map(tile).join("")}</div>
+    <div class="h2-quick"><div class="h2-qh">Quick tools &amp; resources</div>${QUICK2.map(([h, ic, t, s]) => `<a class="h2-q" href="${h}"><span class="h2-qi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
+    <div class="h2-sec"><h2>Emergencies</h2><a href="#protocols">All protocols</a></div>
+    <div class="emgrid">${EMERG.filter(([id]) => pr.has(id)).map(([id, t]) => `<a class="em" href="#p/${id}">${ICON.siren}<span>${esc(t)}</span></a>`).join("")}</div>
+    <div class="hcols"><div><div class="h2-sec"><h2>Recently viewed</h2></div>${rec.length ? `<div class="dl">${rec.slice(0, 6).map(x => `<a class="di" href="${esc(x.h)}"><div><div class="nm">${esc(x.t)}</div><div class="gp">${esc(x.k)}</div></div></a>`).join("")}</div>` : `<div class="card muted small">Pages you open appear here.</div>`}</div>
+      <div><div class="h2-sec"><h2>My guides</h2><a href="#learn">Learning</a></div><div class="dl">${mine.slice(0, 6).map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s)}</div><div class="gp">${esc(b.t.slice(0, 70))}</div></div></a>`).join("")}</div></div></div>
+    <p class="small muted" style="margin-top:14px"><a href="#homeold">Classic home page</a></p>`;
+}
+function specsView() {
+  return `<h1 class="vt">Clinical specialties</h1><p class="vsub">Each specialty gathers its Bhutan STG chapter, national guidelines and the conditions already in the app.</p><div class="h2-specs h2-all">${SPECS.map(([id, n, ic]) => `<a class="h2-spec" href="#spec/${id}"><span class="h2-si">${IC2[ic]}</span><span>${esc(n)}</span></a>`).join("")}</div>`;
+}
+function specView(id) {
+  const s = SPEC_BY[id]; if (!s) return specsView();
+  const [, n, ic, chs, bookIds, rx] = s, chSet = new Set(chs);
+  const conds = CONDS.filter(c => (c.stg || []).some(x => chSet.has(+String(x).split(".")[0])) || (rx && (rx.test(c.n) || (c.al || []).some(a => rx.test(a))))).sort((a, b) => a.n.localeCompare(b.n));
+  const topics = STG.topics.filter(t => chSet.has(t.ch));
+  const books = bookIds.map(b => GL_BY[b]).filter(Boolean);
+  const chTitle = c => (STG.chapters.find(x => x.n === c) || {}).t || "";
+  const tps = TOPICS.filter(t => t.spec.includes(id));
+  return `<h1 class="vt"><span class="h2-vi">${IC2[ic]}</span>${esc(n)}</h1><p class="vsub">Full topic pages first, then everything else in the app for this specialty. More topic pages are added in batches.</p>
+    ${tps.length ? `<div class="pgroup">Full topic pages (${tps.length})</div><div class="dl">${tps.map(t => `<a class="di" href="#topic/${t.id}"><div><div class="nm">${esc(t.n)}</div><div class="gp">${esc(t.ages)} · with advice and flashcards</div></div></a>`).join("")}</div>` : ""}
+    ${conds.length ? `<div class="pgroup">Conditions (${conds.length})</div><div class="dl">${conds.map(c => `<a class="di" href="#cond/${c.id}"><div><div class="nm">${esc(c.n)}</div></div></a>`).join("")}</div>` : ""}
+    ${chs.map(c => { const ts = topics.filter(t => t.ch === c); return ts.length ? `<div class="pgroup">Bhutan STG 2024 · Chapter ${c}: ${esc(chTitle(c))}</div><div class="dl">${ts.map(t => `<a class="di" href="#stg/${t.n}"><div><div class="nm">${esc(t.n)} ${esc(t.t)}</div><div class="gp">STG page ${t.p}</div></div></a>`).join("")}</div>` : ""; }).join("")}
+    ${books.length ? `<div class="pgroup">National guidelines and references</div><div class="dl">${books.map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s || b.t)}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div>` : ""}
+    ${!conds.length && !topics.length && !books.length ? `<div class="card muted">Nothing for this specialty is in the app yet. It is on the list for the topic stages. Meanwhile, <a href="#search/${encodeURIComponent(n)}">search the app for ${esc(n)}</a>.</div>` : ""}`;
+}
+function imagingView() {
+  const ids = ["h_ecg", "my_ecg", "h_cxr", "my_xray", "h_echo", "h_abg", "my_abg", "h_lytes"], books = ids.map(b => GL_BY[b]).filter(Boolean);
+  return `<h1 class="vt">Clinical imaging &amp; interpretation</h1><p class="vsub">X-ray, ECG, echocardiography and blood gas guides already in the app. ▶ marks an interactive guide.</p><div class="dl">${books.map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s)}${b.app ? " ▶" : ""}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div><p class="small muted">Ultrasound, CT and MRI lessons are planned for a later stage.</p>`;
+}
+function learnView() {
+  const mine = GL.books.filter(b => b.cat === "mine" || b.cat === "picu");
+  const due = fcDue(FC_ALL).length;
+  return `<h1 class="vt">Learning</h1><p class="vsub">Flashcards built from checked topic pages, full topic pages, and your study guides.</p><div class="h2-mods" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><a class="h2-mod c-purple" href="#cards"><span class="h2-mi">${IC2.learn}</span><b>Flashcards</b><small>${FC_ALL.length} cards · ${due} due now</small></a><a class="h2-mod c-teal" href="#topics"><span class="h2-mi">${IC2.guide}</span><b>Topic pages</b><small>${TOPICS.length} in the full format</small></a></div><div class="pgroup">Study guides and teaching decks</div><div class="dl">${mine.map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s)}${b.app ? " ▶" : ""}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div>`;
+}
+/* ===== standard clinical topic pages: one record per disease, every statement tied to a source ===== */
+const TOPICS = [
+{
+  id: "nephrotic", cond: "nephrotic", n: "Nephrotic syndrome", spec: ["neph", "paeds", "medicine"], ages: "Children and adults", emerg: "Urgent if hypovolaemic, infected or thrombosed",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a nephrologist.",
+  src: {
+    S1: ["Bhutan STG 2024, 6.3 Nephrotic syndrome (adults), p.120", "#stg/6.3"],
+    S2: ["Bhutan STG 2024, 12.5.2 Nephrotic syndrome (children), p.279", "#stg/12.5.2"],
+    S3: ["IPNA 2023 recommendations for steroid-sensitive nephrotic syndrome in children (Trautmann et al., Pediatr Nephrol 2023;38:877–919)", "https://doi.org/10.1007/s00467-022-05739-3"],
+    S4: ["KDIGO 2021 Glomerular Diseases guideline (Kidney Int 2021;100:S1–S276), ch.1 and ch.5", "https://kdigo.org/guidelines/gd/"],
+    S5: ["ICMR Standard Treatment Workflow: Glomerular diseases (India, 2026)", "https://www.icmr.gov.in/standard-treatment-workflows-stws"],
+    S6: ["Bhutan STG 2024, 12.5.1 Acute glomerulonephritis (children), p.277", "#stg/12.5.1"]
+  },
+  sec: [
+    ["Definition", [
+      ["p", "A clinical syndrome of heavy (nephrotic-range) proteinuria with a low serum albumin, usually with oedema; high cholesterol is common. [S1][S2]"],
+      ["t", [["", "Children", "Adults"],
+        ["Nephrotic-range proteinuria", "Spot urine protein:creatinine ratio (UPCR) ≥ 200 mg/mmol (2 mg/mg), or ≥ 1000 mg/m²/day, or dipstick 3+ to 4+ [S3]", "> 3.5 g/day (> 3.5 g/1.73 m²/day) or spot PCR > 3 g/g [S5]"],
+        ["Hypoalbuminaemia", "Serum albumin < 30 g/L (or oedema when albumin cannot be measured) [S3]", "Low serum albumin [S1]"]]],
+      ["warn", "Source difference: the Bhutan STG defines nephrotic-range protein loss as 3 g or more per day [S1], while KDIGO-based guidance uses more than 3.5 g/day in adults [S5]. Use your unit's definition and record the measured value."]
+    ]],
+    ["Diagnostic criteria and classification", [
+      ["h", "By cause"],
+      ["l", ["Primary (idiopathic): minimal change disease, FSGS, membranous nephropathy. In children about 90% are primary and minimal change disease is the most common, with a good prognosis. [S2][S1]",
+        "Secondary: diabetes, amyloidosis, lupus, Henoch–Schönlein purpura, vasculitis, post-infectious glomerulonephritis, hepatitis B/C, HIV, malaria, drugs. [S1][S2][S3][S5]",
+        "By age at onset in children: congenital (< 3 months), infantile (3–12 months; about half have a genetic cause), childhood (> 1 year). [S3]"]],
+      ["h", "Children: by response to prednisolone (IPNA)"],
+      ["t", [["Term", "Definition"],
+        ["Steroid-sensitive (SSNS)", "Complete remission within 4 weeks of standard-dose prednisolone [S3]"],
+        ["Complete remission", "UPCR ≤ 20 mg/mmol, or dipstick negative/trace on 3 or more consecutive days [S3]"],
+        ["Steroid-resistant (SRNS)", "No complete remission after 4 weeks of standard-dose prednisolone (late responders remit between weeks 4 and 6) [S3]"],
+        ["Relapse", "Dipstick ≥ 3+ or UPCR ≥ 200 mg/mmol on 3 consecutive days, with or without oedema, after a complete remission [S3]"],
+        ["Frequently relapsing (FRNS)", "≥ 2 relapses in the first 6 months after remission, or ≥ 3 relapses in any 12 months [S3]"],
+        ["Steroid-dependent (SDNS)", "2 consecutive relapses during prednisolone therapy or within 14 days of stopping it [S3]"],
+        ["Complicated relapse", "Needs admission for severe oedema, hypovolaemia or AKI needing albumin, thrombosis, or severe infection [S3]"]]],
+      ["h", "Adults with minimal change disease (KDIGO)"],
+      ["t", [["Term", "Definition"],
+        ["Complete remission", "Proteinuria < 0.3 g/day (PCR < 300 mg/g), stable creatinine, albumin > 35 g/L [S4]"],
+        ["Steroid-resistant", "Proteinuria still > 3.5 g/day with < 50% fall despite prednisone 1 mg/kg/day (or 2 mg/kg alternate days) for > 16 weeks [S4]"],
+        ["Frequently relapsing", "≥ 2 relapses in 6 months or ≥ 4 in 12 months [S4]"],
+        ["Steroid-dependent", "Relapse during, or within 2 weeks of finishing, glucocorticoids [S4]"]]]
+    ]],
+    ["Causes and pathophysiology", [
+      ["l", ["Injury to the glomerular filter (podocytes) lets albumin leak into the urine; the liver cannot replace it, so serum albumin falls.",
+        "Oedema comes from low oncotic pressure plus salt retention by the kidney. Some patients are volume-depleted (underfilled), others volume-overloaded (overfilled), which is why volume status must be assessed before giving diuretics or albumin. [S3]",
+        "The liver makes more lipoproteins, so cholesterol rises. [S1][S2]",
+        "Loss of anticoagulant proteins and haemoconcentration make blood clot easily: thrombosis risk. [S3][S4]",
+        "Loss of immunoglobulin, plus steroids, raises infection risk; 30–50% of serious infections are pneumococcal. [S3]",
+        "In children, minimal change disease is most likely between ages 2 and 7 and becomes less likely after that. [S3]"]]
+    ]],
+    ["History: questions to ask", [
+      ["qa", [["When did the swelling start, and is it worse around the eyes in the morning?", "Periorbital oedema is the usual first sign in children and is often mistaken for allergy. [S3]"],
+        ["Is the urine frothy?", "Suggests heavy proteinuria, but is not diagnostic. [S1]"],
+        ["Has the urine been red or cola-coloured?", "Visible haematuria points to nephritic or atypical disease and is an indication for kidney biopsy. [S3][S6]"],
+        ["Is the child passing less urine?", "May mean hypovolaemia or acute kidney injury. [S3]"],
+        ["Any fever or tummy pain?", "Fever with abdominal pain may be peritonitis; abdominal pain may also mean hypovolaemia. [S3]"],
+        ["Any breathlessness?", "Pleural effusion, ascites, pneumonia or pulmonary embolism. [S3]"],
+        ["Any painful swollen leg, severe headache or fits?", "Possible venous thrombosis, including cerebral venous thrombosis. [S3]"],
+        ["Any rash, joint pain or recent sore throat or skin infection?", "Suggests a secondary cause: lupus, Henoch–Schönlein purpura or post-streptococcal disease. [S3][S6]"],
+        ["Any TB contact, hepatitis B, HIV, malaria, or medicines such as NSAIDs?", "Secondary causes, and TB must be excluded before steroids. [S3][S5]"],
+        ["Adults: diabetes, bone pain, weight loss?", "Diabetic kidney disease or myeloma/amyloidosis. [S5]"],
+        ["Family history of kidney disease? Age at onset?", "Onset under 1 year or over 12 years, or a family history, is atypical and needs specialist work-up. [S3]"],
+        ["Which vaccines has the child had?", "Pneumococcal and varicella protection matter before immunosuppression. [S3]"]]]
+    ]],
+    ["Symptoms and examination", [
+      ["h", "Common symptoms"],
+      ["l", ["Puffy face and eyes, then leg and generalised swelling; weight gain. [S1][S2]", "Abdominal distension from ascites; scrotal or labial swelling. [S2]", "Frothy urine, reduced urine output, tiredness, poor appetite; vomiting or diarrhoea from gut wall oedema. [S1][S2]"]],
+      ["h", "Examination"],
+      ["l", ["Weight, height and growth chart. [S3]", "Blood pressure: usually normal in a typical child; raised suggests atypical disease. In adults it may be high, normal or low. [S2][S1]", "Extent of oedema: pitting, gravity-dependent, ascites, pleural or pericardial effusion. [S3]", "Volume status: capillary refill, pulse, blood pressure, cold peripheries. [S3]", "Signs of infection: chest, skin, abdomen, urinary tract. [S3]", "Extrarenal clues: rash, arthritis, dysmorphic features, lymph nodes. [S3]"]],
+      ["warn", "Red flags (same-day referral): breathing difficulty, severe abdominal pain, one swollen limb, oliguria or anuria, seizures, low blood pressure, fever. [S5]"]
+    ]],
+    ["Differential diagnosis", [
+      ["t", [["Diagnosis", "Supports it", "Argues against it"],
+        ["Acute nephritic syndrome (post-streptococcal GN)", "Cola-coloured urine, hypertension, reduced urine, recent sore throat or skin infection [S6]", "Proteinuria usually 2+ or less, not nephrotic range [S6]"],
+        ["Heart failure", "Raised JVP, orthopnoea, cardiomegaly", "No heavy proteinuria"],
+        ["Liver disease", "Jaundice, signs of chronic liver disease", "Low albumin without heavy proteinuria"],
+        ["Malnutrition or protein-losing gut disease", "Poor diet, diarrhoea, wasting", "Urine protein is not heavy"],
+        ["Allergic swelling of the eyelids", "Itch, allergen exposure", "Urine dipstick shows 3+ or more protein [S3]"],
+        ["Secondary nephrotic syndrome", "Rash, arthritis, haematuria, low C3, hepatitis B, HIV, diabetes", "Typical child aged 1–12 with normal BP and no haematuria [S3]"]]],
+      ["note", "Must not miss: lupus, hepatitis B or HIV-related disease, myeloma or amyloidosis in adults, and the complications themselves (peritonitis, thrombosis)."]
+    ]],
+    ["Investigations", [
+      ["t", [["Test", "Why", "What to expect / how it changes management"],
+        ["Urine dipstick", "Screening and home monitoring", "3+ to 4+ protein in nephrotic range [S3]"],
+        ["Urine microscopy", "Look for haematuria and casts", "Red cells suggest nephritic or atypical disease [S3]"],
+        ["Spot urine protein:creatinine ratio (first morning)", "Confirms nephrotic range; needed at least once before treatment [S3]", "Children ≥ 200 mg/mmol [S3]; adults PCR > 3 g/g [S5]. 24-hour urine protein is the alternative [S1]"],
+        ["Serum albumin, total protein", "Defines the syndrome", "Low (< 30 g/L) [S3]"],
+        ["Creatinine, urea, electrolytes", "Kidney function, AKI, hyponatraemia", "AKI not due to hypovolaemia is atypical [S3]"],
+        ["Lipid profile", "Expected rise", "High cholesterol [S1][S2]"],
+        ["CBC", "Baseline; haemoconcentration in hypovolaemia", "[S3]"],
+        ["C3, C4, ANA, ASO, ANCA", "If visible haematuria or atypical features", "Low C3 suggests nephritic causes and needs biopsy [S3][S5]"],
+        ["Hepatitis B and C, HIV", "Secondary causes; before immunosuppression", "[S3][S5]"],
+        ["TB screening (Mantoux, chest X-ray)", "Before starting steroids", "[S5][S3]"],
+        ["Adults: anti-PLA2R, protein electrophoresis and free light chains, blood glucose", "Membranous nephropathy, myeloma, diabetes", "[S5]"],
+        ["Kidney ultrasound", "Kidney malformations, renal vein thrombosis; always before biopsy", "[S2][S3]"],
+        ["Chest X-ray", "Effusions, infection", "[S2]"]]],
+      ["h", "Which test settles the diagnosis?"],
+      ["l", ["The syndrome is confirmed by quantified proteinuria plus a low serum albumin. [S3][S4]",
+        "Children aged 1–12 with typical features: routine kidney biopsy is not recommended. The response to prednisolone at 4 weeks classifies the disease. [S3]",
+        "Biopsy in children: visible haematuria, low C3, AKI not due to hypovolaemia, sustained hypertension, arthritis or rash, infantile onset, age > 12 (case by case), steroid resistance. [S3]",
+        "Adults: kidney biopsy is the reference standard. Minimal change disease in adults can be diagnosed only by biopsy, and treatment follows the biopsy report. [S4][S5]"]]
+    ]],
+    ["Management", [
+      ["h", "A. Stabilise first"],
+      ["l", ["Assess volume status before giving any diuretic or albumin. [S3]",
+        "Hypovolaemic shock: 20 mL/kg of 4–5% albumin over 20–30 minutes (isotonic saline if albumin is not available); follow resuscitation guidelines. [S3]",
+        "Signs of hypovolaemia (oliguria, AKI, long capillary refill, tachycardia, abdominal pain): give 20–25% albumin, and stop diuretics. [S3]",
+        "Suspected peritonitis: IV antibiotics covering Streptococcus pneumoniae. [S3]"]],
+      ["h", "B. Non-drug care"],
+      ["l", ["Low-salt diet while oedematous (children about 2–3 mEq/kg/day of sodium); normal salt once in remission. [S3][S1]",
+        "Do not restrict fluids routinely; restrict only for sodium < 130 mmol/L or severe oedema in hospital. [S3]",
+        "Avoid immobilisation (thrombosis risk). [S3]",
+        "Daily weight and urine output chart. [S1]",
+        "Adults: reduce saturated fat and cholesterol in the diet. [S1]"]],
+      ["h", "C. Medicines: children (first episode, age over 1 year, typical features)"],
+      ["p", "In Bhutan, children with nephrotic syndrome are referred to a higher centre for evaluation and treatment [S2]. The regimens below are what the specialist team uses; confirm against the discharge plan."],
+      ["t", [["Medicine", "Dose", "Duration", "Source"],
+        ["Prednisolone, single morning dose", "60 mg/m²/day or 2 mg/kg/day (max 60 mg/day)", "4 weeks, then the alternate-day phase", "[S3]"],
+        ["then prednisolone, alternate days", "40 mg/m² or 1.5 mg/kg (max 40 mg) every other day", "4 weeks", "[S3]"],
+        ["or the longer option", "Same doses: 6 weeks daily, then 6 weeks alternate days", "12 weeks in total", "[S3][S5]"],
+        ["Relapse", "2 mg/kg/day or 60 mg/m²/day (max 60 mg) until complete remission (3 days negative/trace), then 1.5 mg/kg or 40 mg/m² (max 40 mg) alternate days", "Alternate-day phase 4 weeks; no taper", "[S3]"],
+        ["Severe oedema (not hypovolaemic)", "20–25% albumin 0.5–1 g/kg over 4–6 h, with furosemide 1–2 mg/kg IV in the middle and/or at the end", "As needed, with close monitoring", "[S3]"]]],
+      ["l", ["Do not use ACE inhibitors or ARBs to control oedema or blood pressure in a steroid-sensitive relapse. [S3][S5]",
+        "Do not give diuretics for uncomplicated oedema; exclude hypovolaemia first. [S3]",
+        "No routine antibiotic prophylaxis, and no routine anticoagulation in children. [S3]",
+        "Frequent relapses, steroid dependence or resistance need steroid-sparing drugs chosen by a paediatric nephrologist. [S3]"]],
+      ["h", "C. Medicines: adults"],
+      ["t", [["Medicine", "Dose", "Duration", "Source"],
+        ["Loop diuretic for oedema", "Per drug page; add a thiazide if resistant. Aim to lose 0.5–1 kg/day", "Until oedema controlled", "[S1][S5]"],
+        ["Losartan (or ACE inhibitor)", "For blood pressure and to reduce proteinuria", "Long term", "[S1][S5]"],
+        ["Statin", "For dyslipidaemia", "Long term", "[S5]"],
+        ["Prednisolone for minimal change disease (biopsy-proven)", "1 mg/kg/day (max 80 mg) or 2 mg/kg on alternate days (max 120 mg)", "At least 4 and at most 16 weeks at high dose; start tapering 2 weeks after complete remission, total course at least 24 weeks", "[S4]"],
+        ["Other histology (membranous, FSGS, lupus)", "Specialist regimen according to biopsy", "", "[S1][S5]"]]],
+      ["warn", "Thromboprophylaxis in adults: ICMR suggests it when albumin is below 2.5 g/dL [S5]; KDIGO advises weighing each patient's clot risk against bleeding risk, with membranous nephropathy at highest risk [S4]. Decide with the nephrologist."],
+      ["h", "D. Procedures"],
+      ["l", ["Kidney biopsy, by a nephrologist, for the indications above; ultrasound first. [S3]"]],
+      ["h", "E. Monitoring"],
+      ["l", ["Daily: weight, urine output, blood pressure during the acute phase. [S1]", "Home urine dipstick daily until remission; at least twice weekly in the first year; daily again with fever or swelling. [S3]", "Electrolytes and creatinine while on diuretics or albumin. [S3]"]],
+      ["h", "F. Referral and admission"],
+      ["l", ["Bhutan: refer every child to a higher centre for evaluation and treatment [S2]; adults are referred to a higher centre [S1].",
+        "Admit for complicated relapse: severe oedema, hypovolaemia or AKI, thrombosis, or severe infection. [S3]",
+        "Paediatric nephrologist for: atypical features, family history, onset under 1 year or over 12 years, secondary NS, steroid resistance, late response, FRNS/SDNS, drug toxicity or complicated relapses. [S3]"]]
+    ]],
+    ["Follow-up", [
+      ["l", ["Adults: monthly follow-up with urine protein. [S1]",
+        "Children: follow the higher centre's discharge plan; check adherence to prednisolone, growth and blood pressure. [S2]",
+        "Clinic visits every 3 months in the first year, then individualised. [S3]",
+        "Every visit: blood pressure, weight, height and BMI, signs of infection, steroid side effects. [S3][S5]",
+        "Eye examination for cataract and glaucoma: at least yearly while on steroids (ICMR suggests every 6 months). [S3][S5]",
+        "Kidney function every 1–3 months while active. [S5]",
+        "Vaccines: complete pneumococcal and influenza vaccination; avoid live vaccines during and for 3 months after high-dose steroids. [S5][S3]"]]
+    ]],
+    ["Complications", [
+      ["h", "Early"],
+      ["l", ["Infection: peritonitis, cellulitis, pneumonia, sepsis. [S3]", "Hypovolaemia and acute kidney injury. [S3]", "Thrombosis: deep vein, renal vein, cerebral venous sinus, pulmonary embolism. [S3]", "Hyponatraemia. [S3]"]],
+      ["h", "Late"],
+      ["l", ["Relapses: 70–80% of children relapse at least once, and up to half of those become frequent relapsers or steroid-dependent. [S3]", "Steroid toxicity: obesity, poor growth, hypertension, behaviour change, cataract, glaucoma. [S3][S2]", "Steroid resistance and progression to chronic kidney disease. [S3][S5]", "Adults: cardiovascular risk from persistent hyperlipidaemia. [S5]"]]
+    ]],
+    ["Common mistakes", [
+      ["l", ["Calling periorbital oedema an allergy without dipping the urine. [S3]",
+        "Giving furosemide to a child who is actually hypovolaemic (risk of shock, AKI and thrombosis). [S3]",
+        "Restricting fluids routinely. [S3]",
+        "Starting steroids without confirming nephrotic-range proteinuria or screening for TB. [S3][S5]",
+        "Tapering the alternate-day prednisolone, or stopping prednisolone abruptly. [S3]",
+        "Using ACE inhibitors or ARBs for oedema in a steroid-sensitive child. [S3]",
+        "Missing peritonitis in a child with fever and abdominal pain. [S3]",
+        "Giving live vaccines during high-dose steroids. [S5]"]]
+    ]],
+    ["Advice to give", [
+      ["l", ["Explain that nephrotic syndrome means the kidney filter leaks protein, that most children respond to prednisolone, and that relapses are common and not the family's fault. [S3]",
+        "Give prednisolone once each morning with food, at the exact dose prescribed. Never stop it suddenly or change the dose yourself. [S3]",
+        "Test the first morning urine with a dipstick every day until it is clear, then at least twice a week, and every day if there is fever or swelling. Write the results in a diary. If it shows 3+ protein for 3 days in a row, contact the clinic: this is a relapse. [S3]",
+        "Eat less salt while swollen; normal food once well. Do not restrict drinking unless the doctor says so. [S3][S1]",
+        "Keep active and avoid long bed rest. [S3]",
+        "Wash hands often, and avoid crowded places and sick contacts while on high-dose steroids. [S5]",
+        "Inactivated vaccines such as pneumococcal and flu are safe and recommended. Do not give live vaccines during treatment or for 3 months after, unless the doctor advises. [S5]",
+        "Come back at once for: fever with tummy pain, repeated vomiting, very little urine, breathlessness, a painful swollen leg, severe headache or fits, cold hands, dizziness or fainting. [S3][S5]",
+        "Keep every follow-up appointment for blood pressure, growth and eye checks. [S2][S3]",
+        "Adults: low-salt, low-saturated-fat diet; monthly urine protein checks. [S1]"]]
+    ]],
+    ["Learning summary", [
+      ["l", ["Nephrotic = heavy proteinuria + low albumin + oedema (+ high lipids). [S1][S3]",
+        "Typical child aged 1–12: no biopsy; prednisolone response defines SSNS. [S3]",
+        "Assess volume status before diuretics: an oedematous child can be intravascularly dry. [S3]",
+        "Fever + abdominal pain in nephrotic syndrome = think pneumococcal peritonitis. [S3]",
+        "Adults need a biopsy: treatment depends on the histology. [S4][S5]"]]
+    ]]
+  ],
+  links: [["#drug/PREDNISOLONE", "Prednisolone"], ["#drug/FUROSEMIDE", "Furosemide"], ["#drug/LOSARTAN", "Losartan"], ["#drug/HUMAN%20ALBUMIN", "Human albumin"], ["#growth", "Growth & BP (WHO and AAP)"], ["#cond/nephrotic", "Condition page with all linked guidelines"]],
+  cards: [
+    ["Define nephrotic-range proteinuria in a child (IPNA).", "Spot UPCR ≥ 200 mg/mmol (2 mg/mg), or ≥ 1000 mg/m²/day, or dipstick 3+ to 4+.", "S3"],
+    ["What serum albumin defines hypoalbuminaemia in childhood nephrotic syndrome?", "Below 30 g/L.", "S3"],
+    ["First-episode prednisolone regimen for a typical child (IPNA)?", "60 mg/m²/day or 2 mg/kg/day (max 60 mg) for 4 weeks, then 40 mg/m² or 1.5 mg/kg (max 40 mg) on alternate days for 4 weeks. Or 6 + 6 weeks.", "S3"],
+    ["How is a relapse defined in a child?", "Dipstick ≥ 3+ (or UPCR ≥ 200 mg/mmol) on 3 consecutive days after a complete remission.", "S3"],
+    ["Define frequently relapsing nephrotic syndrome.", "≥ 2 relapses in the first 6 months after remission, or ≥ 3 relapses in any 12 months.", "S3"],
+    ["Define steroid-dependent nephrotic syndrome.", "2 consecutive relapses during prednisolone therapy or within 14 days of stopping it.", "S3"],
+    ["Define steroid-resistant nephrotic syndrome in children.", "No complete remission after 4 weeks of standard-dose prednisolone.", "S3"],
+    ["Name four indications for kidney biopsy in a child with nephrotic syndrome.", "Any four of: visible haematuria, low C3, AKI not due to hypovolaemia, sustained hypertension, arthritis or rash, infantile onset, age > 12, steroid resistance.", "S3"],
+    ["A child with nephrotic syndrome has cold peripheries, tachycardia and abdominal pain. What do you avoid?", "Diuretics: the child is hypovolaemic. Give albumin and withhold diuretics.", "S3"],
+    ["Fever and abdominal pain in a child with nephrotic syndrome: what must you treat?", "Spontaneous bacterial peritonitis, with IV antibiotics covering Streptococcus pneumoniae.", "S3"],
+    ["Should ACE inhibitors be used to control oedema in a steroid-sensitive relapse?", "No. IPNA recommends against ACEi/ARB for oedema or BP in an SSNS relapse.", "S3"],
+    ["Adult minimal change disease: initial prednisone dose (KDIGO 2021)?", "1 mg/kg/day (max 80 mg) or 2 mg/kg alternate days (max 120 mg), for 4 to 16 weeks; taper from 2 weeks after remission, total at least 24 weeks.", "S4"],
+    ["How is minimal change disease diagnosed in adults?", "Only by kidney biopsy.", "S4"],
+    ["Which vaccines should be avoided on high-dose steroids, and for how long after?", "Live vaccines, during treatment and for 3 months after.", "S5"],
+    ["What does the Bhutan STG advise for a child with nephrotic syndrome at a district hospital?", "Refer to a higher centre for evaluation and treatment, then follow up growth, BP and prednisolone adherence.", "S2"]
+  ]
+}
+];
+const TOPIC_BY = Object.fromEntries(TOPICS.map(t => [t.id, t]));
+const TOPIC_BY_COND = Object.fromEntries(TOPICS.map(t => [t.cond, t]));
+function topicSrcChips(t, s) {
+  return esc(s).replace(/\[(S\d+)\]/g, (m, k) => { const r = t.src[k]; if (!r) return m; const ext = /^https?:/.test(r[1]); return `<a class="tsrc" href="${esc(r[1])}"${ext ? ' target="_blank" rel="noopener"' : ""} title="${esc(r[0])}">${k}</a>`; });
+}
+function topicBlock(t, b) {
+  const x = s => topicSrcChips(t, s);
+  if (b[0] === "p") return `<p>${x(b[1])}</p>`;
+  if (b[0] === "h") return `<h3>${esc(b[1])}</h3>`;
+  if (b[0] === "l") return `<ul>${b[1].map(i => `<li>${x(i)}</li>`).join("")}</ul>`;
+  if (b[0] === "warn") return `<div class="warn">${x(b[1])}</div>`;
+  if (b[0] === "note") return `<div class="info">${x(b[1])}</div>`;
+  if (b[0] === "qa") return `<div class="tqa">${b[1].map(([q, a]) => `<div><b>${x(q)}</b><span>${x(a)}</span></div>`).join("")}</div>`;
+  if (b[0] === "t") return `<div style="overflow-x:auto"><table class="ttab"><thead><tr>${b[1][0].map(c => `<th>${x(c)}</th>`).join("")}</tr></thead><tbody>${b[1].slice(1).map(r => `<tr>${r.map(c => `<td>${x(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  return "";
+}
+function topicView(id) {
+  const t = TOPIC_BY[id]; if (!t) return topicsIndexView();
+  const specs = t.spec.map(s => SPEC_BY[s]).filter(Boolean);
+  return `<div class="thead"><h1 class="vt">${esc(t.n)}</h1><div class="tmeta"><span>${esc(t.ages)}</span>${specs.map(s => `<a href="#spec/${s[0]}">${esc(s[1])}</a>`).join("")}${t.emerg ? `<span class="temerg">${esc(t.emerg)}</span>` : ""}</div><div class="small muted">${esc(t.reviewed)}</div></div>
+    <nav class="ttoc">${t.sec.map(([h], i) => `<a href="#topic/${id}" data-tj="${i}">${esc(h)}</a>`).join("")}<a href="#cards/${id}" class="ttocards">Flashcards (${t.cards.length})</a></nav>
+    ${t.sec.map(([h, bs], i) => `<section class="tsec" id="tsec${i}"><h2>${esc(h)}</h2>${bs.map(b => topicBlock(t, b)).join("")}</section>`).join("")}
+    <section class="tsec"><h2>Related</h2><div class="chips wrap">${t.links.map(([h, n]) => `<a class="chip" href="${h}">${esc(n)}</a>`).join("")}</div></section>
+    <section class="tsec"><h2>Sources</h2><ol class="tsrcs">${Object.entries(t.src).map(([k, [n, h]]) => `<li><b>${k}</b> <a href="${esc(h)}"${/^https?:/.test(h) ? ' target="_blank" rel="noopener"' : ""}>${esc(n)}</a></li>`).join("")}</ol><p class="small muted">Bhutan sources (STG) are national guidance. IPNA, KDIGO and ICMR are international or regional references, used where the STG is silent. Doses shown only where a source gives them.</p></section>`;
+}
+function bindTopic() { $$("[data-tj]").forEach(a => a.onclick = e => { e.preventDefault(); const s = document.getElementById("tsec" + a.dataset.tj); if (s) s.scrollIntoView({behavior: "smooth", block: "start"}); }); }
+function topicsIndexView() {
+  return `<h1 class="vt">Clinical topics</h1><p class="vsub">Full topic pages in the standard format. More are added in batches.</p><div class="dl">${TOPICS.map(t => `<a class="di" href="#topic/${t.id}"><div><div class="nm">${esc(t.n)}</div><div class="gp">${esc(t.ages)} · ${t.sec.length} sections · ${t.cards.length} flashcards</div></div></a>`).join("")}</div>`;
+}
+/* ===== flashcards with spaced repetition (SM-2 style), progress kept on this device ===== */
+const FC_ALL = TOPICS.flatMap(t => t.cards.map((c, i) => ({id: t.id + ":" + i, topic: t.id, q: c[0], a: c[1], s: c[2]})));
+function fcState() { try { return JSON.parse(localStorage.getItem("bcr_fc") || "{}"); } catch (e) { return {}; } }
+function fcSave(st) { try { localStorage.setItem("bcr_fc", JSON.stringify(st)); } catch (e) {} }
+function fcDue(list) { const st = fcState(), now = Date.now(); return list.filter(c => !st[c.id] || st[c.id].due <= now); }
+function fcRate(id, q) {
+  const st = fcState(), c = st[id] || {ef: 2.5, n: 0, iv: 0, due: 0, ok: 0, bad: 0}, day = 864e5;
+  if (q < 3) { c.n = 0; c.iv = 0; c.bad++; c.due = Date.now() + 10 * 60e3; }
+  else { c.n++; c.ok++; c.iv = c.n === 1 ? 1 : c.n === 2 ? 6 : Math.round(c.iv * c.ef); if (q === 3) c.iv = Math.max(1, Math.round(c.iv * 0.8)); c.due = Date.now() + c.iv * day; }
+  c.ef = Math.max(1.3, c.ef + 0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
+  st[id] = c; fcSave(st);
+}
+let FC_RUN = null;
+function cardsView(arg) {
+  const pool = arg ? FC_ALL.filter(c => c.topic === arg) : FC_ALL, due = fcDue(pool), st = fcState();
+  const seen = pool.filter(c => st[c.id]).length, title = arg && TOPIC_BY[arg] ? TOPIC_BY[arg].n : "All topics";
+  FC_RUN = {pool, queue: due.slice(), arg};
+  return `<h1 class="vt">Flashcards: ${esc(title)}</h1><p class="vsub">${pool.length} cards · ${due.length} due now · ${seen} studied. Progress is saved on this device.</p>
+    <div class="chips wrap"><a class="chip" href="#cards">All topics</a>${TOPICS.map(t => `<a class="chip" href="#cards/${t.id}">${esc(t.n)}</a>`).join("")}</div>
+    <div id="fcbox" class="card fcbox"></div>`;
+}
+function fcShow() {
+  const box = $("#fcbox"); if (!box || !FC_RUN) return;
+  const c = FC_RUN.queue[0];
+  if (!c) { box.innerHTML = `<b>Nothing due right now.</b><p class="small muted">Come back later, or <button type="button" class="chip" id="fcall">study all ${FC_RUN.pool.length} cards again</button></p>`; const b = $("#fcall"); if (b) b.onclick = () => { FC_RUN.queue = FC_RUN.pool.slice(); fcShow(); }; return; }
+  const t = TOPIC_BY[c.topic], src = t && t.src[c.s];
+  box.innerHTML = `<div class="small muted">${esc(t ? t.n : "")} · ${FC_RUN.queue.length} left</div><div class="fcq">${esc(c.q)}</div><div id="fca" hidden><div class="fca">${esc(c.a)}</div><div class="small muted">Source: ${src ? esc(src[0]) : esc(c.s)}</div><div class="fcrate">${[["1", "Again"], ["3", "Hard"], ["4", "Good"], ["5", "Easy"]].map(([q, n]) => `<button type="button" class="chip" data-fq="${q}">${n}</button>`).join("")}</div></div><button type="button" class="chip" id="fcshow"><b>Show answer</b></button>`;
+  $("#fcshow").onclick = () => { $("#fca").hidden = false; $("#fcshow").hidden = true; };
+  $$("[data-fq]", box).forEach(b => b.onclick = () => { const q = +b.dataset.fq; fcRate(c.id, q); FC_RUN.queue.shift(); if (q < 3) FC_RUN.queue.push(c); fcShow(); });
+}
 function bindHome() {
   const mn = $("#mnext"); if (mn) mn.onclick = () => { MOTTO_I++; $("#motto").innerHTML = mottoHtml() + `<button class="mnext" id="mnext" aria-label="Another quote" title="Another quote">↻</button>`; bindHome.motto(); };
   bindHome.motto = () => { const b = $("#mnext"); if (b) b.onclick = mn.onclick; };
@@ -5866,10 +6311,18 @@ function route() {
   document.body.dataset.view = view;
   document.body.classList.toggle("inroom", view === "chat" && !!arg);
   { const g = document.getElementById("gq"); if (g && view !== "search" && document.activeElement !== g) g.value = ""; }
-  if (view === "home") { v.innerHTML = homeView(); bindHome(); }
+  if (view === "home" || view === "home2") { v.innerHTML = homeView2(); bindHome(); }
+  else if (view === "homeold") { v.innerHTML = homeView(); bindHome(); }
+  else if (view === "topic") { v.innerHTML = topicView(arg); bindTopic(); }
+  else if (view === "topics") { v.innerHTML = topicsIndexView(); }
+  else if (view === "cards") { v.innerHTML = cardsView(arg); fcShow(); }
+  else if (view === "specs") { v.innerHTML = specsView(); }
+  else if (view === "spec") { v.innerHTML = specView(arg); }
+  else if (view === "imaging") { v.innerHTML = imagingView(); }
+  else if (view === "learn") { v.innerHTML = learnView(); }
   else if (view === "search") { v.innerHTML = searchView(arg); bindSearch(); }
   else if (view === "cond" && !arg) { v.innerHTML = condIndexView(); bindCondIndex(); }
-  else if (view === "cond") { v.innerHTML = condView(arg); }
+  else if (view === "cond") { const tp = TOPIC_BY_COND[arg]; v.innerHTML = (tp ? `<a class="tbanner" href="#topic/${tp.id}"><b>Full topic page: ${esc(tp.n)}</b><span>Definition, criteria, history, examination, investigations, management, follow-up and advice</span></a>` : "") + condView(arg); }
   else if (view === "vent") { v.innerHTML = ventHubView(); }
   else if (view === "flow") { v.innerHTML = flowsView(arg); if (arg) autolinkDom($(".fc", v)); else bindFlows(); }
   else if (view === "aware") { v.innerHTML = awareView(arg); autolinkDom(v); }
