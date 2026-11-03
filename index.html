@@ -2576,22 +2576,24 @@ function growthSummary(p) {
   if (L.length > 1) add("Reference", `Reference: WHO growth standards${BP_LINES.length ? "; AAP 2017 BP tables" : ""}`);
   GS_LINES = L;
   if (L.length < 2) return "";
-  return `<h2 style="margin-top:18px">Patient summary</h2><div class="card"><p class="small muted" style="margin-top:0">Untick what you don't need, then copy. Use Copy on a line for just that line.</p>${L.map((x, i) => `<div class="gsrow"><label><input type="checkbox" data-gs="${i}"${GS_OFF.has(x.k) ? "" : " checked"}> <span>${esc(x.t)}</span></label><button type="button" class="chip" data-gc="${i}">Copy</button></div>`).join("")}<div style="margin-top:10px;display:flex;gap:10px;align-items:center"><button type="button" class="chip" data-gc="all"><b>Copy selected</b></button><span class="small muted" id="gsmsg"></span></div><textarea id="gsbox" hidden readonly rows="6" style="width:100%;margin-top:8px"></textarea></div>`;
+  return `<h2 style="margin-top:18px">Patient summary</h2><div class="card"><p class="small muted" style="margin-top:0">Untick what you don't need, then copy. Use Copy on a line for just that line.</p>${L.map((x, i) => `<div class="gsrow"><label><input type="checkbox" data-gs="${i}"${GS_OFF.has(x.k) ? "" : " checked"}> <span>${esc(x.t)}</span></label><button type="button" class="chip" data-gc="${i}">Copy</button></div>`).join("")}<label class="small muted" for="gsbox" style="display:block;margin-top:10px">Selected text: edit it here if you need to</label><textarea id="gsbox" rows="8" style="width:100%;margin-top:4px;font-size:16px;padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:inherit">${esc(L.filter(x => !GS_OFF.has(x.k)).map(x => x.t).join("\n"))}</textarea><div style="margin-top:8px"><button type="button" class="chip" data-gc="all"><b>Copy selected</b></button></div><p class="small muted" id="gsmsg" style="margin:6px 0 0"></p></div>`;
 }
-function gsCopy(t) {
-  const m = $("#gsmsg"), box = $("#gsbox"), done = () => { if (m) m.textContent = "Copied"; if (box) box.hidden = true; };
-  const showBox = () => { if (m) m.textContent = "Copy was blocked: the text is selected below, copy it by hand"; if (box) { box.hidden = false; box.value = t; box.focus(); box.select(); } };
-  const a = document.createElement("textarea"); a.value = t; a.setAttribute("readonly", ""); a.style.cssText = "position:fixed;top:0;left:0;opacity:0"; document.body.appendChild(a); a.focus(); a.select(); a.setSelectionRange(0, t.length);
-  let ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; } a.remove();
-  if (ok) return done();
-  if (!navigator.clipboard) return showBox();
-  const late = setTimeout(showBox, 1500);
-  navigator.clipboard.writeText(t).then(() => { clearTimeout(late); done(); }, () => { clearTimeout(late); showBox(); });
+function gsSelected() { return GS_LINES.filter(x => !GS_OFF.has(x.k)).map(x => x.t).join("\n"); }
+function gsCopy(t, btn) {
+  const m = $("#gsmsg"), box = $("#gsbox"), old = btn.innerHTML;
+  const done = () => { btn.innerHTML = "Copied ✓"; setTimeout(() => { btn.innerHTML = old; }, 1600); if (m) m.textContent = "Copied. Long-press where you want it and choose Paste."; };
+  const refuse = () => { if (m) m.textContent = "Copy was blocked on this device: long-press the text in the box, Select all, then Copy."; if (box) { box.value = t; box.focus(); box.select(); } };
+  const a = document.createElement("textarea"); a.value = t; a.setAttribute("readonly", ""); a.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px"; document.body.appendChild(a); a.focus(); a.select(); a.setSelectionRange(0, t.length);
+  let ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; } a.remove(); btn.focus();
+  let api = null; try { api = navigator.clipboard && navigator.clipboard.writeText(t); } catch (e) { api = null; }
+  if (ok) done();
+  if (api) { const late = ok ? null : setTimeout(refuse, 1500); api.then(() => { clearTimeout(late); if (!ok) done(); }, () => { clearTimeout(late); if (!ok) refuse(); }); }
+  else if (!ok) refuse();
 }
 function bindSummary() {
   const r = $("#gres");
-  r.addEventListener("change", e => { const c = e.target.closest("[data-gs]"); if (!c) return; const k = GS_LINES[+c.dataset.gs].k; if (c.checked) GS_OFF.delete(k); else GS_OFF.add(k); });
-  r.addEventListener("click", e => { const b = e.target.closest("[data-gc]"); if (!b) return; gsCopy(b.dataset.gc === "all" ? GS_LINES.filter(x => !GS_OFF.has(x.k)).map(x => x.t).join("\n") : GS_LINES[+b.dataset.gc].t); });
+  r.addEventListener("change", e => { const c = e.target.closest("[data-gs]"); if (!c) return; const k = GS_LINES[+c.dataset.gs].k; if (c.checked) GS_OFF.delete(k); else GS_OFF.add(k); const b = $("#gsbox"); if (b) b.value = gsSelected(); });
+  r.addEventListener("click", e => { const b = e.target.closest("[data-gc]"); if (!b) return; gsCopy(b.dataset.gc === "all" ? ($("#gsbox") || {}).value || gsSelected() : GS_LINES[+b.dataset.gc].t, b); });
 }
 function bindGrowth() { bindSummary(); bindAll($(".view"), runGrowth); }
 
