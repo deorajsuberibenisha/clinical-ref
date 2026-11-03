@@ -4986,6 +4986,781 @@ const TOPICS = [
   ]
 }
 ];
+TOPICS.push({
+  id: "pneumonia", cond: "pneumonia", n: "Pneumonia", spec: ["resp", "paeds", "medicine", "id"], ages: "Children and adults", emerg: "Severe pneumonia is an emergency",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a paediatrician or physician.",
+  src: {
+    S1: ["Bhutan STG 2024, 12.2.1 Pneumonia (children), p.261", "#stg/12.2.1"],
+    S2: ["Bhutan STG 2024, 3.1 Pneumonia (adults), p.60", "#stg/3.1"],
+    S3: ["WHO Pocket Book of Hospital Care for Children, 2nd ed. 2013, section 4.2 Pneumonia, p.104–111", "#gl/w_pbhc"],
+    S4: ["WHO Pocket Book 2013, section 4.3 Complications of pneumonia, p.112–114", "#gl/w_pbhc"],
+    S5: ["WHO Pocket Book 2013, section 4.4 Cough or cold, p.114", "#gl/w_pbhc"]
+  },
+  sec: [
+    ["Definition", [
+      ["p", "Inflammation or infection of the lungs. [S1][S2]"],
+      ["p", "In children, WHO defines pneumonia clinically: cough or difficult breathing with fast breathing or lower chest wall indrawing. The cause cannot usually be told from the clinical features or the chest X-ray. [S3]"]
+    ]],
+    ["Diagnostic criteria and classification", [
+      ["h", "Children (WHO classification, age 2 months to 5 years)"],
+      ["t", [["Class", "Signs", "Where to treat"],
+        ["Severe pneumonia", "Cough or difficult breathing plus any of: SpO₂ < 90% or central cyanosis; severe respiratory distress (grunting, very severe chest indrawing); a general danger sign (cannot breastfeed or drink, lethargy or reduced consciousness, convulsions)", "Admit [S3]"],
+        ["Pneumonia", "Fast breathing (≥ 50/min at 2–11 months; ≥ 40/min at 1–5 years) or lower chest wall indrawing", "Home treatment, review in 3 days [S3]"],
+        ["No pneumonia: cough or cold", "None of the above", "Home care, no antibiotic [S3][S5]"]]],
+      ["h", "Adults"],
+      ["p", "The STG diagnoses pneumonia from fever, productive cough, chest pain and breathlessness with fast breathing, tachycardia and focal chest signs, and treats patients with respiratory distress as inpatients. [S2]"]
+    ]],
+    ["Causes and pathophysiology", [
+      ["l", ["Bacterial: Streptococcus pneumoniae, Haemophilus influenzae, Mycoplasma pneumoniae, Staphylococcus aureus. [S1][S2]",
+        "Viral: RSV, influenza, parainfluenza, adenovirus, measles, chickenpox, SARS-CoV-2. [S1][S2]",
+        "Aspiration of fluid, food, vomit or chemicals; fungal (cryptococcus). [S1]",
+        "Infection fills the alveoli with exudate, so less lung takes part in gas exchange: fast breathing, indrawing and, when severe, low oxygen saturation. [S3]",
+        "In HIV-exposed infants, Pneumocystis pneumonia is an important cause, often at 4–6 months. [S3]"]]
+    ]],
+    ["History: questions to ask", [
+      ["qa", [["How long has the cough lasted?", "More than 14 days points away from simple pneumonia: think TB, asthma, pertussis or HIV. [S5]"],
+        ["Can the child drink or breastfeed? Any convulsions or unusual sleepiness?", "These are general danger signs: severe pneumonia, admit. [S3]"],
+        ["Any fever?", "Supports infection; high fever causing distress needs paracetamol. [S3]"],
+        ["Any wheeze, or past episodes of wheeze?", "Wheeze needs a bronchodilator and suggests asthma or bronchiolitis rather than bacterial pneumonia. [S3]"],
+        ["Has the child been treated already, and did it help?", "No improvement after 2 days of correct treatment: look for complications or another diagnosis. [S3]"],
+        ["TB contact, weight loss, fever for more than 2 weeks?", "Consider TB. [S3]"],
+        ["HIV status of the child or mother?", "Changes antibiotic choice and adds Pneumocystis cover in infants. [S3]"],
+        ["Choking or aspiration episode?", "Aspiration pneumonia or a foreign body. [S1]"],
+        ["Smoke at home, parental smoking, poor feeding?", "Risk factors to address at discharge. [S3]"]]]
+    ]],
+    ["Symptoms and examination", [
+      ["l", ["Fever, cough, fast or difficult breathing; adults also report chest pain and productive cough. [S1][S2]",
+        "Count the breathing rate for a full minute when the child is calm. [S3]",
+        "Look for lower chest wall indrawing, nasal flaring, grunting, cyanosis. [S1][S3]",
+        "Measure oxygen saturation with a pulse oximeter in every child with suspected pneumonia. [S3]",
+        "Chest: reduced movement, dullness, bronchial breathing, crackles; reduced breath sounds or dullness may mean effusion or empyema. [S2][S3][S4]"]],
+      ["warn", "Danger signs (severe pneumonia): SpO₂ < 90% or central cyanosis, grunting or very severe indrawing, unable to drink or breastfeed, vomiting everything, lethargy or unconsciousness, convulsions. [S3]"]
+    ]],
+    ["Differential diagnosis", [
+      ["t", [["Diagnosis", "Supports it", "Argues against it"],
+        ["Cough or cold (viral URTI)", "Runny nose, normal breathing rate, no indrawing [S5]", "Fast breathing or indrawing"],
+        ["Bronchiolitis or asthma", "Wheeze, previous episodes, response to bronchodilator [S3]", "No wheeze"],
+        ["Tuberculosis", "Cough > 2 weeks, weight loss, TB contact, no response to antibiotics [S3]", "Acute onset, quick response to antibiotics"],
+        ["Staphylococcal pneumonia", "Rapid deterioration, pneumatocoeles or pneumothorax on X-ray, skin pustules [S3]", "Steady improvement on ampicillin"],
+        ["Heart failure", "Large liver, gallop, murmur", "Fever, focal crackles"],
+        ["Foreign body", "Sudden choking, one-sided signs", "Fever and bilateral signs"]]]
+    ]],
+    ["Investigations", [
+      ["t", [["Test", "Why", "What it changes"],
+        ["Pulse oximetry", "In every child with suspected pneumonia [S3]", "SpO₂ < 90% = severe pneumonia: admit and give oxygen [S3]"],
+        ["Chest X-ray", "Severe pneumonia or no improvement: looks for effusion, empyema, pneumothorax, pneumatocoele [S3]; listed for children in the STG [S1]", "Effusion needs drainage; pneumatocoele suggests staphylococcus [S4]"],
+        ["CBC, ESR", "Listed in the STG [S1]", "Supportive only"],
+        ["Pleural fluid analysis", "If an effusion is drained [S4]", "Protein, glucose, cells, Gram and ZN stain, culture"],
+        ["HIV test", "If HIV is suspected, or TB is being considered [S3]", "Changes antibiotics and adds PCP cover"]]],
+      ["note", "There is no single gold-standard test in children: the diagnosis and its severity are clinical, guided by breathing rate, indrawing and pulse oximetry. [S3]"]
+    ]],
+    ["Management", [
+      ["h", "A. Severe pneumonia: stabilise"],
+      ["l", ["Admit; give oxygen if SpO₂ < 90%, by nasal prongs, aiming to keep SpO₂ above 90%. [S3]",
+        "Clear thick secretions from the nose gently; manage the airway. [S3]",
+        "Without an oximeter, continue oxygen until signs of hypoxia (cannot breastfeed, breathing rate ≥ 70/min) are gone. [S3]"]],
+      ["h", "B. Supportive care"],
+      ["l", ["Maintenance fluids appropriate for age, but avoid overhydration; encourage breastfeeding. [S3]",
+        "Use a nasogastric tube only if the child cannot drink. [S3]",
+        "Paracetamol for fever ≥ 39 °C causing distress; bronchodilator if wheeze. [S3][S2]"]],
+      ["h", "C. Antibiotics: children"],
+      ["t", [["Situation", "Medicine and dose", "Duration", "Source"],
+        ["Pneumonia (outpatient)", "Oral amoxicillin at least 40 mg/kg per dose twice daily; first dose in the clinic", "3 days (low-HIV areas) or 5 days (high-HIV areas)", "[S3]"],
+        ["Bhutan STG regimen", "Amoxicillin 15 mg/kg/dose, or 20–40 mg/kg/day, every 8 hours; refer if respiratory distress", "Not stated", "[S1]"],
+        ["Severe pneumonia", "Ampicillin 50 mg/kg (or benzylpenicillin 50 000 U/kg) IM/IV every 6 h + gentamicin 7.5 mg/kg IM/IV once daily", "At least 5 days", "[S3]"],
+        ["Not improving in 48 h, staphylococcus suspected", "Cloxacillin 50 mg/kg IM/IV every 6 h + gentamicin 7.5 mg/kg once daily; then oral cloxacillin", "3 weeks in total", "[S3]"],
+        ["First-line failure", "Ceftriaxone 80 mg/kg IM/IV once daily", "", "[S3]"]]],
+      ["warn", "Dose difference: the STG gives amoxicillin 15 mg/kg/dose 8-hourly [S1]; WHO gives at least 40 mg/kg/dose twice daily [S3]. Follow your unit's policy and record which you used."],
+      ["h", "C. Antibiotics: adults (Bhutan STG)"],
+      ["t", [["Situation", "Medicine and dose", "Duration", "Source"],
+        ["Outpatient", "Oral amoxicillin 500 mg three times daily, or co-trimoxazole 960 mg twice daily", "7 days", "[S2]"],
+        ["Respiratory distress", "IV ampicillin 1 g four times daily + IV gentamicin 80 mg once daily; oxygen if needed", "", "[S2]"]]],
+      ["h", "D. Procedures"],
+      ["l", ["Pleural effusion or empyema: drain unless very small; repeat if fluid returns. [S4]", "Pneumothorax: urgent needle decompression, then a chest drain. [S4]"]],
+      ["h", "E. Monitoring"],
+      ["l", ["Severe pneumonia: nurse review at least every 3 hours, doctor at least twice daily. [S3]", "Expect improvement within 2 days: slower breathing, less indrawing, less fever, better feeding and saturation. [S3]", "Try the child off oxygen each day; stop when SpO₂ stays above 90% for at least 15 minutes on air. [S3]"]],
+      ["h", "F. Referral and admission"],
+      ["l", ["Children: refer to a higher centre if there is respiratory distress. [S1] Admit severe pneumonia. [S3]", "Adults: refer if there are complications. [S2]", "Not improved after 2 days: look for complications or another diagnosis (staphylococcus, TB, HIV). [S3]"]]
+    ]],
+    ["Follow-up", [
+      ["l", ["Pneumonia treated at home: review after 3 days, or earlier if worse. [S3]", "If not better at 3 days and no wheeze, admit to look for complications or another diagnosis. [S3]", "After severe pneumonia: review 2 weeks after discharge to check nutrition; give vaccines that are due. [S3]", "Discharge criteria: no respiratory distress, SpO₂ > 90%, feeding well, able to take oral medicine. [S3]"]]
+    ]],
+    ["Complications", [
+      ["h", "Early"], ["l", ["Hypoxaemia and respiratory failure. [S3]", "Septicaemia and septic shock (the most common complication); meningitis in infants. [S4]", "Pleural effusion, empyema, lung abscess, pneumothorax. [S4]"]],
+      ["h", "Late"], ["l", ["Persistent cough for several weeks and poor nutrition after severe pneumonia. [S3]", "Chronic lung damage after empyema or abscess."]]
+    ]],
+    ["Common mistakes", [
+      ["l", ["Not counting the breathing rate for a full minute, or counting while the child cries. [S3]", "Not checking oxygen saturation. [S3]", "Giving antibiotics for a simple cough or cold. [S5]", "Missing wheeze: treat with a bronchodilator and reassess. [S3]", "Using cough remedies containing codeine, atropine or alcohol. [S3]", "Forgetting TB or HIV when pneumonia does not respond. [S3]"]]
+    ]],
+    ["Advice to give", [
+      ["l", ["Give every dose of the antibiotic for the full number of days, even when the child seems better. [S3]",
+        "Keep breastfeeding and giving fluids; offer small, frequent drinks and food. [S3]",
+        "Soothe the throat and cough with safe home remedies such as warm water; avoid cough medicines containing codeine, atropine or alcohol. [S1][S3]",
+        "Come back after 3 days, or at once if the child breathes fast or with difficulty, cannot drink or breastfeed, vomits everything, becomes very sleepy or has a fit. [S3][S1]",
+        "Keep the child away from smoke: no smoking at home and reduce indoor cooking smoke. [S3]",
+        "Make sure vaccinations are up to date. [S3]"]]
+    ]],
+    ["Learning summary", [
+      ["l", ["Fast breathing: ≥ 50/min at 2–11 months, ≥ 40/min at 1–5 years. [S3]", "SpO₂ < 90%, grunting, very severe indrawing or a danger sign = severe pneumonia. [S3]", "Severe pneumonia: ampicillin + gentamicin for at least 5 days. [S3]", "No improvement in 48 h: think staphylococcus, effusion, TB, HIV. [S3]"]]
+    ]]
+  ],
+  links: [["#drug/AMOXICILLIN", "Amoxicillin"], ["#drug/AMPICILLIN", "Ampicillin"], ["#drug/GENTAMICIN", "Gentamicin"], ["#drug/CEFTRIAXONE", "Ceftriaxone"], ["#equip/oxygen", "Oxygen, high-flow and NIV"], ["#cond/pneumonia", "Condition page with all linked guidelines"]],
+  cards: [
+    ["Fast-breathing cut-offs for pneumonia in children (WHO)?", "≥ 50/min at 2–11 months; ≥ 40/min at 1–5 years.", "S3"],
+    ["Which signs make a child's pneumonia 'severe' (WHO)?", "SpO₂ < 90% or central cyanosis, severe respiratory distress, or any general danger sign (cannot drink or breastfeed, lethargy, convulsions).", "S3"],
+    ["Antibiotics for severe pneumonia in a child (WHO)?", "Ampicillin 50 mg/kg (or benzylpenicillin 50 000 U/kg) every 6 h + gentamicin 7.5 mg/kg once daily, IM or IV, for at least 5 days.", "S3"],
+    ["Oral amoxicillin dose for non-severe pneumonia in a child (WHO)?", "At least 40 mg/kg per dose twice daily, for 3 days (low HIV) or 5 days (high HIV).", "S3"],
+    ["When do you give oxygen to a child with pneumonia?", "When SpO₂ is below 90%; aim to keep it above 90%.", "S3"],
+    ["A child with severe pneumonia is not better after 48 h and has pneumatocoeles. What change?", "Suspect staphylococcus: cloxacillin 50 mg/kg every 6 h + gentamicin, total 3 weeks.", "S3"],
+    ["Bhutan STG adult outpatient pneumonia treatment?", "Oral amoxicillin 500 mg TID or co-trimoxazole 960 mg BD for 7 days.", "S2"],
+    ["When should a child with pneumonia treated at home be reviewed?", "After 3 days, or earlier if worse.", "S3"],
+    ["What is the most common complication of pneumonia?", "Septicaemia.", "S4"]
+  ]
+});
+TOPICS.push({
+  id: "diarrhoea", cond: "diarrhoea", n: "Acute diarrhoea and dehydration in children", spec: ["gi", "paeds", "id"], ages: "Children", emerg: "Severe dehydration is an emergency",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a paediatrician.",
+  src: {
+    S1: ["Bhutan STG 2024, 12.4.1 Diarrhoea (children), p.267", "#stg/12.4.1"],
+    S2: ["WHO Pocket Book of Hospital Care for Children, 2nd ed. 2013, chapter 5 Diarrhoea, p.149–162", "#gl/w_pbhc"],
+    S3: ["WHO Pocket Book 2013, Chart 13 Plan C, Chart 14 Plan B, Chart 15 Plan A, p.155–162", "#gl/w_pbhc"]
+  },
+  sec: [
+    ["Definition", [
+      ["p", "Excessive loss of fluid and electrolytes in the stool: loose stools, usually more than 3–4 a day. Acute diarrhoea lasts less than 14 days; persistent diarrhoea lasts 14 days or more. [S1][S2]"]
+    ]],
+    ["Diagnostic criteria and classification", [
+      ["h", "Classify dehydration in every child (WHO)"],
+      ["t", [["Class", "Two or more of these signs", "Plan"],
+        ["Severe dehydration", "Lethargy or unconsciousness; sunken eyes; unable to drink or drinks poorly; skin pinch goes back very slowly (≥ 2 s)", "Plan C: rapid IV fluids [S2]"],
+        ["Some dehydration", "Restless or irritable; sunken eyes; drinks eagerly, thirsty; skin pinch goes back slowly", "Plan B: ORS in the clinic over 4 h [S2]"],
+        ["No dehydration", "Not enough signs for the above", "Plan A: treat at home [S2]"]]],
+      ["l", ["Persistent diarrhoea with some or severe dehydration is 'severe persistent diarrhoea' and needs hospital treatment. [S2]", "Blood in the stool (dysentery) needs its own assessment and treatment."]]
+    ]],
+    ["Causes and pathophysiology", [
+      ["l", ["Most cases are viral, so treatment is mainly supportive. [S1]", "Viral: rotavirus, adenovirus, norovirus, hepatitis A. Bacterial: E. coli, Shigella, Salmonella, Campylobacter, Vibrio cholerae. Protozoal: Entamoeba, Giardia. Dietary causes. [S1]", "Loss of water, sodium, potassium and base in the stool leads to dehydration, acidosis (deep, rapid breathing) and, if untreated, shock. [S1][S2]", "Zinc is lost in diarrhoea; replacing it shortens the episode and reduces diarrhoea in the next 2–3 months. [S2]"]]
+    ]],
+    ["History: questions to ask", [
+      ["qa", [["How long has the diarrhoea lasted?", "14 days or more is persistent diarrhoea. [S1][S2]"],
+        ["Is there blood in the stool?", "Suggests dysentery. [S2]"],
+        ["How many stools and vomits today?", "Large frequent watery stools risk ongoing dehydration; repeated vomiting may need slower ORS or IV fluid. [S2]"],
+        ["Is the child drinking and passing urine?", "Poor drinking and little urine suggest more severe dehydration. [S2][S1]"],
+        ["Any fever, convulsions or unusual sleepiness?", "Look for hypoglycaemia, hypernatraemia or another illness. [S2]"],
+        ["Cholera in the area? Child over 2 with profuse watery diarrhoea?", "Suspect cholera and add an antibiotic. [S2]"],
+        ["How is the child fed? Weight loss?", "Malnourished children need different fluid management. [S2]"]]]
+    ]],
+    ["Symptoms and examination", [
+      ["l", ["Loose or watery stools, sometimes with mucus or blood; vomiting; abdominal cramps; fever. [S1]", "Look: general condition (lethargic or restless), sunken eyes, offer a drink (drinks eagerly or poorly), skin pinch. [S2]", "Deep, rapid breathing (acidosis); pallor and weakness. [S1]", "Weigh the child: needed for fluid volumes."]],
+      ["warn", "Danger: lethargy or unconsciousness, unable to drink, very slow skin pinch, weak or absent radial pulse (shock), blood in stool, severe malnutrition."]
+    ]],
+    ["Differential diagnosis", [
+      ["t", [["Diagnosis", "Supports it", "Argues against it"],
+        ["Dysentery", "Blood in the stool", "Watery stool without blood"],
+        ["Cholera", "Child > 2 years, profuse watery diarrhoea with severe dehydration, cholera in the area [S2]", "Small, mucoid stools"],
+        ["Persistent diarrhoea", "Lasting ≥ 14 days [S2]", "Short history"],
+        ["Severe malnutrition with diarrhoea", "Wasting, oedema", "Normal nutrition: standard plans apply [S2]"],
+        ["Surgical abdomen or other infection (UTI, pneumonia, malaria)", "Abdominal distension, localised pain, high fever, fast breathing", "Typical watery diarrhoea"]]]
+    ]],
+    ["Investigations", [
+      ["l", ["Most children need no tests: dehydration is assessed clinically. [S2]", "Stool routine examination and culture, as listed in the STG, especially with blood or if not improving. [S1]", "Blood glucose and electrolytes in a child who is restless, irritable or convulsing (hypoglycaemia or hypernatraemia). [S2]", "Stool microscopy for parasites in persistent diarrhoea. [S2]"]]
+    ]],
+    ["Management", [
+      ["h", "A. Severe dehydration: Plan C"],
+      ["t", [["Age", "First give 30 mL/kg in", "Then give 70 mL/kg in"],
+        ["Infants < 12 months", "1 hour", "5 hours"],
+        ["Children 12 months to 5 years", "30 minutes", "2.5 hours"]]],
+      ["l", ["Use Ringer's lactate, or normal saline if not available. Do not use 5% dextrose or 0.18% saline: they cause hyponatraemia. [S3][S2]", "Repeat the first 30 mL/kg once if the radial pulse is still weak. [S3]", "Give ORS about 5 mL/kg/h as soon as the child can drink (usually after 3–4 h in infants, 1–2 h in children). [S3]", "Reassess every 15–30 minutes until the radial pulse is strong; reclassify an infant after 6 h and a child after 3 h. [S3]", "No IV possible: ORS by nasogastric tube 20 mL/kg/h for 6 h (120 mL/kg), or refer urgently. [S3]"]],
+      ["note", "The STG resuscitates severe dehydration with 20 mL/kg normal saline [S1]; the full WHO Plan C volumes are above. In severe malnutrition, do not use Plan C: use the malnutrition fluid protocol."],
+      ["h", "B. Some dehydration: Plan B"],
+      ["l", ["ORS in the clinic over 4 h: about 75 mL/kg (weight × 75), or by age: < 4 months 200–400 mL; 4–12 months 400–700 mL; 12 months–2 years 700–900 mL; 2–5 years 900–1400 mL. [S3]", "A teaspoon every 1–2 minutes under 2 years; frequent sips from a cup for older children. If the child vomits, wait 10 minutes, then give more slowly. [S2]", "Keep breastfeeding. Reassess after 4 hours and choose the next plan. [S3]", "If the eyelids become puffy, stop ORS and give breast milk or water. [S2]"]],
+      ["h", "C. No dehydration: Plan A (home)"],
+      ["l", ["Extra fluid after each loose stool: about 50–100 mL under 2 years; 100–200 mL at 2 years and over. [S2]", "Give 2 packets of ORS to take home and teach how to mix it. [S2]"]],
+      ["h", "D. Medicines"],
+      ["t", [["Medicine", "Dose", "Duration", "Source"],
+        ["Zinc", "≤ 6 months: 10 mg (half tablet) daily; ≥ 6 months: 20 mg (one tablet) daily", "10–14 days", "[S2]"],
+        ["Zinc (Bhutan STG)", "Zinc sulphate 20 mg once daily", "14 days", "[S1]"],
+        ["Paracetamol", "15 mg/kg/dose 6–8 hourly for fever or cramps", "As needed", "[S1]"],
+        ["Cholera (suspected)", "An oral antibiotic the local strain is sensitive to (e.g. erythromycin, ciprofloxacin, co-trimoxazole)", "As per local guidance", "[S2]"]]],
+      ["l", ["Antibiotics are not used for watery diarrhoea apart from cholera; most cases are viral. [S1][S2]"]],
+      ["h", "E. Monitoring"],
+      ["l", ["Skin pinch, consciousness and ability to drink at least hourly once the pulse is strong; sunken eyes recover slowly and are less useful. [S2]", "Urine output. [S1]", "Observe for at least 6 hours after Plan C before discharge. [S3]"]],
+      ["h", "F. Referral and admission"],
+      ["l", ["Severe dehydration: hospital IV rehydration. [S2]", "Severe persistent diarrhoea: hospital treatment. [S2]", "Refer if no improvement within 5–7 days or diarrhoea persists beyond 14 days. [S1]"]]
+    ]],
+    ["Follow-up", [
+      ["l", ["Return in 5 days if not improving. [S2]", "Monitor nutritional status; give an extra meal a day for 2 weeks after recovery. [S1][S2]"]]
+    ]],
+    ["Complications", [
+      ["h", "Early"], ["l", ["Hypovolaemic shock. [S2]", "Hyponatraemia or hypernatraemia; hypoglycaemia; acidosis. [S2][S1]", "Overhydration (puffy eyelids) during rehydration. [S2]"]],
+      ["h", "Late"], ["l", ["Persistent diarrhoea. [S2]", "Malnutrition and weight loss. [S1]"]]
+    ]],
+    ["Common mistakes", [
+      ["l", ["Giving antibiotics for watery diarrhoea. [S1][S2]", "Using 5% dextrose or 0.18% saline for rehydration. [S2]", "Stopping breastfeeding or food during diarrhoea. [S2]", "Giving antidiarrhoeal or antiemetic drugs routinely.", "Using Plan C in a severely malnourished child. [S2]", "Forgetting zinc. [S2]"]]
+    ]],
+    ["Advice to give", [
+      ["l", ["The four rules of home treatment: give extra fluid, give zinc for 10–14 days, keep feeding, and know when to come back. [S2]",
+        "Give ORS in small sips from a cup after every loose stool (50–100 mL under 2 years, 100–200 mL over 2 years). If the child vomits, wait 10 minutes and continue slowly. [S2]",
+        "Keep breastfeeding often and for longer. Give food at least six times a day, and an extra meal a day for 2 weeks after the diarrhoea stops. [S2]",
+        "Wash hands with soap after using the toilet and before preparing food or feeding the child. [S1]",
+        "Come back at once if the child drinks poorly or cannot drink, becomes sicker, develops fever, passes blood in the stool, or passes little urine. [S2][S1]",
+        "Return in 5 days if not better. [S2]"]]
+    ]],
+    ["Learning summary", [
+      ["l", ["Classify dehydration with 4 signs: general condition, eyes, drinking, skin pinch; two signs make the class. [S2]", "Plan C: 100 mL/kg Ringer's lactate; 30 mL/kg then 70 mL/kg (infants 1 h + 5 h; children 30 min + 2.5 h). [S3]", "Plan B: ORS 75 mL/kg over 4 h. [S3]", "Zinc 10 mg (≤ 6 months) or 20 mg daily for 10–14 days. [S2]"]]
+    ]]
+  ],
+  links: [["#drug/ORAL%20REHYDRATION%20SALT%20(ORS)", "ORS"], ["#drug/ZINC%20SULPHATE", "Zinc"], ["#fluids", "Fluids & infusions"], ["#cond/diarrhoea", "Condition page with all linked guidelines"]],
+  cards: [
+    ["Four signs used to classify dehydration (WHO)?", "General condition (lethargic/restless), sunken eyes, drinking (poorly/eagerly), skin pinch (very slow/slow).", "S2"],
+    ["Plan C IV fluid volumes for an infant under 12 months?", "100 mL/kg Ringer's lactate: 30 mL/kg in 1 h, then 70 mL/kg in 5 h.", "S3"],
+    ["Plan C IV fluid volumes for a child 12 months to 5 years?", "30 mL/kg in 30 min, then 70 mL/kg in 2.5 h.", "S3"],
+    ["Plan B ORS volume?", "About 75 mL/kg over 4 hours in the clinic.", "S3"],
+    ["Zinc dose for a child with diarrhoea (WHO)?", "≤ 6 months: 10 mg daily; ≥ 6 months: 20 mg daily, for 10–14 days.", "S2"],
+    ["Why avoid 5% dextrose for rehydration?", "It increases the risk of hyponatraemia and cerebral oedema.", "S2"],
+    ["Extra fluid after each loose stool at home?", "50–100 mL under 2 years; 100–200 mL at 2 years and over.", "S2"],
+    ["When is diarrhoea 'persistent'?", "When it lasts 14 days or more.", "S1"],
+    ["A child on ORS develops puffy eyelids. What do you do?", "Stop ORS, give breast milk or water, weigh the child and monitor urine output.", "S2"]
+  ]
+});
+
+TOPICS.push({
+  id: "dengue", cond: "dengue", n: "Dengue", spec: ["id", "paeds", "medicine"], ages: "Children and adults", emerg: "Warning signs and shock are emergencies",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician.",
+  src: {
+    S1: ["Bhutan STG 2024, 8.5.8 Dengue, p.177", "#stg/8.5.8"],
+    S2: ["National Guideline for Clinical Management of Dengue in Bhutan, v1 2020: clinical features and phases, p.8–9", "#gl/dengue"],
+    S3: ["Bhutan Dengue Guideline 2020: case definitions and investigations, p.10–12", "#gl/dengue"],
+    S4: ["Bhutan Dengue Guideline 2020: management, Groups A–C, fluids, p.12–22", "#gl/dengue"],
+    S5: ["Bhutan Dengue Guideline 2020: children, infants and pregnancy, p.23–25", "#gl/dengue"]
+  },
+  sec: [
+    ["Definition", [["p", "A mosquito-borne viral infection (dengue virus serotypes 1–4) spread by day-biting Aedes mosquitoes. Incubation period 4–10 days. [S1][S2]"]]],
+    ["Diagnostic criteria and classification", [
+      ["h", "Three phases"],
+      ["t", [["Phase", "Timing", "What happens"],
+        ["Febrile", "Days 1 to 2–7", "High fever, flushing, headache, eye pain, body and joint pain, mild bleeding; low white cells and platelets [S2]"],
+        ["Critical", "Around defervescence, usually days 3–7, lasting 24–48 h", "Plasma leakage: warning signs, shock, severe bleeding or organ impairment [S2]"],
+        ["Recovery", "Next 48–72 h", "Appetite returns, BP normalises, itchy rash ('isles of white in a sea of red'), diuresis [S2]"]]],
+      ["h", "Warning signs (the start of the critical phase)"],
+      ["l", ["Abdominal pain or tenderness; persistent vomiting; fluid accumulation (ascites, pleural effusion); mucosal bleeding; lethargy or restlessness; postural drop; liver enlarged more than 2 cm. [S2]", "Laboratory: haematocrit rising more than 20% above baseline with a rapid fall in platelets to about 100 000/mm³. [S2]"]],
+      ["h", "Confirmed case"],
+      ["p", "A suspected case with a positive NS1 antigen or IgM. If IgM is negative in the acute sample, retest after 5–7 days. [S3]"],
+      ["h", "Management groups"],
+      ["t", [["Group", "Who", "Where"],
+        ["A", "No warning signs, drinking well, passing urine at least every 6 h, no special-population factor, normal blood counts", "OPD with daily review [S4]"],
+        ["B1", "Special populations without warning signs", "Admit [S4]"],
+        ["B2", "Dengue with warning signs", "Admit [S4]"],
+        ["C", "Severe dengue: shock, fluid accumulation with respiratory distress, severe bleeding or organ impairment", "Emergency treatment, hospital with blood transfusion [S4]"]]],
+      ["note", "Special populations: heart disease, diabetes, COPD, hypertension, kidney failure, bleeding disorders; patients on antiplatelets, anticoagulants or immunosuppressants; children, pregnant women, people over 65; alcohol misuse; previous dengue; living alone or far from a health facility. [S4]"]
+    ]],
+    ["Causes and pathophysiology", [["l", ["In the critical phase, capillaries leak plasma, so blood thickens (haematocrit rises) and circulating volume falls. A falling white cell count, then platelets, usually comes before the leak. [S2]", "When enough plasma is lost, shock follows. Prolonged shock leads to acidosis, DIC and severe bleeding; haematocrit may then fall. [S2]", "Severe hepatitis, encephalitis or myocarditis can occur even without obvious leakage. [S2]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["On which day did the fever start?", "Places the patient in a phase: the critical phase is usually days 3–7, around the time the fever settles. [S2][S4]"],
+      ["Any abdominal pain, vomiting, bleeding, drowsiness or restlessness?", "Warning signs: admit. [S2]"],
+      ["How much is the patient drinking, and when did they last pass urine?", "Group A needs adequate oral intake and urine at least every 6 hours. [S4]"],
+      ["Travel to or living in an area with dengue?", "Supports the diagnosis. [S4]"],
+      ["Diabetes, heart, kidney or liver disease, pregnancy, or blood thinners?", "Special population: admit. [S4]"],
+      ["Jungle trekking, swimming in waterfalls, recent unprotected sex or drug use?", "Consider leptospirosis, scrub typhus, malaria or acute HIV. [S4]"]]]]],
+    ["Symptoms and examination", [
+      ["l", ["Fever, headache, pain behind the eyes, severe back and body ache ('break-bone fever'), rash. [S1]", "Check: conscious level, hydration, pulse, BP and postural drop, breathing (acidotic breathing, effusion), abdominal tenderness, liver size, ascites, rash and bleeding. [S4]", "Postural drop: lie for 5 minutes, then stand for 3 minutes; systolic fall ≥ 20 mmHg (or diastolic ≥ 10 mmHg) suggests early shock. [S4]", "Tourniquet test: cuff midway between systolic and diastolic for 5 minutes; 10 or more petechiae per 2.5 cm² is positive. [S4]"]],
+      ["warn", "Compensated shock: normal systolic BP with tachycardia and pulse pressure ≤ 20 mmHg, or cold extremities with capillary refill > 2 s. Hypotensive shock: falling BP, acidotic breathing, altered sensorium. [S4]"]
+    ]],
+    ["Differential diagnosis", [["t", [["Diagnosis", "Supports it", "Argues against it"],
+      ["Malaria", "Travel to a malaria area, rigors, positive malaria test [S3]", "Positive NS1 or IgM"],
+      ["Scrub typhus", "Eschar, field or jungle exposure [S4]", "Falling platelets with rising haematocrit"],
+      ["Leptospirosis", "Water or animal exposure, jaundice, kidney injury [S4]", ""],
+      ["Enteric fever", "Step-ladder fever, abdominal symptoms [S3]", ""],
+      ["Chikungunya, Zika", "Prominent joint pain or rash [S3]", ""]]],
+      ["note", "The guideline asks for malaria, scrub typhus, enteric fever, Zika and chikungunya tests to exclude other causes. [S3]"]]],
+    ["Investigations", [
+      ["t", [["Test", "Why", "What it changes"],
+        ["CBC with haematocrit", "On the first visit (may be normal), then daily until the critical phase is over. The early haematocrit is the patient's own baseline [S4]", "Rising haematocrit with falling platelets = plasma leakage [S4]"],
+        ["NS1 antigen", "Positive from day 1 to about day 5 [S3]", "Confirms acute dengue"],
+        ["IgM", "Positive from about day 5 for 2–3 months [S3]", "Confirms dengue; retest in 5–7 days if first test negative [S3]"],
+        ["IgG", "From day 7, lifelong [S3]", "IgG alone without symptoms = past infection [S3]"],
+        ["LFT, RFT, electrolytes, calcium, albumin, glucose", "Organ involvement; albumin and calcium mark leakage [S3]", ""],
+        ["Chest X-ray, ultrasound", "Pleural effusion, ascites, liver size [S3]", ""],
+        ["PCR or ELISA", "Confirmation at RCDC; send all RDT-positive samples [S3]", "Do not wait for it to start treatment [S3]"]]],
+      ["l", ["Notify suspected and confirmed cases to RCDC through NEWARS and VDCP immediately. [S4]"]]
+    ]],
+    ["Management", [
+      ["h", "A. Group C: shock"],
+      ["l", ["Refer and admit to a hospital with blood transfusion. [S4]", "Careful IV crystalloid (normal saline or Ringer's lactate) is the main and usually only treatment; colloid for hypotensive or crystalloid-resistant shock. [S4]", "Haematocrit before and after each fluid step; group and cross-match all shocked patients. [S4]", "Follow the guideline's shock algorithms (Figures 5–7) for exact boluses. [S4]", "Transfuse whole blood (10 mL/kg) or packed cells (5 mL/kg) only for severe bleeding, or a falling haematocrit with unexplained low BP. [S4]"]],
+      ["h", "B. Group B2: warning signs"],
+      ["t", [["Step", "Rate (normal saline or Ringer's lactate)"],
+        ["Start", "5–7 mL/kg/h for 1–2 h"],
+        ["Then", "3–5 mL/kg/h for 2–4 h"],
+        ["Then", "2–3 mL/kg/h for 2–4 h"],
+        ["If haematocrit rises fast or vital signs worsen", "5–10 mL/kg/h for 1–2 h"]]],
+      ["l", ["Get the baseline haematocrit and weight first; use ideal body weight in obese patients. [S4]", "Give the least fluid that keeps good perfusion and urine output about 0.5 mL/kg/h; IV fluids are usually needed for only 24–48 h. [S4]", "Change rates step by step, never jumping (for example straight from 6 to 20 mL/kg/h). [S4]"]],
+      ["h", "C. Group A: home"],
+      ["l", ["Paracetamol for fever, not more than 4 g in 24 h. No NSAIDs or aspirin; avoid IM injections. [S4][S1]", "ORS and enough oral fluid; rest. [S4]", "Daily review with CBC until out of the critical phase. [S4]"]],
+      ["h", "D. Blood products"],
+      ["l", ["Platelets only if there is bleeding; prophylactic platelets may be considered below 10 000/mm³ without bleeding, or before emergency surgery. [S4]"]],
+      ["h", "E. Monitoring (Group B and C)"],
+      ["l", ["Pulse, BP 1–4 hourly until out of the critical phase; urine output 6-hourly; haematocrit before and after fluid, then 8-hourly; glucose and organ function as needed; strict input-output chart. [S4]", "Stop IV fluid when BP, pulse and perfusion are stable, haematocrit falls with a good pulse, no fever for 24–48 h, abdominal symptoms settle and urine output improves. Continuing beyond 48 h risks pulmonary oedema. [S4]"]],
+      ["h", "F. Special groups"],
+      ["l", ["Infants: refer for hospital care; IV fluid with warning signs at 5–7 mL/kg/h for 1–2 h, then adjust; avoid fluid overload. [S5]", "Pregnancy: admit to the obstetric ward; fluids as for non-pregnant women; avoid induction or caesarean section during the critical phase unless the mother's life is at risk. [S5]", "Diabetes: switch to insulin; heart disease: stop antiplatelets or anticoagulants during the critical phase. [S4]"]],
+      ["h", "G. Referral"],
+      ["l", ["Primary health centres treat only patients without warning signs; refer warning signs and special populations to hospital, after consulting the specialist. [S4]"]]
+    ]],
+    ["Follow-up", [["l", ["Group A: daily review and CBC until out of the critical phase. [S4]", "Discharge only when all are present: no fever for 48 h, clinical improvement, rising platelet count, stable haematocrit without IV fluid. [S4]"]]]],
+    ["Complications", [
+      ["h", "By phase"],
+      ["t", [["Phase", "Problems"], ["Febrile", "Dehydration, hyponatraemia, hypoglycaemia, febrile seizures in young children [S2]"], ["Critical", "Shock, severe bleeding, organ impairment, acidosis, hypocalcaemia, hypoglycaemia [S2]"], ["Recovery", "Hypokalaemia; fluid overload and pulmonary oedema if IV fluids continue too long [S2]"]]]
+    ]],
+    ["Common mistakes", [["l", ["Feeling reassured when the fever settles: that is when the critical phase begins. [S2]", "Giving NSAIDs, aspirin or IM injections. [S4][S1]", "Not measuring a baseline haematocrit early. [S4]", "Giving fluid boluses in big jumps, or continuing IV fluid past 48 h of the critical phase (pulmonary oedema). [S4]", "Transfusing platelets for a low count without bleeding. [S4]", "Missing the low BP and fast pulse of normal pregnancy, which can be mistaken for shock. [S5]"]]]],
+    ["Advice to give", [["l", [
+      "Rest and drink plenty of fluids: ORS, soups, juices. [S4]",
+      "Take paracetamol only for fever; never ibuprofen or aspirin. [S4][S1]",
+      "Come for a check-up and blood count every day until the doctor says it is safe. [S4]",
+      "Come back at once with any of: tummy pain, repeated vomiting, bleeding from gums or nose, black stools, drowsiness or restlessness, cold hands and feet, dizziness on standing, or no urine for 6 hours. [S2][S4]",
+      "The danger time is when the fever is going away (around days 3–7), not when it is highest. [S2]",
+      "Sleep under an insecticide-treated net, day and night, because Aedes bites in the daytime; use repellent and long clothing. [S1]",
+      "Remove water containers and other mosquito breeding sites around the home. [S1]"]]]],
+    ["Learning summary", [["l", ["Three phases: febrile, critical (around defervescence), recovery. [S2]", "Warning signs mean admission. [S2][S4]", "Rising haematocrit with falling platelets = plasma leakage. [S2]", "Group B2 fluids: 5–7, then 3–5, then 2–3 mL/kg/h. [S4]", "No NSAIDs, no IM injections. [S4]"]]]]
+  ],
+  links: [["#drug/PARACETAMOL", "Paracetamol"], ["#fluids", "Fluids & infusions"], ["#cond/dengue", "Condition page with all linked guidelines"]],
+  cards: [
+    ["List the warning signs of dengue.", "Abdominal pain or tenderness, persistent vomiting, fluid accumulation, mucosal bleeding, lethargy or restlessness, postural drop, liver > 2 cm, and rising haematocrit with falling platelets.", "S2"],
+    ["When does the critical phase of dengue usually occur?", "Around defervescence, days 3–7, lasting 24–48 h.", "S2"],
+    ["Who can be managed as Group A (OPD)?", "No warning signs, drinking well, urine at least every 6 h, no special-population factor, normal blood counts.", "S4"],
+    ["Initial IV fluid for dengue with warning signs?", "Normal saline or Ringer's lactate 5–7 mL/kg/h for 1–2 h, then 3–5 mL/kg/h for 2–4 h, then 2–3 mL/kg/h.", "S4"],
+    ["Target urine output during dengue fluid therapy?", "About 0.5 mL/kg/h.", "S4"],
+    ["NS1 and IgM timing in dengue?", "NS1 positive day 1 to about day 5; IgM from about day 5 for 2–3 months.", "S3"],
+    ["Which painkillers and injections are avoided in dengue?", "NSAIDs and aspirin; avoid intramuscular injections.", "S4"],
+    ["Discharge criteria in dengue?", "No fever for 48 h, clinical improvement, rising platelets, stable haematocrit without IV fluid.", "S4"],
+    ["Define compensated dengue shock.", "Normal systolic BP with tachycardia and pulse pressure ≤ 20 mmHg, or cold extremities and capillary refill > 2 s.", "S4"]
+  ]
+});
+TOPICS.push({
+  id: "snakebite", cond: "snake", n: "Snakebite", spec: ["emerg", "medicine", "paeds"], ages: "Children and adults", emerg: "Emergency",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: {
+    S1: ["Bhutan STG 2024, 1.4.17 Snake bites, p.25", "#stg/1.4.17"],
+    S2: ["National Guideline for the Management of Snakebites, Bhutan 2024: clinical aspects and investigations, p.16–22", "#gl/snake"],
+    S3: ["Bhutan Snakebite Guideline 2024: first aid and initial management, p.23–25", "#gl/snake"],
+    S4: ["Bhutan Snakebite Guideline 2024: antivenom indications, dose and reactions, p.26–33", "#gl/snake"],
+    S5: ["Bhutan Snakebite Guideline 2024: neurotoxic, haemotoxic, kidney and local management, p.33–38", "#gl/snake"],
+    S6: ["Bhutan Snakebite Guideline 2024: levels of care, referral, follow-up and prevention, p.39–43", "#gl/snake"]
+  },
+  sec: [
+    ["Definition", [["p", "A bite by a snake, which may be a dry bite or cause envenoming: local (the bitten part) or systemic (organs away from the bite). [S2]"]]],
+    ["Diagnostic criteria and classification", [
+      ["t", [["Syndrome", "Features", "Likely snake"],
+        ["I", "Local envenoming with bleeding or clotting disturbance", "Vipers [S2]"],
+        ["II", "Local envenoming, bleeding, shock or AKI, chemosis, pituitary insufficiency", "Russell's viper [S2]"],
+        ["III", "Local envenoming with paralysis", "Cobra or king cobra [S2]"],
+        ["IV", "Paralysis with little or no local envenoming, often bitten while sleeping on the ground", "Krait [S2]"],
+        ["V", "Paralysis with dark urine and AKI", "Russell's viper (on land) or krait (sleeping indoors) [S2]"]]],
+      ["l", ["Vasculotoxic (vipers): pain and swelling at the bite, bleeding from the bite and other sites. Neurotoxic (cobra, krait): weakness, ptosis, difficulty breathing. [S1]", "A positive 20WBCT points to a viper bite and rules out an elapid bite. [S2]"]]
+    ]],
+    ["Causes and pathophysiology", [["l", ["Haemotoxic venoms activate clotting and consume clotting factors (venom-induced consumption coagulopathy), so the blood will not clot. [S5]", "Neurotoxins block neuromuscular transmission: ptosis, bulbar and respiratory paralysis. [S2]", "Myotoxins break down muscle (rhabdomyolysis): dark urine, AKI, hyperkalaemia. [S2]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["Where were you bitten?", "Site and severity of local envenoming. [S2]"],
+      ["When were you bitten, and what were you doing?", "Bitten at night while asleep suggests krait; paddy field suggests cobra or Russell's viper; fruit trees suggest green pit viper. [S2]"],
+      ["Did you see the snake? Do you have a photo?", "Helps identify the snake. [S2][S1]"],
+      ["How are you feeling now?", "Systemic symptoms: vomiting, weakness, drowsiness, abdominal pain. [S2]"],
+      ["Do you take blood thinners?", "Anticoagulants confuse clotting tests and raise bleeding risk. [S2]"],
+      ["Was a tourniquet, incision or herbal remedy used?", "These can cause harm and change management. [S3]"]]]]],
+    ["Symptoms and examination", [
+      ["l", ["Local: fang marks, pain, swelling spreading up the limb, bruising, blisters, tender lymph nodes, necrosis. [S2]", "Neurotoxic: ptosis, double vision, difficulty swallowing or talking, neck weakness ('broken neck' sign), breathing difficulty. [S3]", "Haemotoxic: bleeding gums, nose, old wounds or cannula sites, haematuria, melaena, intracranial bleeding. [S2]", "Myotoxic: muscle pain, dark urine, reduced urine output. [S2]", "Mark the edge of the swelling with a pen and note the time. [S6]"]],
+      ["warn", "Danger: ptosis or any bulbar weakness, breathing difficulty, shock, spontaneous bleeding, dark urine, reduced urine output. [S2][S4]"]
+    ]],
+    ["Differential diagnosis", [["l", ["Dry bite or non-venomous snake: no local or systemic signs and a negative 20WBCT over observation. [S3]", "Bites or stings from other animals or insects.", "Anxiety reaction: sweating, tremor and fast breathing without envenoming signs. [S2]"]]]],
+    ["Investigations", [
+      ["t", [["Test", "Why", "What it changes"],
+        ["20-minute whole blood clotting test (20WBCT)", "2 mL of venous blood in a clean, dry glass tube, left 20 minutes, tipped once [S2]", "Unclotted = coagulopathy: give antivenom; repeat every 6 h after antivenom [S2][S4]"],
+        ["Platelets, PT/INR, aPTT", "Coagulopathy [S3]", "INR > 1.2 or platelets < 100 000 = systemic envenoming [S4]"],
+        ["Creatinine, urea, electrolytes, CK", "AKI, hyperkalaemia, rhabdomyolysis [S2]", "Dialysis decisions [S5]"],
+        ["Urine examination", "Haemoglobin or myoglobin, red cells [S2]", "Dark urine is an antivenom indication [S4]"],
+        ["ECG", "Hyperkalaemia, arrhythmia [S2]", ""]]],
+      ["note", "Use ordinary glass, not plastic, for the 20WBCT, and do not use a tube washed with detergent (false positive). Repeat with a healthy person's blood as a control if unsure. [S2]"]
+    ]],
+    ["Management", [
+      ["h", "A. First aid (community)"],
+      ["l", ["Reassure; keep the victim still; immobilise the limb with a splint or sling; remove rings and tight clothing; carry, don't walk. [S3]", "Do not cut, suck, rub or apply herbs or ice; do not apply a tight tourniquet; do not try to catch or kill the snake. [S3][S6]"]],
+      ["warn", "Source difference: the STG says to remove any tourniquet [S1]; the 2024 Snakebite Guideline says not to release a tight band until the patient is in hospital, resuscitation is ready and antivenom has started [S3][S6]. Follow the newer, more detailed 2024 guideline."],
+      ["h", "B. Hospital assessment"],
+      ["l", ["ABCDE first; admit every snakebite for at least 24 hours of observation. [S3][S2]", "20WBCT and platelets on arrival; look for neurotoxic, haemotoxic and myotoxic signs. [S3]"]],
+      ["h", "C. Antivenom (polyvalent)"],
+      ["p", "Give antivenom without delay for any one of [S4]: neurotoxicity (ptosis, ophthalmoplegia, paralysis); coagulopathy (positive 20WBCT, INR > 1.2, platelets < 100 000); hypotension, shock or arrhythmia; AKI; dark urine; or local swelling spreading past one major joint within 24 h, more than half the limb within 48 h, or enlarged lymph nodes with systemic signs."],
+      ["t", [["Situation", "Dose", "Repeat", "Source"],
+        ["Neurotoxic", "10 vials (100 mL) diluted in 100–400 mL saline or 5% dextrose IV over 60 min", "Same dose if paralysis progresses over the next 2 h; maximum 20 vials", "[S4]"],
+        ["Haemotoxic or local", "10 vials as above", "Repeat 20WBCT after 6 h; if still unclotted give 5 vials over 60 min; repeat cycle until blood clots; maximum 30 vials", "[S4]"],
+        ["Premedication", "Adrenaline 1:1000 subcutaneously: adults 0.25 mL; children 0.005 mL/kg", "Antihistamine and hydrocortisone premedication are NOT advocated; no skin test or test dose", "[S4]"]]],
+      ["l", ["Children get exactly the same dose as adults. [S4]", "Have IM adrenaline for anaphylaxis drawn up at the bedside; observe closely for at least 2 hours after starting. [S4]"]],
+      ["note", "The STG gives 10 vials, each diluted in 10 mL of water then mixed in 200 mL normal saline, over 1 hour [S1]; the 2024 guideline gives the same 10 vials in 100–400 mL over 60 minutes [S4]."],
+      ["h", "D. Antivenom reactions"],
+      ["l", ["Anaphylaxis: stop the antivenom; IM adrenaline 1:1000 into the thigh: < 12 months 0.05 mL; 1 to < 6 years 0.1 mL; 6 to < 12 years 0.2 mL; 12 years and over 0.5 mL; repeat after 5 minutes up to two more times; oxygen. [S4]", "Fever and rigors (pyrogenic reaction): paracetamol; do not stop the antivenom unless BP falls. [S4]", "After recovery, re-check that antivenom is still needed; if so, restart slowly. [S4]"]],
+      ["h", "E. Specific problems"],
+      ["l", ["Neurotoxic: secure the airway and ventilate if bulbar or respiratory paralysis. Trial of atropine then neostigmine: adults atropine 0.3–0.6 mg IV, then neostigmine 0.01 mg/kg (max 0.5 mg) every 30 min; children atropine 0.02 mg/kg (max 0.6 mg), then neostigmine 0.025–0.04 mg/kg (max 0.5 mg). No response after 3 doses suggests krait. [S5]", "Bleeding: antivenom first; FFP 10–15 mL/kg within 4 h of antivenom if bleeding persists. Never use heparin or antifibrinolytics. [S5]", "AKI: fluid challenge, then a single dose of furosemide 1–1.5 mg/kg; if urine stays below 200 mL in 2 h, refer for dialysis. [S5]", "Bitten limb: elevate, rest, clean with antiseptic; antibiotics only if infected; tetanus toxoid, delayed until any coagulopathy has resolved. [S5][S6]", "Compartment syndrome: fasciotomy only after clotting has been corrected. [S5]", "Pain: paracetamol; no aspirin or NSAIDs. [S6]"]],
+      ["h", "F. Referral"],
+      ["l", ["PHC: if antivenom is indicated, refer to a higher centre after initial care and IV fluid for shock. [S6]", "Refer from hospital for: respiratory support, worsening neurology, surgery (necrosis, fasciotomy), persistent bleeding despite adequate antivenom, worsening AKI, or serious comorbidity. [S6]"]]
+    ]],
+    ["Follow-up", [["l", ["Review 7 days after discharge. [S6]", "Watch for late serum sickness 1–12 days after antivenom: fever, rash, joint pain. [S4]", "Physiotherapy and exercises for the bitten limb. [S6]"]]]],
+    ["Complications", [
+      ["h", "Early"], ["l", ["Respiratory paralysis, shock, severe bleeding including intracranial, AKI, hyperkalaemia, compartment syndrome, antivenom anaphylaxis. [S2][S4][S5]"]],
+      ["h", "Late"], ["l", ["Amputation, chronic ulcers, osteomyelitis, contractures; chronic kidney disease; pituitary failure after Russell's viper bites; chronic neurological deficit. [S6]"]]
+    ]],
+    ["Common mistakes", [["l", ["Sending a patient home early: every snakebite needs at least 24 hours of observation. [S2]", "Giving antivenom without an indication, or delaying it when indicated. [S4]", "Giving a smaller antivenom dose to children. [S4]", "Using a plastic tube for the 20WBCT. [S2]", "Premedicating with antihistamine or hydrocortisone instead of adrenaline. [S4]", "Giving heparin, IM injections or NSAIDs. [S5][S6]"]]]],
+    ["Advice to give", [["l", [
+      "Keep still and calm; immobilise the bitten limb; get to a health centre quickly without walking (call 112). [S3][S6]",
+      "Do not cut, suck, rub, apply herbs, chemicals or ice, or tie a tight band. [S3][S6]",
+      "Do not try to catch or kill the snake; even a cut-off head can bite. [S3][S6]",
+      "After discharge, return at once for bleeding, increasing pain or swelling, breathing difficulty, drowsiness, dark urine, or fever with rash and joint pain. [S6][S4]",
+      "Do the limb exercises you were shown and come for review after 7 days. [S6]",
+      "Prevention: take extra care after rain, at harvest and at night; use a torch; wear boots in fields and forest; keep surroundings clear; keep children away from snake areas. [S6]"]]]],
+    ["Learning summary", [["l", ["Unclotted 20WBCT = coagulopathy = antivenom. [S2][S4]", "Antivenom: 10 vials IV over 1 h; same dose for children; adrenaline premedication, not antihistamine. [S4]", "Neurotoxic repeat at 2 h (max 20 vials); haemotoxic repeat 5 vials every 6 h until clotting (max 30). [S4]", "Observe every bite for at least 24 hours. [S2]"]]]]
+  ],
+  links: [["#p/snake", "Snake bite protocol (doses from the patient bar)"], ["#drug/ANTI-SNAKE%20VENOM%20SERUM", "Anti-snake venom"], ["#drug/NEOSTIGMINE", "Neostigmine"], ["#drug/ADRENALINE", "Adrenaline"], ["#cond/snake", "Condition page with all linked guidelines"]],
+  cards: [
+    ["How is the 20WBCT done and read?", "2 mL venous blood in a clean, dry glass tube, left 20 min, tipped once; unclotted or a weak clot = positive (coagulopathy).", "S2"],
+    ["Initial antivenom dose for neurotoxic envenoming (Bhutan 2024)?", "10 vials diluted in 100–400 mL saline or 5% dextrose IV over 60 min; repeat once if paralysis progresses over 2 h; max 20 vials.", "S4"],
+    ["Repeat antivenom for haemotoxic envenoming?", "Repeat 20WBCT at 6 h; if positive give 5 vials over 60 min; continue until blood clots; max 30 vials.", "S4"],
+    ["Antivenom dose for a child compared with an adult?", "Exactly the same dose.", "S4"],
+    ["Premedication before antivenom?", "Adrenaline 1:1000 SC: adult 0.25 mL, child 0.005 mL/kg. Antihistamine or hydrocortisone premedication is not advocated.", "S4"],
+    ["Name three local signs that indicate antivenom.", "Swelling past one major joint within 24 h; more than half the limb within 48 h; enlarged draining lymph nodes with systemic signs.", "S4"],
+    ["Neostigmine trial dose for adults with neurotoxic envenoming?", "Atropine 0.3–0.6 mg IV, then neostigmine 0.01 mg/kg (max 0.5 mg) every 30 min.", "S5"],
+    ["Which drugs must never be used for snakebite coagulopathy?", "Heparin and antifibrinolytics.", "S5"],
+    ["How long should every snakebite patient be observed?", "At least 24 hours.", "S2"]
+  ]
+});
+TOPICS.push({
+  id: "htn", cond: "htn", n: "Hypertension in adults", spec: ["cardio", "medicine", "ph"], ages: "Adults", emerg: "BP ≥ 180/110 with warning signs needs urgent referral",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician.",
+  src: {
+    S1: ["Bhutan STG 2024, 2.3 Hypertension, p.53", "#stg/2.3"],
+    S2: ["Hypertension Screening & Management Protocol, Bhutan, v3.5, 15 January 2025", "#gl/htn"]
+  },
+  sec: [
+    ["Definition", [["p", "A persistent rise in blood pressure above 140/90 mmHg. [S1]"]]],
+    ["Diagnostic criteria and classification", [
+      ["t", [["Category", "Systolic (mmHg)", "Diastolic (mmHg)"], ["Normal", "< 130", "< 85"], ["Prehypertension (high-normal)", "130–139", "85–89"], ["Stage 1 (mild)", "140–159", "90–99"], ["Stage 2 (moderate)", "≥ 160", "≥ 100"], ["Stage 3 (severe)", "≥ 180", "≥ 120"]]],
+      ["p", "Classification from the STG (International Society of Hypertension 2020). [S1]"],
+      ["l", ["Confirm with BP in both arms and several readings [S1]; the 2025 protocol measures all adults 18 and over, with at least two readings one week apart. [S2]"]]
+    ]],
+    ["Causes and pathophysiology", [["l", ["Most is essential (primary), with no single cause. [S1]", "Secondary causes: kidney disease, endocrine disease, obesity, vascular disease (Takayasu arteritis, coarctation), drugs (steroids, NSAIDs, sympathomimetics). [S1]", "Persistently raised pressure damages the heart, brain, kidneys and eyes (target organ damage). [S1]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["Any headache, visual disturbance, chest pain, breathlessness, weakness or fits?", "Possible target organ damage or hypertensive crisis. [S1][S2]"],
+      ["Diabetes, stroke, kidney disease or heart disease? Age 65 or over?", "High-risk factors in the 2025 protocol. [S2]"],
+      ["Medicines: steroids, NSAIDs, decongestants?", "Drug causes. [S1]"],
+      ["Smoking, alcohol, salt intake (pickles, dry fish, processed food), exercise?", "Lifestyle targets. [S2]"],
+      ["Could you be pregnant?", "Pregnancy with high BP needs urgent referral. [S2]"],
+      ["Are you taking your tablets every day?", "Adherence is checked at every visit. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Usually no symptoms until organ damage; often found at a routine check. [S1]", "Measure BP correctly; look for a displaced apex beat, heart failure, hypertensive retinopathy. [S1]", "Weight and BMI. [S2]"]], ["warn", "Urgent referral (hypertensive crisis) for any of: seizures, altered sensorium, new severe headache, oedema, shortness of breath, persistent chest pain, limb paralysis, pregnancy, or BP ≥ 180/110 mmHg. [S2]"]]],
+    ["Differential diagnosis", [["l", ["White-coat or one-off high reading: confirm with repeat readings. [S1][S2]", "Secondary hypertension: young age, kidney disease, endocrine features, uncontrolled on 3 medicines. [S1][S2]", "Pain, anxiety, or drugs raising BP temporarily. [S1]"]]]],
+    ["Investigations", [["l", ["Within 1 month of starting treatment: fasting and post-prandial glucose, lipid profile, kidney and liver function, ECG, urine routine examination, fundoscopy. [S2]", "The STG adds a complete blood count and urine microscopy. [S1]", "Yearly: ECG, fundoscopy, urine albumin. [S2]"]], ["note", "There is no single confirmatory test: the diagnosis rests on repeated correctly measured readings."]]],
+    ["Management", [
+      ["h", "A. Lifestyle (everyone)"],
+      ["l", ["Stop smoking; stop alcohol (brief intervention). [S2]", "Keep a normal BMI. [S2]", "DASH-style diet: salt below 5 g a day; cut pickles, dry fish and processed food; plenty of fruit and vegetables. [S2]", "Moderate activity at least 30 minutes, 5 days a week. [S2]"]],
+      ["h", "B. Who to treat with medicines (2025 protocol)"],
+      ["l", ["Start medicines for BP ≥ 140/90 mmHg. [S2]", "Start at BP ≥ 130/80 mmHg if there is a high-risk factor (stroke, diabetes, chronic kidney disease, coronary artery disease, or age ≥ 65); without one, follow up 6-monthly. [S2]"]],
+      ["h", "C. Medicines"],
+      ["t", [["Step", "2025 protocol [S2]", "STG [S1]"], ["1st", "Hydrochlorothiazide 25 mg once daily", "ARB (losartan) or ACE inhibitor (enalapril)"], ["2nd", "Add losartan 25 mg once daily", "Add a calcium channel blocker (nifedipine)"], ["3rd", "Consult the higher centre", "Add hydrochlorothiazide"]]],
+      ["warn", "Source difference: the STG starts with an ARB or ACE inhibitor [S1], while the newer and more specific 2025 national Hypertension Protocol starts with hydrochlorothiazide 25 mg [S2]. Follow the 2025 protocol unless your unit says otherwise."],
+      ["h", "D. Targets and monitoring"],
+      ["l", ["Target BP 120–130 / 70–80 mmHg; individualise for frail older people. [S2]", "Lower BP by at least 20/10 mmHg a month; reach target within 3 months. [S2]", "Initial BP ≥ 160/100: review within 1 week. [S2]", "Check side effects and adherence at every visit. [S2]"]],
+      ["h", "E. Referral"],
+      ["l", ["Urgent: any hypertensive crisis warning sign or BP ≥ 180/110. [S2]", "Specialist care: stroke, retinopathy, heart disease, raised creatinine, proteinuria, BP uncontrolled on 3 medicines, or suspected secondary hypertension. [S2][S1]"]]
+    ]],
+    ["Follow-up", [["l", ["Not at target: monthly. At target: every 2 months. [S2]", "BP 130–139/80–89 without risk factors: re-check 6-monthly. [S2]", "Yearly ECG, fundoscopy and urine albumin. [S2]"]]]],
+    ["Complications", [["l", ["Stroke, heart failure, coronary disease, chronic kidney disease, retinopathy. [S1][S2]", "Hypertensive crisis with acute organ damage. [S2]"]]]],
+    ["Common mistakes", [["l", ["Diagnosing from a single reading. [S1][S2]", "Stopping medicines once BP is normal. [S2]", "Not checking for target organ damage or secondary causes. [S1][S2]", "Lowering a very high BP too fast in an asymptomatic patient instead of aiming for about 20/10 mmHg a month. [S2]"]]]],
+    ["Advice to give", [["l", [
+      "Take your BP tablets every day, even when you feel well. Do not stop them unless a doctor tells you to. [S2]",
+      "Eat less than 5 g of salt a day (about one teaspoon); cut down on pickles, dry fish and processed food; eat more fruit and vegetables. [S2]",
+      "Stop smoking and alcohol; keep a healthy weight; walk or exercise at least 30 minutes, 5 days a week. [S2][S1]",
+      "Come for check-ups as booked: monthly until controlled, then every 2 months. [S2]",
+      "Go to a health centre at once for severe headache, chest pain, breathlessness, weakness of an arm or leg, fits, confusion, swelling of the legs, or if you become pregnant. [S2]"]]]],
+    ["Learning summary", [["l", ["Hypertension = persistent BP > 140/90. [S1]", "2025 protocol: hydrochlorothiazide 25 mg first, then add losartan 25 mg. [S2]", "Treat at ≥ 130/80 if high-risk (stroke, diabetes, CKD, CAD, age ≥ 65). [S2]", "Target 120–130/70–80 within 3 months. [S2]"]]]]
+  ],
+  links: [["#drug/HYDROCHLOROTHIAZIDE", "Hydrochlorothiazide"], ["#drug/LOSARTAN", "Losartan"], ["#drug/ENALAPRIL", "Enalapril"], ["#drug/NIFEDIPINE", "Nifedipine"], ["#cond/htn", "Condition page with all linked guidelines"]],
+  cards: [
+    ["First-line medicine in the Bhutan Hypertension Protocol v3.5 (2025)?", "Hydrochlorothiazide 25 mg once daily; then add losartan 25 mg.", "S2"],
+    ["First-line medicine for hypertension in the STG 2024?", "An ARB (losartan) or ACE inhibitor (enalapril); then add a CCB, then a thiazide.", "S1"],
+    ["When should treatment start at BP ≥ 130/80 (2025 protocol)?", "When there is a high-risk factor: stroke, diabetes, CKD, coronary artery disease or age ≥ 65.", "S2"],
+    ["BP target in the 2025 protocol?", "120–130 / 70–80 mmHg, reached within 3 months; individualise for frail elderly.", "S2"],
+    ["Name four warning signs that need urgent referral in hypertension.", "Any of: seizures, altered sensorium, new severe headache, oedema, breathlessness, persistent chest pain, paralysis, pregnancy, BP ≥ 180/110.", "S2"],
+    ["Salt intake advice in the 2025 protocol?", "Less than 5 g per day.", "S2"],
+    ["Tests within 1 month of starting treatment?", "Fasting and post-prandial glucose, lipids, kidney and liver function, ECG, urine routine, fundoscopy.", "S2"]
+  ]
+});
+
+TOPICS.push({
+  id: "sepsis", cond: "sepsis", n: "Sepsis and septic shock in adults", spec: ["emerg", "id", "medicine"], ages: "Adults (children: see the sepsis protocol)", emerg: "Emergency: antibiotics within 1 hour",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a critical care physician.",
+  src: {
+    S1: ["Quick Guide to Sepsis Management, Bhutan, 1st ed. 2025: definitions and pathophysiology, ch.1, p.14–17", "#gl/sepsis"],
+    S2: ["Quick Guide to Sepsis Management 2025: screening with NEWS, ch.2, p.20–22", "#gl/sepsis"],
+    S3: ["Quick Guide to Sepsis Management 2025: resuscitation (Hour-1 bundle, fluids, vasopressors), ch.3, p.23–27", "#gl/sepsis"],
+    S4: ["Quick Guide to Sepsis Management 2025: empiric antibiotics and renal dosing, ch.4, p.31–38", "#gl/sepsis"]
+  },
+  sec: [
+    ["Definition", [["t", [["Term", "Definition"], ["Sepsis", "Life-threatening organ dysfunction caused by a dysregulated host response to infection [S1]"], ["Septic shock", "Persistent hypotension needing vasopressors to keep MAP ≥ 65 mmHg, with lactate > 2 mmol/L despite adequate fluid resuscitation [S1]"]]]]],
+    ["Diagnostic criteria and classification", [
+      ["p", "Sepsis needs organ dysfunction. A change in SOFA score is the most reliable marker, but because laboratory results are slow in Bhutan, the guide recommends screening with NEWS. [S2]"],
+      ["t", [["NEWS parameter", "3", "2", "1", "0", "1", "2", "3"],
+        ["Respiratory rate", "≤ 8", "", "9–11", "12–20", "", "21–24", "≥ 25"],
+        ["SpO₂ (%)", "≤ 91", "92–93", "94–95", "≥ 96", "", "", ""],
+        ["Supplemental oxygen", "", "Yes", "", "No", "", "", ""],
+        ["Temperature (°C)", "≤ 35.0", "", "35.1–36.0", "36.1–38.0", "38.1–39.0", "≥ 39.1", ""],
+        ["Systolic BP", "≤ 90", "91–100", "101–110", "111–219", "", "", "≥ 220"],
+        ["Heart rate", "≤ 40", "", "41–50", "51–90", "91–110", "111–130", "≥ 131"],
+        ["Consciousness", "", "", "", "Alert", "", "", "V, P or U"]]],
+      ["l", ["NEWS 1–4 low risk; 5–6 medium; ≥ 7 high. NEWS > 5 means a heightened risk of sepsis and needs immediate resuscitation. [S2]"]]
+    ]],
+    ["Causes and pathophysiology", [["l", ["A first hyperinflammatory phase (cytokine storm: fever, shock, respiratory failure, multi-organ dysfunction) is followed by immune paralysis, when secondary infections such as candida cause late deaths. [S1]", "Endothelial activation and microvascular dysfunction impair perfusion. [S1]", "Higher-risk groups: age over 75; immunosuppression (chemotherapy, diabetes, splenectomy, long-term steroids); surgery or procedures in the past 6 weeks; broken skin; indwelling lines or catheters; pregnancy, birth or miscarriage in the past 6 weeks. [S2]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["Fever, cough, breathlessness, loose stools, vomiting, abdominal pain, painful or reduced urine, confusion, rash or wounds, poor appetite?", "Any of these with an ill-looking patient means suspected infection: screen for sepsis. [S2]"],
+      ["Surgery, a procedure, a line or catheter, or recent hospital stay?", "Hospital-acquired infection needs broader antibiotics. [S4]"],
+      ["Antibiotics in the last 3 months, or known resistant organisms?", "Changes the empiric choice. [S4]"],
+      ["Chemotherapy, steroids, diabetes, splenectomy, pregnancy or recent delivery?", "High-risk group. [S2]"],
+      ["Penicillin allergy (anaphylaxis)?", "Use the alternatives in the antibiotic table. [S4]"],
+      ["Heart failure or kidney disease?", "Still give fluids: withholding them does more harm. [S3]"]]]]],
+    ["Symptoms and examination", [["l", ["Score NEWS: respiratory rate, SpO₂, oxygen use, temperature, systolic BP, heart rate, consciousness. [S2]", "Look for the source: chest, urine, abdomen, skin and soft tissue, CNS, lines. [S4]", "Perfusion: capillary refill time, mental state, urine output. [S1][S3]"]], ["warn", "NEWS > 5, hypotension, confusion or rising lactate: start the Hour-1 bundle now. Sepsis does not need to be proven first. [S3]"]]],
+    ["Differential diagnosis", [["l", ["Non-infectious mimics: pancreatitis, burns, trauma, drug reactions, adrenal crisis, pulmonary embolism, heart failure. The guide stresses re-checking whether infection is really present and antibiotics really needed. [S3]", "Other shock types: hypovolaemic, cardiogenic, anaphylactic."]]]],
+    ["Investigations", [["t", [["Test", "Why", "What it changes"],
+      ["Lactate", "First element of the Hour-1 bundle; remeasure if high [S3]", "> 2 mmol/L with vasopressor-dependent hypotension = septic shock [S1]"],
+      ["Blood cultures, plus urine, sputum or pus cultures", "Before antibiotics, if this causes no real delay [S3]", "Narrow antibiotics at 48–72 h [S4]"],
+      ["Creatinine and kidney function", "Organ dysfunction; antibiotic dosing [S4]", "Full doses in the first 24 h regardless of kidney function [S4]"],
+      ["Blood gas", "In refractory shock, to gauge acidosis [S3]", ""],
+      ["Imaging for the source", "Chest X-ray, ultrasound as indicated", "Source control"]]]]],
+    ["Management", [
+      ["h", "A. Hour-1 bundle"],
+      ["l", ["Measure lactate. [S3]", "Take cultures before antibiotics, if no delay. [S3]", "Give broad-spectrum antibiotics within 1 hour for septic shock or confirmed sepsis (up to 3 hours to assess possible sepsis). Each hour of delay raises mortality by about 7.6%. [S3]", "Start fluids: 30 mL/kg IV crystalloid over 3 hours, beginning with a 300–500 mL bolus over 15–30 minutes, then individualise. [S3]", "Vasopressors for MAP > 65 mmHg if hypotension persists; they need not wait until the full 30 mL/kg is given. [S3]"]],
+      ["h", "B. Fluid responsiveness"],
+      ["l", ["Passive leg raise test: from 45° semi-recumbent, raise the legs; a rise in pulse pressure of 15% or more means fluid-responsive. [S3]"]],
+      ["h", "C. Empiric antibiotics (adults, normal kidney function)"],
+      ["t", [["Source", "Community-acquired", "Hospital-acquired"],
+        ["Unknown", "Ceftriaxone 2 g IV every 24 h, or piperacillin–tazobactam 4.5 g every 8 h, or meropenem 2 g then 1 g every 8 h [S4]", "Same choices [S4]"],
+        ["Pneumonia", "Ampicillin 1 g every 6 h, or co-amoxiclav 1.2 g every 8 h, or ceftriaxone 2 g every 24 h, PLUS azithromycin 500 mg IV daily or doxycycline 100 mg orally 12-hourly [S4]", "Ceftriaxone, piperacillin–tazobactam or meropenem ± gentamicin 5–7 mg/kg or amikacin 15 mg/kg daily [S4]"],
+        ["Urinary", "Ampicillin 1 g every 6 h + gentamicin 5–7 mg/kg daily, or ceftriaxone 2 g daily [S4]", "Ciprofloxacin 400 mg every 8 h, or piperacillin–tazobactam, or meropenem [S4]"],
+        ["Abdominal", "Ampicillin + gentamicin + metronidazole 500 mg every 8 h; or co-amoxiclav; or ceftriaxone + metronidazole [S4]", "Piperacillin–tazobactam or meropenem [S4]"],
+        ["Skin, soft tissue, bone, joint", "Cloxacillin 2 g every 6 h, or cefazolin 2 g every 8 h, or co-amoxiclav; vancomycin if MRSA risk [S4]", "Piperacillin–tazobactam or meropenem [S4]"],
+        ["CNS", "Benzylpenicillin 4 MU every 4 h or ceftriaxone 2 g every 12 h; add ampicillin 2 g every 4 h if Listeria risk [S4]", "Meropenem 2 g every 8 h [S4]"],
+        ["Tropical infections", "Azithromycin 500 mg IV daily or doxycycline 100 mg 12-hourly [S4]", ""]]],
+      ["l", ["Penicillin anaphylaxis: ciprofloxacin 400 mg IV every 8 h as the alternative in most rows. [S4]", "Give full doses for the first 24 hours whatever the kidney function, then adjust for creatinine clearance. [S4]", "De-escalate to the narrowest suitable drug when cultures return (48–72 h), and switch to oral when improving and eating. [S4]"]],
+      ["h", "D. Source control"], ["l", ["Drain abscesses, remove infected lines, debride necrotic tissue: see the guide's source-control chapter. [S4]"]],
+      ["h", "E. Referral"], ["l", ["The guide has separate flowcharts for primary health centres, district hospitals and regional referral hospitals (Annexures 4–6). [S4]"]]
+    ]],
+    ["Follow-up", [["l", ["Reassess fluid status repeatedly after the first bolus. [S3]", "Remeasure lactate if raised. [S3]", "Review antibiotics daily with culture results; de-escalate at 48–72 h. [S4]"]]]],
+    ["Complications", [["l", ["Septic shock, respiratory failure, acute kidney injury, multi-organ dysfunction. [S1]", "Secondary and opportunistic infections in the immune-paralysis phase. [S1]", "Mortality can reach 40%, higher with late presentation. [S1]"]]]],
+    ["Common mistakes", [["l", ["Waiting for proof of sepsis before starting treatment. [S3]", "Delaying antibiotics for cultures. [S3]", "Withholding fluids in heart or kidney failure. [S3]", "Waiting for the full 30 mL/kg before starting vasopressors. [S3]", "Reducing antibiotic doses for kidney function in the first 24 hours. [S4]", "Not de-escalating once cultures are back. [S4]"]]]],
+    ["Advice to give", [["l", ["Explain that sepsis is the body's severe reaction to an infection and needs urgent hospital treatment. [S1]", "After discharge, finish the full antibiotic course exactly as prescribed. [S4]", "Return at once for fever with confusion, fast breathing, very low urine output, cold or mottled skin, or feeling much worse. [S2]", "People with diabetes, on steroids or chemotherapy, or after surgery or childbirth should seek care early for any infection. [S2]"]]]],
+    ["Learning summary", [["l", ["Sepsis = organ dysfunction from infection; septic shock = vasopressors for MAP ≥ 65 + lactate > 2. [S1]", "Screen with NEWS; > 5 = act now. [S2]", "Hour-1: lactate, cultures, antibiotics, 30 mL/kg fluid, vasopressors. [S3]", "Full antibiotic doses for 24 h regardless of kidney function. [S4]"]]]]
+  ],
+  links: [["#p/sepsis", "Sepsis protocol (adult and child doses)"], ["#drug/CEFTRIAXONE", "Ceftriaxone"], ["#cond/sepsis", "Condition page with all linked guidelines"]],
+  cards: [
+    ["Define septic shock (Bhutan Sepsis Guide 2025).", "Persistent hypotension needing vasopressors to keep MAP ≥ 65 mmHg, with lactate > 2 mmol/L despite adequate fluids.", "S1"],
+    ["Which score does the Bhutan Sepsis Guide use for screening, and what score needs immediate action?", "NEWS; a score above 5.", "S2"],
+    ["Initial fluid in sepsis?", "30 mL/kg IV crystalloid over 3 h, starting with 300–500 mL over 15–30 min.", "S3"],
+    ["How quickly should antibiotics be given in septic shock?", "Within 1 hour; each hour of delay raises mortality by about 7.6%.", "S3"],
+    ["Empiric antibiotic for sepsis of unknown source (community)?", "Ceftriaxone 2 g IV daily, or piperacillin–tazobactam 4.5 g 8-hourly, or meropenem.", "S4"],
+    ["Should antibiotic doses be reduced for kidney function on day 1 of sepsis?", "No. Give full doses for the first 24 hours, then adjust.", "S4"],
+    ["How is the passive leg raise test read?", "A rise in pulse pressure of 15% or more means the patient is fluid-responsive.", "S3"]
+  ]
+});
+TOPICS.push({
+  id: "asthma", cond: "asthma", n: "Bronchial asthma", spec: ["resp", "paeds", "medicine"], ages: "Children and adults", emerg: "Severe and life-threatening attacks are emergencies",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician or paediatrician.",
+  src: {
+    S1: ["Bhutan STG 2024, 3.8 Bronchial asthma (adults), p.70", "#stg/3.8"],
+    S2: ["Bhutan STG 2024, 12.2.2 Bronchial asthma (children), p.263", "#stg/12.2.2"]
+  },
+  sec: [
+    ["Definition", [["p", "A chronic inflammatory airway disease with hyperresponsiveness to many triggers and variable airflow obstruction, causing attacks of cough, breathlessness, chest tightness and wheeze, with exacerbations and remissions. [S1][S2]"]]],
+    ["Diagnostic criteria and classification", [
+      ["h", "Severity of an acute attack (adults)"],
+      ["t", [["Mild or moderate", "Severe", "Life-threatening (any one)"],
+        ["Talks in phrases; prefers sitting; not agitated; RR raised; no accessory muscles; pulse 100–120; SpO₂ 90–95%; PEF > 50% of predicted or best", "Talks in words; sits hunched forward; agitated; RR > 30; accessory muscles; pulse > 120; SpO₂ < 90%; PEF ≤ 50%", "Drowsy; confused; silent chest"]]],
+      ["p", "From the STG table of asthma severity. [S1]"],
+      ["note", "Wheeze is not needed for the diagnosis: in the most severe attacks it may disappear because so little air moves (silent chest). [S2]"]
+    ]],
+    ["Causes and pathophysiology", [["l", ["Chronic airway inflammation makes the airways hyperresponsive; triggers narrow them in attacks. [S1]", "Triggers: house dust mite, cockroach, pet dander, pollen, air pollution, tobacco smoke, exercise, cold air, strong emotion, workplace fumes, aspirin and NSAIDs, beta-blockers (including eye drops). [S1]", "In children: viral infections, allergens, tobacco smoke and air pollution. [S2]", "Personal or family history of atopy (eczema, rhinitis, nasal polyps). [S1]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["Can you speak in sentences, phrases or only words?", "Grades severity. [S1]"],
+      ["Any drowsiness or confusion?", "Life-threatening attack. [S1]"],
+      ["What brings on attacks: dust, smoke, cold, exercise, pets, painkillers?", "Triggers to avoid. [S1]"],
+      ["Do you use aspirin, NSAIDs or beta-blocker tablets or eye drops?", "Drug triggers. [S1]"],
+      ["Eczema, hay fever or family history of asthma?", "Atopy supports asthma. [S1]"],
+      ["In a young child: repeated 'bronchitis', bronchiolitis or pneumonia?", "Suggests asthma. [S2]"],
+      ["How often are relievers needed, and are you taking them correctly?", "Control and adherence. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Chest tightness, breathlessness, wheeze, cough with mucoid sputum. [S1]", "Tachycardia, sweating; hyperinflated chest, hyper-resonance, expiratory rhonchi. [S1]", "Children: fast or noisy breathing, chest retraction, irritability; drowsiness or confusion in severe attacks. [S2]", "Measure SpO₂ and, where possible, peak flow. [S1]"]], ["warn", "Life-threatening: drowsy, confused, silent chest, central cyanosis, bradycardia. [S1]"]]],
+    ["Differential diagnosis", [["l", ["Pneumonia: fever, focal crackles (see Pneumonia).", "Bronchiolitis in infants.", "Foreign body: sudden choking, one-sided signs.", "Heart failure in adults: crackles, raised JVP, oedema.", "COPD in older smokers."]]]],
+    ["Investigations", [["l", ["SpO₂ monitoring during attacks. [S1]", "Chest X-ray not routinely; only if the patient fails to improve after treatment (adults). [S1] The STG lists chest X-ray and CBC for children. [S2]"]], ["note", "Asthma is a clinical diagnosis here; the attack severity table guides treatment."]]],
+    ["Management", [
+      ["h", "A. Children"],
+      ["t", [["Attack", "Treatment", "Source"],
+        ["All", "Airway, breathing, circulation; sit the child up; oxygen", "[S2]"],
+        ["Mild to moderate", "Salbutamol nebulised 2.5 mg/dose (5 mg/mL solution) stat, or MDI with spacer 2 puffs stat; then twice daily for 5–7 days", "[S2]"],
+        ["Moderate to severe (manage at a higher centre)", "Salbutamol 2.5 mg nebulised, or MDI-spacer 2 puffs, every 15–20 min for 3 doses; first steroid dose: dexamethasone 0.6 mg/kg IM stat or prednisolone 1–2 mg/kg/day; refer with a medical escort", "[S2]"]]],
+      ["h", "B. Adults"],
+      ["t", [["Level", "Treatment", "Source"],
+        ["Primary care", "Oxygen; salbutamol nebulisation; hydrocortisone 200 mg IV stat or dexamethasone 4 mg IV stat; refer if no improvement", "[S1]"],
+        ["Hospital (severe)", "Prop up; oxygen; salbutamol nebulisation stat then 4–6-hourly; hydrocortisone 100 mg IV stat then 8-hourly as needed; prednisolone 30–60 mg daily for 7 days; antibiotics only if needed; fluids; breathing exercises", "[S1]"],
+        ["Life-threatening", "Deriphyllin (etofylline–theophylline) infusion as per the STG", "[S1]"]]],
+      ["h", "C. Long-term"],
+      ["l", ["Identify and avoid triggers; check adherence and technique; step up therapy when control is poor. [S1]", "Yearly influenza vaccination. [S1]"]],
+      ["h", "D. Referral"],
+      ["l", ["Children with moderate to severe attacks: refer with escort. [S2] Adults: refer if no improvement at primary care. [S1]"]]
+    ]],
+    ["Follow-up", [["l", ["Regular review of symptom control, adherence and triggers. [S1]", "After an attack, continue the reliever and steroid course as prescribed. [S1][S2]"]]]],
+    ["Complications", [["l", ["Respiratory failure and death in life-threatening attacks. [S1]", "Recurrent attacks and poor quality of life when uncontrolled. [S1]"]]]],
+    ["Common mistakes", [["l", ["Being reassured by a quiet chest: it can mean very little air movement. [S2]", "Ordering a chest X-ray routinely. [S1]", "Giving antibiotics without evidence of infection. [S1]", "Using an inhaler without a spacer in children. [S2]", "Prescribing beta-blockers or NSAIDs to people with asthma. [S1]"]]]],
+    ["Advice to give", [["l", ["Take your medicines regularly and keep follow-up appointments. [S1]", "Learn your triggers and avoid them: smoke, dust, pets, cold air, strong fumes. Keep the home smoke-free. [S1][S2]", "Use the inhaler with a spacer; ask to be shown again if unsure. [S2]", "Have a flu vaccine every year. [S1]", "Come back at once if you cannot speak in full sentences, the reliever does not help, lips turn blue, or you feel drowsy or confused. [S1]", "Avoid aspirin and other NSAID painkillers unless a doctor says they are safe for you. [S1]"]]]],
+    ["Learning summary", [["l", ["Severe: words only, RR > 30, pulse > 120, SpO₂ < 90%, PEF ≤ 50%. [S1]", "Life-threatening: drowsy, confused, silent chest. [S1]", "Child moderate–severe: salbutamol every 15–20 min × 3 + dexamethasone 0.6 mg/kg or prednisolone 1–2 mg/kg. [S2]"]]]]
+  ],
+  links: [["#drug/SALBUTAMOL", "Salbutamol"], ["#drug/HYDROCORTISONE", "Hydrocortisone"], ["#drug/PREDNISOLONE", "Prednisolone"], ["#drug/DEXAMETHASONE", "Dexamethasone"], ["#cond/asthma", "Condition page with all linked guidelines"]],
+  cards: [
+    ["Signs of a severe asthma attack in adults (STG)?", "Talks in words, hunched forward, agitated, RR > 30, accessory muscles, pulse > 120, SpO₂ < 90%, PEF ≤ 50%.", "S1"],
+    ["Signs of a life-threatening asthma attack?", "Drowsy, confused or silent chest (any one).", "S1"],
+    ["Salbutamol nebuliser dose for a child (STG)?", "2.5 mg/dose (of 5 mg/mL solution); every 15–20 min for 3 doses in moderate to severe attacks.", "S2"],
+    ["First steroid dose for a child with a moderate to severe attack?", "Dexamethasone 0.6 mg/kg IM stat, or prednisolone 1–2 mg/kg/day.", "S2"],
+    ["Adult primary-care steroid for an acute asthma attack (STG)?", "Hydrocortisone 200 mg IV stat or dexamethasone 4 mg IV stat.", "S1"],
+    ["When is a chest X-ray indicated in adult asthma?", "Only if the patient fails to improve after acute treatment.", "S1"]
+  ]
+});
+TOPICS.push({
+  id: "dm", cond: "dm", n: "Type 2 diabetes mellitus in adults", spec: ["endo", "medicine", "ph"], ages: "Adults", emerg: "Hyperglycaemic and hypoglycaemic emergencies",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician.",
+  src: {
+    S1: ["Bhutan STG 2024, 5.3 Diabetes mellitus, p.110", "#stg/5.3"],
+    S2: ["Diabetes Mellitus Screening & Management Protocol, Bhutan, v3.5, 15 January 2025", "#gl/dm"],
+    S3: ["Bhutan STG 2024, 11.8 Gestational diabetes, p.246", "#stg/11.8"]
+  },
+  sec: [
+    ["Definition", [["p", "A condition of raised blood glucose from absolute or relative lack of insulin, or resistance to it. Types: type 1, type 2 and gestational diabetes. [S1]"]]],
+    ["Diagnostic criteria and classification", [
+      ["t", [["Result", "Fasting glucose", "2-h OGTT or post-prandial glucose", "Action"],
+        ["Normal", "< 100 mg/dL", "< 140 mg/dL", "Follow up yearly [S2]"],
+        ["Prediabetes", "100–125 mg/dL", "140–199 mg/dL", "Follow up 6-monthly [S2]"],
+        ["Diabetes", "≥ 126 mg/dL", "≥ 200 mg/dL", "Start treatment [S2]"]]],
+      ["l", ["Random glucose ≥ 200 mg/dL with symptoms also diagnoses diabetes; without symptoms, do fasting and post-prandial tests. [S2]", "Screening uses a fasting capillary glucose; ≥ 126 mg/dL is referred for confirmation. [S2]", "HbA1c reflects control over 2–3 months; < 7% is the usual target. [S1][S2]"]]
+    ]],
+    ["Causes and pathophysiology", [["l", ["Type 2: insulin resistance with relative insulin deficiency; type 1: absolute deficiency. [S1]", "Risk factors prompting screening: age ≥ 40, hypertension, dyslipidaemia, BMI > 25, first-degree relative with diabetes (if over 30), previous gestational diabetes. [S2]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["Thirst, passing much urine, hunger, weight loss, blurred vision, tiredness?", "Classic symptoms of hyperglycaemia. [S1][S2]"],
+      ["Breathlessness, fever, vomiting, abdominal pain, drowsiness, low urine output?", "With glucose > 250 mg/dL: hyperglycaemic emergency. [S2]"],
+      ["Sweating, shakiness, hunger, odd behaviour or fainting on treatment?", "Hypoglycaemia. [S2]"],
+      ["Chest pain, stroke, foot ulcers, numbness, poor vision?", "Chronic complications. [S1]"],
+      ["Smoking, alcohol, diet, exercise?", "Lifestyle targets. [S2]"],
+      ["Pregnancy or previous gestational diabetes?", "Changes targets and referral. [S2][S3]"]]]]],
+    ["Symptoms and examination", [["l", ["BMI, blood pressure. [S1][S2]", "Skin infections. [S1]", "Feet: ulcers, sensation, pulses. [S1]", "Eyes: fundoscopy. [S1]"]], ["warn", "Hyperglycaemic emergency: glucose > 250 mg/dL with breathlessness, fever, vomiting or abdominal pain, low urine output, altered sensorium, BP < 90/60, or pregnancy. [S2]"]]],
+    ["Differential diagnosis", [["l", ["Type 1 diabetes: young, thin, ketosis, needs insulin from the start. [S1]", "Gestational diabetes: first recognised in pregnancy. [S3]", "Steroid- or illness-induced hyperglycaemia."]]]],
+    ["Investigations", [["l", ["Fasting and 2-h post-prandial glucose; HbA1c; CBC; urine routine; lipid profile; kidney function; ECG; fundoscopy. [S1]", "At diagnosis, as early as possible: lipids, kidney and liver function, ECG, urine routine and fundoscopy. [S2]", "Yearly: ECG, urine albumin, fundoscopy. [S2]"]], ["note", "How to test: fasting glucose after 8–10 h without food, drink or diabetes medicines; OGTT 2 h after 75 g glucose; post-prandial 2 h after the usual breakfast and medicines. [S2]"]]],
+    ["Management", [
+      ["h", "A. Emergencies"],
+      ["l", ["Hyperglycaemic emergency: normal saline 1 L over 2 h, then 1 L every 4 h, and refer urgently. [S2]", "Hypoglycaemia (< 70 mg/dL, severe): dextrose 25% until glucose normalises; if conscious, 1–2 teaspoons of sugar or chocolate; consult the nearest secondary hospital. [S2]"]],
+      ["h", "B. Lifestyle (every visit)"],
+      ["l", ["Stop smoking and alcohol; keep a normal BMI. [S2]", "Low glycaemic-index diet; avoid foods with added sugar. [S2]", "Moderate activity at least 30 minutes, 5 days a week. [S2]"]],
+      ["h", "C. Medicines"],
+      ["t", [["Step", "Medicine", "Source"],
+        ["First line", "Metformin 500 mg twice daily", "[S2][S1]"],
+        ["Not at target", "Secondary level: add pioglitazone, glipizide or insulin, individualised", "[S2]"],
+        ["Type 1, or type 2 not controlled on tablets", "Insulin", "[S1]"]]],
+      ["h", "D. Targets"],
+      ["l", ["Fasting 80–130 mg/dL; 2-h post-prandial 140–180 mg/dL; HbA1c < 7.0%. [S2]"]],
+      ["h", "E. Referral to specialist care"],
+      ["l", ["Stroke, retinopathy, heart disease, raised creatinine, proteinuria, or glucose uncontrolled despite tablets and insulin. [S2]"]]
+    ]],
+    ["Follow-up", [["l", ["At target: every 2 months; not at target: monthly, with glucometer readings and self-care advice. [S2]", "Monthly fasting and post-prandial glucose by glucometer, BP, foot examination; optimise doses. [S1]", "Yearly ECG, urine albumin, fundoscopy. [S2]"]]]],
+    ["Complications", [["h", "Acute"], ["l", ["Hyperglycaemic emergencies (DKA, hyperosmolar state). [S2]", "Hypoglycaemia on treatment. [S2]"]], ["h", "Chronic"], ["l", ["Coronary disease, stroke, kidney disease, vision loss, neuropathy, diabetic foot. [S1]"]]]],
+    ["Common mistakes", [["l", ["Diagnosing from one capillary reading without confirmation. [S2]", "Not checking feet and eyes. [S1][S2]", "Missing hypoglycaemia in a confused or drowsy patient on treatment. [S2]", "Stopping metformin without a reason, or not intensifying when off target. [S2]"]]]],
+    ["Advice to give", [["l", ["Take metformin with meals as prescribed; do not stop without advice. [S2]", "Eat low-sugar, low glycaemic-index food; avoid sweets and sugary drinks. [S2]", "Exercise at least 30 minutes, 5 days a week; stop smoking and alcohol; keep a healthy weight. [S2]", "Check your feet every day for cuts or sores; come early for any foot wound. [S1]", "Know low sugar: sweating, shaking, hunger, confusion. Take 1–2 teaspoons of sugar at once and seek help. [S2]", "Come urgently for vomiting, tummy pain, breathlessness, drowsiness or very little urine. [S2]", "Have your eyes, kidneys (urine) and heart (ECG) checked every year. [S2]"]]]],
+    ["Learning summary", [["l", ["Diabetes: fasting ≥ 126 or 2-h ≥ 200 mg/dL (or random ≥ 200 with symptoms). [S2]", "First line: metformin 500 mg twice daily. [S2]", "Targets: fasting 80–130, post-prandial 140–180, HbA1c < 7%. [S2]", "Hyperglycaemic emergency: NS 1 L over 2 h, then 1 L every 4 h; refer. [S2]"]]]]
+  ],
+  links: [["#drug/METFORMIN", "Metformin"], ["#drug/GLIPIZIDE", "Glipizide"], ["#drug/PIOGLITAZONE", "Pioglitazone"], ["#p/dka", "DKA protocol"], ["#cond/dm", "Condition page with all linked guidelines"]],
+  cards: [
+    ["Diagnostic fasting and 2-h glucose cut-offs for diabetes (Bhutan protocol)?", "Fasting ≥ 126 mg/dL or 2-h OGTT/post-prandial ≥ 200 mg/dL (or random ≥ 200 with symptoms).", "S2"],
+    ["Prediabetes ranges?", "Fasting 100–125 mg/dL or 2-h 140–199 mg/dL.", "S2"],
+    ["First-line medicine for type 2 diabetes in Bhutan?", "Metformin 500 mg twice daily.", "S2"],
+    ["Glucose targets in the Bhutan protocol?", "Fasting 80–130 mg/dL, 2-h post-prandial 140–180 mg/dL, HbA1c < 7%.", "S2"],
+    ["Initial fluid for a hyperglycaemic emergency in the protocol?", "Normal saline 1 L over 2 h, then 1 L every 4 h, and refer.", "S2"],
+    ["Who should be screened for diabetes?", "Symptoms; age ≥ 40; hypertension; dyslipidaemia; BMI > 25; first-degree relative with DM (if > 30); previous GDM.", "S2"],
+    ["What is checked yearly in diabetes?", "ECG, urine albumin and fundoscopy.", "S2"]
+  ]
+});
+TOPICS.push({
+  id: "malaria", cond: "malaria", n: "Malaria", spec: ["id", "paeds", "medicine"], ages: "Children and adults", emerg: "Severe malaria is an emergency",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician.",
+  src: {
+    S1: ["Bhutan STG 2024, 8.3.1 Malaria, p.159", "#stg/8.3.1"],
+    S2: ["National Guideline for Diagnosis and Treatment of Malaria in Bhutan, 6th ed. 2024: diagnosis, p.11–13", "#gl/malaria"],
+    S3: ["Bhutan Malaria Guideline 2024: treatment regimens (Protocols A–D), p.15–19", "#gl/malaria"],
+    S4: ["Bhutan Malaria Guideline 2024: severe malaria (Protocol E) and complications, p.20–23", "#gl/malaria"],
+    S5: ["Bhutan Malaria Guideline 2024: primaquine, G6PD and adverse effects, Annexures 5–6, p.31–32", "#gl/malaria"],
+    S6: ["Paediatric OPD Handbook, JDWNRH (draft), B1.7 Malaria", "#gl/my_opd"]
+  },
+  sec: [
+    ["Definition", [["p", "Infection with Plasmodium protozoa spread by female Anopheles mosquitoes (rarely by transfusion or from mother to baby). P. falciparum and P. vivax occur in Bhutan. Incubation 7–30 days. [S1]"], ["p", "Suspected case: fever (> 37.5 °C) or history of fever without another obvious cause in someone living in or returning from an endemic area. Confirmed case: parasites on blood film, a quality-assured positive RDT, or PCR. [S2]"]]],
+    ["Diagnostic criteria and classification", [
+      ["t", [["Type", "Definition"], ["Uncomplicated", "Symptoms with a positive test and no features of severe malaria [S3]"], ["Severe", "Positive test plus one or more without another cause: impaired consciousness or coma, seizures, jaundice, Hb < 7 g/dL, respiratory distress, acidosis, acute kidney failure, hypoglycaemia, abnormal bleeding or DIC, shock [S4]"]]],
+      ["l", ["A parasitological diagnosis (microscopy or RDT) is mandatory before treatment. [S2]"]]
+    ]],
+    ["Causes and pathophysiology", [["l", ["P. vivax leaves dormant liver stages (hypnozoites) that cause relapses, so treatment must clear both blood and liver stages (radical cure). [S3]", "P. falciparum causes most severe malaria; untreated severe malaria is almost always fatal, falling to 10–20% with treatment. [S4]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["Where do you live, and have you travelled to an endemic district or country?", "The key question: symptoms are non-specific. [S2][S4]"],
+      ["Any convulsions now or recently?", "Severe or cerebral malaria. [S4]"],
+      ["How much urine in the last 8–12 hours?", "Kidney involvement. [S4]"],
+      ["Are you pregnant or breastfeeding?", "Primaquine is contraindicated; regimen changes. [S3]"],
+      ["Previous malaria treatment in the last 28 days?", "Possible treatment failure: second-line drug. [S3]"],
+      ["Any quinine in the last 12 hours?", "No quinine loading dose if so. [S4]"],
+      ["Travel to Cambodia, Laos, Myanmar, Thailand or Viet Nam?", "Artemisinin resistance: longer ACT course. [S3]"]]]]],
+    ["Symptoms and examination", [["l", ["Fever, chills, headache, nausea, vomiting, diarrhoea, body ache: like flu or another infection. [S1][S2]", "Pallor, jaundice, hepatosplenomegaly. [S1]", "Cerebral malaria: confusion, seizures, coma. [S1]"]], ["warn", "Severe malaria signs: altered consciousness, convulsions, jaundice, severe anaemia, breathing difficulty, little urine, bleeding, shock. [S4]"]]],
+    ["Differential diagnosis", [["l", ["Dengue, scrub typhus, enteric fever, leptospirosis, sepsis, meningitis (in a confused patient, exclude hypoglycaemia and bacterial meningitis). [S4]", "Influenza-like illness. [S2]"]]]],
+    ["Investigations", [["t", [["Test", "Why", "What to know"],
+      ["Thick and thin blood film", "Thick film detects and counts parasites; thin film identifies the species [S2]", "Parasite density grades severity and monitors response [S2]"],
+      ["RDT", "Where microscopy is unavailable, in emergencies, active case detection [S2]", "Cannot be used for follow-up; a negative RDT does not exclude malaria; confirm positives by microscopy [S2]"],
+      ["G6PD test", "Before 7-day primaquine for P. vivax, where feasible [S3]", "Not needed for single-dose primaquine in falciparum [S3]"],
+      ["CBC, glucose, creatinine", "Anaemia, hypoglycaemia, kidney injury [S1][S4]", ""],
+      ["PCR", "Low parasite density, discrepant results [S2]", "Send a dried blood spot to RCDC [S2]"]]],
+      ["note", "If a suspected patient tests negative and does not improve, test again. [S2]"]]],
+    ["Management", [
+      ["h", "A. All confirmed cases"],
+      ["l", ["Admit for at least 3 days for supervised treatment (DOT). [S2][S3]", "If vomited within 1 hour of a dose, repeat the dose. [S3]"]],
+      ["h", "B. P. vivax (Protocol A): chloroquine 3 days + primaquine 7 days"],
+      ["t", [["Age", "Chloroquine (250 mg tab = 150 mg base) day 0 / 1 / 2", "Primaquine (7.5 mg base) days 0–6"],
+        ["< 1 year", "½ / ½ / ¼ tab", "0.5 mg/kg daily, only if > 6 months"],
+        ["1–4 years", "1 / 1 / ½ tab", "0.5 mg/kg daily"],
+        ["5–8 years", "2 / 2 / 1 tab", "2 tabs daily"],
+        ["9–15 years", "3 / 3 / 1½ tab", "3 tabs daily"],
+        ["> 15 years", "4 / 4 / 2 tab", "4 tabs daily"]]],
+      ["l", ["G6PD-deficient: primaquine 0.75 mg/kg once weekly for 8 weeks. [S3]", "Chloroquine-resistant or unavailable: ACT. [S3]"]],
+      ["h", "C. Uncomplicated P. falciparum (Protocol B): artemether–lumefantrine 3 days + single primaquine"],
+      ["t", [["Weight", "Artemether 20 mg / lumefantrine 120 mg tablets per dose at 0, 8, 24, 36, 48, 60 h"], ["< 15 kg", "1 tablet"], ["15–24 kg", "2 tablets"], ["25–34 kg", "3 tablets"], ["≥ 34 kg", "4 tablets"]]],
+      ["l", ["Plus a single dose of primaquine 0.5 mg/kg on day 0 to stop transmission (not under 6 months); no G6PD test needed. [S3]", "Mixed infection (Protocol C): artemether–lumefantrine 3 days + primaquine 0.5 mg/kg daily for 7 days. [S3]"]],
+      ["note", "The JDWNRH OPD Handbook notes that WHO's single low dose of primaquine for falciparum is 0.25 mg/kg, against 0.5 mg/kg in the Bhutan text, and asks for confirmation with the programme. [S6]"],
+      ["h", "D. Pregnancy (Protocol D)"],
+      ["l", ["P. vivax: chloroquine 4, 4, 2 tablets, then 2 tablets weekly until the baby is 6 months old; primaquine contraindicated in pregnancy and while breastfeeding an infant under 6 months, then 4 tablets daily for 7 days. [S3]", "Uncomplicated P. falciparum: artemether–lumefantrine 4 tablets at 0, 8, 24, 36, 48, 60 h. Exclude pregnancy in all women of childbearing age before treatment. [S3]"]],
+      ["h", "E. Severe malaria (Protocol E)"],
+      ["t", [["Drug", "Dose", "Notes"],
+        ["Artesunate IV or IM (first choice, all ages)", "> 20 kg: 2.4 mg/kg; < 20 kg: 3.0 mg/kg at 0, 12, 24 h, then every 24 h until oral is possible", "Then a full 3-day ACT course [S4]"],
+        ["Artemether IM (if no artesunate)", "3.2 mg/kg on admission, then 1.6 mg/kg daily", "Then full ACT [S4]"],
+        ["Quinine IV (if neither available)", "Loading 20 mg/kg salt over 4 h in 5% glucose, then 10 mg/kg 8-hourly; total 7 days with oral", "No loading dose if quinine taken in the past 12 h; never IV push; max infusion 5 mg/kg/h [S4]"]]],
+      ["l", ["Give parenteral treatment for at least 24 hours. [S4]", "Pre-referral: a single dose of IM or IV artesunate, then refer. [S4]", "Artesunate: reconstitute with 1 mL of 5% sodium bicarbonate, then dilute (5 mL for IV, 2 mL for IM); prepare fresh each time. [S4]"]],
+      ["h", "F. Complications of severe malaria"],
+      ["l", ["Convulsions: IV or rectal diazepam, lorazepam or midazolam; check glucose. [S4]", "Hypoglycaemia: glucose < 54 mg/dL in children under 5, < 40 mg/dL in older children and adults; correct and maintain with glucose infusion. [S4]", "Severe anaemia (Hb < 7 g/dL): transfuse screened fresh whole blood. [S4]", "Shock: suspect septicaemia, take cultures, give broad-spectrum antibiotics. [S4]"]],
+      ["h", "G. Second line"], ["l", ["Treatment failure within 28 days or intolerance: dihydroartemisinin–piperaquine for 3 days, by weight. [S3]"]]
+    ]],
+    ["Follow-up", [["l", ["P. falciparum: microscopy on day 2 and day 28. [S3]", "P. vivax: day 2, day 28 and at 3 months (relapse). [S3]", "Notify every case; deaths are investigated by the programme. [S2]"]]]],
+    ["Complications", [["l", ["Cerebral malaria, severe anaemia, ARDS, kidney or liver failure, hypoglycaemia, acidosis, shock, death. [S4]", "Relapse of P. vivax if primaquine is not completed. [S3]", "Primaquine-induced haemolysis in G6PD deficiency. [S5]"]]]],
+    ["Common mistakes", [["l", ["Treating without a confirmed test. [S2]", "Giving primaquine in pregnancy, while breastfeeding a baby under 6 months, or to infants under 6 months. [S3][S5]", "Giving quinine as an IV push, or a loading dose after recent quinine. [S4]", "Stopping parenteral treatment before 24 hours. [S4]", "Using an RDT to check cure. [S2]"]]]],
+    ["Advice to give", [["l", ["Take every dose for the full course, under supervision; finish all 7 days of primaquine. [S3]", "Take artemether–lumefantrine with food. ", "Stop primaquine and come to hospital at once if urine turns dark, or you become pale, tired, breathless or yellow. [S5]", "Come back for the follow-up blood tests on the days you are given. [S3]", "Sleep under an insecticide-treated net; use repellents and covering clothes. [S1]", "Get tested for malaria if you have a fever after visiting an endemic area. [S1]"]]]],
+    ["Learning summary", [["l", ["Test before treating; admit for 3 days. [S2]", "P. vivax: chloroquine 3 days + primaquine 0.5 mg/kg × 7 days. [S3]", "P. falciparum: artemether–lumefantrine 6 doses over 3 days + single primaquine. [S3]", "Severe: artesunate 2.4 mg/kg (3 mg/kg if < 20 kg) at 0, 12, 24 h. [S4]"]]]]
+  ],
+  links: [["#drug/ARTHEMETHER%20%2B%20LUMEFANTRINE", "Artemether–lumefantrine"], ["#drug/CHLOROQUINE", "Chloroquine"], ["#drug/PRIMAQUINE", "Primaquine"], ["#drug/ARTESUNATE", "Artesunate"], ["#cond/malaria", "Condition page with all linked guidelines"]],
+  cards: [
+    ["Treatment of uncomplicated P. vivax in Bhutan?", "Chloroquine over 3 days + primaquine 0.5 mg/kg daily for 7 days (after G6PD testing where feasible).", "S3"],
+    ["Primaquine for a G6PD-deficient patient with P. vivax?", "0.75 mg/kg once weekly for 8 weeks.", "S3"],
+    ["Artemether–lumefantrine dosing schedule?", "6 doses at 0, 8, 24, 36, 48, 60 h; tablets by weight: < 15 kg 1, 15–24 kg 2, 25–34 kg 3, ≥ 34 kg 4.", "S3"],
+    ["Artesunate dose in severe malaria?", "2.4 mg/kg (> 20 kg) or 3.0 mg/kg (< 20 kg) IV/IM at 0, 12, 24 h then daily until oral, then 3-day ACT.", "S4"],
+    ["Who must not receive primaquine?", "Pregnant women, mothers breastfeeding infants under 6 months, infants under 6 months, G6PD deficiency (7-day course).", "S5"],
+    ["Quinine loading dose in severe malaria?", "20 mg/kg salt over 4 h in 5% glucose; not if quinine taken in the previous 12 h.", "S4"],
+    ["Why can't an RDT be used to follow up treatment?", "It can stay positive; follow-up uses microscopy.", "S2"]
+  ]
+});
+
 const TOPIC_BY = Object.fromEntries(TOPICS.map(t => [t.id, t]));
 const TOPIC_BY_COND = Object.fromEntries(TOPICS.map(t => [t.cond, t]));
 function topicSrcChips(t, s) {
