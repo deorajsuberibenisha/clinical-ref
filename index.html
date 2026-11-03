@@ -2561,7 +2561,7 @@ function growthSummary(p) {
   const add = (k, t) => L.push({k, t});
   const txt = s => String(s || "").replace(/<[^>]*>/g, "").trim();
   const zt = (label, val, l, adj, cls) => { if (!l) return; const z = zLMS(val, l, adj); add(label, `${label}: ${val} kg, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(cls(z))}`); };
-  add("Patient", `Patient: ${[name, ageText(months), sex === "1" ? "boy" : "girl"].filter(Boolean).join(", ")}`);
+  add("Patient", `Patient: ${[name, ageText(months < 1 ? months : Math.round(months * 10) / 10), sex === "1" ? "boy" : "girl"].filter(Boolean).join(", ")}`);
   if (oed) add("Oedema", "Bilateral pitting oedema: severe acute malnutrition regardless of z-scores");
   if (w && !oed) { if (under5) zt("Weight-for-age", w, lmsAt("wfa", sex, days, false), true, CL.wa); else if (months <= 120) zt("Weight-for-age", w, lmsAt("wfa07", sex, months, true), true, CL.wa); }
   if (h) { const n = days < 731 ? "Length-for-age" : "Height-for-age"; if (under5) { const l = lmsAt("lhfa", sex, days, false); if (l) { const z = zLMS(h, l, false); add(n, `${n}: ${h0} cm, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(CL.ha(z))}`); } } else if (months <= 228) { const l = lmsAt("hfa07", sex, months, true); if (l) { const z = zLMS(h, l, false); add(n, `${n}: ${h0} cm, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(CL.ha(z))}`); } } }
