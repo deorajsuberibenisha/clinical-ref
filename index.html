@@ -133,6 +133,7 @@ details.more summary{cursor:pointer;color:var(--accent);font-weight:600;font-siz
 .fi label{font-size:12px;font-weight:600;color:var(--muted)}
 .fi input,.fi select{padding:8px 9px;border:1px solid var(--line);border-radius:9px;background:var(--panel);font-size:16px;width:100%}
 .fi .u{font-size:12px;color:var(--muted)}
+.gcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px}.gchart{margin:0;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--panel)}.gchart svg{display:block;width:100%;height:auto;margin-top:6px}
 .agein{display:flex;gap:6px}.agein input{flex:1;min-width:0}.fi .agein select{width:auto;flex:none}
 .res{margin-top:12px;border-radius:10px;background:var(--accent-soft);padding:12px 14px}
 .res .rv{font-size:22px;font-weight:700;color:var(--accent)}
@@ -2387,8 +2388,8 @@ const CL = {
 };
 function growthView() {
   const today = new Date().toISOString().slice(0, 10);
-  return `<h1 class="vt">Growth (WHO z-scores)</h1><p class="vsub">WHO Child Growth Standards (0–5 years) and WHO Growth Reference 2007 (5–19 years), using WHO's own LMS tables and z-score method. Age, weight and height come from the patient bar unless you enter dates.</p>
-  <div class="card"><div class="fgrid">${field("gsex", "Sex", {options: [["1", "Boy"], ["2", "Girl"]], value: P.sex === "F" ? "2" : "1"})}${field("gdob", "Date of birth (optional)", {type: "date"})}${field("gdov", "Date of visit", {type: "date", value: today})}
+  return `<h1 class="vt">Growth charts and centiles</h1><p class="vsub">WHO Child Growth Standards (0–5 years) and WHO Growth Reference 2007 (5–19 years), using WHO's own LMS tables and z-score method. Enter age, sex, weight and height: the centile and graphs update as you type. Dates of birth and visit override the age box.</p>
+  <div class="card"><div class="fgrid">${field("gname", "Patient name (optional)", {type: "text"})}${ageField("gagein")}${field("gsex", "Sex", {options: [["1", "Boy"], ["2", "Girl"]], value: P.sex === "F" ? "2" : "1"})}${field("gdob", "Date of birth (optional)", {type: "date"})}${field("gdov", "Date of visit", {type: "date", value: today})}
   ${field("gwt", "Weight", {u: "kg", value: wt() ?? ""})}${field("ght", "Length / height", {u: "cm", value: ht() ?? ""})}${field("gmeas", "Measured", {options: [["auto", "Lying if <2 y, standing if ≥2 y"], ["l", "Lying (recumbent length)"], ["h", "Standing (height)"]]})}
   ${field("ghc", "Head circumference", {u: "cm"})}${field("gmuac", "MUAC", {u: "cm"})}${field("goed", "Bilateral pitting oedema", {options: [["n", "No"], ["y", "Yes"]]})}</div><div id="gage" class="small muted" style="margin-top:8px"></div></div>
   <div id="gres"></div>
@@ -2398,10 +2399,11 @@ function runGrowth() {
   const sex = sval("gsex"), dob = sval("gdob"), dov = sval("gdov");
   let days = null;
   if (dob && dov) days = Math.round((new Date(dov + "T00:00:00") - new Date(dob + "T00:00:00")) / 864e5);
+  else if (ageVal("gagein") != null) days = Math.round(ageVal("gagein") * 365.25);
   else if (ageDays() != null) days = Math.round(ageDays());
   const w = val("gwt"), h0 = val("ght"), hc = val("ghc"), mu = val("gmuac"), oed = sval("goed") === "y";
   const months = days != null ? days / 30.4375 : null;
-  $("#gage").innerHTML = days != null ? `Age used: <b>${days} days</b> (${fmtN(months)} months, ${fmtN(months / 12)} years)` : "Enter age (patient bar or dates).";
+  $("#gage").innerHTML = days != null ? `Age used: <b>${days} days</b> (${fmtN(months)} months, ${fmtN(months / 12)} years)` : "Enter the age to see the graphs.";
   const out = [];
   if (days == null || days < 0) { $("#gres").innerHTML = ""; return; }
   let meas = sval("gmeas"); if (meas === "auto") meas = days < 731 ? "l" : "h";
@@ -2446,8 +2448,73 @@ function runGrowth() {
     if (days >= 91 && under5) { const l = lmsAt("acfa", sex, days, false); if (l) z = zLMS(mu, l, true); }
     out.push(z != null ? zRow("MUAC-for-age", z, (cut ? cut + "<br>" : "") + CL.ac(z)) : `<div class="card"><b>MUAC</b><div>${cut || "MUAC cut-offs apply to 6–59 months."}</div></div>`);
   }
-  if (!out.length) out.push(`<div class="card muted">Enter weight, length/height, head circumference or MUAC.</div>`);
-  $("#gres").innerHTML = out.join("");
+  if (!out.length) out.push(`<div class="card muted">Enter weight, length/height, head circumference or MUAC to plot this patient.</div>`);
+  $("#gres").innerHTML = out.join("") + (days <= 6940 ? growthCharts({days, sex, w, h, hc, oed, name: sval("gname").trim()}) : `<div class="card muted">WHO growth graphs cover 0–19 years.</div>`);
+}
+/* live centile graphs: WHO curves from the LMS tables, patient plotted on top */
+const GC_LINES = [[97, 1.881], [85, 1.036], [50, 0], [15, -1.036], [3, -1.881]];
+function lmsVal(l, z) { const [L, M, S] = l; return Math.abs(L) < 1e-9 ? M * Math.exp(S * z) : M * Math.pow(1 + L * S * z, 1 / L); }
+function centileText(z) {
+  const p = normCdf(z) * 100;
+  if (p < 0.1) return "below the 0.1st";
+  if (p > 99.9) return "above the 99.9th";
+  if (p < 1 || p > 99) return p.toFixed(1) + "th";
+  const n = Math.round(p), s = n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th";
+  return n + s;
+}
+function gcSvg(o) {
+  const W = 640, H = 400, L = 62, R = 58, T = 14, B = 58;
+  const curves = GC_LINES.map(([c, z]) => ({c, pts: o.xs.map(x => { const l = o.lms(x); return l ? [x, lmsVal(l, z)] : null; }).filter(Boolean)}));
+  const all = curves.flatMap(c => c.pts.map(p => p[1])); if (o.py != null) all.push(o.py);
+  if (!all.length) return "";
+  let lo = Math.min(...all), hi = Math.max(...all); const pad = (hi - lo) * 0.05 || 1; lo -= pad; hi += pad;
+  const step = [0.5, 1, 2, 5, 10, 20, 50].find(s => (hi - lo) / s <= 8) || 100;
+  lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
+  const x0 = o.xs[0], x1 = o.xs[o.xs.length - 1], X = x => L + (x - x0) / (x1 - x0) * (W - L - R), Y = y => H - B - (y - lo) / (hi - lo) * (H - T - B);
+  let g = "";
+  for (let y = lo; y <= hi + 1e-9; y += step) g += `<line x1="${L}" x2="${W - R}" y1="${Y(y)}" y2="${Y(y)}" stroke="var(--line)" stroke-width="1"/><text x="${L - 8}" y="${Y(y) + 6}" text-anchor="end" font-size="17" fill="var(--muted)">${fmtN(y)}</text>`;
+  for (const t of o.ticks) g += `<line x1="${X(t)}" x2="${X(t)}" y1="${T}" y2="${H - B}" stroke="var(--line)" stroke-width="1"/><text x="${X(t)}" y="${H - B + 22}" text-anchor="middle" font-size="17" fill="var(--muted)">${t}</text>`;
+  const lines = curves.map(({c, pts}) => {
+    const col = c === 50 ? "var(--accent)" : c === 3 || c === 97 ? "var(--red)" : "var(--muted)", end = pts[pts.length - 1];
+    return `<polyline fill="none" stroke="${col}" stroke-width="${c === 50 ? 3 : 2}"${c === 3 || c === 97 ? ' stroke-dasharray="7 5"' : ""} points="${pts.map(p => X(p[0]).toFixed(1) + "," + Y(p[1]).toFixed(1)).join(" ")}"/><text x="${X(end[0]) + 6}" y="${Y(end[1]) + 6}" font-size="16" fill="${col}">${c}th</text>`;
+  }).join("");
+  let mark = "";
+  const inX = o.px != null && o.px >= x0 && o.px <= x1;
+  if (inX) mark += `<line x1="${X(o.px)}" x2="${X(o.px)}" y1="${T}" y2="${H - B}" stroke="var(--saffron)" stroke-width="2" stroke-dasharray="4 4"/>`;
+  if (inX && o.py != null) mark += `<line x1="${L}" x2="${X(o.px)}" y1="${Y(o.py)}" y2="${Y(o.py)}" stroke="var(--saffron)" stroke-width="2" stroke-dasharray="4 4"/><circle cx="${X(o.px)}" cy="${Y(o.py)}" r="9" fill="var(--saffron)" stroke="var(--panel)" stroke-width="3"/>`;
+  const said = o.py != null && o.z != null && isFinite(o.z) ? `${fmtN(o.py)} ${o.unit}: <b>${centileText(o.z)} centile</b> (z ${o.z.toFixed(2)})` : o.note || "Enter the measurement to plot it.";
+  return `<figure class="gchart"><figcaption><b>${o.title}</b><div class="small">${said}</div></figcaption><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title)} centile chart"><text x="16" y="${(T + H - B) / 2}" font-size="16" fill="var(--muted)" text-anchor="middle" transform="rotate(-90 16 ${(T + H - B) / 2})">${o.yl}</text>${g}${lines}${mark}<text x="${(L + W - R) / 2}" y="${H - 12}" text-anchor="middle" font-size="16" fill="var(--muted)">${o.xl}</text></svg></figure>`;
+}
+function gcAxis(days, sex, t5, t07) {
+  const months = days / 30.4375;
+  if (days <= 1826 && t5) {
+    const top = days <= 730 ? 24 : 60, xs = []; for (let m = 0; m <= top; m += 0.5) xs.push(m);
+    const ticks = []; for (let m = 0; m <= top; m += top === 24 ? 3 : 12) ticks.push(m);
+    return {xs, ticks, xl: "Age (months)", px: months, lms: m => lmsAt(t5, sex, Math.round(m * 30.4375), false), here: lmsAt(t5, sex, days, false)};
+  }
+  if (!t07) return null;
+  const top = t07 === "wfa07" ? 10 : 19, xs = []; for (let y = 61 / 12; y <= top + 1e-9; y += 0.25) xs.push(y);
+  const ticks = []; for (let y = 6; y <= top; y += top === 10 ? 1 : 2) ticks.push(y);
+  return {xs, ticks, xl: "Age (years)", px: months / 12, lms: y => lmsAt(t07, sex, y * 12, true), here: months >= 61 ? lmsAt(t07, sex, months, true) : null};
+}
+function growthCharts(p) {
+  const {days, sex, w, h, hc, oed, name} = p, who = name ? esc(name) + " · " : "", under5 = days <= 1826, out = [];
+  const ageChart = (title, t5, t07, y, unit, yl, adj, bad) => {
+    const a = gcAxis(days, sex, t5, t07); if (!a) return;
+    const py = bad ? null : y || null, z = py && a.here ? zLMS(py, a.here, adj) : null;
+    out.push(gcSvg({title: who + title, xs: a.xs, ticks: a.ticks, lms: a.lms, xl: a.xl, yl, px: a.px, py, z, unit, note: bad ? "Not valid with oedema." : ""}));
+  };
+  ageChart("Weight-for-age", "wfa", days <= 3652 ? "wfa07" : null, w, "kg", "Weight (kg)", true, oed);
+  ageChart(days < 731 ? "Length-for-age" : "Height-for-age", "lhfa", "hfa07", h, "cm", days < 731 ? "Length (cm)" : "Height (cm)", false, false);
+  ageChart("BMI-for-age", "bfa", "bfa07", w && h ? w / Math.pow(h / 100, 2) : null, "kg/m²", "BMI (kg/m²)", true, oed);
+  if (under5) {
+    const useL = days < 731, tab = useL ? "wfl" : "wfh", a = useL ? 45 : 65, b = useL ? 110 : 120, xs = [], ticks = [];
+    for (let c = a; c <= b; c += 1) xs.push(c); for (let c = a; c <= b; c += 10) ticks.push(c);
+    const l = h ? lmsAt(tab, sex, h, true) : null, py = !oed && w && h ? w : null;
+    out.push(gcSvg({title: who + (useL ? "Weight-for-length" : "Weight-for-height"), xs, ticks, lms: c => lmsAt(tab, sex, c, true), xl: useL ? "Length (cm)" : "Height (cm)", yl: "Weight (kg)", px: h, py, z: py && l ? zLMS(py, l, true) : null, unit: "kg", note: oed ? "Not valid with oedema." : "Enter weight and length/height to plot it."}));
+    ageChart("Head circumference-for-age", "hcfa", null, hc, "cm", "Head circumference (cm)", false, false);
+  }
+  return out.length ? `<h2 style="margin-top:18px">Growth graphs</h2><p class="small muted">WHO centile lines: 3rd, 15th, 50th, 85th, 97th. They redraw as you type; the dot is this patient.</p><div class="gcgrid">${out.join("")}</div>` : "";
 }
 function bindGrowth() { bindAll($(".view"), runGrowth); }
 
