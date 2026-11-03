@@ -2573,16 +2573,17 @@ function growthSummary(p) {
   if (L.length > 1) add("Reference", `Reference: WHO growth standards${BP_LINES.length ? "; AAP 2017 BP tables" : ""}`);
   GS_LINES = L;
   if (L.length < 2) return "";
-  return `<h2 style="margin-top:18px">Patient summary</h2><div class="card"><p class="small muted" style="margin-top:0">Untick what you don't need, then copy. Use Copy on a line for just that line.</p>${L.map((x, i) => `<div class="gsrow"><label><input type="checkbox" data-gs="${i}"${GS_OFF.has(x.k) ? "" : " checked"}> <span>${esc(x.t)}</span></label><button type="button" class="chip" data-gc="${i}">Copy</button></div>`).join("")}<div style="margin-top:10px;display:flex;gap:10px;align-items:center"><button type="button" class="chip" data-gc="all"><b>Copy selected</b></button><span class="small muted" id="gsmsg"></span></div></div>`;
+  return `<h2 style="margin-top:18px">Patient summary</h2><div class="card"><p class="small muted" style="margin-top:0">Untick what you don't need, then copy. Use Copy on a line for just that line.</p>${L.map((x, i) => `<div class="gsrow"><label><input type="checkbox" data-gs="${i}"${GS_OFF.has(x.k) ? "" : " checked"}> <span>${esc(x.t)}</span></label><button type="button" class="chip" data-gc="${i}">Copy</button></div>`).join("")}<div style="margin-top:10px;display:flex;gap:10px;align-items:center"><button type="button" class="chip" data-gc="all"><b>Copy selected</b></button><span class="small muted" id="gsmsg"></span></div><textarea id="gsbox" hidden readonly rows="6" style="width:100%;margin-top:8px"></textarea></div>`;
 }
-async function gsCopy(t) {
-  const m = $("#gsmsg");
-  let ok = false;
-  try { await navigator.clipboard.writeText(t); ok = true; } catch (e) {
-    const a = document.createElement("textarea"); a.value = t; a.style.position = "fixed"; a.style.opacity = "0"; document.body.appendChild(a); a.select();
-    try { ok = document.execCommand("copy"); } catch (x) { ok = false; } a.remove();
-  }
-  if (m) m.textContent = ok ? "Copied" : "Copy failed: select the text and copy by hand";
+function gsCopy(t) {
+  const m = $("#gsmsg"), box = $("#gsbox"), done = () => { if (m) m.textContent = "Copied"; if (box) box.hidden = true; };
+  const showBox = () => { if (m) m.textContent = "Copy was blocked: the text is selected below, copy it by hand"; if (box) { box.hidden = false; box.value = t; box.focus(); box.select(); } };
+  const a = document.createElement("textarea"); a.value = t; a.setAttribute("readonly", ""); a.style.cssText = "position:fixed;top:0;left:0;opacity:0"; document.body.appendChild(a); a.focus(); a.select(); a.setSelectionRange(0, t.length);
+  let ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; } a.remove();
+  if (ok) return done();
+  if (!navigator.clipboard) return showBox();
+  const late = setTimeout(showBox, 1500);
+  navigator.clipboard.writeText(t).then(() => { clearTimeout(late); done(); }, () => { clearTimeout(late); showBox(); });
 }
 function bindSummary() {
   const r = $("#gres");
