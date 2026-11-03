@@ -778,7 +778,10 @@ body[data-view="ai"] .pbar{display:none}
 </style><link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script src="firebase-config.js"></script>
-<script>if ("serviceWorker" in navigator && /^https?:/.test(location.protocol)) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));</script>
+<script>if ("serviceWorker" in navigator && /^https?:/.test(location.protocol)) addEventListener("load", () => {
+  navigator.serviceWorker.register("sw.js").then(r => addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") r.update().catch(() => {}); })).catch(() => {});
+  if (navigator.serviceWorker.controller) { let done = false; navigator.serviceWorker.addEventListener("controllerchange", () => { if (!done) { done = true; location.reload(); } }); }
+});</script>
 </head>
 <body>
 <div id="app"></div>
@@ -2389,7 +2392,7 @@ const CL = {
 };
 function growthView() {
   const today = new Date().toISOString().slice(0, 10);
-  return `<h1 class="vt">Growth charts and centiles</h1><p class="vsub">WHO Child Growth Standards (0–5 years) and WHO Growth Reference 2007 (5–19 years), using WHO's own LMS tables and z-score method. Enter age, sex, weight and height: the centile and graphs update as you type. Dates of birth and visit override the age box.</p>
+  return `<h1 class="vt">Growth, BP centiles and patient summary</h1><p class="vsub">WHO Child Growth Standards (0–5 years) and WHO Growth Reference 2007 (5–19 years), using WHO's own LMS tables and z-score method. Enter age, sex, weight and height: the centile and graphs update as you type. Dates of birth and visit override the age box.</p>
   <div class="card"><div class="fgrid">${field("gname", "Patient name (optional)", {type: "text"})}${ageField("gagein")}${field("gsex", "Sex", {options: [["1", "Boy"], ["2", "Girl"]], value: P.sex === "F" ? "2" : "1"})}${field("gdob", "Date of birth (optional)", {type: "date"})}${field("gdov", "Date of visit", {type: "date", value: today})}
   ${field("gwt", "Weight", {u: "kg", value: wt() ?? ""})}${field("ght", "Length / height", {u: "cm", value: ht() ?? ""})}${field("gmeas", "Measured", {options: [["auto", "Lying if <2 y, standing if ≥2 y"], ["l", "Lying (recumbent length)"], ["h", "Standing (height)"]]})}
   ${field("gsbp", "Systolic BP", {u: "mmHg"})}${field("gdbp", "Diastolic BP", {u: "mmHg"})}${field("ghc", "Head circumference", {u: "cm"})}${field("gmuac", "MUAC", {u: "cm"})}${field("goed", "Bilateral pitting oedema", {options: [["n", "No"], ["y", "Yes"]]})}</div><div id="gage" class="small muted" style="margin-top:8px"></div></div>
@@ -4148,7 +4151,7 @@ const TOOL_T = id => {
   if (v === "fluids") { const f = FLUIDS.find(x => x.id === a); return f ? ["Fluids", f.t] : null; }
   if (v === "equip") { if (a.startsWith("k-")) { const k = KITS.find(x => x.id === a.slice(2)); return k ? ["Equipment", k.t] : null; } return ["Equipment", {sizes: "Airway & equipment sizes", vent: "Ventilator settings", oxygen: "Oxygen, high-flow & NIV"}[a] || a]; }
   if (v === "vent") return ["Ventilation", "Ventilation hub"];
-  if (v === "growth") return ["Growth", "WHO growth charts & z-scores"];
+  if (v === "growth") return ["Growth & BP", "Growth graphs, BP centiles, patient summary"];
   return null;
 };
 
@@ -4299,7 +4302,7 @@ function runSearch(q) {
     ["#cond", "Conditions A–Z", "Index", "conditions diseases index a-z list"],
     ["#notes", "My notes", "Notes", "my notes personal export import"],
     ["#equip/oxygen", "Oxygen, high-flow & NIV", "Equipment", "oxygen nasal cannula mask high flow hfnc cpap bipap niv"],
-    ["#growth", "WHO growth charts & z-scores", "Growth", "growth anthropometry weight-for-age height-for-age length bmi muac head circumference z-score stunting wasting"],
+    ["#growth", "Growth graphs, BP centiles, patient summary", "Growth & BP", "bp blood pressure centile percentile hypertension aap growth anthropometry weight-for-age height-for-age length bmi muac head circumference z-score stunting wasting"],
   ], x => x[3].toLowerCase(), byName, 12, ent.c.flatMap(k => COND_BY[k].tools).map(id => { const t = TOOL_T(id); return t ? ["#" + id, t[1], t[0], ""] : null; }).filter(Boolean));
   const glosAll = GLOSSARY.flatMap(([g, items]) => items.map(([a, m]) => [a, m, g]));
   const glos = [...glosAll.filter(([a]) => a.toLowerCase() === ql), ...glosAll.filter(([a, m]) => a.toLowerCase() !== ql && hasW((a + " " + m).toLowerCase(), ws))].slice(0, 10);
@@ -4492,7 +4495,7 @@ const HUBS = [
   ["#vent", "lung", "Ventilation", "Settings by age and ventilator brand", null, "#0f9b8e", "#43d6b8"],
   ["#fluids", "drop", "Fluids & infusions", "Maintenance, deficits, electrolytes, infusions", () => FLUIDS.length, "#1e88e5", "#64b5f6"],
   ["#equip", "tube", "Equipment", "Sizes, oxygen & NIV, procedure checklists", () => KITS.length + 3, "#2e9b55", "#6fcf97"],
-  ["#growth", "ruler", "Growth", "WHO growth z-scores and charts", null, "#9b51e0", "#d38cf5"],
+  ["#growth", "ruler", "Growth & BP", "Growth graphs, BP centiles, patient summary", null, "#9b51e0", "#d38cf5"],
   ["#glossary", "book", "Abbreviations", "Clinical abbreviations explained", null, "#4f6475", "#8aa0b2"],
   ["#lib", "book", "My library", "Page index of your textbooks", () => LIB.length, "#b7791f", "#e7b45a"],
   ["#notes", "note", "My notes", "Your own notes on any page", () => Object.keys(notesAll()).length, "#c2185b", "#f06292"]];
@@ -5702,7 +5705,7 @@ function bindAi(arg) {
 /* ===== shell, router, patient bar ===== */
 const NAV = [
   ["home", "Home", ICON.home], ["search", "Search", ICON.search], ["drugs", "Drugs", ICON.pill], ["cond", "Conditions", ICON.list], ["stg", "Guidelines", ICON.guide], ["protocols", "Protocols", ICON.siren], ["flow", "Flowcharts", ICON.flow],
-  ["calc", "Calculators", ICON.calc], ["vent", "Ventilation", ICON.lung], ["fluids", "Fluids", ICON.drop], ["equip", "Equipment", ICON.tube], ["growth", "Growth", ICON.ruler], ["glossary", "Glossary", ICON.book], ["notes", "My notes", ICON.note], ["account", "Account & chat", ICON.chat], ["settings", "Settings", ICON.gear],
+  ["calc", "Calculators", ICON.calc], ["vent", "Ventilation", ICON.lung], ["fluids", "Fluids", ICON.drop], ["equip", "Equipment", ICON.tube], ["growth", "Growth & BP", ICON.ruler], ["glossary", "Glossary", ICON.book], ["notes", "My notes", ICON.note], ["account", "Account & chat", ICON.chat], ["settings", "Settings", ICON.gear],
   ["ask", "Ask the app", ICON.spark], ["aware", "Health awareness", ICON.heart], ["ai", "All AI assistants", ICON.ai],
   ["ai/chatgpt", "ChatGPT", ICON.aiGpt], ["ai/claude", "Claude", ICON.aiClaude], ["ai/gemini", "Gemini", ICON.aiGemini], ["ai/google", "Google search", ICON.google]
 ];
