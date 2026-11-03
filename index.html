@@ -5761,6 +5761,272 @@ TOPICS.push({
   ]
 });
 
+TOPICS.push({
+  id: "tb", cond: "tb", n: "Pulmonary tuberculosis (drug-susceptible) in adults", spec: ["resp", "id", "ph"], ages: "Adults (children: national paediatric TB guideline)", emerg: "",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician or the TB programme.",
+  src: {
+    S1: ["Bhutan STG 2024, 8.1.9 Pulmonary tuberculosis, p.154", "#stg/8.1.9"],
+    S2: ["Integrated National Guidelines for Management of Tuberculosis, Bhutan: 2.1–2.3 Presumptive TB and case definitions, p.15–18", "#gl/tb/4"],
+    S3: ["Bhutan TB Guidelines: 3.1–3.4 Case finding and diagnostic algorithm, p.26–30", "#gl/tb/11"],
+    S4: ["Bhutan TB Guidelines: Chapter 5 Management of drug-susceptible TB, p.42–47", "#gl/tb/18"],
+    S5: ["Bhutan TB Guidelines: Chapter 8 Monitoring treatment and interruptions, p.85–87", "#gl/tb/31"],
+    S6: ["Bhutan TB Guidelines: 9.3 Management of adverse drug effects (Table 9.1)", "#gl/tb/32"],
+    S7: ["Bhutan TB Guidelines: Chapter 11 TB preventive treatment, p.105–110", "#gl/tb/46"],
+    S8: ["Bhutan TB Guidelines: 7.9 DS-TB in special situations (liver disease, kidney disease, diabetes), p.78", "#gl/tb/29"]
+  },
+  sec: [
+    ["Definition", [["p", "An infectious disease caused by Mycobacterium tuberculosis, spread by droplets and droplet nuclei from people with sputum-positive pulmonary TB. Incubation 2–10 weeks. [S1]"]]],
+    ["Diagnostic criteria and classification", [
+      ["h", "Presumptive TB"],
+      ["l", ["Cough for 2 weeks or more on its own; OR cough of any duration with fever, night sweats, weight loss, haemoptysis or chest pain; OR a chest X-ray abnormality suggesting TB. [S2][S3]"]],
+      ["h", "Case definitions"],
+      ["t", [["Type", "Definition"],
+        ["Bacteriologically confirmed", "A specimen positive by a WHO-recommended rapid molecular test (Xpert MTB/RIF), smear microscopy or culture. Notify all, whether or not treatment starts [S2]"],
+        ["Smear-positive pulmonary", "At least two positive sputum smears, or one positive smear plus a chest X-ray suggesting TB [S2]"],
+        ["Clinically diagnosed", "Not bacteriologically confirmed, but a clinician decides to give a full course (X-ray, histology or clinical grounds). Reclassify if later confirmed [S2]"],
+        ["Pulmonary (PTB)", "Involves lung parenchyma or tracheobronchial tree, with or without other organs; miliary TB counts as pulmonary [S2]"],
+        ["Extra-pulmonary (EPTB)", "Other organs only (pleura, nodes, abdomen, bone, meninges and so on). Every EPTB case needs a chest X-ray and sputum test to exclude lung involvement [S2]"]]],
+      ["l", ["Also classify by previous treatment (new, relapse, after failure, after loss to follow-up), HIV status and drug resistance. [S2]"]]
+    ]],
+    ["Causes and pathophysiology", [["l", ["Mycobacterium tuberculosis, spread by droplet nuclei from people with infectious pulmonary TB. [S1]", "After about two weeks of effective treatment, infectious patients usually become non-infectious. [S4]", "Higher-risk groups include close contacts, people living with HIV, diabetes, harmful alcohol use, smokers, undernutrition, silica workers, prisoners and people in congregate settings such as monasteries. [S3][S7]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["How long have you had the cough? Fever, night sweats, weight loss, blood in sputum, chest pain?", "Defines presumptive TB. [S2]"],
+      ["Has anyone at home or work had TB?", "Contact: screen the whole household too. [S3]"],
+      ["Have you had TB treatment before? How did it end?", "Previously treated cases are at greater risk of drug resistance. [S5]"],
+      ["HIV status, diabetes, liver or kidney disease, alcohol, pregnancy?", "Changes the regimen and monitoring. [S4][S8]"],
+      ["What other medicines do you take (contraceptive pill, warfarin, antiretrovirals, anti-epileptics, sulfonylureas)?", "Rifampicin lowers the levels of many drugs. [S4]"],
+      ["Current weight?", "TB doses go by weight band. [S4]"]]]]],
+    ["Symptoms and examination", [["l", ["Symptoms: fever, night sweats, loss of appetite and weight, tiredness, productive cough, haemoptysis, chest pain. [S1]", "Signs: breathlessness, signs of consolidation. [S1]", "Extra-pulmonary clues: lymph node swelling (asymmetric, matted, more than one node), joint swelling, spinal deformity, headache with neck stiffness, pleural effusion. [S2][S3]", "Record weight and BMI. [S5]"]]]],
+    ["Differential diagnosis", [["l", ["Bacterial pneumonia: shorter illness, responds to antibiotics (see Pneumonia).", "Lung cancer in older smokers.", "Bronchiectasis, lung abscess.", "Non-tuberculous causes of lymphadenopathy: biopsy if bacteriology is negative. [S2]"]]]],
+    ["Investigations", [["t", [["Test", "Why", "What it changes"],
+      ["Xpert MTB/RIF on sputum", "First test for everyone with presumptive TB at GeneXpert sites; also detects rifampicin resistance [S3]", "Rifampicin resistance → drug-resistant TB pathway"],
+      ["Chest X-ray", "With Xpert for all presumptive TB; mandatory in EPTB [S2][S3]", ""],
+      ["Sputum smear microscopy", "Two samples at non-GeneXpert sites (and send sputum for Xpert); used for follow-up [S3]", "Follow-up sputum decides cure"],
+      ["Culture and DST", "Surveillance, retreatment, positive follow-up smear [S4][S5]", "Modifies the regimen"],
+      ["Baseline bloods", "CBC, blood sugar, LFT, albumin, RFT, uric acid, electrolytes, HBsAg, anti-HCV [S4]", "Co-morbidity; liver monitoring"],
+      ["HIV test", "All TB patients [S4]", "If positive: CD4 and ART"],
+      ["Pregnancy test", "Women of child-bearing age [S4]", ""]]],
+      ["note", "Extra-pulmonary samples (node aspirate, pleural, peritoneal or joint fluid, urine): Xpert Ultra first, plus culture or histopathology. [S3]"]]],
+    ["Management", [
+      ["h", "A. Standard regimen for new and previously treated drug-susceptible TB"],
+      ["l", ["2 months intensive phase of HRZE daily (60 doses), then 4 months continuation of HR daily. [S4][S1]", "Previously treated cases receive the same regimen only if no resistance is found on GeneXpert or DST. [S4]"]],
+      ["h", "B. Fixed-dose combination tablets by weight (adults)"],
+      ["t", [["Tablet", "< 35 kg", "35–54 kg", "≥ 55 kg"],
+        ["4-FDC: H 75 + R 150 + Z 400 + E 275 mg (intensive phase)", "2", "3", "4"],
+        ["2-FDC: H 75 + R 150 mg (continuation phase)", "2", "3", "4"]]],
+      ["l", ["Over 70 kg: the clinician may add pyrazinamide 400 mg in the intensive phase. Change the tablet count if the weight band changes. [S4]", "Pyridoxine with isoniazid, and nutrition support. [S1] The guideline uses pyridoxine 25 mg for those at risk of neuropathy (malnutrition, alcohol, HIV, kidney failure, diabetes, pregnancy, breastfeeding), given at least 12 hours apart from the TB drugs. [S7][S6]"]],
+      ["h", "C. Special forms"],
+      ["t", [["Form", "Regimen", "Source"],
+        ["TB meningitis", "2 HRZE + 10 HR, plus dexamethasone IV 0.4 mg/kg/day in week 1, 0.3 in week 2, 0.2 in week 3, 0.1 in week 4, then oral 4, 3, 2, 1 mg/day in weeks 5–8", "[S4]"],
+        ["Bone and joint TB", "2 HRZE then HR, total 12–18 months by clinical response", "[S4]"],
+        ["4-month regimen (2HPMZ/2HPM)", "Selected patients ≥ 12 years and > 40 kg with pulmonary TB, after specialist consultation; not for severe EPTB, CD4 < 100, pregnancy or breastfeeding", "[S4]"]]],
+      ["h", "D. Side effects of first-line drugs"],
+      ["t", [["Side effect", "Likely drug", "Action"],
+        ["Anorexia, nausea, abdominal pain", "R, H, Z", "Take with small meals or at bedtime; if no better, exclude hepatitis [S6]"],
+        ["Joint pain", "Z", "Paracetamol or an NSAID [S6]"],
+        ["Burning or tingling in hands and feet", "H", "Pyridoxine 50–75 mg daily [S6]"],
+        ["Orange or red urine", "R", "Reassure [S6]"],
+        ["Severe rash or itching", "Any", "Stop TB drugs, refer [S6]"],
+        ["Vomiting, poor appetite ± jaundice", "H, R, Z", "Stop TB drugs, check LFT, refer [S6]"],
+        ["Blurred or reduced vision", "E", "Stop ethambutol [S6]"],
+        ["Shock, purpura, acute kidney failure, haemolysis", "R", "Stop rifampicin and never give it again [S6]"]]],
+      ["l", ["LFT at baseline and monthly on treatment. [S6] Severe adverse effects are referred to a regional referral hospital, which holds single-drug formulations. [S6]"]],
+      ["h", "E. Drug interactions"],
+      ["l", ["Rifampicin lowers levels of oral contraceptives, levothyroxine, warfarin (monitor INR closely), phenytoin, corticosteroids, sulfonylureas, many cardiovascular drugs, statins, benzodiazepines and some antiretrovirals. [S4]"]],
+      ["h", "F. Contacts and prevention"],
+      ["l", ["Screen all close contacts of bacteriologically confirmed pulmonary TB. [S3]", "TB preventive treatment after excluding active TB: children under 5 who are household contacts, and people living with HIV; adult household contacts after a TB infection skin test. [S7]", "Regimens: 3HP (rifapentine + isoniazid weekly for 12 weeks) or isoniazid 5 mg/kg daily (max 300 mg) for 6 months. [S7]"]]
+    ]],
+    ["Follow-up", [["l", ["6-month regimen: sputum at the end of month 2, month 4 and month 6; if still positive at month 4, repeat at month 5. [S5]", "A positive sputum at any stage → Xpert MTB/RIF, then Xpert MTB/XDR if TB is detected. [S5]", "Extra-pulmonary TB: follow clinically and by weight; sputum only if chest symptoms appear. [S5]", "Missed doses: contact the patient within a day; all 60 intensive-phase doses must be completed. Interruptions of 2 weeks or more follow the guideline's Table 8.1. [S5]"]]]],
+    ["Complications", [["l", ["Drug-induced hepatitis (pyrazinamide is the most hepatotoxic), neuropathy, optic neuritis. [S6][S8]", "Drug resistance after interruption or treatment failure. [S5]", "Severe forms: meningitis, miliary TB, spinal TB. [S4]", "Spread to household contacts. [S3]"]]]],
+    ["Common mistakes", [["l", ["Not testing every person who has had a cough for 2 weeks or more. [S3]", "Diagnosing lymph node TB on a single small node without bacteriology or biopsy. [S2]", "Not doing a chest X-ray and sputum test in extra-pulmonary TB. [S2]", "Forgetting rifampicin interactions, especially with the contraceptive pill and warfarin. [S4]", "Giving pyridoxine at the same time as the TB drugs. [S6]", "Not adjusting the tablet count when weight changes. [S4]"]]]],
+    ["Advice to give", [["l", ["TB is curable if you take every dose for the full 6 months, even when you feel better. [S1]", "Take the medicines each day in front of your treatment supporter, and bring your Patient Treatment Card to every visit. [S1]", "Urine may turn orange: this is harmless. [S6]", "Come back at once for yellow eyes, vomiting, a bad rash, or blurred vision. [S6]", "Cover your mouth and nose when coughing, dispose of sputum safely, and keep away from young children until the doctor says you are no longer infectious. [S1]", "Bring household members, especially children, for TB screening. [S3]", "Stop alcohol and smoking, eat a balanced diet, and get tested for HIV. [S1]", "Give the sputum samples on the dates you are given. [S1][S5]"]]]],
+    ["Learning summary", [["l", ["Presumptive TB: cough ≥ 2 weeks, or any cough with fever, night sweats, weight loss, haemoptysis or chest pain. [S2]", "First test: Xpert MTB/RIF plus chest X-ray. [S3]", "2 HRZE + 4 HR; 4-FDC tablets 2/3/4 for < 35, 35–54, ≥ 55 kg. [S4]", "Sputum at months 2, 4 and 6. [S5]"]]]]
+  ],
+  links: [["#drug/ETHAMBUTOL(E)%20%2B%20ISONIAZID(H)%20%2B%20PYRAZINAMIDE(Z)%20%2B%20RIFAMPICIN(R)%20%5B4%20FDC%5D", "4-FDC (HRZE)"], ["#drug/ISONIAZID%20%2B%20RIFAMPICIN%20(2%20FDC)", "2-FDC (HR)"], ["#drug/PYRIDOXINE%20(Vitamin%20B%20)%206", "Pyridoxine"], ["#cond/tb", "Condition page with all linked guidelines"]],
+  cards: [
+    ["Definition of presumptive TB in Bhutan?", "Cough ≥ 2 weeks; or cough of any duration with fever, night sweats, weight loss, haemoptysis or chest pain; or a chest X-ray suggesting TB.", "S2"],
+    ["First diagnostic test for presumptive pulmonary TB?", "Xpert MTB/RIF on sputum, with a chest X-ray.", "S3"],
+    ["Standard regimen for drug-susceptible TB?", "2 months HRZE then 4 months HR, daily.", "S4"],
+    ["How many 4-FDC tablets for a 50 kg adult?", "3 tablets daily (35–54 kg band).", "S4"],
+    ["When are follow-up sputum tests done on the 6-month regimen?", "End of months 2, 4 and 6 (and month 5 if still positive at month 4).", "S5"],
+    ["Which TB drug must never be given again after shock, purpura or acute kidney failure?", "Rifampicin.", "S6"],
+    ["Dexamethasone schedule in TB meningitis?", "IV 0.4, 0.3, 0.2, 0.1 mg/kg/day for weeks 1–4, then oral 4, 3, 2, 1 mg/day for weeks 5–8.", "S4"],
+    ["Who gets TB preventive treatment without a TB infection test?", "Children under 5 who are household contacts, and people living with HIV, after excluding active TB.", "S7"]
+  ]
+});
+TOPICS.push({
+  id: "typhoid", cond: "typhoid", n: "Enteric (typhoid) fever", spec: ["id", "medicine", "paeds"], ages: "Children and adults", emerg: "Perforation, shock or encephalopathy are emergencies",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician or paediatrician.",
+  src: {
+    S1: ["Bhutan STG 2024, 8.1.1 Enteric or typhoid fever, p.144", "#stg/8.1.1"],
+    S2: ["Paediatric OPD Handbook, JDWNRH (draft, Oct 2026), B1.8 Enteric fever, p.16", "#gl/my_opd/13"],
+    S3: ["WHO AWaRe Antibiotic Book 2022, Enteric fever (adults), p.202", "#gl/w_aware/130"],
+    S4: ["WHO AWaRe Antibiotic Book 2022, Enteric fever (children), p.203", "#gl/w_aware/131"]
+  },
+  sec: [
+    ["Definition", [["p", "A systemic illness with fever and abdominal pain caused by Salmonella Typhi or Paratyphi, spread by the faecal–oral or urine–oral route through contaminated food and water; some people become carriers. Incubation 10–14 days. [S1][S3]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Severity", "Features"], ["Mild", "Not critically ill, no signs of perforation, peritonitis, sepsis or shock [S3]"], ["Severe", "Critically ill, with confirmed or suspected perforation, peritonitis, sepsis or septic shock [S3]"]]], ["p", "Fever of 38.0 °C or more for over 3 days is the usual presentation; it is hard to tell apart from other febrile illnesses. [S3]"]]],
+    ["Causes and pathophysiology", [["l", ["Salmonella Typhi (most cases) and Paratyphi. [S1][S3]", "Common where sanitation is poor and water is contaminated. [S1]", "Intestinal bleeding and perforation, usually in week 2–3, cause peritonitis. [S2][S3]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["How many days of fever, and is it rising step by step?", "Step-ladder fever. [S1]"],
+      ["Headache, abdominal pain, constipation then diarrhoea?", "Typical pattern. [S1]"],
+      ["Water source, food from outside, sick contacts?", "Exposure. [S2]"],
+      ["Severe abdominal pain, black stools or blood?", "Perforation or bleeding: admit. [S2][S3]"],
+      ["Confusion, drowsiness?", "Severe disease. [S1][S3]"],
+      ["Antibiotics already taken?", "Treatment failure or resistance; blurs cultures."]]]]],
+    ["Symptoms and examination", [["l", ["High-grade step-ladder fever, headache, limb aches, constipation then diarrhoea, abdominal pain, rose spots, confusion or delirium. [S1]", "Coated tongue, relative bradycardia, rose spots on the abdomen, hepatosplenomegaly. [S1]"]], ["warn", "Admit: toxic, drowsy or delirious, GI bleeding, abdominal distension or peritonism, unable to take oral fluids or medicines, shock. [S2]"]]],
+    ["Differential diagnosis", [["l", ["Malaria, scrub typhus, dengue, UTI, TB, brucellosis. [S2]"]]]],
+    ["Investigations", [["t", [["Test", "Why", "Note"],
+      ["Blood culture", "Best test, especially in week 1; take before antibiotics in severe cases [S2][S3]", "Bone marrow culture is the reference standard but rarely feasible [S3]"],
+      ["Stool culture", "Listed in the STG [S1]", ""],
+      ["CBC, LFT, RFT", "Baseline; severity [S1]", ""],
+      ["Widal test", "Listed in the STG [S1]", "Not reliable for acute illness; a single titre should not decide treatment, and a negative result does not exclude typhoid [S2][S3]"]]]]],
+    ["Management", [
+      ["h", "A. Supportive"],
+      ["l", ["Paracetamol, antiemetics, adequate hydration. [S1]"]],
+      ["h", "B. Antibiotics"],
+      ["t", [["Situation", "Adults", "Children", "Source"],
+        ["Bhutan STG", "Ciprofloxacin 500 mg every 12 h for 7–14 days", "No paediatric regimen in the STG", "[S1][S2]"],
+        ["Low fluoroquinolone resistance (WHO)", "Ciprofloxacin 500 mg every 12 h", "Ciprofloxacin 15 mg/kg/dose every 12 h", "[S3][S4]"],
+        ["High fluoroquinolone resistance, mild (WHO)", "Azithromycin 1 g on day 1, then 500 mg daily", "Azithromycin 20 mg/kg/dose daily", "[S3][S4]"],
+        ["Severe (WHO)", "Ceftriaxone 2 g IV daily", "Ceftriaxone 80 mg/kg/dose IV daily", "[S3][S4]"]]],
+      ["l", ["Duration: 7 days for mild and 10 days for severe cases, provided the patient has improved and been afebrile for 48 hours. Step down to oral when afebrile and eating. [S3]"]],
+      ["note", "Conflict: the Bhutan STG lists ciprofloxacin as first line, but WHO advises azithromycin or ceftriaxone where fluoroquinolone resistance is high, and the JDWNRH OPD Handbook notes it is common in South Asian S. Typhi. None of the supplied sources gives Bhutan's own resistance rate: follow local culture results. [S1][S2][S3]"],
+      ["h", "C. Refer or admit"],
+      ["l", ["Signs of perforation, peritonitis, GI bleeding, shock, encephalopathy, or inability to take oral treatment. [S2][S3]"]]
+    ]],
+    ["Follow-up", [["l", ["Fever falls slowly, often over 3–5 days of effective treatment: this alone is not treatment failure. [S3]", "Review in 48–72 hours; daily review if still febrile. [S2]", "Watch for relapse after apparent cure. [S2]"]]]],
+    ["Complications", [["l", ["Intestinal bleeding and perforation with peritonitis (week 2–3). [S2][S3]", "Encephalopathy, sepsis, septic shock. [S3]", "Relapse; chronic carriage. [S1][S2]"]]]],
+    ["Common mistakes", [["l", ["Diagnosing or excluding typhoid on a Widal test alone. [S2][S3]", "Changing antibiotics on day 2–3 because fever persists. [S3]", "Missing perforation in week 2–3. [S2]", "Using fluoroquinolones without considering local resistance. [S3]"]]]],
+    ["Advice to give", [["l", ["Finish the full course of antibiotics. [S2]", "Drink safe, boiled or treated water; eat thoroughly cooked food. [S1]", "Wash hands with soap after the toilet and before handling food. [S1][S2]", "Fever may take a few days to settle on treatment. [S3]", "Return at once for severe abdominal pain, swelling of the abdomen, blood in stools, drowsiness or repeated vomiting. [S2]", "Typhoid vaccination is recommended in endemic areas and outbreaks. [S3]"]]]],
+    ["Learning summary", [["l", ["Step-ladder fever, coated tongue, relative bradycardia, rose spots, hepatosplenomegaly. [S1]", "Blood culture is the key test; Widal is unreliable. [S2][S3]", "STG: ciprofloxacin 500 mg BD × 7–14 days; WHO: azithromycin or ceftriaxone if resistance is high. [S1][S3]"]]]]
+  ],
+  links: [["#drug/CIPROFLOXACIN", "Ciprofloxacin"], ["#drug/AZITHROMYCIN", "Azithromycin"], ["#drug/CEFTRIAXONE", "Ceftriaxone"], ["#cond/typhoid", "Condition page with all linked guidelines"]],
+  cards: [
+    ["Classic signs of typhoid (STG)?", "Step-ladder fever, coated tongue, relative bradycardia, rose spots, hepatosplenomegaly.", "S1"],
+    ["Bhutan STG treatment for adult typhoid?", "Ciprofloxacin 500 mg every 12 h for 7–14 days.", "S1"],
+    ["WHO treatment for mild typhoid where fluoroquinolone resistance is high?", "Azithromycin 1 g day 1 then 500 mg daily (child 20 mg/kg/day).", "S3"],
+    ["WHO treatment for severe typhoid?", "Ceftriaxone 2 g IV daily (child 80 mg/kg/day).", "S3"],
+    ["Why not rely on the Widal test?", "A positive result may reflect past infection, and a negative one does not exclude typhoid.", "S3"],
+    ["When does perforation usually occur in typhoid?", "Weeks 2–3 of illness.", "S2"]
+  ]
+});
+TOPICS.push({
+  id: "scrub", cond: "scrub", n: "Scrub typhus", spec: ["id", "medicine", "paeds"], ages: "Children and adults", emerg: "Severe scrub typhus is an emergency",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician.",
+  src: {
+    S1: ["Bhutan STG 2024, 8.1.3 Scrub typhus, p.147", "#stg/8.1.3"],
+    S2: ["National Guidelines for the Management of Priority Zoonotic Diseases 2025, ch.4 Scrub typhus, p.84–94", "#gl/zoon/30"],
+    S3: ["Paediatric OPD Handbook, JDWNRH (draft), B1.8 Scrub typhus, p.17", "#gl/my_opd/13"]
+  },
+  sec: [
+    ["Definition", [["p", "An acute febrile rickettsial illness caused by Orientia tsutsugamushi, spread by the bite of infected larval mites (chiggers). Endemic in southern Bhutan, with sporadic cases in central districts; peaks June to November. Incubation 6–10 days (range 6–21). [S2][S1]"]]],
+    ["Diagnostic criteria and classification", [
+      ["t", [["Case", "Definition"],
+        ["Suspected", "Acute undifferentiated fever for 5 days or more, with or without eschar; with an eschar, fever of under 5 days counts [S2]"],
+        ["Probable", "Suspected case with a positive RDT or ELISA (optical density > 0.5) [S2]"],
+        ["Confirmed", "PCR positive on blood or eschar, a four-fold rise in titre, or a high IgM titre on ELISA [S2]"]]],
+      ["t", [["Severity", "Features"], ["Mild–moderate", "Fever, rash with or without eschar, lymphadenopathy [S2]"], ["Severe", "Fever with organ dysfunction: pneumonitis or ARDS, acute kidney injury, hepatitis, meningo-encephalitis, hypotension, septic shock, myocarditis, DIC [S2]"]]]
+    ]],
+    ["Causes and pathophysiology", [["l", ["Rodents are natural hosts; the mite transmits infection. Humans are dead-end hosts: no person-to-person spread. [S2]", "Risks in Bhutan: farming, cardamom harvesting, outside toilets, owning goats, sitting on grass, not changing clothes after field work. [S2]", "Risk of complications: delayed treatment and age over 65. [S2]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["Farming, cardamom or paddy work, walking in bushes or grass in the last 3 weeks?", "Exposure. [S2]"],
+      ["Which district, and which month?", "Southern districts and monsoon season are high risk. [S2]"],
+      ["Breathlessness, reduced urine, confusion, yellow eyes?", "Severe disease. [S2][S3]"],
+      ["Fever not improving on antibiotics such as amoxicillin or ceftriaxone?", "Think rickettsia: β-lactams don't work. [S3]"],
+      ["Pregnant?", "Azithromycin instead of doxycycline. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Fever and chills, headache, myalgia, arthralgia, nausea, vomiting, diarrhoea. [S2]", "Generalised lymphadenopathy, hepatosplenomegaly, macular or maculopapular non-itchy rash starting on the abdomen, relative bradycardia. [S2]", "Eschar: a painless papule with a black crust, often hidden in the axilla, groin, under the breasts, waistband, behind the ears or under the nappy. [S1][S2][S3]", "Check RR, SpO₂, BP, consciousness, jaundice, urine output. [S3]"]], ["note", "An eschar is pathognomonic, but its absence does not rule out scrub typhus. [S2]"]]],
+    ["Differential diagnosis", [["l", ["Leptospirosis, enteric fever, murine typhus, dengue, malaria, chikungunya, Japanese encephalitis. [S2]"]]]],
+    ["Investigations", [["t", [["Test", "Where", "Note"],
+      ["RDT (IgM/IgG)", "National, regional and district hospitals", "Result in 15 min; a negative RDT does not exclude early disease [S2]"],
+      ["IgM ELISA", "RCDC, national and regional hospitals", "Screening and confirmation [S2]"],
+      ["PCR (blood or eschar)", "RCDC", "Most useful in the first week [S2]"],
+      ["CBC, ESR, CRP, RFT, LFT, chest X-ray", "All", "Severity and organ involvement [S2]"]]],
+      ["l", ["Sample timing: blood for PCR within 4–7 days of illness (EDTA tube); serum for serology within 7–10 days (plain tube). [S2]"]]]],
+    ["Management", [
+      ["p", "Start treatment as soon as scrub typhus is suspected; doxycycline is the preferred drug. [S2][S3]"],
+      ["t", [["Severity", "Adults", "Children", "Pregnancy"],
+        ["Mild–moderate", "Doxycycline 100 mg twice daily for 7–10 days, OR azithromycin 500 mg daily for 7 days", "Doxycycline (drug of choice at all ages): > 45 kg 100 mg twice daily; < 45 kg 2.2 mg/kg twice daily, for 5–7 days; OR azithromycin 10 mg/kg/day (max 500 mg) for 5–7 days", "Azithromycin 500 mg daily for 7 days"],
+        ["Severe (IV)", "Doxycycline 200 mg twice daily on day 1, then 100–200 mg twice daily for 7–10 days, AND azithromycin 500 mg daily for 7 days", "Doxycycline as above for 7–10 days AND azithromycin 10 mg/kg/day (max 500 mg) for 7–10 days", "Azithromycin 500 mg daily for 7 days"],
+        ["Alternatives", "Rifampicin 600 mg daily for 7 days, or a fluoroquinolone", "Chloramphenicol 50–100 mg/kg/day 6-hourly for 5–7 days (risk of agranulocytosis); no fluoroquinolones in children", ""]]],
+      ["p", "From the national zoonoses guideline treatment table. [S2]"],
+      ["l", ["Treat for at least 7 days, and continue for at least 3 days after the fever settles (total 7–14 days). [S2]", "Admit if breathless, hypotensive, drowsy, jaundiced or passing little urine. [S3]"]],
+      ["note", "Conflict: the STG gives doxycycline for 7 days [S1]; the zoonoses guideline gives 7–10 days for adults, and its child doses say 5–7 days, while its general note says a minimum of 7 days. Use the minimum-7-days rule unless a specialist advises otherwise. [S2]"],
+      ["h", "Chemoprophylaxis"],
+      ["l", ["Doxycycline 200 mg once weekly, from 1–2 days before until the end of high-risk exposure; adults only, not in pregnancy or children under 8. [S2]"]]
+    ]],
+    ["Follow-up", [["l", ["Review in 48 hours. [S3]", "Fever should settle within days of doxycycline; if not, reconsider the diagnosis."]]]],
+    ["Complications", [["l", ["ARDS, acute kidney injury, hepatitis or liver failure, meningo-encephalitis, myocarditis, DIC, septic shock, death. [S2]"]]]],
+    ["Common mistakes", [["l", ["Excluding scrub typhus because no eschar was found. [S2][S3]", "Trusting a negative RDT early in the illness. [S2]", "Continuing β-lactams in fever after field exposure. [S3]", "Withholding doxycycline from children: it is the drug of choice at all ages. [S2]"]]]],
+    ["Advice to give", [["l", ["Take doxycycline with plenty of water, sitting upright, not just before bed, and avoid strong sun. [S3]", "Finish the full course even when the fever goes. [S2]", "Return at once if breathless, drowsy, yellow or passing little urine. [S3]", "Wear long clothes tucked into socks or boots in fields; do not walk barefoot or sit on grass; use a mat. [S2]", "Change and wash work clothes and take a shower after field or bush work. [S2]", "Use insect repellent and keep rodents away from the home. [S2]"]]]],
+    ["Learning summary", [["l", ["Fever ≥ 5 days in an endemic area, or any fever with eschar = suspect scrub typhus. [S2]", "Doxycycline 100 mg BD (child 2.2 mg/kg BD); azithromycin in pregnancy. [S2]", "Severe: doxycycline + azithromycin IV. [S2]", "Treat at least 7 days and 3 days after defervescence. [S2]"]]]]
+  ],
+  links: [["#drug/DOXYCYCLINE", "Doxycycline"], ["#drug/AZITHROMYCIN", "Azithromycin"], ["#drug/CHLORAMPHENICOL", "Chloramphenicol"], ["#cond/scrub", "Condition page with all linked guidelines"]],
+  cards: [
+    ["Case definition of suspected scrub typhus (Bhutan 2025)?", "Undifferentiated fever ≥ 5 days with or without eschar; with eschar, fever < 5 days also counts.", "S2"],
+    ["Drug of choice for scrub typhus in children?", "Doxycycline: 2.2 mg/kg twice daily if < 45 kg; 100 mg twice daily if > 45 kg.", "S2"],
+    ["Treatment of scrub typhus in pregnancy?", "Azithromycin 500 mg once daily for 7 days.", "S2"],
+    ["Treatment of severe scrub typhus in adults?", "IV doxycycline (200 mg BD day 1, then 100–200 mg BD) plus azithromycin 500 mg daily.", "S2"],
+    ["Minimum duration of treatment?", "7 days, and at least 3 days after the fever settles (7–14 days).", "S2"],
+    ["Does a missing eschar exclude scrub typhus?", "No. Reported eschar rates range from about 10% to 86%.", "S2"]
+  ]
+});
+TOPICS.push({
+  id: "uti", cond: "uti", n: "Urinary tract infection", spec: ["neph", "medicine", "paeds"], ages: "Children and adults", emerg: "",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician or paediatrician.",
+  src: {
+    S1: ["Bhutan STG 2024, 6.1 Urinary tract infection (adults), p.116", "#stg/6.1"],
+    S2: ["Bhutan STG 2024, 12.5.3 Urinary tract infection (children), p.280", "#stg/12.5.3"]
+  },
+  sec: [
+    ["Definition", [["p", "Infection of the bladder (cystitis, lower UTI) or kidney (pyelonephritis, upper UTI), usually by bacteria from the skin or rectum ascending the urethra. Commoner in women, rising with age and sexual activity. [S1]"], ["p", "In the first year of life, symptomatic UTI affects 7.8% of girls and 1.8% of boys; boys usually present in the first 3 months and more often have congenital anomalies. [S2]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Type", "Features"], ["Cystitis", "Dysuria, frequency, urgency, suprapubic pain, sometimes visible haematuria [S1]"], ["Pyelonephritis", "Fever with chills and rigors, nausea and vomiting, flank pain, with or without cystitis symptoms [S1]"]]], ["p", "Treat when the presentation fits and a test is positive (urine WBC > 10 cells). If tests are unavailable, treat on clinical grounds. [S1]"]]],
+    ["Causes and pathophysiology", [["l", ["E. coli (75–90% in children); also Klebsiella, Pseudomonas, Staphylococcus, Enterococcus, group A streptococci. [S1][S2]", "In children, constipation and congenital anomalies of the kidney and urinary tract (CAKUT) predispose; look for labial adhesions in girls. [S2]"]]]],
+    ["History: questions to ask", [["qa", [
+      ["Burning, frequency, urgency, lower abdominal pain, blood in urine?", "Cystitis. [S1]"],
+      ["Fever with rigors, back or flank pain, vomiting?", "Pyelonephritis: refer. [S1]"],
+      ["Infant: fever without focus, irritability, poor feeding, vomiting?", "Infant UTI is often non-specific. [S2]"],
+      ["Previous UTIs: how many in the last 6 months?", "Recurrent UTI needs referral and imaging. [S2]"],
+      ["Constipation, wetting, toilet habits?", "Risk factors in children. [S2]"],
+      ["Pregnancy, diabetes, catheter, stones?", "Complicated UTI."]]]]],
+    ["Symptoms and examination", [["l", ["Ill appearance, fever, pallor, tachycardia, hypotension. [S1]", "Suprapubic tenderness; renal angle tenderness in pyelonephritis. [S1]", "Children: cloudy or foul-smelling urine, enuresis, haematuria, backache. [S2]"]], ["warn", "Hypotension, rigors, vomiting or a toxic look suggest pyelonephritis or urosepsis: see Sepsis. [S1]"]]],
+    ["Differential diagnosis", [["l", ["Vaginitis or sexually transmitted infection (discharge).", "Kidney stones (colicky pain, haematuria).", "In children with fever: malaria, enteric fever, other febrile illness."]]]],
+    ["Investigations", [["t", [["Test", "Why", "Note"],
+      ["Urine routine", "WBC > 10 cells, pus cells, RBC [S1]", "First test"],
+      ["Urine culture and sensitivity", "Identify the organism [S1][S2]", "Essential in recurrent or persistent UTI [S1]"],
+      ["CBC, blood culture", "Suspected pyelonephritis [S1]", ""],
+      ["RFT and electrolytes", "Children; before gentamicin [S1][S2]", ""],
+      ["Ultrasound KUB", "Recurrent UTI (adults); children, to look for CAKUT [S1][S2]", ""]]]]],
+    ["Management", [
+      ["h", "A. Adults"],
+      ["t", [["Type", "Treatment", "Source"],
+        ["Cystitis", "Amoxicillin 500 mg every 8 h for 3 days, OR co-trimoxazole 960 mg (800/160) every 12 h for 3 days", "[S1]"],
+        ["Pyelonephritis", "Injection ampicillin + gentamicin (if kidney function normal) for 5–10 days by response; refer to a higher centre", "[S1]"]]],
+      ["l", ["Fluids at least 2 L a day and complete bladder emptying. Improvement should show within 48–72 hours. [S1]"]],
+      ["h", "B. Children"],
+      ["t", [["Item", "Dose", "Source"],
+        ["Amoxicillin", "15 mg/kg/dose three times daily for 5 days", "[S2]"],
+        ["OR co-trimoxazole", "8 mg trimethoprim/kg/day in 2 doses for 5 days", "[S2]"],
+        ["Paracetamol", "15 mg/kg/dose three times daily for 3 days", "[S2]"],
+        ["Metoclopramide (severe vomiting)", "0.1 mg/kg/dose stat, then three times daily for 2–3 days", "[S2]"]]],
+      ["l", ["Encourage breastfeeding and fluids. Review after 48 hours. [S2]", "Refer for evaluation if 2 or more episodes in 6 months, or 3 or more at any time. [S2]"]]
+    ]],
+    ["Follow-up", [["l", ["Adults: persistent or recurrent symptoms → urine culture and sensitivity and ultrasound KUB. [S1]", "Children: review at 48 hours; refer recurrent UTI. [S2]"]]]],
+    ["Complications", [["l", ["Pyelonephritis, urosepsis and shock. [S1]", "Recurrent infection; in children with CAKUT, kidney scarring. [S2]"]]]],
+    ["Common mistakes", [["l", ["Missing UTI in an infant with fever and no focus. [S2]", "Not culturing urine in recurrent or treatment-failure UTI. [S1]", "Giving gentamicin without checking kidney function. [S1]", "Not referring a child with recurrent UTI for imaging. [S2]"]]]],
+    ["Advice to give", [["l", ["Drink plenty of fluids and empty the bladder often and completely. [S1][S2]", "Finish the full antibiotic course. [S2]", "Girls and women: wipe from front to back. [S2]", "Children: treat constipation, change nappies often, wear cotton underwear, use the toilet as soon as the urge comes. [S2]", "Come back if not better in 2–3 days, or for high fever, rigors, back pain or vomiting. [S1][S2]"]]]],
+    ["Learning summary", [["l", ["Cystitis: amoxicillin 500 mg 8-hourly or co-trimoxazole 960 mg 12-hourly for 3 days. [S1]", "Pyelonephritis: ampicillin + gentamicin, refer. [S1]", "Child: amoxicillin 15 mg/kg TDS or co-trimoxazole 8 mg TMP/kg/day for 5 days; refer recurrent. [S2]"]]]]
+  ],
+  links: [["#cond/uti", "Condition page with all linked guidelines"], ["#topic/sepsis", "Sepsis (urinary source antibiotics)"]],
+  cards: [
+    ["Bhutan STG treatment of cystitis in adults?", "Amoxicillin 500 mg 8-hourly or co-trimoxazole 960 mg 12-hourly, both for 3 days.", "S1"],
+    ["Bhutan STG treatment of pyelonephritis?", "IV ampicillin + gentamicin (if kidney function normal) for 5–10 days; refer.", "S1"],
+    ["Antibiotic for UTI in a child (STG)?", "Amoxicillin 15 mg/kg/dose TDS or co-trimoxazole 8 mg TMP/kg/day BD, for 5 days.", "S2"],
+    ["When should a child with UTI be referred for evaluation?", "2 or more episodes in 6 months, or 3 or more at any time.", "S2"],
+    ["How do infants with UTI usually present?", "Fever without focus, irritability, poor feeding, vomiting.", "S2"]
+  ]
+});
+
 const TOPIC_BY = Object.fromEntries(TOPICS.map(t => [t.id, t]));
 const TOPIC_BY_COND = Object.fromEntries(TOPICS.map(t => [t.cond, t]));
 function topicSrcChips(t, s) {
