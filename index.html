@@ -9527,6 +9527,447 @@ TOPICS.push({
   links: [["#p/svt", "SVT protocol"], ["#topic/arrest", "Cardiac arrest"], ["#drug/ADENOSINE", "Adenosine"], ["#cond/svt", "Condition page with all linked guidelines"]],
   cards: [["Adult adenosine sequence (formulary)?", "6 mg, then 12 mg, then 12 mg rapid IV push with flush.", "S1"], ["Child adenosine first dose?", "0.1 mg/kg (max 6 mg), then 0.2 mg/kg (max 12 mg).", "S1"], ["Adverse features needing cardioversion?", "Shock, syncope, myocardial ischaemia, severe heart failure.", "S1"]]
 });
+TOPICS.push({
+  id: "shock", cond: "shock", n: "Shock: recognition and first management", spec: ["emerg", "medicine", "paeds"], ages: "Adults and children", emerg: "Life-threatening",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: { S1: ["Bhutan Emergency booklet 2018, Chapter 6: Approach to patient in shock", "#gl/emb/42"], S2: ["Bhutan Emergency booklet 2018, Chapter 8B: Shock (paediatric)", "#gl/emb/67"], S3: ["App protocol: Shock (child)", "#p/shockC"], S4: ["Surviving Sepsis Campaign guidelines 2021", "https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-guidelines-2021"], S5: ["App page: Anaphylaxis", "#topic/anaph"] },
+  sec: [
+    ["Definition", [["p", "Circulatory failure: tissue oxygen supply falls short of demand, causing anaerobic metabolism and lactic acidosis. Mortality exceeds 20%. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Types: hypovolaemic (including haemorrhagic), distributive (septic, anaphylactic), cardiogenic, obstructive. [S1]", "Empiric criteria: ill appearance or altered mental state, HR over 100, RR over 22, base deficit worse than −5 or lactate over 4, urine under 0.5 mL/kg/h, hypotension over 20 minutes. Usually SBP under 90. [S1]", "Shock index (HR ÷ SBP) normally 0.5–0.7; raised in volume loss or LV failure. [S1]", "Child: compensated (normal BP, tachycardia, cool peripheries, CRT prolonged, weak peripheral pulses) vs hypotensive. Hypotension = SBP under 70 (1–12 months), under 70 + 2 × age (1–10 years), under 90 (over 10 years). [S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["Bleeding, dehydration, sepsis, anaphylaxis, MI and heart failure, tension pneumothorax, tamponade. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Chest pain, heart disease, breathlessness?", "Cardiogenic. [S1]"], ["Fever?", "Septic. [S1]"], ["Bleeding, abdominal pain, missed period?", "Haemorrhagic, ectopic. [S1]"], ["Allergen exposure?", "Anaphylactic. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Altered mental state, cold clammy skin, weak thready pulse, low BP, low urine output, breathlessness. [S1]", "Bedside ultrasound (RUSH: pump, tank, pipes) if trained. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Vasovagal faint, drug-induced hypotension, hypoglycaemia."]]]],
+    ["Investigations", [["l", ["CBC, group and crossmatch, coagulation, biochemistry, urine, pregnancy test; ECG, chest X-ray, ultrasound. [S1]", "Glucose in every child. [S2]"]]]],
+    ["Management", [["h", "Adult [S1]"], ["l", ["Airway; oxygen to saturation over 93%; consider NIV or intubation (ketamine for induction).", "Large-bore IV access; isotonic crystalloid 20–30 mL/kg rapidly, repeat if no response.", "Haemorrhage: control bleeding; O blood until crossmatched blood is available.", "Vasopressors if fluids fail: target MAP 65 and SBP 90. Urine over 0.5 mL/kg/h.", "Septic: antibiotics, source control. Anaphylactic: adrenaline. Cardiogenic: oxygen, inotrope (dobutamine)."]], ["h", "Child [S2][S3]"], ["l", ["20 mL/kg NS or RL over 5–10 minutes, repeat up to 60 mL/kg (cardiogenic 5–10 mL/kg over 10–20 minutes).", "Correct glucose; antibiotics in septic shock (ceftriaxone 75 mg/kg).", "Cold shock: adrenaline infusion. Warm shock: noradrenaline infusion."]], ["warn", "Dose check: the booklet's child shock table prints IM adrenaline as '0.1 mg/kg of 1:10,000'. The standard anaphylaxis dose is 0.01 mg/kg (0.01 mL/kg of 1:1000) IM. Use the Anaphylaxis page. [S2][S5]"], ["note", "The booklet (2018) lists hydroxyethyl starch, dopamine and CVP/ScvO₂ targets. Surviving Sepsis 2021 advises against starches and prefers noradrenaline as the first vasopressor. [S1][S4]"]]],
+    ["Follow-up", [["l", ["Reassess every 5–15 minutes: HR, BP, perfusion, mental state, urine. [S2]"]]]],
+    ["Complications", [["l", ["Multi-organ failure, AKI, death. [S1]"]]]],
+    ["Common mistakes", [["l", ["Waiting for hypotension in children: it is late. [S2]", "Using dextrose fluids for boluses. [S2]"]]]],
+    ["Advice to give", [["l", ["Family: the cause will be searched for and treated; the patient may need transfer to a higher centre."]]]],
+    ["Learning summary", [["l", ["Recognise early (tachycardia, cold skin, low urine); oxygen, access, fluid bolus, treat the cause. [S1][S2]"]]]]
+  ],
+  links: [["#p/shockC", "Shock protocol (child)"], ["#topic/sepsis", "Sepsis"], ["#topic/anaph", "Anaphylaxis"], ["#topic/trauma", "Major trauma"], ["#cond/shock", "Condition page with all linked guidelines"]],
+  cards: [["Normal shock index?", "0.5–0.7 (HR ÷ SBP).", "S1"], ["Hypotension in a 1–10-year-old?", "SBP under 70 + (2 × age in years).", "S2"], ["Child fluid bolus in shock?", "20 mL/kg NS or RL over 5–10 min, up to 60 mL/kg.", "S2"], ["Cold vs warm septic shock in children: vasoactive drug?", "Cold: adrenaline. Warm: noradrenaline.", "S2"]]
+});
+TOPICS.push({
+  id: "drowning", cond: "drowning", n: "Drowning", spec: ["emerg"], ages: "All ages", emerg: "Ventilate early",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: { S1: ["Bhutan Emergency booklet 2018, Chapter 10: Drowning (with submersion algorithm)", "#gl/emb/88"], S2: ["App protocol: Cardiac arrest", "#p/arrest"] },
+  sec: [
+    ["Definition", [["p", "All submersion injuries are termed drowning. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Dry drowning: laryngospasm, then hypoxia and loss of consciousness. [S1]", "Wet drowning: aspirated water washes out surfactant, causing V/Q mismatch. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Hypoxia is the main injury. Freshwater: transient haemodilution, haemolysis, low sodium. Saltwater: haemoconcentration, high sodium and potassium. [S1]", "Flash floods and rivers in the monsoon (May to August) are a Bhutan risk. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["How long under water; cold water?", "Prognosis and hypothermia."], ["Dive or fall?", "Cervical spine injury."], ["Alcohol, seizure?", "Cause."]]]]],
+    ["Symptoms and examination", [["l", ["GCS, SpO₂, breathing, temperature; look for spinal and head injury. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Seizure, cardiac arrhythmia or trauma leading to the submersion."]]]],
+    ["Investigations", [["l", ["Low-risk (GCS over 13, SpO₂ 95% or more): ancillary tests usually not needed. [S1]", "Others: CBC, glucose, electrolytes, blood gas, chest X-ray, ECG, temperature. [S1]"]]]],
+    ["Management", [["l", ["Primary survey; protect the cervical spine if injury is possible; oxygen; keep warm. [S1]", "No pulse: CPR; drowning arrest is hypoxic, so ventilation matters. [S2]", "GCS over 13 and SpO₂ 95% or more: monitor oxygen saturation and observe 4–6 hours; discharge if normal. [S1]", "Lower GCS or SpO₂: oxygen to keep SpO₂ up, intubation and PEEP if needed, admit to ICU or HDU. [S1]"]], ["note", "The algorithm in the booklet is an image; the steps above were read from it."]]],
+    ["Follow-up", [["l", ["Breathing can worsen over hours: watch for cough, crackles, falling SpO₂."]]]],
+    ["Complications", [["l", ["Pulmonary oedema, ARDS, hypoxic brain injury, hypothermia, electrolyte problems. [S1]"]]]],
+    ["Common mistakes", [["l", ["Sending home before 4–6 hours of observation. [S1]", "Forgetting the cervical spine after a dive."]]]],
+    ["Advice to give", [["l", ["Never leave children alone near water, including buckets and tanks.", "Avoid rivers in flood; no alcohol near water; learn CPR."]]]],
+    ["Learning summary", [["l", ["Hypoxia is the problem: oxygen and ventilation; observe 4–6 h if well. [S1]"]]]]
+  ],
+  links: [["#topic/arrest", "Cardiac arrest"], ["#topic/hypotherm", "Hypothermia"], ["#cond/drowning", "Condition page with all linked guidelines"]],
+  cards: [["Observation after drowning with GCS >13 and SpO₂ ≥95%?", "4–6 hours, discharge if normal.", "S1"], ["Electrolyte effect of freshwater aspiration?", "Haemodilution, haemolysis, hyponatraemia.", "S1"]]
+});
+TOPICS.push({
+  id: "hypotherm", cond: "hypotherm", n: "Hypothermia and frostbite", spec: ["emerg"], ages: "All ages", emerg: "Handle gently",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: { S1: ["Bhutan Emergency booklet 2018, Chapter 10: Environmental emergencies (hypothermia, frostbite)", "#gl/emb/84"] },
+  sec: [
+    ["Definition", [["p", "Core temperature below 35 °C. Arrhythmias become likely below 30 °C. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Non-freezing cold injury: trench foot, chilblains. Freezing injury: frostbite (head 39%, hands 27%, feet 24%). [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Cold exposure at altitude, wet clothing, alcohol, elderly or sick patients, newborns."]]]],
+    ["History: questions to ask", [["qa", [["How long exposed; wet?", "Severity."], ["Alcohol?", "Give thiamine. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Low-reading thermometer; ECG may show Osborn (J) waves. [S1]", "In an unmonitored patient, spend 30–45 seconds checking breathing and pulse before starting CPR. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Hypoglycaemia, sepsis, hypothyroidism, intoxication."]]]],
+    ["Investigations", [["l", ["Core temperature, ECG and rhythm, glucose, SpO₂. [S1]"]]]],
+    ["Management", [["h", "Hypothermia [S1]"], ["l", ["Handle gently: movement can trigger ventricular fibrillation.", "Warmed oxygen and IV fluids; monitor temperature, rhythm, SpO₂; intubate if needed.", "Aim above 30 °C; thiamine 100 mg IV if alcoholic.", "Rewarm: passive (remove from cold, insulate), active external (warm water, blankets at 40 °C, radiant heat, forced air), active core (warm IV fluids, lavage)."]], ["h", "Frostbite [S1]"], ["l", ["Remove wet clothing; do not thaw if refreezing is possible; no alcohol or smoking.", "Rewarm in water at 40–42 °C until pliable and red; aloe vera cream 6-hourly; leave blisters; tetanus; opioids and ibuprofen 12 mg/kg/day."]]]],
+    ["Follow-up", [["l", ["Frostbite tissue may take weeks to declare itself; avoid early debridement. [S1]"]]]],
+    ["Complications", [["l", ["Ventricular fibrillation, permanent tissue loss. [S1]"]]]],
+    ["Common mistakes", [["l", ["Rough handling. [S1]", "Rubbing frozen parts or thawing them before rescue is complete. [S1]"]]]],
+    ["Advice to give", [["l", ["Dress in layers, stay dry, avoid alcohol in the cold; protect babies and older people at night."]]]],
+    ["Learning summary", [["l", ["Below 35 °C: gentle handling, warm fluids and oxygen, staged rewarming. [S1]"]]]]
+  ],
+  links: [["#topic/altitude", "High-altitude illness"], ["#topic/drowning", "Drowning"], ["#cond/hypotherm", "Condition page with all linked guidelines"]],
+  cards: [["Definition of hypothermia?", "Core temperature below 35 °C.", "S1"], ["ECG sign of hypothermia?", "Osborn (J) wave.", "S1"], ["Water temperature for rewarming frostbite?", "40–42 °C.", "S1"]]
+});
+TOPICS.push({
+  id: "heat", cond: "heat", n: "Heat exhaustion and heat stroke", spec: ["emerg"], ages: "All ages", emerg: "Heat stroke: cool immediately",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: { S1: ["Bhutan Emergency booklet 2018, Chapter 10: Heat emergencies", "#gl/emb/85"] },
+  sec: [
+    ["Definition", [["p", "A spectrum from heat cramps and syncope to heat exhaustion and heat stroke. Body temperature is normally kept at 36–38 °C. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["", "Heat exhaustion", "Heat stroke"], ["Temperature", "Normal or raised, usually not over 40 °C", "Over 40 °C"], ["Brain", "No CNS impairment", "Altered mental state"], ["Mortality", "Low", "30–80%"]]]]],
+    ["Causes and pathophysiology", [["l", ["Water and salt depletion; failure of thermoregulation above 40 °C. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Exertion in heat; fluid intake?", "Cause."], ["Confusion, collapse, seizure?", "Heat stroke. [S1]"], ["Drugs (anticholinergics, stimulants)?", "Contributors."]]]]],
+    ["Symptoms and examination", [["l", ["Exhaustion: headache, nausea, vomiting, malaise, dizziness, cramps, dehydration. [S1]", "Stroke: temperature over 40 °C with confusion, seizures or coma. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Sepsis, meningitis, malaria, thyroid storm, drug toxicity."]]]],
+    ["Investigations", [["l", ["Core temperature, glucose, electrolytes, renal function, CK if available."]]]],
+    ["Management", [["l", ["Exhaustion: rest in shade, fluid and electrolyte replacement. [S1]", "No response after 30 minutes of fluids: cool aggressively until 39 °C. [S1]", "Heat stroke: immediate cooling and organ support (ABC, glucose, seizure control). [S1]"]]]],
+    ["Follow-up", [["l", ["Monitor kidney function and urine output after heat stroke."]]]],
+    ["Complications", [["l", ["Rhabdomyolysis, AKI, DIC, liver failure, death."]]]],
+    ["Common mistakes", [["l", ["Treating heat stroke as heat exhaustion: check mental state. [S1]"]]]],
+    ["Advice to give", [["l", ["Drink water, rest in shade, avoid heavy work in midday heat in the southern foothills."]]]],
+    ["Learning summary", [["l", ["Over 40 °C plus confusion = heat stroke: cool now. [S1]"]]]]
+  ],
+  links: [["#topic/hypotherm", "Hypothermia"], ["#cond/heat", "Condition page with all linked guidelines"]],
+  cards: [["Cardinal features of heat stroke?", "Temperature over 40 °C and altered mental state.", "S1"], ["Heat exhaustion not improving after 30 min of fluids?", "Cool aggressively to 39 °C.", "S1"]]
+});
+TOPICS.push({
+  id: "torsion", cond: "torsion", n: "Testicular torsion", spec: ["surg", "uro", "emerg"], ages: "Mainly 12–18 years", emerg: "Surgery within 6 hours",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a surgeon.",
+  src: { S1: ["Bhutan Emergency booklet 2018, Chapter 11: Testicular torsion", "#gl/emb/125"] },
+  sec: [
+    ["Definition", [["p", "Twisting of the testis on its cord, cutting off its blood supply; a surgical emergency. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Clinical diagnosis; colour Doppler ultrasound if it will not delay surgery. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Most often peripubertal (12–18 years) but any age; often after strenuous activity or blunt trauma. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Sudden one-sided testicular pain; nausea, vomiting?", "Typical. [S1]"], ["Previous similar episode that settled?", "Intermittent torsion. [S1]"], ["Urinary symptoms?", "Usually absent; present in epididymitis. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Very tender, swollen, firm testis lying high with a transverse lie. [S1]", "Absent cremasteric reflex; lifting the scrotum does not relieve pain. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Epididymo-orchitis (hard to separate), torsion of appendix testis, hernia, trauma. [S1]"]]]],
+    ["Investigations", [["l", ["Colour Doppler ultrasound. [S1]"]]]],
+    ["Management", [["l", ["Analgesia; urgent surgical referral. [S1]", "Manual detorsion ('open book') as a bridge; orchidopexy. [S1]"]]]],
+    ["Follow-up", [["l", ["Both testes are usually fixed at surgery."]]]],
+    ["Complications", [["l", ["Salvage 80–100% within 6 hours, 20% after 10 hours, 0% after 24 hours. [S1]"]]]],
+    ["Common mistakes", [["l", ["Treating as epididymitis without excluding torsion. [S1]", "Waiting for ultrasound when it delays surgery."]]]],
+    ["Advice to give", [["l", ["Boys with sudden testicular pain must come to hospital at once, even at night; do not be shy to tell."]]]],
+    ["Learning summary", [["l", ["Sudden scrotal pain in a teenager = torsion until proven otherwise; theatre within 6 hours. [S1]"]]]]
+  ],
+  links: [["#topic/sti", "STIs (epididymitis)"], ["#cond/torsion", "Condition page with all linked guidelines"]],
+  cards: [["Testicular salvage rate by time?", "80–100% within 6 h, 20% after 10 h, 0% after 24 h.", "S1"], ["Reflex absent in torsion?", "Cremasteric reflex.", "S1"]]
+});
+TOPICS.push({
+  id: "pain", cond: "pain", n: "Acute pain management", spec: ["emerg", "medicine"], ages: "All ages", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an anaesthetist.",
+  src: { S1: ["Bhutan Emergency booklet 2018, Chapter 20: Acute pain management in emergency", "#gl/emb/205"] },
+  sec: [
+    ["Definition", [["p", "An unpleasant sensory and emotional experience associated with actual or potential tissue damage (IASP). Pain should be treated as the fifth vital sign. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["By time: acute, chronic, recurrent. By mechanism: nociceptive (somatic, visceral), neuropathic (over 20% of ED patients), myofascial. [S1]", "Score: 0–10 numerical scale or mild, moderate, severe; Faces Pain Scale for children; behaviour in those who cannot speak. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Mostly excess nociception from inflammation, trauma or visceral lesions. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Where, when, what is it like, what makes it better or worse?", "Diagnosis and type. [S1]"], ["Score 0–10?", "Record with vital signs. [S1]"], ["What has been taken already?", "Avoid double dosing."]]]]],
+    ["Symptoms and examination", [["l", ["Find and treat the cause while relieving pain."]]]],
+    ["Differential diagnosis", [["l", ["Neuropathic pain responds poorly to standard analgesics: consider it. [S1]"]]]],
+    ["Investigations", [["l", ["As for the cause."]]]],
+    ["Management", [["l", ["Treat early; use the WHO ladder, descending it in acute pain: by the clock, by mouth, by the ladder. [S1]", "Multimodal: combine drugs with different actions (e.g. NSAID with morphine spares 30–50% of morphine), plus nerve blocks where possible. [S1]", "Severe pain, adult morphine titration: 3 mg IV (2 mg if under 60 kg) every 5 minutes until pain score 3/10 or less. [S1]", "Stop titration if sedated (score 2 or more), RR under 10, or side effects; then monitor every 15 minutes for 1–2 hours. [S1]"]]]],
+    ["Follow-up", [["l", ["Reassess pain score after each dose and at intervals. [S1]"]]]],
+    ["Complications", [["l", ["Opioid respiratory depression, nausea; NSAID gastric and renal harm."]]]],
+    ["Common mistakes", [["l", ["Not scoring pain, so it is undertreated. [S1]", "Giving opioid doses less than 5 minutes apart during titration. [S1]"]]]],
+    ["Advice to give", [["l", ["Tell staff if pain is not controlled; take regular doses as prescribed rather than waiting for severe pain."]]]],
+    ["Learning summary", [["l", ["Score pain, treat early, combine drugs, titrate morphine 2–3 mg every 5 min. [S1]"]]]]
+  ],
+  links: [["#drug/MORPHINE", "Morphine"], ["#drug/PARACETAMOL", "Paracetamol"], ["#drug/IBUPROFEN", "Ibuprofen"], ["#cond/pain", "Condition page with all linked guidelines"]],
+  cards: [["Adult IV morphine titration (Bhutan booklet)?", "3 mg (2 mg if <60 kg) every 5 minutes to pain ≤3/10.", "S1"], ["When to stop morphine titration?", "Sedation score ≥2, RR <10, or side effects.", "S1"], ["Morphine-sparing effect of adding an NSAID?", "30–50%.", "S1"]]
+});
+TOPICS.push({
+  id: "preterm", cond: "preterm", n: "Preterm and low-birth-weight newborn: first care", spec: ["neo", "paeds"], ages: "Newborns", emerg: "Keep warm",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a neonatologist.",
+  src: { S1: ["Bhutan Emergency booklet 2018, Chapter 3B: Resuscitation for premature babies", "#gl/emb/27"], S2: ["App protocol: Newborn resuscitation", "#p/neores"] },
+  sec: [
+    ["Definition", [["p", "Babies born before 37 weeks; they need special care for warmth, breathing, infection and feeding. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["By gestation and birth weight; extreme prematurity under 28 weeks needs extra warming measures. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Excess heat loss, vulnerability to oxygen injury, immature lungs and breathing drive, infection risk, fragile brain vessels, small blood volume. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Gestation; steroids given before birth?", "Lung maturity."], ["Maternal fever or ruptured membranes?", "Infection risk."]]]]],
+    ["Symptoms and examination", [["l", ["Temperature, breathing effort, heart rate, SpO₂, glucose."]]]],
+    ["Differential diagnosis", [["l", ["Respiratory distress from RDS, sepsis, pneumothorax."]]]],
+    ["Investigations", [["l", ["Glucose; others by condition."]]]],
+    ["Management", [["l", ["Extra trained staff; team and equipment ready before birth. [S1]", "Warm room, preheated area and blankets, warming pad; plastic bag for babies under 28 weeks. [S1]", "Same criteria for ventilation as term babies; adjust oxygen to target saturations; lowest effective inflation pressure. [S2][S1]", "CPAP if breathing with HR over 100; surfactant if available and CPAP fails. [S1]", "Stable preterm: skin-to-skin with the mother for at least 90 minutes, then continuous Kangaroo Mother Care to keep warm, steady breathing and start breastfeeding. [S1]"]]]],
+    ["Follow-up", [["l", ["Daily weight, feeding, temperature, jaundice and infection checks; KMC once stable. [S1]"]]]],
+    ["Complications", [["l", ["Hypothermia, hypoglycaemia, RDS, sepsis, intraventricular haemorrhage, jaundice. [S1]"]]]],
+    ["Common mistakes", [["l", ["Letting the baby get cold. [S1]", "Too much oxygen. [S1]"]]]],
+    ["Advice to give", [["l", ["Keep the baby skin-to-skin on the chest day and night; breastfeed often; wash hands before touching the baby."]]]],
+    ["Learning summary", [["l", ["Warmth, gentle ventilation, targeted oxygen, CPAP, Kangaroo Mother Care. [S1]"]]]]
+  ],
+  links: [["#topic/neores", "Newborn resuscitation"], ["#topic/neosepsis", "Neonatal sepsis"], ["#cond/preterm", "Condition page with all linked guidelines"]],
+  cards: [["Extra warming step for babies under 28 weeks?", "Polyethylene (plastic) bag.", "S1"], ["When is CPAP considered in a preterm baby?", "Breathing spontaneously with HR over 100.", "S1"], ["Duration of first skin-to-skin for a stable preterm?", "At least 90 minutes, then continuous KMC.", "S1"]]
+});
+TOPICS.push({
+  id: "childabuse", cond: "childabuse", n: "Child abuse and neglect", spec: ["paeds", "ph"], ages: "Children under 18", emerg: "Child safety first",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a paediatrician.",
+  src: { S1: ["Bhutan National guideline for management of child abuse and neglect in health facilities (2025), 8. Identification", "#gl/can/7"], S2: ["Same guideline, 10–11. Clinical assessment and management", "#gl/can/9"], S3: ["Same guideline, Appendix 10: LIVES CC approach", "#gl/can/20"] },
+  sec: [
+    ["Definition", [["p", "Physical, sexual or emotional abuse, or persistent failure to meet a child's basic needs (neglect). Disclosure is rare, so health workers must recognise the signs. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Suspect when there is no suitable explanation for injuries or signs. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Weak bonding, poor parenting, family breakdown, domestic violence, poverty, easy access to alcohol and drugs, harmful norms. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Late presentation; history changes or does not fit the injury or the child's age?", "Warning signs. [S1]"], ["School decline, new behaviour, self-harm, sexualised behaviour?", "Behavioural signs. [S1]"], ["Who looks after the child?", "Parents abroad, substance use at home. [S1]"]]], ["note", "Interview the child alone unless they ask for the caregiver. [S2]"]]],
+    ["Symptoms and examination", [["l", ["Bruises in a non-mobile baby, clustered or patterned bruises, bruises on soft areas (ears, eyes, buttocks); burns shaped like objects; bite marks. [S1]", "Fractures without bone disease, spiral long-bone fractures in infants, metaphyseal and posterior rib fractures. [S1]", "Genital injury, discharge, anogenital warts, foreign bodies, pregnancy. [S1]", "Neglect: poor hygiene, malnutrition, unmet medical needs. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Bleeding disorders, osteogenesis imperfecta, rickets, birthmarks. [S1]"]]]],
+    ["Investigations", [["l", ["Skeletal survey or imaging as needed; pregnancy test, viral markers; forensic samples. [S2]", "Photograph and draw injuries; record the child's words in quotes. [S2]"]]]],
+    ["Management", [["l", ["Safe private setting; consent from guardian and assent from child (not needed from a guardian who is the suspected abuser). [S2]", "First-line support with LIVES CC: Listen, Inquire, Validate, Enhance safety, Support, Child-friendly environment. [S3]", "Treat injuries; tetanus-diphtheria; analgesia. [S2]", "Sexual abuse: emergency contraception within 120 hours, STI treatment, HIV PEP within 72 hours. [S2]", "Mental health assessment; medico-legal report; refer to a case manager for psychosocial support. [S2]"]]]],
+    ["Follow-up", [["l", ["Planned follow-up for physical and mental health and safety at home. [S2]"]]]],
+    ["Complications", [["l", ["Depression, anxiety, PTSD, self-harm; repeated abuse. [S2]"]]]],
+    ["Common mistakes", [["l", ["Interviewing the child in front of the suspected abuser. [S2]", "Writing opinions instead of facts in the record. [S2]"]]]],
+    ["Advice to give", [["l", ["To the child: 'This is not your fault. I believe you.' [S3]", "To a safe caregiver: how to protect the child and where to get help."]]]],
+    ["Learning summary", [["l", ["Unexplained injury or changing story: suspect, protect, document, support with LIVES CC, refer. [S1][S3]"]]]]
+  ],
+  links: [["#topic/ptsd", "Trauma and stress-related disorders"], ["#topic/hiv", "HIV (PEP)"], ["#cond/childabuse", "Condition page with all linked guidelines"]],
+  cards: [["Fractures highly suggestive of abuse?", "Spiral long-bone fractures in infants, metaphyseal and posterior rib fractures.", "S1"], ["What is LIVES CC?", "Listen, Inquire, Validate, Enhance safety, Support, Child-friendly environment.", "S3"], ["Time limits after sexual abuse?", "Emergency contraception within 120 h; HIV PEP within 72 h.", "S2"]]
+});
+TOPICS.push({
+  id: "mdro", cond: "mdro", n: "Multidrug-resistant organisms (MDRO, CRO)", spec: ["id"], ages: "Hospital patients", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an infectious disease physician.",
+  src: { S1: ["Bhutan National guideline for management of MDRO and carbapenem-resistant organisms (2026), sections 1–2", "#gl/mdro/1"], S2: ["Same guideline, 3.2 Clinician responsibilities", "#gl/mdro/8"], S3: ["Same guideline, 4.1 Patient placement and isolation", "#gl/mdro/15"] },
+  sec: [
+    ["Definition", [["p", "Bacteria resistant to at least three different antibiotics. Usually harmless in the gut, but they cause hard-to-treat infections in vulnerable patients. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Key organisms: CRE, CRPA, CRAB, Candida auris, C. difficile, MRSA, VRE, ESBL producers. [S1]", "Colonisation (no illness, still transmits) vs infection (signs of illness). [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Spread by contact (hands, equipment), droplets, and sometimes airborne. [S1]", "Highest risk: ICU, HDU, oncology and renal units; long antibiotic courses; long stays; hospital treatment abroad in the past year. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Admitted to a hospital abroad for over 24 hours in the past 12 months?", "Flag as high risk; pre-emptive isolation. [S2]"], ["Previous CRO?", "Isolate and check clearance. [S2]"], ["Devices, ventilation, long antibiotics?", "Risk. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Depends on site: skin, lung, urine, bloodstream. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Colonisation vs infection: use clinical signs with WBC, CRP, procalcitonin. [S1]"]]]],
+    ["Investigations", [["l", ["High-risk admissions: baseline blood, urine, sputum and wound cultures (no routine rectal swab screening yet). [S2]", "Lab: AST by disk diffusion; carbapenem testing if first-line resistant; carbapenemase tests where available. [S1]"]]]],
+    ["Management", [["l", ["Isolate or cohort; respiratory MDRO cohorted apart from non-respiratory. [S2][S3]", "Contact precautions, hand hygiene, dedicated equipment. [S3]", "Notify the IPC team; flag the record; inform receiving and transferring units. [S2]", "Antibiotics with the AMS team, guided by susceptibility. [S2]"]]]],
+    ["Follow-up", [["l", ["CRO alert can be reviewed for clearance one year after the last positive result. [S1]"]]]],
+    ["Complications", [["l", ["Longer stays, failed treatment, death; ward outbreaks. [S1]"]]]],
+    ["Common mistakes", [["l", ["Treating colonisation with antibiotics.", "Missing patients returning from hospitals abroad. [S2]"]]]],
+    ["Advice to give", [["l", ["Patient and family: wash hands, do not share items, tell future doctors about the resistant germ."]]]],
+    ["Learning summary", [["l", ["Flag, isolate, hand hygiene, culture, treat with AMS advice. [S1][S2]"]]]]
+  ],
+  links: [["#topic/sepsis", "Sepsis"], ["#cond/mdro", "Condition page with all linked guidelines"]],
+  cards: [["MDRO definition?", "Resistant to at least 3 different antibiotics.", "S1"], ["Which returning patients are flagged for CRO in Bhutan?", "Hospitalised abroad >24 h in the past 12 months.", "S2"], ["Cohorting rule for respiratory MDRO?", "Cohort separately from non-respiratory cases.", "S2"]]
+});
+TOPICS.push({
+  id: "brucella", cond: "brucella", n: "Brucellosis", spec: ["id", "ph"], ages: "All ages", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an infectious disease physician.",
+  src: { S1: ["Bhutan National guidelines for the management of priority zoonotic diseases (2025), 3. Brucellosis", "#gl/zoon/21"], S2: ["Same guideline, 3.12 Management of brucellosis", "#gl/zoon/26"] },
+  sec: [
+    ["Definition", [["p", "A zoonosis from cattle, goats, sheep, pigs and dogs; human-to-human spread is very rare. Found in Bhutanese cattle and in sporadic human fever cases. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Suspected: exposure plus clinical features. Probable: plus RBT positive and SAT over 160. Confirmed: plus ELISA, culture or PCR. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["B. melitensis (most virulent), B. abortus, B. suis, B. canis. [S1]", "Routes: raw milk and soft cheese, undercooked meat, contact with placenta or aborted material, aerosols in slaughterhouses and labs. [S1]", "Incubation 2–4 weeks (5 days to months). [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Raw milk, fresh cheese, animal births or abortions?", "Exposure. [S1]"], ["Farmer, vet, butcher, lab worker?", "Occupation. [S1]"], ["Back pain, joint pain, testicular pain?", "Focal disease."]]]]],
+    ["Symptoms and examination", [["l", ["Fever, sweats with mouldy odour, headache, myalgia, arthralgia, weight loss, low mood. [S1]", "Relative bradycardia, hepatosplenomegaly, arthritis, lymph nodes. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Typhoid, TB, scrub typhus, malaria, leptospirosis (fever of unknown origin)."]]]],
+    ["Investigations", [["l", ["RBT, SAT, ELISA, blood culture, PCR. [S1]"]]]],
+    ["Management", [["t", [["Group", "Uncomplicated brucellosis [S2]"], ["Non-pregnant adult", "Doxycycline 100 mg BD 6 weeks + gentamicin 5 mg/kg OD 7–10 days; or doxycycline + rifampicin 600–900 mg OD, 6 weeks"], ["Pregnant <36 weeks", "Rifampicin + co-trimoxazole 960 mg BD (with folate), 6 weeks"], ["Pregnant ≥36 weeks", "Rifampicin alone until delivery, then adult regimen"], ["Child <8 years", "Co-trimoxazole (TMP 10 mg/kg/day) in 2 doses 4–6 weeks; consider adding rifampicin"], ["Child >8 years", "Doxycycline 2–4 mg/kg/day + rifampicin 15–20 mg/kg/day, at least 6 weeks"]]], ["l", ["Spondylitis: gentamicin 7–14 days plus doxycycline plus rifampicin for 12 weeks; neurobrucellosis adds ceftriaxone. [S2]"]]]],
+    ["Follow-up", [["l", ["Watch for relapse after treatment ends."]]]],
+    ["Complications", [["l", ["Spondylitis, sacroiliitis, orchitis, neurobrucellosis; endocarditis in 1–2% but up to 80% of deaths. [S1]"]]]],
+    ["Common mistakes", [["l", ["Single-drug or short courses (relapse). [S2]", "Doxycycline in children under 8 for long courses. [S2]"]]]],
+    ["Advice to give", [["l", ["Boil milk; avoid fresh soft cheese from unboiled milk; wear gloves when handling animal births."]]]],
+    ["Learning summary", [["l", ["Fever plus animal or raw-milk exposure: test; doxycycline-based combination for 6 weeks. [S1][S2]"]]]]
+  ],
+  links: [["#drug/DOXYCYCLINE", "Doxycycline"], ["#drug/RIFAMPICIN", "Rifampicin"], ["#drug/GENTAMICIN", "Gentamicin"], ["#cond/brucella", "Condition page with all linked guidelines"]],
+  cards: [["First-line adult brucellosis regimen?", "Doxycycline 100 mg BD 6 weeks + gentamicin 7–10 days (or + rifampicin 6 weeks).", "S2"], ["Most deadly complication?", "Endocarditis (1–2% of cases, up to 80% of deaths).", "S1"], ["Probable brucellosis criteria?", "Suspected case + RBT positive and SAT >160.", "S1"]]
+});
+
+TOPICS.push({
+  id: "hiv", cond: "hiv", n: "HIV infection and ART", spec: ["id", "medicine"], ages: "All ages", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an HIV physician.",
+  src: { S1: ["Bhutan National guidelines on treatment and management of HIV/AIDS 2024, Chapter I: HIV counselling and testing", "#gl/hiv/1"], S2: ["Same guideline, Chapter II: Antiretroviral therapy", "#gl/hiv/3"], S3: ["Same guideline, Chapter III: Monitoring ART", "#gl/hiv/4"], S4: ["Same guideline, Chapter X: Prophylaxis and pre-emptive therapy", "#gl/hiv/17"], S5: ["Same guideline, Chapter V: PMTCT", "#gl/hiv/12"] },
+  sec: [
+    ["Definition", [["p", "Chronic infection with HIV that destroys immune cells; untreated, it leads to AIDS. ART aims to suppress the viral load, restore immunity and prevent transmission. [S2]"]]],
+    ["Diagnostic criteria and classification", [["l", ["National testing algorithm: A1 rapid test or ELISA at the testing centre; reactive results repeated and confirmed with A2 (4th-generation ELISA) and A3 at confirmatory centres. [S1]", "WHO clinical stages 1–4: stage 1 asymptomatic or PGL; stage 4 AIDS-defining (PCP, extrapulmonary TB, cryptococcal meningitis, oesophageal candidiasis). [S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["Sexual, blood (shared needles) and mother-to-child transmission. [S2]"]]]],
+    ["History: questions to ask", [["qa", [["When and where diagnosed; route of infection?", "Baseline. [S2]"], ["Cough, fever, night sweats, weight loss?", "TB screen at every visit. [S3]"], ["Previous ART, STIs, pregnancy, contraception?", "Regimen choice. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Weight; skin (herpes, Kaposi sarcoma, pruritic papules); lymph nodes; mouth (thrush, hairy leukoplakia); chest; liver and spleen; neurology; fundi (CMV); genitals. [S2]"]]]],
+    ["Differential diagnosis", [["l", ["TB, malnutrition, other causes of weight loss and chronic diarrhoea."]]]],
+    ["Investigations", [["l", ["CD4 count and viral load; CBC, RFT, LFT, glucose, lipids; chest X-ray; sputum GeneXpert; hepatitis B and C; STI profile; pregnancy test; serum CrAg and urine LAM where indicated. [S2]"]]]],
+    ["Management", [["l", ["Start ART as soon as possible in everyone, at any CD4 count or stage. [S2]", "Adults and adolescents: TDF 300 mg + 3TC 300 mg + DTG 50 mg (TLD) one tablet daily; also in pregnancy. [S2][S5]", "Children over 4 weeks and 6 kg: ABC + 3TC + DTG paediatric FDC by weight. [S2]", "With TB: start ART within 2 weeks of TB treatment (TB meningitis: wait at least 4 weeks). Cryptococcal meningitis: defer ART 4–6 weeks. [S2]", "Prophylaxis: TB preventive therapy once active TB is excluded; co-trimoxazole (2 SS tablets daily) if CD4 under 200. [S4]"]]]],
+    ["Follow-up", [["l", ["Viral load at 3, 6 and 12 months, then yearly; target under 50 copies/mL. [S3]", "Over 1000 copies/mL twice 3 months apart with adherence support = virological failure; discuss second line with the TAG. [S3][S2]", "Ask at each visit: Appetite, Body weight, Complaints, Disease progression; screen for TB. [S3]"]]]],
+    ["Complications", [["l", ["Opportunistic infections, IRIS after starting ART, TDF kidney toxicity, DTG weight gain and sleep problems. [S2]"]]]],
+    ["Common mistakes", [["l", ["Delaying ART waiting for CD4. [S2]", "Starting ART immediately in cryptococcal meningitis. [S2]"]]]],
+    ["Advice to give", [["l", ["Take ART every day for life; an undetectable viral load means HIV is not passed on sexually (U=U). [S3]", "Use condoms for other STIs; bring partners and children for testing."]]]],
+    ["Learning summary", [["l", ["Test, start TLD the same week, viral load at 3, 6, 12 months, TB screen every visit. [S1][S2][S3]"]]]]
+  ],
+  links: [["#topic/prep", "HIV PrEP"], ["#topic/tb", "Tuberculosis"], ["#topic/sti", "STIs"], ["#drug/DOLUTEGRAVIR%20(DTG)%20%2B%20LAMIVUDINE%20(3TC)%20%2B%20TENOFOVIR%20(TDF)", "TLD tablet"], ["#cond/hiv", "Condition page with all linked guidelines"]],
+  cards: [["Preferred first-line ART in Bhutan?", "TDF 300 + 3TC 300 + DTG 50 mg (TLD) once daily.", "S2"], ["When to start ART with TB?", "Within 2 weeks of TB treatment (≥4 weeks for TB meningitis).", "S2"], ["Viral load schedule on ART?", "3, 6 and 12 months, then yearly.", "S3"], ["Virological failure?", "VL >1000 copies/mL on two tests 3 months apart after adherence support.", "S3"]]
+});
+TOPICS.push({
+  id: "prep", cond: "prep", n: "HIV pre-exposure prophylaxis (PrEP)", spec: ["id", "ph"], ages: "Over 15 years and 35 kg", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an HIV physician.",
+  src: { S1: ["Bhutan PrEP clinical guideline (Oct 2024), who could benefit", "#gl/prep/6"], S2: ["Same guideline, contraindications and suitability", "#gl/prep/17"], S3: ["Same guideline, follow-up and monitoring", "#gl/prep/21"], S4: ["Same guideline, prescription of PrEP drugs", "#gl/prep/23"] },
+  sec: [
+    ["Definition", [["p", "Antiretroviral drugs taken by HIV-negative people to prevent HIV. Bhutan uses oral TDF 300 mg + 3TC 300 mg, introduced October 2024. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Two regimens: daily PrEP (everyone) and event-driven PrEP (cisgender men and transgender women not on gender-affirming hormones). [S4]"]]]],
+    ["Causes and pathophysiology", [["l", ["Protective drug levels are reached after 7 days of daily dosing. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["In the last 6 months: condomless sex with more than one partner, HIV-positive partner, STI, sex under drugs or alcohol, PEP use?", "Any yes: discuss PrEP. [S1]"], ["Exposure in the last 72 hours?", "Give PEP for 28 days first. [S2]"], ["Flu-like illness in the last 14 days?", "Possible acute HIV: withhold. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Look for signs of acute HIV infection and STIs. [S2]"]]]],
+    ["Differential diagnosis", [["l", ["Acute HIV infection must be excluded before starting. [S2]"]]]],
+    ["Investigations", [["l", ["HIV rapid test plus 4th-generation ELISA at baseline; start if rapid test non-reactive without waiting for ELISA. [S2]", "Creatinine clearance, HBsAg, anti-HCV, syphilis and STI tests, pregnancy test (results not needed before starting). [S2]"]]]],
+    ["Management", [["l", ["Eligible: over 15 years and 35 kg, HIV-negative, no acute HIV signs, no contraindication, willing to test and follow up. [S2]", "Contraindications: HIV positive, high-risk exposure in last 72 hours, suspected acute HIV, allergy, creatinine clearance under 60 mL/min. [S2]", "Daily PrEP: 1 tablet daily for 7 days before exposure, daily during, and 7 days after the last exposure. [S4]", "Event-driven (2+1+1): 2 tablets 2–24 hours before sex, 1 daily during, then 1 a day for 2 days after. Not for PWID or hepatitis B. [S4]", "Missed dose: take when remembered, no more than 2 doses a day. [S4]"]]]],
+    ["Follow-up", [["l", ["HIV test at 1 month and every 3 months; renal function at 3 months then 6-monthly; STI tests 6-monthly; hepatitis B and C yearly. [S3]", "Stop if HIV positive, renal disease, or no longer at risk. [S3]"]]]],
+    ["Complications", [["l", ["Mild GI upset early; kidney effects (monitor); hepatitis B flare if stopped abruptly with HBV."]]]],
+    ["Common mistakes", [["l", ["Starting PrEP after a recent exposure instead of PEP. [S2]", "Event-driven PrEP for women or people with hepatitis B. [S4]"]]]],
+    ["Advice to give", [["l", ["PrEP does not protect against other STIs or pregnancy; keep using condoms. [S3]", "Come back every 3 months for HIV tests and refills. [S3]"]]]],
+    ["Learning summary", [["l", ["Test negative, exclude recent exposure, TDF/3TC daily, HIV test every 3 months. [S2][S3][S4]"]]]]
+  ],
+  links: [["#topic/hiv", "HIV and ART"], ["#topic/sti", "STIs"], ["#drug/LAMIVUDINE%20(3TC)%20%2B%20TENOFOVIR%20(TDF)", "TDF/3TC tablet"], ["#cond/prep", "Condition page with all linked guidelines"]],
+  cards: [["PrEP drug used in Bhutan?", "TDF 300 mg + 3TC 300 mg, one tablet.", "S1"], ["Renal cut-off for PrEP?", "Do not start if creatinine clearance <60 mL/min.", "S2"], ["Event-driven PrEP schedule?", "2 tablets 2–24 h before sex, then 1 daily, then 1 a day for 2 days after.", "S4"], ["HIV testing on PrEP?", "At 1 month, then every 3 months.", "S3"]]
+});
+TOPICS.push({
+  id: "drtb", cond: "drtb", n: "Drug-resistant TB (RR/MDR-TB)", spec: ["id", "resp"], ages: "14 years and older (BPaLM)", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a TB specialist.",
+  src: { S1: ["Bhutan Integrated national guidelines for management of TB 2024, Chapter 6: Drug-resistant TB", "#gl/tb/19"] },
+  sec: [
+    ["Definition", [["p", "TB resistant to rifampicin (RR-TB) or to both rifampicin and isoniazid (MDR-TB). [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Xpert MTB/RIF showing rifampicin resistance; if an error or invalid result, repeat and send culture and DST. [S1]", "A second Xpert on a fresh sample confirming resistance allows treatment without delay; send a sample for Xpert MTB/XDR (INH, fluoroquinolones, SLIDs). [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Primary: infection with a resistant strain. Acquired: inadequate or incomplete treatment. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Previous TB treatment and adherence?", "Acquired resistance. [S1]"], ["Contact with an MDR-TB patient?", "Primary resistance."], ["Heart disease, fainting, neuropathy, pregnancy?", "BPaLM exclusions. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["As for TB; check BMI (exclude BPaLM if under 17) and peripheral neuropathy. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Drug-susceptible TB with poor adherence; non-tuberculous mycobacteria."]]]],
+    ["Investigations", [["l", ["Culture and DST; CBC, glucose, LFT, albumin, RFT, uric acid, electrolytes, magnesium, calcium, TFT; HIV, HBsAg, anti-HCV; pregnancy test; chest X-ray; ECG; visual and psychosocial assessment. [S1]", "Monthly sputum culture during treatment; Xpert is not used for monitoring. [S1]"]]]],
+    ["Management", [["l", ["Start treatment at once at the national or a regional referral hospital. [S1]", "BPaLM for 6 months (26 weeks): bedaquiline 400 mg daily for 2 weeks then 200 mg three times a week (or 200 mg daily 8 weeks then 100 mg daily), pretomanid 200 mg daily, linezolid 600 mg daily (300 mg if toxicity), moxifloxacin 400 mg daily. [S1]", "Fluoroquinolone resistance: BPaL without moxifloxacin. [S1]", "Eligible: age 14 or more, not CNS, bone or miliary TB, not pregnant or breastfeeding, no prior exposure over 4 weeks to the drugs. [S1]", "With HIV: dolutegravir-based ART. [S1]"]]]],
+    ["Follow-up", [["l", ["No culture conversion by month 4 suggests failure. Follow up 12 months after completion for relapse. [S1]"]]]],
+    ["Complications", [["l", ["QT prolongation, linezolid neuropathy and anaemia, hepatitis. [S1]"]]]],
+    ["Common mistakes", [["l", ["Replacing moxifloxacin with levofloxacin in BPaLM. [S1]", "Using Xpert to monitor treatment. [S1]"]]]],
+    ["Advice to give", [["l", ["Take every dose under observation; report numbness, vision change, palpitations or fainting.", "Cough etiquette and ventilation at home; household contacts need screening."]]]],
+    ["Learning summary", [["l", ["Rifampicin resistance on Xpert: start 6-month BPaLM at a referral hospital; monthly cultures. [S1]"]]]]
+  ],
+  links: [["#topic/tb", "Tuberculosis"], ["#drug/BEDAQUILINE", "Bedaquiline"], ["#drug/LINEZOLID", "Linezolid"], ["#cond/drtb", "Condition page with all linked guidelines"]],
+  cards: [["What does BPaLM stand for?", "Bedaquiline, pretomanid, linezolid, moxifloxacin.", "S1"], ["Duration of BPaLM?", "6 months (26 weeks).", "S1"], ["Sign of failing MDR-TB treatment?", "No culture conversion at or after month 4.", "S1"]]
+});
+TOPICS.push({
+  id: "mpox", cond: "mpox", n: "Mpox", spec: ["id", "derm", "ph"], ages: "All ages", emerg: "Report immediately",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an infectious disease physician.",
+  src: { S1: ["Bhutan Guideline for management of Mpox, 3rd edition (Sep 2024), 8. Case definitions", "#gl/mpox/7"], S2: ["Same guideline, 10. Clinical features", "#gl/mpox/9"], S3: ["Same guideline, 12. Clinical management and IPC", "#gl/mpox/11"] },
+  sec: [
+    ["Definition", [["p", "A viral infection causing fever, swollen nodes and a deep-seated rash; usually self-limited over 2–4 weeks. [S2]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Suspected: any age, travel to an affected country in the last 21 days, unexplained rash and/or fever with headache, nodes, myalgia, back pain or weakness, not explained by common causes. [S1]", "Confirmed: suspected case with MPXV DNA by PCR. Report immediately through NEWARS to RCDC and DoPH. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Monkeypox virus; incubation usually about a week (1–21 days). [S2]", "Spread by close contact: sexual, household, skin, bedding, droplets. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Travel in the last 21 days?", "Case definition. [S1]"], ["Sexual contacts; household contacts?", "Contact tracing. [S1]"], ["HIV, pregnancy, young child?", "High risk of severe disease. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Prodrome 1–5 days: fever over 38 °C, headache, myalgia, back pain, weakness, lymphadenopathy. [S2]", "Rash: macule → papule → vesicle → pustule → scab, all at the same stage, deep, often umbilicated, denser on face, palms and soles; may be genital or oral. [S2]"]]]],
+    ["Differential diagnosis", [["l", ["Chickenpox, herpes zoster or simplex, measles, syphilis, chancroid, HFMD, molluscum. [S2]"]]]],
+    ["Investigations", [["l", ["Two lesion swabs from different sites (plus roof or crust) for PCR at RCDC; oropharyngeal swab if no lesions. [S2]", "CBC, RFT, LFT, albumin for severity. [S3]"]]]],
+    ["Management", [["l", ["Screen with a no-touch approach at 1 metre; mask the patient; PPE: gown, gloves, N95, eye protection. [S3]", "Isolate in a single room until all crusts fall off and new skin forms (2–4 weeks); repeat PCR not needed. [S3]", "Early outbreak: all confirmed cases in hospital isolation; later, mild cases may isolate at home. [S3]", "Wound care: keep lesions clean and dry, moist dressing, watch for infection. [S3]", "Pain: paracetamol, ibuprofen, tramadol or morphine; antihistamine for itch; salt-water mouth rinses; sitz baths and stool softeners for anorectal lesions. [S3]", "Tecovirimat is investigational; consider for severe or high-risk cases with expert advice. [S3]"]]]],
+    ["Follow-up", [["l", ["Daily review while isolated; contacts monitored for 21 days. [S3]"]]]],
+    ["Complications", [["l", ["Secondary infection, pneumonia, sepsis, encephalitis, corneal involvement and vision loss, dehydration. [S3]"]]]],
+    ["Common mistakes", [["l", ["Missing genital lesions labelled as an STI. [S2]", "Examining without full PPE. [S3]"]]]],
+    ["Advice to give", [["l", ["Stay isolated until all scabs have fallen off; cover lesions; do not share bedding, towels or utensils; no sex until healed. [S3]"]]]],
+    ["Learning summary", [["l", ["Fever, nodes, then one-stage deep rash: isolate, swab lesions for PCR, report. [S1][S2][S3]"]]]]
+  ],
+  links: [["#topic/chickenpox", "Chickenpox"], ["#topic/sti", "STIs"], ["#topic/hiv", "HIV"], ["#cond/mpox", "Condition page with all linked guidelines"]],
+  cards: [["Mpox vs chickenpox rash?", "Mpox lesions are deep, same stage, umbilicated, on palms and soles; chickenpox is mixed-stage and spares palms and soles.", "S2"], ["Preferred mpox specimen?", "Two lesion swabs from different sites for PCR.", "S2"], ["When does mpox isolation end?", "When all crusts have fallen off and new skin has formed.", "S3"]]
+});
+TOPICS.push({
+  id: "tobacco", cond: "tobacco", n: "Tobacco use and cessation", spec: ["ph", "medicine", "resp"], ages: "Adolescents and adults", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a cessation specialist.",
+  src: { S1: ["Bhutan Tobacco cessation guideline: protocol and benefits of quitting", "#gl/tobacco/5"], S2: ["Same guideline: motivational intervention framework (5 Rs)", "#gl/tobacco/9"], S3: ["Same guideline: pharmacotherapy (NRT dosing)", "#gl/tobacco/10"] },
+  sec: [
+    ["Definition", [["p", "Dependence on nicotine from smoking or smokeless tobacco (chewing, snuff, khaini, baba). [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Fagerström test for nicotine dependence in the annexure. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Smoking: cancers, COPD, heart disease, stroke, ulcers, osteoporosis, gangrene. Chewing: oral cancer, submucous fibrosis, leukoplakia. [S1]", "In pregnancy: miscarriage, stillbirth, preterm birth, low birth weight, cleft lip and palate. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Type, amount, years; time to first use after waking?", "Dependence."], ["Ready to quit? Desire and confidence, each 1–10?", "Motivational interviewing. [S2]"], ["Previous quit attempts?", "Plan."]]]]],
+    ["Symptoms and examination", [["l", ["Check mouth for lesions, BP, lung function where possible."]]]],
+    ["Differential diagnosis", [["l", ["Co-existing alcohol or other substance use."]]]],
+    ["Investigations", [["l", ["None routinely; screen for related disease."]]]],
+    ["Management", [["l", ["Every contact: ask, advise, assess readiness, assist, arrange follow-up (5 As). [S1]", "Not ready: 5 Rs — relevance, risks, rewards, roadblocks, repetition. [S2]", "NRT patch: over 10 cigarettes a day and over 45 kg, 21 mg/24 h; under 10 a day, under 45 kg or heart disease, 14 mg/24 h; for at least 8 weeks. [S3]", "Nicotine gum 2 mg (10–20 cigarettes a day), 8–12 pieces daily for at least 8 weeks: chew until it tingles, then park it in the cheek. [S3]", "Pregnancy and adolescents: NRT only (short-acting forms preferred in pregnancy). [S3]"]], ["note", "Nicotine replacement is not in the national formulary; check local availability."]]],
+    ["Follow-up", [["l", ["Withdrawal (irritability, poor sleep, craving) eases after 4–5 days. [S1]", "Plan for relapse; use the quitline and self-help materials. [S1]"]]]],
+    ["Complications", [["l", ["Weight gain, relapse; mood changes with some medicines. [S3]"]]]],
+    ["Common mistakes", [["l", ["Not asking about smokeless tobacco and doma.", "Arguing with a reluctant patient instead of using motivational interviewing. [S2]"]]]],
+    ["Advice to give", [["l", ["Within 20 minutes of quitting, BP and pulse fall; within a year heart attack risk halves; by 15 years it matches a non-smoker. [S1]", "Cravings: delay, deep breathe, drink water, do something else."]]]],
+    ["Learning summary", [["l", ["Ask everyone, advise clearly, use 5 Rs if unready, NRT 8+ weeks if ready. [S1][S2][S3]"]]]]
+  ],
+  links: [["#topic/copd", "COPD"], ["#topic/oralulcer", "Mouth lesions"], ["#topic/ncd", "NCD screening"], ["#cond/tobacco", "Condition page with all linked guidelines"]],
+  cards: [["Patch strength for a >10/day smoker over 45 kg?", "21 mg/24 h for at least 8 weeks.", "S3"], ["What are the 5 Rs?", "Relevance, risks, rewards, roadblocks, repetition.", "S2"], ["Cessation drug for pregnant smokers?", "NRT (short-acting oral forms preferred).", "S3"]]
+});
+TOPICS.push({
+  id: "infertility", cond: "infertility", n: "Infertility: evaluation and first treatment", spec: ["obg"], ages: "Couples", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a gynaecologist.",
+  src: { S1: ["Bhutan Infertility prevention and management guideline, Chapter 1: Overview", "#gl/infert/2"], S2: ["Same guideline, Chapter 2: Evaluation", "#gl/infert/3"], S3: ["Same guideline, Chapter 3: Treatment", "#gl/infert/4"], S4: ["Same guideline, Chapter 6: Prevention", "#gl/infert/6"] },
+  sec: [
+    ["Definition", [["p", "Failure to conceive after 12 months or more of regular unprotected intercourse; 6 months if the woman is over 35. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Primary: never conceived. Secondary: conceived before but cannot now. [S1]", "Evaluate at 12 months under 35; at 6 months for 35–40; at once over 40, with irregular or absent periods, or after chemotherapy or radiation. [S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["Female: ovulation problems (PCOS, thyroid, prolactin), tubal damage, uterine and cervical factors, endometriosis. Male factors. Unexplained. [S1][S3]", "STIs and postpartum sepsis are the leading preventable causes. [S4]"]]]],
+    ["History: questions to ask", [["qa", [["Duration of trying; frequency of intercourse?", "Definition. [S2]"], ["Menstrual pattern; previous pregnancies, abortions, deliveries?", "Ovulation, tubal damage. [S2]"], ["STI, pelvic infection, TB?", "Tubal factor. [S4]"], ["Alcohol, smoking, toxins, heat?", "Male and female factors. [S2]"]]], ["note", "See both partners together. [S2]"]]],
+    ["Symptoms and examination", [["l", ["BMI, hirsutism, galactorrhoea, thyroid; genital examination of both partners. [S2]"]]]],
+    ["Differential diagnosis", [["l", ["Sexual dysfunction, infrequent intercourse."]]]],
+    ["Investigations", [["l", ["Semen analysis first (2–5 days' abstinence; to lab within 30 minutes at body temperature); repeat in a month if abnormal. [S2]", "Both: HIV, hepatitis B and C, TPHA. [S2]", "Female: ultrasound; HSG on day 7–9; day 2 FSH and LH; TFT; prolactin; day 21 progesterone (over 3 ng/mL = ovulation). [S2][S3]"]]]],
+    ["Management", [["l", ["Basic evaluation by a GDMO, then refer to a gynaecologist. [S2]", "Anovulation: clomiphene 50–150 mg daily for 5 days from day 2–3, maximum 6 cycles; letrozole 2.5–5 mg if no conception after 3 cycles. [S3]", "PCOS: clomiphene plus metformin 500 mg twice daily; lose 5–10% of weight if obese. [S3]", "Hyperprolactinaemia: bromocriptine or cabergoline. Hypothyroidism: thyroxine. [S3]", "Tubal or uterine disease: surgery; IUI at JDWNRH, CRRH and ERRH. [S3]"]]]],
+    ["Follow-up", [["l", ["Semen analysis 3 months after treatment of a male factor. [S2]"]]]],
+    ["Complications", [["l", ["Ovarian hyperstimulation, multiple pregnancy; emotional distress."]]]],
+    ["Common mistakes", [["l", ["Investigating the woman before semen analysis. [S2]", "Waiting 12 months in a woman over 35. [S2]"]]]],
+    ["Advice to give", [["l", ["Treat STIs and bring partners for treatment; healthy weight; stop smoking and alcohol. [S4]", "Have regular intercourse every 2–3 days."]]]],
+    ["Learning summary", [["l", ["12 months (6 if over 35): semen analysis first, then ovulation and tubes; clomiphene for anovulation. [S1][S2][S3]"]]]]
+  ],
+  links: [["#topic/sti", "STIs"], ["#topic/puerperal", "Puerperal sepsis"], ["#drug/CLOMIPHENE", "Clomiphene"], ["#cond/infertility", "Condition page with all linked guidelines"]],
+  cards: [["When is a woman over 35 evaluated for infertility?", "After 6 months of trying.", "S2"], ["First investigation of an infertile couple?", "Semen analysis.", "S2"], ["Clomiphene regimen?", "50–150 mg daily for 5 days from day 2–3, max 6 cycles.", "S3"], ["Day for HSG?", "Day 7–9 of the cycle.", "S2"]]
+});
+TOPICS.push({
+  id: "cervca", cond: "cervca", n: "Cervical cancer and screening", spec: ["obg", "onc", "ph"], ages: "Women 30–65 (screening)", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a gynaecologist.",
+  src: { S1: ["Bhutan Guideline for screening gastric, cervical and breast cancers (rev. 2021), Cervical cancer screening", "#gl/cascr/14"], S2: ["Same guideline, HPV-DNA testing and procedure", "#gl/cascr/16"] },
+  sec: [
+    ["Definition", [["p", "The most common cancer in Bhutanese women, peaking at 40–49 years; caused by persistent high-risk HPV. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Screening: HPV-DNA test with reflex cytology (LBC), women 30–65. [S1]", "Pre-cancer (CIN) found at colposcopy and biopsy. [S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["HPV persists in 10–20% of infected women and leads to pre-cancer. [S2]", "Risks: early sex and childbirth, multiple partners, many births, smoking, immunosuppression, long OCP use. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Bleeding after sex, between periods or after menopause?", "Symptom of cancer. [S1]"], ["Last screening test?", "Due?"], ["HIV or immunosuppression?", "Start at 25, every 3 years. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Early: none. Later: abnormal bleeding, foul discharge, urinary symptoms, backache, leg swelling, fistula. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Cervicitis, polyps, ectropion, other causes of abnormal bleeding."]]]],
+    ["Investigations", [["l", ["HPV-DNA (self-sampling allowed). Negative: repeat in 5 years. [S2]", "Positive for HPV 16/18, or other high-risk type with abnormal cytology: colposcopy. [S2]", "Other high-risk type with normal cytology: repeat HPV and cytology in 12 months. [S2]"]], ["note", "Not during menstruation; 6 weeks after delivery or miscarriage. [S2]"]]],
+    ["Management", [["l", ["Pre-cancer: ablation (cryotherapy, thermocoagulation) or excision (LEEP, cone biopsy). [S2]", "Suspected cancer: refer to a gynaecologist."]]]],
+    ["Follow-up", [["l", ["After treatment, HPV testing per the national manual. [S2]"]]]],
+    ["Complications", [["l", ["Invasive cancer, renal failure from ureteric obstruction, fistula. [S1]"]]]],
+    ["Common mistakes", [["l", ["Not examining women with postcoital bleeding.", "HPV testing under 30 (except HIV-positive or previously treated). [S2]"]]]],
+    ["Advice to give", [["l", ["HPV vaccine for girls; screening from 30 every 5 years if HPV-negative. [S1][S2]", "Report any bleeding after sex or after menopause."]]]],
+    ["Learning summary", [["l", ["HPV test at 30–65; negative = 5 years; 16/18 positive = colposcopy. [S1][S2]"]]]]
+  ],
+  links: [["#topic/aub", "Abnormal uterine bleeding"], ["#topic/breastca", "Breast cancer"], ["#cond/cervca", "Condition page with all linked guidelines"]],
+  cards: [["Cervical screening method and age in Bhutan?", "HPV-DNA with reflex cytology, women 30–65.", "S1"], ["Interval after a negative HPV test?", "5 years.", "S2"], ["HIV-positive women: when to start HPV screening?", "From 25, every 3 years.", "S2"]]
+});
+TOPICS.push({
+  id: "breastca", cond: "breastca", n: "Breast cancer and early detection", spec: ["onc", "surg", "obg"], ages: "Women", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a surgeon.",
+  src: { S1: ["Bhutan Guideline for screening gastric, cervical and breast cancers (rev. 2021), Breast cancer: risk and early detection", "#gl/cascr/7"], S2: ["Same guideline, Breast cancer imaging and BIRADS", "#gl/cascr/8"] },
+  sec: [
+    ["Definition", [["p", "The third most common cancer in Bhutanese women; curable if detected early. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Confirmed by biopsy (FNAC, core needle or open). [S2]", "Mammography report by BIRADS 0–6: 3 probably benign (repeat in 12 months), 4–5 biopsy, 6 proven cancer. [S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["Family history (breast, uterine, ovarian), BRCA1/2, nulliparity, early menarche, late menopause, late first birth, over 10 years of OCP or HRT, chest radiation, alcohol, obesity, inactivity, smoking. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Lump, pain, nipple discharge or retraction, skin change?", "Warning signs. [S1]"], ["Family history?", "Risk. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Clinical breast examination of both breasts and axillae in any woman with symptoms. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Fibroadenoma, cyst, fibrocystic change, abscess."]]]],
+    ["Investigations", [["l", ["Mammography with ultrasound: women 40–65 with risk factors, over 40 with symptoms, voluntary over 45. [S2]", "Ultrasound for young or dense breasts; MRI if inconclusive; CT for staging. [S2]"]]]],
+    ["Management", [["l", ["Suspicious mass: refer to a surgeon for biopsy. [S2]", "Early cancer: wide local excision, sentinel node biopsy, mastectomy, radiotherapy, hormonal therapy. [S2]"]], ["note", "The guideline treats breast self-examination as awareness, not screening, and does not recommend clinical breast examination as screening in average-risk women. [S1]"]]],
+    ["Follow-up", [["l", ["As the surgeon advises, including follow-up mammograms. [S2]"]]]],
+    ["Complications", [["l", ["Metastasis to bone, lung, liver, brain."]]]],
+    ["Common mistakes", [["l", ["Reassuring without imaging a new lump in a woman over 40."]]]],
+    ["Advice to give", [["l", ["Know how your breasts look and feel; see a doctor for any lump or change. [S1]", "Breastfeeding and first pregnancy before 30 are protective. [S1]"]]]],
+    ["Learning summary", [["l", ["Lump or change = clinical exam, imaging, biopsy; BIRADS 4–5 = biopsy. [S1][S2]"]]]]
+  ],
+  links: [["#topic/cervca", "Cervical cancer"], ["#topic/cancer", "Cancer warning signs"], ["#cond/breastca", "Condition page with all linked guidelines"]],
+  cards: [["BIRADS categories needing biopsy?", "BIRADS 4 and 5.", "S2"], ["Mammography target group in Bhutan?", "Women 40–65 with risk factors, >40 with symptoms, voluntary >45.", "S2"], ["Role of breast self-examination?", "Awareness, not screening.", "S1"]]
+});
+TOPICS.push({
+  id: "ncd", cond: "ncd", n: "NCD screening and cardiovascular risk", spec: ["ph", "medicine", "cardio"], ages: "Adults 18 and over", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan Guideline for community-based screening of NCDs (2024)", "#gl/ncds/2"], S2: ["Same guideline, CVD risk assessment (WHO/ISH chart)", "#gl/ncds/11"] },
+  sec: [
+    ["Definition", [["p", "Community screening for raised BP, raised blood glucose, overweight and 10-year cardiovascular risk, with referral and lifestyle advice. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Test", "Who", "Action [S1][S2]"], ["BP", "All 18 and over", "Under 130/85 normal: yearly. 130–139/85–89: lifestyle, recheck 6 months (refer if risk factors). Hypertension: refer."], ["BMI", "All", "18.5–24.9 normal, 25–29.9 overweight, 30+ obese"], ["Fasting capillary glucose", "40 and over; younger if BMI over 24.9, family history or past GDM", "Under 100: repeat 3 years (1 year if risk). 100–109: test if high risk. Over 110: refer for FBS, PPBS or HbA1c"], ["CVD risk", "40 and over", "WHO non-lab chart or WHO PEN app"]]]]],
+    ["Causes and pathophysiology", [["l", ["Smoking, alcohol, unhealthy diet, inactivity drive NCDs. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Known hypertension or diabetes, or on medicines?", "Excluded from screening; manage instead. [S1]"], ["Smoking, doma, alcohol, activity, diet?", "Risk factors. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Measure BP correctly: no talking, arm supported at heart level, bare arm, right cuff, feet flat, legs uncrossed, empty bladder. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["White-coat hypertension; non-fasting sample."]]]],
+    ["Investigations", [["l", ["Confirm screen-positives at a health facility. [S1]"]]]],
+    ["Management", [["t", [["10-year CVD risk", "Action [S2]"], ["Over 30% (very high)", "Treat BP if persistently 130/80 or more; atorvastatin 40 mg; aspirin 75–150 mg; review every 3 months (started by a doctor at hospital)"], ["20–30% (high)", "Lifestyle; treat BP if 130/80 or more; atorvastatin 10–20 mg; review 3-monthly, refer if no fall after 6 months"], ["10–20% (moderate)", "Lifestyle; treat BP if 140/90 or more; review 3–6 months"], ["5–10% (mild)", "Review 3-monthly until targets met, then 6–9 months"], ["Under 5% (low)", "Lifestyle advice; review in 12 months"]]]]],
+    ["Follow-up", [["l", ["Follow up screen-positives within one week; register confirmed cases in the NCD dashboard or ePIS. [S1]"]]]],
+    ["Complications", [["l", ["Stroke, MI, kidney disease if undetected."]]]],
+    ["Common mistakes", [["l", ["Measuring BP with poor technique (talking adds up to 10 mmHg). [S1]", "Non-fasting glucose for screening. [S1]"]]]],
+    ["Advice to give", [["l", ["At least 150 minutes of moderate activity a week; salt under 5 g (one teaspoon) a day; 5 portions of fruit and vegetables; limit sugar and trans fats; no tobacco or doma; avoid alcohol. [S1]"]]]],
+    ["Learning summary", [["l", ["BP and BMI for all adults; glucose and CVD risk from 40; act on the risk band. [S1][S2]"]]]]
+  ],
+  links: [["#topic/htn", "Hypertension"], ["#topic/dm", "Type 2 diabetes"], ["#topic/obesity", "Overweight and obesity"], ["#topic/tobacco", "Tobacco cessation"], ["#cond/ncd", "Condition page with all linked guidelines"]],
+  cards: [["Who gets fasting glucose screening?", "Everyone 40+, and younger adults with BMI >24.9, family history or past GDM.", "S1"], ["CVD risk >30%: drugs?", "Atorvastatin 40 mg and aspirin 75–150 mg, BP treated if ≥130/80.", "S2"], ["Fasting capillary glucose needing referral?", "Over 110 mg/dL.", "S1"]]
+});
+TOPICS.push({
+  id: "obesity", cond: "obesity", n: "Overweight and obesity", spec: ["medicine", "endo", "ph"], ages: "Adults", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan Guideline for community-based screening of NCDs (2024): BMI and health education", "#gl/ncds/2"], S2: ["Bhutan PEN protocol for BHU, Annexure II: lifestyle modification", "#gl/penb/24"] },
+  sec: [
+    ["Definition", [["p", "BMI 25–29.9 is overweight and 30 or more is obese. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["BMI = weight (kg) ÷ height (m)². Under 18.5 underweight; 18.5–24.9 normal. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Unhealthy diet (sugar, fried and processed food, trans fats) and inactivity. [S1][S2]"]]]],
+    ["History: questions to ask", [["qa", [["Diet, sugary drinks, activity, alcohol?", "Targets for change. [S1]"], ["Snoring, joint pain, irregular periods?", "Complications."], ["Medicines causing weight gain (steroids, some antipsychotics)?", "Review."]]]]],
+    ["Symptoms and examination", [["l", ["Weight, height, BMI, BP. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Hypothyroidism, Cushing's syndrome, drug-induced weight gain."]]]],
+    ["Investigations", [["l", ["Fasting glucose (BMI over 24.9 qualifies for screening at any age); CVD risk from 40. [S1]"]]]],
+    ["Management", [["l", ["Reduced-energy diet plus more physical activity. [S1]", "150 minutes of moderate activity a week, or 30 minutes of brisk walking a day. [S1]", "Less salt, sugar and fat; at least 5 portions of fruit and vegetables daily. [S1][S2]", "Treat associated BP, diabetes and lipids per CVD risk."]]]],
+    ["Follow-up", [["l", ["Weigh at each visit; set small goals (5–10% loss improves health)."]]]],
+    ["Complications", [["l", ["Diabetes, hypertension, heart disease, stroke, sleep apnoea, osteoarthritis, infertility."]]]],
+    ["Common mistakes", [["l", ["Not measuring BMI at routine visits.", "Advice without specific goals."]]]],
+    ["Advice to give", [["l", ["Walk briskly 30 minutes a day; swap sugary drinks for water; smaller rice portions; avoid fried snacks. [S1][S2]"]]]],
+    ["Learning summary", [["l", ["BMI 25+ overweight, 30+ obese; diet plus activity; screen glucose and BP. [S1]"]]]]
+  ],
+  links: [["#topic/ncd", "NCD screening"], ["#topic/dm", "Type 2 diabetes"], ["#topic/htn", "Hypertension"], ["#cond/obesity", "Condition page with all linked guidelines"]],
+  cards: [["BMI for obesity?", "30 kg/m² or more.", "S1"], ["Weekly activity target?", "150 minutes of moderate activity.", "S1"]]
+});
 const TOPIC_BY = Object.fromEntries(TOPICS.map(t => [t.id, t]));
 const TOPIC_BY_COND = Object.fromEntries(TOPICS.map(t => [t.cond, t]));
 function topicSrcChips(t, s) {
