@@ -17991,10 +17991,11 @@ function commStart() {
   if (!commHttp()) { COMM.state = "nohttp"; return Promise.resolve(); }
   const cfg = commCfg(); if (!cfg) { COMM.state = "nocfg"; return Promise.resolve(); }
   COMM.state = "loading";
-  commStarting = commLoadSdk().then(() => {
+  commStarting = commLoadSdk().then(async () => {
     const fb = window.firebase; COMM.fb = fb;
     const app = fb.apps && fb.apps.length ? fb.app() : fb.initializeApp(cfg);
     COMM.auth = fb.auth(app); COMM.db = fb.firestore(app);
+    await COMM.auth.setPersistence(fb.auth.Auth.Persistence.LOCAL);
     return new Promise(res => {
       let first = true;
       COMM.auth.onAuthStateChanged(async u => {
