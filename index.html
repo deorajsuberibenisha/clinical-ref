@@ -319,7 +319,16 @@ body[data-view="home"] .topbar{display:none}
 :root{--navy:#153b63;--teal2:#087f8c;--blue2:#2879b8;--emred:#c93445;--okgreen:#168568;--purple2:#7356a8}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--navy:#1d4a78;--teal2:#3fb3bf;--blue2:#6aa9dd;--emred:#ef7b88;--okgreen:#5cc4a3;--purple2:#b39ae0}}
 :root[data-theme="dark"]{--navy:#1d4a78;--teal2:#3fb3bf;--blue2:#6aa9dd;--emred:#ef7b88;--okgreen:#5cc4a3;--purple2:#b39ae0}
-.h2-head{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(135deg,#123456,#153b63 60%,#1c4f80);color:#fff;padding:20px 22px 20px}
+:root{--brand:#153b63;--brand2:var(--teal2);--brandlink:var(--blue2)}
+.h2-head{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 82%,#000),var(--brand) 60%,color-mix(in srgb,var(--brand) 82%,#fff));color:#fff;padding:20px 22px 20px}
+body[data-banner="plain"] .h2-head{background:var(--brand)}body[data-banner="plain"] .h2-art{display:none}
+body[data-banner="night"] .h2-head{background:radial-gradient(1.5px 1.5px at 12% 22%,#fff8,transparent),radial-gradient(1px 1px at 28% 58%,#fff7,transparent),radial-gradient(1.5px 1.5px at 46% 18%,#fff9,transparent),radial-gradient(1px 1px at 63% 40%,#fff6,transparent),radial-gradient(1.5px 1.5px at 82% 16%,#fff8,transparent),radial-gradient(1px 1px at 92% 52%,#fff6,transparent),linear-gradient(160deg,#03081c,#0b1d45 55%,#24386b)}
+body[data-banner="prayer"] .h2-head{background:linear-gradient(160deg,#3b1d4f,#8e2f5a 50%,#e0894a)}
+body[data-banner="prayer"] .h2-head::before{content:"";position:absolute;left:0;right:0;top:0;height:7px;background:repeating-linear-gradient(90deg,#2a6ad8 0 26px,#f4f4f4 26px 52px,#d93a3a 52px 78px,#2e9b4f 78px 104px,#f2c230 104px 130px);opacity:.9}
+body[data-banner="photo"] .h2-head{background:linear-gradient(90deg,rgba(8,18,30,.78),rgba(8,18,30,.35)),var(--bphoto,none) center/cover,var(--brand)}body[data-banner="photo"] .h2-art{display:none}
+body.dense .h2-head{padding:14px 16px}body.dense .h2-mods{gap:8px;margin-top:10px}body.dense .h2-mod{padding:9px 11px;gap:4px}body.dense .h2-specs{gap:6px}body.dense .h2-spec{min-height:74px;padding:8px 4px 6px;gap:4px}body.dense .h2-sec{margin:14px 0 8px}body.dense .h2-q{padding:8px 4px}
+body.squared .h2-head,body.squared .h2-mod,body.squared .h2-spec,body.squared .h2-quick,body.squared .h2-search,body.squared .em,body.squared .pin{border-radius:5px}body.squared .h2-mi,body.squared .h2-si{border-radius:6px}
+body.hs-no-mods .hs-mods,body.hs-no-specs .hs-specs,body.hs-no-quick .hs-quick{display:none!important}
 .h2-art{position:absolute;right:0;bottom:0;width:min(640px,100%);height:100%;pointer-events:none}
 .h2-top{position:relative;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .h2-brand h1{margin:0;font:600 28px/1.1 "Source Serif 4",Georgia,serif;color:#fff}
@@ -338,12 +347,12 @@ body[data-view="home"] .topbar{display:none}
 :root[data-theme="dark"] .c-navy,.c-navy{--mc:var(--blue2)}
 .h2-sec{display:flex;justify-content:space-between;align-items:baseline;margin:20px 0 10px}
 .h2-sec h2{display:flex;align-items:center;gap:8px;margin:0;font-size:19px}
-.h2-sec a{font-weight:600;text-decoration:none;color:var(--blue2)}
-.h2-hi{width:20px;height:20px;color:var(--teal2)}
+.h2-sec a{font-weight:600;text-decoration:none;color:var(--brandlink)}
+.h2-hi{width:20px;height:20px;color:var(--brand2)}
 .h2-specs{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
 .h2-spec{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:7px;padding:12px 6px 10px;text-align:center;border-radius:12px;background:var(--panel);border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:13px;font-weight:600;line-height:1.25;min-height:96px}
-.h2-spec:hover{border-color:var(--teal2)}
-.h2-si{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:color-mix(in srgb,var(--teal2) 10%,transparent);color:var(--teal2)}
+.h2-spec:hover{border-color:var(--brand2)}
+.h2-si{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:color-mix(in srgb,var(--brand2) 10%,transparent);color:var(--brand2)}
 .h2-si svg{width:23px;height:23px}
 .h2-all{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
 .h2-quick{display:grid;grid-template-columns:200px repeat(6,1fr);gap:0;margin-top:16px;border-radius:14px;background:var(--panel);border:1px solid var(--line);overflow:hidden}
@@ -353,9 +362,19 @@ body[data-view="home"] .topbar{display:none}
 .h2-q b{font-size:13px;line-height:1.2}.h2-q small{font-size:11px;color:var(--muted)}
 .h2-qi{color:var(--navy)}:root[data-theme="dark"] .h2-qi{color:var(--blue2)}
 .h2-qi svg{width:24px;height:24px}
-.h2-vi{display:inline-grid;place-items:center;width:34px;height:34px;margin-right:8px;vertical-align:-6px;border-radius:50%;background:color-mix(in srgb,var(--teal2) 12%,transparent);color:var(--teal2)}.h2-vi svg{width:20px;height:20px}
+.h2-vi{display:inline-grid;place-items:center;width:34px;height:34px;margin-right:8px;vertical-align:-6px;border-radius:50%;background:color-mix(in srgb,var(--brand2) 12%,transparent);color:var(--brand2)}
+.emtag{color:var(--red);font-weight:600}
+/* icon tiles: one hue per specialty, white glyph on a soft gradient */
+.ic-tile{border-radius:13px!important;background:linear-gradient(145deg,hsl(var(--h) 72% 58%),hsl(var(--h) 68% 42%))!important;color:#fff!important;box-shadow:0 6px 14px -6px hsl(var(--h) 70% 35% / .6),inset 0 1px 0 rgba(255,255,255,.25)}
+.ic-tile svg{stroke-width:1.9;filter:drop-shadow(0 1px 1px rgba(0,0,0,.18))}
+.h2-si.ic-tile{width:46px;height:46px}.h2-si.ic-tile svg{width:25px;height:25px}
+.h2-vi.ic-tile{width:40px;height:40px;border-radius:11px!important}.h2-vi.ic-tile svg{width:23px;height:23px}
+.h2-spec{transition:transform .12s,box-shadow .12s,border-color .12s}.h2-spec:hover{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(16,40,70,.35)}
+.h2-mi{background:linear-gradient(145deg,color-mix(in srgb,var(--mc) 88%,#fff),color-mix(in srgb,var(--mc) 82%,#000))!important;color:#fff!important;box-shadow:0 6px 14px -6px color-mix(in srgb,var(--mc) 70%,transparent),inset 0 1px 0 rgba(255,255,255,.25);border-radius:12px!important}
+.h2-mi svg{filter:drop-shadow(0 1px 1px rgba(0,0,0,.18))}
+body.squared .ic-tile,body.squared .h2-mi{border-radius:6px!important}.h2-vi svg{width:20px;height:20px}
 @media (max-width:1100px){.h2-mods{grid-template-columns:repeat(3,1fr)}.h2-specs{grid-template-columns:repeat(6,1fr)}.h2-quick{grid-template-columns:repeat(3,1fr)}.h2-qh{grid-column:1/-1}.h2-q{border-top:1px solid var(--line)}}
-@media (max-width:640px){.h2-head{padding:16px 14px;border-radius:14px}.h2-brand h1{font-size:22px}.h2-brand p{font-size:13px}.h2-mods{grid-template-columns:repeat(2,1fr);gap:10px}.h2-mod{padding:12px}.h2-mod b{font-size:15px}.h2-specs{grid-template-columns:repeat(3,1fr);gap:8px}.h2-spec{font-size:12px;min-height:88px}.h2-me .mctx{display:none}}
+@media (max-width:640px){.h2-head{padding:16px 14px;border-radius:14px}.h2-brand h1{font-size:22px}.h2-brand p{font-size:13px}.h2-mods{grid-template-columns:repeat(2,1fr);gap:10px}.h2-mod{padding:12px}.h2-mod b{font-size:15px}.h2-specs{grid-template-columns:repeat(3,1fr);gap:8px}.h2-spec{font-size:12px;min-height:88px}.h2-top{flex-direction:column-reverse;gap:8px}.h2-me .mctx small,.h2-me .mcgo{display:none}.h2-me .mctx b{font-size:14px}.h2-me .mecard{padding:4px 8px 4px 4px}}
 .homehero{position:relative;overflow:hidden;border-radius:22px;margin:2px 0 0;min-height:380px;color:#fff;box-shadow:0 10px 30px rgba(6,42,45,.25);background:#0a3440}
 .hero-art{position:absolute;inset:0;width:100%;height:100%}
 .hh-in{position:relative;padding:30px 30px 22px;max-width:640px}
@@ -4660,31 +4679,31 @@ const IC2 = {
   emerg: SI('<path d="M3 12h4l2-5 4 10 2-5h6"/>'),
   imaging: SI('<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 6v12M9 8.5c-2 0-3 1.5-3 4.5s1 4 3 4M15 8.5c2 0 3 1.5 3 4.5s-1 4-3 4M9 11h-1M9 14h-2M15 11h1M15 14h2"/>'),
   learn: SI('<path d="M2.5 9 12 4.5 21.5 9 12 13.5 2.5 9Z"/><path d="M6.5 11v5c1.6 1.4 3.4 2 5.5 2s3.9-.6 5.5-2v-5"/><path d="M21.5 9v5.5"/>'),
-  med: SI('<path d="M9 3v6H3v6h6v6h6v-6h6V9h-6V3H9Z"/>'),
-  child: SI('<circle cx="12" cy="7" r="3.5"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M10.6 6.2c.5.5 2.3.5 2.8 0"/>'),
-  baby: SI('<circle cx="12" cy="9" r="5"/><path d="M10 9h.01M14 9h.01M10.5 11.5c.9.6 2.1.6 3 0"/><path d="M7 18.5c1.3 1.6 3 2.5 5 2.5s3.7-.9 5-2.5"/>'),
+  med: SI('<path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/>'),
+  child: SI('<path d="M9 12h.01"/><path d="M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/>'),
+  baby: SI('<path d="M8 2h8"/><path d="M9 2v2.8a4 4 0 0 1-.7 2.2l-.6 1A4 4 0 0 0 7 10.2V20a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-9.8a4 4 0 0 0-.7-2.2l-.6-1a4 4 0 0 1-.7-2.2V2"/><path d="M7 15a6.5 6.5 0 0 1 5 0 6.5 6.5 0 0 0 5 0"/>'),
   obg: SI('<circle cx="12" cy="5" r="2.5"/><path d="M12 7.5v4M9 21v-6.5a4.5 4.5 0 0 1 4.6-4.5c2.2.1 3.9 2 3.9 4.2 0 2.4-2 4.3-4.4 4.3H12v2.5"/>'),
-  surg: SI('<path d="M4 20 15.5 8.5"/><path d="M14 7l3-3 3 3-3 3"/><path d="M4 20h4"/>'),
-  ortho: SI('<path d="M8 3.5a2 2 0 0 0-3.5 1.6A2 2 0 0 0 4 8.5c1 .8 2.3.6 3-.2l8.8 8.8c-.8.7-1 2-.2 3a2 2 0 0 0 3.4-.5 2 2 0 0 0 1.6-3.5c-.8-.8-2-.8-2.8-.1L9 7.2c.7-.8.9-2 .1-2.8-.3-.4-.7-.8-1.1-.9Z"/>'),
-  eye: SI('<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'),
-  ent: SI('<path d="M8 15c0-2 1-3 2.5-4.5S13 8 13 6.5A3.5 3.5 0 0 0 6 6.5"/><path d="M13 6.5c0 3-4 5-4 9 0 2 1.3 3.5 3 3.5s2.5-1 3-2.5"/><path d="M16.5 4a6 6 0 0 1 2 4.5M19.5 2a9.5 9.5 0 0 1 2.5 6.5"/>'),
+  surg: SI('<circle cx="6" cy="6" r="3"/><path d="M8.1 8.1 12 12"/><path d="M20 4 8.1 15.9"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/>'),
+  ortho: SI('<path d="M17 10c.7-.7 1.7 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .8.7 1.8 0 2.5l-7 7c-.7.7-1.7 0-2.5 0a2.5 2.5 0 0 0 0 5c.3 0 .5.2.5.5a2.5 2.5 0 1 0 5 0c0-.8-.7-1.8 0-2.5Z"/>'),
+  eye: SI('<path d="M2.1 12.3a1 1 0 0 1 0-.7 10.8 10.8 0 0 1 19.8 0 1 1 0 0 1 0 .7 10.8 10.8 0 0 1-19.8 0"/><circle cx="12" cy="12" r="3"/>'),
+  ent: SI('<path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0"/><path d="M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4"/>'),
   tooth: SI('<path d="M7 3c-2.5 0-4 2-4 4.5 0 3 1.5 4.5 2 7 .4 2.3.8 6.5 2.5 6.5S9.5 16 12 16s2.8 5 4.5 5 2.1-4.2 2.5-6.5c.5-2.5 2-4 2-7C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3Z"/>'),
-  heart: SI('<path d="M12 20s-7.5-4.6-9.3-9.2C1.4 7.5 3.4 4 6.9 4c2 0 3.6 1.1 5.1 3 1.5-1.9 3.1-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8C19.5 15.4 12 20 12 20Z"/><path d="M3.5 12h4l1.5-3 3 6 1.5-3h7"/>'),
+  heart: SI('<path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.1 3 5.5l7 7Z"/><path d="M3.2 12h6.3l.5-1 2 4.5 2-7 1.5 3.5h5.3"/>'),
   lung: SI('<path d="M12 3v8M12 11c0 2-2 2.5-3 2"/><path d="M12 11c0 2 2 2.5 3 2"/><path d="M8.5 7C5 7 3 12 3 16.5 3 19 4.5 20 6 20c2.5 0 3.5-1.7 3.5-4V9"/><path d="M15.5 7C19 7 21 12 21 16.5c0 2.5-1.5 3.5-3 3.5-2.5 0-3.5-1.7-3.5-4V9"/>'),
   kidney: SI('<path d="M9.5 4C6 4 4 7 4 11.5S6 20 9 20c2 0 3-1.5 3-3.5 0-1.5-1.5-2.5-1.5-4.5S12 9.5 12 8c0-2.2-1-4-2.5-4Z"/><path d="M14.5 4C18 4 20 7 20 11.5S18 20 15 20"/><path d="M12 12h3v9"/>'),
-  liver: SI('<path d="M3 9c0-2.5 2-4 5-4h9c2.8 0 4 1.8 4 3.8 0 4.5-5.5 10.2-10 10.2-2 0-2.5-1.5-3.5-3S3 13 3 9Z"/><path d="M11 5v6c0 2 1.5 3 3 3"/>'),
+  liver: SI('<path d="M10 2v3.5A2.5 2.5 0 0 0 12.5 8h.5a7 7 0 0 1 7 7 6 6 0 0 1-6 6H9.5A5.5 5.5 0 0 1 4 15.5V15a2 2 0 0 1 4 0v.5a2 2 0 0 0 2 2h3a2.5 2.5 0 0 0 0-5h-.5"/>'),
   brain: SI('<path d="M9.5 4A3 3 0 0 0 6.5 7a3 3 0 0 0-2 5 3 3 0 0 0 1.5 5 3 3 0 0 0 3.5 3c1.4 0 2.5-1 2.5-2.5V6.5A2.5 2.5 0 0 0 9.5 4Z"/><path d="M14.5 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-1.5 5 3 3 0 0 1-3.5 3c-1.4 0-2.5-1-2.5-2.5"/><path d="M8.5 10.5h1.5M14 10.5h1.5M8 15h2M14 15h2"/>'),
   head: SI('<path d="M5 19v-3.5C3.7 14.3 3 12.6 3 10.8 3 6.5 6.6 3 11 3c4.1 0 7.5 3 7.5 7 0 .8.9 1.6 1.5 2.5l-1.5.8V16a2 2 0 0 1-2 2H15v3"/><path d="M9 8.5c1-1.3 3-1.3 4 0M8 11.5h5"/>'),
   uro: SI('<path d="M8 3c-2.8 0-4.5 2.5-4.5 6S5.2 15 8 15c1.5 0 2-1 2-2.5 0-1-1-1.8-1-3.5S10 6.5 10 5c0-1.2-.8-2-2-2Z"/><path d="M16 3c2.8 0 4.5 2.5 4.5 6S18.8 15 16 15"/><path d="M10 12l2 3v3M16 15l-4 3"/><path d="M10.5 18h3v3h-3z"/>'),
-  skin: SI('<path d="M3 17h18M3 13.5h18M7 13.5V10M12 13.5V8M17 13.5V10.5"/><path d="M5 21h14"/><circle cx="12" cy="6" r="2"/>'),
-  ribbon: SI('<path d="M12 9.5C10.5 7 9.5 5.5 9.5 4.5a2.5 2.5 0 0 1 5 0c0 1-1 2.5-2.5 5Z"/><path d="M12 9.5 6.5 21M12 9.5 17.5 21M9.3 15l5.4-.1"/>'),
+  skin: SI('<rect x="2" y="7" width="20" height="10" rx="5" transform="rotate(-35 12 12)"/><path d="M9.6 10.2h.01M12.6 9.9h.01M11.4 13.9h.01M14.4 13.6h.01"/><path d="M8.2 6.3l3 4.3M15.8 17.7l-3-4.3" opacity=".55"/>'),
+  ribbon: SI('<path d="M12 11.2C11 10 10 9 10 8a2 2 0 0 1 4 0c0 1-1 2-2 3.2"/><path d="m12 18 2.6-3.5"/><path d="M6.2 9a7 7 0 0 1 11.5 0"/><path d="M9.4 14.5 12 11.2"/><path d="M9.4 14.5C7.7 12.2 6 10.2 6 7a6 5 0 0 1 12 0c0 3.2-1.8 5.2-3.4 7.5l3.5 4.5a1 1 0 0 1-.2 1.4l-1.9 1.4a1 1 0 0 1-1.4-.2L12 18l-2.7 3.6a1 1 0 0 1-1.4.2L6 20.5a1 1 0 0 1-.2-1.4z"/>'),
   gland: SI('<path d="M12 6v12"/><path d="M12 9c-1-3-4-4.5-6-3S3.5 11 5 15s5 4 7 1.5"/><path d="M12 9c1-3 4-4.5 6-3s2.5 5 1 9-5 4-7 1.5"/>'),
-  joint: SI('<path d="M9 2.5v5.5a3 3 0 0 0 6 0V2.5"/><path d="M9 21.5V16a3 3 0 0 1 6 0v5.5"/><path d="M7.5 12h9"/>'),
-  germ: SI('<circle cx="12" cy="12" r="5"/><path d="M12 2.5v4.5M12 17v4.5M2.5 12H7M17 12h4.5M5.3 5.3l3.2 3.2M15.5 15.5l3.2 3.2M5.3 18.7l3.2-3.2M15.5 8.5l3.2-3.2"/><circle cx="10.5" cy="11" r=".6"/><circle cx="13.5" cy="13.5" r=".6"/>'),
-  rehab: SI('<circle cx="11" cy="4.5" r="2"/><path d="M11 7v6l4 3v5"/><path d="M11 13l-3 3v5M8 9.5l3-.5 3 2.5"/><path d="M17.5 12v9M20.5 12v9M17.5 14h3"/>'),
-  people: SI('<circle cx="8.5" cy="7.5" r="3"/><path d="M2.5 19.5a6 6 0 0 1 12 0"/><circle cx="17" cy="8.5" r="2.5"/><path d="M15.5 13.5a5 5 0 0 1 6 5"/>'),
-  palliative: SI('<path d="M12 11s-4-2.6-4-5.2C8 4.2 9.2 3 10.6 3c.7 0 1.1.3 1.4.8.3-.5.7-.8 1.4-.8C14.8 3 16 4.2 16 5.8 16 8.4 12 11 12 11Z"/><path d="M3 15.5h3.5l3.5 1.5h3a1.5 1.5 0 0 1 0 3H10"/><path d="M13 20h3.5l4.5-3a1.5 1.5 0 0 0-1.8-2.4L16 16.5"/>'),
-  mind: SI('<path d="M12 21v-3.5M8 17.5H6a2 2 0 0 1-2-2V12l-1.5-.8C3 8 5.5 3 11 3c4.4 0 7.5 3.2 7.5 7.2 0 3.3-2 5.1-3.5 6V21"/><path d="M9.5 10a2.5 2.5 0 0 1 5 0c0 1.5-2.5 1.8-2.5 3.5"/>'),
+  joint: SI('<path d="M18 11V6a2 2 0 0 0-4 0v1"/><path d="M14 10V4a2 2 0 0 0-4 0v2"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.4l-3.6-3.6a2 2 0 0 1 2.8-2.8L7 15"/>'),
+  germ: SI('<circle cx="12" cy="12" r="4.5"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.2 2.2M16.2 16.2l2.2 2.2M5.6 18.4l2.2-2.2M16.2 7.8l2.2-2.2"/><circle cx="10.5" cy="11" r=".8" fill="currentColor"/><circle cx="13.5" cy="13.5" r=".8" fill="currentColor"/>'),
+  rehab: SI('<circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.4 3.5"/><path d="M4.2 14.5a5 5 0 0 0 6.9 6"/><path d="M13.8 17.5a5 5 0 0 0-6.9-6"/>'),
+  people: SI('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>'),
+  palliative: SI('<path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.8-2.9l-4.2 3.9"/><path d="m2 15 6 6"/><path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.7 2.7 0 0 0 16 4a2.8 2.8 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z"/>'),
+  mind: SI('<path d="M12 5a3 3 0 1 0-5.997.1 4 4 0 0 0-2.526 5.8 4 4 0 0 0 .556 6.6A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.1 4 4 0 0 1 2.526 5.8 4 4 0 0 1-.556 6.6A4 4 0 1 1 12 18Z"/><path d="M12 9.5c-1.2-1.4-3.5-.6-3.5 1.2 0 1.8 3.5 3.8 3.5 3.8s3.5-2 3.5-3.8c0-1.8-2.3-2.6-3.5-1.2Z"/>'),
   ambul: SI('<path d="M3 16V7.5A1.5 1.5 0 0 1 4.5 6H13v10"/><path d="M13 9h4l3 4v3h-2"/><circle cx="7" cy="17" r="2"/><circle cx="16" cy="17" r="2"/><path d="M9 17h5M8 8.5v4M6 10.5h4"/>'),
   growth: SI('<path d="M3 20h18"/><path d="M5 20V12M10 20V8M15 20v-6M20 20V5"/>'),
   drop: SI('<path d="M12 2.7s6 6.4 6 11.3a6 6 0 0 1-12 0c0-4.9 6-11.3 6-11.3Z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/>'),
@@ -4732,39 +4751,43 @@ const SPECS = [
   ["pall", "Palliative Care", "palliative", [18], [], /palliat|end of life|pain relief/i]
 ];
 const SPEC_BY = Object.fromEntries(SPECS.map(s => [s[0], s]));
+/* one hue per specialty for the icon tiles */
+const SPEC_HUE = {medicine: 205, paeds: 28, neo: 330, obg: 340, surg: 190, ortho: 35, eye: 175, ent: 260, dental: 195, cardio: 355, resp: 200, neph: 15, gi: 140, neuro: 275, nsurg: 250, uro: 45, derm: 20, onc: 315, endo: 85, rheum: 230, id: 160, psych: 290, emerg: 0, rehab: 120, ph: 215, pall: 300};
+const specIcon = (id, ic, cls = "h2-si") => `<span class="${cls} ic-tile" style="--h:${SPEC_HUE[id] ?? 200}">${IC2[ic]}</span>`;
 const QUICK2 = [["#growth", "growth", "Growth & BP", "WHO · AAP centiles"], ["#fluids", "drop", "Fluids & Infusions", "Electrolytes · rates"], ["#vent", "vent", "Ventilation", "Modes · settings"], ["#imaging", "lab", "Blood gas & labs", "ABG · electrolytes"], ["#calc", "score", "Clinical Scores", "GCS · PEWS · more"], ["#equip", "equip", "Equipment", "Sizes · checklists"]];
 const DZONG_SVG = `<svg class="h2-art" viewBox="0 0 600 160" preserveAspectRatio="xMaxYMax slice" aria-hidden="true"><path d="M0 160 L90 70 L140 105 L230 30 L300 90 L360 55 L460 120 L520 80 L600 120 L600 160 Z" fill="rgba(255,255,255,.07)"/><path d="M0 160 L120 105 L200 130 L290 85 L380 125 L470 95 L600 140 L600 160 Z" fill="rgba(255,255,255,.08)"/><path d="M215 34 l15 -4 15 4 M222 32 v6 M238 32 v6" stroke="rgba(255,255,255,.35)" stroke-width="2" fill="none"/><g transform="translate(410 76)" fill="rgba(255,255,255,.16)"><path d="M0 52 V24 h80 v28 Z"/><path d="M-6 26 L40 8 L86 26 Z"/><path d="M20 24 V12 h40 v12 Z"/><path d="M14 13 L40 0 L66 13 Z"/><rect x="10" y="32" width="8" height="8" fill="rgba(21,59,99,.6)"/><rect x="36" y="32" width="8" height="8" fill="rgba(21,59,99,.6)"/><rect x="62" y="32" width="8" height="8" fill="rgba(21,59,99,.6)"/><path d="M-6 30 h92" stroke="rgba(176,74,46,.55)" stroke-width="4"/></g></svg>`;
 function homeView2() {
   const rec = recentAll(), pr = new Set(PROTOCOLS.map(p => p.id)), mine = GL.books.filter(b => b.cat === "mine");
-  const tile = ([id, n, ic]) => `<a class="h2-spec" href="#spec/${id}"><span class="h2-si">${IC2[ic]}</span><span>${esc(n)}</span></a>`;
+  const tile = ([id, n, ic]) => `<a class="h2-spec" href="#spec/${id}">${specIcon(id, ic)}<span>${esc(n)}</span></a>`;
   return `<section class="h2-head">${DZONG_SVG}<div class="h2-top"><div class="h2-brand"><h1>Bhutan Clinical Reference</h1><p>A clinical companion for Bhutanese clinicians</p></div><div id="hhme" class="h2-me">${meHeroInner()}</div></div>
     <div class="search hero-s h2-search">${ICON.search}<input id="hq" type="search" placeholder="Search diseases, drugs, guidelines, calculators, protocols…" autocomplete="off" aria-label="Search the whole app"></div>
     <button class="instbtn" id="installbtn" hidden>Install app on this device</button></section>
-    <div class="h2-mods">${MODULES2.map(([h, ic, t, s, c]) => `<a class="h2-mod ${c}" href="${h}"><span class="h2-mi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
+    <div class="h2-mods hs-mods">${MODULES2.map(([h, ic, t, s, c]) => `<a class="h2-mod ${c}" href="${h}"><span class="h2-mi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
     ${pinsHtml()}
-    <div class="h2-sec"><h2>${IC2.med.replace("<svg", '<svg class="h2-hi"')}Clinical specialties</h2><a href="#specs">View all</a></div>
-    <div class="h2-specs">${SPECS.slice(0, 24).map(tile).join("")}</div>
-    <div class="h2-quick"><div class="h2-qh">Quick tools &amp; resources</div>${QUICK2.map(([h, ic, t, s]) => `<a class="h2-q" href="${h}"><span class="h2-qi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
-    <div class="h2-sec"><h2>Emergencies</h2><a href="#protocols">All protocols</a></div>
-    <div class="emgrid">${EMERG.filter(([id]) => pr.has(id)).map(([id, t]) => `<a class="em" href="#p/${id}">${ICON.siren}<span>${esc(t)}</span></a>`).join("")}</div>
-    <div class="hcols"><div><div class="h2-sec"><h2>Recently viewed</h2></div>${rec.length ? `<div class="dl">${rec.slice(0, 6).map(x => `<a class="di" href="${esc(x.h)}"><div><div class="nm">${esc(x.t)}</div><div class="gp">${esc(x.k)}</div></div></a>`).join("")}</div>` : `<div class="card muted small">Pages you open appear here.</div>`}</div>
-      <div><div class="h2-sec"><h2>My guides</h2><a href="#learn">Learning</a></div><div class="dl">${mine.slice(0, 6).map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s)}</div><div class="gp">${esc(b.t.slice(0, 70))}</div></div></a>`).join("")}</div></div></div>
+    <div class="h2-sec hs-specs"><h2>${IC2.med.replace("<svg", '<svg class="h2-hi"')}Clinical specialties</h2><a href="#specs">View all</a></div>
+    <div class="h2-specs hs-specs">${SPECS.slice(0, 24).map(tile).join("")}</div>
+    <div class="h2-quick hs-quick"><div class="h2-qh">Quick tools &amp; resources</div>${QUICK2.map(([h, ic, t, s]) => `<a class="h2-q" href="${h}"><span class="h2-qi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
+    <div class="h2-sec hs-emerg"><h2>Emergencies</h2><a href="#protocols">All protocols</a></div>
+    <div class="emgrid hs-emerg">${EMERG.filter(([id]) => pr.has(id)).map(([id, t]) => `<a class="em" href="#p/${id}">${ICON.siren}<span>${esc(t)}</span></a>`).join("")}</div>
+    <div class="hcols"><div class="hs-recent"><div class="h2-sec"><h2>Recently viewed</h2></div>${rec.length ? `<div class="dl">${rec.slice(0, 6).map(x => `<a class="di" href="${esc(x.h)}"><div><div class="nm">${esc(x.t)}</div><div class="gp">${esc(x.k)}</div></div></a>`).join("")}</div>` : `<div class="card muted small">Pages you open appear here.</div>`}</div>
+      <div class="hs-guides"><div class="h2-sec"><h2>My guides</h2><a href="#learn">Learning</a></div><div class="dl">${mine.slice(0, 6).map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s)}</div><div class="gp">${esc(b.t.slice(0, 70))}</div></div></a>`).join("")}</div></div></div>
     <p class="small muted" style="margin-top:14px"><a href="#homeold">Classic home page</a></p>`;
 }
 function specsView() {
-  return `<h1 class="vt">Clinical specialties</h1><p class="vsub">Each specialty gathers its Bhutan STG chapter, national guidelines and the conditions already in the app.</p><div class="h2-specs h2-all">${SPECS.map(([id, n, ic]) => `<a class="h2-spec" href="#spec/${id}"><span class="h2-si">${IC2[ic]}</span><span>${esc(n)}</span></a>`).join("")}</div>`;
+  return `<h1 class="vt">Clinical specialties</h1><p class="vsub">Each specialty gathers its Bhutan STG chapter, national guidelines and the conditions already in the app.</p><div class="h2-specs h2-all">${SPECS.map(([id, n, ic]) => `<a class="h2-spec" href="#spec/${id}">${specIcon(id, ic)}<span>${esc(n)}</span></a>`).join("")}</div>`;
 }
 function specView(id) {
   const s = SPEC_BY[id]; if (!s) return specsView();
-  const [, n, ic, chs, bookIds, rx] = s, chSet = new Set(chs);
-  const conds = CONDS.filter(c => (c.stg || []).some(x => chSet.has(+String(x).split(".")[0])) || (rx && (rx.test(c.n) || (c.al || []).some(a => rx.test(a))))).sort((a, b) => a.n.localeCompare(b.n));
+  const [, n, ic, chs, bookIds] = s, chSet = new Set(chs);
+  /* conditions come only from each topic page's hand-assigned specialties (no keyword matching) */
+  const tps = TOPICS.filter(t => t.spec.includes(id)).sort((a, b) => a.n.localeCompare(b.n));
   const topics = STG.topics.filter(t => chSet.has(t.ch));
   const books = bookIds.map(b => GL_BY[b]).filter(Boolean);
   const chTitle = c => (STG.chapters.find(x => x.n === c) || {}).t || "";
-  const tps = TOPICS.filter(t => t.spec.includes(id));
-  return `<h1 class="vt"><span class="h2-vi">${IC2[ic]}</span>${esc(n)}</h1><p class="vsub">Full topic pages first, then everything else in the app for this specialty. More topic pages are added in batches.</p>
-    ${tps.length ? `<div class="pgroup">Full topic pages (${tps.length})</div><div class="dl">${tps.map(t => `<a class="di" href="#topic/${t.id}"><div><div class="nm">${esc(t.n)}</div><div class="gp">${esc(t.ages)} · with advice and flashcards</div></div></a>`).join("")}</div>` : ""}
-    ${conds.length ? `<div class="pgroup">Conditions (${conds.length})</div><div class="dl">${conds.map(c => `<a class="di" href="#cond/${c.id}"><div><div class="nm">${esc(c.n)}</div></div></a>`).join("")}</div>` : ""}
+  const conds = tps;
+  const row = t => `<a class="di" href="#topic/${t.id}"><div><div class="nm">${esc(t.n)}</div><div class="gp">${esc(t.ages)}${t.emerg ? ` · <span class="emtag">${esc(t.emerg)}</span>` : ""}</div></div></a>`;
+  return `<h1 class="vt">${specIcon(id, ic, "h2-vi")}${esc(n)}</h1><p class="vsub">${tps.length} condition${tps.length === 1 ? "" : "s"} with full pages, then the Bhutan STG chapter and national guidelines for this specialty.</p>
+    ${tps.length ? `<div class="pgroup">Conditions (${tps.length})</div><div class="dl">${tps.map(row).join("")}</div>` : ""}
     ${chs.map(c => { const ts = topics.filter(t => t.ch === c); return ts.length ? `<div class="pgroup">Bhutan STG 2024 · Chapter ${c}: ${esc(chTitle(c))}</div><div class="dl">${ts.map(t => `<a class="di" href="#stg/${t.n}"><div><div class="nm">${esc(t.n)} ${esc(t.t)}</div><div class="gp">STG page ${t.p}</div></div></a>`).join("")}</div>` : ""; }).join("")}
     ${books.length ? `<div class="pgroup">National guidelines and references</div><div class="dl">${books.map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s || b.t)}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div>` : ""}
     ${!conds.length && !topics.length && !books.length ? `<div class="card muted">Nothing for this specialty is in the app yet. It is on the list for the topic stages. Meanwhile, <a href="#search/${encodeURIComponent(n)}">search the app for ${esc(n)}</a>.</div>` : ""}`;
@@ -5762,7 +5785,7 @@ TOPICS.push({
 });
 
 TOPICS.push({
-  id: "tb", cond: "tb", n: "Pulmonary tuberculosis (drug-susceptible) in adults", spec: ["resp", "id", "ph"], ages: "Adults (children: national paediatric TB guideline)", emerg: "",
+  id: "tb", cond: "tb", n: "Pulmonary tuberculosis (drug-susceptible) in adults", spec: ["resp", "id", "ph", "medicine"], ages: "Adults (children: national paediatric TB guideline)", emerg: "",
   reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician or the TB programme.",
   src: {
     S1: ["Bhutan STG 2024, 8.1.9 Pulmonary tuberculosis, p.154", "#stg/8.1.9"],
@@ -5972,7 +5995,7 @@ TOPICS.push({
   ]
 });
 TOPICS.push({
-  id: "uti", cond: "uti", n: "Urinary tract infection", spec: ["neph", "medicine", "paeds"], ages: "Children and adults", emerg: "",
+  id: "uti", cond: "uti", n: "Urinary tract infection", spec: ["neph", "medicine", "paeds", "uro"], ages: "Children and adults", emerg: "",
   reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician or paediatrician.",
   src: {
     S1: ["Bhutan STG 2024, 6.1 Urinary tract infection (adults), p.116", "#stg/6.1"],
@@ -6369,7 +6392,7 @@ TOPICS.push({
   ]
 });
 TOPICS.push({
-  id: "stroke", cond: "stroke", n: "Stroke and transient ischaemic attack", spec: ["neuro", "emerg", "medicine"], ages: "Adults", emerg: "Time-critical: note the time of onset",
+  id: "stroke", cond: "stroke", n: "Stroke and transient ischaemic attack", spec: ["neuro", "emerg", "medicine", "rehab"], ages: "Adults", emerg: "Time-critical: note the time of onset",
   reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician or neurologist.",
   src: {
     S1: ["Bhutan STG 2024, 7.6 Stroke, p.136", "#stg/7.6"],
@@ -6692,7 +6715,7 @@ TOPICS.push({
 });
 
 TOPICS.push({
-  id: "meningitis", cond: "meningitis", n: "Bacterial meningitis", spec: ["neuro", "id", "paeds", "emerg"], ages: "Children and adults", emerg: "Emergency: give antibiotics without delay",
+  id: "meningitis", cond: "meningitis", n: "Bacterial meningitis", spec: ["neuro", "id", "paeds", "emerg", "medicine"], ages: "Children and adults", emerg: "Emergency: give antibiotics without delay",
   reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician or paediatrician.",
   src: {
     S1: ["Bhutan STG 2024, 7.4 Bacterial meningitis (adults), p.133", "#stg/7.4"],
@@ -6852,7 +6875,7 @@ TOPICS.push({
   ]
 });
 TOPICS.push({
-  id: "ugib", cond: "ugib", n: "Upper gastrointestinal bleeding", spec: ["gi", "emerg", "surg"], ages: "Adults", emerg: "Resuscitate first",
+  id: "ugib", cond: "ugib", n: "Upper gastrointestinal bleeding", spec: ["gi", "emerg", "surg", "medicine"], ages: "Adults", emerg: "Resuscitate first",
   reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician or surgeon.",
   src: {
     S1: ["Bhutan STG 2024, 4.1.5 Gastrointestinal bleeding, p.91", "#stg/4.1.5"],
@@ -7117,7 +7140,7 @@ TOPICS.push({
   ]
 });
 TOPICS.push({
-  id: "anaemia", cond: "anaemia", n: "Anaemia", spec: ["medicine", "paeds", "ph"], ages: "All ages", emerg: "",
+  id: "anaemia", cond: "anaemia", n: "Anaemia", spec: ["medicine", "paeds", "ph", "onc"], ages: "All ages", emerg: "",
   reviewed: "Written from the source below on 3 Nov 2026. Not yet reviewed by a physician. For pregnancy see STG 11.1.",
   src: { S1: ["Bhutan STG 2024, 4.3 Anaemia, p.98", "#stg/4.3"], S2: ["Bhutan STG 2024, 11.1 Anaemia in pregnancy", "#stg/11.1"] },
   sec: [
@@ -7196,7 +7219,7 @@ TOPICS.push({
   ]
 });
 TOPICS.push({
-  id: "headinj", cond: "headinj", n: "Head injury", spec: ["emerg", "neuro", "paeds"], ages: "Children and adults", emerg: "Moderate and severe head injury need urgent referral",
+  id: "headinj", cond: "headinj", n: "Head injury", spec: ["emerg", "neuro", "paeds", "nsurg"], ages: "Children and adults", emerg: "Moderate and severe head injury need urgent referral",
   reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a surgeon or emergency physician.",
   src: { S1: ["Bhutan STG 2024, 1.5.1 Head injury, p.35", "#stg/1.5.1"], S2: ["Bhutan STG 2024, 12.1.4 Acute brain injury (children), p.259", "#stg/12.1.4"] },
   sec: [
@@ -7227,7 +7250,7 @@ TOPICS.push({
   ]
 });
 TOPICS.push({
-  id: "tetanus", cond: "tetanus", n: "Tetanus", spec: ["id", "emerg"], ages: "All ages", emerg: "Generalised tetanus needs hospital care",
+  id: "tetanus", cond: "tetanus", n: "Tetanus", spec: ["id", "emerg", "medicine"], ages: "All ages", emerg: "Generalised tetanus needs hospital care",
   reviewed: "Written from the source below on 3 Nov 2026. Not yet reviewed by a physician.",
   src: { S1: ["Bhutan STG 2024, 8.1.7 Tetanus, p.152", "#stg/8.1.7"] },
   sec: [
@@ -7354,7 +7377,7 @@ TOPICS.push({
   cards: [["Commonest abdominal emergency under 2 years?", "Intussusception.", "S2"], ["Classic features of intussusception?", "Colicky pain with a well child between attacks, vomiting, redcurrant-jelly stool, sausage-shaped mass.", "S2"], ["Why is green vomiting important?", "It may signal a life-threatening obstruction.", "S1"]]
 });
 TOPICS.push({
-  id: "dysentery", cond: "dysentery", n: "Dysentery (shigellosis and amoebiasis)", spec: ["id", "gi", "paeds"], ages: "Children and adults", emerg: "",
+  id: "dysentery", cond: "dysentery", n: "Dysentery (shigellosis and amoebiasis)", spec: ["id", "gi", "paeds", "medicine"], ages: "Children and adults", emerg: "",
   reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician.",
   src: { S1: ["Bhutan STG 2024, 8.1.2 Bacillary dysentery (shigellosis), p.146", "#stg/8.1.2"], S2: ["Bhutan STG 2024, 8.2.1 Amoebiasis, p.157", "#stg/8.2.1"] },
   sec: [
@@ -7376,7 +7399,7 @@ TOPICS.push({
   cards: [["STG treatment of bacillary dysentery?", "Ciprofloxacin 500 mg BD for 7 days, rehydration, paracetamol.", "S1"], ["STG treatment of amoebiasis?", "Metronidazole 400 mg 8-hourly for 5 days.", "S2"]]
 });
 TOPICS.push({
-  id: "hepatitis", cond: "hepatitis", n: "Acute viral hepatitis", spec: ["gi", "id", "paeds"], ages: "Children and adults", emerg: "",
+  id: "hepatitis", cond: "hepatitis", n: "Acute viral hepatitis", spec: ["gi", "id", "paeds", "medicine"], ages: "Children and adults", emerg: "",
   reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician or paediatrician.",
   src: { S1: ["Bhutan STG 2024, 12.4.10 Viral hepatitis (children), p.276", "#stg/12.4.10"], S2: ["Bhutan STG 2024, 4.5 Acute viral hepatitis (adults), printed after 4.4 Cirrhosis", "#stg/4.4"] },
   sec: [
@@ -7398,7 +7421,7 @@ TOPICS.push({
   cards: [["When is hepatitis A contagious?", "From 2 weeks before to 7 days after jaundice begins.", "S1"], ["Which painkiller does the adult STG avoid in acute hepatitis?", "Paracetamol (and other hepatotoxic drugs); ibuprofen if needed.", "S2"]]
 });
 TOPICS.push({
-  id: "influenza", cond: "influenza", n: "Influenza", spec: ["id", "resp", "ph"], ages: "All ages", emerg: "",
+  id: "influenza", cond: "influenza", n: "Influenza", spec: ["id", "resp", "ph", "medicine"], ages: "All ages", emerg: "",
   reviewed: "Written from the source below on 3 Nov 2026. Not yet reviewed by a physician.",
   src: { S1: ["Bhutan STG 2024, 8.5.2 Influenza or seasonal flu, p.169", "#stg/8.5.2"] },
   sec: [
@@ -7817,7 +7840,7 @@ TOPICS.push({
   cards: [["STG IV antibiotics for lung abscess with respiratory distress?", "Ampicillin 1 g IV QID + gentamicin 80 mg OD.", "S1"]]
 });
 TOPICS.push({
-  id: "covid", cond: "covid", n: "COVID-19", spec: ["id", "resp", "ph"], ages: "All ages", emerg: "Hypoxia means severe disease",
+  id: "covid", cond: "covid", n: "COVID-19", spec: ["id", "resp", "ph", "medicine"], ages: "All ages", emerg: "Hypoxia means severe disease",
   reviewed: "Written from the sources below on 3 Nov 2026. The STG says 'antiviral drugs' without naming them; WHO recommendations are added. Not yet reviewed by a physician.",
   src: { S1: ["Bhutan STG 2024, 8.5.1 COVID-19, p.167", "#stg/8.5.1"], S2: ["WHO. Therapeutics and COVID-19: living guideline (BMJ Rapid Recommendations, 'A living WHO guideline on drugs for covid-19')", "https://www.who.int/teams/health-care-readiness/covid-19/therapeutics"] },
   sec: [
@@ -8203,7 +8226,7 @@ TOPICS.push({
 });
 
 TOPICS.push({
-  id: "coma", cond: "coma", n: "Coma and altered consciousness", spec: ["neuro", "emerg"], ages: "All ages", emerg: "Emergency: ABC and glucose first",
+  id: "coma", cond: "coma", n: "Coma and altered consciousness", spec: ["neuro", "emerg", "medicine"], ages: "All ages", emerg: "Emergency: ABC and glucose first",
   reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a physician.",
   src: { S1: ["Bhutan STG 2024, 7.1 Coma (with Glasgow coma scale), p.130", "#stg/7.1"] },
   sec: [
@@ -8379,7 +8402,7 @@ TOPICS.push({
   cards: [["Rapid test for kala-azar?", "rK39.", "S1"], ["First-choice drugs for kala-azar (STG)?", "Liposomal amphotericin B, amphotericin B deoxycholate or miltefosine.", "S1"]]
 });
 TOPICS.push({
-  id: "sti", cond: "sti", n: "Sexually transmitted infections (syndromic management)", spec: ["id", "obg", "derm"], ages: "Adolescents and adults", emerg: "",
+  id: "sti", cond: "sti", n: "Sexually transmitted infections (syndromic management)", spec: ["id", "obg", "derm", "medicine"], ages: "Adolescents and adults", emerg: "",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a physician.",
   src: { S1: ["Bhutan STG 2024, 9.1 Vaginal discharge, p.184", "#stg/9.1"], S2: ["Bhutan STG 2024, 9.2 Urethral discharge, p.187", "#stg/9.2"], S3: ["Bhutan STG 2024, 9.3 Genital ulcer syndrome, p.189", "#stg/9.3"] },
   sec: [
@@ -8456,7 +8479,7 @@ TOPICS.push({
   cards: [["Main long-term complication of HSP?", "Kidney disease (nephritis), up to 6 months after diagnosis.", "S1"], ["Steroid dose for HSP abdominal or joint pain (STG)?", "Prednisolone 1 mg/kg/day for 1–2 weeks, then taper.", "S1"]]
 });
 TOPICS.push({
-  id: "fracture", cond: "fracture", n: "Fractures, dislocations and spinal injury", spec: ["ortho", "emerg", "surg"], ages: "All ages", emerg: "Open fractures and spinal injury need urgent care",
+  id: "fracture", cond: "fracture", n: "Fractures, dislocations and spinal injury", spec: ["ortho", "emerg", "surg", "nsurg"], ages: "All ages", emerg: "Open fractures and spinal injury need urgent care",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an orthopaedic surgeon.",
   src: { S1: ["Bhutan STG 2024, 13.2 Fractures and dislocations, p.287", "#stg/13.2"], S2: ["Bhutan STG 2024, 13.4 Spine fractures and spinal cord injuries, p.293", "#stg/13.4"] },
   sec: [
@@ -8507,7 +8530,7 @@ TOPICS.push({
   cards: [["Morning stiffness duration suggesting RA (STG)?", "30 minutes or longer.", "S1"], ["Key non-drug treatment of knee OA?", "Weight reduction and quadriceps strengthening.", "S2"]]
 });
 TOPICS.push({
-  id: "lbp", cond: "lbp", n: "Low back pain and prolapsed disc", spec: ["ortho", "medicine"], ages: "Adults", emerg: "Bladder or bowel involvement needs urgent referral",
+  id: "lbp", cond: "lbp", n: "Low back pain and prolapsed disc", spec: ["ortho", "medicine", "rehab"], ages: "Adults", emerg: "Bladder or bowel involvement needs urgent referral",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an orthopaedic surgeon.",
   src: { S1: ["Bhutan STG 2024, 13.11 Low back pain, p.304", "#stg/13.11"], S2: ["Bhutan STG 2024, 13.12 Prolapsed intervertebral disc, p.306", "#stg/13.12"] },
   sec: [
@@ -8777,7 +8800,7 @@ TOPICS.push({
   cards: [["What does PALM-COEIN stand for?", "Polyp, Adenomyosis, Leiomyoma, Malignancy; Coagulopathy, Ovulatory, Endometrial, Iatrogenic, Not classified.", "S1"]]
 });
 TOPICS.push({
-  id: "anaemiapreg", cond: "anaemiapreg", n: "Anaemia in pregnancy", spec: ["obg", "ph"], ages: "Pregnant women", emerg: "Hb < 7 g/dL: refer",
+  id: "anaemiapreg", cond: "anaemiapreg", n: "Anaemia in pregnancy", spec: ["obg", "ph", "onc"], ages: "Pregnant women", emerg: "Hb < 7 g/dL: refer",
   reviewed: "Written from the sources below on 4 Nov 2026. Albendazole dose corrected from the national formulary. Not yet reviewed by an obstetrician.",
   src: { S1: ["Bhutan STG 2024, 11.1 Anaemia in pregnancy, p.231", "#stg/11.1"], S2: ["National Essential Medicines Formulary 2022: Albendazole", "#drug/ALBENDAZOLE"] },
   sec: [
@@ -9131,7 +9154,7 @@ TOPICS.push({
   cards: [["Haloperidol dose for an agitated delirious patient (STG)?", "5–15 mg IM per day in divided doses, only if very agitated or violent.", "S1"], ["Which patients should not get haloperidol for agitation?", "Alcohol-dependent patients: use diazepam.", "S1"], ["Treatment of acute dystonic reaction?", "Promethazine 25 mg IM or diazepam 10 mg IV, then trihexyphenidyl 2 mg TDS for 1 week.", "S1"], ["Room for a delirious patient?", "Well lit, with a relative nearby.", "S1"]]
 });
 TOPICS.push({
-  id: "ptsd", cond: "ptsd", n: "Trauma, stress-related and psychosomatic disorders", spec: ["psych"], ages: "Adolescents and adults", emerg: "Refer if suicidal",
+  id: "ptsd", cond: "ptsd", n: "Trauma, stress-related and psychosomatic disorders", spec: ["psych", "medicine"], ages: "Adolescents and adults", emerg: "Refer if suicidal",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a psychiatrist.",
   src: { S1: ["Bhutan STG 2024, 10.2.6 Trauma and stress related disorders, p.219", "#stg/10.2.6"], S2: ["Bhutan STG 2024, 10.2.5 Psychosomatic disorders, p.217", "#stg/10.2.5"] },
   sec: [
@@ -9197,7 +9220,7 @@ TOPICS.push({
   cards: [["First lesion of pityriasis rosea?", "Herald patch with a collarette of scale.", "S2"], ["Test to do in an adult with pityriasis rosea?", "RPR/TPHA to exclude secondary syphilis.", "S2"], ["Preferred long-term facial treatment for vitiligo?", "Tacrolimus (hydrocortisone 1% in the STG for the face).", "S1"]]
 });
 TOPICS.push({
-  id: "polio", cond: "polio", n: "Poliomyelitis and acute flaccid paralysis", spec: ["id", "paeds", "ph"], ages: "Mainly children", emerg: "Report every AFP case",
+  id: "polio", cond: "polio", n: "Poliomyelitis and acute flaccid paralysis", spec: ["id", "paeds", "ph", "rehab"], ages: "Mainly children", emerg: "Report every AFP case",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a paediatrician.",
   src: { S1: ["Bhutan STG 2024, 8.5.10 Poliomyelitis, p.180", "#stg/8.5.10"], S2: ["WHO Vaccine-Preventable Diseases Surveillance Standards: Polio (2018)", "https://www.who.int/publications/m/item/vaccine-preventable-diseases-surveillance-standards-polio"] },
   sec: [
@@ -9241,7 +9264,7 @@ TOPICS.push({
   cards: [["Incubation period of Ebola?", "5–7 days, range 2–21 days.", "S1"], ["Two WHO-recommended Ebola treatments (2022)?", "Monoclonal antibodies mAb114 (ansuvimab) and REGN-EB3.", "S2"], ["How long are Ebola contacts followed?", "21 days (the maximum incubation period).", "S1"]]
 });
 TOPICS.push({
-  id: "cancer", cond: "cancer", n: "Cancer: warning signs, oral and lung cancer", spec: ["onc", "medicine", "dental"], ages: "Adults", emerg: "",
+  id: "cancer", cond: "cancer", n: "Cancer: warning signs, oral and lung cancer", spec: ["onc", "medicine", "dental", "pall"], ages: "Adults", emerg: "",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an oncologist.",
   src: { S1: ["Bhutan STG 2024, 17.8 Oral cancer, p.425", "#stg/17.8"], S2: ["Bhutan STG 2024, 3.10 Bronchogenic carcinoma, p.75", "#stg/3.10"], S3: ["Bhutan STG 2024, 17.6 Premalignant lesions, p.422", "#stg/17.6"], S4: ["International summary: Febrile neutropenia", "#gl/intl/25"] },
   sec: [
@@ -9308,7 +9331,7 @@ TOPICS.push({
 });
 
 TOPICS.push({
-  id: "cholera", cond: "cholera", n: "Cholera", spec: ["id", "gi", "ph"], ages: "All ages", emerg: "Severe dehydration: rapid IV fluids",
+  id: "cholera", cond: "cholera", n: "Cholera", spec: ["id", "gi", "ph", "medicine"], ages: "All ages", emerg: "Severe dehydration: rapid IV fluids",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an infectious disease physician.",
   src: { S1: ["WHO fact sheet: Cholera", "https://www.who.int/news-room/fact-sheets/detail/cholera"], S2: ["GTFCC technical note: Use of antibiotics for the treatment and control of cholera (revised Oct 2022), Table 1, p.4", "https://www.gtfcc.org/wp-content/uploads/2025/02/gtfcc-technical-note-on-use-of-antibiotics-for-the-treatment-of-cholera.pdf"], S3: ["Bhutan STG 2024, 12.4.1 Diarrhoea (children), p.267", "#stg/12.4.1"] },
   sec: [
@@ -9396,7 +9419,7 @@ TOPICS.push({
   cards: [["Commonest cause of HFMD?", "Coxsackievirus A16 (EV71 causes severe disease).", "S1"], ["Danger signs in HFMD?", "Fever ≥38.5 °C or >3 days, lethargy, recurrent vomiting, myoclonic jerks, limb weakness.", "S2"], ["Late nail change after HFMD?", "Onychomadesis (nail shedding), which grows back.", "S1"]]
 });
 TOPICS.push({
-  id: "pyloric", cond: "pyloric", n: "Congenital surgical conditions of the newborn and infant", spec: ["paeds", "surg", "neo"], ages: "Newborns and infants", emerg: "Keep warm, NG tube, IV fluids, refer",
+  id: "pyloric", cond: "pyloric", n: "Congenital surgical conditions of the newborn and infant", spec: ["paeds", "surg", "neo", "nsurg"], ages: "Newborns and infants", emerg: "Keep warm, NG tube, IV fluids, refer",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a paediatric surgeon.",
   src: { S1: ["Bhutan STG 2024, 12.4.5 Hypertrophic pyloric stenosis, p.272", "#stg/12.4.5"], S2: ["Bhutan STG 2024, 12.4.6 Esophageal atresia, p.273", "#stg/12.4.6"], S3: ["Bhutan STG 2024, 12.4.8 Anorectal anomalies, p.275", "#stg/12.4.8"], S4: ["Bhutan STG 2024, 12.4.9 Cleft lip and cleft palate, p.275", "#stg/12.4.9"], S5: ["Bhutan STG 2024, 12.1.5 Meningomyelocele (spina bifida), p.261", "#stg/12.1.5"] },
   sec: [
@@ -9506,7 +9529,7 @@ TOPICS.push({
   cards: [["How fast to lower BP in hypertensive emergency?", "MAP by no more than 25% in the first hour, then 160/100 over 2–6 h.", "S2"], ["Bhutan BP threshold for urgent referral?", "≥180/110 mmHg, or any danger sign.", "S2"], ["Emergency vs urgency?", "Emergency has acute organ damage; urgency does not.", "S2"]]
 });
 TOPICS.push({
-  id: "svt", cond: "svt", n: "Supraventricular tachycardia (SVT)", spec: ["cardio", "emerg"], ages: "Adults and children", emerg: "Unstable: synchronised cardioversion",
+  id: "svt", cond: "svt", n: "Supraventricular tachycardia (SVT)", spec: ["cardio", "emerg", "medicine"], ages: "Adults and children", emerg: "Unstable: synchronised cardioversion",
   reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a cardiologist.",
   src: { S1: ["App protocol: SVT (Resuscitation Council UK 2025, ESC 2019, Bhutan Emergency booklet comparison)", "#p/svt"] },
   sec: [
@@ -9793,7 +9816,7 @@ TOPICS.push({
   cards: [["PrEP drug used in Bhutan?", "TDF 300 mg + 3TC 300 mg, one tablet.", "S1"], ["Renal cut-off for PrEP?", "Do not start if creatinine clearance <60 mL/min.", "S2"], ["Event-driven PrEP schedule?", "2 tablets 2–24 h before sex, then 1 daily, then 1 a day for 2 days after.", "S4"], ["HIV testing on PrEP?", "At 1 month, then every 3 months.", "S3"]]
 });
 TOPICS.push({
-  id: "drtb", cond: "drtb", n: "Drug-resistant TB (RR/MDR-TB)", spec: ["id", "resp"], ages: "14 years and older (BPaLM)", emerg: "",
+  id: "drtb", cond: "drtb", n: "Drug-resistant TB (RR/MDR-TB)", spec: ["id", "resp", "medicine"], ages: "14 years and older (BPaLM)", emerg: "",
   reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a TB specialist.",
   src: { S1: ["Bhutan Integrated national guidelines for management of TB 2024, Chapter 6: Drug-resistant TB", "#gl/tb/19"] },
   sec: [
@@ -9991,7 +10014,7 @@ TOPICS.push({
   cards: [["ECG of AF?", "No P waves, chaotic baseline, irregularly irregular QRS.", "S2"], ["When is anticoagulation recommended in AF?", "CHA₂DS₂-VA ≥2 (consider at 1).", "S1"], ["When is warfarin preferred over a DOAC?", "Mechanical valve or moderate–severe mitral stenosis.", "S1"]]
 });
 TOPICS.push({
-  id: "arrhy", cond: "arrhy", n: "Bradycardia, heart block and arrest rhythms", spec: ["cardio", "emerg"], ages: "Adults", emerg: "Unstable: atropine, pace",
+  id: "arrhy", cond: "arrhy", n: "Bradycardia, heart block and arrest rhythms", spec: ["cardio", "emerg", "medicine"], ages: "Adults", emerg: "Unstable: atropine, pace",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a cardiologist.",
   src: { S1: ["ECG course (interactive): Bradycardia and AV block", "#gl/h_ecg/9"], S2: ["Bhutan Emergency booklet 2018: Cardiac arrest arrhythmias", "#gl/emb/18"], S3: ["International summary: Cardiac arrest and post-arrest care (AHA/ERC 2025)", "#gl/intl/9"] },
   sec: [
@@ -10013,7 +10036,7 @@ TOPICS.push({
   cards: [["Atropine dose for unstable bradycardia?", "1 mg IV every 3–5 min, max 3 mg.", "S1"], ["When does atropine often fail?", "Mobitz II, high-grade or complete block with broad escape.", "S1"], ["Amiodarone in shockable arrest?", "300 mg after the third shock; 150 mg if refractory.", "S2"]]
 });
 TOPICS.push({
-  id: "endocard", cond: "endocard", n: "Infective endocarditis", spec: ["cardio", "id"], ages: "All ages", emerg: "Blood cultures before antibiotics",
+  id: "endocard", cond: "endocard", n: "Infective endocarditis", spec: ["cardio", "id", "medicine"], ages: "All ages", emerg: "Blood cultures before antibiotics",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a cardiologist.",
   src: { S1: ["ESC 2023 Guidelines for the management of endocarditis: key points (ACC summary)", "https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2023/08/29/20/49/2023-esc-guidelines-for-endocarditis-esc-2023"], S2: ["Bhutan Priority zoonoses guideline 2025: brucellosis complications (endocarditis)", "#gl/zoon/21"], S3: ["Bhutan Priority zoonoses guideline 2025: Salmonella endovascular infection", "#gl/zoon/48"] },
   sec: [
@@ -10145,7 +10168,7 @@ TOPICS.push({
   cards: [["When to suspect bacterial sinusitis?", "Symptoms >10 days without improvement, or worsening after improvement.", "S3"], ["Adult antibiotic for sinusitis (AWaRe)?", "Amoxicillin 500 mg 8-hourly or 1 g 12-hourly for 5 days.", "S2"]]
 });
 TOPICS.push({
-  id: "adrenal", cond: "adrenal", n: "Adrenal insufficiency and adrenal crisis", spec: ["endo", "emerg"], ages: "Adults (children: weight-based)", emerg: "Hydrocortisone immediately",
+  id: "adrenal", cond: "adrenal", n: "Adrenal insufficiency and adrenal crisis", spec: ["endo", "emerg", "medicine"], ages: "Adults (children: weight-based)", emerg: "Hydrocortisone immediately",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an endocrinologist.",
   src: { S1: ["NEMF 2022: Hydrocortisone sodium succinate (adrenal crisis dose)", "#drug/HYDROCORTISONE%20SODIUM%20SUCCINATE"], S2: ["Endocrine Society guideline: Diagnosis and treatment of primary adrenal insufficiency (Bornstein 2016)", "https://pubmed.ncbi.nlm.nih.gov/26760044/"] },
   sec: [
@@ -10344,7 +10367,7 @@ TOPICS.push({
   cards: [["When is neonatal jaundice always pathological?", "Within the first 24 hours.", "S1"], ["Definition of conjugated jaundice?", "Direct bilirubin >2 mg/dL and >10% of total.", "S1"], ["Signs of bilirubin encephalopathy?", "Hypertonia, arching, retrocollis, high-pitched cry, fever.", "S1"]]
 });
 TOPICS.push({
-  id: "rds", cond: "rds", n: "Respiratory distress in the newborn", spec: ["neo", "resp"], ages: "Newborns", emerg: "Cyanosis or apnoea",
+  id: "rds", cond: "rds", n: "Respiratory distress in the newborn", spec: ["neo", "resp", "paeds"], ages: "Newborns", emerg: "Cyanosis or apnoea",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a neonatologist.",
   src: { S1: ["WHO Pocket Book of Hospital Care for Children (2013): Preterm and low-birth-weight infants", "#gl/w_pbhc/39"], S2: ["Bhutan Emergency booklet 2018: Advanced neonatal resuscitation and oxygen", "#gl/emb/25"], S3: ["Bhutan Emergency booklet 2018: Resuscitation for premature babies (CPAP, surfactant)", "#gl/emb/27"] },
   sec: [
@@ -10366,7 +10389,7 @@ TOPICS.push({
   cards: [["Which newborns need special care (WHO)?", "<35 weeks or <2.0 kg.", "S1"], ["Breathing newborn with HR >100 and distress?", "CPAP.", "S3"]]
 });
 TOPICS.push({
-  id: "bleeding", cond: "bleeding", n: "Bleeding disorders and coagulopathy", spec: ["medicine", "obg"], ages: "All ages", emerg: "Major bleeding: blood products",
+  id: "bleeding", cond: "bleeding", n: "Bleeding disorders and coagulopathy", spec: ["medicine", "obg", "onc"], ages: "All ages", emerg: "Major bleeding: blood products",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a haematologist.",
   src: { S1: ["WHO MCPC (2017): Coagulopathy (clotting failure)", "#gl/w_mcpc/173"], S2: ["Bhutan Dengue guideline 2020: platelet transfusion", "#gl/dengue/9"], S3: ["Bhutan Dengue guideline 2020: whole blood, FFP, cryoprecipitate", "#gl/dengue/10"] },
   sec: [
@@ -10388,7 +10411,7 @@ TOPICS.push({
   cards: [["FFP dose for coagulopathy?", "15 mL/kg.", "S1"], ["Platelet transfusion threshold in dengue without bleeding?", "Below 10,000/cumm (prophylactic consideration).", "S2"]]
 });
 TOPICS.push({
-  id: "transfusion", cond: "transfusion", n: "Blood transfusion and transfusion reactions", spec: ["medicine", "obg", "paeds"], ages: "All ages", emerg: "Reaction: stop the transfusion",
+  id: "transfusion", cond: "transfusion", n: "Blood transfusion and transfusion reactions", spec: ["medicine", "obg", "paeds", "onc"], ages: "All ages", emerg: "Reaction: stop the transfusion",
   reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a haematologist.",
   src: { S1: ["WHO Pocket Book of Hospital Care for Children (2013), 10.6 Blood transfusion", "#gl/w_pbhc/108"], S2: ["Bhutan PPH guideline 2016, Section 13: Blood transfusion", "#gl/pph/14"], S3: ["Bhutan PPH guideline 2016: Massive transfusion protocol", "#gl/pph/15"], S4: ["WHO MCPC (2017): Responding to a transfusion reaction", "#gl/w_mcpc/38"], S5: ["WHO MCPC: Anaphylactic shock from mismatched blood", "#gl/w_mcpc/39"] },
   sec: [
@@ -10520,11 +10543,20 @@ const TEXT_SIZES = [["0.9", "Small"], ["1", "Normal"], ["1.12", "Large"], ["1.25
 /* ---------- personalisation: colour, look, home page, banner ---------- */
 const ACCENTS = [["#0f5f57", "Teal (default)"], ["#1f5fbf", "Royal blue"], ["#d0571f", "Bhutan saffron"], ["#b02a37", "Crimson"], ["#6a3de8", "Violet"], ["#1f7a44", "Forest"], ["#c2185b", "Rose"], ["#37474f", "Slate"]];
 const BANNERS = [["mount", "Mountains & dzong"], ["prayer", "Prayer flags at dawn"], ["night", "Night sky"], ["plain", "Plain colour"], ["photo", "My own photo"]];
-const HOME_SECS = [["emerg", "Emergencies"], ["explore", "Explore"], ["images", "Learn from images"], ["guides", "My guides"], ["recent", "Recently viewed"], ["stats", "Numbers band"]];
+const HOME_SECS = [["mods", "Main sections"], ["specs", "Clinical specialties"], ["quick", "Quick tools"], ["emerg", "Emergencies"], ["recent", "Recently viewed"], ["guides", "My guides"]];
+const BGS = [["", "Warm paper", "#f4f3ef"], ["white", "Clean white", "#ffffff"], ["cool", "Cool grey", "#eef1f4"], ["mint", "Soft mint", "#eef5f2"]];
 function applyPrefs() {
   const z = store.get("zoom", "1"); document.documentElement.style.setProperty("--zoom", z);
   const r = document.documentElement, ac = store.get("accent", "");
   if (ac) { r.style.setProperty("--accent", ac); r.style.setProperty("--accent-soft", `color-mix(in srgb, ${ac} 14%, var(--panel))`); } else { r.style.removeProperty("--accent"); r.style.removeProperty("--accent-soft"); }
+  /* the chosen colour also drives the home header, section links and specialty icons */
+  const dark = (store.get("theme", null) || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) === "dark";
+  if (ac) { r.style.setProperty("--brand", ac); r.style.setProperty("--brand2", dark ? `color-mix(in srgb, ${ac} 55%, #fff)` : ac); r.style.setProperty("--brandlink", dark ? `color-mix(in srgb, ${ac} 50%, #fff)` : ac); }
+  else ["--brand", "--brand2", "--brandlink"].forEach(k => r.style.removeProperty(k));
+  const bg = (BGS.find(b => b[0] === (store.get("bg", "") || "")) || BGS[0]);
+  if (bg[0] && !dark) { r.style.setProperty("--bg", bg[2]); r.style.setProperty("--panel2", `color-mix(in srgb, ${bg[2]} 60%, #fff)`); } else { r.style.removeProperty("--bg"); r.style.removeProperty("--panel2"); }
+  const bp = store.get("banner", "mount") === "photo" ? (store.get("bannerPhoto", "") || "") : "";
+  if (bp) r.style.setProperty("--bphoto", `url("${bp}")`); else r.style.removeProperty("--bphoto");
   const cls = {"font-sans": (store.get("font", "serif") || "serif") === "sans", "dense": (store.get("density", "comfy") || "comfy") === "compact", "squared": (store.get("corners", "round") || "round") === "square"};
   const apply = () => { Object.entries(cls).forEach(([k, v]) => document.body.classList.toggle(k, v)); document.body.dataset.banner = store.get("banner", "mount") || "mount"; HOME_SECS.forEach(([k]) => document.body.classList.toggle("hs-no-" + k, store.get("hs_" + k, true) === false)); };
   if (document.body) apply(); else document.addEventListener("DOMContentLoaded", apply);
@@ -10541,7 +10573,8 @@ function settingsView() {
   const th = store.get("theme", "") || "";
   return `<h1 class="vt">Settings</h1><p class="vsub">Saved on this device.${STORE_OK ? "" : " <b>Storage is blocked in this preview — settings will not be kept.</b>"}</p>
     <div class="setcard card persona"><h3>🎨 Make it yours</h3>
-      ${setRow("Colour", "Buttons, links and highlights", `<div class="swatches" id="s_accent">${ACCENTS.map(([c, l]) => `<button style="--sw:${c}" data-v="${c === ACCENTS[0][0] ? "" : c}" title="${l}" aria-label="${l}" aria-pressed="${(store.get("accent", "") || "") === (c === ACCENTS[0][0] ? "" : c)}"></button>`).join("")}<label class="swcustom" title="Pick any colour"><input type="color" id="s_accentc" value="${esc(store.get("accent", "") || "#0f5f57")}"><span>＋</span></label></div>`)}
+      ${setRow("Theme colour", "Home header, buttons, links and icons", `<div class="swatches" id="s_accent">${ACCENTS.map(([c, l]) => `<button style="--sw:${c}" data-v="${c === ACCENTS[0][0] ? "" : c}" title="${l}" aria-label="${l}" aria-pressed="${(store.get("accent", "") || "") === (c === ACCENTS[0][0] ? "" : c)}"></button>`).join("")}<label class="swcustom" title="Pick any colour"><input type="color" id="s_accentc" value="${esc(store.get("accent", "") || "#0f5f57")}"><span>＋</span></label></div>`)}
+      ${setRow("Page background", "Light mode only — dark mode keeps its own", segCtl("s_bg", BGS.map(([v, l]) => [v, l]), store.get("bg", "") || ""))}
       ${setRow("Home banner", "The picture at the top of the home page", `<select id="s_banner">${BANNERS.map(([v, l]) => `<option value="${v}"${store.get("banner", "mount") === v ? " selected" : ""}>${l}</option>`).join("")}</select>`)}
       <div class="setrow" id="s_photorow"${store.get("banner", "mount") === "photo" ? "" : " hidden"}><div><b>Banner photo</b><span>A photo of your hospital, team or favourite place — stays on this device</span></div><div class="setctl"><label class="btn">Choose photo<input type="file" id="s_bphoto" accept="image/*" hidden></label>${store.get("bannerPhoto", "") ? ` <button class="btn btn-ghost" id="s_bphotox">Remove</button>` : ""}</div></div>
       ${setRow("What should I call you?", "Used in the greeting on the home page", `<input id="s_nick" type="text" maxlength="30" placeholder="e.g. Dr Deo, Karma, Aum Pema" value="${esc(store.get("nick", ""))}">`)}
@@ -10599,11 +10632,12 @@ function bindSettings() {
   const bx = $("#s_bphotox"); if (bx) bx.onclick = () => { store.set("bannerPhoto", ""); store.set("banner", "mount"); applyPrefs(); route(); };
   $("#s_nick").onchange = e => store.set("nick", e.target.value.trim().slice(0, 30));
   seg("s_font", v => { store.set("font", v); applyPrefs(); });
+  seg("s_bg", v => { store.set("bg", v || null); applyPrefs(); });
   seg("s_dense", v => { store.set("density", v); applyPrefs(); });
   seg("s_corner", v => { store.set("corners", v); applyPrefs(); });
   $$("[data-hs]").forEach(c => c.onchange = () => { store.set("hs_" + c.dataset.hs, c.checked); applyPrefs(); });
   $("#s_pinclr").onclick = () => { store.set("pins", []); route(); };
-  $("#s_lookreset").onclick = () => { ["accent", "banner", "bannerPhoto", "font", "density", "corners", "nick"].forEach(k => store.set(k, null)); HOME_SECS.forEach(([k]) => store.set("hs_" + k, null)); applyPrefs(); route(); };
+  $("#s_lookreset").onclick = () => { ["accent", "bg", "banner", "bannerPhoto", "font", "density", "corners", "nick"].forEach(k => store.set(k, null)); HOME_SECS.forEach(([k]) => store.set("hs_" + k, null)); applyPrefs(); route(); };
   $("#s_mini").onchange = e => { document.body.classList.toggle("railmini", e.target.checked); store.set("railmini", e.target.checked); };
   $("#s_alt").onchange = e => store.set("alt", e.target.value);
   seg("s_abgu", v => store.set("abgunit", v));
