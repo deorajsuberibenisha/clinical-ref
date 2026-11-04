@@ -1184,6 +1184,105 @@ body.reduce-motion .mpi,body.reduce-motion .nic{animation:none!important;transit
 .setrow:has(.fontgrid),.setrow:has(.themegrid){flex-wrap:wrap}.setrow:has(.fontgrid) .setctl,.setrow:has(.themegrid) .setctl{flex:1 1 100%}
 body.font-custom :is(.vt,h1,h2,h3,.homehero h1,.mctx b,.phname h1,.brand,.h2-brand h1,.hero-t){font-family:var(--head-font)!important;letter-spacing:-.2px}
 body:not([data-uifont="source"]) :is(button,input,select,textarea,.nav,.ngh,.mbtn,.mpi,.brand small){font-family:var(--ui-font)}
+/* brighter, glossier icon tiles (Colourful style) */
+body[data-icon-style="signature"] .ic-tile{background:linear-gradient(150deg,hsl(var(--h) 88% 66%) 0%,hsl(var(--h) 76% 51%) 50%,hsl(calc(var(--h) + 16) 74% 41%) 100%)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 5px hsl(var(--h) 70% 25% / .22),0 7px 16px -7px hsl(var(--h) 80% 40% / .6)!important;border:0!important;position:relative;overflow:hidden;color:#fff!important}
+body[data-icon-style="signature"] .ic-tile::before{content:"";position:absolute;left:0;right:0;top:0;height:52%;background:linear-gradient(rgba(255,255,255,.3),rgba(255,255,255,0));border-radius:inherit;pointer-events:none}
+.ic-tile svg{position:relative}
+body[data-icon-style="signature"] .h2-mi{background:linear-gradient(150deg,color-mix(in srgb,var(--mc) 70%,#fff),var(--mc) 50%,color-mix(in srgb,var(--mc) 78%,#000))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 7px 16px -7px color-mix(in srgb,var(--mc) 75%,transparent)!important;border:0!important}
+.h2-spec{transition:transform .2s var(--ease-ui,ease),box-shadow .2s,border-color .2s}
+.h2-spec:hover{border-color:color-mix(in srgb,var(--accent) 30%,var(--line))}
+.h2-spec:hover .ic-tile,.h2-mod:hover .h2-mi{transform:translateY(-2px) scale(1.06)}
+.h2-spec .ic-tile,.h2-mi{transition:transform .25s var(--ease-ui,ease)}
+.h2-spec:active,.h2-mod:active,.di:active{transform:scale(.98)}
+/* drug list and drug pages */
+.ddi{align-items:center;transition:border-color .2s,box-shadow .2s,transform .15s}
+.ddi:hover,a.di:hover{box-shadow:0 8px 20px -14px rgba(16,40,70,.45)}
+.dic.ic-tile{width:36px;height:36px;border-radius:11px!important;display:grid;place-items:center;flex:none}
+.dic.ic-tile svg{width:19px;height:19px}
+.ddi>div:nth-child(2){flex:1;min-width:0}
+.ddi .nm{font-weight:650}
+.dh2{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:16px;margin:6px 0 12px;background:linear-gradient(135deg,hsl(var(--h) 70% 50% / .13),hsl(var(--h) 70% 50% / .03) 70%),var(--panel);border:1px solid hsl(var(--h) 55% 50% / .22)}
+.dh2 .dhx{flex:1;min-width:0}.dh2 h1{margin-top:0!important}
+.dic-lg.ic-tile{width:54px;height:54px;border-radius:16px!important}.dic-lg.ic-tile svg{width:28px;height:28px}
+@media (max-width:640px){.dh2{padding:12px;gap:10px}.dic-lg.ic-tile{width:44px;height:44px}.dic.ic-tile{width:32px;height:32px}}
+/* crisper cards, sections and topic pages */
+.tsec{box-shadow:0 1px 2px rgba(16,40,70,.04),0 6px 18px -14px rgba(16,40,70,.25)}
+.tsec h2{display:flex;align-items:center;gap:8px}
+.tsec h2::before{content:"";width:4px;height:18px;border-radius:4px;background:linear-gradient(var(--accent),color-mix(in srgb,var(--accent) 50%,#f0a060));flex:none}
+.ttoc a{transition:background .2s,color .2s,border-color .2s}.ttoc a:hover{border-color:var(--accent);color:var(--accent)}
+.thead{padding:4px 0 2px}
+/* national documents box on topic pages */
+.natl-box{margin:12px 0 4px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 9%,var(--panel)),var(--panel) 70%);border:1px solid color-mix(in srgb,var(--accent) 22%,var(--line))}
+.natl-h{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--accent)}.natl-h svg{width:18px;height:18px}
+.nchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.nchip{display:flex;flex-direction:column;gap:1px;padding:7px 12px;border-radius:11px;background:var(--panel);border:1px solid var(--line);text-decoration:none;color:var(--ink);max-width:100%;transition:transform .15s,border-color .2s,box-shadow .2s}
+.nchip:hover{transform:translateY(-1px);border-color:var(--accent);box-shadow:0 6px 16px -12px rgba(16,40,70,.5)}
+.nchip b{font-size:11.5px;letter-spacing:.3px;color:var(--accent)}.nchip.nb b{color:hsl(28 75% 45%)}
+:root[data-mode="dark"] .nchip.nb b{color:hsl(32 80% 65%)}
+.nchip span{font-size:13px;line-height:1.3}
+/* emergency tiles */
+.em{background:var(--panel)!important;color:var(--ink)!important;border:1px solid var(--line);box-shadow:0 1px 2px rgba(16,40,70,.05)!important;padding:9px 11px!important;gap:10px!important;position:relative;overflow:hidden;transition:transform .2s var(--ease-ui,ease),border-color .2s,box-shadow .2s!important}
+.em::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:hsl(var(--h) 72% 52%)}
+.em:hover{transform:translateY(-2px);border-color:hsl(var(--h) 60% 55% / .55);box-shadow:0 10px 22px -14px hsl(var(--h) 70% 35% / .8)!important}
+.em .emi.ic-tile{width:32px;height:32px;border-radius:10px!important;display:grid;place-items:center;flex:none}
+.em .emi.ic-tile svg{width:18px!important;height:18px!important;opacity:1}
+.em:hover .emi{animation:emBeat .9s ease-in-out}
+@keyframes emBeat{0%,100%{transform:scale(1)}30%{transform:scale(1.14)}50%{transform:scale(.96)}70%{transform:scale(1.07)}}
+/* calculator, protocol, fluid and equipment tiles */
+.ctile.ctx{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center;transition:transform .18s var(--ease-ui,ease),border-color .2s,box-shadow .2s}
+.ctile.ctx .cti{grid-row:span 2;width:38px;height:38px;border-radius:11px!important;display:grid;place-items:center}
+.ctile.ctx .cti svg{width:20px;height:20px}
+.ctile.ctx:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 40%,var(--line));box-shadow:0 10px 22px -16px rgba(16,40,70,.55)}
+.ctile.ctx:hover .cti{transform:rotate(-6deg) scale(1.08)}.ctile.ctx .cti{transition:transform .25s var(--ease-ui,ease)}
+/* home tiles: lift, glow, shine and a gentle icon bounce */
+.h2-mod{position:relative;overflow:hidden;transition:transform .28s var(--ease-ui,ease),box-shadow .28s,border-color .28s!important}
+.h2-mod::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg);pointer-events:none;opacity:0}
+.h2-mod:hover,.h2-mod:focus-visible{transform:translateY(-4px);box-shadow:0 18px 32px -18px color-mix(in srgb,var(--mc) 70%,transparent)!important;border-color:color-mix(in srgb,var(--mc) 45%,var(--line))}
+.h2-mod:hover::after,.h2-mod:focus-visible::after{animation:modShine .8s ease forwards}
+@keyframes modShine{from{left:-70%;opacity:1}to{left:130%;opacity:1}}
+.h2-mod:hover .h2-mi,.h2-mod:focus-visible .h2-mi{animation:modBounce .7s cubic-bezier(.3,1.6,.5,1)}
+@keyframes modBounce{0%{transform:translateY(0) rotate(0)}35%{transform:translateY(-5px) rotate(-8deg) scale(1.08)}65%{transform:translateY(0) rotate(4deg)}100%{transform:none}}
+.h2-mods .h2-mod{animation:modIn .5s var(--ease-ui,ease) both}
+.h2-mods .h2-mod:nth-child(2){animation-delay:.05s}.h2-mods .h2-mod:nth-child(3){animation-delay:.1s}.h2-mods .h2-mod:nth-child(4){animation-delay:.15s}.h2-mods .h2-mod:nth-child(5){animation-delay:.2s}.h2-mods .h2-mod:nth-child(6){animation-delay:.25s}
+@keyframes modIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+.h2-q{transition:background .2s,transform .2s}.h2-q:hover{background:color-mix(in srgb,var(--accent) 6%,transparent)}.h2-q:hover .h2-qi{transform:translateY(-2px) scale(1.1)}.h2-qi{transition:transform .25s var(--ease-ui,ease)}
+body.reduce-motion :is(.h2-mod,.h2-mi,.em,.emi,.ctile,.cti){animation:none!important;transition:none!important}
+@media (prefers-reduced-motion:reduce){:is(.h2-mod,.h2-mi,.em,.emi,.ctile,.cti){animation:none!important}.h2-mod::after{display:none}}
+/* topic PDF export */
+.tact{margin-top:10px}
+.tpdf{display:inline-flex;align-items:center;gap:7px;border:0;border-radius:999px;padding:8px 15px;background:linear-gradient(135deg,hsl(6 78% 56%),hsl(352 70% 46%));color:#fff;font:600 13.5px var(--ui-font);cursor:pointer;box-shadow:0 6px 16px -8px hsl(355 70% 40% / .7);transition:transform .15s,filter .2s}
+.tpdf:hover{filter:brightness(1.07)}.tpdf:active{transform:scale(.97)}.tpdf svg{width:17px;height:17px}
+#printdoc{display:none}
+@media print{
+ @page{size:A4;margin:14mm 13mm 15mm}
+ body.print-topic>*:not(#printdoc){display:none!important}
+ body.print-topic{background:#fff!important;background-image:none!important}
+ body.print-topic #printdoc{display:block!important}
+ #printdoc{font:10.5pt/1.5 "Source Sans 3",Arial,sans-serif;color:#1b2220;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .pd-head{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:linear-gradient(120deg,#0f5f57,#17675f 60%,#0a3440);color:#fff}
+ .pd-head img{width:34px;height:34px;border-radius:8px;background:#fff}
+ .pd-head b{display:block;font:600 13pt "Source Serif 4",Georgia,serif}
+ .pd-head span,.pd-date{font-size:8.5pt;opacity:.88}.pd-date{margin-left:auto;white-space:nowrap}
+ #printdoc h1{font:600 22pt/1.15 "Source Serif 4",Georgia,serif;color:#0f5f57;margin:14px 0 4px}
+ .pd-meta{font-size:9.5pt;color:#5b6661;margin-bottom:10px}
+ .pd-toc{border:1px solid #d9e2df;border-radius:8px;padding:8px 12px;margin:0 0 10px;background:#f5f9f8;break-inside:avoid}
+ .pd-toc ol{columns:2;column-gap:24px;margin:4px 0 0;padding-left:18px;font-size:9.5pt}
+ #printdoc section{margin:0 0 8px}
+ #printdoc h2{font:600 13pt/1.25 "Source Serif 4",Georgia,serif;color:#0f5f57;border-bottom:1.5px solid #cfe3df;padding-bottom:3px;margin:14px 0 6px;break-after:avoid;display:flex;gap:8px;align-items:center}
+ #printdoc h2 span{display:inline-grid;place-items:center;min-width:19px;height:19px;border-radius:50%;background:#0f5f57;color:#fff;font:700 8.5pt "Source Sans 3",sans-serif}
+ #printdoc h3{font-size:11pt;color:#17675f;margin:8px 0 3px;break-after:avoid}
+ #printdoc p{margin:3px 0;orphans:3;widows:3}
+ #printdoc ul{margin:3px 0;padding-left:16px}#printdoc li{margin:2px 0;break-inside:avoid}
+ #printdoc sup{font-size:6.5pt;color:#0f5f57;font-weight:700;margin-left:1px}
+ #printdoc table{width:100%;border-collapse:collapse;margin:6px 0;font-size:9pt}
+ #printdoc th{background:#e6f0ee;text-align:left}
+ #printdoc th,#printdoc td{border:1px solid #cfdcd8;padding:4px 6px;vertical-align:top}#printdoc tr{break-inside:avoid}
+ .pd-warn{border-left:3px solid #c0392b;background:#fdf0ee;padding:6px 10px;border-radius:4px;margin:6px 0;break-inside:avoid}
+ .pd-note{border-left:3px solid #2b6cb0;background:#eef4fb;padding:6px 10px;border-radius:4px;margin:6px 0;break-inside:avoid}
+ .pd-qa>div{display:grid;grid-template-columns:36% 1fr;gap:10px;padding:4px 0;border-bottom:1px solid #e3e9e7;break-inside:avoid}
+ .pd-src ol{font-size:8.5pt;padding-left:18px}.pd-src li{margin:3px 0}.pd-url{color:#5b6661;word-break:break-all}
+ .pd-foot{margin-top:14px;padding-top:8px;border-top:1px solid #d9e2df;font-size:8pt;color:#5b6661;break-inside:avoid}
+}
 /* guided app tour */
 .ht{position:fixed;inset:0;z-index:180;font-family:"Source Sans 3",system-ui,sans-serif;transition:opacity .3s}
 .ht.out{opacity:0}
@@ -1562,7 +1661,7 @@ function drugDetail(key) {
   else if (d.ch.length) badges.push('<span class="b b-chg">Changed 2025</span>');
   const ci = d.f.find(x => x[0] === "Contraindications");
   let h = `<button class="back" onclick="goBack()">${ICON.back} Back</button>
-  <div class="dh"><h1>${esc(d.n)}</h1><div class="muted">${esc(d.g || "")} ${typeof utdLink === "function" ? utdLink(d.n.replace(/\s*\(.*$/, "")) : ""}</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap">${badges.join("")}</div></div>
+  <div class="dh dh2" style="--h:${drugHue(d)}">${drugTile(d, "dic-lg")}<div class="dhx"><h1>${esc(d.n)}</h1><div class="muted">${esc(d.g || "")} ${typeof utdLink === "function" ? utdLink(d.n.replace(/\s*\(.*$/, "")) : ""}</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap">${badges.join("")}</div></div></div>
   <div class="avail">${LEVELS.map(l => `<div class="${d.lv.includes(l) ? "yes" : "no"}"><b>${l}</b><span>${d.lv.includes(l) ? "Available" : "Not stocked"}</span></div>`).join("")}</div>`;
   if (d.st === "deleted" || d.st === "notlisted") h += `<div class="warn">Not on the NEML 2025 list${d.st === "deleted" ? " (deleted in 2025)" : ""}. Levels shown are from NEMF 2022.</div>`;
   h += `<div class="key"><div class="k ind"><h4>Main indications</h4>${esc(firstIndications(d))}</div><div class="k ci"><h4>Contraindications</h4>${ci ? hl(ci[1]) : '<span class="muted">None listed in the formulary.</span>'}</div></div>`;
@@ -1589,6 +1688,9 @@ function drugMatches(d, q) {
   const hay = (d.n + " " + d.al + " " + (d.sx || "") + " " + d.g + " " + d.f25.map(f => f.i).join(" ") + " " + d.cls.map(c => (D.classes.find(x => x.id === c) || {}).t).join(" ")).toLowerCase();
   return q.toLowerCase().split(/\s+/).filter(Boolean).every(t => hay.includes(t));
 }
+/* a coloured tile per drug class, so the list reads at a glance */
+function drugHue(d) { const c = d.cls && d.cls[0]; if (!c) return 200; const i = D.classes.findIndex(x => x.id === c); return i < 0 ? 200 : (i * 47 + 150) % 360; }
+function drugTile(d, cls = "") { return `<span class="dic ic-tile ${cls}" style="--h:${drugHue(d)}" aria-hidden="true">${IC2.drugs}</span>`; }
 function drugList() {
   const counts = {};
   D.classes.forEach(c => counts[c.id] = DRUGS.filter(d => d.cls.includes(c.id)).length);
@@ -1612,7 +1714,7 @@ function renderDrugItems() {
     !LS.filt || (LS.filt === "calc" && d.calc) || (LS.filt === "common" && d.c) || (LS.filt === "new" && (d.st === "new" || d.ch.length)) ||
     ((LS.filt === "PHC" || LS.filt === "DH") && d.lv.includes(LS.filt))))
     .sort((a, b) => (LS.q ? (b.n.toLowerCase().startsWith(LS.q.toLowerCase()) - a.n.toLowerCase().startsWith(LS.q.toLowerCase())) : 0) || a.n.localeCompare(b.n));
-  el.innerHTML = items.length ? items.map(d => `<button class="di" onclick="go('#drug/'+encodeURIComponent('${d.k.replace(/'/g, "\\'")}'))"><div><div class="nm">${esc(d.n)} ${d.calc ? '<span class="b b-calc">calc</span>' : ""} ${d.st === "new" ? '<span class="b b-new">new</span>' : ""}${d.st === "deleted" || d.st === "notlisted" ? '<span class="b b-gone">not on 2025 list</span>' : ""}</div><div class="gp">${esc(d.g || "")}</div></div><div class="rt">${lvPills(d.lv)}</div></button>`).join("")
+  el.innerHTML = items.length ? items.map(d => `<button class="di ddi" onclick="go('#drug/'+encodeURIComponent('${d.k.replace(/'/g, "\\'")}'))">${drugTile(d)}<div><div class="nm">${esc(d.n)} ${d.calc ? '<span class="b b-calc">calc</span>' : ""} ${d.st === "new" ? '<span class="b b-new">new</span>' : ""}${d.st === "deleted" || d.st === "notlisted" ? '<span class="b b-gone">not on 2025 list</span>' : ""}</div><div class="gp">${esc(d.g || "")}</div></div><div class="rt">${lvPills(d.lv)}</div></button>`).join("")
     : `<div class="card muted">No medicines match.</div>`;
 }
 function bindDrugList() {
@@ -2017,7 +2119,7 @@ function presetInfusion(drug) {
   const sel = document.getElementById("fpre"); if (sel && i >= 0) { sel.value = i; applyPreset(i); sel.dispatchEvent(new Event("change")); }
 }
 function fluidsView(id) {
-  if (!id) return `<h1 class="vt">Fluids &amp; electrolytes</h1><p class="vsub">Calculators use the weight in the patient bar (you can override it in each calculator).</p><div class="calcgrid">${FLUIDS.map(f => `<button class="ctile" onclick="go('#fluids/${f.id}')"><b>${esc(f.t)}</b><span>${esc(f.s)}</span></button>`).join("")}</div>`;
+  if (!id) return `<h1 class="vt">Fluids &amp; electrolytes</h1><p class="vsub">Calculators use the weight in the patient bar (you can override it in each calculator).</p><div class="calcgrid">${FLUIDS.map(f => `<button class="ctile ctx" onclick="go('#fluids/${f.id}')">${ctIc("fluids")}<b>${esc(f.t)}</b><span>${esc(f.s)}</span></button>`).join("")}</div>`;
   const f = FLUIDS.find(x => x.id === id); if (!f) return "Not found";
   return `<button class="back" onclick="goUp('#fluids')">${ICON.back} Fluids</button><h1 class="vt">${esc(f.t)}</h1><p class="vsub">${esc(f.s)}</p><div class="card" id="fcard">${f.html()}</div>`;
 }
@@ -2263,13 +2365,16 @@ const CALCS = [
       $("#cres").innerHTML = o.join("");
     }},
 ];
+/* a coloured icon for each calculator and protocol group */
+function groupLook(g) { return ({"Acid–base & gases": [200, IC2.lab], "Kidney": [15, IC2.kidney], "Body size": [130, IC2.growth], "Cardiovascular": [345, IC2.heart], "Infection & sepsis": [160, IC2.germ], "Neurology": [270, IC2.brain], "Liver": [35, IC2.liver], "Obstetrics & neonates": [320, IC2.baby], "Paediatrics": [25, IC2.child], "Gastrointestinal & surgery": [185, IC2.surg], "Drugs & conversions": [150, IC2.drugs], "Ventilation": [195, IC2.vent], "Obstetric emergencies": [330, IC2.obg], "Medical emergencies": [8, IC2.emerg], "Paediatric": [25, IC2.child], "Poisoning": [95, IC2.lab], "Surgical & trauma": [205, IC2.ambul], fluids: [200, IC2.drop], equip: [16, IC2.equip]})[g] || [210, IC2.calc]; }
+const ctIc = g => { const [h, ic] = groupLook(g); return `<span class="cti ic-tile" style="--h:${h}" aria-hidden="true">${ic}</span>`; };
 function calcsView(id) {
   if (!id) {
     const gs = [...new Set(CALCS.map(c => c.g))].sort((a, b) => { const ia = CALC_GROUP_ORDER.indexOf(a), ib = CALC_GROUP_ORDER.indexOf(b); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
     return `<h1 class="vt">Calculators</h1><p class="vsub">${CALCS.length} clinical formulas, scores and ventilator tools from published sources. Values from the patient bar are pre-filled. Child growth z-scores are in the Growth tab.</p>
       <div class="fi" style="max-width:420px;margin-bottom:6px"><label for="cfilter">Find a calculator</label><input id="cfilter" type="search" placeholder="e.g. ventilator, sodium, Wells, Apgar"></div>
       <div class="chips" style="margin:4px 0 10px">${gs.map(g => `<a class="chip" href="#calc" onclick="event.preventDefault();document.getElementById('cg-${gs.indexOf(g)}').scrollIntoView({behavior:'smooth'})">${esc(g)}</a>`).join("")}</div>` +
-      gs.map((g, gi) => `<div class="cgrp" id="cg-${gi}"><div class="pgroup">${esc(g)}</div><div class="calcgrid">${CALCS.filter(c => c.g === g).map(c => `<button class="ctile" data-q="${esc((c.t + " " + c.s + " " + c.g).toLowerCase())}" onclick="go('#calc/${c.id}')"><b>${esc(c.t)}</b><span>${esc(c.s)}</span></button>`).join("")}</div></div>`).join("") +
+      gs.map((g, gi) => `<div class="cgrp" id="cg-${gi}"><div class="pgroup">${esc(g)}</div><div class="calcgrid">${CALCS.filter(c => c.g === g).map(c => `<button class="ctile ctx" data-q="${esc((c.t + " " + c.s + " " + c.g).toLowerCase())}" onclick="go('#calc/${c.id}')">${ctIc(g)}<b>${esc(c.t)}</b><span>${esc(c.s)}</span></button>`).join("")}</div></div>`).join("") +
       `<div class="pgroup">Trusted online calculators (open in your browser)</div><div class="card"><ul class="extl">${EXT_CALCS.map(([t, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(t)} ↗</a></li>`).join("")}</ul><p class="small muted">External sites need internet access; everything above works offline.</p></div>`;
   }
   const c = CALC_BY[id]; if (!c) return "Not found";
@@ -3369,7 +3474,7 @@ function protocolsView(id) {
     const groups = [...new Set(PROTOCOLS.map(p => p.g))];
     return `<h1 class="vt">Protocols</h1><p class="vsub">Emergencies and common cases. Doses calculate from the weight in the patient bar; each protocol lists its sources.</p>` +
       `<div class="search">${ICON.search}<input id="pq" type="search" placeholder="Search protocols (e.g. eclampsia, DKA, SAM)"></div>` +
-      groups.map(g => `<div class="pgroup" data-g>${esc(g)}</div><div class="calcgrid">${PROTOCOLS.filter(p => p.g === g).map(p => `<button class="ctile" data-pt="${esc((p.t + " " + p.s + " " + p.g).toLowerCase())}" onclick="go('#p/${p.id}')"><b>${esc(p.t)}</b><span>${esc(p.s)}</span></button>`).join("")}</div>`).join("");
+      groups.map(g => `<div class="pgroup" data-g>${esc(g)}</div><div class="calcgrid">${PROTOCOLS.filter(p => p.g === g).map(p => `<button class="ctile ctx" data-pt="${esc((p.t + " " + p.s + " " + p.g).toLowerCase())}" onclick="go('#p/${p.id}')">${ctIc(g)}<b>${esc(p.t)}</b><span>${esc(p.s)}</span></button>`).join("")}</div>`).join("");
   }
   const p = PROT_BY[id]; if (!p) return "Not found";
   return `<button class="back" onclick="goUp('#protocols')">${ICON.back} Protocols</button><h1 class="vt">${esc(p.t)}</h1><p class="vsub">${esc(p.s)}${wt() == null ? ' — <b>enter weight in the patient bar to calculate doses</b>' : ` — for <b>${fmtN(wt())} kg</b>`}</p>${typeof stgRefBox === "function" ? stgRefBox(id) : ""}<div class="card" id="pbody">${p.body()}</div>${protSources(p)}`;
@@ -4395,7 +4500,7 @@ function equipView(id) {
     <button class="ctile" onclick="go('#equip/sizes')"><b>Airway & equipment sizes</b><span>ETT, depth, blade, LMA, airways, suction, NG, catheter, chest drain, cannula, IO, CVC, defib</span></button>
     <button class="ctile" onclick="go('#vent')"><b>Ventilation</b><span>Initial settings for adult, child and neonate by brand; modes, mechanics, troubleshooting, weaning</span></button>
     <button class="ctile" onclick="go('#equip/oxygen')"><b>Oxygen, high-flow & NIV</b><span>Device flows and FiO₂, HFNC by weight, CPAP / BiPAP starting settings</span></button></div>
-    <div class="pgroup">Procedure checklists</div><div class="calcgrid">${KITS.map(k => `<button class="ctile" onclick="go('#equip/k-${k.id}')"><b>${esc(k.t)}</b><span>${esc(k.s)}</span></button>`).join("")}</div>`;
+    <div class="pgroup">Procedure checklists</div><div class="calcgrid">${KITS.map(k => `<button class="ctile ctx" onclick="go('#equip/k-${k.id}')">${ctIc("equip")}<b>${esc(k.t)}</b><span>${esc(k.s)}</span></button>`).join("")}</div>`;
   const back = `<button class="back" onclick="goUp('#equip')">${ICON.back} Equipment</button>`;
   const who = () => { const am = ageMonths(), w = wt(); return am == null && w == null ? ' — <b>enter age and weight in the patient bar</b>' : ` — for <b>${esc(ageBand(am) || "")}${am != null ? " " + ageText(am) : ""}${w != null ? ", " + fmtN(w) + " kg" : ""}${P.sex ? ", " + P.sex : ""}</b>`; };
   if (id === "sizes") {
@@ -5035,7 +5140,7 @@ function homeView() {
     ${pinsHtml()}
     <div class="statband hs-stats">${[[DRUGS.length, "medicines"], [CONDS.length, "conditions"], [nsec.toLocaleString(), "guideline sections"], [PROTOCOLS.length, "protocols"], [CALCS.length, "calculators"]].map(([n, t]) => `<div><b>${n}</b><span>${t}</span></div>`).join("")}</div>
     <div class="sechead hs-emerg"><h2>Emergencies</h2><span>One tap to the protocol, doses calculated from the patient bar</span></div>
-    <div class="emgrid hs-emerg">${EMERG.filter(([id]) => pr.has(id)).map(([id, t]) => `<a class="em" href="#p/${id}">${ICON.siren}<span>${esc(t)}</span></a>`).join("")}<a class="em em-b" href="#calc/vent">${ICON.lung}<span>Ventilator settings</span></a><a class="em em-b" href="#equip/k-rsi">${ICON.tube}<span>Intubation (RSI)</span></a></div>
+    <div class="emgrid hs-emerg">${EMERG.filter(([id]) => pr.has(id)).map(([id, t]) => emTile(id, t)).join("")}${emTile("vent", "Ventilator settings", "#calc/vent")}${emTile("rsi", "Intubation (RSI)", "#equip/k-rsi")}</div>
     <div class="sechead hs-explore"><h2>Explore</h2><span>Everything is cross-linked — tap any drug or condition name inside a page</span></div>
     <div class="hubgrid hs-explore">${HUBS.map(([h, ic, t, s, n, c1, c2]) => `<a class="hub" href="${h}" style="--c1:${c1};--c2:${c2}"><span class="hic">${ICON[ic]}</span><span class="ht"><b>${t}</b><span>${s}</span></span>${n ? `<em class="hn">${n()}</em>` : ""}</a>`).join("")}</div>
     ${feat.length ? `<div class="sechead hs-images"><h2>Learn from images</h2><span>From your X-ray guide and WHO pocket book</span></div><div class="featrow hs-images">${feat.map(f => `<a class="feat" href="${f.h}"><img src="${f.src}" alt="${esc(f.t)}" loading="lazy"><span><b>${esc(f.t)}</b><small>${esc(f.s)}</small></span></a>`).join("")}</div>` : ""}
@@ -5146,7 +5251,7 @@ function homeView2() {
     <div class="h2-specs hs-specs">${SPECS.slice(0, 24).map(tile).join("")}</div>
     <div class="h2-quick hs-quick"><div class="h2-qh">Quick tools &amp; resources</div>${QUICK2.map(([h, ic, t, s]) => `<a class="h2-q" href="${h}"><span class="h2-qi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
     <div class="h2-sec hs-emerg"><h2>Emergencies</h2><a href="#protocols">All protocols</a></div>
-    <div class="emgrid hs-emerg">${EMERG.filter(([id]) => pr.has(id)).map(([id, t]) => `<a class="em" href="#p/${id}">${ICON.siren}<span>${esc(t)}</span></a>`).join("")}</div>
+    <div class="emgrid hs-emerg">${EMERG.filter(([id]) => pr.has(id)).map(([id, t]) => emTile(id, t)).join("")}</div>
     <div class="hcols"><div class="hs-recent"><div class="h2-sec"><h2>Recently viewed</h2></div>${rec.length ? `<div class="dl">${rec.slice(0, 6).map(x => `<a class="di" href="${esc(x.h)}"><div><div class="nm">${esc(x.t)}</div><div class="gp">${esc(x.k)}</div></div></a>`).join("")}</div>` : `<div class="card muted small">Pages you open appear here.</div>`}</div>
       <div class="hs-guides"><div class="h2-sec"><h2>My guides</h2><a href="#learn">Learning</a></div><div class="dl">${mine.slice(0, 6).map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s)}</div><div class="gp">${esc(b.t.slice(0, 70))}</div></div></a>`).join("")}</div></div></div>
     <p class="small muted" style="margin-top:14px"><a href="#homeold">Classic home page</a></p>`;
@@ -5170,14 +5275,21 @@ function specView(id) {
     ${books.length ? `<div class="pgroup">National guidelines and references</div><div class="dl">${books.map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s || b.t)}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div>` : ""}
     ${!conds.length && !topics.length && !books.length ? `<div class="card muted">Nothing for this specialty is in the app yet. It is on the list for the topic stages. Meanwhile, <a href="#search/${encodeURIComponent(n)}">search the app for ${esc(n)}</a>.</div>` : ""}`;
 }
+/* emergency tiles: each emergency has its own colour and icon */
+const SNAKE_IC = SI('<path d="M5 19c2.5 0 3.5-2 6-2s3.5 2 6 2c2 0 3.5-1.5 3.5-3.5S19 12 17 12H8.5C6.6 12 5 10.7 5 8.8S6.6 5.5 8.5 5.5H15"/><path d="M15 5.5c1.2 0 2.5.7 2.5 1.8M18 7.2l2 .3"/>');
+function emLook(id) { return ({arrest: [345, IC2.heart], anaph: [28, IC2.skin], status: [268, IC2.brain], sepsis: [158, IC2.germ], dka: [44, IC2.gland], dkachild: [24, IC2.child], hyperk: [205, IC2.emerg], neores: [318, IC2.baby], pph: [300, IC2.drop], eclampsia: [285, IC2.obg], trauma: [12, IC2.ambul], op: [95, IC2.lab], snake: [122, SNAKE_IC], stroke: [228, IC2.brain], vent: [190, IC2.vent], rsi: [172, IC2.equip]})[id] || [200, ICON.siren]; }
+function emTile(id, t, href) { const [h, ic] = emLook(id); return `<a class="em" style="--h:${h}" href="${href || "#p/" + id}"><span class="emi ic-tile" style="--h:${h}" aria-hidden="true">${ic}</span><span>${esc(t)}</span></a>`; }
+/* icons for the imaging and learning guides */
+function bookLook(b, i) { return ({h_ecg: [345, IC2.heart], h_cxr: [200, IC2.lung], h_echo: [300, IC2.heart], h_abg: [190, IC2.lab], h_lytes: [45, IC2.drop]})[b.id] || [(i * 41 + 250) % 360, b.app ? IC2.learn : IC2.guide]; }
+const bookTile = (b, i) => { const [h, ic] = bookLook(b, i); return `<span class="dic ic-tile" style="--h:${h}" aria-hidden="true">${ic}</span>`; };
 function imagingView() {
   const ids = ["h_ecg", "h_cxr", "h_echo", "h_abg", "h_lytes"], books = ids.map(b => GL_BY[b]).filter(Boolean);
-  return `<h1 class="vt">Clinical imaging &amp; interpretation</h1><p class="vsub">X-ray, ECG, echocardiography and blood gas guides already in the app. ▶ marks an interactive guide.</p><div class="dl">${books.map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s)}${b.app ? " ▶" : ""}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div><p class="small muted">Ultrasound, CT and MRI lessons are planned for a later stage.</p>`;
+  return `<h1 class="vt">Clinical imaging &amp; interpretation</h1><p class="vsub">X-ray, ECG, echocardiography and blood gas guides already in the app. ▶ marks an interactive guide.</p><div class="dl">${books.map((b, i) => `<a class="di ddi" href="#gl/${b.id}">${bookTile(b, i)}<div><div class="nm">${esc(b.s)}${b.app ? " ▶" : ""}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div><p class="small muted">Ultrasound, CT and MRI lessons are planned for a later stage.</p>`;
 }
 function learnView() {
   const mine = GL.books.filter(b => b.cat === "mine" || b.cat === "picu");
   const due = fcDue(FC_ALL).length;
-  return `<h1 class="vt">Learning</h1><p class="vsub">Flashcards built from checked topic pages, full topic pages, and your study guides.</p><div class="h2-mods" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><a class="h2-mod c-purple" href="#cards"><span class="h2-mi">${IC2.learn}</span><b>Flashcards</b><small>${FC_ALL.length} cards · ${due} due now</small></a><a class="h2-mod c-teal" href="#topics"><span class="h2-mi">${IC2.guide}</span><b>Topic pages</b><small>${TOPICS.length} in the full format</small></a></div><div class="pgroup">Study guides and teaching decks</div><div class="dl">${mine.map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s)}${b.app ? " ▶" : ""}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div>`;
+  return `<h1 class="vt">Learning</h1><p class="vsub">Flashcards built from checked topic pages, full topic pages, and your study guides.</p><div class="h2-mods" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><a class="h2-mod c-purple" href="#cards"><span class="h2-mi">${IC2.learn}</span><b>Flashcards</b><small>${FC_ALL.length} cards · ${due} due now</small></a><a class="h2-mod c-teal" href="#topics"><span class="h2-mi">${IC2.guide}</span><b>Topic pages</b><small>${TOPICS.length} in the full format</small></a></div><div class="pgroup">Study guides and teaching decks</div><div class="dl">${mine.map((b, i) => `<a class="di ddi" href="#gl/${b.id}">${bookTile(b, i)}<div><div class="nm">${esc(b.s)}${b.app ? " ▶" : ""}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div>`;
 }
 /* ===== standard clinical topic pages: one record per disease, every statement tied to a source ===== */
 const TOPICS = [
@@ -18333,16 +18445,60 @@ function topicBlock(t, b) {
   if (b[0] === "t") return `<div style="overflow-x:auto"><table class="ttab"><thead><tr>${b[1][0].map(c => `<th>${x(c)}</th>`).join("")}</tr></thead><tbody>${b[1].slice(1).map(r => `<tr>${r.map(c => `<td>${x(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
   return "";
 }
+/* links a topic to the exact national documents: STG 2024 sections and national/WHO guideline books */
+const NATL_STOP = new Set(["acute", "chronic", "adult", "adults", "child", "children", "disease", "diseases", "syndrome", "management", "infection", "infections", "general", "approach", "basic", "with", "without", "from", "their", "and", "the", "care", "severe", "simple", "other", "neonatal", "newborn", "paediatric", "primary", "secondary", "anti", "resistant", "drug", "antibody", "peptide", "cyclic", "test", "level", "levels", "oedema"]);
+function topicNatl(t) {
+  const stg = new Map(), books = new Map();
+  Object.values(t.src).forEach(([n, u]) => {
+    for (const m of String(n).matchAll(/STG[^,]*,\s*(\d+(?:\.\d+)+)/g)) if (STG_BY[m[1]]) stg.set(m[1], 1);
+    const s = /#stg\/([\d.]+)/.exec(u || ""); if (s && STG_BY[s[1]]) stg.set(s[1], 1);
+    const g = /#gl\/([\w-]+)/.exec(u || ""); if (g && GL_BY[g[1]] && GL_BY[g[1]].cat !== "mine") books.set(g[1], 1);
+  });
+  const words = t.n.replace(/\(.*?\)/g, " ").toLowerCase().split(/[^a-z]+/).filter(w => w.length > 4 && !NATL_STOP.has(w));
+  if (words.length) {
+    const hit = s => words.every(w => new RegExp("\\b" + w.slice(0, Math.max(5, w.length - 2))).test(s.toLowerCase()));
+    GL.books.forEach(b => { if (b.cat !== "mine" && books.size < 4 && hit((b.s || "") + " " + (b.t || ""))) books.set(b.id, books.get(b.id) || 2); });
+  }
+  return {stg: [...stg.keys()].map(n => STG_BY[n]).filter(Boolean), books: [...books.keys()].map(id => GL_BY[id]).filter(Boolean)};
+}
+function natlBox(t) {
+  const {stg, books} = topicNatl(t), sp = SPEC_BY[t.spec[0]];
+  const chips = [...stg.map(x => `<a class="nchip ns" href="#stg/${x.n}"><b>STG 2024 · ${esc(x.n)}</b><span>${esc(x.t)}${x.p ? ` · p.${x.p}` : ""}</span></a>`), ...books.map(b => `<a class="nchip nb" href="#gl/${b.id}"><b>${esc(b.s || "Guideline")}</b><span>${esc((b.t || "").slice(0, 70))}</span></a>`)];
+  return `<div class="natl-box"><div class="natl-h">${IC2.guide}<b>National documents for this condition</b></div>${chips.length ? `<div class="nchips">${chips.join("")}</div>` : `<p class="small muted" style="margin:6px 0 0">No dedicated Bhutan STG section for this condition. ${sp ? `See the <a href="#spec/${sp[0]}">${esc(sp[1])}</a> page for its STG chapter and national guidelines.` : ""}</p>`}</div>`;
+}
 function topicView(id) {
   const t = TOPIC_BY[id]; if (!t) return topicsIndexView();
   const specs = t.spec.map(s => SPEC_BY[s]).filter(Boolean);
-  return `<div class="thead"><h1 class="vt">${esc(t.n)}</h1><div class="tmeta"><span>${esc(t.ages)}</span>${specs.map(s => `<a href="#spec/${s[0]}">${esc(s[1])}</a>`).join("")}${t.emerg ? `<span class="temerg">${esc(t.emerg)}</span>` : ""}</div><div class="small muted">${esc(t.reviewed)}</div></div>
+  return `<div class="thead"><h1 class="vt">${esc(t.n)}</h1><div class="tmeta"><span>${esc(t.ages)}</span>${specs.map(s => `<a href="#spec/${s[0]}">${esc(s[1])}</a>`).join("")}${t.emerg ? `<span class="temerg">${esc(t.emerg)}</span>` : ""}</div><div class="small muted">${esc(t.reviewed)}</div><div class="tact"><button class="tpdf" id="tpdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><path d="M14 2.5V8h5.5M12 11.5v6m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg>Save as PDF</button></div></div>
+    ${natlBox(t)}
     <nav class="ttoc">${t.sec.map(([h], i) => `<a href="#topic/${id}" data-tj="${i}">${esc(h)}</a>`).join("")}<a href="#cards/${id}" class="ttocards">Flashcards (${t.cards.length})</a></nav>
     ${t.sec.map(([h, bs], i) => `<section class="tsec" id="tsec${i}"><h2>${esc(h)}</h2>${bs.map(b => topicBlock(t, b)).join("")}</section>`).join("")}
     <section class="tsec"><h2>Related</h2><div class="chips wrap">${t.links.map(([h, n]) => `<a class="chip" href="${h}">${esc(n)}</a>`).join("")}</div></section>
     <section class="tsec"><h2>Sources</h2><ol class="tsrcs">${Object.entries(t.src).map(([k, [n, h]]) => `<li><b>${k}</b> <a href="${esc(h)}"${/^https?:/.test(h) ? ' target="_blank" rel="noopener"' : ""}>${esc(n)}</a></li>`).join("")}</ol><p class="small muted">${t.pediatricUpdate ? "Paediatric/neonatal source-specific guidance: check gestation, age, weight, renal function and the exact formulation. Bhutan guidance is used where available; international recommendations are labelled by source. New content is a clinical draft awaiting specialist and local formulary review." : t.surgicalUpdate ? "Source-specific guidance: review the publication date, population, product and linked source before applying a regimen. The older Bhutan manual is identified explicitly; specialist review of this draft is pending." : "Bhutan sources (STG) are national guidance. IPNA, KDIGO and ICMR are international or regional references, used where the STG is silent. Doses shown only where a source gives them."}</p></section>`;
 }
-function bindTopic() { $$("[data-tj]").forEach(a => a.onclick = e => { e.preventDefault(); const s = document.getElementById("tsec" + a.dataset.tj); if (s) s.scrollIntoView({behavior: "smooth", block: "start"}); }); }
+function bindTopic() { $$("[data-tj]").forEach(a => a.onclick = e => { e.preventDefault(); const s = document.getElementById("tsec" + a.dataset.tj); if (s) s.scrollIntoView({behavior: "smooth", block: "start"}); }); const p = $("#tpdf"); if (p) p.onclick = () => topicPdf(current.arg); }
+/* PDF export: builds a clean A4 layout of the topic and opens the device's print / save-as-PDF dialog */
+function topicPdf(id) {
+  const t = TOPIC_BY[id]; if (!t) return;
+  const c = s => esc(s).replace(/\[(S\d+)\]/g, "<sup>$1</sup>");
+  const blk = b => b[0] === "p" ? `<p>${c(b[1])}</p>` : b[0] === "h" ? `<h3>${esc(b[1])}</h3>` : b[0] === "l" ? `<ul>${b[1].map(i => `<li>${c(i)}</li>`).join("")}</ul>` : b[0] === "warn" ? `<div class="pd-warn">${c(b[1])}</div>` : b[0] === "note" ? `<div class="pd-note">${c(b[1])}</div>` : b[0] === "qa" ? `<div class="pd-qa">${b[1].map(([q, a]) => `<div><b>${c(q)}</b><span>${c(a)}</span></div>`).join("")}</div>` : b[0] === "t" ? `<table><thead><tr>${b[1][0].map(x => `<th>${c(x)}</th>`).join("")}</tr></thead><tbody>${b[1].slice(1).map(r => `<tr>${r.map(x => `<td>${c(x)}</td>`).join("")}</tr>`).join("")}</tbody></table>` : "";
+  const specs = t.spec.map(s => SPEC_BY[s]).filter(Boolean).map(s => s[1]);
+  const date = new Date().toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric"});
+  $$("#printdoc").forEach(e => e.remove());
+  const doc = document.createElement("div"); doc.id = "printdoc";
+  doc.innerHTML = `<header class="pd-head"><img src="icon-192.png" alt=""><div><b>Bhutan Clinical Reference</b><span>${esc(specs.join(" · "))}</span></div><div class="pd-date">${date}</div></header>
+    <h1>${esc(t.n)}</h1><div class="pd-meta">${esc(t.ages)}${t.emerg ? ` · <b>${esc(t.emerg)}</b>` : ""}${t.reviewed ? ` · ${esc(t.reviewed)}` : ""}</div>
+    <div class="pd-toc"><b>Contents</b><ol>${t.sec.map(([h]) => `<li>${esc(h)}</li>`).join("")}</ol></div>
+    ${t.sec.map(([h, bs], i) => `<section><h2><span>${i + 1}</span>${esc(h)}</h2>${bs.map(blk).join("")}</section>`).join("")}
+    <section class="pd-src"><h2>Sources</h2><ol>${Object.entries(t.src).map(([k, [n, u]]) => `<li><b>${k}</b> ${esc(n)}${/^https?:/.test(u) ? `<br><span class="pd-url">${esc(u)}</span>` : ""}</li>`).join("")}</ol></section>
+    <footer class="pd-foot"><b>Bhutan Clinical Reference</b> · Developed by Dr Deo Raj Suberi, GDMO (Reg. No. MM711) · deorajsuberibenisha.github.io/clinical-ref<br>Exported ${date}. Decision support only: verify doses against the product, local protocol and clinical judgement. Do not add patient-identifiable information to this document.</footer>`;
+  document.body.appendChild(doc); document.body.classList.add("print-topic");
+  const old = document.title; document.title = t.n + " - Bhutan Clinical Reference";
+  const done = () => { document.body.classList.remove("print-topic"); doc.remove(); document.title = old; removeEventListener("afterprint", done); };
+  addEventListener("afterprint", done);
+  const img = doc.querySelector("img");
+  (img.complete ? Promise.resolve() : new Promise(r => { img.onload = img.onerror = r; setTimeout(r, 1500); })).then(() => setTimeout(() => window.print(), 50));
+}
 function topicsIndexView() {
   const mode = store.get("topicsMode", "spec"), byName = (a, b) => a.n.localeCompare(b.n);
   const row = t => `<a class="di" href="#topic/${t.id}" data-q="${esc(t.n.toLowerCase())}"><div><div class="nm">${esc(t.n)}</div><div class="gp">${esc(t.ages)} · ${t.spec.map(id => SPEC_BY[id] ? esc(SPEC_BY[id][1]) : "").filter(Boolean).join(" · ")}</div></div></a>`;
@@ -18447,7 +18603,7 @@ const TEXT_SIZES = [["0.9", "Small"], ["1", "Normal"], ["1.12", "Large"], ["1.25
 const ACCENTS = [["#0f5f57", "Teal (default)"], ["#1f5fbf", "Royal blue"], ["#d0571f", "Bhutan saffron"], ["#b02a37", "Crimson"], ["#6a3de8", "Violet"], ["#1f7a44", "Forest"], ["#c2185b", "Rose"], ["#37474f", "Slate"]];
 const BANNERS = [["mount", "Himalayan dawn · illustrated"], ["aurora", "Teal atmosphere"], ["contour", "Contour lines"], ["linen", "Slate studio"], ["prayer", "Prayer flags at dawn"], ["night", "Night sky"], ["plain", "Theme colour"], ["photo", "My own photo"]];
 const HOME_SECS = [["mods", "Main sections"], ["specs", "Clinical specialties"], ["quick", "Quick tools"], ["emerg", "Emergencies"], ["recent", "Recently viewed"], ["guides", "My guides"], ["shortcuts", "My shortcuts"]];
-const BGS = [["", "Warm paper", "#f4f3ef"], ["white", "Clean white", "#ffffff"], ["cool", "Cool grey", "#eef1f4"], ["mint", "Soft mint", "#eef5f2"], ["blue", "Mist blue", "#eef3fa"], ["lavender", "Lavender mist", "#f2eff8"], ["glow", "Theme glow", "radial-gradient(at 15% 15%,#dbece9,transparent 70%),#f1f5f6"], ["grid", "Fine grid", "repeating-linear-gradient(90deg,#153b6309 0 1px,transparent 1px 12px),#f1f5f6"]];
+const BGS = [["", "Warm paper", "#f4f3ef"], ["white", "Clean white", "#ffffff"], ["cool", "Cool grey", "#eef1f4"], ["mint", "Soft mint", "#eef5f2"], ["blue", "Mist blue", "#eef3fa"], ["lavender", "Lavender mist", "#f2eff8"], ["glow", "Theme glow", "radial-gradient(at 15% 15%,#dbece9,transparent 70%),#f1f5f6"], ["grid", "Fine grid", "repeating-linear-gradient(90deg,#153b6309 0 1px,transparent 1px 12px),#f1f5f6"], ["dawn", "Himalayan dawn", "linear-gradient(165deg,#fde3cf,#f8ecef 38%,#e4eefb)"], ["aurora", "Aurora", "radial-gradient(at 15% 5%,#c6efe2,transparent 55%),radial-gradient(at 90% 25%,#ddd5fb,transparent 55%),radial-gradient(at 50% 100%,#cde5fb,transparent 60%),#f2f6f7"], ["flags", "Prayer flags", "linear-gradient(100deg,#3d7fd640,#fff0 22%,#d64b4b38 42%,#fff0 55%,#3aa66a38 70%,#fff0 82%,#f2c23048),#f7f6f2"], ["lotus", "Lotus", "radial-gradient(at 85% 0%,#fbd1e1,transparent 60%),radial-gradient(at 0% 100%,#fde6d4,transparent 55%),#fbf5f7"], ["ocean", "Ocean", "linear-gradient(180deg,#e1f2fb,#eaf5f6 50%,#e4f0ec)"], ["rhodo", "Rhododendron", "radial-gradient(at 8% 0%,#f8cdd4,transparent 50%),radial-gradient(at 100% 65%,#dff0d6,transparent 55%),#f8f5f2"], ["stars", "Starry night", "radial-gradient(#ffffffaa 1px,transparent 1.6px) 0 0/10px 10px,#1a2340"], ["dots", "Dot paper", "radial-gradient(#15396330 1.2px,transparent 1.5px) 0 0/8px 8px,#f6f7f8"]];
 const HOME_STYLES = [['signature','Signature','The familiar clinical home'],['focus','Focus','Compact, clear and efficient'],['dashboard','Dashboard','Tools at a glance'],['editorial','Editorial','Spacious and considered']];
 const UI_FONTS = [['source','Source Sans','Default'],['system','Your device','Follows the phone'],['inter','Inter','Crisp and modern'],['nunito','Nunito','Soft and friendly'],['atkinson','Atkinson','Easiest to read'],['lexend','Lexend','Clear and open'],['noto','Noto Sans','Neutral'],['humanist','Humanist','Warm'],['reading','Reading','Book style']];
 const HEAD_FONTS = [['serif','Classic','Source Serif'],['sans','Modern','Same as text'],['lora','Elegant','Lora'],['merri','Bookish','Merriweather'],['poppins','Bold','Poppins'],['nunito','Friendly','Nunito']];
@@ -18459,7 +18615,7 @@ function fontLoad(k) {
   const l = document.createElement("link"); l.id = "wf-" + k; l.rel = "stylesheet"; l.href = "https://fonts.googleapis.com/css2?family=" + fam + "&display=swap"; document.head.appendChild(l);
 }
 function fontChoices(id, list, cur) { return `<div class="fontgrid" id="${id}">${list.map(([v, l, s]) => `<button type="button" data-v="${v}" aria-pressed="${v === cur}"><span class="fa" style="font-family:${fontStack(v)}">Aa</span><b>${esc(l)}</b><small>${esc(s)}</small></button>`).join("")}</div>`; }
-const THEMES = [["", "", "Himalayan teal", "#0f5f57", "#f4f3ef"], ["#d0571f", "", "Saffron sunrise", "#d0571f", "#f4f3ef"], ["#1f5fbf", "blue", "Royal blue", "#1f5fbf", "#eef3fa"], ["#c2185b", "lavender", "Rhododendron", "#c2185b", "#f2eff8"], ["#1f7a44", "mint", "Forest", "#1f7a44", "#eef5f2"], ["#6a3de8", "cool", "Violet", "#6a3de8", "#eef1f4"], ["#b02a37", "white", "Crimson", "#b02a37", "#ffffff"], ["#37474f", "cool", "Slate", "#37474f", "#eef1f4"]];
+const THEMES = [["", "", "Himalayan teal", "#0f5f57", "#f4f3ef"], ["#d0571f", "", "Saffron sunrise", "#d0571f", "#f4f3ef"], ["#1f5fbf", "blue", "Royal blue", "#1f5fbf", "#eef3fa"], ["#c2185b", "lavender", "Rhododendron", "#c2185b", "#f2eff8"], ["#1f7a44", "mint", "Forest", "#1f7a44", "#eef5f2"], ["#6a3de8", "cool", "Violet", "#6a3de8", "#eef1f4"], ["#b02a37", "white", "Crimson", "#b02a37", "#ffffff"], ["#37474f", "cool", "Slate", "#37474f", "#eef1f4"], ["#d0571f", "dawn", "Himalayan dawn", "#e07a3f", "#e4eefb"], ["#0f7a6c", "aurora", "Aurora", "#14a08d", "#ddd5fb"], ["#1f5fbf", "flags", "Prayer flags", "#3d7fd6", "#f2c230"], ["#c2185b", "lotus", "Lotus", "#d6457e", "#fde6d4"], ["#0b6e99", "ocean", "Ocean", "#1789b8", "#e1f2fb"], ["#b02a5a", "rhodo", "Rhododendron", "#c23a63", "#dff0d6"], ["#5b4bd6", "stars", "Starry night", "#5b4bd6", "#1a2340"]];
 function themeChoices() { const a = store.get("accent", "") || "", b = store.get("bg", "") || ""; return `<div class="themegrid" id="s_themes">${THEMES.map(([ac, bg, n, c1, c2], i) => `<button type="button" data-t="${i}" aria-pressed="${ac === a && bg === b}"><span class="tsw" style="--a:${c1};--b:${c2}"></span><b>${n}</b></button>`).join("")}</div>`; }
 const AP_ICONS = {
  palette:SI('<circle cx="12" cy="12" r="9"/><path d="M16 19c-3 0-4-1-3-3s0-3-2-3H3"/><circle cx="8" cy="7" r=".8"/><circle cx="13" cy="5.5" r=".8"/><circle cx="17" cy="8.5" r=".8"/>'),
@@ -18488,10 +18644,21 @@ function applyPrefs() {
  r.style.setProperty('--surface-tint',ac?mix(panel,ac,dark?.025:.018):panel);
  const bg=(BGS.find(b=>b[0]===(store.get('bg','')||''))||BGS[0]);
  const darkBg={white:'#101413',cool:'#10171f',mint:'#101b18',blue:'#111a25',lavender:'#191622',glow:'#111a20',grid:'#111a20'};
- const base=dark?(darkBg[bg[0]]||'#101413'):(/^#/.test(bg[2])?bg[2]:'#f1f5f6');r.style.setProperty('--bg',base);r.style.setProperty('--panel2',mix(base,panel,.55));
+ /* artistic backgrounds: [light art, dark art, light base, dark base, tile size] */
+ const ART={dawn:['linear-gradient(165deg,#fde3cf 0%,#f8ecef 38%,#e4eefb 100%)','linear-gradient(165deg,#2b1f22 0%,#1d1c25 40%,#111a26 100%)','#f7efe9','#151820'],
+  aurora:['radial-gradient(at 15% 5%,#c6efe2,transparent 55%),radial-gradient(at 90% 25%,#ddd5fb,transparent 55%),radial-gradient(at 50% 100%,#cde5fb,transparent 60%)','radial-gradient(at 15% 5%,#123a33,transparent 55%),radial-gradient(at 90% 25%,#271f45,transparent 55%),radial-gradient(at 50% 100%,#13283d,transparent 60%)','#f2f6f7','#0f151a'],
+  flags:['linear-gradient(100deg,#3d7fd61c 0%,transparent 22%,#d64b4b18 42%,transparent 55%,#3aa66a18 70%,transparent 82%,#f2c2301f 100%)','linear-gradient(100deg,#3d7fd626 0%,transparent 22%,#d64b4b22 42%,transparent 55%,#3aa66a22 70%,transparent 82%,#f2c23022 100%)','#f7f6f2','#121614'],
+  lotus:['radial-gradient(at 85% 0%,#fbd1e1,transparent 60%),radial-gradient(at 0% 100%,#fde6d4,transparent 55%)','radial-gradient(at 85% 0%,#3a1a28,transparent 60%),radial-gradient(at 0% 100%,#33231a,transparent 55%)','#fbf5f7','#171215'],
+  ocean:['linear-gradient(180deg,#e1f2fb 0%,#eaf5f6 50%,#e4f0ec 100%)','linear-gradient(180deg,#0f1d29 0%,#0f1a1f 50%,#0f1917 100%)','#eaf4f6','#0f181d'],
+  rhodo:['radial-gradient(at 8% 0%,#f8cdd4,transparent 50%),radial-gradient(at 100% 65%,#dff0d6,transparent 55%)','radial-gradient(at 8% 0%,#3a1d22,transparent 50%),radial-gradient(at 100% 65%,#1c2a19,transparent 55%)','#f8f5f2','#141513'],
+  stars:['radial-gradient(#7d88c866 1px,transparent 1.6px)','radial-gradient(#ffffffaa 1px,transparent 1.6px)','#eef0fa','#111830','30px 30px'],
+  dots:['radial-gradient(#1539631c 1.2px,transparent 1.5px)','radial-gradient(#ffffff14 1.2px,transparent 1.5px)','#f6f7f8','#111516','16px 16px']};
+ const A=ART[bg[0]];
+ const base=A?(dark?A[3]:A[2]):dark?(darkBg[bg[0]]||'#101413'):(/^#/.test(bg[2])?bg[2]:'#f1f5f6');r.style.setProperty('--bg',base);r.style.setProperty('--panel2',mix(base,panel,.55));
  let art='none';if(bg[0]==='glow')art=`radial-gradient(ellipse at 10% 0%, ${mix(base,ac||'#167b84',dark?.12:.10)}, transparent 65%),radial-gradient(ellipse at 95% 80%, ${mix(base,'#526da3',dark?.12:.08)}, transparent 65%)`;
  if(bg[0]==='grid')art=`linear-gradient(${dark?'#ffffff05':'#153b6305'} 1px,transparent 1px),linear-gradient(90deg,${dark?'#ffffff05':'#153b6305'} 1px,transparent 1px)`;
- r.style.setProperty('--page-art',art);r.style.setProperty('--page-art-size',bg[0]==='grid'?'28px 28px':'auto');
+ if(A)art=dark?A[1]:A[0];
+ r.style.setProperty('--page-art',art);r.style.setProperty('--page-art-size',bg[0]==='grid'?'28px 28px':A&&A[4]?A[4]:'auto');
  const font=store.get('uiFont','source'),hf=store.get('font','serif'),custom=!['serif','sans'].includes(hf)&&!!fontStack(hf);
  r.style.setProperty('--ui-font',fontStack(font)&&font!=='serif'&&font!=='sans'?fontStack(font):fontStack('source'));
  r.style.setProperty('--head-font',fontStack(hf)||fontStack('serif'));fontLoad(font);fontLoad(hf);
