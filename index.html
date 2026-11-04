@@ -8202,6 +8202,890 @@ TOPICS.push({
   cards: [["Difference between threatened and inevitable miscarriage?", "Threatened: os closed. Inevitable: cervix dilating.", "S1"], ["Antibiotics for septic abortion (STG)?", "IV ampicillin + metronidazole, then refer for evacuation.", "S1"], ["hCG follow-up after a complete mole?", "Weekly until 3 normal results, then monthly for 3 months.", "S2"]]
 });
 
+TOPICS.push({
+  id: "coma", cond: "coma", n: "Coma and altered consciousness", spec: ["neuro", "emerg"], ages: "All ages", emerg: "Emergency: ABC and glucose first",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 7.1 Coma (with Glasgow coma scale), p.130", "#stg/7.1"] },
+  sec: [
+    ["Definition", [["p", "A state of unrousable unresponsiveness: the patient cannot be aroused and makes no purposeful attempt to avoid pain. It means bilateral hemisphere or brainstem disease. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Glasgow coma scale", "Score"], ["Eyes: spontaneous / to speech / to pain / none", "4 / 3 / 2 / 1"], ["Motor: obeys / localises / withdraws / abnormal flexion / extends / none", "6 / 5 / 4 / 3 / 2 / 1"], ["Verbal: oriented / confused / inappropriate / incomprehensible / none", "5 / 4 / 3 / 2 / 1"]]], ["p", "Maximum 15 (normal); minimum 3 (deep coma). [S1]"]]],
+    ["Causes and pathophysiology", [["l", ["Stroke; hypoglycaemia and other metabolic causes; respiratory, liver or kidney failure; trauma; meningitis, encephalitis, abscess; epilepsy; tumour; poisoning; snake envenomation. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Sudden or gradual? Found how?", "Stroke, seizure, poisoning. [S1]"], ["Diabetes, insulin, tablets?", "Hypoglycaemia. [S1]"], ["Fever, headache, rash?", "Meningitis or encephalitis; cerebral malaria. [S1]"], ["Head injury, alcohol, drugs, pesticides, snake bite?", "Trauma or toxins. [S1]"], ["Liver or kidney disease?", "Metabolic coma. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["GCS, pupils, breathing pattern, neck stiffness, focal signs, temperature, BP, smell of alcohol or pesticide, injuries. [S1]"]], ["warn", "Check blood glucose immediately in every unconscious patient. [S1]"]]],
+    ["Differential diagnosis", [["l", ["Post-ictal state, syncope, psychogenic unresponsiveness."]]]],
+    ["Investigations", [["l", ["Glucose, electrolytes, kidney and liver function, malaria test; CT brain as indicated."]]]],
+    ["Management", [["l", ["ABC; recovery position; oxygen; IV access. [S1]", "Treat hypoglycaemia (see Hypoglycaemia). [S1]", "Treat the cause found: meningitis, poisoning, seizures (see those topics). [S1]", "Chart GCS repeatedly; refer to a higher centre."]]]],
+    ["Follow-up", [["l", ["Serial GCS; airway, eye and pressure care."]]]],
+    ["Complications", [["l", ["Aspiration, airway obstruction, pressure sores."]]]],
+    ["Common mistakes", [["l", ["Not checking glucose. [S1]", "Missing a toxin or head injury."]]]],
+    ["Advice to give", [["l", ["Families: keep medicines and pesticides locked away; people with diabetes should not skip meals after insulin."]]]],
+    ["Learning summary", [["l", ["GCS 3–15. [S1]", "ABC, glucose, find the cause. [S1]"]]]]
+  ],
+  links: [["#topic/hypogly", "Hypoglycaemia"], ["#topic/meningitis", "Meningitis"], ["#topic/headinj", "Head injury"], ["#cond/coma", "Condition page with all linked guidelines"]],
+  cards: [["Components and maximum of the GCS?", "Eyes 4, motor 6, verbal 5; maximum 15, minimum 3.", "S1"], ["Common causes of coma (STG)?", "Stroke, metabolic (hypoglycaemia, organ failure), trauma, CNS infection, epilepsy, tumour, poisoning, snakebite.", "S1"]]
+});
+TOPICS.push({
+  id: "co", cond: "co", n: "Carbon monoxide poisoning", spec: ["emerg"], ages: "All ages", emerg: "Give 100% oxygen",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: { S1: ["Bhutan STG 2024, 1.4.9 Carbon monoxide poisoning, p.19", "#stg/1.4.9"] },
+  sec: [
+    ["Definition", [["p", "Tissue hypoxia from carbon monoxide produced by incomplete burning, typically charcoal (bukhari) in a closed room. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Clinical: exposure plus headache, vomiting, confusion or coma; several people in the same room affected. [S1]", "SpO₂ can be falsely normal."]]]],
+    ["Causes and pathophysiology", [["l", ["Incomplete combustion of charcoal. [S1] CO binds haemoglobin and blocks oxygen delivery."]]]],
+    ["History: questions to ask", [["qa", [["Charcoal or wood heater in a closed room overnight?", "Classic exposure in Bhutan's winter. [S1]"], ["Others in the house also ill?", "Strong clue."]]]]],
+    ["Symptoms and examination", [["l", ["Headache, nausea, vomiting, confusion, agitation, focal deficits, visual disturbance, coma. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Food poisoning, viral illness, stroke, hypoglycaemia."]]]],
+    ["Investigations", [["l", ["Carboxyhaemoglobin where available; ECG in severe cases."]]]],
+    ["Management", [["l", ["Remove from the source; ABCDE. [S1]", "100% oxygen. [S1]", "Refer if unconscious, pregnant, with chest pain or neurological signs."]]]],
+    ["Follow-up", [["l", ["Check for memory or behaviour problems in the following weeks."]]]],
+    ["Complications", [["l", ["Delayed neurological damage, myocardial injury, fetal harm."]]]],
+    ["Common mistakes", [["l", ["Trusting a normal SpO₂.", "Sending the patient back to the same room."]]]],
+    ["Advice to give", [["l", ["Never sleep with a charcoal heater burning in a closed room; keep a window open and use a chimney.", "If several family members get headaches at home, get everyone into fresh air."]]]],
+    ["Learning summary", [["l", ["Charcoal + closed room + headache/confusion → 100% O₂. [S1]"]]]]
+  ],
+  links: [["#cond/co", "Condition page with all linked guidelines"]],
+  cards: [["Main treatment of carbon monoxide poisoning (STG)?", "Remove from exposure and give 100% oxygen.", "S1"], ["Commonest source of CO poisoning in Bhutan?", "Charcoal burned in a closed room.", "S1"]]
+});
+TOPICS.push({
+  id: "mushroom", cond: "mushroom", n: "Mushroom poisoning", spec: ["emerg", "gi"], ages: "All ages", emerg: "Late-onset symptoms mean dangerous species",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: { S1: ["Bhutan STG 2024, 1.4.13 Mushroom poisoning, p.22", "#stg/1.4.13"] },
+  sec: [
+    ["Definition", [["p", "Illness after eating (usually wild) mushrooms. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Onset after eating", "Likely course"], ["Within 2 hours", "Usually benign [S1]"], ["More than 6 hours", "More serious, e.g. amatoxin liver failure [S1]"]]]]],
+    ["Causes and pathophysiology", [["l", ["Toxic wild mushrooms; amatoxins damage the liver; muscarinic mushrooms cause cholinergic signs. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["When were they eaten and when did symptoms start?", "Onset > 6 h = serious. [S1]"], ["Who else ate them?", "Find all exposed."], ["Sweating, salivation, slow pulse?", "Muscarinic toxicity. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Early: nausea, vomiting, diarrhoea, dizziness, euphoria. Late: jaundice, bleeding, confusion. [S1]", "Dehydration, anxiety, excess secretions. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Gastroenteritis, organophosphate poisoning (see Organophosphate poisoning)."]]]],
+    ["Investigations", [["l", ["CBC, LFT, RFT, electrolytes, glucose. [S1]"]]]],
+    ["Management", [["l", ["Activated charcoal if within 1 hour. [S1]", "Metoclopramide 10 mg IV; IV fluids. [S1]", "Muscarinic signs: atropine 0.5–1 mg IV (child 0.02 mg/kg), repeat to control secretions, bradycardia or hypotension. [S1]", "Amatoxin: N-acetylcysteine, silymarin (Silybum marianum). [S1]", "Severe: refer. [S1]"]]]],
+    ["Follow-up", [["l", ["Repeat LFT and INR for 2–3 days after late-onset poisoning."]]]],
+    ["Complications", [["l", ["Liver failure, kidney failure, death. [S1]"]]]],
+    ["Common mistakes", [["l", ["Discharging when vomiting settles: liver damage appears later. [S1]"]]]],
+    ["Advice to give", [["l", ["Do not eat wild mushrooms unless identified by an expert; cooking does not destroy the poison.", "Bring everyone who ate them for checking."]]]],
+    ["Learning summary", [["l", ["Onset > 6 h = danger. [S1]", "Charcoal ≤ 1 h; fluids; atropine for muscarinic signs; NAC for amatoxin. [S1]"]]]]
+  ],
+  links: [["#topic/pcm", "Paracetamol poisoning (NAC regimen)"], ["#cond/mushroom", "Condition page with all linked guidelines"]],
+  cards: [["Which timing of symptoms suggests serious mushroom poisoning?", "Onset more than 6 hours after eating.", "S1"], ["Treatment for amatoxin mushroom poisoning (STG)?", "N-acetylcysteine and silymarin; refer.", "S1"]]
+});
+TOPICS.push({
+  id: "aconite", cond: "aconite", n: "Aconite (Tshendu) poisoning", spec: ["emerg", "cardio"], ages: "Adults", emerg: "Arrhythmias can be fatal",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: { S1: ["Bhutan STG 2024, 1.4.14 Aconite poisoning, p.23", "#stg/1.4.14"] },
+  sec: [
+    ["Definition", [["p", "Poisoning by aconite, found in Tshendu, monkshood and wolfsbane. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Clinical: ingestion plus tingling of mouth, GI upset and cardiovascular effects. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Aconitine opens sodium channels in heart and nerves, causing arrhythmias."]]]],
+    ["History: questions to ask", [["qa", [["Herbal or traditional medicine, roots or plants eaten?", "Source. [S1]"], ["Tingling around the mouth?", "Typical early sign. [S1]"], ["Palpitations, fainting?", "Arrhythmia. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Perioral and tongue tingling, salivation, nausea, vomiting, diarrhoea, tachycardia, hypotension. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Organophosphate poisoning, other cardiotoxic drugs."]]]],
+    ["Investigations", [["l", ["ECG for arrhythmias. [S1]"]]]],
+    ["Management", [["l", ["ABCDE. [S1]", "ECG; refer if arrhythmia; treat arrhythmias by AHA algorithms. [S1]", "Activated charcoal or gastric lavage within 1 hour. [S1]", "IV fluids. [S1]"]]]],
+    ["Follow-up", [["l", ["Cardiac monitoring until the ECG is normal."]]]],
+    ["Complications", [["l", ["Ventricular arrhythmias, cardiac arrest."]]]],
+    ["Common mistakes", [["l", ["No ECG. [S1]"]]]],
+    ["Advice to give", [["l", ["Use traditional medicines only from qualified practitioners; never eat unknown roots."]]]],
+    ["Learning summary", [["l", ["Perioral tingling + vomiting + arrhythmia after Tshendu. [S1]", "ECG, charcoal ≤ 1 h, fluids, refer. [S1]"]]]]
+  ],
+  links: [["#cond/aconite", "Condition page with all linked guidelines"]],
+  cards: [["Classic early sign of aconite poisoning?", "Tingling around the mouth and tongue.", "S1"], ["Key investigation in aconite poisoning?", "ECG for arrhythmias.", "S1"]]
+});
+TOPICS.push({
+  id: "febconv", cond: "febconv", n: "Febrile convulsion", spec: ["paeds", "neuro", "emerg"], ages: "Children 6–60 months", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a paediatrician.",
+  src: { S1: ["Bhutan STG 2024, 12.1.1 Febrile convulsion, p.254", "#stg/12.1.1"], S2: ["American Academy of Pediatrics. Febrile seizures: clinical practice guideline for the long-term management of the child with simple febrile seizures. Pediatrics 2008;121:1281–1286", "https://papers.ucalgary.ca/paediatrics//assets/aapfebrileseizures.pdf"] },
+  sec: [
+    ["Definition", [["p", "A seizure in a febrile child (≥ 38 °C) aged 6–60 months without CNS infection, inflammation, head injury, epilepsy or prior afebrile seizures. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Generalised, under 15 minutes, no residual weakness. [S1]", "Focal, prolonged or repeated seizures, or a child not recovering: think of meningitis (see Meningitis)."]]]],
+    ["Causes and pathophysiology", [["l", ["Viral illness, tonsillitis, otitis media, UTI, pneumonia, septicaemia. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["How long did it last; whole body or one side?", "Simple vs complex. [S1]"], ["Back to normal now?", "Post-ictal vs encephalopathy."], ["Vomiting, neck stiffness, rash?", "Meningitis."]]]]],
+    ["Symptoms and examination", [["l", ["Source of fever: ears, throat, chest, urine. [S1]", "Neck stiffness, fontanelle, rash."]]]],
+    ["Differential diagnosis", [["l", ["Meningitis, cerebral malaria, epilepsy, rigors."]]]],
+    ["Investigations", [["l", ["Find the fever source; LP if meningitis is suspected."]]]],
+    ["Management", [["l", ["ABC; keep SpO₂ > 92%. [S1]", "Tepid sponging; paracetamol 15 mg/kg/dose 4–6-hourly when temperature > 100.4 °F. [S1]", "Seizure: diazepam 0.3 mg/kg IV very slowly or 0.5 mg/kg rectally. [S1]"]], ["note", "The STG suggests oral diazepam 0.3 mg/kg BD for 3 days if the first seizure is before 1 year or parents are very anxious. The AAP recommends against continuous or intermittent anticonvulsants after simple febrile seizures, because side effects outweigh benefit. [S1][S2]"]]],
+    ["Follow-up", [["l", ["STG: refer to the district hospital for evaluation after prophylaxis. [S1]"]]]],
+    ["Complications", [["l", ["Recurrence is common; long-term harm and epilepsy risk are very low. [S2]"]]]],
+    ["Common mistakes", [["l", ["Missing meningitis.", "Believing paracetamol prevents febrile seizures."]]]],
+    ["Advice to give", [["l", ["Febrile seizures look frightening but rarely cause harm. [S2]", "During a fit: lay the child on the side, put nothing in the mouth, time it, seek help if over 5 minutes.", "Treat fever for comfort; come back if the child is drowsy, has a stiff neck or another fit."]]]],
+    ["Learning summary", [["l", ["6–60 months, generalised, < 15 min. [S1]", "Diazepam 0.3 mg/kg IV or 0.5 mg/kg PR. [S1]", "AAP: no routine prophylaxis. [S2]"]]]]
+  ],
+  links: [["#topic/status", "Seizures and status epilepticus"], ["#topic/meningitis", "Meningitis"], ["#cond/febconv", "Condition page with all linked guidelines"]],
+  cards: [["Age range for febrile convulsions?", "6–60 months.", "S1"], ["Does the AAP recommend anticonvulsant prophylaxis after simple febrile seizures?", "No: neither continuous nor intermittent therapy.", "S2"]]
+});
+TOPICS.push({
+  id: "je", cond: "je", n: "Japanese encephalitis", spec: ["id", "neuro", "paeds"], ages: "All ages", emerg: "Encephalitis is an emergency",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 8.5.4 Japanese encephalitis, p.172", "#stg/8.5.4"] },
+  sec: [
+    ["Definition", [["p", "A mosquito-borne viral infection of the CNS; mosquitoes are infected from pigs or birds; no person-to-person spread. Incubation 3–15 days. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Fever with altered behaviour, seizures or coma in an endemic area; confirmed by serology, PCR or CSF. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["JE virus; pigs amplify it. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Fever, headache, vomiting, odd behaviour?", "Encephalitis. [S1]"], ["Pigs near home; rice fields?", "Risk. [S1]"], ["JE vaccine?", "Prevention."]]]]],
+    ["Symptoms and examination", [["l", ["Altered sensorium or coma, seizures, acute psychosis, hemiparesis. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Bacterial meningitis, cerebral malaria, rabies, scrub typhus."]]]],
+    ["Investigations", [["l", ["CBC, LFT, serology, PCR, CSF, CT/MRI brain. [S1]"]]]],
+    ["Management", [["l", ["Supportive care; antibiotics only for secondary infection. [S1]", "Treat raised intracranial pressure and seizures early. [S1]", "Refer. [S1]"]]]],
+    ["Follow-up", [["l", ["Neurological and developmental follow-up."]]]],
+    ["Complications", [["l", ["Death, long-term neurological disability."]]]],
+    ["Common mistakes", [["l", ["Not giving empirical meningitis and malaria treatment while JE is unconfirmed."]]]],
+    ["Advice to give", [["l", ["Sleep under insecticide-treated nets; wear long sleeves; use repellents and mosquito coils. [S1]", "Keep piggeries away from houses; drain standing water. [S1]"]]]],
+    ["Learning summary", [["l", ["Fever + encephalopathy near pigs or paddy: supportive care, control seizures and ICP, refer. [S1]"]]]]
+  ],
+  links: [["#topic/meningitis", "Meningitis"], ["#cond/je", "Condition page with all linked guidelines"]],
+  cards: [["Amplifying host of JE virus?", "Pigs.", "S1"], ["Specific antiviral for JE?", "None: supportive care, control seizures and raised ICP.", "S1"]]
+});
+TOPICS.push({
+  id: "anthrax", cond: "anthrax", n: "Anthrax", spec: ["id", "derm"], ages: "All ages", emerg: "Inhalational and GI anthrax are emergencies",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 8.1.8 Anthrax, p.153", "#stg/8.1.8"], S2: ["National Guidelines for the Management of Priority Zoonotic Diseases 2025, Anthrax", "#gl/zoon/32"] },
+  sec: [
+    ["Definition", [["p", "Serious infection with Bacillus anthracis from soil and infected animals: cutaneous, pulmonary or gastrointestinal. Incubation 1–7 days. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Cutaneous: painless sore with a black centre (eschar), surrounding swelling, local nodes. [S1]", "Pulmonary: breathlessness, chest pain, shock. GI: abdominal pain, vomiting, diarrhoea. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Contact with infected animal products, inhaling spores, insect bites, eating undercooked meat from sick animals. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Handled or eaten a sick or dead animal?", "Exposure. [S1]"], ["Painless black sore?", "Cutaneous anthrax. [S1]"], ["Others in the village ill; animal deaths?", "Outbreak: notify."]]]]],
+    ["Symptoms and examination", [["l", ["Eschar on face, neck, arms or hands; lymphangitis; signs of consolidation, shock or meningism. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Scrub typhus eschar (see Scrub typhus), spider bite, ecthyma."]]]],
+    ["Investigations", [["l", ["CBC, stool culture, chest X-ray. [S1]", "Swab of the lesion for Gram stain and culture."]]]],
+    ["Management", [["l", ["Uncomplicated cutaneous: penicillin V 500 mg 6-hourly or amoxicillin 500 mg 8-hourly for 5 days. [S1]", "Systemic, inhalational or GI disease: admit and refer; follow the national zoonoses guideline. [S2]", "Notify the zoonoses programme and livestock sector."]], ["note", "Don't incise the eschar."]]],
+    ["Follow-up", [["l", ["Review the lesion; trace others exposed to the same animal."]]]],
+    ["Complications", [["l", ["Septicaemia, meningitis, shock, death. [S1]"]]]],
+    ["Common mistakes", [["l", ["Missing systemic disease.", "Not notifying an outbreak."]]]],
+    ["Advice to give", [["l", ["Don't touch, skin or eat animals that died suddenly. [S1]", "Vaccinate livestock every year. [S1]", "Report animal deaths to the livestock office."]]]],
+    ["Learning summary", [["l", ["Painless black eschar after animal contact. [S1]", "Penicillin V or amoxicillin 5 days for simple skin disease; refer systemic. [S1]"]]]]
+  ],
+  links: [["#topic/scrub", "Scrub typhus"], ["#cond/anthrax", "Condition page with all linked guidelines"]],
+  cards: [["Classic lesion of cutaneous anthrax?", "Painless sore with a black eschar and surrounding swelling.", "S1"], ["STG treatment of cutaneous anthrax?", "Penicillin V 500 mg 6-hourly or amoxicillin 500 mg 8-hourly for 5 days.", "S1"]]
+});
+TOPICS.push({
+  id: "leish", cond: "leish", n: "Kala-azar (visceral leishmaniasis)", spec: ["id", "medicine"], ages: "All ages", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 8.3.2 Kala azar or leishmaniasis, p.161", "#stg/8.3.2"] },
+  sec: [
+    ["Definition", [["p", "Infection with Leishmania donovani spread by female sandflies; incubation 2–6 months. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Prolonged fever, weight loss and big spleen with a positive rK39 test, confirmed by LD bodies in marrow or spleen. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Leishmania donovani infects the spleen, liver and bone marrow. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Fever for weeks, weight loss, abdominal fullness?", "Kala-azar. [S1]"], ["Darkening of skin?", "Late sign ('black fever'). [S1]"], ["Travel to or living in an endemic area?", "Exposure."]]]]],
+    ["Symptoms and examination", [["l", ["Pallor, large spleen, enlarged liver, wasting. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Malaria, TB, lymphoma, enteric fever, chronic liver disease."]]]],
+    ["Investigations", [["l", ["rK39 rapid test; marrow or spleen aspirate for LD bodies; CBC. [S1]"]]]],
+    ["Management", [["l", ["Refer for confirmation. [S1]", "Liposomal amphotericin B, or amphotericin B deoxycholate, or miltefosine; alternatives sodium stibogluconate or paromomycin. [S1]", "Follow the national leishmaniasis guideline 2024. [S1]"]]]],
+    ["Follow-up", [["l", ["Watch for relapse and post-kala-azar dermal leishmaniasis."]]]],
+    ["Complications", [["l", ["Bleeding, secondary infections, death if untreated."]]]],
+    ["Common mistakes", [["l", ["Repeated antimalarials for prolonged fever with splenomegaly."]]]],
+    ["Advice to give", [["l", ["Use insecticide-treated nets; keep the house clean; spray outdoor breeding sites. [S1]"]]]],
+    ["Learning summary", [["l", ["Fever + big spleen + weight loss → rK39 → refer for amphotericin or miltefosine. [S1]"]]]]
+  ],
+  links: [["#topic/malaria", "Malaria"], ["#cond/leish", "Condition page with all linked guidelines"]],
+  cards: [["Rapid test for kala-azar?", "rK39.", "S1"], ["First-choice drugs for kala-azar (STG)?", "Liposomal amphotericin B, amphotericin B deoxycholate or miltefosine.", "S1"]]
+});
+TOPICS.push({
+  id: "sti", cond: "sti", n: "Sexually transmitted infections (syndromic management)", spec: ["id", "obg", "derm"], ages: "Adolescents and adults", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 9.1 Vaginal discharge, p.184", "#stg/9.1"], S2: ["Bhutan STG 2024, 9.2 Urethral discharge, p.187", "#stg/9.2"], S3: ["Bhutan STG 2024, 9.3 Genital ulcer syndrome, p.189", "#stg/9.3"] },
+  sec: [
+    ["Definition", [["p", "Infections spread by sex, presenting as vaginal discharge, urethral discharge, genital ulcers or inguinal buboes; treated by syndrome when testing isn't available. [S1][S2][S3]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Syndrome", "Usual causes"], ["Vaginal discharge", "Trichomonas, candida, bacterial vaginosis; gonorrhoea and chlamydia (cervicitis) [S1]"], ["Urethral discharge", "Gonorrhoea, chlamydia; Mycoplasma genitalium, Trichomonas [S2]"], ["Genital ulcer", "Herpes (commonest), syphilis, LGV, chancroid [S3]"]]]]],
+    ["Causes and pathophysiology", [["l", ["See table. Many women with gonorrhoea or chlamydia have no symptoms. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Discharge colour, smell, itch; dysuria; pelvic pain?", "Cause. [S1]"], ["Painful or painless ulcer; recurrent?", "Herpes vs syphilis. [S3]"], ["New or multiple partners; partner symptoms?", "Partner treatment. [S2]"], ["Pregnant?", "Changes drug choice. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Speculum: frothy yellow-green (trichomonas), curdy white (candida), white with odour (BV), mucopurulent cervix (gonorrhoea/chlamydia). [S1]", "Grouped painful vesicles (herpes); painless clean indurated chancre (syphilis); painful ulcers with slough (chancroid); fluctuant nodes (LGV). [S3]"]]]],
+    ["Differential diagnosis", [["l", ["Physiological discharge, UTI, foreign body."]]]],
+    ["Investigations", [["l", ["Gram stain and culture where available; syphilis serology; offer HIV testing. [S1][S2][S3]"]]]],
+    ["Management", [["t", [["Infection", "First line", "Alternative / pregnancy"],
+      ["Gonorrhoea", "Ceftriaxone 250 mg IM once + azithromycin 1 g orally once", "Pregnancy: ceftriaxone + azithromycin [S1]"],
+      ["Chlamydia", "Doxycycline 100 mg BD × 7 days", "Azithromycin 1 g once or erythromycin 500 mg 6-hourly × 7 days [S1]"],
+      ["Trichomonas", "Metronidazole 2 g once", "Metronidazole 400 mg BD × 7 days or tinidazole 2 g once [S1]"],
+      ["Bacterial vaginosis", "Metronidazole 400 mg BD × 7 days", "Metronidazole 2 g once; avoid in first trimester [S1]"],
+      ["Candida", "Clotrimazole 200 mg pessary nightly × 3", "Fluconazole 150 mg once (not in pregnancy) [S1]"],
+      ["Herpes", "Aciclovir 400 mg TDS × 10 days (first), × 5 days (recurrent)", "In pregnancy if benefit outweighs risk [S3]"],
+      ["Early syphilis (< 1 year)", "Benzathine penicillin 2.4 MU IM once", "Doxycycline 100 mg BD × 14 days [S3]"],
+      ["Late or unknown syphilis", "Benzathine penicillin 2.4 MU IM weekly × 3", "Doxycycline 100 mg BD × 30 days [S3]"],
+      ["Chancroid", "Ceftriaxone 250 mg IM once", "Azithromycin 1 g once [S3]"]]],
+      ["l", ["Symptomatic vaginal discharge: treat gonorrhoea, chlamydia and trichomonas at the same visit. [S1]", "Urethral discharge: treat gonorrhoea and chlamydia the same day. [S2]", "Genital ulcer without testing: treat herpes and syphilis the same day. [S3]", "Every STI patient: offer HIV and syphilis tests, treat partners. [S1]"]]]],
+    ["Follow-up", [["l", ["Persistent discharge: re-infection, untreated partner, adherence; else consider M. genitalium or trichomonas and refer. [S2]", "Syphilis: repeat RPR and TPHA after 6 months. [S3]"]]]],
+    ["Complications", [["l", ["Pelvic inflammatory disease, infertility, congenital syphilis, higher HIV risk."]]]],
+    ["Common mistakes", [["l", ["Not treating partners. [S1]", "Treating only one cause of a syndrome. [S1]"]]]],
+    ["Advice to give", [["l", ["Use condoms; get regular tests. [S1]", "Your partner must be treated too; avoid sex until both finish treatment. [S1]", "Take all doses."]]]],
+    ["Learning summary", [["l", ["Discharge → cover gonorrhoea + chlamydia (+ trichomonas in women). [S1][S2]", "Ulcer → herpes + syphilis. [S3]"]]]]
+  ],
+  links: [["#cond/sti", "Condition page with all linked guidelines"]],
+  cards: [["STG treatment of gonorrhoea?", "Ceftriaxone 250 mg IM once + azithromycin 1 g orally once.", "S1"], ["STG treatment of early syphilis?", "Benzathine penicillin 2.4 million units IM once.", "S3"], ["Commonest cause of genital ulcer?", "Herpes simplex.", "S3"]]
+});
+TOPICS.push({
+  id: "rickets", cond: "rickets", n: "Rickets and osteomalacia", spec: ["paeds", "ortho", "endo"], ages: "Children (rickets), adults (osteomalacia)", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a paediatrician.",
+  src: { S1: ["Bhutan STG 2024, 13.13 Rickets, p.307", "#stg/13.13"], S2: ["Bhutan STG 2024, 13.14 Osteomalacia, p.308", "#stg/13.14"] },
+  sec: [
+    ["Definition", [["p", "Rickets: defective mineralisation of growing bone from lack of vitamin D or calcium before the growth plates close. [S1] Osteomalacia: 'soft bones' in adults, mostly from vitamin D deficiency. [S2]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Clinical signs supported by X-ray and bone chemistry at a referral centre. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Lack of vitamin D or calcium; genetic or other conditions. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Sun exposure, diet, breastfeeding without supplements?", "Vitamin D. [S1]"], ["Delayed walking, bowed legs, bone pain?", "Rickets. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Infants: tetany, irritability, weakness, failure to thrive. Toddlers: joint swelling, bowed legs, rachitic rosary, waddling gait. [S1]", "Adults: bone pain and tenderness, muscle weakness, deformity. [S2]"]]]],
+    ["Differential diagnosis", [["l", ["Physiological bowing, renal rickets, osteogenesis imperfecta."]]]],
+    ["Investigations", [["l", ["Refer for investigation. [S1][S2]"]]]],
+    ["Management", [["l", ["Refer for investigation and management. [S1][S2]", "Promote vitamin D from sunlight, oily fish, eggs, fortified foods and supplements. [S1]"]]]],
+    ["Follow-up", [["l", ["As advised by the referral centre."]]]],
+    ["Complications", [["l", ["Deformity, fractures, hypocalcaemic seizures."]]]],
+    ["Common mistakes", [["l", ["Missing tetany or seizures from low calcium in infants. [S1]"]]]],
+    ["Advice to give", [["l", ["Let children play outside in sunlight; eat eggs and fish. [S1]"]]]],
+    ["Learning summary", [["l", ["Bowed legs, rosary, wide wrists; refer; vitamin D sources. [S1]"]]]]
+  ],
+  links: [["#cond/rickets", "Condition page with all linked guidelines"]],
+  cards: [["Signs of rickets in a toddler?", "Bowed tibiae, rachitic rosary, widened wrists, waddling gait.", "S1"]]
+});
+
+TOPICS.push({
+  id: "hsp", cond: "hsp", n: "Henoch–Schönlein purpura (IgA vasculitis)", spec: ["paeds", "rheum", "neph"], ages: "Children 3–10 years mostly", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a paediatrician.",
+  src: { S1: ["Bhutan STG 2024, 12.6 Henoch–Schönlein purpura, p.282", "#stg/12.6"] },
+  sec: [
+    ["Definition", [["p", "The commonest childhood vasculitis; about 90% of cases in children, usually aged 3–10, often after an upper respiratory infection. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Clinical diagnosis: palpable purpura on legs and buttocks, with joint, gut or kidney involvement. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Small-vessel vasculitis, often following URTI. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Recent cold or sore throat?", "Trigger. [S1]"], ["Abdominal pain, blood in stool?", "Gut involvement; intussusception risk. [S1]"], ["Red or dark urine?", "Nephritis. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Symmetrical palpable purpura on lower limbs and buttocks. [S1]", "Leg arthritis or arthralgia; abdominal pain, vomiting, melaena; haematuria. [S1]", "BP. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Meningococcal sepsis (sick child with purpura), ITP, leukaemia."]]]],
+    ["Investigations", [["l", ["Usually none needed; urine routine and BP to look for nephritis. [S1]"]]]],
+    ["Management", [["l", ["Mild: hydration, nutrition, pain relief. [S1]", "Abdominal or joint pain: prednisolone 1 mg/kg/day for 1–2 weeks, then taper. [S1]"]]]],
+    ["Follow-up", [["l", ["Monitor BP and urine: kidney disease (1–2%) can appear up to 6 months after diagnosis. [S1]", "Recurrence within 4–6 months in 5–60%. [S1]"]]]],
+    ["Complications", [["l", ["Nephritis (main long-term risk), intussusception, GI bleeding. [S1]"]]]],
+    ["Common mistakes", [["l", ["Not checking urine and BP during follow-up. [S1]", "Missing meningococcal disease in a febrile, unwell child with purpura."]]]],
+    ["Advice to give", [["l", ["The rash and joint pains usually settle; prognosis is excellent. [S1]", "Come for urine and BP checks; return for blood in urine, swelling or severe abdominal pain. [S1]"]]]],
+    ["Learning summary", [["l", ["Palpable purpura legs/buttocks + joints + gut + kidney. [S1]", "Prednisolone 1 mg/kg for pain; follow urine and BP 6 months. [S1]"]]]]
+  ],
+  links: [["#topic/nephrotic", "Nephrotic syndrome and glomerulonephritis"], ["#cond/hsp", "Condition page with all linked guidelines"]],
+  cards: [["Main long-term complication of HSP?", "Kidney disease (nephritis), up to 6 months after diagnosis.", "S1"], ["Steroid dose for HSP abdominal or joint pain (STG)?", "Prednisolone 1 mg/kg/day for 1–2 weeks, then taper.", "S1"]]
+});
+TOPICS.push({
+  id: "fracture", cond: "fracture", n: "Fractures, dislocations and spinal injury", spec: ["ortho", "emerg", "surg"], ages: "All ages", emerg: "Open fractures and spinal injury need urgent care",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an orthopaedic surgeon.",
+  src: { S1: ["Bhutan STG 2024, 13.2 Fractures and dislocations, p.287", "#stg/13.2"], S2: ["Bhutan STG 2024, 13.4 Spine fractures and spinal cord injuries, p.293", "#stg/13.4"] },
+  sec: [
+    ["Definition", [["p", "Fracture: a break or crack in a bone. Dislocation: a bone displaced from its joint. [S1] Spinal cord injury: damage to the cord; a spine injury may still have an intact cord, so careful handling prevents disability. [S2]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Open vs closed (look for a wound at the site). [S1]", "Spinal shock vs neurogenic shock (low BP, slow pulse) vs hypovolaemic shock (low BP, fast pulse). [S2]", "ASIA scale A (complete) to E. [S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["Falls, road traffic accidents, contact sports. [S1][S2]"]]]],
+    ["History: questions to ask", [["qa", [["Mechanism and time?", "Injury pattern. [S1]"], ["Neck or back pain, numbness, weakness, bladder or bowel loss?", "Spinal injury. [S2]"], ["Tetanus immunisation?", "Open fracture. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Pain, swelling, loss of movement, deformity, point tenderness, crepitus. [S1]", "Neurovascular status (pulses, sensation) of the limb. [S1]", "Spine tenderness, reflexes, power, sensation. [S2]"]], ["warn", "Do not manipulate before X-ray unless the limb's circulation is compromised by deformity. [S1]"]]],
+    ["Differential diagnosis", [["l", ["Sprain (see Sprains), contusion."]]]],
+    ["Investigations", [["l", ["X-ray; CT or MRI if available. [S1]"]]]],
+    ["Management", [
+      ["h", "Open fracture"],
+      ["l", ["IV fluids 20 mL/kg if shock is developing. [S1]", "Tetanus toxoid 0.5 mL IM (adults and children over 5). [S1]", "Analgesia; irrigate; control bleeding; antibiotics; reduce and splint; refer. [S1]"]],
+      ["h", "Closed fracture"],
+      ["l", ["Analgesia, reduce, splint, refer. [S1]"]],
+      ["h", "Spinal injury"],
+      ["l", ["Handle with full spinal precautions; treat shock by type; refer. [S2]"]]
+    ]],
+    ["Follow-up", [["l", ["Check circulation after splinting; orthopaedic review."]]]],
+    ["Complications", [["l", ["Shock (pelvic, femur, open fractures), neurovascular injury, osteomyelitis after open fractures. [S1]"]]]],
+    ["Common mistakes", [["l", ["Not checking distal pulses and sensation. [S1]", "Moving a spine-injured patient without precautions. [S2]"]]]],
+    ["Advice to give", [["l", ["Keep the limb elevated; come back for numbness, colour change or severe pain in a cast.", "Lift with knees bent; wear helmets and seat belts."]]]],
+    ["Learning summary", [["l", ["Open fracture: fluids, TT, irrigate, antibiotics, splint, refer. [S1]", "Neurogenic shock: low BP + slow pulse. [S2]"]]]]
+  ],
+  links: [["#p/trauma", "Trauma protocol"], ["#topic/osteomyelitis", "Osteomyelitis"], ["#cond/fracture", "Condition page with all linked guidelines"]],
+  cards: [["Shock with hypotension and bradycardia after spinal injury?", "Neurogenic shock.", "S2"], ["STG first steps for an open fracture?", "Fluids if shocked, tetanus toxoid, analgesia, irrigation, haemostasis, antibiotics, splint, refer.", "S1"]]
+});
+TOPICS.push({
+  id: "arthritis", cond: "arthritis", n: "Rheumatoid arthritis and osteoarthritis", spec: ["rheum", "ortho", "medicine"], ages: "Adults", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 13.9 Rheumatoid arthritis, p.302", "#stg/13.9"], S2: ["Bhutan STG 2024, 13.10 Osteoarthritis, p.303", "#stg/13.10"] },
+  sec: [
+    ["Definition", [["p", "Rheumatoid arthritis: chronic autoimmune, symmetrical, deforming polyarthritis of small and large joints, commoner in women. [S1] Osteoarthritis: degenerative loss of joint cartilage. [S2]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Feature", "Rheumatoid", "Osteo"], ["Joints", "Small joints of hands, wrists, feet first; symmetrical; > 1 joint [S1]", "Weight-bearing, e.g. knees [S2]"], ["Stiffness", "Morning stiffness ≥ 30 min [S1]", "Short stiffness, crepitus [S2]"], ["Duration", "≥ 6 weeks [S1]", "Chronic, progressive [S2]"], ["Systemic", "Fatigue, low fever [S1]", "None"]]]]],
+    ["Causes and pathophysiology", [["l", ["RA: immune attack on joint linings. [S1]", "OA: injury, repetitive knee bending, obesity, age, female sex. [S2]"]]]],
+    ["History: questions to ask", [["qa", [["Which joints; both sides; morning stiffness how long?", "RA vs OA. [S1][S2]"], ["Weight, occupation?", "OA risks. [S2]"], ["One hot joint with fever?", "Septic arthritis or gout instead."]]]]],
+    ["Symptoms and examination", [["l", ["Swelling, tenderness, deformity (RA). [S1]", "Crepitus, reduced range of motion (OA). [S2]"]]]],
+    ["Differential diagnosis", [["l", ["Gout (see Gout), septic arthritis, reactive arthritis, rheumatic fever."]]]],
+    ["Investigations", [["l", ["X-ray of hands (RA); X-ray of the joint (OA). [S1][S2]"]]]],
+    ["Management", [["l", ["RA: rest; ibuprofen 400 mg TDS; physiotherapy; heat and cold; balance activity and rest; refer for specialist (disease-modifying) treatment. [S1]", "OA: pain relief; weight loss; quadriceps strengthening; refer if severe. [S2]"]]]],
+    ["Follow-up", [["l", ["RA under specialist care; watch NSAID side effects."]]]],
+    ["Complications", [["l", ["Deformity and disability; NSAID ulcers and kidney injury."]]]],
+    ["Common mistakes", [["l", ["Long-term NSAIDs alone for RA without referral. [S1]"]]]],
+    ["Advice to give", [["l", ["Keep active; do the exercises shown; lose weight if overweight. [S2]", "Take NSAIDs with food; report stomach pain or black stools."]]]],
+    ["Learning summary", [["l", ["RA: symmetrical small joints, morning stiffness; NSAID + refer. [S1]", "OA: weight loss + quadriceps exercise. [S2]"]]]]
+  ],
+  links: [["#topic/gout", "Gout"], ["#cond/arthritis", "Condition page with all linked guidelines"]],
+  cards: [["Morning stiffness duration suggesting RA (STG)?", "30 minutes or longer.", "S1"], ["Key non-drug treatment of knee OA?", "Weight reduction and quadriceps strengthening.", "S2"]]
+});
+TOPICS.push({
+  id: "lbp", cond: "lbp", n: "Low back pain and prolapsed disc", spec: ["ortho", "medicine"], ages: "Adults", emerg: "Bladder or bowel involvement needs urgent referral",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an orthopaedic surgeon.",
+  src: { S1: ["Bhutan STG 2024, 13.11 Low back pain, p.304", "#stg/13.11"], S2: ["Bhutan STG 2024, 13.12 Prolapsed intervertebral disc, p.306", "#stg/13.12"] },
+  sec: [
+    ["Definition", [["p", "The commonest complaint in general practice; most is non-specific 'mechanical' low back pain. [S1] Prolapsed disc: back pain with leg pain (radiculopathy). [S2]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Mechanical low back pain, acute sprain or strain, or prolapsed disc. Rule out other causes (UTI, pyelonephritis, spinal TB). [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Repeated minor injury, poor posture, poor lifting technique. [S1]", "Disc: heavy lifting, prolonged sitting, obesity, smoking, ageing. [S2]"]]]],
+    ["History: questions to ask", [["qa", [["Pain down the leg?", "Disc prolapse. [S2]"], ["Bladder or bowel problems, numbness in the saddle area?", "Cauda equina: urgent referral. [S2]"], ["Fever, weight loss, night pain, TB contact?", "Infection or spinal TB. [S1]"], ["Urinary symptoms?", "Kidney cause. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Muscle spasm and tenderness, restricted movement. [S1]", "Straight-leg raise causing leg pain; weak toe movement. [S2]"]]]],
+    ["Differential diagnosis", [["l", ["UTI, pyelonephritis, kidney stones, spinal TB (Pott's), fracture. [S1]"]]]],
+    ["Investigations", [["l", ["Usually none for mechanical pain. [S1]", "Disc with neurological signs: refer for investigation. [S2]"]]]],
+    ["Management", [["l", ["Mechanical: NSAIDs and physiotherapy; no referral needed. [S1]", "Acute: rest, pain relief, ice, physiotherapy. [S1]", "Disc: rest, pain relief, physiotherapy; refer, especially if bladder or bowel are involved. [S2]"]]]],
+    ["Follow-up", [["l", ["Review if pain persists or neurological signs appear."]]]],
+    ["Complications", [["l", ["Chronic pain; cauda equina syndrome. [S2]"]]]],
+    ["Common mistakes", [["l", ["Missing red flags: bladder/bowel change, fever, weight loss. [S1][S2]", "Over-investigating simple back pain. [S1]"]]]],
+    ["Advice to give", [["l", ["Lift with knees bent and back straight, holding the load close. [S1]", "Keep moving gently; do the back exercises. [S1]", "Come at once for leg weakness, numbness between the legs or bladder or bowel problems. [S2]"]]]],
+    ["Learning summary", [["l", ["Mechanical LBP: NSAID + physiotherapy. [S1]", "Disc with bladder/bowel signs: urgent referral. [S2]"]]]]
+  ],
+  links: [["#topic/tb", "Tuberculosis (spinal TB)"], ["#cond/lbp", "Condition page with all linked guidelines"]],
+  cards: [["STG treatment of mechanical low back pain?", "NSAIDs and physiotherapy; no referral needed.", "S1"], ["Red flag in disc prolapse needing urgent referral?", "Bladder or bowel involvement.", "S2"]]
+});
+TOPICS.push({
+  id: "osteopor", cond: "osteopor", n: "Osteoporosis", spec: ["ortho", "endo", "medicine"], ages: "Older adults, postmenopausal women", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 13.15 Osteoporosis, p.309", "#stg/13.15"] },
+  sec: [
+    ["Definition", [["p", "'Porous bone': less total bone, though normally calcified; common after menopause and in the elderly. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Type", "Age", "Typical fractures"], ["I (postmenopausal)", "50–70", "Distal radius, vertebrae"], ["II (senile)", "> 70", "Hip, pelvis"]]], ["p", "From STG Table 13.4. [S1]"]]],
+    ["Causes and pathophysiology", [["l", ["Female sex, age, menopause, low calcium and vitamin D, poor protein intake, lifestyle. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Fracture from a minor fall?", "Fragility fracture. [S1]"], ["Back pain, loss of height?", "Vertebral fracture. [S1]"], ["Steroids, smoking, alcohol, low diet calcium?", "Risk."]]]]],
+    ["Symptoms and examination", [["l", ["Back pain, weakness, kyphosis, height loss, wrist fracture after trivial falls. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Osteomalacia (see Rickets and osteomalacia), myeloma, metastases."]]]],
+    ["Investigations", [["l", ["Refer for further assessment. [S1]"]]]],
+    ["Management", [["l", ["Pain relief; refer for further management. [S1]", "Diet with calcium, vitamin D and protein. [S1]"]]]],
+    ["Follow-up", [["l", ["As advised by the specialist."]]]],
+    ["Complications", [["l", ["Hip, vertebral and wrist fractures. [S1]"]]]],
+    ["Common mistakes", [["l", ["Not looking for osteoporosis after a fragility fracture."]]]],
+    ["Advice to give", [["l", ["Eat calcium- and vitamin D-rich foods; get sunlight; stay active; stop smoking. [S1]", "Prevent falls at home: good lighting, no loose mats."]]]],
+    ["Learning summary", [["l", ["Fragility fractures in older women; pain relief + refer; diet and lifestyle. [S1]"]]]]
+  ],
+  links: [["#topic/fracture", "Fractures"], ["#cond/osteopor", "Condition page with all linked guidelines"]],
+  cards: [["Typical fractures in senile (type II) osteoporosis?", "Hip and pelvis.", "S1"]]
+});
+TOPICS.push({
+  id: "sjs", cond: "sjs", n: "Severe drug reactions: SJS/TEN and fixed drug eruption", spec: ["derm", "emerg"], ages: "All ages", emerg: "SJS/TEN is life-threatening",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a dermatologist.",
+  src: { S1: ["Bhutan STG 2024, 16.3 Adverse drug reaction; 16.3.1–16.3.2 Fixed drug eruption and SJS/TEN, p.408–409", "#stg/16.3.1"] },
+  sec: [
+    ["Definition", [["p", "SJS/TEN: rare, potentially fatal drug reaction with painful skin and mucosal blistering. Fixed drug eruption: recurs at the same spot on re-exposure. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Type", "Skin detachment"], ["SJS", "< 10% body surface"], ["SJS/TEN overlap", "10–30%"], ["TEN", "> 30%"]]], ["l", ["Warning signs of a severe reaction: fever, lymph nodes, facial swelling, target lesions, blisters. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["SATAN: Sulfonamides and sulfasalazine, Allopurinol, Tetracycline and thioacetazone, Antiepileptics, NSAIDs and nevirapine. [S1]", "Fixed drug eruption: sulfonamides, NSAIDs, paracetamol, barbiturates, carbamazepine, tetracyclines. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["New medicine in the last 8 weeks?", "SJS/TEN usually starts within 8 weeks. [S1]"], ["Fever, sore eyes, painful swallowing before the rash?", "Prodrome 1–3 days. [S1]"], ["Same spot as before?", "Fixed drug eruption. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Dusky target-like lesions on trunk spreading to face and limbs, palms and soles; blisters and erosions; eye, mouth and genital erosions; pain more than itch. [S1]", "Fixed drug eruption: dusky violaceous plaque, may blister; heals with pigmentation. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Staphylococcal scalded skin, bullous pemphigoid, chickenpox, erythema multiforme."]]]],
+    ["Investigations", [["l", ["Clinical; estimate body surface involved."]]]],
+    ["Management", [["l", ["Stop all suspect drugs at once. [S1]", "Supportive care: clean eyes with saline and consult ophthalmology; mouthwash and mupirocin around the mouth; clean genital area with mupirocin or neomycin; gentle handling; Vaseline gauze on erosions; analgesia. [S1]", "Refer to a higher centre as soon as suspected. [S1]", "Fixed drug eruption: stop the drug; cetirizine 10 mg; triamcinolone 0.1% ointment BD; short oral steroid if severe. [S1]"]]]],
+    ["Follow-up", [["l", ["Eye follow-up after SJS/TEN.", "Record the drug as an allergy."]]]],
+    ["Complications", [["l", ["Sepsis, fluid loss, blindness, death."]]]],
+    ["Common mistakes", [["l", ["Continuing the culprit drug.", "Not involving eye specialists. [S1]"]]]],
+    ["Advice to give", [["l", ["Never take that medicine again; tell every health worker and record it in your health book. [S1]"]]]],
+    ["Learning summary", [["l", ["SATAN drugs; < 10% SJS, > 30% TEN. [S1]", "Stop drug, supportive care, eyes, refer. [S1]"]]]]
+  ],
+  links: [["#topic/urticaria", "Urticaria"], ["#cond/sjs", "Condition page with all linked guidelines"]],
+  cards: [["SATAN drugs causing SJS/TEN?", "Sulfonamides, Allopurinol, Tetracyclines/thioacetazone, Antiepileptics, NSAIDs/nevirapine.", "S1"], ["Skin detachment in SJS vs TEN?", "SJS < 10%, overlap 10–30%, TEN > 30%.", "S1"]]
+});
+TOPICS.push({
+  id: "urticaria", cond: "urticaria", n: "Urticaria and angioedema", spec: ["derm", "medicine"], ages: "All ages", emerg: "Throat swelling or breathing difficulty: treat as anaphylaxis",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a dermatologist.",
+  src: { S1: ["Bhutan STG 2024, 16.2.6 Urticaria, p.402", "#stg/16.2.6"], S2: ["Bhutan STG 2024, 16.2.9 Papular urticaria, p.407", "#stg/16.2.9"] },
+  sec: [
+    ["Definition", [["p", "Wheals (hives), angioedema or both, from mast-cell histamine release. Acute < 6 weeks; chronic > 6 weeks. Spontaneous or inducible (cold, heat, sun, pressure, water, contact). [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Itchy raised wheals lasting 30 minutes to 24 hours; angioedema of lips, tongue or skin resolves more slowly. [S1]", "Papular urticaria: itchy papules from insect bites in children. [S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["Infections (URTI, dental caries, H. pylori), foods, drugs, contacts; often no cause found. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Onset, duration, recurrence?", "Acute vs chronic. [S1]"], ["New food, drug, contact, infection?", "Trigger. [S1]"], ["Throat tightness, breathlessness, dizziness?", "Anaphylaxis: see Anaphylaxis."]]]]],
+    ["Symptoms and examination", [["l", ["Wheals, angioedema; airway and BP. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Anaphylaxis, urticarial vasculitis, insect bites. [S2]"]]]],
+    ["Investigations", [["l", ["Acute: usually none. Chronic: CBC, ESR, CRP. [S1]"]]]],
+    ["Management", [["l", ["Find and remove the cause. [S1]", "Cetirizine 10 mg daily, increase to BD if not controlled; take daily until no longer needed. [S1]", "Severe flare: prednisolone 10 mg TDS for 5–7 days. [S1]", "Calamine lotion for comfort. [S1]", "Papular urticaria: cetirizine by age, calamine, triamcinolone 0.1% ointment on lesions. [S2]"]]]],
+    ["Follow-up", [["l", ["Refer if not responding. [S1]"]]]],
+    ["Complications", [["l", ["Airway angioedema; impaired quality of life in chronic urticaria."]]]],
+    ["Common mistakes", [["l", ["Missing anaphylaxis.", "Stopping antihistamine too early in chronic urticaria. [S1]"]]]],
+    ["Advice to give", [["l", ["Chronic urticaria can last months; keep taking the antihistamine daily. [S1]", "Avoid known triggers. [S1]", "Come at once for swelling of lips or tongue with breathing difficulty."]]]],
+    ["Learning summary", [["l", ["Cetirizine 10 mg OD → BD; short prednisolone for severe flares. [S1]"]]]]
+  ],
+  links: [["#topic/anaph", "Anaphylaxis"], ["#cond/urticaria", "Condition page with all linked guidelines"]],
+  cards: [["Acute vs chronic urticaria?", "Acute < 6 weeks; chronic > 6 weeks.", "S1"], ["STG first-line treatment of urticaria?", "Cetirizine 10 mg daily, increased to twice daily if needed.", "S1"]]
+});
+TOPICS.push({
+  id: "eczema", cond: "eczema", n: "Eczema, dermatitis and psoriasis", spec: ["derm", "paeds"], ages: "All ages", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a dermatologist.",
+  src: { S1: ["Bhutan STG 2024, 16.2.1 Eczema, p.390", "#stg/16.2.1"], S2: ["Bhutan STG 2024, 16.2.2 Seborrhoeic dermatitis, p.395", "#stg/16.2.2"], S3: ["Bhutan STG 2024, 16.2.3 Napkin dermatitis, p.397", "#stg/16.2.3"], S4: ["Bhutan STG 2024, 16.2.4 Psoriasis, p.398", "#stg/16.2.4"] },
+  sec: [
+    ["Definition", [["p", "Eczema: itchy inflammatory skin disorders, acute (oozing) or chronic (dry, thickened). [S1] Seborrhoeic dermatitis: mild eczema in oily areas. [S2] Psoriasis: chronic inflammatory disease with silvery-scaled plaques. [S4]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Type", "Features"], ["Acute eczema", "Red oedematous papules, vesicles, weeping, often infected [S1]"], ["Chronic eczema", "Dry, pigmented, thickened (lichenified), fissures [S1]"], ["Contact dermatitis", "Irritant (detergents, alkalis) or allergic (hair dye, nickel, cement) [S1]"], ["Seborrhoeic", "Infant cradle cap; adult scalp, eyebrows, behind ears, chest [S2]"], ["Napkin dermatitis", "Glazed red rash in the nappy area sparing folds [S3]"], ["Psoriasis", "Sharp plaques with silvery scale, scalp, nail pitting [S4]"]]]]],
+    ["Causes and pathophysiology", [["l", ["Inflammation triggered by external agents. [S1]", "Malassezia yeast and sebum (seborrhoeic). [S2]", "Wet nappies, faeces, yeast (napkin). [S3]", "Genetic plus triggers: infection, drugs, smoking, alcohol, stress (psoriasis). [S4]"]]]],
+    ["History: questions to ask", [["qa", [["Itch; oozing or dry?", "Acute vs chronic. [S1]"], ["Contact with detergents, dyes, nickel, cement?", "Contact dermatitis. [S1]"], ["Recent sore throat (drop-like scaly spots)?", "Guttate psoriasis. [S4]"]]]]],
+    ["Symptoms and examination", [["l", ["Site, morphology, infection, nails, joints. [S1][S4]"]]]],
+    ["Differential diagnosis", [["l", ["Fungal infection, scabies (see Scabies), drug eruption."]]]],
+    ["Investigations", [["l", ["Usually none; psoriasis: routine bloods, viral markers, RPR/TPHA; X-ray hands if arthritis. [S4]"]]]],
+    ["Management", [
+      ["h", "Eczema"],
+      ["l", ["Avoid allergens. Acute weeping: rest; cetirizine 10 mg OD or BD; dilute (pale pink) potassium permanganate soaks three times a day or saline soaks; antibiotics if infected; prednisolone 10 mg TDS 5–7 days if severe. [S1]", "Hydrocortisone 1% cream BD for face and folds; triamcinolone 0.1% ointment BD for body; review at 2 weeks (1 week if severe). [S1]", "Chronic: ointments and heavy moisturisers; steroid under occlusion at night for 1 week. [S1]"]],
+      ["h", "Others"],
+      ["l", ["Infant seborrhoeic: oil massage and mild shampoo; miconazole 2%; hydrocortisone 1% briefly. Adult: miconazole + hydrocortisone on face; triamcinolone or fluticasone + miconazole on body; cetirizine. [S2]", "Napkin: miconazole 2%; hydrocortisone 1% if inflamed; frequent changes; zinc barrier cream; nappy-free time. [S3]", "Psoriasis: hydrocortisone 1% (face, folds), triamcinolone 0.1% (body), coal tar 5% + salicylic acid 6% at night for plaques and scalp. [S4]"]]
+    ]],
+    ["Follow-up", [["l", ["Review topical steroid use at 2 weeks. [S1]"]]]],
+    ["Complications", [["l", ["Secondary infection. [S1]", "Psoriatic arthritis; metabolic syndrome. [S4]"]]]],
+    ["Common mistakes", [["l", ["Potent steroids on the face. [S1]", "Too-strong potassium permanganate (must be pale pink). [S1]"]]]],
+    ["Advice to give", [["l", ["Bathe daily, cut nails short, don't scratch. [S1]", "Moisturise often, especially once dry. [S1]", "Use steroid creams only for the time advised. [S1]", "Change nappies often; keep the area dry. [S3]"]]]],
+    ["Learning summary", [["l", ["Acute: soaks + steroid + antihistamine. Chronic: ointments + moisturiser. [S1]"]]]]
+  ],
+  links: [["#topic/scabies", "Scabies"], ["#cond/eczema", "Condition page with all linked guidelines"]],
+  cards: [["How dilute should potassium permanganate soaks be?", "Pale pink, almost transparent.", "S1"], ["Steroid strength for face and folds (STG)?", "Hydrocortisone 1% cream.", "S1"], ["Nail sign of psoriasis?", "Pitting and subungual hyperkeratosis.", "S4"]]
+});
+TOPICS.push({
+  id: "scabies", cond: "scabies", n: "Scabies", spec: ["derm", "paeds", "ph"], ages: "All ages", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a dermatologist.",
+  src: { S1: ["Bhutan STG 2024, 16.1.4.1 Scabies, p.388", "#stg/16.1.4"] },
+  sec: [
+    ["Definition", [["p", "Itchy infestation by the mite Sarcoptes scabiei, spread by close body contact. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Night-time itch, family members itching, papules in typical sites, burrows. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Mites living in the epidermis. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Itch worse at night?", "Scabies. [S1]"], ["Others at home itching?", "Household spread. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Excoriated papules on finger webs, behind ears, waist and umbilicus, ankles, feet; genitals in men; areola and vulva in women; face in babies and elderly; vesico-pustules on infant hands and feet. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Eczema, papular urticaria, impetigo."]]]],
+    ["Investigations", [["l", ["Clinical diagnosis."]]]],
+    ["Management", [["l", ["Permethrin 5% cream to the whole body (webs, genitals, under nails), overnight, washed off next day; repeat after 1 week. Safe in pregnancy, lactation and babies over 2 months. [S1]", "Or sulphur 10% ointment daily for 3 days, repeated after 1 week (6% in babies). [S1]", "Oral antihistamine for 1–2 weeks. [S1]", "Treat all family members at the same time, even without symptoms; wash clothes, sheets and towels. [S1]"]]]],
+    ["Follow-up", [["l", ["Itch takes about 2 weeks to settle after treatment. [S1]"]]]],
+    ["Complications", [["l", ["Secondary bacterial infection (impetigo)."]]]],
+    ["Common mistakes", [["l", ["Treating only the patient. [S1]", "Not repeating after 1 week. [S1]"]]]],
+    ["Advice to give", [["l", ["Everyone at home is treated the same night. [S1]", "Wash all clothes and bedding. [S1]", "Itching may last 2 weeks; this doesn't mean treatment failed. [S1]"]]]],
+    ["Learning summary", [["l", ["Permethrin 5% overnight, repeat at 1 week; treat all contacts. [S1]"]]]]
+  ],
+  links: [["#topic/eczema", "Eczema and dermatitis"], ["#cond/scabies", "Condition page with all linked guidelines"]],
+  cards: [["STG treatment of scabies?", "Permethrin 5% whole body overnight, repeated after 1 week; treat the whole family.", "S1"], ["How long does itch last after scabies treatment?", "About 2 weeks.", "S1"]]
+});
+TOPICS.push({
+  id: "leprosy", cond: "leprosy", n: "Leprosy", spec: ["derm", "id", "ph"], ages: "All ages", emerg: "Leprosy reactions need prompt referral",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a dermatologist.",
+  src: { S1: ["Bhutan STG 2024, 16.1.2 Bacterial infection: Leprosy, p.367", "#stg/16.1.2"], S2: ["WHO multidrug therapy adult doses, as summarised in published WHO-based regimen tables", "https://www.who.int/news-room/fact-sheets/detail/leprosy"] },
+  sec: [
+    ["Definition", [["p", "Chronic infection of skin and nerves by Mycobacterium leprae that can disable hands, feet and eyes; spread by droplets from untreated cases; incubation 5–20 years. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Type", "Features"], ["Paucibacillary", "1–5 skin lesions with loss of sensation; negative slit-skin smear [S1]"], ["Multibacillary", "> 5 lesions, or nerve involvement, or positive smear [S1]"]]]]],
+    ["Causes and pathophysiology", [["l", ["Mycobacterium leprae; disease type depends on the person's immunity. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Pale or red patch with numbness?", "Leprosy. [S1]"], ["Weakness of hands, feet or eyelids; tingling?", "Nerve damage. [S1]"], ["Household contacts?", "Contact tracing. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Test sensation in patches with a cotton wisp and pin. [S1]", "Palpate ulnar and common peroneal nerves for thickening. [S1]", "Small-muscle power of hands and feet; wrist or foot drop; ulcers. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Vitiligo, fungal infection, pityriasis versicolor (sensation normal)."]]]],
+    ["Investigations", [["l", ["Refer for diagnosis; slit-skin smear (ear lobe, forehead, 2 active patches); CBC, LFT, RFT, G6PD. [S1]"]]]],
+    ["Management", [["l", ["Multidrug therapy blister packs: rifampicin once a month plus daily dapsone and clofazimine. Paucibacillary 6 months; multibacillary 12 months. [S1]", "Adult WHO doses: rifampicin 600 mg once monthly (supervised); clofazimine 300 mg once monthly plus 50 mg daily; dapsone 100 mg daily. [S2]", "Follow the national leprosy guideline. [S1]"]], ["note", "Many older regimens used only rifampicin and dapsone for paucibacillary disease; the STG blister pack includes clofazimine, in line with WHO's current uniform 3-drug regimen. Child doses go by weight."]]],
+    ["Follow-up", [["l", ["Adherence. [S1]", "Leprosy reaction (fever, joint pain, swelling of lesions, new lesions, acute nerve pain or palsy): continue MDT and refer. [S1]"]]]],
+    ["Complications", [["l", ["Disability of hands, feet and eyes; reactions with nerve damage. [S1]"]]]],
+    ["Common mistakes", [["l", ["Stopping MDT during a reaction. [S1]", "Not testing sensation in skin patches. [S1]"]]]],
+    ["Advice to give", [["l", ["Leprosy is curable; complete every monthly pack. [S1]", "Bring household members for checking. [S1]", "Protect numb hands and feet; check them daily for injuries. [S1]", "Urine and skin may turn reddish-brown from clofazimine (harmless)."]]]],
+    ["Learning summary", [["l", ["Patch with sensory loss ± thick nerve. [S1]", "MDT: PB 6 months, MB 12 months. [S1]"]]]]
+  ],
+  links: [["#cond/leprosy", "Condition page with all linked guidelines"]],
+  cards: [["Paucibacillary vs multibacillary leprosy?", "PB: 1–5 anaesthetic lesions, smear negative. MB: > 5 lesions, nerve involvement or smear positive.", "S1"], ["Duration of MDT?", "PB 6 months; MB 12 months.", "S1"], ["Nerves commonly thickened in leprosy?", "Ulnar and common peroneal.", "S1"]]
+});
+
+TOPICS.push({
+  id: "arrest", cond: "arrest", n: "Cardiac arrest (BLS and ACLS)", spec: ["emerg", "cardio"], ages: "Adults (children: see the protocol)", emerg: "Start CPR immediately",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: { S1: ["Bhutan STG 2024, 1.3 Cardiac arrest algorithm (AHA 2020 BLS), p.7", "#stg/1.3"], S2: ["App protocol: Cardiac arrest (adult and child ALS)", "#p/arrest"] },
+  sec: [
+    ["Definition", [["p", "No palpable central (carotid or femoral) pulse: start CPR immediately. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Unresponsive, not breathing or only gasping, no pulse within 10 seconds. [S1]", "Shockable (VF, pulseless VT) vs non-shockable (asystole, PEA) rhythm. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Use BLS out of hospital or where drugs are unavailable; ACLS in hospital with drugs. [S1]", "Look for reversible causes (hypoxia, hypovolaemia, potassium, temperature, tamponade, tension pneumothorax, toxins, thrombosis). [S2]"]]]],
+    ["History: questions to ask", [["qa", [["When did they collapse; witnessed?", "Prognosis."], ["Opioids possible?", "Naloxone per protocol. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Check responsiveness, breathing and pulse together for no more than 10 seconds. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Respiratory arrest with pulse: rescue breaths 1 every 6 seconds, check pulse every 2 minutes. [S1]"]]]],
+    ["Investigations", [["l", ["Rhythm check every 2 minutes; glucose; potassium where possible. [S2]"]]]],
+    ["Management", [["l", ["Scene safety; shout for help; activate emergency response; get AED. [S1]", "CPR 30:2, high-quality compressions; AED as soon as available. [S1]", "Shockable: 1 shock, resume CPR for 2 minutes. Non-shockable: resume CPR for 2 minutes. Continue until ALS takes over or the patient moves. [S1]", "ACLS drug doses and the child algorithm are on the protocol page. [S2]"]]]],
+    ["Follow-up", [["l", ["After return of circulation: ABC, oxygen, BP, glucose, find the cause, refer. [S2]"]]]],
+    ["Complications", [["l", ["Hypoxic brain injury; rib fractures from CPR."]]]],
+    ["Common mistakes", [["l", ["Delaying compressions to check the pulse for too long. [S1]", "Interrupting compressions for long periods."]]]],
+    ["Advice to give", [["l", ["Learn CPR; call 112 and start compressions if someone collapses and isn't breathing normally."]]]],
+    ["Learning summary", [["l", ["No pulse → CPR 30:2 + AED; shock if shockable; 2-minute cycles. [S1]"]]]]
+  ],
+  links: [["#p/arrest", "Cardiac arrest protocol"], ["#cond/arrest", "Condition page with all linked guidelines"]],
+  cards: [["Compression-to-breath ratio in adult CPR?", "30:2.", "S1"], ["Rescue breathing rate for respiratory arrest with a pulse?", "1 breath every 6 seconds (10/min), pulse check every 2 minutes.", "S1"]]
+});
+TOPICS.push({
+  id: "poison", cond: "poison", n: "Poisoning and overdose: general approach", spec: ["emerg"], ages: "All ages", emerg: "Stabilise first",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: { S1: ["Bhutan STG 2024, 1.4 Poisoning and overdose (toxidromes), p.10", "#stg/1.4"] },
+  sec: [
+    ["Definition", [["p", "Harm from any substance swallowed, inhaled, injected or absorbed through skin. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["History plus toxidrome: a pattern of signs pointing to a drug class, so treatment can start before the exact toxin is known. [S1]", "Toxidromes in the STG: sympathomimetic, anticholinergic, cholinergic, opioid, sedative-hypnotic. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Medicines (including over-the-counter and herbal), alcohol, pesticides, household chemicals. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["What, how much, when?", "Key facts. [S1]"], ["What medicines are in the house, including herbal?", "Hidden sources. [S1]"], ["Empty bottles or containers; odours?", "Clues. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Pupils, skin (dry or sweaty), heart rate, temperature, secretions, consciousness: match to a toxidrome. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Hypoglycaemia, head injury, CNS infection, stroke."]]]],
+    ["Investigations", [["l", ["Glucose; others by suspected agent."]]]],
+    ["Management", [["l", ["ABCDEFG: Airway, Breathing, Circulation, Disability + Decontamination, Exposure + Enhanced elimination, Focused therapy (antidotes). [S1]", "Decontaminate to prevent further absorption (e.g. remove clothing, activated charcoal when indicated). [S1]", "Specific poisons: see Organophosphate, Paracetamol, Mushroom, Aconite, Carbon monoxide and Snakebite pages."]]]],
+    ["Follow-up", [["l", ["Mental health assessment after intentional poisoning."]]]],
+    ["Complications", [["l", ["Airway loss, aspiration, organ failure."]]]],
+    ["Common mistakes", [["l", ["Waiting for the toxin name before treating. [S1]", "Forgetting glucose."]]]],
+    ["Advice to give", [["l", ["Store medicines and chemicals locked, in original containers, away from children.", "Bring containers to hospital in any poisoning."]]]],
+    ["Learning summary", [["l", ["ABCDEFG; treat by toxidrome. [S1]"]]]]
+  ],
+  links: [["#topic/op", "Organophosphate poisoning"], ["#topic/pcm", "Paracetamol poisoning"], ["#topic/snakebite", "Snakebite"], ["#cond/poison", "Condition page with all linked guidelines"]],
+  cards: [["ABCDEFG approach to poisoning?", "Airway, Breathing, Circulation, Disability + Decontamination, Exposure + Enhanced elimination, Focused therapy (antidotes).", "S1"], ["What is a toxidrome?", "A set of signs pointing to a drug class, allowing treatment before the exact toxin is known.", "S1"]]
+});
+TOPICS.push({
+  id: "trauma", cond: "trauma", n: "Major trauma: primary survey", spec: ["emerg", "surg"], ages: "All ages", emerg: "Primary survey within 5 minutes",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a surgeon or emergency physician.",
+  src: { S1: ["Bhutan STG 2024, 1.5 Trauma, p.28", "#stg/1.5"], S2: ["Bhutan STG 2024, 1.6 Trauma in paediatrics, p.40", "#stg/1.6"], S3: ["Bhutan STG 2024, 1.7 Trauma in pregnancy, p.41", "#stg/1.7"], S4: ["App protocol: Trauma", "#p/trauma"] },
+  sec: [
+    ["Definition", [["p", "A leading cause of death and disability in Bhutan, mostly road crashes, then falls on farms and construction sites. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Three phases: primary survey (ABCDE, within 5 minutes), SAMPLE history, secondary survey. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Road traffic crashes, falls. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["SAMPLE: symptoms, allergies, medicines, past history, last meal, events", "Completes the assessment. [S1]"], ["Pregnant?", "Left tilt; abruption risk. [S3]"]]]]],
+    ["Symptoms and examination", [["l", ["Airway with C-spine control: can the patient talk? Stridor, gurgling, snoring, foreign bodies. [S1]", "Breathing: rate, tracheal shift, chest movement, breath sounds, flail chest, sucking wound, distended neck veins. [S1]", "Circulation, disability (GCS, pupils), exposure. [S1][S4]"]]]],
+    ["Differential diagnosis", [["l", ["Shock types: haemorrhagic, tension pneumothorax, tamponade, neurogenic (see Fractures and spinal injury)."]]]],
+    ["Investigations", [["l", ["Glucose, Hb, grouping; imaging as available after stabilisation."]]]],
+    ["Management", [["l", ["Jaw thrust and airway adjuncts; clear the mouth; immobilise the C-spine (collar, or sandbags and tape). [S1]", "Oxygen; treat chest injuries (see Pneumothorax). [S1]", "Control bleeding, IV access, fluids; see the trauma protocol for steps and doses. [S4]", "Children: larger head, smaller airway, less blood reserve; involve a surgeon early. [S2]", "Pregnancy: tilt to the left or displace the uterus manually; watch for preterm labour and abruption. [S3]"]]]],
+    ["Follow-up", [["l", ["Repeat the primary survey after every intervention; refer."]]]],
+    ["Complications", [["l", ["Haemorrhagic shock, airway loss, brain injury."]]]],
+    ["Common mistakes", [["l", ["Skipping C-spine protection. [S1]", "Laying a pregnant woman flat. [S3]"]]]],
+    ["Advice to give", [["l", ["Wear seat belts and helmets; use fall protection at work sites."]]]],
+    ["Learning summary", [["l", ["ABCDE in 5 minutes, then SAMPLE, then secondary survey. [S1]"]]]]
+  ],
+  links: [["#p/trauma", "Trauma protocol"], ["#topic/headinj", "Head injury"], ["#topic/ptx", "Pneumothorax"], ["#topic/fracture", "Fractures"], ["#cond/trauma", "Condition page with all linked guidelines"]],
+  cards: [["Three phases of trauma assessment (STG)?", "Primary survey (ABCDE), SAMPLE history, secondary survey.", "S1"], ["Positioning a pregnant trauma patient?", "Left lateral tilt or manual displacement of the uterus to the left.", "S3"]]
+});
+TOPICS.push({
+  id: "labour", cond: "labour", n: "Prolonged and obstructed labour", spec: ["obg", "emerg"], ages: "Women in labour", emerg: "Obstructed labour is an emergency",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an obstetrician.",
+  src: { S1: ["Bhutan STG 2024, 11.6 Prolonged labour (with flowchart), p.242", "#stg/11.6"] },
+  sec: [
+    ["Definition", [["p", "Labour lasting 12 hours or more after 4 cm dilation without delivery. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Type", "Features"], ["Non-obstructed", "Longitudinal lie, weak contractions, no stretched lower segment, normal fetal heart [S1]"], ["Obstructed", "Head not engaged or fixed, abnormal lie, stretched lower segment, Bandl's ring, distended bladder, maternal tachycardia and dehydration, fetal distress, marked moulding [S1]"]]]]],
+    ["Causes and pathophysiology", [["l", ["3 Ps: Power (weak or uncoordinated contractions, poor effort), Passenger (malpresentation, large baby), Passage (small pelvis, pelvic tumours). [S1]"]]]],
+    ["History: questions to ask", [["qa", [["When did labour start; when 4 cm?", "Duration. [S1]"], ["Previous caesarean?", "Rupture risk."]]]]],
+    ["Symptoms and examination", [["l", ["Exhaustion, severe pain, tachycardia, dehydration, slow dilation and descent, meconium, tender uterus, perineal swelling. [S1]", "Partograph. [S1]"]], ["warn", "Bandl's ring or a stretched lower segment means impending rupture: refer urgently. [S1]"]]],
+    ["Differential diagnosis", [["l", ["False labour, latent phase."]]]],
+    ["Investigations", [["l", ["Partograph; Hb and grouping. [S1]"]]]],
+    ["Management", [["l", ["Reassess the 3 Ps; monitor maternal vitals and fetal heart. [S1]", "IV Ringer's lactate for dehydration; Foley catheter. [S1]", "Ampicillin 1 g IV stat then 500 mg 6-hourly (STG flowchart). [S1]", "Pain relief (pethidine); refer to a higher centre. [S1]"]]]],
+    ["Follow-up", [["l", ["Postpartum: watch for PPH, infection and fistula (see PPH, Puerperal sepsis)."]]]],
+    ["Complications", [["l", ["Uterine rupture, PPH, sepsis, fistula, fetal death."]]]],
+    ["Common mistakes", [["l", ["Not using a partograph. [S1]", "Giving oxytocin in obstructed labour."]]]],
+    ["Advice to give", [["l", ["Deliver in a health facility; come early in labour."]]]],
+    ["Learning summary", [["l", ["> 12 h after 4 cm. 3 Ps. Obstructed → fluids, catheter, ampicillin, refer. [S1]"]]]]
+  ],
+  links: [["#topic/pph", "Postpartum haemorrhage"], ["#topic/puerperal", "Puerperal sepsis"], ["#cond/labour", "Condition page with all linked guidelines"]],
+  cards: [["Definition of prolonged labour (STG)?", "Labour ≥ 12 hours after 4 cm dilation without delivery.", "S1"], ["The 3 Ps of prolonged labour?", "Power, Passenger, Passage.", "S1"]]
+});
+TOPICS.push({
+  id: "aub", cond: "aub", n: "Abnormal uterine bleeding", spec: ["obg"], ages: "Women", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a gynaecologist.",
+  src: { S1: ["Bhutan STG 2024, 11.10 Abnormal uterine bleeding, p.249", "#stg/11.10"] },
+  sec: [
+    ["Definition", [["p", "Abnormal regularity, amount or duration of menstrual bleeding. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["PALM-COEIN: polyp, adenomyosis, leiomyoma, malignancy/hyperplasia; coagulopathy, ovulatory dysfunction, endometrial, iatrogenic, not yet classified. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["See PALM-COEIN. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Pattern, amount, duration?", "Type. [S1]"], ["Bleeding after menopause?", "Malignancy until proven otherwise. [S1]"], ["Pregnant?", "Exclude pregnancy complications."], ["Bleeding elsewhere; blood thinners?", "Coagulopathy, iatrogenic. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Pallor and fatigue (anaemia); pelvic examination. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Miscarriage, ectopic pregnancy (see those topics)."]]]],
+    ["Investigations", [["l", ["Pregnancy test, Hb; ultrasound and further tests at referral."]]]],
+    ["Management", [["l", ["Healthy weight, relaxation or counselling. [S1]", "NSAIDs (ibuprofen) to reduce pain and bleeding. [S1]", "Combined oral contraceptive pills to regularise cycles and reduce bleeding. [S1]", "Refer for surgical management where needed. [S1]"]]]],
+    ["Follow-up", [["l", ["Treat anaemia (see Anaemia)."]]]],
+    ["Complications", [["l", ["Anaemia. [S1]"]]]],
+    ["Common mistakes", [["l", ["Not referring postmenopausal bleeding. [S1]"]]]],
+    ["Advice to give", [["l", ["Keep a menstrual diary; come back if bleeding is very heavy or you feel faint."]]]],
+    ["Learning summary", [["l", ["PALM-COEIN; NSAID, COC; refer structural or postmenopausal bleeding. [S1]"]]]]
+  ],
+  links: [["#topic/anaemia", "Anaemia"], ["#cond/aub", "Condition page with all linked guidelines"]],
+  cards: [["What does PALM-COEIN stand for?", "Polyp, Adenomyosis, Leiomyoma, Malignancy; Coagulopathy, Ovulatory, Endometrial, Iatrogenic, Not classified.", "S1"]]
+});
+TOPICS.push({
+  id: "anaemiapreg", cond: "anaemiapreg", n: "Anaemia in pregnancy", spec: ["obg", "ph"], ages: "Pregnant women", emerg: "Hb < 7 g/dL: refer",
+  reviewed: "Written from the sources below on 4 Nov 2026. Albendazole dose corrected from the national formulary. Not yet reviewed by an obstetrician.",
+  src: { S1: ["Bhutan STG 2024, 11.1 Anaemia in pregnancy, p.231", "#stg/11.1"], S2: ["National Essential Medicines Formulary 2022: Albendazole", "#drug/ALBENDAZOLE"] },
+  sec: [
+    ["Definition", [["p", "Hb < 11 g/dL in pregnancy (WHO): mild 9–11, moderate 7–8.9, severe < 7 g/dL. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["See severity bands above. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Iron and folate deficiency; blood loss (heavy periods, GI bleeding). [S1]", "Intestinal worms are treated routinely in pregnancy (see Worms). [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Taking iron and folic acid daily?", "Compliance. [S1]"], ["Tiredness, breathlessness, craving earth or ice (pica)?", "Symptoms. [S1]"], ["Diet; tea with meals?", "Absorption. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Fatigue, pica, breathlessness, poor concentration; pallor of conjunctiva, mucosa, nail beds. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Thalassaemia, malaria, chronic disease."]]]],
+    ["Investigations", [["l", ["Hb; CBC, peripheral smear, iron studies. [S1]"]]]],
+    ["Management", [["l", ["Iron + folic acid with vitamin C, 1 tablet daily from 12 weeks. [S1]", "Deworming at 20 weeks: albendazole 400 mg single dose (contraindicated before 12 weeks). [S2]", "If anaemic: check compliance; recheck Hb in 2 weeks; refer if not improved or Hb < 7 g/dL. [S1]"]], ["note", "Dose correction: the STG 2024 prints 'Albendazole 100 mg STAT' (PDF page 255). The National Essential Medicines Formulary gives 400 mg as the single dose for intestinal worms, and this page uses the formulary dose. [S1][S2]"]]],
+    ["Follow-up", [["l", ["Hb at 2 weeks and at each antenatal visit. [S1]"]]]],
+    ["Complications", [["l", ["Heart failure, PPH tolerance poor, preterm birth, low birthweight."]]]],
+    ["Common mistakes", [["l", ["Iron taken with milk, tea or calcium. [S1]", "Using the misprinted 100 mg albendazole dose. [S2]"]]]],
+    ["Advice to give", [["l", ["Don't take iron with milk, tea or calcium tablets. [S1]", "Eat an extra meal a day and green leafy vegetables. [S1]", "Iron can cause a metallic taste, nausea, constipation and black stools: keep taking it. [S1]"]]]],
+    ["Learning summary", [["l", ["Hb < 11 anaemia; < 7 severe → refer. [S1]", "IFA + vitamin C from 12 weeks; albendazole 400 mg at 20 weeks. [S1][S2]"]]]]
+  ],
+  links: [["#topic/anaemia", "Anaemia"], ["#drug/ALBENDAZOLE", "Albendazole"], ["#cond/anaemiapreg", "Condition page with all linked guidelines"]],
+  cards: [["WHO severity bands of anaemia in pregnancy?", "Mild 9–11, moderate 7–8.9, severe < 7 g/dL.", "S1"], ["Albendazole dose for deworming in pregnancy (NEMF)?", "400 mg single dose, after 12 weeks (STG: at 20 weeks).", "S2"]]
+});
+TOPICS.push({
+  id: "constipation", cond: "constipation", n: "Constipation in children", spec: ["paeds", "gi"], ages: "Children", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a paediatrician.",
+  src: { S1: ["Bhutan STG 2024, 12.4.2 Constipation, p.269", "#stg/12.4.2"] },
+  sec: [
+    ["Definition", [["p", "Delay or difficulty in defecation for 2 weeks or more causing distress; functional constipation (withholding) is common after the newborn period. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Infrequent, hard, painful stools; straining; withholding; sensation of incomplete emptying. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Change from breast milk to formula or cow's milk; low fluid or fibre; perianal trauma. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["How often, hard or painful stools, blood?", "Severity. [S1]"], ["Diet and fluid intake?", "Cause. [S1]"], ["Delayed meconium, poor growth, vomiting, distension?", "Red flags (Hirschsprung, hypothyroidism)."]]]]],
+    ["Symptoms and examination", [["l", ["Palpable suprapubic mass; perianal fissure. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Hirschsprung disease, hypothyroidism, anal fissure."]]]],
+    ["Investigations", [["l", ["None needed for functional constipation. [S1]"]]]],
+    ["Management", [["l", ["Glycerine suppository stat and at night for 2–3 nights. [S1]", "Lactulose 1–3 mL/kg/day once or twice daily for 3–5 days. [S1]", "Refer if not helped. [S1]"]]]],
+    ["Follow-up", [["l", ["Review diet and toilet routine."]]]],
+    ["Complications", [["l", ["Fissure, soiling, UTI (see UTI)."]]]],
+    ["Common mistakes", [["l", ["Stopping treatment too early."]]]],
+    ["Advice to give", [["l", ["Plenty of fluids and high-fibre foods. [S1]", "Regular, pleasant toilet time; avoid punishment. [S1]"]]]],
+    ["Learning summary", [["l", ["Glycerine suppository + lactulose 1–3 mL/kg/day; diet and toilet routine. [S1]"]]]]
+  ],
+  links: [["#cond/constipation", "Condition page with all linked guidelines"]],
+  cards: [["Lactulose dose for childhood constipation (STG)?", "1–3 mL/kg/day once or twice daily for 3–5 days.", "S1"]]
+});
+TOPICS.push({
+  id: "dental", cond: "dental", n: "Dental emergencies: toothache, avulsion, post-extraction bleeding", spec: ["dental", "emerg"], ages: "All ages", emerg: "Avulsed tooth: replant within 20–40 minutes",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a dentist.",
+  src: { S1: ["Bhutan STG 2024, 17.1 Toothache, p.414", "#stg/17.1"], S2: ["Bhutan STG 2024, 17.9.2 Avulsion, p.427", "#stg/17.9.2"], S3: ["Bhutan STG 2024, 17.3 Bleeding after extraction, p.417", "#stg/17.3"] },
+  sec: [
+    ["Definition", [["p", "Toothache: pain in or around a tooth. [S1] Avulsion: tooth completely knocked out of its socket. [S2]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Odontogenic (caries, periodontitis, abscess, impacted third molar, fracture, lost filling) vs non-odontogenic (soft-tissue infection, food impaction, sinusitis). [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Caries and infection; trauma (road accidents, falls, sports, assault). [S1][S2]"]]]],
+    ["History: questions to ask", [["qa", [["Facial swelling, fever, difficulty swallowing or opening the mouth?", "Spreading infection. [S1]"], ["Tooth knocked out: how long ago? Where is it?", "Replantation window. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Sharp or throbbing pain, swelling, fever, bad breath, facial swelling. [S1]"]], ["warn", "Infection spreading to the jaw and neck can cause cellulitis: refer urgently. [S1]"]]],
+    ["Differential diagnosis", [["l", ["Sinusitis, cardiac pain referred to the jaw, trigeminal neuralgia."]]]],
+    ["Investigations", [["l", ["Dental examination; X-ray at the dental unit."]]]],
+    ["Management", [["t", [["Problem", "Treatment", "Source"], ["Toothache with infection", "Amoxicillin 250–500 mg 8-hourly × 5 days; paracetamol; refer to dentist", "[S1]"], ["Avulsion", "Rinse the tooth with saline (don't touch the root) and replant; or store in saliva, fresh milk or saline; amoxicillin × 5 days, ibuprofen × 3–5 days; refer at once", "[S2]"], ["Bleeding after extraction", "Bite on gauze firmly 30–45 min; ice pack; no spitting or rinsing for 24 h; head up; avoid exertion, smoking and alcohol", "[S3]"]]]]],
+    ["Follow-up", [["l", ["Dental review; persistent bleeding → contact dental staff. [S3]"]]]],
+    ["Complications", [["l", ["Facial cellulitis, deep neck infection. [S1]"]]]],
+    ["Common mistakes", [["l", ["Delaying replantation. [S2]", "Antibiotics without dental referral. [S1]"]]]],
+    ["Advice to give", [["l", ["Brush twice daily; rinse with warm salt water. [S1]", "Wear a mouth guard for contact sports; soft diet after avulsion. [S2]"]]]],
+    ["Learning summary", [["l", ["Avulsion: replant within 20–40 min or store in milk/saliva/saline. [S2]", "Extraction bleed: firm gauze pressure 30–45 min. [S3]"]]]]
+  ],
+  links: [["#cond/dental", "Condition page with all linked guidelines"]],
+  cards: [["Best storage for an avulsed tooth if it can't be replanted?", "Saliva (in the cheek), fresh whole milk or saline.", "S2"], ["First aid for bleeding after extraction?", "Bite firmly on gauze for 30–45 minutes.", "S3"]]
+});
+TOPICS.push({
+  id: "choking", cond: "choking", n: "Choking (airway foreign body)", spec: ["emerg", "paeds"], ages: "All ages", emerg: "Emergency",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an emergency physician.",
+  src: { S1: ["Bhutan STG 2024, 1.2 Choking, p.6", "#stg/1.2"], S2: ["Bhutan STG 2024, 1.3 Cardiac arrest (BLS), p.7", "#stg/1.3"] },
+  sec: [
+    ["Definition", [["p", "Partial or complete airway obstruction by food, a foreign object or vomit. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Difficulty breathing while eating, unable to speak, coughing; hands clutching the throat. [S1]", "Effective cough vs ineffective cough."]]]],
+    ["Causes and pathophysiology", [["l", ["Food, small objects, vomit. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Eating or playing with small objects?", "Cause. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Can the person cough or speak? [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Anaphylaxis, asthma, croup."]]]],
+    ["Investigations", [["l", ["None in the acute phase."]]]],
+    ["Management", [["l", ["Can cough forcefully: let them cough. [S1]", "Cannot cough: age-appropriate back blows, abdominal thrusts or chest thrusts (infants: back blows and chest thrusts, no abdominal thrusts). [S1]", "Becomes unconscious: start BLS. [S1][S2]"]]]],
+    ["Follow-up", [["l", ["Assess after abdominal thrusts for internal injury."]]]],
+    ["Complications", [["l", ["Hypoxic arrest; aspiration."]]]],
+    ["Common mistakes", [["l", ["Blind finger sweeps.", "Abdominal thrusts in infants."]]]],
+    ["Advice to give", [["l", ["Keep small objects, nuts and coins away from young children; cut food small."]]]],
+    ["Learning summary", [["l", ["Cough → encourage; no cough → back blows/thrusts; unconscious → CPR. [S1]"]]]]
+  ],
+  links: [["#topic/arrest", "Cardiac arrest"], ["#cond/choking", "Condition page with all linked guidelines"]],
+  cards: [["Universal sign of choking?", "Hands clutching the throat.", "S1"], ["What if a choking person becomes unconscious?", "Start BLS (CPR).", "S1"]]
+});
+TOPICS.push({
+  id: "eyeinjury", cond: "eyeinjury", n: "Eye injuries: foreign body, hyphaema, ruptured globe", spec: ["eye", "emerg"], ages: "All ages", emerg: "Ruptured globe: shield and refer",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an ophthalmologist.",
+  src: { S1: ["Bhutan STG 2024, 15.9.3 Corneal and conjunctival foreign bodies, p.345", "#stg/15.9.3"], S2: ["Bhutan STG 2024, 15.9.5 Hyphema, p.348", "#stg/15.9.5"], S3: ["Bhutan STG 2024, 15.9.2 Ruptured globe, p.343", "#stg/15.9.2"] },
+  sec: [
+    ["Definition", [["p", "Foreign body: grit, metal or glass on the conjunctiva or cornea. [S1] Hyphaema: blood in the anterior chamber. [S2] Ruptured globe: full-thickness wound of the eye wall. [S3]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Ruptured globe signs: full-thickness laceration, severe subconjunctival haemorrhage, abnormal anterior chamber depth, peaked pupil, iris prolapse, lens in the chamber. [S3]", "Hyphaema: blood level in the anterior chamber; total ('8-ball') hyphaema may look black. [S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["Metal striking metal suggests an intraocular foreign body. [S1]", "Blunt or sharp trauma (arrows, darts). [S3]"]]]],
+    ["History: questions to ask", [["qa", [["Hammering or grinding metal?", "Intraocular foreign body. [S1]"], ["Blunt blow, sport?", "Hyphaema. [S2]"], ["Sharp object entered the eye?", "Ruptured globe. [S3]"]]]]],
+    ["Symptoms and examination", [["l", ["Visual acuity first. [S1]", "Torch examination; evert the lids if no perforation. [S1]"]], ["warn", "If globe rupture is suspected, stop examining, put on a rigid shield (no pressure) and refer. [S3]"]]],
+    ["Differential diagnosis", [["l", ["Corneal abrasion, conjunctivitis, chemical injury (see Chemical eye injury)."]]]],
+    ["Investigations", [["l", ["Visual acuity; refer for imaging if an intraocular foreign body is possible. [S1]"]]]],
+    ["Management", [["t", [["Injury", "Treatment", "Source"], ["Superficial corneal foreign body", "Lignocaine 4% drops; remove with a cotton tip or irrigation; treat as corneal abrasion; refer if not easily removed", "[S1]"], ["Hyphaema", "Bed rest, head up, eye shield, cycloplegic if available; paracetamol only (no aspirin or NSAIDs); refer", "[S2]"], ["Ruptured globe", "Defer examination; shield; refer for surgical repair", "[S3]"]]]]],
+    ["Follow-up", [["l", ["Eye unit review for hyphaema and any penetrating injury."]]]],
+    ["Complications", [["l", ["Infection, raised eye pressure, loss of vision."]]]],
+    ["Common mistakes", [["l", ["Pressing on a ruptured eye. [S3]", "NSAIDs or aspirin in hyphaema. [S2]", "Not recording visual acuity. [S1]"]]]],
+    ["Advice to give", [["l", ["Wear protective goggles when grinding, hammering or in fields."]]]],
+    ["Learning summary", [["l", ["Acuity first. Ruptured globe: shield, no pressure, refer. [S3]"]]]]
+  ],
+  links: [["#topic/cheminj", "Chemical eye injury"], ["#topic/cornealu", "Corneal ulcer"], ["#cond/eyeinjury", "Condition page with all linked guidelines"]],
+  cards: [["First action if a ruptured globe is suspected?", "Stop the examination, apply a rigid shield without pressure, refer.", "S3"], ["Painkiller in hyphaema?", "Paracetamol; avoid aspirin and NSAIDs.", "S2"]]
+});
+
+TOPICS.push({
+  id: "cheminj", cond: "cheminj", n: "Chemical eye injury", spec: ["eye", "emerg"], ages: "All ages", emerg: "Irrigate first, examine later",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by an ophthalmologist.",
+  src: { S1: ["Bhutan STG 2024, 15.11 Chemical injuries, p.355", "#stg/15.11"] },
+  sec: [
+    ["Definition", [["p", "A true eye emergency from acid or alkali contact (battery acid, ammonia fertiliser, lime whitewash). Act first; history and examination later. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Pain, reduced vision, redness, chemosis, corneal ulcers, limbal blanching (ischaemia). [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Acids and alkalis; alkalis penetrate deeper."]]]],
+    ["History: questions to ask", [["qa", [["What chemical; when?", "Asked during irrigation, not before. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Visual acuity after irrigation; lids everted for particles. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Thermal burn, foreign body."]]]],
+    ["Investigations", [["l", ["None before irrigation."]]]],
+    ["Management", [["l", ["Lie the patient flat looking at the ceiling; lignocaine 4% drops if available. [S1]", "Irrigate immediately with tap water, then normal saline or Ringer's lactate: prompt, profuse, prolonged (at least 2–3 bottles), flowing from inner to outer corner. [S1]", "Evert lids, remove particles, sweep the fornices. [S1]", "Then ciprofloxacin drops 2–3-hourly and chloramphenicol ointment 4–6 times a day; refer. [S1]"]]]],
+    ["Follow-up", [["l", ["Ophthalmology review for all but trivial injuries."]]]],
+    ["Complications", [["l", ["Corneal scarring, blindness."]]]],
+    ["Common mistakes", [["l", ["Delaying irrigation to take a history. [S1]", "Too little irrigation. [S1]"]]]],
+    ["Advice to give", [["l", ["Wear goggles with lime, fertilisers and batteries; if splashed, wash the eye with water at once for many minutes."]]]],
+    ["Learning summary", [["l", ["3 Ps: prompt, profuse, prolonged irrigation; then antibiotics and refer. [S1]"]]]]
+  ],
+  links: [["#topic/eyeinjury", "Eye injuries"], ["#cond/cheminj", "Condition page with all linked guidelines"]],
+  cards: [["The 3 Ps of irrigation for chemical eye injury?", "Prompt, profuse and prolonged.", "S1"]]
+});
+TOPICS.push({
+  id: "eyelid", cond: "eyelid", n: "Stye, chalazion and subconjunctival haemorrhage", spec: ["eye"], ages: "All ages", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an ophthalmologist.",
+  src: { S1: ["Bhutan STG 2024, 15.10.1 Stye, p.351", "#stg/15.10.1"], S2: ["Bhutan STG 2024, 15.10.2 Chalazion, p.352", "#stg/15.10.2"], S3: ["Bhutan STG 2024, 15.13 Subconjunctival haemorrhage, p.357", "#stg/15.13"] },
+  sec: [
+    ["Definition", [["p", "Stye: painful infected lash follicle. [S1] Chalazion: painless lump from a blocked oil gland. [S2] Subconjunctival haemorrhage: bleeding under the conjunctiva. [S3]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Condition", "Features"], ["Stye", "Painful red lump at the lid margin, pus [S1]"], ["Chalazion", "Painless lid swelling, may blur vision [S2]"], ["Subconjunctival haemorrhage", "Bright red patch on the white of the eye, vision normal [S3]"]]]]],
+    ["Causes and pathophysiology", [["l", ["Bacterial infection (stye). [S1]", "Blocked oil gland (chalazion). [S2]", "Hypertension, trauma, bleeding disorders, coughing or straining (haemorrhage). [S3]"]]]],
+    ["History: questions to ask", [["qa", [["Painful or painless?", "Stye vs chalazion. [S1][S2]"], ["Injury, high BP, blood thinners, coughing?", "Haemorrhage cause. [S3]"], ["Vision change?", "Not simple: refer. [S3]"]]]]],
+    ["Symptoms and examination", [["l", ["Vision; BP for subconjunctival haemorrhage. [S3]"]]]],
+    ["Differential diagnosis", [["l", ["Orbital cellulitis, eyelid tumour, conjunctivitis."]]]],
+    ["Investigations", [["l", ["Clinical."]]]],
+    ["Management", [["l", ["Stye: warm compresses; chloramphenicol ointment once daily × 5 days; amoxicillin 500 mg TDS × 5 days if severe. [S1]", "Chalazion: warm compresses and lid massage; chloramphenicol ointment × 5 days; refer if not resolved. [S2]", "Haemorrhage: rule out causes; avoid straining; paracetamol (not aspirin or ibuprofen); cold compresses; clears in a few weeks. [S3]"]]]],
+    ["Follow-up", [["l", ["Refer a persistent chalazion. [S2]"]]]],
+    ["Complications", [["l", ["Lid cellulitis (stye)."]]]],
+    ["Common mistakes", [["l", ["Missing high BP or a bleeding disorder. [S3]"]]]],
+    ["Advice to give", [["l", ["Keep the eyelids clean. [S1]", "Warm compresses several times a day. [S1][S2]"]]]],
+    ["Learning summary", [["l", ["Warm compresses + chloramphenicol ointment; check BP in subconjunctival haemorrhage. [S1][S3]"]]]]
+  ],
+  links: [["#cond/eyelid", "Condition page with all linked guidelines"]],
+  cards: [["Stye vs chalazion?", "Stye is painful and infected; chalazion is a painless blocked oil gland.", "S2"], ["Painkiller for subconjunctival haemorrhage?", "Paracetamol, not aspirin or ibuprofen.", "S3"]]
+});
+TOPICS.push({
+  id: "entfb", cond: "entfb", n: "Ear wax and foreign bodies in ear or nose", spec: ["ent", "paeds"], ages: "Mainly children", emerg: "Button battery in the nose is an emergency",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an ENT specialist.",
+  src: { S1: ["Bhutan STG 2024, 14.2 Impacted cerumen, p.317", "#stg/14.2"], S2: ["Bhutan STG 2024, 14.4 Foreign body in the ear, p.319", "#stg/14.4"], S3: ["Bhutan STG 2024, 14.6 Foreign body in the nose, p.322", "#stg/14.6"] },
+  sec: [
+    ["Definition", [["p", "Impacted wax causing deafness, or objects in the ear canal or nose. [S1][S2][S3]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Nasal foreign body: one-sided chronic, bloody or foul-smelling discharge in a child. [S3]"]]]],
+    ["Causes and pathophysiology", [["l", ["Excess wax; small objects, seeds, beads; button batteries (cause rapid burns). [S1][S2][S3]"]]]],
+    ["History: questions to ask", [["qa", [["Previous ear discharge or perforation?", "Don't syringe. [S1]"], ["What object? Seed? Battery?", "Seeds swell with water; batteries are urgent. [S2][S3]"]]]]],
+    ["Symptoms and examination", [["l", ["Otoscopy; nasal examination with good light. [S2][S3]"]]]],
+    ["Differential diagnosis", [["l", ["Otitis externa, sinusitis."]]]],
+    ["Investigations", [["l", ["None."]]]],
+    ["Management", [["l", ["Wax: soften with a few drops of warm cooking oil or 50% hydrogen peroxide for 5–7 days, then syringe gently with water at body temperature along the canal roof. Do not syringe after previous ear discharge. [S1]", "Ear foreign body: never use water or oil (seeds swell); wrap the child; remove with a smooth hook (e.g. bent paper clip), not forceps; refer if difficult. [S2]", "Nose foreign body: wrap the child; blunt hook passed beyond the object; no forceps; refer if difficult; button battery needs immediate removal. [S3]"]]]],
+    ["Follow-up", [["l", ["Check the canal or nose after removal."]]]],
+    ["Complications", [["l", ["Canal trauma, perforation; battery burns; aspiration."]]]],
+    ["Common mistakes", [["l", ["Using forceps on round objects. [S2]", "Water in the ear for a seed. [S2]"]]]],
+    ["Advice to give", [["l", ["Don't let children play with small objects. [S3]", "Don't clean ears with sticks or pins."]]]],
+    ["Learning summary", [["l", ["Hook, not forceps; no water for seeds; battery = emergency. [S2][S3]"]]]]
+  ],
+  links: [["#topic/otitis", "Otitis"], ["#cond/entfb", "Condition page with all linked guidelines"]],
+  cards: [["Why not use water for a seed in the ear?", "The seed swells and becomes impossible to remove.", "S2"], ["When must ear wax not be syringed?", "If there has been previous ear discharge (possible perforation).", "S1"]]
+});
+TOPICS.push({
+  id: "anorectal", cond: "anorectal", n: "Haemorrhoids and anal fissure", spec: ["surg", "gi"], ages: "Adults", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a surgeon.",
+  src: { S1: ["Bhutan STG 2024, 4.2.1 Haemorrhoid, p.97", "#stg/4.2.1"], S2: ["Bhutan STG 2024, 4.2.2 Anal fissure, p.98", "#stg/4.2.2"] },
+  sec: [
+    ["Definition", [["p", "Haemorrhoids: vascular cushions that bleed or prolapse. [S1] Anal fissure: a tear in the anal canal lining. [S2]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Feature", "Haemorrhoids", "Fissure"], ["Pain", "Painless unless prolapsed or thrombosed", "Painful defecation"], ["Bleeding", "Fresh blood", "Streaks on stool"], ["Other", "Worse in pregnancy and constipation", "Skin tag in chronic cases"]]], ["p", "From the STG. [S1][S2]"]]],
+    ["Causes and pathophysiology", [["l", ["Constipation and straining; pregnancy. [S1][S2]"]]]],
+    ["History: questions to ask", [["qa", [["Painful or painless bleeding?", "Fissure vs piles. [S1][S2]"], ["Weight loss, change in bowel habit, age over 50?", "Exclude colorectal cancer."]]]]],
+    ["Symptoms and examination", [["l", ["Digital rectal examination and proctoscopy for piles. [S1]", "Gentle inspection for fissure."]]]],
+    ["Differential diagnosis", [["l", ["Colorectal cancer, inflammatory bowel disease, dysentery."]]]],
+    ["Investigations", [["l", ["Proctoscopy. [S1]"]]]],
+    ["Management", [["l", ["Haemorrhoids: high-fibre diet, fluids, anti-haemorrhoidal ointment, laxative; refer. [S1]", "Fissure: high-fibre diet, lignocaine ointment, senna, sitz baths (dilute potassium permanganate). [S2]"]]]],
+    ["Follow-up", [["l", ["Refer if bleeding persists or alarm features."]]]],
+    ["Complications", [["l", ["Anaemia, thrombosis, chronic fissure."]]]],
+    ["Common mistakes", [["l", ["Blaming piles without excluding cancer in older adults."]]]],
+    ["Advice to give", [["l", ["Eat fibre and drink plenty of water; don't strain. [S1][S2]", "Warm sitz baths. [S2]"]]]],
+    ["Learning summary", [["l", ["Painless fresh bleed = piles; painful defecation with streaks = fissure. Fibre for both. [S1][S2]"]]]]
+  ],
+  links: [["#cond/anorectal", "Condition page with all linked guidelines"]],
+  cards: [["Painful defecation with streaks of blood suggests?", "Anal fissure.", "S2"]]
+});
+TOPICS.push({
+  id: "softtissue", cond: "softtissue", n: "Sprains, strains and open soft-tissue injuries", spec: ["ortho", "emerg"], ages: "All ages", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by an orthopaedic surgeon.",
+  src: { S1: ["Bhutan STG 2024, 13.1 Sprains and strains, p.285", "#stg/13.1"], S2: ["Bhutan STG 2024, 13.3 Open soft tissue injuries, p.290", "#stg/13.3"] },
+  sec: [
+    ["Definition", [["p", "Sprain: ligaments, muscles or tendons stretched and partly torn by sudden force. [S1] Open soft-tissue injury: wound to skin, muscle, tendon or nerves and vessels. [S2]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Closed (sprain/strain) vs open (laceration, abrasion, incised wound). [S1][S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["Falls, accidents, sports, sharp objects, workplace injuries. [S1][S2]"]]]],
+    ["History: questions to ask", [["qa", [["Twisting injury? Able to bear weight?", "Sprain vs fracture. [S1]"], ["Numbness or weakness beyond a wound?", "Tendon or nerve injury. [S2]"], ["Tetanus immunisation?", "TT. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Swelling, warmth, discolouration, painful movement, deformity. [S1]", "Bleeding, loss of movement or sensation. [S2]"]], ["warn", "Avoid manipulation if a bony injury is possible. [S1]"]]],
+    ["Differential diagnosis", [["l", ["Fracture or dislocation (see Fractures)."]]]],
+    ["Investigations", [["l", ["X-ray to exclude fracture if available. [S1][S2]"]]]],
+    ["Management", [["l", ["Sprain: RICE (Rest, Ice, Compression, Elevation); pain relief; restrict activity; splint or crutches; refer if pain persists or the joint is unstable. [S1]", "Open wound: pain relief, tetanus toxoid 0.5 mL IM, irrigation, bleeding control, antibiotics, splint, refer; do not suture (per STG). [S2]"]]]],
+    ["Follow-up", [["l", ["Review sprains that remain unstable. [S1]"]]]],
+    ["Complications", [["l", ["Missed tendon or nerve injury; infection."]]]],
+    ["Common mistakes", [["l", ["Missing an associated fracture. [S1]"]]]],
+    ["Advice to give", [["l", ["RICE for 48–72 hours; gradual return to activity. [S1]"]]]],
+    ["Learning summary", [["l", ["Sprain: RICE. Open wound: TT, irrigate, antibiotics, splint, refer. [S1][S2]"]]]]
+  ],
+  links: [["#topic/fracture", "Fractures"], ["#topic/tetanus", "Tetanus"], ["#cond/softtissue", "Condition page with all linked guidelines"]],
+  cards: [["What does RICE stand for?", "Rest, Ice, Compression, Elevation.", "S1"]]
+});
+TOPICS.push({
+  id: "lymphad", cond: "lymphad", n: "Lymphadenopathy", spec: ["medicine", "paeds", "onc"], ages: "All ages", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 4.6 Lymphadenopathy, p.103", "#stg/4.6"] },
+  sec: [
+    ["Definition", [["p", "Enlarged lymph nodes, generalised or regional. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Regional vs generalised; tender vs hard, fixed or matted."]]]],
+    ["Causes and pathophysiology", [["l", ["Infection (bacterial, viral, fungal, TB); malignancy (leukaemia, lymphoma, metastasis); connective tissue disease (SLE); granulomatous disease (sarcoidosis). [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Fever, night sweats, weight loss?", "TB or lymphoma."], ["Local infection nearby?", "Reactive nodes."], ["TB contact?", "TB lymphadenitis (see Tuberculosis)."]]]]],
+    ["Symptoms and examination", [["l", ["Size, consistency, tenderness, matting, other node groups, liver and spleen."]]]],
+    ["Differential diagnosis", [["l", ["See causes. [S1]"]]]],
+    ["Investigations", [["l", ["CBC, CRP, ESR, LFT, RF; blood picture; chest X-ray; abdominal ultrasound; Mantoux; viral markers; FNAC or biopsy. [S1]"]]]],
+    ["Management", [["l", ["Antibiotics if infected or inflamed; refer. [S1]"]]]],
+    ["Follow-up", [["l", ["Persistent nodes after antibiotics need FNAC or biopsy. [S1]"]]]],
+    ["Complications", [["l", ["Missed TB or cancer."]]]],
+    ["Common mistakes", [["l", ["Repeated antibiotics without a tissue diagnosis."]]]],
+    ["Advice to give", [["l", ["Come back if the node grows, stays after 2–4 weeks, or with fever or weight loss."]]]],
+    ["Learning summary", [["l", ["Infection, malignancy, autoimmune, granulomatous; FNAC if persistent. [S1]"]]]]
+  ],
+  links: [["#topic/tb", "Tuberculosis"], ["#cond/lymphad", "Condition page with all linked guidelines"]],
+  cards: [["Four groups of causes of lymphadenopathy (STG)?", "Infection, malignancy, connective tissue disorders, granulomatous disorders.", "S1"]]
+});
+TOPICS.push({
+  id: "bronchitis", cond: "bronchitis", n: "Acute bronchitis", spec: ["resp", "medicine"], ages: "All ages", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 3.5 Acute bronchitis, p.65", "#stg/3.5"] },
+  sec: [
+    ["Definition", [["p", "Inflammation of the bronchi and bronchioles, usually viral. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Cough, fever, chest pain, wheeze, sputum, scattered crackles. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Rhinovirus, adenovirus, influenza A and B, parainfluenza. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["How long the cough; breathless?", "Bronchitis vs pneumonia."], ["Smoking?", "Advise stopping. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Scattered crackles; check RR and SpO₂ for pneumonia. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Pneumonia, asthma, TB if cough > 2 weeks."]]]],
+    ["Investigations", [["l", ["CBC, chest X-ray if needed. [S1]"]]]],
+    ["Management", [["l", ["Avoid triggers; antipyretics, antihistamines; fluids; steam inhalation. [S1]", "Antibiotics only for moderate to severe cases. [S1]"]]]],
+    ["Follow-up", [["l", ["Cough > 2 weeks: test for TB (see Tuberculosis)."]]]],
+    ["Complications", [["l", ["Pneumonia."]]]],
+    ["Common mistakes", [["l", ["Antibiotics for mild viral bronchitis. [S1]"]]]],
+    ["Advice to give", [["l", ["Stop smoking; avoid dust and smoke. [S1]", "Drink fluids; steam inhalation. [S1]"]]]],
+    ["Learning summary", [["l", ["Mostly viral; supportive; antibiotics only if moderate–severe. [S1]"]]]]
+  ],
+  links: [["#topic/pneumonia", "Pneumonia"], ["#cond/bronchitis", "Condition page with all linked guidelines"]],
+  cards: [["Commonest cause of acute bronchitis?", "Viruses.", "S1"]]
+});
+TOPICS.push({
+  id: "fungal", cond: "fungal", n: "Fungal infections: tinea and oral thrush", spec: ["derm", "dental", "paeds"], ages: "All ages", emerg: "",
+  reviewed: "Written from the sources below on 4 Nov 2026. Not yet reviewed by a dermatologist.",
+  src: { S1: ["Bhutan STG 2024, 16.1.1 Superficial fungal infections (dermatophytosis), p.360", "#stg/16.1.1"], S2: ["Bhutan STG 2024, 17.4.1 Oral candidiasis, p.418", "#stg/17.4.1"] },
+  sec: [
+    ["Definition", [["p", "Dermatophytosis (ringworm): fungi invading keratin of skin, hair and nails. [S1] Oral thrush: Candida overgrowth in the mouth. [S2]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Tinea: itchy annular plaque with central clearing and scaly edge; tinea capitis in children (patchy hair loss); nails thick and yellow. Steroid creams change the picture. [S1]", "Thrush: white patches that wipe off, leaving red sore areas. [S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["Trichophyton, Epidermophyton, Microsporum. [S1]", "Candida with immunosuppression, steroids, antibiotics, dentures, poor oral hygiene. [S2]"]]]],
+    ["History: questions to ask", [["qa", [["Used steroid or combination creams?", "Steroid-modified tinea. [S1]"], ["HIV, diabetes, inhaled steroids, antibiotics?", "Thrush risk. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Sites: groin, body, face, hands, feet, nails, scalp. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Eczema, psoriasis, leprosy (anaesthetic patches)."]]]],
+    ["Investigations", [["l", ["KOH mount of scrapings or nail clippings. [S1]"]]]],
+    ["Management", [["t", [["Type", "Treatment"], ["Single tinea corporis/cruris lesion", "Miconazole 2% cream BD until clear, plus 1 week [S1]"], ["Extensive or steroid-modified tinea", "Griseofulvin 750–1000 mg/day × 4 weeks (adults) [S1]"], ["Tinea pedis", "Griseofulvin 750–1000 mg/day × 4 weeks [S1]"], ["Nails", "Griseofulvin 750 mg/day × 3 months (fingers), 6 months (toes) [S1]"], ["Tinea capitis (child)", "Griseofulvin 20–25 mg/kg/day × 6–8 weeks [S1]"], ["Oral thrush", "Nystatin 100,000 IU/mL 6-hourly × 7–14 days; severe or immunocompromised: fluconazole 150 mg or itraconazole 100–200 mg daily × 7 days [S2]"]]], ["l", ["Cetirizine for itch. Baseline LFT before griseofulvin; contraindicated in pregnancy. [S1]"]]]],
+    ["Follow-up", [["l", ["Continue until clear and 1 week more; refer non-responders. [S1]"]]]],
+    ["Complications", [["l", ["Spread, secondary infection; recurrent thrush suggests immunosuppression."]]]],
+    ["Common mistakes", [["l", ["Steroid–antifungal combination creams. [S1]", "Stopping when it looks better. [S1]"]]]],
+    ["Advice to give", [["l", ["Apply cream over and beyond the patch. [S1]", "Bathe and change clothes daily; don't share clothes, slippers, combs, towels or razors. [S1]", "Good oral hygiene; clean dentures. [S2]"]]]],
+    ["Learning summary", [["l", ["Tinea: miconazole; griseofulvin if extensive, nails or scalp. [S1]", "Thrush: nystatin. [S2]"]]]]
+  ],
+  links: [["#topic/eczema", "Eczema"], ["#cond/fungal", "Condition page with all linked guidelines"]],
+  cards: [["Griseofulvin dose for tinea capitis in children?", "20–25 mg/kg/day for 6–8 weeks.", "S1"], ["STG treatment of oral thrush?", "Nystatin 100,000 IU/mL 6-hourly for 7–14 days.", "S2"]]
+});
+TOPICS.push({
+  id: "acne", cond: "acne", n: "Acne", spec: ["derm"], ages: "Adolescents and young adults", emerg: "",
+  reviewed: "Written from the source below on 4 Nov 2026. Not yet reviewed by a dermatologist.",
+  src: { S1: ["Bhutan STG 2024, 16.2.7 Acne, p.404", "#stg/16.2.7"] },
+  sec: [
+    ["Definition", [["p", "A disorder of the pilosebaceous unit starting around age 12–14, with psychological impact. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Mild: comedones, papules, pustules. Moderate to severe: nodules, cysts, scars. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Puberty hormones, excess sebum, Cutibacterium acnes, inflammation; creams, diet, medicines, occupation. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Oily creams, steroids?", "Aggravating factors. [S1]"], ["Scarring; effect on mood?", "Treat to prevent scars. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Face, back and chest. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Rosacea, folliculitis, steroid acne."]]]],
+    ["Investigations", [["l", ["None."]]]],
+    ["Management", [["l", ["Mild: clindamycin gel and/or benzoyl peroxide 2.5–5% gel. [S1]", "Moderate–severe: doxycycline 100 mg daily for 4–6 months with topical treatment; refer to a higher centre or dermatologist. [S1]"]], ["note", "The STG notes that topical acne medicines are not stocked in hospitals. [S1]"]]],
+    ["Follow-up", [["l", ["Review moderate–severe acne regularly. [S1]"]]]],
+    ["Complications", [["l", ["Scarring; low self-esteem. [S1]"]]]],
+    ["Common mistakes", [["l", ["Undertreating, leading to scars. [S1]"]]]],
+    ["Advice to give", [["l", ["Wash face and neck twice a day with a mild cleanser or 2% salicylic acid wash. [S1]", "Use gels or lotions, not oily creams; use sunscreen. [S1]", "Keep up treatment through the teens. [S1]"]]]],
+    ["Learning summary", [["l", ["Mild: topical; moderate–severe: doxycycline 4–6 months + refer. [S1]"]]]]
+  ],
+  links: [["#cond/acne", "Condition page with all linked guidelines"]],
+  cards: [["Oral treatment for moderate–severe acne (STG)?", "Doxycycline 100 mg daily for 4–6 months with topical therapy.", "S1"]]
+});
+
 const TOPIC_BY = Object.fromEntries(TOPICS.map(t => [t.id, t]));
 const TOPIC_BY_COND = Object.fromEntries(TOPICS.map(t => [t.cond, t]));
 function topicSrcChips(t, s) {
