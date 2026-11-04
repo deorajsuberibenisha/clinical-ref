@@ -7744,6 +7744,464 @@ TOPICS.push({
   cards: [["Toxic dose of paracetamol (STG)?", "150 mg/kg.", "S1"], ["STG N-acetylcysteine regimen?", "150 mg/kg in 200 mL over 1 h, 50 mg/kg in 500 mL over 4 h, 100 mg/kg in 500 mL over 16 h.", "S1"], ["When is activated charcoal useful?", "Within 1 hour of a toxic dose.", "S1"]]
 });
 
+TOPICS.push({
+  id: "rhd", cond: "rhd", n: "Acute rheumatic fever and rheumatic heart disease", spec: ["cardio", "paeds", "medicine"], ages: "Children and young adults", emerg: "",
+  reviewed: "Written from the source below on 3 Nov 2026. Not yet reviewed by a physician or cardiologist.",
+  src: { S1: ["Bhutan STG 2024, 2.4 Acute rheumatic fever, p.55", "#stg/2.4"] },
+  sec: [
+    ["Definition", [["p", "A delayed complication of group A streptococcal throat or skin infection, diagnosed clinically by the Jones criteria; incubation 2–4 weeks. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Major", "Minor"], ["Polyarthritis, carditis, erythema marginatum, subcutaneous nodules, Sydenham's chorea", "Fever, arthralgia, raised ESR or CRP, first-degree AV block"]]], ["p", "Diagnosis: 2 major, or 1 major + 2 minor, plus evidence of recent streptococcal infection (scarlet fever, raised ASO, positive throat culture). [S1]"]]],
+    ["Causes and pathophysiology", [["l", ["Immune reaction after group A streptococcal infection damages joints, heart (valves), skin and brain. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Sore throat or skin sores 2–4 weeks ago?", "Preceding infection. [S1]"], ["Painful joints moving from one to another?", "Migratory polyarthritis. [S1]"], ["Breathlessness, chest pain, palpitations?", "Carditis. [S1]"], ["Jerky movements, clumsiness?", "Chorea. [S1]"], ["Previous rheumatic fever; on monthly penicillin?", "Recurrence; prophylaxis adherence. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Hot swollen joints, new murmur, signs of heart failure, rash, nodules, chorea. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Septic arthritis, juvenile arthritis, SLE, viral arthritis."]]]],
+    ["Investigations", [["l", ["CBC, ESR or CRP, throat swab, ASO titre, chest X-ray, ECG, echocardiogram. [S1]"]]]],
+    ["Management", [
+      ["l", ["Bed rest; aspirin 60 mg/kg/day in divided doses. [S1]", "Eradicate streptococcus: benzathine penicillin 2.4 million units (24 lakh) IM once, or penicillin V 250 mg 6-hourly for 10 days. [S1]", "Refer. [S1]"]],
+      ["h", "Secondary prophylaxis"],
+      ["l", ["Benzathine penicillin G IM monthly: < 30 kg 6 lakh (600,000) units; ≥ 30 kg 12 lakh (1.2 million) units. Or penicillin V 250 mg 12-hourly. [S1]"]],
+      ["t", [["Situation", "Duration"], ["No carditis", "Until 18 years and at least 5 years after the last attack"], ["Carditis, documented", "Until at least 25 years or 10 years after the last attack, whichever is longer"], ["Chronic valve disease", "At least until 40, possibly lifelong"], ["Artificial valve", "Lifelong"]]],
+      ["p", "From the STG. [S1]"]
+    ]],
+    ["Follow-up", [["l", ["Yearly ECG, echocardiography, ASO, CBC, ESR. [S1]"]]]],
+    ["Complications", [["l", ["Rheumatic heart disease (valve damage), heart failure, endocarditis, atrial fibrillation, stroke."]]]],
+    ["Common mistakes", [["l", ["Missing monthly penicillin doses. [S1]", "Not treating sore throats in children with RHD."]]]],
+    ["Advice to give", [["l", ["Never miss the monthly penicillin injection; it prevents further heart damage. [S1]", "Treat sore throats early.", "Good dental care; tell dentists about heart valve disease.", "Come for breathlessness, swelling or palpitations."]]]],
+    ["Learning summary", [["l", ["Jones: 2 major or 1 major + 2 minor + strep evidence. [S1]", "Benzathine penicillin monthly; duration by carditis. [S1]"]]]]
+  ],
+  links: [["#topic/pharyngitis", "Pharyngitis and tonsillitis"], ["#cond/rhd", "Condition page with all linked guidelines"]],
+  cards: [["Major Jones criteria?", "Polyarthritis, carditis, erythema marginatum, subcutaneous nodules, Sydenham's chorea.", "S1"], ["Benzathine penicillin prophylaxis dose?", "< 30 kg: 600,000 units; ≥ 30 kg: 1.2 million units IM monthly.", "S1"], ["Prophylaxis duration after RF with carditis?", "Until at least 25 years or 10 years after the last attack, whichever is longer.", "S1"]]
+});
+TOPICS.push({
+  id: "bronchiect", cond: "bronchiect", n: "Bronchiectasis", spec: ["resp", "medicine"], ages: "Adults and children", emerg: "",
+  reviewed: "Written from the source below on 3 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 3.7 Bronchiectasis, p.68", "#stg/3.7"] },
+  sec: [
+    ["Definition", [["p", "Abnormal, permanent widening and distortion of one or more airways, usually after previous infection. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Chronic cough with copious purulent sputum, coarse crackles; chest X-ray; refer new cases for diagnosis. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Previous TB, bronchopneumonia, chronic bronchitis, measles; commoner in malnourished people. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Daily cough with lots of sputum for years?", "Bronchiectasis. [S1]"], ["Previous TB, measles, severe pneumonia?", "Cause. [S1]"], ["Blood in sputum?", "Haemoptysis. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Pallor, cyanosis, clubbing, wasting. [S1]", "Coarse crackles, rhonchi, wheeze, squeaks over the affected area; signs of cor pulmonale. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Active TB (sputum AFB), lung abscess, COPD."]]]],
+    ["Investigations", [["l", ["CBC, ESR; sputum for AFB, Gram stain, culture; chest X-ray. [S1]"]]]],
+    ["Management", [["l", ["Postural drainage twice a day for 10 minutes, then slow deep breathing for 10 minutes. [S1]", "Salbutamol MDI 2 puffs 8-hourly and as needed; deriphyllin 300 mg SR daily. [S1]", "Infection: amoxicillin 500 mg TDS or co-trimoxazole for 7–10 days. [S1]", "Stop smoking, avoid smoke, good nutrition, immunisation. [S1]", "Refer all new cases for diagnosis. [S1]"]]]],
+    ["Follow-up", [["l", ["Review exacerbations; sputum for AFB if symptoms change."]]]],
+    ["Complications", [["l", ["Recurrent infection, haemoptysis, cor pulmonale. [S1]"]]]],
+    ["Common mistakes", [["l", ["Missing active TB. [S1]", "Not teaching postural drainage. [S1]"]]]],
+    ["Advice to give", [["l", ["Do postural drainage twice daily. [S1]", "Stop smoking; avoid smoke. [S1]", "Eat well; keep vaccinations up to date. [S1]", "Come early for fever, more sputum or blood in sputum."]]]],
+    ["Learning summary", [["l", ["Postural drainage + bronchodilator + antibiotics for flares; refer new cases. [S1]"]]]]
+  ],
+  links: [["#topic/tb", "Tuberculosis"], ["#cond/bronchiect", "Condition page with all linked guidelines"]],
+  cards: [["Common cause of bronchiectasis in Bhutan's STG?", "Previous TB (also bronchopneumonia, measles).", "S1"], ["Postural drainage advice?", "Twice a day for 10 minutes, then slow deep breathing for 10 minutes.", "S1"]]
+});
+TOPICS.push({
+  id: "lungabsc", cond: "lungabsc", n: "Lung abscess", spec: ["resp", "medicine"], ages: "Adults", emerg: "",
+  reviewed: "Written from the source below on 3 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 3.2 Lung abscess, p.61", "#stg/3.2"] },
+  sec: [
+    ["Definition", [["p", "A localised collection of pus in the lung. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Fever, foul copious sputum and a cavity with fluid level on chest X-ray."]]]],
+    ["Causes and pathophysiology", [["l", ["Pneumonia, aspiration, staphylococcal septicaemia, bronchiectasis. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["High fever with rigors, foul sputum?", "Abscess. [S1]"], ["Alcohol, seizures, poor teeth, reduced consciousness?", "Aspiration risk."]]]]],
+    ["Symptoms and examination", [["l", ["Tachypnoea, tachycardia, clubbing; dullness, bronchial breathing. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["TB cavity, cancer, empyema."]]]],
+    ["Investigations", [["l", ["Chest X-ray PA, CBC, sputum Gram stain and culture. [S1]", "Sputum AFB to exclude TB."]]]],
+    ["Management", [["l", ["Amoxicillin 500 mg TDS or co-trimoxazole 960 mg BD orally for 7 days. [S1]", "Respiratory distress: ampicillin 1 g IV QID + gentamicin 80 mg OD. [S1]", "Oxygen; paracetamol; salbutamol nebulisation if wheezing. [S1]", "Refer if no improvement (postural drainage or surgery). [S1]"]]]],
+    ["Follow-up", [["l", ["Follow-up X-ray to confirm the cavity heals. [S1]"]]]],
+    ["Complications", [["l", ["Empyema, haemoptysis, persistent cavity."]]]],
+    ["Common mistakes", [["l", ["Missing TB.", "Stopping antibiotics too early."]]]],
+    ["Advice to give", [["l", ["Look after your teeth and mouth. [S1]", "Take all antibiotics; come for the follow-up X-ray. [S1]"]]]],
+    ["Learning summary", [["l", ["Amoxicillin or co-trimoxazole; IV ampicillin + gentamicin if distressed; refer non-responders. [S1]"]]]]
+  ],
+  links: [["#topic/pneumonia", "Pneumonia"], ["#cond/lungabsc", "Condition page with all linked guidelines"]],
+  cards: [["STG IV antibiotics for lung abscess with respiratory distress?", "Ampicillin 1 g IV QID + gentamicin 80 mg OD.", "S1"]]
+});
+TOPICS.push({
+  id: "covid", cond: "covid", n: "COVID-19", spec: ["id", "resp", "ph"], ages: "All ages", emerg: "Hypoxia means severe disease",
+  reviewed: "Written from the sources below on 3 Nov 2026. The STG says 'antiviral drugs' without naming them; WHO recommendations are added. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 8.5.1 COVID-19, p.167", "#stg/8.5.1"], S2: ["WHO. Therapeutics and COVID-19: living guideline (BMJ Rapid Recommendations, 'A living WHO guideline on drugs for covid-19')", "https://www.who.int/teams/health-care-readiness/covid-19/therapeutics"] },
+  sec: [
+    ["Definition", [["p", "Infection with SARS-CoV-2, spread by droplets; mild to severe illness and death. Incubation 3–14 days. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Severity (WHO)", "Features"], ["Non-severe", "No signs of severe disease"], ["Severe", "SpO₂ < 90% on air, severe breathing difficulty or pneumonia signs"], ["Critical", "ARDS, sepsis, needs ventilation or vasopressors"]]], ["p", "Severity bands used by the WHO guideline. [S2]"]]],
+    ["Causes and pathophysiology", [["l", ["SARS-CoV-2. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Fever, cough, loss of taste or smell, sore throat?", "COVID-19. [S1]"], ["Breathless?", "Severity. [S1]"], ["Age, diabetes, heart, lung or kidney disease, immunosuppression, unvaccinated?", "Risk of severe disease; antiviral eligibility. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Fever, cough, tiredness, loss of taste or smell, sore throat, headache, diarrhoea, chest pain. [S1]", "Dyspnoea, hypoxia: check SpO₂. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Influenza, bacterial pneumonia, dengue."]]]],
+    ["Investigations", [["l", ["Rapid antigen test, PCR; CBC; chest X-ray. [S1]"]]]],
+    ["Management", [["l", ["Isolation and supportive care. [S1]", "Non-severe at highest risk of hospitalisation: nirmatrelvir/ritonavir (strong recommendation); not for low-risk patients. [S2]", "Non-severe: no systemic corticosteroids. [S2]", "Severe or critical: systemic corticosteroids (strong); plus IL-6 blocker (tocilizumab or sarilumab) or baricitinib where available; oxygen. [S2]"]], ["note", "Check nirmatrelvir/ritonavir interactions and availability in Bhutan; refer severe cases."]]],
+    ["Follow-up", [["l", ["Return if breathlessness develops."]]]],
+    ["Complications", [["l", ["Pneumonia, ARDS, thrombosis, death. [S1]"]]]],
+    ["Common mistakes", [["l", ["Steroids for non-severe illness. [S2]", "Antibiotics without bacterial infection."]]]],
+    ["Advice to give", [["l", ["Get vaccinated. [S1]", "Wear a mask, cover coughs, wash hands, isolate as advised. [S1]", "Drink plenty of water. [S1]", "Come back if breathless."]]]],
+    ["Learning summary", [["l", ["Supportive; isolate. [S1]", "High-risk non-severe: nirmatrelvir/ritonavir. Severe: corticosteroids. [S2]"]]]]
+  ],
+  links: [["#topic/influenza", "Influenza"], ["#cond/covid", "Condition page with all linked guidelines"]],
+  cards: [["WHO: who should get systemic corticosteroids for COVID-19?", "Severe and critical patients only; not non-severe.", "S2"], ["WHO antiviral for non-severe COVID-19 at highest risk?", "Nirmatrelvir/ritonavir.", "S2"]]
+});
+TOPICS.push({
+  id: "glaucoma", cond: "glaucoma", n: "Glaucoma and iritis (painful red eye)", spec: ["eye", "emerg"], ages: "Adults", emerg: "Acute angle closure threatens sight",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by an ophthalmologist.",
+  src: { S1: ["Bhutan STG 2024, 15.7 Glaucoma, p.339", "#stg/15.7"], S2: ["Bhutan STG 2024, 15.6 Iritis and glaucoma, p.338", "#stg/15.6"], S3: ["Community Eye Health Journal. Emergency management: angle-closure glaucoma", "https://www.cehjournal.org/article/emergency-management-angle-closure-glaucoma/"] },
+  sec: [
+    ["Definition", [["p", "Glaucoma: eye diseases that damage the optic nerve, usually from raised eye pressure when fluid cannot drain. [S1] Iritis (anterior uveitis): inflammation of the iris. [S2]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Condition", "Features"], ["Acute angle-closure glaucoma", "Sudden blurred vision, severe eye pain and redness, headache, nausea and vomiting, haloes around lights; stony-hard globe [S1]"], ["Iritis", "Pain, photophobia, redness around the cornea, reduced vision [S2]"]]]]],
+    ["Causes and pathophysiology", [["l", ["Drainage angle blocked → pressure rises → optic nerve damage. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Sudden painful red eye with blurred vision and haloes?", "Angle closure. [S1]"], ["Headache, vomiting?", "Often mistaken for migraine or gastritis. [S1]"], ["Photophobia?", "Iritis. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Visual acuity; red eye; cornea; pupil (mid-dilated, fixed in angle closure); digital pressure on the globe feels stony hard. [S1]"]], ["warn", "Every painful red eye or loss of vision needs immediate referral. [S2]"]]],
+    ["Differential diagnosis", [["l", ["Conjunctivitis (no pain or vision loss), corneal ulcer, iritis, migraine."]]]],
+    ["Investigations", [["l", ["Clinical; eye pressure measurement at the eye unit. [S1]"]]]],
+    ["Management", [["l", ["Analgesics and urgent referral. [S1][S2]", "While arranging transfer for acute angle closure: acetazolamide 500 mg IV or orally (caution in kidney disease); topical timolol 0.5%; pilocarpine 2% once pressure begins to fall; lie the patient flat. Definitive treatment is laser iridotomy. [S3]"]], ["note", "The STG gives only analgesia and referral; the pre-referral drugs are from the Community Eye Health Journal emergency guide. Avoid timolol in asthma or bradycardia. [S3]"]]],
+    ["Follow-up", [["l", ["Eye unit follow-up; the other eye usually needs preventive laser. [S3]"]]]],
+    ["Complications", [["l", ["Permanent loss of vision. [S1]"]]]],
+    ["Common mistakes", [["l", ["Treating as conjunctivitis or migraine.", "Dilating the pupil."]]]],
+    ["Advice to give", [["l", ["Seek care the same day for a painful red eye or sudden blurred vision. [S2]", "Attend eye checks, especially with a family history of glaucoma."]]]],
+    ["Learning summary", [["l", ["Painful red eye + vision loss + haloes + hard eye = angle closure: acetazolamide, timolol, refer. [S1][S3]"]]]]
+  ],
+  links: [["#topic/conjunct", "Conjunctivitis"], ["#cond/glaucoma", "Condition page with all linked guidelines"]],
+  cards: [["Symptoms of acute angle-closure glaucoma?", "Sudden blurred vision, severe eye pain and redness, headache, nausea and vomiting, haloes around lights.", "S1"], ["Pre-referral drug for acute angle closure?", "Acetazolamide 500 mg IV or orally (plus topical timolol).", "S3"]]
+});
+TOPICS.push({
+  id: "cornealu", cond: "cornealu", n: "Corneal ulcer", spec: ["eye"], ages: "All ages", emerg: "Sight-threatening: refer",
+  reviewed: "Written from the source below on 3 Nov 2026. Not yet reviewed by an ophthalmologist.",
+  src: { S1: ["Bhutan STG 2024, 15.4 Corneal ulcer, p.335", "#stg/15.4"] },
+  sec: [
+    ["Definition", [["p", "A breach in the corneal epithelium: an open sore on the cornea. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Red painful eye with circumcorneal redness and a white spot on the cornea. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Viral, bacterial or fungal infection; injury (especially field work); foreign bodies; eyelids that don't close (Bell's palsy); dry eye; contact lenses; thyroid eye disease. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Injury with vegetable matter or a foreign body?", "Fungal or bacterial ulcer. [S1]"], ["Contact lenses?", "Risk. [S1]"], ["Can you close the eye?", "Exposure. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Pain, redness around the cornea, white patch, reduced vision, photophobia. [S1]", "Look for a foreign body."]]]],
+    ["Differential diagnosis", [["l", ["Conjunctivitis, iritis, glaucoma."]]]],
+    ["Investigations", [["l", ["Clinical; fluorescein staining at the eye unit."]]]],
+    ["Management", [["l", ["Remove a visible foreign body (saline flush or cotton swab). [S1]", "Chloramphenicol 0.5% or ciprofloxacin 0.3% drops 4–6 times a day or 1–2-hourly, chloramphenicol ointment at night, and refer. [S1]"]]]],
+    ["Follow-up", [["l", ["Eye unit review."]]]],
+    ["Complications", [["l", ["Perforation, scarring, permanent blindness. [S1]"]]]],
+    ["Common mistakes", [["l", ["Steroid drops on an ulcer.", "Delay in referral. [S1]"]]]],
+    ["Advice to give", [["l", ["Wear protective goggles at work and in the fields. [S1]", "Don't share cloths for wiping eyes; wash hands. [S1]", "Use a smokeless chula. [S1]"]]]],
+    ["Learning summary", [["l", ["White spot + pain + redness: antibiotic drops and refer. [S1]"]]]]
+  ],
+  links: [["#topic/glaucoma", "Glaucoma and iritis"], ["#cond/cornealu", "Condition page with all linked guidelines"]],
+  cards: [["STG management of corneal ulcer?", "Remove any foreign body; chloramphenicol or ciprofloxacin drops frequently, ointment at night; refer.", "S1"]]
+});
+TOPICS.push({
+  id: "worms", cond: "worms", n: "Worm infestations and giardiasis", spec: ["id", "paeds", "ph"], ages: "Children and adults", emerg: "",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 8.4.3 Roundworm (ascariasis), p.165", "#stg/8.4.3"], S2: ["Bhutan STG 2024, 8.4.2 Hookworm, p.164", "#stg/8.4.2"], S3: ["Bhutan STG 2024, 8.4.4 Tapeworms (taeniasis), p.166", "#stg/8.4.4"], S4: ["Bhutan STG 2024, 8.4.1 Hydatid disease, p.162", "#stg/8.4.1"], S5: ["Bhutan STG 2024, 8.2.2 Giardiasis, p.158", "#stg/8.2.2"] },
+  sec: [
+    ["Definition", [["p", "Intestinal and tissue infections with roundworm, hookworm, tapeworm and dog tapeworm (hydatid), and the protozoan Giardia. [S1][S2][S3][S4][S5]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Infection", "Key features", "Treatment"], ["Roundworm", "Abdominal pain, poor appetite, worms in stool, cough with wheeze (larvae), obstruction [S1]", "Albendazole 400 mg single dose [S1]"], ["Hookworm", "Ground itch, abdominal pain, iron-deficiency anaemia [S2]", "Albendazole 400 mg single dose + iron/folic acid if anaemic [S2]"], ["Tapeworm", "Mild GI symptoms, segments in stool; cysticercosis and neurocysticercosis (seizures) [S3]", "Niclosamide (intestinal); albendazole for neurocysticercosis; refer [S3]"], ["Hydatid", "Liver or lung cysts: pain, jaundice, cough [S4]", "Albendazole 400 mg 12-hourly for 3 months, surgery; refer [S4]"], ["Giardiasis", "Diarrhoea, bloating, belching, fatty stools, weight loss [S5]", "Metronidazole 400 mg 8-hourly for 5 days [S5]"]]]]],
+    ["Causes and pathophysiology", [["l", ["Faecally contaminated soil, food and water; bare feet (hookworm); undercooked pork or beef (tapeworm); dog faeces (hydatid). [S1][S2][S3][S4]"]]]],
+    ["History: questions to ask", [["qa", [["Worms seen in stool?", "Roundworm or tapeworm segments. [S1][S3]"], ["Walks barefoot, outdoor defecation?", "Hookworm. [S2]"], ["Eats undercooked pork; seizures?", "Neurocysticercosis. [S3]"], ["Dogs at home; RUQ mass?", "Hydatid. [S4]"]]]]],
+    ["Symptoms and examination", [["l", ["Pallor, growth, abdominal mass, jaundice. [S1][S2][S4]"]]]],
+    ["Differential diagnosis", [["l", ["Other causes of anaemia, diarrhoea, seizures."]]]],
+    ["Investigations", [["l", ["Stool for ova, cysts and parasites; CBC (eosinophilia). [S1][S2]", "Ultrasound, CT and serology for hydatid. [S4]"]]]],
+    ["Management", [["l", ["See the table above for each infection. [S1][S2][S3][S4][S5]", "Treat dehydration and malnutrition in giardiasis. [S5]"]]]],
+    ["Follow-up", [["l", ["Deworming programmes; repeat stool if symptoms persist. [S2]"]]]],
+    ["Complications", [["l", ["Intestinal obstruction (roundworm), anaemia (hookworm), seizures (neurocysticercosis). [S1][S2][S3]"]]]],
+    ["Common mistakes", [["l", ["Not giving iron with hookworm treatment in anaemia. [S2]", "Missing neurocysticercosis in new-onset seizures. [S3]"]]]],
+    ["Advice to give", [["l", ["Use toilets; don't defecate outdoors. [S2]", "Wear shoes. [S2]", "Wash hands with soap before food and after the toilet; safe water. [S1][S5]", "Cook meat thoroughly. [S3]", "Wash hands after touching dogs; wash vegetables. [S4]"]]]],
+    ["Learning summary", [["l", ["Albendazole 400 mg single dose for round- and hookworm. [S1][S2]", "Giardia: metronidazole 400 mg TDS × 5 days. [S5]"]]]]
+  ],
+  links: [["#topic/anaemia", "Anaemia"], ["#cond/worms", "Condition page with all linked guidelines"]],
+  cards: [["Treatment of roundworm and hookworm (STG)?", "Albendazole 400 mg single dose (plus iron/folate if anaemic).", "S2"], ["Treatment of hydatid disease (STG)?", "Albendazole 400 mg 12-hourly for 3 months, surgery, refer.", "S4"], ["Treatment of giardiasis (STG)?", "Metronidazole 400 mg 8-hourly for 5 days.", "S5"]]
+});
+TOPICS.push({
+  id: "gdm", cond: "gdm", n: "Gestational diabetes", spec: ["obg", "endo"], ages: "Pregnant women", emerg: "",
+  reviewed: "Written from the source below on 3 Nov 2026. Not yet reviewed by an obstetrician.",
+  src: { S1: ["Bhutan STG 2024, 11.8 Gestational diabetes, p.246", "#stg/11.8"] },
+  sec: [
+    ["Definition", [["p", "Carbohydrate intolerance of variable severity first recognised in pregnancy. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["75 g OGTT. GDM if fasting 100–125 mg/dL (5.6–6.9 mmol/L) and/or 2-hour 140–199 mg/dL (7.8–11.0 mmol/L). [S1]", "Screen at booking and at 24–28 weeks if any risk factor; at 24–28 weeks if none. [S1]"]], ["note", "Values at or above the non-pregnant diabetes thresholds suggest overt diabetes in pregnancy: see Type 2 diabetes."]]],
+    ["Causes and pathophysiology", [["l", ["Risks: previous GDM or macrosomia, overweight, PCOS, family history, age > 35, glucose intolerance, previous adverse outcome. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Previous big baby, GDM, stillbirth?", "Risk. [S1]"], ["Family history of diabetes?", "Risk. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Often none; BMI, fundal height, fetal growth. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Pre-existing (type 2) diabetes."]]]],
+    ["Investigations", [["l", ["75 g OGTT; repeat fasting and 2-hour glucose in 2 weeks after starting diet. [S1]"]]]],
+    ["Management", [["l", ["Medical nutrition therapy and exercise after meals. [S1]", "Targets: fasting < 105 mg/dL; 1-hour post-meal < 155; 2-hour < 126. [S1]", "Refer if above target, for fetal growth monitoring, and for planned delivery: by 37 weeks if control is poor, at 38–39 weeks if good. [S1]"]]]],
+    ["Follow-up", [["l", ["OGTT at 6 weeks and 6 months postpartum; then fasting and post-meal glucose yearly. [S1]"]]]],
+    ["Complications", [["l", ["Big baby, birth injury, neonatal hypoglycaemia, later type 2 diabetes in the mother."]]]],
+    ["Common mistakes", [["l", ["Not screening at 24–28 weeks. [S1]", "No postpartum OGTT. [S1]"]]]],
+    ["Advice to give", [["l", ["Follow the diet plan; walk after meals. [S1]", "Deliver in hospital as planned. [S1]", "Have glucose tests after delivery and every year. [S1]"]]]],
+    ["Learning summary", [["l", ["75 g OGTT: fasting ≥ 100 or 2 h ≥ 140. [S1]", "Diet + exercise; targets < 105 / < 155 (1 h) / < 126 (2 h). [S1]"]]]]
+  ],
+  links: [["#topic/dm", "Type 2 diabetes"], ["#cond/gdm", "Condition page with all linked guidelines"]],
+  cards: [["GDM diagnostic values (STG, 75 g OGTT)?", "Fasting 100–125 mg/dL and/or 2-hour 140–199 mg/dL.", "S1"], ["Glucose targets in GDM?", "Fasting < 105, 1-hour < 155, 2-hour < 126 mg/dL.", "S1"], ["Postpartum follow-up after GDM?", "OGTT at 6 weeks and 6 months, then yearly glucose.", "S1"]]
+});
+TOPICS.push({
+  id: "bph", cond: "bph", n: "Benign prostatic hyperplasia and urinary retention", spec: ["uro", "surg"], ages: "Men over 40", emerg: "Acute retention: catheterise",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a urologist.",
+  src: { S1: ["Bhutan STG 2024, 6.8 Benign prostatic hyperplasia, p.126", "#stg/6.8"], S2: ["Bhutan STG 2024, 6.5 Urethral stricture, p.123", "#stg/6.5"] },
+  sec: [
+    ["Definition", [["p", "Enlargement of the prostate obstructing the urethra at the bladder neck; commoner after 40 and slowly progressive. [S1] Urethral stricture: fibrous narrowing of the urethra. [S2]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Lower urinary tract symptoms plus enlarged smooth prostate on rectal examination; ultrasound with post-void residual volume. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Age-related prostate growth. [S1]", "Stricture: congenital, trauma, infection (STI), catheterisation or surgery. [S2]"]]]],
+    ["History: questions to ask", [["qa", [["Frequency, urgency, nocturia, weak or interrupted stream, straining, incomplete emptying?", "Prostate symptoms. [S1]"], ["Unable to pass urine?", "Acute retention. [S1]"], ["Past catheter, injury or STI; spraying stream?", "Stricture. [S2]"], ["Blood in urine?", "Haematuria. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Rectal examination: size (normal walnut-sized), tenderness, asymmetry, nodules. [S1]", "Suprapubic dullness in retention. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Prostate cancer (hard, nodular), stricture, UTI, bladder stone."]]]],
+    ["Investigations", [["l", ["Ultrasound KUB with prostate volume and post-void residual; urine routine. [S1]", "Stricture: urethrogram, STI screen. [S2]"]]]],
+    ["Management", [["l", ["Avoid fluids before bedtime or going out. [S1]", "Acute retention: catheterise and refer. [S1]", "Post-void residual > 250 mL: refer to surgeon. [S1]", "Continue tamsulosin or finasteride (at night) if prescribed by a surgeon; watch for dizziness. [S1]", "Stricture: refer to surgeon. [S2]"]]]],
+    ["Follow-up", [["l", ["Surgical review; monitor kidney function if residual is high."]]]],
+    ["Complications", [["l", ["Retention, bladder stones, recurrent UTI, hydronephrosis. [S2]"]]]],
+    ["Common mistakes", [["l", ["Forcing a catheter past a stricture.", "Missing a hard nodular prostate."]]]],
+    ["Advice to give", [["l", ["Reduce fluids in the evening. [S1]", "Come at once if you can't pass urine. [S1]", "Tamsulosin can cause dizziness: stand up slowly. [S1]"]]]],
+    ["Learning summary", [["l", ["Retention → catheter + refer; residual > 250 mL → refer. [S1]"]]]]
+  ],
+  links: [["#topic/uti", "Urinary tract infection"], ["#cond/bph", "Condition page with all linked guidelines"]],
+  cards: [["Post-void residual volume needing surgical referral (STG)?", "> 250 mL.", "S1"], ["First action in acute urinary retention?", "Catheterise and refer.", "S1"]]
+});
+TOPICS.push({
+  id: "measles", cond: "measles", n: "Measles, mumps and rubella", spec: ["id", "paeds", "ph"], ages: "Mainly children", emerg: "",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a paediatrician.",
+  src: { S1: ["Bhutan STG 2024, 8.5.6 Measles, p.175", "#stg/8.5.6"], S2: ["Bhutan STG 2024, 8.5.7 Mumps, p.176", "#stg/8.5.7"], S3: ["Bhutan STG 2024, 8.5.5 Rubella, p.173", "#stg/8.5.5"], S4: ["WHO. Measles fact sheet: two doses of vitamin A, at diagnosis and the next day, for children under 5; WHO Pocket Book of Hospital Care for Children 2013 for doses by age", "https://www.who.int/news-room/fact-sheets/detail/measles"] },
+  sec: [
+    ["Definition", [["p", "Measles: highly infectious paramyxovirus; incubation 6–21 days. [S1] Mumps: paramyxovirus causing parotitis; incubation 2–3 weeks. [S2] Rubella: mild in children but devastating to the fetus; incubation 2–3 weeks. [S3]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Disease", "Key features"], ["Measles", "Fever, runny nose, red eyes, cough; rash on days 2–4 from face downwards; Koplik's spots [S1]"], ["Mumps", "Painful swelling at the angle of the jaw (parotid), trismus; orchitis, meningitis, deafness [S2]"], ["Rubella", "Low fever, posterior auricular and cervical nodes, fine discrete pink rash from the face; Forchheimer spots [S3]"]]]]],
+    ["Causes and pathophysiology", [["l", ["Droplet spread; vaccine-preventable (MMR). [S1][S2][S3]"]]]],
+    ["History: questions to ask", [["qa", [["Vaccination status?", "Susceptibility. [S1]"], ["Contact with pregnant women?", "Rubella risk to fetus. [S3]"], ["Breathing difficulty, diarrhoea, eye problems?", "Measles complications."]]]]],
+    ["Symptoms and examination", [["l", ["Rash pattern, Koplik's spots, conjunctivitis, nodes, parotid swelling, testes. [S1][S2][S3]", "Hydration, chest, eyes, nutrition."]]]],
+    ["Differential diagnosis", [["l", ["Other viral rashes, dengue, drug rash, scarlet fever."]]]],
+    ["Investigations", [["l", ["Rubella serology or throat RT-PCR; mumps oral swab RT-PCR or antibodies. [S3][S2]", "Measles: notify; testing per the surveillance programme."]]]],
+    ["Management", [["l", ["Measles: symptomatic care; vitamin A once to all children with measles. [S1]", "Mumps: oral hygiene, fluids, soft food; antibiotic only for secondary infection. [S2]", "Rubella: symptomatic; analgesic for arthritis. [S3]"]], ["note", "WHO gives vitamin A twice, at diagnosis and the next day, to children under 5 with measles: 50,000 IU under 6 months, 100,000 IU at 6–11 months, 200,000 IU at 12 months and over; a third dose 4–6 weeks later if there are eye signs of deficiency. The STG says 'once'. [S4][S1]"]]],
+    ["Follow-up", [["l", ["Watch measles cases for pneumonia, diarrhoea, eye damage and malnutrition."]]]],
+    ["Complications", [["l", ["Measles: pneumonia, diarrhoea, blindness, encephalitis.", "Mumps: orchitis, meningitis, encephalitis, deafness. [S2]", "Rubella in pregnancy: congenital rubella syndrome. [S3]"]]]],
+    ["Common mistakes", [["l", ["Not giving vitamin A in measles. [S1]", "Not isolating cases. [S1][S3]"]]]],
+    ["Advice to give", [["l", ["MMR vaccine prevents all three. [S2]", "Isolation: measles 4 days from the rash; rubella 7 days after rash onset; avoid contact with mumps for at least 5 days. [S1][S3][S2]", "Keep pregnant women away from rubella cases. [S3]"]]]],
+    ["Learning summary", [["l", ["Measles: vitamin A + supportive. [S1][S4]", "MMR vaccination; isolate. [S2]"]]]]
+  ],
+  links: [["#cond/measles", "Condition page with all linked guidelines"]],
+  cards: [["Pathognomonic sign of measles?", "Koplik's spots.", "S1"], ["WHO vitamin A dose for a 2-year-old with measles?", "200,000 IU on 2 consecutive days.", "S4"], ["Isolation period for rubella (STG)?", "7 days after rash onset.", "S3"]]
+});
+
+TOPICS.push({
+  id: "chickenpox", cond: "chickenpox", n: "Chickenpox (varicella) and shingles", spec: ["derm", "id", "paeds"], ages: "All ages", emerg: "",
+  reviewed: "Written from the source below on 3 Nov 2026. Not yet reviewed by a dermatologist or physician.",
+  src: { S1: ["Bhutan STG 2024, 16.1.3 Viral infection (varicella, herpes zoster), p.378", "#stg/16.1.3"] },
+  sec: [
+    ["Definition", [["p", "Chickenpox: highly infectious primary varicella-zoster infection in a non-immune person; incubation 10–23 days. Shingles: reactivation of the latent virus along a dermatome. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Chickenpox: fever and malaise, then itchy papules → vesicles on a red base ('dew drop on a rose petal') → pustules → crusts; starts on the trunk; lesions at different stages. [S1]", "Shingles: burning pain along one dermatome, then grouped vesicles that don't cross the midline. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Varicella-zoster virus. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Contact with chickenpox?", "Exposure. [S1]"], ["Pregnant?", "Aciclovir and refer. [S1]"], ["Immunocompromised (HIV, steroids, cancer)?", "IV aciclovir, refer. [S1]"], ["Rash near the eye (shingles)?", "Ophthalmic zoster: refer."]]]]],
+    ["Symptoms and examination", [["l", ["Lesions in different stages; oral lesions. [S1]", "Signs of secondary bacterial infection, pneumonia."]]]],
+    ["Differential diagnosis", [["l", ["Hand, foot and mouth disease; impetigo; insect bites; drug eruption."]]]],
+    ["Investigations", [["l", ["None: clinical diagnosis. [S1]"]]]],
+    ["Management", [["t", [["Group", "Treatment"], ["Children < 12 years", "Supportive: antihistamine for itch, calamine lotion 2–3 times a day, antipyretic [S1]"], ["Adults", "Supportive plus aciclovir 800 mg five times a day for 7 days [S1]"], ["Pregnancy", "Oral aciclovir and refer to gynaecologist [S1]"], ["Immunocompromised", "IV aciclovir; refer [S1]"]]], ["note", "Avoid aspirin in children with chickenpox (Reye's syndrome)."]]],
+    ["Follow-up", [["l", ["Review for skin infection or breathing difficulty."]]]],
+    ["Complications", [["l", ["Secondary bacterial infection, pneumonia (adults), encephalitis; post-herpetic neuralgia after shingles."]]]],
+    ["Common mistakes", [["l", ["Not giving aciclovir to adults or pregnant women. [S1]"]]]],
+    ["Advice to give", [["l", ["Bathe daily; keep nails short; use calamine. [S1]", "Children stay home for 7 days (infectious 7–10 days). [S1]", "Keep away from pregnant women and newborns."]]]],
+    ["Learning summary", [["l", ["Child: supportive. Adult: aciclovir 800 mg 5×/day × 7 days. [S1]"]]]]
+  ],
+  links: [["#cond/chickenpox", "Condition page with all linked guidelines"]],
+  cards: [["STG treatment of chickenpox in adults?", "Supportive care plus aciclovir 800 mg five times daily for 7 days.", "S1"], ["Classic description of chickenpox vesicles?", "'Dew drop on a rose petal': vesicles on a red base.", "S1"]]
+});
+TOPICS.push({
+  id: "cellulitis", cond: "cellulitis", n: "Pyomyositis and deep soft-tissue infection", spec: ["surg", "id", "ortho"], ages: "All ages", emerg: "Refer urgently",
+  reviewed: "Written from the sources below on 3 Nov 2026. The STG has no separate cellulitis section. Not yet reviewed by a surgeon.",
+  src: { S1: ["Bhutan STG 2024, 13.7 Pyomyositis, p.300", "#stg/13.7"], S2: ["Quick Guide to Sepsis Management, Bhutan 2025: empiric antibiotics, skin and soft tissue", "#gl/sepsis"] },
+  sec: [
+    ["Definition", [["p", "Pyomyositis: bacterial infection of muscle, usually forming an abscess, most often caused by Staphylococcus aureus. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Fever with a painful, deeply tender swollen limb; skin may be intact but tense and warm. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Staphylococcus aureus. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Fever and a painful swollen limb?", "Pyomyositis. [S1]"], ["Injury?", "Fracture (X-ray). [S1]"], ["Diabetes, HIV?", "Risk."]]]]],
+    ["Symptoms and examination", [["l", ["Deep tenderness, swelling, warmth, limited movement. [S1]"]], ["warn", "Rapidly spreading pain out of proportion, skin changes or shock: think necrotising fasciitis and refer immediately."]]],
+    ["Differential diagnosis", [["l", ["Cellulitis, DVT, osteomyelitis, fracture. [S1]"]]]],
+    ["Investigations", [["l", ["CBC, X-ray to exclude fracture. [S1]", "Ultrasound for abscess."]]]],
+    ["Management", [["l", ["IV antibiotics: benzylpenicillin or ceftriaxone. [S1]", "Treat fever and pain; refer urgently (drainage). [S1]", "Severe skin, soft-tissue, bone or joint infection in sepsis: cloxacillin 2 g IV 6-hourly or cefazolin 2 g 8-hourly; vancomycin if MRSA risk. [S2]"]]]],
+    ["Follow-up", [["l", ["Post-drainage wound care."]]]],
+    ["Complications", [["l", ["Sepsis, compartment syndrome, osteomyelitis."]]]],
+    ["Common mistakes", [["l", ["Treating a deep abscess with antibiotics alone."]]]],
+    ["Advice to give", [["l", ["Finish antibiotics; keep the wound clean; return for fever or spreading redness."]]]],
+    ["Learning summary", [["l", ["Staph aureus muscle abscess: IV antibiotics + urgent referral for drainage. [S1]"]]]]
+  ],
+  links: [["#topic/osteomyelitis", "Osteomyelitis and septic arthritis"], ["#cond/cellulitis", "Condition page with all linked guidelines"]],
+  cards: [["Commonest cause of pyomyositis?", "Staphylococcus aureus.", "S1"], ["Bhutan sepsis guide antibiotic for severe skin, bone or joint infection?", "Cloxacillin 2 g IV 6-hourly or cefazolin 2 g 8-hourly.", "S2"]]
+});
+TOPICS.push({
+  id: "osteomyelitis", cond: "osteomyelitis", n: "Osteomyelitis and septic arthritis", spec: ["ortho", "id", "paeds"], ages: "Children and adults", emerg: "Refer urgently",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by an orthopaedic surgeon.",
+  src: { S1: ["Bhutan STG 2024, 13.5 Osteomyelitis, p.298", "#stg/13.5"], S2: ["Bhutan STG 2024, 13.6 Septic arthritis, p.299", "#stg/13.6"], S3: ["Quick Guide to Sepsis Management, Bhutan 2025: empiric antibiotics, bone and joint", "#gl/sepsis"] },
+  sec: [
+    ["Definition", [["p", "Osteomyelitis: infection of bone (periosteum, medulla, cortex). [S1] Septic arthritis: infection of the joint fluid and tissues, mostly knee, hip and shoulder. [S2]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Acute (pain, fever, swelling, reduced movement) vs chronic osteomyelitis (discharging sinus). [S1]", "Septic arthritis: severe pain, swelling and redness of a single joint with fever. [S2]"]]]],
+    ["Causes and pathophysiology", [["l", ["Open fractures; blood-borne spread from elsewhere. [S1]", "Septic arthritis: infection, usually bacterial. [S2]"]]]],
+    ["History: questions to ask", [["qa", [["Fever with bone pain or a hot swollen joint?", "Infection. [S1][S2]"], ["Recent open fracture or surgery?", "Cause. [S1]"], ["Child refusing to walk or move a limb?", "Septic hip or osteomyelitis."]]]]],
+    ["Symptoms and examination", [["l", ["Pain, fever, reduced movement, swelling and redness; sinus in chronic disease. [S1][S2]"]]]],
+    ["Differential diagnosis", [["l", ["Gout, fracture, cellulitis, transient synovitis (children)."]]]],
+    ["Investigations", [["l", ["CBC; X-ray of the part. [S1][S2]", "Joint aspiration where possible."]]]],
+    ["Management", [["t", [["Condition", "Bhutan STG", "Source"], ["Osteomyelitis (adult)", "Benzylpenicillin 6 lakh units IM 6-hourly, or preferably ceftriaxone 1 g IV 12-hourly; refer urgently for drainage", "[S1]"], ["Septic arthritis", "Splint the joint; pain relief; ampicillin 500 mg IV 6-hourly; refer urgently", "[S2]"]]], ["note", "The STG doses are low compared with the Bhutan Sepsis Guide, which gives cloxacillin 2 g IV 6-hourly or cefazolin 2 g 8-hourly for skin, soft-tissue, bone and joint infection (Staph aureus is the usual cause). Use the sepsis-guide doses for adults while arranging referral. [S1][S2][S3]"]]],
+    ["Follow-up", [["l", ["Orthopaedic follow-up; prolonged antibiotics are usually needed."]]]],
+    ["Complications", [["l", ["Chronic osteomyelitis from delayed drainage; joint destruction. [S1]"]]]],
+    ["Common mistakes", [["l", ["Delaying referral for drainage. [S1]", "Under-dosing antibiotics. [S3]"]]]],
+    ["Advice to give", [["l", ["Complete the long antibiotic course; keep follow-up appointments.", "Come back for fever or increasing pain."]]]],
+    ["Learning summary", [["l", ["Hot swollen joint + fever = septic arthritis until proven otherwise. [S2]", "IV antibiotics + urgent drainage. [S1][S3]"]]]]
+  ],
+  links: [["#topic/cellulitis", "Pyomyositis and soft-tissue infection"], ["#topic/gout", "Gout"], ["#cond/osteomyelitis", "Condition page with all linked guidelines"]],
+  cards: [["STG preferred antibiotic for adult osteomyelitis?", "Ceftriaxone 1 g IV 12-hourly (or benzylpenicillin).", "S1"], ["Adult antibiotic dose for bone or joint infection in the Bhutan Sepsis Guide?", "Cloxacillin 2 g IV 6-hourly or cefazolin 2 g IV 8-hourly.", "S3"]]
+});
+TOPICS.push({
+  id: "headache", cond: "headache", n: "Headache and migraine", spec: ["neuro", "medicine", "paeds"], ages: "Children and adults", emerg: "Red flags need urgent assessment",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 7.2 Headache, p.131", "#stg/7.2"], S2: ["Bhutan STG 2024, 7.3 Migraine, p.132", "#stg/7.3"], S3: ["Bhutan STG 2024, 12.1.3 Headache (children), p.257", "#stg/12.1.3"] },
+  sec: [
+    ["Definition", [["p", "Pain in the region of the cranial vault. [S1] Migraine: episodic, typically one-sided headache with vomiting and visual disturbance. [S2]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Type", "Features"], ["Tension-type", "Bilateral band-like pressure, mild–moderate, rarely stops activity, little nausea [S1][S3]"], ["Migraine", "One-sided throbbing, moderate–severe, nausea or vomiting, light and sound sensitivity, ± aura [S2][S3]"], ["Secondary", "Meningitis, hypertension, tumours [S1]"]]]]],
+    ["Causes and pathophysiology", [["l", ["Tension: anxiety, stress, depression. [S1]", "Migraine triggers: red wine, chocolate, certain cheeses, missed meals, irregular sleep, glare. [S2]"]]]],
+    ["History: questions to ask", [["qa", [["Where, how long, how often; throbbing or band-like?", "Type. [S1][S2]"], ["Aura?", "Migraine with aura. [S2]"], ["Wakes from sleep, morning vomiting, worse lying down?", "Raised pressure: image. [S1][S3]"], ["Fever, neck stiffness?", "Meningitis. [S1]"], ["Mood, stress?", "Tension headache, depression. [S1]"], ["Painkiller use most days?", "Medication-overuse headache."]]]]],
+    ["Symptoms and examination", [["l", ["BP, vision, fundi, neurological examination. [S1][S3]"]], ["warn", "Sudden severe headache, fever with neck stiffness, abnormal neurological signs, papilloedema, headache waking a child: urgent assessment and imaging. [S3]"]]],
+    ["Differential diagnosis", [["l", ["Meningitis, subarachnoid haemorrhage, hypertension, sinusitis, tumour. [S1]"]]]],
+    ["Investigations", [["l", ["BP, vision, CBC. [S1]", "Children: MRI if abnormal examination, waking from sleep or on waking, occipital headache, or migraine-type without family history. [S3]"]]]],
+    ["Management", [["t", [["Type", "Treatment", "Source"], ["Tension-type", "Reassurance, paracetamol, relaxation; check for depression", "[S1]"], ["Migraine attack (adult)", "Ibuprofen + metoclopramide at onset; severe: ergotamine + caffeine or a triptan", "[S2]"], ["Migraine prevention (adult)", "Propranolol or amitriptyline", "[S2]"], ["Child attack", "Ibuprofen 7.5–10 mg/kg TDS or paracetamol 15 mg/kg TDS for 3–5 days; fluids", "[S3]"], ["Child prevention", "Propranolol 10–20 mg TDS if frequent or disabling", "[S3]"]]]]],
+    ["Follow-up", [["l", ["Children: every 1–3 months. [S3]"]]]],
+    ["Complications", [["l", ["Medication-overuse headache; missed secondary causes."]]]],
+    ["Common mistakes", [["l", ["Missing red flags. [S3]", "Daily painkillers for weeks."]]]],
+    ["Advice to give", [["l", ["Regular meals, enough water (without caffeine), regular exercise and 8–9 hours of sleep. [S3]", "Avoid known triggers. [S2]", "Take attack medicine early. [S2]", "Come at once for sudden severe headache, fever with stiff neck, weakness or vision loss."]]]],
+    ["Learning summary", [["l", ["Tension: paracetamol + reassurance. [S1]", "Migraine: ibuprofen + metoclopramide early; prevent with propranolol or amitriptyline. [S2]"]]]]
+  ],
+  links: [["#topic/meningitis", "Meningitis"], ["#topic/htn", "Hypertension"], ["#cond/headache", "Condition page with all linked guidelines"]],
+  cards: [["STG treatment for a mild migraine attack?", "Ibuprofen + metoclopramide at the onset of aura or headache.", "S2"], ["Migraine prophylaxis (STG)?", "Propranolol or amitriptyline.", "S2"], ["When does a child with headache need MRI (STG)?", "Abnormal exam, waking from sleep or on waking, occipital headache, or migraine-type without family history.", "S3"]]
+});
+TOPICS.push({
+  id: "bells", cond: "bells", n: "Bell's palsy", spec: ["neuro", "ent"], ages: "Adults and children", emerg: "",
+  reviewed: "Written from the sources below on 3 Nov 2026. The STG says 'steroid therapy' without a dose; the dose is from international evidence. Not yet reviewed by a physician.",
+  src: { S1: ["Bhutan STG 2024, 7.5 Bell's palsy, p.135", "#stg/7.5"], S2: ["Baugh RF et al. Clinical Practice Guideline: Bell's palsy. AAO-HNSF 2013 (fact sheet)", "https://www.entnet.org//sites/default/files/October2013_BellsGuidelineFactSheet.pdf"], S3: ["Sullivan FM et al. Early treatment with prednisolone or acyclovir in Bell's palsy. N Engl J Med 2007;357:1598–1607", "https://www.nejm.org/doi/full/10.1056/NEJMoa072006"] },
+  sec: [
+    ["Definition", [["p", "Lower motor neuron paralysis of the facial nerve (VII), so the face on that side cannot be controlled. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Whole half of the face weak, including the forehead; can't close the eye; eyeball rolls up on trying (Bell's sign). [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Unknown; viral infection, vascular damage, trauma, cold exposure suggested. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["When did it start (within 72 hours)?", "Steroid benefit window. [S2]"], ["Forehead also weak?", "Spared forehead = upper motor neuron (stroke): see Stroke. [S1]"], ["Ear pain, vesicles in the ear?", "Ramsay Hunt (zoster)."], ["Other weakness?", "Not Bell's palsy."]]]]],
+    ["Symptoms and examination", [["l", ["Unilateral facial paralysis, mouth drawn to the other side, drooling, inability to close the eye. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Stroke (forehead spared), Ramsay Hunt syndrome, parotid tumour, otitis media."]]]],
+    ["Investigations", [["l", ["Clinical diagnosis."]]]],
+    ["Management", [["l", ["Steroid therapy. [S1] Give oral steroids within 72 hours of onset (patients ≥ 16 years); antivirals alone are not recommended. [S2]", "Evidence-based dose: prednisolone 25 mg twice daily (50 mg/day) for 10 days, started within 72 hours. [S3]", "Eye care: artificial tears while awake; tape the eye shut at night. [S1]"]]]],
+    ["Follow-up", [["l", ["Review at 1–2 months for recovery. [S1]", "Refer if no recovery by 3 months or other nerves are involved."]]]],
+    ["Complications", [["l", ["Corneal exposure and ulcer; incomplete recovery."]]]],
+    ["Common mistakes", [["l", ["Missing a stroke (forehead spared).", "Forgetting eye protection. [S1]", "Antivirals without steroids. [S2]"]]]],
+    ["Advice to give", [["l", ["Most people recover over weeks to months.", "Use eye drops by day and tape the eye at night. [S1]", "Return for eye pain or redness."]]]],
+    ["Learning summary", [["l", ["Whole half-face weak (forehead too). [S1]", "Prednisolone within 72 h + eye care. [S2][S3]"]]]]
+  ],
+  links: [["#topic/stroke", "Stroke"], ["#topic/cornealu", "Corneal ulcer"], ["#cond/bells", "Condition page with all linked guidelines"]],
+  cards: [["How do you tell Bell's palsy from stroke?", "Bell's palsy weakens the forehead too; stroke spares the forehead.", "S1"], ["Steroid regimen for Bell's palsy?", "Prednisolone 50 mg/day (25 mg BD) for 10 days, within 72 hours.", "S3"]]
+});
+TOPICS.push({
+  id: "alcohol", cond: "alcohol", n: "Alcohol use disorder and alcohol withdrawal", spec: ["psych", "medicine", "ph"], ages: "Adults", emerg: "Delirium tremens and withdrawal seizures are emergencies",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a psychiatrist.",
+  src: { S1: ["Bhutan STG 2024, 10.2.2 Alcohol use disorder, p.206", "#stg/10.2.2"] },
+  sec: [
+    ["Definition", [["p", "Alcohol-related disorders are a leading cause of illness and death in Bhutan. Harmful use: drinking despite health, social or financial harm. Dependence: craving, tolerance and withdrawal. [S1]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Withdrawal stage", "Onset after last drink", "Features"], ["Acute withdrawal", "6–24 h", "Sweating, pulse > 100, anxiety, tremor, nausea, insomnia"], ["Seizures", "12–24 h", "Generalised tonic-clonic"], ["Perceptual disturbance", "12–48 h", "Transient hallucinations"], ["Delirium tremens", "48–72 h", "Fluctuating confusion, visual hallucinations, agitation, unstable vitals"]]], ["p", "From STG Table 10.2. Screen everyone with AUDIT or CAGE-AID. [S1]"]]],
+    ["Causes and pathophysiology", [["l", ["Dependence develops with regular heavy drinking; stopping suddenly causes withdrawal. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["AUDIT or CAGE-AID questions", "Screen every patient. [S1]"], ["When was the last drink?", "Withdrawal timing. [S1]"], ["Previous fits or DTs?", "Complicated withdrawal: refer. [S1]"], ["Vomiting blood, black stools, jaundice?", "Bleeding, liver disease. [S1]"]]]]],
+    ["Symptoms and examination", [["l", ["Vitals 6–8-hourly: BP, pulse, SpO₂, GCS, orientation. [S1]", "Injuries, infection, signs of liver disease. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Hypoglycaemia, head injury, infection, hepatic encephalopathy, Wernicke's encephalopathy."]]]],
+    ["Investigations", [["l", ["Glucose, LFT, electrolytes as indicated."]]]],
+    ["Management", [
+      ["h", "Detoxification (diazepam)"],
+      ["t", [["Days", "Dose"], ["1–2", "15 mg TDS"], ["3–4", "10 mg TDS"], ["5–6", "5 mg TDS"], ["7–8", "5 mg at night"]]],
+      ["l", ["DT, agitation or severe symptoms: extra diazepam 5–10 mg IV slowly, repeat after 30 min, max 40 mg/day; or 5–10 mg orally as needed (max 3–4 doses); avoid over-sedation. [S1]", "Thiamine 100 mg IV stat, then 75 mg orally 2–3 times a day for up to 3 months; IV fluids; antiemetics. [S1]", "Persistent insomnia: amitriptyline 25–100 mg at night for 1–2 weeks. [S1]", "Family member with the patient at all times. [S1]"]],
+      ["h", "Psychosocial"],
+      ["l", ["Psychoeducation; brief intervention (5As for those ready, 5Rs for those not ready); family support; relapse prevention; AA. [S1]"]]
+    ]],
+    ["Follow-up", [["l", ["Outpatient detox: review every 3–4 days. Relapse-prevention follow-up for 1–2 years. [S1]", "Refer complicated withdrawal, other mental or physical illness, or for rehabilitation. [S1]"]]]],
+    ["Complications", [["l", ["Seizures, DT, Wernicke's, injuries, GI bleeding, cirrhosis. [S1]"]]]],
+    ["Common mistakes", [["l", ["Giving glucose before thiamine.", "Under-treating withdrawal. [S1]", "Not screening. [S1]"]]]],
+    ["Advice to give", [["l", ["Never stop heavy drinking suddenly without medical help. [S1]", "Avoid alcohol completely in pregnancy, heart disease, hypertension, diabetes, mental illness, and before driving or operating machinery. [S1]", "Join support groups (AA); involve family. [S1]"]]]],
+    ["Learning summary", [["l", ["Diazepam taper 15 → 10 → 5 mg TDS → 5 mg nocte, 2 days each. [S1]", "Thiamine before glucose. [S1]"]]]]
+  ],
+  links: [["#p/alcohol", "Alcohol withdrawal protocol"], ["#topic/cirrhosis", "Cirrhosis"], ["#cond/alcohol", "Condition page with all linked guidelines"]],
+  cards: [["When does delirium tremens usually start?", "48–72 hours after the last drink.", "S1"], ["STG diazepam detox schedule?", "15 mg TDS × 2 days, 10 mg TDS × 2, 5 mg TDS × 2, 5 mg at night × 2.", "S1"], ["STG thiamine dose?", "100 mg IV stat, then 75 mg orally 2–3 times daily for up to 3 months.", "S1"]]
+});
+TOPICS.push({
+  id: "depression", cond: "depression", n: "Depression and suicide risk", spec: ["psych", "medicine"], ages: "Adolescents and adults", emerg: "Suicidal intent is an emergency",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a psychiatrist.",
+  src: { S1: ["Bhutan STG 2024, 10.2.4 Mood disorders, p.213", "#stg/10.2.4"], S2: ["Bhutan STG 2024, 10.3 Psychiatric emergency (suicidality), p.224", "#stg/10.3"] },
+  sec: [
+    ["Definition", [["p", "Depression: depressed mood or loss of pleasure for 2 weeks or more, affecting daily function. Bipolar disorder: episodes of mania and depression. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Screen with PHQ-9. [S1]", "Bipolar disorder: needs psychiatrist care; treat depressive episodes in bipolar differently. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Biological, psychological and social factors; also chronic illness and substance use."]]]],
+    ["History: questions to ask", [["qa", [["Feeling sad, empty or irritable most days? Lost interest?", "Core symptoms. [S1]"], ["Sleep, appetite, energy, concentration, guilt, hopelessness?", "Severity. [S1]"], ["Thoughts of dying or suicide; plans?", "Suicide risk. [S1][S2]"], ["Ever been very high, needing little sleep?", "Bipolar. [S1]"], ["Alcohol or drugs?", "Co-morbidity."]]]]],
+    ["Symptoms and examination", [["l", ["Sad or irritable mood, loss of interest, tiredness, aches, appetite and sleep change, poor concentration, isolation, low self-esteem, guilt, hopelessness, suicidal thoughts. [S1]"]], ["warn", "Suicidal ideation or attempt: ensure support, call 112, refer to the nearest centre with a medical officer or counsellor. [S2]"]]],
+    ["Differential diagnosis", [["l", ["Hypothyroidism, anaemia, alcohol use, bipolar disorder, grief."]]]],
+    ["Investigations", [["l", ["PHQ-9; suicide screening tool. [S1][S2]", "Thyroid function and Hb if suggested."]]]],
+    ["Management", [["t", [["Drug", "Dose", "Best for"], ["Amitriptyline", "12.5–100 mg at night; increase by 25 mg/week", "Marked sleep disturbance [S1]"], ["Fluoxetine", "20–40 mg each morning after food; increase by 20 mg after 2 weeks", "Students; hypersomnia or over-eating [S1]"]]], ["l", ["Continue for at least as long as the illness or 6 months, whichever is longer. [S1]", "Psychoeducation and psychological support."]]]],
+    ["Follow-up", [["l", ["Review every 2–4 weeks early on; ask about suicidal thoughts every visit."]]]],
+    ["Complications", [["l", ["Suicide; disability."]]]],
+    ["Common mistakes", [["l", ["Not asking directly about suicide. [S2]", "Stopping antidepressants too early. [S1]", "Treating bipolar depression with an antidepressant alone. [S1]"]]]],
+    ["Advice to give", [["l", ["Medicines take 2–4 weeks to work; keep taking them. [S1]", "Don't stop suddenly. [S1]", "Talk to family or a counsellor; avoid alcohol.", "If you feel like harming yourself, call 112 or come to the health centre. [S2]"]]]],
+    ["Learning summary", [["l", ["PHQ-9; ask about suicide. [S1][S2]", "Amitriptyline (sleep) or fluoxetine; ≥ 6 months. [S1]"]]]]
+  ],
+  links: [["#topic/anxiety", "Anxiety disorders"], ["#cond/depression", "Condition page with all linked guidelines"]],
+  cards: [["STG antidepressant choices?", "Amitriptyline 12.5–100 mg at night (sleep problems) or fluoxetine 20–40 mg each morning.", "S1"], ["Duration of antidepressant treatment (STG)?", "At least as long as the illness or 6 months, whichever is longer.", "S1"], ["Emergency number for suicidal patients in Bhutan (STG)?", "112.", "S2"]]
+});
+TOPICS.push({
+  id: "psychosis", cond: "psychosis", n: "Psychosis, schizophrenia and the agitated patient", spec: ["psych", "emerg"], ages: "Adolescents and adults", emerg: "Agitation and catatonia are emergencies",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by a psychiatrist.",
+  src: { S1: ["Bhutan STG 2024, 10.2.7 Psychotic disorders, p.221", "#stg/10.2.7"], S2: ["Bhutan STG 2024, 10.3 Psychiatric emergency, p.224", "#stg/10.3"] },
+  sec: [
+    ["Definition", [["p", "A brain illness with disordered thinking and loss of reality: hallucinations and delusions. Brief psychotic episode < 1 month; schizophrenia: symptoms ≥ 1 month with impaired function for over 6 months, usually starting from the teens to late 20s. [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["Core: delusions, hallucinations. Associated: disorganised thinking or behaviour, negative symptoms, agitation or retardation, aggression. [S1]", "Secondary causes: substance intoxication or withdrawal, steroids, anti-TB drugs, Parkinson's, SLE, childbirth, CNS infection. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Primary psychotic disorders or secondary to the causes above. [S1]"]]]],
+    ["History: questions to ask", [["qa", [["Hearing voices, seeing things, unusual beliefs?", "Psychosis. [S1]"], ["Alcohol, cannabis, other drugs; steroids or anti-TB drugs?", "Secondary cause. [S1]"], ["Recent childbirth?", "Perinatal psychosis: emergency. [S2]"], ["Threats to self or others?", "Risk. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Mental state; physical examination for delirium, infection, intoxication. [S1]", "Catatonia: stupor, refusing food and water, posturing, rigidity, mutism. [S2]"]], ["warn", "Catatonia risks dehydration, infection and kidney injury: refer immediately. [S2]"]]],
+    ["Differential diagnosis", [["l", ["Delirium, substance-induced psychosis, mania, CNS infection. [S1]"]]]],
+    ["Investigations", [["l", ["Guided by suspected secondary causes."]]]],
+    ["Management", [
+      ["l", ["Risperidone: start 2–6 mg/day in 3 doses; increase by 2 mg every 3 days to max 12 mg/day; maintain at lowest effective dose. [S1]", "And/or chlorpromazine 100–300 mg at night if sleep is very disturbed. [S1]"]],
+      ["h", "Acute agitation"],
+      ["l", ["Keep an arm's length; verbal de-escalation; move others to safety. [S2]", "Haloperidol 5–10 mg IM as needed, or chlorpromazine 100 mg IM; diazepam 5–10 mg orally as add-on for 2–3 days. [S1]", "Physical restraint with security staff only if needed for safety. [S2]"]]
+    ]],
+    ["Follow-up", [["l", ["Regular review for adherence and side effects (stiffness, dystonia)."]]]],
+    ["Complications", [["l", ["Self-harm, violence, relapse; acute dystonia from antipsychotics. [S2]"]]]],
+    ["Common mistakes", [["l", ["Missing delirium or substance cause. [S1]", "Over-sedation."]]]],
+    ["Advice to give", [["l", ["Take medicine regularly; don't stop without advice.", "Avoid alcohol and cannabis.", "Family: bring the patient back for early warning signs (poor sleep, withdrawal, strange talk)."]]]],
+    ["Learning summary", [["l", ["Risperidone 2–6 mg/day up to 12. [S1]", "Agitation: haloperidol 5–10 mg IM. [S1]"]]]]
+  ],
+  links: [["#topic/alcohol", "Alcohol withdrawal"], ["#cond/psychosis", "Condition page with all linked guidelines"]],
+  cards: [["STG starting dose of risperidone?", "2–6 mg/day in 3 divided doses, up to 12 mg/day.", "S1"], ["STG drug for acute agitation in psychosis?", "Haloperidol 5–10 mg IM (or chlorpromazine 100 mg IM).", "S1"]]
+});
+TOPICS.push({
+  id: "anxiety", cond: "anxiety", n: "Anxiety disorders", spec: ["psych", "medicine"], ages: "Adolescents and adults", emerg: "",
+  reviewed: "Written from the source below on 3 Nov 2026. Not yet reviewed by a psychiatrist.",
+  src: { S1: ["Bhutan STG 2024, 10.2.3 Anxiety disorders, p.211", "#stg/10.2.3"] },
+  sec: [
+    ["Definition", [["p", "Anxiety is anticipation of future threat. Types: social anxiety, panic disorder (recurrent sudden attacks of intense fear), generalised anxiety (excessive worry most days for 6 months or more). [S1]"]]],
+    ["Diagnostic criteria and classification", [["l", ["See types above. [S1]"]]]],
+    ["Causes and pathophysiology", [["l", ["Psychological and biological factors; stress."]]]],
+    ["History: questions to ask", [["qa", [["Constant worry? Sudden fear attacks? Fear of social situations?", "Type. [S1]"], ["Palpitations, breathlessness, tingling?", "Physical symptoms. [S1]"], ["Caffeine, alcohol, thyroid symptoms?", "Mimics."]]]]],
+    ["Symptoms and examination", [["l", ["Uneasiness, restlessness, dry mouth, palpitations, choking, cold sweaty or tingling hands, nausea, tiredness, dizziness, worry, poor concentration, poor sleep. [S1]"]]]],
+    ["Differential diagnosis", [["l", ["Hyperthyroidism, arrhythmia, asthma, hypoglycaemia, alcohol withdrawal."]]]],
+    ["Investigations", [["l", ["As needed to exclude physical causes."]]]],
+    ["Management", [["l", ["Amitriptyline 12.5–100 mg at night (sleep problems, symptoms > 1 month, impaired function) OR fluoxetine 20 mg each morning. [S1]", "Diazepam 5 mg as needed for 2–3 days only, for severe anxiety. [S1]", "Continue for at least as long as the illness or 6 months. [S1]", "Psychological first aid, psychoeducation, relaxation techniques. [S1]"]]]],
+    ["Follow-up", [["l", ["Review at 2–4 weeks; increase dose if little improvement; monthly for at least 6 months. [S1]", "Refer if severe with no improvement, or no improvement after the second review. [S1]"]]]],
+    ["Complications", [["l", ["Depression; benzodiazepine dependence if overused."]]]],
+    ["Common mistakes", [["l", ["Long-term diazepam. [S1]", "Missing a physical cause."]]]],
+    ["Advice to give", [["l", ["Practise slow breathing and relaxation. [S1]", "Reduce caffeine and alcohol.", "Keep taking the medicine; it takes weeks to work. [S1]"]]]],
+    ["Learning summary", [["l", ["Amitriptyline or fluoxetine ≥ 6 months; diazepam only 2–3 days. [S1]"]]]]
+  ],
+  links: [["#topic/depression", "Depression"], ["#cond/anxiety", "Condition page with all linked guidelines"]],
+  cards: [["STG drug options for anxiety disorders?", "Amitriptyline 12.5–100 mg at night or fluoxetine 20 mg; diazepam 5 mg only for 2–3 days.", "S1"]]
+});
+TOPICS.push({
+  id: "abortion", cond: "abortion", n: "Miscarriage (abortion) and molar pregnancy", spec: ["obg", "emerg"], ages: "Pregnant women", emerg: "Heavy bleeding or sepsis is an emergency",
+  reviewed: "Written from the sources below on 3 Nov 2026. Not yet reviewed by an obstetrician.",
+  src: { S1: ["Bhutan STG 2024, 11.2 Abortion, p.232", "#stg/11.2"], S2: ["Bhutan STG 2024, 11.4 Molar pregnancy, p.236", "#stg/11.4"] },
+  sec: [
+    ["Definition", [["p", "Loss of an intrauterine pregnancy before 20 weeks (WHO); Bhutan NICU data use 26 weeks. [S1] Molar pregnancy: abnormal conception with swollen placental villi (complete or partial). [S2]"]]],
+    ["Diagnostic criteria and classification", [["t", [["Type", "Features", "Treatment"], ["Threatened", "Bleeding, os closed", "Rest, folic acid [S1]"], ["Inevitable", "Pain, bleeding, cervix dilating", "Resuscitate if shocked; refer for evacuation [S1]"], ["Incomplete", "Os open, heavy or prolonged bleeding after passing tissue", "Resuscitate; refer for evacuation [S1]"], ["Complete", "Tissue passed, mild bleeding, empty uterus on USG", "Observe, follow up [S1]"], ["Septic", "Bleeding, fever, abdominal pain", "Admit, resuscitate, IV ampicillin + metronidazole, refer for evacuation [S1]"], ["Missed", "Closed os, no fetal heartbeat on USG", "Admit and refer for evacuation [S1]"]]]]],
+    ["Causes and pathophysiology", [["l", ["Older maternal age and chromosomal problems, TORCH infections, teratogenic drugs, diabetes, hypertension, trauma. [S1]", "Molar: chromosomal abnormality, older parents, previous mole. [S2]"]]]],
+    ["History: questions to ask", [["qa", [["Bleeding amount; tissue passed?", "Type. [S1]"], ["Fever, foul discharge; any interference with the pregnancy?", "Septic abortion. [S1]"], ["Severe vomiting, uterus larger than dates?", "Molar pregnancy. [S2]"]]]]],
+    ["Symptoms and examination", [["l", ["Pulse, BP; os open or closed; uterine size. [S1]"]], ["warn", "Shock: resuscitate first. [S1]"]]],
+    ["Differential diagnosis", [["l", ["Ectopic pregnancy (see Ectopic pregnancy), molar pregnancy. [S2]"]]]],
+    ["Investigations", [["l", ["Pregnancy test, Hb, CBC, ABO-Rh and cross-match, ultrasound. [S1]", "Molar: serum beta-hCG, chest X-ray, LFT, RFT. [S2]"]]]],
+    ["Management", [["l", ["As in the table above. [S1]", "Post-abortion care: watch for bleeding and infection; contraceptive and preconception counselling. [S1]", "Molar: resuscitate if needed; refer for suction evacuation. [S2]"]]]],
+    ["Follow-up", [["l", ["Molar: beta-hCG weekly until 3 consecutive normal results, then monthly for 3 months (complete mole) or 1 month (partial); avoid pregnancy until follow-up ends; early USG and 6-week hCG in the next pregnancy. [S2]", "Anti-D for Rh-negative women."]]]],
+    ["Complications", [["l", ["Haemorrhage, sepsis. [S1]", "Persistent gestational trophoblastic disease needing chemotherapy. [S2]"]]]],
+    ["Common mistakes", [["l", ["Missing ectopic pregnancy.", "No hCG follow-up after a mole. [S2]"]]]],
+    ["Advice to give", [["l", ["Come back for heavy bleeding, fever or foul discharge. [S1]", "Use contraception as advised; plan the next pregnancy with folic acid. [S1]", "After a mole: complete hCG follow-up before trying again. [S2]"]]]],
+    ["Learning summary", [["l", ["Os closed + viable = threatened; open or tissue = inevitable or incomplete → evacuation. [S1]", "Septic: ampicillin + metronidazole, evacuate. [S1]", "Mole: suction evacuation + hCG follow-up. [S2]"]]]]
+  ],
+  links: [["#topic/ectopic", "Ectopic pregnancy"], ["#cond/abortion", "Condition page with all linked guidelines"]],
+  cards: [["Difference between threatened and inevitable miscarriage?", "Threatened: os closed. Inevitable: cervix dilating.", "S1"], ["Antibiotics for septic abortion (STG)?", "IV ampicillin + metronidazole, then refer for evacuation.", "S1"], ["hCG follow-up after a complete mole?", "Weekly until 3 normal results, then monthly for 3 months.", "S2"]]
+});
+
 const TOPIC_BY = Object.fromEntries(TOPICS.map(t => [t.id, t]));
 const TOPIC_BY_COND = Object.fromEntries(TOPICS.map(t => [t.cond, t]));
 function topicSrcChips(t, s) {
