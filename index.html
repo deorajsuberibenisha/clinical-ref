@@ -338,13 +338,13 @@ body.hs-no-mods .hs-mods,body.hs-no-specs .hs-specs,body.hs-no-quick .hs-quick{d
 .h2-search{position:relative;margin-top:16px;max-width:720px;background:#fff;border-radius:12px}
 .h2-search input{color:#182433}
 .h2-head .instbtn{position:relative;margin-top:10px}
-.h2-mods{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:16px 0 4px}
+.h2-mods{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 4px}
 .h2-mod{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:14px 14px 12px;border-radius:14px;background:var(--panel);border:1px solid var(--line);border-bottom:3px solid var(--mc);text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
 .h2-mod:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(21,59,99,.12)}
 .h2-mod b{font-size:16px;line-height:1.2}.h2-mod small{color:var(--muted);font-size:12px;line-height:1.3}
 .h2-mi{display:grid;place-items:center;width:40px;height:40px;border-radius:11px;background:color-mix(in srgb,var(--mc) 12%,transparent);color:var(--mc)}
 .h2-mi svg{width:24px;height:24px}
-.c-blue{--mc:var(--blue2)}.c-teal{--mc:var(--teal2)}.c-green{--mc:var(--okgreen)}.c-red{--mc:var(--emred)}.c-navy{--mc:var(--navy)}.c-purple{--mc:var(--purple2)}
+.c-blue{--mc:var(--blue2)}.c-teal{--mc:var(--teal2)}.c-green{--mc:var(--okgreen)}.c-red{--mc:var(--emred)}.c-navy{--mc:var(--navy)}.c-purple{--mc:var(--purple2)}.c-amber{--mc:hsl(32 88% 48%)}.c-rose{--mc:hsl(338 68% 52%)}
 :root[data-theme="dark"] .c-navy,.c-navy{--mc:var(--blue2)}
 .h2-sec{display:flex;justify-content:space-between;align-items:baseline;margin:20px 0 10px}
 .h2-sec h2{display:flex;align-items:center;gap:8px;margin:0;font-size:19px}
@@ -374,7 +374,7 @@ body.hs-no-mods .hs-mods,body.hs-no-specs .hs-specs,body.hs-no-quick .hs-quick{d
 .h2-mi{background:linear-gradient(145deg,color-mix(in srgb,var(--mc) 88%,#fff),color-mix(in srgb,var(--mc) 82%,#000))!important;color:#fff!important;box-shadow:0 6px 14px -6px color-mix(in srgb,var(--mc) 70%,transparent),inset 0 1px 0 rgba(255,255,255,.25);border-radius:12px!important}
 .h2-mi svg{filter:drop-shadow(0 1px 1px rgba(0,0,0,.18))}
 body.squared .ic-tile,body.squared .h2-mi{border-radius:6px!important}.h2-vi svg{width:20px;height:20px}
-@media (max-width:1100px){.h2-mods{grid-template-columns:repeat(3,1fr)}.h2-specs{grid-template-columns:repeat(6,1fr)}.h2-quick{grid-template-columns:repeat(3,1fr)}.h2-qh{grid-column:1/-1}.h2-q{border-top:1px solid var(--line)}}
+@media (max-width:1100px){.h2-mods{grid-template-columns:repeat(4,1fr)}.h2-specs{grid-template-columns:repeat(6,1fr)}.h2-quick{grid-template-columns:repeat(3,1fr)}.h2-qh{grid-column:1/-1}.h2-q{border-top:1px solid var(--line)}}
 @media (max-width:640px){.h2-head{padding:16px 14px;border-radius:14px}.h2-brand h1{font-size:22px}.h2-brand p{font-size:13px}.h2-mods{grid-template-columns:repeat(2,1fr);gap:10px}.h2-mod{padding:12px}.h2-mod b{font-size:15px}.h2-specs{grid-template-columns:repeat(3,1fr);gap:8px}.h2-spec{font-size:12px;min-height:88px}.h2-top{flex-direction:column-reverse;gap:8px}.h2-me .mctx small,.h2-me .mcgo{display:none}.h2-me .mctx b{font-size:14px}.h2-me .mecard{padding:4px 8px 4px 4px}}
 .homehero{position:relative;overflow:hidden;border-radius:22px;margin:2px 0 0;min-height:380px;color:#fff;box-shadow:0 10px 30px rgba(6,42,45,.25);background:#0a3440}
 .hero-art{position:absolute;inset:0;width:100%;height:100%}
@@ -901,7 +901,7 @@ body[data-header="immersive"] .h2-search{margin-top:24px}
 .home-quote>div{flex:1;min-width:0}.home-quote small{display:inline;margin-left:8px}
 .home-quote .mnext{position:static;flex:none;width:30px;height:30px;border:1px solid var(--line);background:var(--panel);color:var(--accent);border-radius:50%;padding:4px;display:grid;place-items:center;cursor:pointer}
 .home-quote .mnext svg{width:16px;height:16px}
-body[data-home-style="focus"] .h2-mods{grid-template-columns:repeat(3,1fr);gap:8px}
+body[data-home-style="focus"] .h2-mods{grid-template-columns:repeat(4,1fr);gap:8px}
 body[data-home-style="focus"] .h2-mod{display:grid;grid-template-columns:36px 1fr;column-gap:12px;padding:12px;border-bottom-width:1px}
 body[data-home-style="focus"] .h2-mi{width:36px;height:36px;grid-row:span 2}.h2-mod:focus-visible{outline-offset:3px}
 body[data-home-style="focus"] .h2-mod small{grid-column:2}
@@ -1359,6 +1359,108 @@ body.reduce-motion :is(.fold-ic,.fitem-ic,.h2-mi,.mpic,.h2-qi,.cti,.arr-btn svg,
   body.bb-tap #arrbar{bottom:calc(80px + env(safe-area-inset-bottom))}
 }
 body.tb-auto.bars-hidden .pbar{transform:translateY(-110%)}
+/* Clinical Hub popup and page */
+.mphub{max-height:min(78vh,640px);overflow-y:auto}
+.mpsec+.mpsec{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.mpsh,.hubsec{display:flex;align-items:center;gap:8px;margin:2px 2px 8px;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.mpsh b,.hubsec b{font-weight:800}.hubsec{font-size:13px;margin:18px 2px 10px}
+.mpdot{width:9px;height:9px;border-radius:50%;background:hsl(var(--h) 70% 52%);box-shadow:0 0 0 3px hsl(var(--h) 70% 52% / .18);flex:none}
+.mbtn{position:relative}.mbadge{position:absolute;top:2px;left:calc(50% + 6px);min-width:17px;height:17px;padding:0 4px;border-radius:99px;background:hsl(352 80% 52%);color:#fff;font:800 10.5px/17px var(--ui-font);font-style:normal;text-align:center;box-shadow:0 0 0 2px var(--panel);animation:badgePop .4s cubic-bezier(.3,1.6,.5,1)}
+@keyframes badgePop{from{transform:scale(.3)}to{transform:scale(1)}}
+/* messenger */
+.msgr{max-width:760px;margin:0 auto;position:relative;padding-bottom:70px}
+.msgrhead{display:flex;align-items:center;gap:12px;margin:2px 0 10px}.msgrhead h1{margin:0;flex:1;font-size:28px}
+.msgrme{display:flex;border-radius:50%;box-shadow:0 0 0 2px var(--panel),0 0 0 4px color-mix(in srgb,var(--accent) 55%,transparent)}
+.msgrbtn{width:42px;height:42px;border-radius:50%;background:var(--panel2)}.msgrbtn svg{width:20px;height:20px}
+.pssearch{display:flex;align-items:center;gap:8px;padding:0 14px;height:42px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);margin-bottom:12px}
+.pssearch svg{width:18px;height:18px;color:var(--muted);flex:none}.pssearch input{flex:1;border:0;background:none;outline:0;font:15px var(--ui-font);color:var(--ink);min-width:0}
+.msgrstrip{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.msgrstrip::-webkit-scrollbar{display:none}
+.spers{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;border:0;background:none;color:var(--ink);cursor:pointer;flex:none;width:62px;font:12px var(--ui-font);animation:foldIn .4s both}
+.spers span{max-width:62px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.spers .sv,.vbadge{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:hsl(205 90% 50%);color:#fff;flex:none}
+.spers .sv{position:absolute;top:40px;right:6px;box-shadow:0 0 0 2px var(--bg,var(--panel))}.spers .sv svg,.vbadge svg{width:11px;height:11px;stroke-width:3}
+.vbadge{margin-left:5px;vertical-align:-2px}
+.av.av32{width:32px;height:32px;font-size:13px}.av.av40{width:40px;height:40px;font-size:16px}.av.av44{width:44px;height:44px;font-size:17px}.av.av52{width:52px;height:52px;font-size:20px}.av.av56{width:56px;height:56px;font-size:21px}
+.av.avg,.av.avai,.av.avk,.av.avroom{display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,hsl(var(--h,200) 70% 55%),hsl(calc(var(--h,200) + 40) 70% 42%))}.av.avg svg,.av.avai svg{width:46%;height:46%}
+.av.avai{--h:265}.av.avk{--h:190;font-weight:800}.av.avroom{font-size:20px}.av.avroom.rpub{--h:150}
+.clist{display:flex;flex-direction:column}
+.crow{display:flex;align-items:center;gap:12px;padding:9px 8px;border-radius:16px;text-decoration:none;color:var(--ink);transition:background .15s;animation:foldIn .35s both}
+.crow:hover{background:var(--panel2)}.crow:active{background:color-mix(in srgb,var(--accent) 10%,var(--panel2))}
+.crt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.crt b{font-size:15.5px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.crt small{font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crow.unread .crt b,.crow.unread .crt small{color:var(--ink);font-weight:750}
+.cmeta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none}.cmeta small{font-size:12px;color:var(--muted)}
+.cdot{width:11px;height:11px;border-radius:50%;background:hsl(205 90% 50%);box-shadow:0 0 0 3px hsl(205 90% 50% / .18)}
+.cpin{font:800 10.5px var(--ui-font);padding:3px 8px;border-radius:99px;color:hsl(265 70% 50%);background:hsl(265 80% 60% / .14)}
+.cai{background:linear-gradient(90deg,hsl(265 80% 60% / .08),transparent 70%)}
+.cempty{display:flex;flex-direction:column;align-items:center;gap:4px;padding:26px 12px;text-align:center;color:var(--muted)}.cempty b{color:var(--ink);font-size:15px}
+.msgrrooms{margin-top:16px}.msgrnote{text-align:center;margin-top:14px}
+.fab{position:fixed;right:18px;bottom:calc(84px + env(safe-area-inset-bottom));width:56px;height:56px;border-radius:18px;border:0;display:grid;place-items:center;cursor:pointer;z-index:30;color:#fff;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 80%,#fff),var(--accent));box-shadow:0 14px 28px -10px color-mix(in srgb,var(--accent) 80%,#000);transition:transform .15s}
+.fab:active{transform:scale(.92)}.fab svg{width:26px;height:26px;stroke-width:2.4}
+@media (min-width:861px){.fab{bottom:28px;right:28px}}
+.psheet .sheetin{max-height:86vh;display:flex;flex-direction:column}.pshead{display:flex;align-items:center;justify-content:space-between}.pshead h3{margin:0}
+.pslist{overflow-y:auto;flex:1;min-height:120px;margin:0 -6px}
+.psname{width:100%;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--panel2);padding:0 12px;font:15px var(--ui-font);color:var(--ink);margin:10px 0}
+.prow{display:flex;align-items:center;gap:12px;width:100%;padding:9px 8px;border:0;background:none;border-radius:14px;cursor:pointer;color:var(--ink);text-align:left;font:inherit}.prow:hover{background:var(--panel2)}
+.prt{flex:1;min-width:0;display:flex;flex-direction:column}.prt b{font-size:15px;font-weight:650}.prt small{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pck{width:24px;height:24px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;color:transparent;transition:all .18s}.pck svg{width:15px;height:15px;stroke-width:3}
+.pck.on{background:var(--accent);border-color:var(--accent);color:#fff;transform:scale(1.08)}
+.pnew .prt b{color:var(--accent)}
+.chav{display:flex;margin-right:2px}
+.appcard{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:8px 12px;border-radius:12px;background:color-mix(in srgb,var(--accent) 12%,var(--panel));border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);color:var(--accent);font-weight:700;text-decoration:none}
+.appcard i{font-style:normal;font-size:18px}.msg.mine .appcard{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35);color:inherit}
+/* For You feed */
+.feedhead h1{margin-bottom:2px}.feedtabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:4px 0 12px}.feedtabs .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.fcompose{display:flex;align-items:center;gap:12px;width:100%;padding:10px 14px 10px 10px;border-radius:18px;border:1px solid var(--line);background:var(--panel);color:var(--muted);font:15px var(--ui-font);cursor:pointer;text-align:left;margin-bottom:14px;box-shadow:0 8px 20px -18px rgba(0,0,0,.5)}
+.fcompose>span:not(.av){flex:1}.fcompose .av{flex:none}.fcompose i{display:grid;place-items:center;color:hsl(150 60% 42%)}.fcompose i svg{width:22px;height:22px}
+.flist{display:flex;flex-direction:column;gap:14px;max-width:680px;margin:0 auto}
+.fpost{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:14px 14px 6px;box-shadow:0 10px 26px -22px rgba(0,0,0,.55);animation:foldIn .4s both}
+.fpost header{display:flex;align-items:center;gap:10px}.fwho{flex:1;min-width:0;display:flex;flex-direction:column}.fwho b{font-size:15px}.fwho small{font-size:12.5px;color:var(--muted)}
+.ftag{font:700 11.5px var(--ui-font);padding:4px 9px;border-radius:99px;color:hsl(var(--h) 65% 38%);background:hsl(var(--h) 75% 55% / .14)}
+:root[data-mode="dark"] .ftag{color:hsl(var(--h) 80% 72%)}
+.fmore{width:34px;height:34px;font-size:18px}
+.ftext{margin:10px 2px 6px;font-size:15.5px;line-height:1.55;word-wrap:break-word}.ftext.clamp{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.fsee{border:0;background:none;color:var(--accent);font-weight:700;cursor:pointer;padding:0 2px;margin-bottom:6px}
+.fimg{display:block;width:calc(100% + 28px);margin:6px -14px;border:0;padding:0;background:var(--panel2);cursor:zoom-in}.fimg img{display:block;width:100%;max-height:520px;object-fit:cover}
+.fpost footer{display:flex;gap:4px;border-top:1px solid var(--line);margin-top:8px;padding-top:4px}
+.fact{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;height:40px;border:0;background:none;border-radius:12px;color:var(--muted);cursor:pointer;font:600 14px var(--ui-font)}
+.fact:hover{background:var(--panel2)}.fact svg{width:20px;height:20px}
+.flike.on{color:hsl(350 80% 52%)}.flike.on svg{fill:currentColor}
+.flike.pop .heart{animation:heartPop .45s cubic-bezier(.3,1.8,.5,1)}.heart{display:grid}
+@keyframes heartPop{0%{transform:scale(1)}35%{transform:scale(1.45)}100%{transform:scale(1)}}
+.fcoms{border-top:1px solid var(--line);padding:10px 0 6px;display:flex;flex-direction:column;gap:10px}
+.fcom{display:flex;gap:8px}.fcb{background:var(--panel2);border-radius:16px;padding:7px 12px;display:flex;flex-direction:column;gap:2px;max-width:calc(100% - 40px)}
+.fcb b{font-size:13.5px}.fcb span{font-size:14.5px;line-height:1.45}.fcb small{font-size:11.5px;color:var(--muted)}.lnk{border:0;background:none;color:var(--muted);text-decoration:underline;cursor:pointer;padding:0;font:inherit}
+.fcomin{display:flex;gap:8px;align-items:center}.fcomin input{flex:1;height:40px;border-radius:99px;border:1px solid var(--line);background:var(--panel2);padding:0 14px;font:14.5px var(--ui-font);color:var(--ink)}
+.fskel{height:180px;border-radius:20px;background:linear-gradient(100deg,var(--panel2) 40%,var(--panel) 50%,var(--panel2) 60%);background-size:200% 100%;animation:skel 1.2s linear infinite}
+@keyframes skel{to{background-position:-200% 0}}
+.ftagc.on{background:hsl(var(--h) 70% 50%)!important;color:#fff!important;border-color:transparent!important}
+.fpbar{display:flex;align-items:center;justify-content:space-between;margin:8px 0}.fpbar .btn svg{width:18px;height:18px;vertical-align:-4px}
+.fpimg{position:relative;margin-top:8px}.fpimg img{width:100%;max-height:260px;object-fit:cover;border-radius:14px}.fpimg .iconbtn{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.55);color:#fff}
+#fp_t{width:100%;border-radius:14px;border:1px solid var(--line);background:var(--panel2);padding:12px;font:15.5px/1.5 var(--ui-font);color:var(--ink);resize:vertical;margin-top:10px}
+/* flashcards: card first, flip to answer */
+.fchero{display:flex;align-items:center;gap:14px;padding:18px;border-radius:22px;margin:6px 0 14px;text-decoration:none;color:#fff;background:linear-gradient(135deg,hsl(265 70% 58%),hsl(225 75% 52%));box-shadow:0 16px 34px -18px hsl(255 70% 35%);transition:transform .15s}
+.fchero:active{transform:scale(.98)}.fchic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:rgba(255,255,255,.18);flex:none}.fchic svg{width:28px;height:28px}
+.fcht{flex:1;display:flex;flex-direction:column;gap:3px}.fcht b{font-size:19px}.fcht small{opacity:.88;font-size:13.5px}.fchgo{font-size:30px;opacity:.85}
+.fchead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.fchead .chip svg{width:15px;height:15px;vertical-align:-3px}.fchead .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.fcprog{height:6px;border-radius:99px;background:var(--panel2);overflow:hidden;margin:4px 0 14px}.fcprog i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,hsl(265 70% 60%),hsl(205 85% 52%));transition:width .4s cubic-bezier(.2,.9,.25,1)}
+.fcstage{max-width:640px;margin:0 auto;transition:opacity .18s,transform .18s}.fcstage.fcnext{opacity:0;transform:translateX(-24px)}
+.fcmeta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin:0 4px 8px}
+.fccard{display:block;width:100%;min-height:300px;border:0;padding:0;background:none;cursor:pointer;perspective:1400px;font:inherit;color:inherit;text-align:center}
+.fcinner{position:relative;display:block;min-height:300px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.8,.25,1)}
+.fccard.on .fcinner{transform:rotateY(180deg)}
+.fcface{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:26px 22px;border-radius:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 22px 44px -26px rgba(0,0,0,.55);border:1px solid var(--line)}
+.fcfront{background:linear-gradient(160deg,var(--panel),color-mix(in srgb,hsl(265 70% 60%) 9%,var(--panel)))}
+.fcback{transform:rotateY(180deg);background:linear-gradient(160deg,var(--panel),color-mix(in srgb,hsl(160 60% 45%) 10%,var(--panel)))}
+.fcface small{font:800 11.5px var(--ui-font);letter-spacing:.12em;text-transform:uppercase;color:hsl(265 60% 55%)}.fcback small{color:hsl(160 55% 38%)}
+.fcface b{font-size:clamp(17px,4.4vw,21px);line-height:1.45;font-weight:650;max-width:520px}.fcface i{font-size:12.5px;color:var(--muted);font-style:normal}
+.fcrate{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px;opacity:.35;pointer-events:none;transition:opacity .25s}.fcrate.on{opacity:1;pointer-events:auto}
+.fcr{height:48px;border-radius:14px;border:0;cursor:pointer;font:700 14.5px var(--ui-font);color:hsl(var(--h) 70% 30%);background:hsl(var(--h) 80% 55% / .16);transition:transform .12s,background .2s}
+:root[data-mode="dark"] .fcr{color:hsl(var(--h) 85% 72%)}.fcr:hover{background:hsl(var(--h) 80% 55% / .26)}.fcr:active{transform:scale(.94)}
+.fckeys{text-align:center;margin-top:10px}
+.fcdone{display:flex;flex-direction:column;align-items:center;gap:8px;padding:34px 16px;text-align:center;border-radius:24px;background:var(--panel);border:1px solid var(--line)}.fcbig{font-size:44px}
+.fcpick{margin:22px auto 0;max-width:820px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 14px}.fcpick summary{cursor:pointer;font-weight:700;display:flex;align-items:center;gap:8px}.fcpick summary svg{width:18px;height:18px}
+.fcpick .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}.fctopics{display:flex;flex-wrap:wrap;gap:6px;max-height:320px;overflow-y:auto}.fctopics small{opacity:.6}
+@media (prefers-reduced-motion:reduce){.fcinner{transition:none}}
 /* dose first */
 .dosecard{margin:12px 0;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--panel)),var(--panel) 70%);border:1.5px solid color-mix(in srgb,var(--accent) 30%,var(--line))}
 .dosecard h2{margin:0 0 6px;font-size:18px;color:var(--accent)}.dosecard .fld p{margin:4px 0;line-height:1.55}
@@ -6114,7 +6216,9 @@ const MODULES2 = [
   ["#calc", "calc", "Calculators", "Doses · Scores · Fluids", "c-green"],
   ["#protocols", "emerg", "Emergency", "Protocols · Algorithms", "c-red"],
   ["#imaging", "imaging", "Clinical Imaging", "X-ray · ECG · Echo · ABG", "c-navy"],
-  ["#learn", "learn", "Learning", "Guides · Cases · Study", "c-purple"]
+  ["#learn", "learn", "Learning", "Guides · Cases · Study", "c-purple"],
+  ["#hub/tools", "calc", "Tools", "Fluids · Growth · Sizes · Notes", "c-amber"],
+  ["#hub/ref", "guide", "Reference", "Drugs · Criteria · Glossary", "c-rose"]
 ];
 /* id, name, icon, STG chapters, guideline books, condition-name pattern */
 const SPECS = [
@@ -6469,7 +6573,7 @@ function imagingView() {
 function learnView() {
   const mine = GL.books.filter(b => b.cat === "mine" || b.cat === "picu");
   const due = fcDue(FC_ALL).length;
-  return `<h1 class="vt">Learning</h1><p class="vsub">Flashcards built from checked topic pages, full topic pages, and your study guides.</p><div class="h2-mods" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><a class="h2-mod c-purple" href="#cards"><span class="h2-mi">${IC2.learn}</span><b>Flashcards</b><small>${FC_ALL.length} cards · ${due} due now</small></a><a class="h2-mod c-teal" href="#topics"><span class="h2-mi">${IC2.guide}</span><b>Topic pages</b><small>${TOPICS.length} in the full format</small></a></div><div class="pgroup">Study guides and teaching decks</div><div class="dl">${mine.map((b, i) => `<a class="di ddi" href="#gl/${b.id}">${bookTile(b, i)}<div><div class="nm">${esc(b.s)}${b.app ? " ▶" : ""}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div>`;
+  return `<h1 class="vt">Learning</h1><a class="fchero" href="#cards"><span class="fchic">${IC2.learn}</span><span class="fcht"><b>Start flashcards</b><small>${due} due now · ${FC_ALL.length} cards from the topic pages</small></span><span class="fchgo">›</span></a><p class="vsub">Topic pages and your study guides are below.</p><div class="h2-mods" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><a class="h2-mod c-purple" href="#cards"><span class="h2-mi">${IC2.learn}</span><b>Flashcards</b><small>${FC_ALL.length} cards · ${due} due now</small></a><a class="h2-mod c-teal" href="#topics"><span class="h2-mi">${IC2.guide}</span><b>Topic pages</b><small>${TOPICS.length} in the full format</small></a></div><div class="pgroup">Study guides and teaching decks</div><div class="dl">${mine.map((b, i) => `<a class="di ddi" href="#gl/${b.id}">${bookTile(b, i)}<div><div class="nm">${esc(b.s)}${b.app ? " ▶" : ""}</div><div class="gp">${esc(b.t.slice(0, 90))}</div></div></a>`).join("")}</div>`;
 }
 /* ===== standard clinical topic pages: one record per disease, every statement tied to a source ===== */
 const TOPICS = [
@@ -19717,22 +19821,38 @@ function fcRate(id, q) {
   st[id] = c; fcSave(st);
 }
 let FC_RUN = null;
+/* flashcards open straight onto a card; topic choice is folded away. arg: topic id, "s-<specialty>", or empty for all */
+function fcPool(arg) { if (!arg) return FC_ALL; if (arg.startsWith("s-")) { const sp = arg.slice(2), ids = new Set(TOPICS.filter(t => t.spec.includes(sp)).map(t => t.id)); return FC_ALL.filter(c => ids.has(c.topic)); } return FC_ALL.filter(c => c.topic === arg); }
 function cardsView(arg) {
-  const pool = arg ? FC_ALL.filter(c => c.topic === arg) : FC_ALL, due = fcDue(pool), st = fcState();
-  const seen = pool.filter(c => st[c.id]).length, title = arg && TOPIC_BY[arg] ? TOPIC_BY[arg].n : "All topics";
-  FC_RUN = {pool, queue: due.slice(), arg};
-  return `<h1 class="vt">Flashcards: ${esc(title)}</h1><p class="vsub">${pool.length} cards · ${due.length} due now · ${seen} studied. Progress is saved on this device.</p>
-    <div class="chips wrap"><a class="chip" href="#cards">All topics</a>${TOPICS.map(t => `<a class="chip" href="#cards/${t.id}">${esc(t.n)}</a>`).join("")}</div>
-    <div id="fcbox" class="card fcbox"></div>`;
+  const pool = fcPool(arg), due = fcDue(pool), st = fcState(), seen = pool.filter(c => st[c.id]).length;
+  const title = !arg ? "All topics" : arg.startsWith("s-") ? ((SPEC_BY[arg.slice(2)] || [])[1] || "Specialty") : TOPIC_BY[arg] ? TOPIC_BY[arg].n : "Flashcards";
+  const shuffle = store.get("fcShuffle", false), q = due.slice(); if (shuffle) for (let i = q.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [q[i], q[j]] = [q[j], q[i]]; }
+  FC_RUN = {pool, queue: q, arg, total: q.length, done: 0, right: 0};
+  const specs = SPECS.filter(([id]) => TOPICS.some(t => t.spec.includes(id) && t.cards.length));
+  return `<div class="fchead"><div><h1 class="vt">Flashcards</h1><p class="vsub"><b>${esc(title)}</b> · ${pool.length} cards · ${due.length} due · ${seen} studied</p></div><button class="chip${shuffle ? " on" : ""}" id="fcshuf" aria-pressed="${shuffle}">${SI('<path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>')} Shuffle</button></div>
+    <div class="fcprog"><i id="fcbar"></i></div>
+    <div id="fcbox" class="fcstage"></div>
+    <details class="fcpick"><summary>${SI('<path d="M4 6h16M4 12h10M4 18h6"/>')} Choose topics <span class="muted small">— now: ${esc(title)}</span></summary>
+      <div class="chips wrap" style="margin:10px 0"><a class="chip${!arg ? " on" : ""}" href="#cards">All topics</a>${specs.map(([id, n]) => `<a class="chip${arg === "s-" + id ? " on" : ""}" href="#cards/s-${id}">${esc(n)}</a>`).join("")}</div>
+      <div class="pssearch">${ICON.search}<input id="fcq" type="search" placeholder="Find one topic, e.g. dengue, asthma" autocomplete="off"></div>
+      <div class="fctopics" id="fctl">${TOPICS.filter(t => t.cards.length).map(t => `<a class="chip" data-q="${esc(t.n.toLowerCase())}" href="#cards/${t.id}">${esc(t.n)} <small>${t.cards.length}</small></a>`).join("")}</div></details>`;
 }
 function fcShow() {
   const box = $("#fcbox"); if (!box || !FC_RUN) return;
-  const c = FC_RUN.queue[0];
-  if (!c) { box.innerHTML = `<b>Nothing due right now.</b><p class="small muted">Come back later, or <button type="button" class="chip" id="fcall">study all ${FC_RUN.pool.length} cards again</button></p>`; const b = $("#fcall"); if (b) b.onclick = () => { FC_RUN.queue = FC_RUN.pool.slice(); fcShow(); }; return; }
+  const R = FC_RUN, c = R.queue[0], bar = $("#fcbar"); if (bar) bar.style.width = (R.total ? Math.round(R.done / Math.max(R.total, R.done + R.queue.length) * 100) : 100) + "%";
+  if (!c) { box.innerHTML = `<div class="fcdone"><div class="fcbig">🎉</div><b>${R.done ? `Session done — ${R.done} card${R.done > 1 ? "s" : ""}, ${R.right} remembered` : "Nothing due right now"}</b><p class="small muted">Cards come back at the right time so you remember them.</p><button type="button" class="btn" id="fcall">Study all ${R.pool.length} cards again</button></div>`; const b = $("#fcall"); if (b) b.onclick = () => { R.queue = R.pool.slice(); R.total = R.queue.length; R.done = 0; R.right = 0; fcShow(); }; return; }
   const t = TOPIC_BY[c.topic], src = t && t.src[c.s];
-  box.innerHTML = `<div class="small muted">${esc(t ? t.n : "")} · ${FC_RUN.queue.length} left</div><div class="fcq">${esc(c.q)}</div><div id="fca" hidden><div class="fca">${esc(c.a)}</div><div class="small muted">Source: ${src ? esc(src[0]) : esc(c.s)}</div><div class="fcrate">${[["1", "Again"], ["3", "Hard"], ["4", "Good"], ["5", "Easy"]].map(([q, n]) => `<button type="button" class="chip" data-fq="${q}">${n}</button>`).join("")}</div></div><button type="button" class="chip" id="fcshow"><b>Show answer</b></button>`;
-  $("#fcshow").onclick = () => { $("#fca").hidden = false; $("#fcshow").hidden = true; };
-  $$("[data-fq]", box).forEach(b => b.onclick = () => { const q = +b.dataset.fq; fcRate(c.id, q); FC_RUN.queue.shift(); if (q < 3) FC_RUN.queue.push(c); fcShow(); });
+  box.innerHTML = `<div class="fcmeta"><span>${esc(t ? t.n : "")}</span><span>${R.queue.length} left</span></div>
+    <button type="button" class="fccard" id="fccard" aria-label="Tap to show the answer"><span class="fcinner"><span class="fcface fcfront"><small>Question</small><b>${esc(c.q)}</b><i>Tap to flip</i></span><span class="fcface fcback"><small>Answer</small><b>${esc(c.a)}</b><i>Source: ${src ? esc(src[0]) : esc(c.s)}</i></span></span></button>
+    <div class="fcrate" id="fcrate">${[["1", "Again", 0], ["3", "Hard", 32], ["4", "Good", 150], ["5", "Easy", 205]].map(([q, n, h]) => `<button type="button" class="fcr" data-fq="${q}" style="--h:${h}">${n}</button>`).join("")}</div>
+    <p class="small muted fckeys">Tap the card to flip it, then rate how well you knew it.</p>`;
+  const card = $("#fccard"), rate = $("#fcrate");
+  const flip = () => { card.classList.toggle("on"); rate.classList.toggle("on", card.classList.contains("on")); };
+  card.onclick = flip;
+  $$("[data-fq]", box).forEach(b => b.onclick = () => { if (!card.classList.contains("on")) return; const q = +b.dataset.fq; fcRate(c.id, q); R.queue.shift(); R.done++; if (q >= 3) R.right++; if (q < 3) R.queue.push(c); box.classList.add("fcnext"); setTimeout(() => { box.classList.remove("fcnext"); fcShow(); }, 180); });
+  if (!fcShow.keys) { fcShow.keys = 1; document.addEventListener("keydown", e => { if (current.view !== "cards" || e.target.closest("input,textarea")) return; const cd = $("#fccard"); if (!cd) return; if (e.key === " " || e.key === "Enter") { e.preventDefault(); cd.click(); } else if (cd.classList.contains("on") && "1234".includes(e.key)) { const b = $$("#fcrate [data-fq]")[+e.key - 1]; b && b.click(); } }); }
+  const sh = $("#fcshuf"); if (sh) sh.onclick = () => { store.set("fcShuffle", !store.get("fcShuffle", false)); route(); };
+  const fq = $("#fcq"); if (fq && !fq.dataset.b) { fq.dataset.b = 1; fq.addEventListener("input", () => { const v = fq.value.trim().toLowerCase(); $$("#fctl .chip").forEach(x => x.hidden = !!v && !x.dataset.q.includes(v)); }); }
 }
 function bindHome() {
   $$('[data-app-action]').forEach(b=>b.onclick=()=>b.dataset.appAction==='refresh'?refreshApp(b):shareApp());
@@ -20015,9 +20135,9 @@ function commStart() {
         if (u) { try { await commLoadMe(); } catch (e) { COMM.err = commErr(e); } }
         COMM.state = u ? (u.emailVerified ? "in" : "verify") : "out";
         if (!u) store.set("meCache", null);
-        commBadge(); if (typeof paintMe === "function") paintMe(); gateSync();
+        commBadge(); chatWatch(); if (typeof paintMe === "function") paintMe(); gateSync();
         if (u && u.emailVerified && COMM.syncOn) commSyncNotes().catch(() => {});
-        if (first) { first = false; res(); } else if (["account", "chat", "members", "settings"].includes(current.view)) route();
+        if (first) { first = false; res(); } else if (["account", "chat", "members", "settings", "foryou"].includes(current.view)) route();
       });
     });
   }).catch(e => { COMM.state = "error"; COMM.err = e.message || String(e); });
@@ -20065,7 +20185,7 @@ function commView(view, arg) {
   if (COMM.state === "verify") return head("Verify your email") + `<div class="card"><p>We sent a verification link to <b>${esc(COMM.user.email)}</b>. Open it (check spam), then tap the button below.</p><div class="btnrow"><button class="btn" id="c_verified">I've verified my email</button><button class="btn btn-ghost" id="c_resend">Resend link</button><button class="btn btn-ghost" id="c_out">Sign out</button></div><div id="c_msg" class="small muted"></div></div>`;
   if (view === "members") return COMM.isAdmin ? membersView() : head("Members") + `<div class="card">Administrator only.</div>`;
   if (view === "chat" && arg) return roomView(arg);
-  if (view === "chat") return roomsView();
+  if (view === "chat") return commIn() ? chatsHomeView() : roomsView();
   return profileView();
 }
 function commSetupHtml(showPaste) {
@@ -20156,7 +20276,7 @@ function commAvatar(p, name, cls) {
   const n = (p && p.name) || name || "?", ini = esc(n.replace(/^dr\.?\s*/i, "").trim().slice(0, 1).toUpperCase() || "?");
   return p && p.photo ? `<img class="av ${cls || ""}" src="${p.photo}" alt="">` : `<span class="av ${cls || ""}" style="--h:${[...n].reduce((a, c) => a + c.charCodeAt(0), 0) % 360}">${ini}</span>`;
 }
-const linkifyMsg = t => esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>').replace(/\n/g, "<br>");
+const linkifyMsg = t => esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>').replace(/app:(#[\w\/%.:+-]+)/g, '<a class="appcard" href="$1"><span>📚</span>Open in the app<i>›</i></a>').replace(/\n/g, "<br>");
 function imgViewer(src, name) {
   const v = document.createElement("div"); v.className = "imgview";
   v.innerHTML = `<div class="ivbar"><span>${esc(name || "")}</span><span><a class="ivbtn ivdl" download="clinical-image.jpg" href="${src}">⬇ Download</a><button class="ivbtn" id="ivx">✕</button></span></div><div class="ivwrap"><img src="${src}" alt=""></div>`;
@@ -20279,11 +20399,11 @@ function roomView(id) {
     <div class="replybar" id="c_reply" hidden></div>
     <div class="recbar" id="c_rec" hidden><span class="recdot"></span><b id="c_rect">0:00</b><span class="muted small">Recording voice message…</span><button class="btn btn-ghost" id="c_recx">Cancel</button><button class="btn" id="c_recok">Send</button></div>
     <form class="composer" id="c_comp" onsubmit="return false"><button type="button" class="iconbtn attach" id="c_att" aria-label="Attach photo, document or file">📎</button>
-      <input type="file" id="c_file" accept="image/*" multiple hidden><input type="file" id="c_cam" accept="image/*" capture="environment" hidden><input type="file" id="c_doc" multiple hidden>
+      <input type="file" id="c_file" accept="image/*" multiple hidden><input type="file" id="c_cam" accept="image/*" capture="environment" hidden><input type="file" id="c_doc" multiple hidden><input type="file" id="c_vid" accept="video/*" hidden>
       <textarea id="c_txt" rows="1" maxlength="4000" placeholder="Message" enterkeyhint="send" autocomplete="off" autocapitalize="sentences"></textarea><button type="button" class="sendbtn mic" id="c_mic" aria-label="Record a voice message">🎤</button><button class="sendbtn" id="c_send" aria-label="Send" hidden>➤</button></form></div>`;
 }
 function bindRoom(arg) {
-  const room = COMM.db.collection("rooms").doc(arg), me = COMM.user.uid, msgs = room.collection("messages");
+  const isChat = arg.startsWith("c:"), room = isChat ? chatsCol().doc(arg.slice(2)) : COMM.db.collection("rooms").doc(arg), me = COMM.user.uid, msgs = room.collection("messages");
   const log = $("#c_log"), txt = $("#c_txt");
   let replyTo = null, roomData = null, latest = [], findQ = "", sel = null, cleaned = new Set();
   const nowMs = () => Date.now(), expMs = m => m.expireAt ? (m.expireAt.toMillis ? m.expireAt.toMillis() : +new Date(m.expireAt)) : 0;
@@ -20300,10 +20420,11 @@ function bindRoom(arg) {
   $("#c_more").onclick = async () => {
     const sh = document.createElement("div"); sh.className = "sheet";
     const rd = +(roomData && roomData.retention) || 0, my = +store.get("myRetention", 0) || 0;
-    sh.innerHTML = `<div class="sheetin"><h3>Room options</h3>
+    sh.innerHTML = `<div class="sheetin"><h3>${isChat ? "Chat options" : "Room options"}</h3>
       <div class="setrow"><div><b>Auto-delete my messages</b><span>New messages you send (with their photos and files) are erased after this time</span></div><div class="setctl"><select id="ro_my">${RET.map(([v, l]) => `<option value="${v}"${v === my ? " selected" : ""}>${l}</option>`).join("")}</select></div></div>
       <div class="setrow"><div><b>Select messages to delete</b><span>${COMM.isAdmin ? "Any message in this room" : "Your own messages"}</span></div><div class="setctl"><button class="btn" id="ro_sel">Select</button></div></div>
-      ${COMM.isAdmin ? `<div class="pgroup">Administrator</div>
+      ${isChat && roomData && roomData.type === "group" ? `<div class="pgroup">Group</div><div class="setrow"><div><b>Members</b><span id="go_mem">Loading…</span></div>${roomData.by === me ? `<div class="setctl"><button class="btn" id="go_add">Add people</button></div>` : ""}</div>${roomData.by === me ? `<div class="setrow"><div><b>Group name</b><span><input id="go_name" maxlength="60" value="${esc(roomData.name || "")}"></span></div><div class="setctl"><button class="btn btn-ghost" id="go_ren">Rename</button></div></div>` : ""}<div class="setrow"><div><b>Leave this group</b><span>You will stop receiving its messages</span></div><div class="setctl"><button class="btn btn-danger" id="go_leave">Leave</button></div></div>` : ""}
+      ${COMM.isAdmin && !isChat ? `<div class="pgroup">Administrator</div>
       <div class="setrow"><div><b>Auto-delete for everyone in this room</b><span>Applies to new messages from now on</span></div><div class="setctl"><select id="ro_room">${RET.map(([v, l]) => `<option value="${v}"${v === rd ? " selected" : ""}>${l}</option>`).join("")}</select></div></div>
       <div class="setrow"><div><b>Storage used by this room</b><span id="ro_use">Counting…</span></div></div>
       <div class="setrow"><div><b>Delete messages older than</b><span>Removes them with their photos and files</span></div><div class="setctl"><select id="ro_oldd"><option value="1">1 day</option><option value="3">3 days</option><option value="7" selected>7 days</option><option value="30">30 days</option><option value="90">90 days</option></select> <button class="btn btn-ghost" id="ro_old">Delete</button></div></div>
@@ -20314,7 +20435,13 @@ function bindRoom(arg) {
     sh.addEventListener("click", e => { if (e.target === sh) close(); }); sh.querySelector("#ro_x").onclick = close;
     sh.querySelector("#ro_my").onchange = e => { store.set("myRetention", +e.target.value); roomSub(); msgEl.textContent = +e.target.value ? "Saved — your new messages will be erased automatically." : "Saved — your messages are kept."; };
     sh.querySelector("#ro_sel").onclick = () => { close(); sel = new Set(); render(latest).catch(() => {}); };
-    if (COMM.isAdmin) {
+    if (isChat && roomData && roomData.type === "group") {
+      commPeople(roomData.members).then(() => { const el = sh.querySelector("#go_mem"); if (el) el.innerHTML = roomData.members.map(u => esc((COMM.people[u] || {}).name || "Member")).join(", "); });
+      const ad = sh.querySelector("#go_add"); if (ad) ad.onclick = () => { close(); peopleSheet("add", async uids => { await room.update({members: COMM.fb.firestore.FieldValue.arrayUnion(...uids)}); roomData.members = [...new Set([...roomData.members, ...uids])]; $("#c_rd").textContent = `${roomData.members.length} members · group`; }); };
+      const rn = sh.querySelector("#go_ren"); if (rn) rn.onclick = async () => { const n = sh.querySelector("#go_name").value.trim(); if (!n) return; try { await room.update({name: n.slice(0, 60)}); roomData.name = n; $("#c_rt").textContent = n; msgEl.textContent = "Renamed."; } catch (er) { msgEl.textContent = commErr(er); } };
+      const lv = sh.querySelector("#go_leave"); lv.onclick = async () => { if (!lv.dataset.arm) { lv.dataset.arm = 1; lv.textContent = "Tap again to leave"; return; } try { await room.update({members: COMM.fb.firestore.FieldValue.arrayRemove(me)}); close(); go("#chat"); } catch (er) { msgEl.textContent = commErr(er); } };
+    }
+    if (COMM.isAdmin && !isChat) {
       sh.querySelector("#ro_room").onchange = async e => { try { await room.update({retention: +e.target.value}); roomData = {...roomData, retention: +e.target.value}; roomSub(); msgEl.textContent = "Room setting saved."; } catch (er) { msgEl.textContent = commErr(er); } };
       (async () => { try { const fs = await room.collection("files").get(), ms = await room.collection("media").get(); let b = 0, n = 0; fs.forEach(d => { b += d.data().size || 0; n++; }); let mb = 0; ms.forEach(d => mb += ((d.data().data || "").length * 0.75)); sh.querySelector("#ro_use").textContent = `${n} files (${fmtSize(b)}) · ${ms.size} photos (${fmtSize(mb)}) · ${latest.length} recent messages`; } catch (er) { sh.querySelector("#ro_use").textContent = "Could not count."; } })();
       const bulk = async (docs, label) => { let k = 0; for (const d of docs) { await delMsg(d).catch(() => {}); k++; if (k % 5 === 0) msgEl.textContent = `${label}… ${k} of ${docs.length}`; } msgEl.textContent = `Deleted ${k} message${k === 1 ? "" : "s"}.`; };
@@ -20327,7 +20454,15 @@ function bindRoom(arg) {
   $("#c_find").onclick = () => { const b = $("#c_findbar"); b.hidden = !b.hidden; if (!b.hidden) $("#c_fq").focus(); else { findQ = ""; $("#c_fq").value = ""; render(latest).catch(() => {}); } };
   $("#c_fx").onclick = () => $("#c_find").onclick();
   $("#c_fq").addEventListener("input", e => { findQ = e.target.value.trim().toLowerCase(); render(latest).catch(() => {}); });
-  room.get().then(d => { if (!d.exists) { $("#c_rt").textContent = "Room not found"; return; } roomData = d.data(); $("#c_rt").textContent = roomData.name; roomSub(); if (roomData.readonly && !COMM.isAdmin) { const c = $("#c_comp"); if (c) c.outerHTML = `<div class="composer ro small muted">📣 Read-only room — only administrators post here.</div>`; } }).catch(e => commMsg(commErr(e), true));
+  /* private and group chats: the header shows the person (photo, tick, role) or the group and its members */
+  const chatHead = async () => {
+    const t = $("#c_rt"); if (!t) return;
+    if (roomData.type === "dm") { const o = roomData.members.find(x => x !== me); await commPeople([o]); const op = COMM.people[o] || {};
+      t.innerHTML = `${esc(op.name || "Member")}${vBadge(op)}`; $("#c_rd").textContent = [op.role, op.place].filter(Boolean).join(" · ") || "Private chat";
+      t.closest(".chtitle").insertAdjacentHTML("beforebegin", `<span class="chav">${commAvatar(op, op.name, "av40")}</span>`); }
+    else { t.textContent = roomData.name || "Group"; $("#c_rd").textContent = `${roomData.members.length} members · group`; t.closest(".chtitle").insertAdjacentHTML("beforebegin", `<span class="chav"><span class="av av40 avg" style="--h:${[...(roomData.name || "G")].reduce((a, c) => a + c.charCodeAt(0), 0) % 360}">${IC2.people}</span></span>`); }
+  };
+  room.get().then(d => { if (!d.exists) { $("#c_rt").textContent = isChat ? "Chat not found" : "Room not found"; return; } roomData = d.data(); if (isChat) { chatHead().catch(() => {}); return; } $("#c_rt").textContent = roomData.name; roomSub(); if (roomData.readonly && !COMM.isAdmin) { const c = $("#c_comp"); if (c) c.outerHTML = `<div class="composer ro small muted">📣 Read-only room — only administrators post here.</div>`; } }).catch(e => commMsg(commErr(e), true));
   const fmtT = ts => { const d = ts && ts.toDate ? ts.toDate() : new Date(); return d.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}); };
   const fmtDur = s => Math.floor(s / 60) + ":" + String(Math.round(s % 60)).padStart(2, "0");
   const fileCard = (m, id) => {
@@ -20410,13 +20545,13 @@ function bindRoom(arg) {
     const sh = document.createElement("div"); sh.className = "sheet";
     sh.innerHTML = `<div class="sheetin"><h3>Share</h3><div class="attgrid">
       <button data-a="c_file"><span class="ai" style="--c:#2f7de1">🖼️</span>Photo</button><button data-a="c_cam"><span class="ai" style="--c:#e2611c">📷</span>Camera</button>
-      <button data-a="c_doc"><span class="ai" style="--c:#c0392b">📄</span>Document / file</button><button data-a="voice"><span class="ai" style="--c:#2e9b55">🎤</span>Voice message</button>
+      <button data-a="c_doc"><span class="ai" style="--c:#c0392b">📄</span>Document / file</button><button data-a="voice"><span class="ai" style="--c:#2e9b55">🎤</span>Voice message</button><button data-a="c_vid"><span class="ai" style="--c:#8e44ad">🎬</span>Video</button><button data-a="app"><span class="ai" style="--c:#0e7c86">📚</span>From the app</button>
       ${commPublic() ? "" : `<button data-a="case"><span class="ai" style="--c:#0f5f57">🩺</span>Case (no identifiers)</button><button data-a="epis"><span class="ai" style="--c:#6b4fb0">🏥</span>Open ePIS</button>`}</div>
       <p class="small muted">PDF, Word, Excel, PowerPoint, audio, video or any file up to 10 MB. Photos are compressed for fast loading; send an X-ray or ECG as a <b>file</b> to keep full quality.</p><button class="btn btn-ghost" id="att_x" style="width:100%">Cancel</button></div>`;
     document.body.appendChild(sh);
     sh.addEventListener("click", e => { if (e.target === sh) sh.remove(); });
     sh.querySelector("#att_x").onclick = () => sh.remove();
-    sh.querySelectorAll("[data-a]").forEach(b => b.onclick = () => { sh.remove(); const a = b.dataset.a; if (a === "voice") startRec(); else if (a === "case") caseSheet(); else if (a === "epis") openEpis(); else $("#" + a).click(); });
+    sh.querySelectorAll("[data-a]").forEach(b => b.onclick = () => { sh.remove(); const a = b.dataset.a; if (a === "voice") startRec(); else if (a === "case") caseSheet(); else if (a === "epis") openEpis(); else if (a === "app") appShareSheet(h => post(`📚 ${h[0]}: ${h[1]}\napp:${h[2]}`).catch(e => commMsg(commErr(e), true))); else $("#" + a).click(); });
   };
   const consentSheet = (title, previewHTML, note, btnLabel, onSend) => {
     const sh = document.createElement("div"); sh.className = "sheet";
@@ -20462,6 +20597,7 @@ function bindRoom(arg) {
   };
   $("#c_cam").onchange = async e => { const f = e.target.files[0]; e.target.value = ""; if (f) try { await sharePhoto(f); } catch (err) { commMsg(err.message || String(err), true); } };
   $("#c_doc").onchange = e => { const fs = [...e.target.files]; e.target.value = ""; if (fs.length) shareFiles(fs); };
+  $("#c_vid").onchange = e => { const fs = [...e.target.files]; e.target.value = ""; if (fs.length) shareFiles(fs); };
   /* ePIS: opened in the browser with the doctor's own login — nothing from ePIS passes through this app automatically */
   const openEpis = () => {
     const u = store.get("episUrl", "");
@@ -20533,6 +20669,223 @@ function bindRoom(arg) {
   /* share into the chat by dropping files on desktop */
   log.addEventListener("dragover", e => { e.preventDefault(); });
   log.addEventListener("drop", e => { e.preventDefault(); const fs = [...(e.dataTransfer.files || [])]; if (fs.length) shareFiles(fs); });
+}
+
+/* ===== Clinical Hub page: Tools, Emergency, Reference and AI as icon folders (#hub, #hub/tools …) ===== */
+const NAV_DESC = {calc: "Scores, doses, formulas", fluids: "Maintenance, bolus, electrolytes", equip: "Sizes, kits, oxygen", growth: "WHO charts, BP centiles", notes: "Your own notes", protocols: "Step-by-step emergency care", flow: "Algorithms at a glance", picu: "Paediatric intensive care", nicu: "Newborn intensive care", vent: "Settings and troubleshooting", drugs: "NEML doses, forms, international", cond: "Conditions A–Z", criteria: "Diagnostic criteria", stg: "Bhutan STG and national guidelines", glossary: "Terms and abbreviations", aware: "Public health information", ai: "Ask the app, ChatGPT, Claude, Gemini"};
+function hubPageView(g) {
+  const groups = g ? NAV_GROUPS.filter(x => x[0] === g) : NAV_GROUPS;
+  if (!groups.length) return hubPageView();
+  const one = g && groups[0], look = one ? GRP_LOOK[one[0]] : GRP_LOOK.hub;
+  return `${one ? `<button class="back" onclick="goUp('#hub')">${ICON.back} Clinical Hub</button>` : ""}<div class="hub-head" style="--h:${look[0]}"><span class="hub-ic ic-tile" style="--h:${look[0]}">${look[1]}</span><div><h1 class="vt">${one ? esc(one[1]) : "Clinical Hub"}</h1><p>${one ? "Tap an icon to open it. Long-press to arrange." : "Tools first, then Emergency, Reference and AI — everything you use at the bedside in one place."}</p></div></div>` +
+    groups.map(([gg, t, , ids]) => `<div class="hubsec"><span class="mpdot" style="--h:${GRP_LOOK[gg][0]}"></span><b>${esc(t)}</b>${ids.length > 1 ? arrBtn("nav." + gg) : ""}</div><div class="fold-grid" data-ord="nav.${gg}">${ORD.apply("nav." + gg, ids, x => x).map((id, i) => { const [nid, nt] = NAV_BY[id], lk = NAV_LOOK[id] || [210, ICON.list]; return `<a class="fold" data-oid="${nid}" href="#${nid}" style="--h:${lk[0]};--d:${i * 40}ms"><span class="fold-ic ic-tile">${lk[1]}</span><b>${esc(nt)}</b><small>${esc(NAV_DESC[id] || "")}</small></a>`; }).join("")}</div>`).join("");
+}
+
+/* ===== Messenger: private and group chats (Firestore "chats"), people directory, rooms, AI and sharing from the app ===== */
+const chatsCol = () => COMM.db.collection("chats");
+const dmId = (a, b) => [a, b].sort().join("_");
+const tsMs = t => t && t.toMillis ? t.toMillis() : t ? +new Date(t) : 0;
+const timeAgo = ms => { if (!ms) return ""; const d = (Date.now() - ms) / 1000; if (d < 60) return "now"; if (d < 3600) return Math.floor(d / 60) + "m"; if (d < 86400) return Math.floor(d / 3600) + "h"; if (d < 604800) return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][new Date(ms).getDay()]; return new Date(ms).toLocaleDateString([], {day: "numeric", month: "short"}); };
+const isVerified = p => p && p.approved && p.kind !== "public";
+const vBadge = p => isVerified(p) ? `<span class="vbadge" title="Verified health professional">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')}</span>` : "";
+COMM.chats = COMM.chats || [];
+async function openDM(uid) {
+  const me = COMM.user.uid; if (uid === me) return;
+  const id = dmId(me, uid), ref = chatsCol().doc(id);
+  try { const d = await ref.get(); if (!d.exists) await ref.set({type: "dm", members: [me, uid].sort(), by: me, created: COMM.fb.firestore.FieldValue.serverTimestamp(), lastTs: COMM.fb.firestore.FieldValue.serverTimestamp(), lastText: "", lastBy: ""}); }
+  catch (e) { commMsg(commErr(e), true); return; }
+  go("#chat/c:" + id);
+}
+async function createGroup(name, uids) {
+  const me = COMM.user.uid, p = COMM.profile || {};
+  const ref = await chatsCol().add({type: "group", name: name.slice(0, 60), members: [...new Set([me, ...uids])], by: me, created: COMM.fb.firestore.FieldValue.serverTimestamp(), lastTs: COMM.fb.firestore.FieldValue.serverTimestamp(), lastText: "Group created", lastBy: (p.name || "").slice(0, 60)});
+  go("#chat/c:" + ref.id);
+}
+/* the people directory: everyone with a profile; verified professionals carry a tick */
+COMM.dir = null;
+async function loadDirectory() {
+  if (COMM.dir) return COMM.dir;
+  const s = await COMM.db.collection("users").get(), out = [];
+  s.forEach(d => { const u = d.data(); COMM.people[d.id] = u; if (d.id !== COMM.user.uid && u.name) out.push({uid: d.id, ...u}); });
+  out.sort((a, b) => (isVerified(b) - isVerified(a)) || a.name.localeCompare(b.name));
+  return COMM.dir = out;
+}
+const personRow = (u, extra) => `<button class="prow" data-uid="${u.uid}">${commAvatar(u, u.name, "av44")}<span class="prt"><b>${esc(u.name)}${vBadge(u)}</b><small>${esc([u.role, u.place].filter(Boolean).join(" · ") || (u.kind === "public" ? "Member of the public" : "Member"))}</small></span>${extra || ""}</button>`;
+function peopleSheet(mode, onDone, preset) {
+  const sh = document.createElement("div"); sh.className = "sheet psheet"; let picked = new Set(preset || []);
+  sh.innerHTML = `<div class="sheetin"><div class="pshead"><h3>${mode === "group" ? "New group" : mode === "add" ? "Add people" : "New message"}</h3><button class="iconbtn" id="ps_x" aria-label="Close">✕</button></div>
+    ${mode === "group" ? `<input id="ps_name" class="psname" maxlength="60" placeholder="Group name (e.g. PICU team, Case club)">` : ""}
+    <div class="pssearch">${ICON.search}<input id="ps_q" type="search" placeholder="Search people by name, role or place" autocomplete="off"></div>
+    ${mode === "dm" ? `<button class="prow pnew" id="ps_group"><span class="av av44 avg">${IC2.people}</span><span class="prt"><b>New group</b><small>Discuss a topic with several colleagues</small></span></button>` : ""}
+    <div class="pslist" id="ps_list"><div class="muted small" style="padding:14px">Loading people…</div></div>
+    ${mode !== "dm" ? `<div class="btnrow"><button class="btn" id="ps_go" disabled>${mode === "group" ? "Create group" : "Add"}</button></div>` : ""}<div class="small" id="ps_msg"></div></div>`;
+  document.body.appendChild(sh);
+  const close = () => sh.remove(); sh.querySelector("#ps_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
+  const list = sh.querySelector("#ps_list"), q = sh.querySelector("#ps_q"), goB = sh.querySelector("#ps_go");
+  const upd = () => { if (goB) goB.disabled = !picked.size || (mode === "group" && !sh.querySelector("#ps_name").value.trim()); };
+  const draw = () => { const t = q.value.trim().toLowerCase(), ppl = (COMM.dir || []).filter(u => !t || (u.name + " " + (u.role || "") + " " + (u.place || "")).toLowerCase().includes(t));
+    list.innerHTML = ppl.length ? ppl.slice(0, 200).map(u => personRow(u, mode !== "dm" ? `<span class="pck${picked.has(u.uid) ? " on" : ""}">${SI('<path d="m6 12.5 4 4 8-9"/>')}</span>` : "")).join("") : `<div class="muted small" style="padding:14px">No one matches.</div>`;
+    $$(".prow[data-uid]", list).forEach(b => b.onclick = () => { const u = b.dataset.uid; if (mode === "dm") { close(); openDM(u); return; } picked.has(u) ? picked.delete(u) : picked.add(u); b.querySelector(".pck").classList.toggle("on", picked.has(u)); upd(); }); };
+  q.addEventListener("input", draw); if (mode === "group") sh.querySelector("#ps_name").addEventListener("input", upd);
+  const gb = sh.querySelector("#ps_group"); if (gb) gb.onclick = () => { close(); peopleSheet("group"); };
+  if (goB) goB.onclick = async () => { goB.disabled = true; try { if (mode === "group") await createGroup(sh.querySelector("#ps_name").value.trim(), [...picked]); else await onDone([...picked]); close(); } catch (e) { sh.querySelector("#ps_msg").textContent = commErr(e); goB.disabled = false; } };
+  loadDirectory().then(draw).catch(e => list.innerHTML = `<div class="warn small">${esc(commErr(e))}</div>`);
+  setTimeout(() => q.focus(), 250);
+}
+/* chats list (Messenger style) */
+function chatsHomeView() {
+  const p = COMM.profile || {}, pub = !commMember();
+  return `<div class="msgr"><div class="msgrhead"><a href="#account" class="msgrme" aria-label="My profile">${commAvatar(p, p.name, "av40")}</a><h1 class="vt">Chats</h1><button class="iconbtn msgrbtn" id="m_new" aria-label="New message" title="New message">${SI('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>')}</button></div>
+    <div class="pssearch msgrsearch">${ICON.search}<input id="m_q" type="search" placeholder="Search chats and people" autocomplete="off"></div>
+    <div class="msgrstrip" id="m_strip"></div>
+    <a class="crow cai" href="#ai"><span class="av av52 avai">${ICON.spark}</span><span class="crt"><b>AI assistants</b><small>Ask the app · ChatGPT · Claude · Gemini</small></span><span class="cpin">AI</span></a>
+    <div id="m_list" class="clist"><div class="muted small" style="padding:16px">Loading your chats…</div></div>
+    <div class="pgroup msgrrooms">${pub ? "Public rooms" : "Rooms"}</div><div id="c_rooms" class="clist"><div class="muted small" style="padding:12px">Loading rooms…</div></div>
+    ${COMM.isAdmin ? `<details class="card"><summary><b>Manage rooms</b> (administrator)</summary><button class="btn" id="c_seed">Create default chat rooms</button><div class="fgrid" style="margin-top:8px">${field("c_rname", "New room name", {type: "text"})}${field("c_rdesc", "Description", {type: "text"})}</div><label class="small"><input type="checkbox" id="c_rro"> Read-only (only administrators post)</label> &nbsp; <label class="small"><input type="checkbox" id="c_rpub"> Public room (open to public members)</label><div class="btnrow"><button class="btn" id="c_radd">Add room</button></div></details>` : ""}
+    <div id="c_msg" class="small"></div><p class="small muted msgrnote">🔒 Never share patient-identifiable information. Messages are private to the people in each chat.</p>
+    <button class="fab" id="m_fab" aria-label="New message">${SI('<path d="M12 5v14M5 12h14"/>')}</button></div>`;
+}
+function chatRowHTML(c) {
+  const me = COMM.user.uid, other = c.type === "dm" ? c.members.find(x => x !== me) : null, op = other ? COMM.people[other] || {} : null;
+  const title = c.type === "dm" ? (op.name || "Member") : c.name || "Group";
+  const last = tsMs(c.lastTs), unread = last > (+store.get("lastRead:c:" + c.id, 0) || 0) && c.lastBy && c.lastBy !== (COMM.profile || {}).name && c.lastText;
+  const av = c.type === "dm" ? commAvatar(op, title, "av52") : `<span class="av av52 avg" style="--h:${[...title].reduce((a, ch) => a + ch.charCodeAt(0), 0) % 360}">${IC2.people}</span>`;
+  return `<a class="crow${unread ? " unread" : ""}" href="#chat/c:${c.id}" data-q="${esc((title + " " + (op ? (op.role || "") + " " + (op.place || "") : "")).toLowerCase())}">${av}<span class="crt"><b>${esc(title)}${op ? vBadge(op) : ""}</b><small>${c.lastText ? (c.type === "group" && c.lastBy ? esc(c.lastBy.split(" ")[0]) + ": " : "") + esc(c.lastText) : c.type === "group" ? `${c.members.length} members` : "Say hello 👋"}</small></span><span class="cmeta"><small>${timeAgo(last)}</small>${unread ? `<i class="cdot"></i>` : ""}</span></a>`;
+}
+function bindChatsHome() {
+  const me = COMM.user.uid, list = $("#m_list"), q = $("#m_q");
+  const draw = async () => {
+    const cs = COMM.chats.slice().sort((a, b) => tsMs(b.lastTs) - tsMs(a.lastTs));
+    await commPeople(cs.filter(c => c.type === "dm").map(c => c.members.find(x => x !== me)));
+    if (!list.isConnected) return;
+    list.innerHTML = cs.length ? cs.map(chatRowHTML).join("") : `<div class="cempty"><b>No conversations yet</b><span>Tap ✎ to message a colleague or start a group.</span></div>`;
+    filter();
+  };
+  const filter = () => { const t = q.value.trim().toLowerCase(); $$(".crow[data-q]").forEach(r => r.hidden = !!t && !r.dataset.q.includes(t)); };
+  q.addEventListener("input", filter);
+  $("#m_new").onclick = $("#m_fab").onclick = () => peopleSheet("dm");
+  COMM.unsub.push(chatsCol().where("members", "array-contains", me).onSnapshot(s => { COMM.chats = []; s.forEach(d => COMM.chats.push({id: d.id, ...d.data()})); draw().catch(() => {}); chatBadge(); }, e => { list.innerHTML = `<div class="warn small">${esc(commErr(e))}</div>`; }));
+  /* people strip: quick start with colleagues */
+  loadDirectory().then(ppl => { const el = $("#m_strip"); if (!el) return; el.innerHTML = ppl.slice(0, 24).map(u => `<button class="spers" data-uid="${u.uid}">${commAvatar(u, u.name, "av56")}${isVerified(u) ? `<i class="sv">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')}</i>` : ""}<span>${esc(u.name.replace(/^dr\.?\s*/i, "").split(" ")[0])}</span></button>`).join(""); $$(".spers", el).forEach(b => b.onclick = () => openDM(b.dataset.uid)); }).catch(() => {});
+}
+/* unread badge on the Chat button, kept live while signed in */
+function chatBadge() {
+  const b = $("#chatbadge"); if (!b || !COMM.user) return;
+  const n = COMM.chats.filter(c => tsMs(c.lastTs) > (+store.get("lastRead:c:" + c.id, 0) || 0) && c.lastBy && c.lastBy !== (COMM.profile || {}).name && c.lastText).length;
+  b.hidden = !n; b.textContent = n > 9 ? "9+" : n;
+}
+function chatWatch() {
+  if (COMM.chatW) { COMM.chatW(); COMM.chatW = null; }
+  if (!(COMM.state === "in" && COMM.user && COMM.profile && COMM.db)) { const b = $("#chatbadge"); if (b) b.hidden = true; return; }
+  COMM.chatW = chatsCol().where("members", "array-contains", COMM.user.uid).onSnapshot(s => { COMM.chats = []; s.forEach(d => COMM.chats.push({id: d.id, ...d.data()})); chatBadge(); }, () => {});
+}
+/* share a page of the app into a chat: topics, calculators, guidelines, criteria, hubs */
+function appIndex() {
+  if (appIndex.c) return appIndex.c;
+  const out = [];
+  TOPICS.forEach(t => out.push(["Topic", t.n, "#topic/" + t.id]));
+  CALCS.forEach(c => out.push(["Calculator", c.t, "#calc/" + c.id]));
+  GL.books.forEach(b => out.push(["Guideline", b.s || b.t, "#gl/" + b.id]));
+  (GL_BY.criteria ? GL_BY.criteria.toc : []).forEach((t, i) => out.push(["Criteria", t[0], "#gl/criteria/" + i]));
+  ["picu", "nicu", "criteria", "hub"].forEach(h => NAV_BY[h] && out.push(["Section", NAV_BY[h][1], "#" + h]));
+  try { for (const [a, k] of LINK.map) if (a === k.toLowerCase()) out.push(["Drug", k, "#drug/" + encodeURIComponent(k)]); } catch (e) {}
+  return appIndex.c = out;
+}
+function appShareSheet(onPick) {
+  const sh = document.createElement("div"); sh.className = "sheet psheet";
+  sh.innerHTML = `<div class="sheetin"><div class="pshead"><h3>📚 Share from the app</h3><button class="iconbtn" id="as_x" aria-label="Close">✕</button></div><p class="small muted" style="margin:0 0 8px">Send a drug, topic, calculator or guideline as a card — everyone can open it and discuss the same page.</p>
+    <div class="pssearch">${ICON.search}<input id="as_q" type="search" placeholder="e.g. amoxicillin, dengue, GCS, Kawasaki" autocomplete="off"></div><div class="pslist" id="as_list"></div></div>`;
+  document.body.appendChild(sh);
+  const close = () => sh.remove(); sh.querySelector("#as_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
+  const q = sh.querySelector("#as_q"), list = sh.querySelector("#as_list"), idx = appIndex();
+  const draw = () => { const t = q.value.trim().toLowerCase(); const hits = t.length < 2 ? [] : idx.filter(x => x[1].toLowerCase().includes(t)).sort((a, b) => a[1].toLowerCase().indexOf(t) - b[1].toLowerCase().indexOf(t)).slice(0, 40);
+    list.innerHTML = t.length < 2 ? `<div class="muted small" style="padding:12px">Type at least two letters.</div>` : hits.length ? hits.map((h, i) => `<button class="prow" data-i="${i}"><span class="av av44 avk">${esc(h[0][0])}</span><span class="prt"><b>${esc(h[1])}</b><small>${esc(h[0])}</small></span></button>`).join("") : `<div class="muted small" style="padding:12px">Nothing found.</div>`;
+    $$(".prow", list).forEach(b => b.onclick = () => { const h = hits[+b.dataset.i]; close(); onPick(h); }); };
+  q.addEventListener("input", draw); draw(); setTimeout(() => q.focus(), 250);
+}
+
+/* ===== For You: a public feed for health awareness, tips and questions (Firestore "posts") ===== */
+const FEED_TAGS = [["tip", "Health tip", 150], ["aware", "Awareness", 200], ["q", "Question", 262], ["news", "News", 28], ["story", "Story", 330]];
+const tagLook = k => FEED_TAGS.find(t => t[0] === k) || FEED_TAGS[1];
+function feedView() {
+  const head = `<div class="feedhead"><div><h1 class="vt">For You</h1><p class="vsub">Health tips, awareness and questions from health workers and the public in Bhutan.</p></div></div>`;
+  if (COMM.state !== "in" || !COMM.profile) return head + `<div class="card"><p><b>Sign in to read and post.</b> The For You feed is open to everyone with a free account.</p><a class="btn" href="#account">Sign in or create an account</a></div>`;
+  const p = COMM.profile;
+  return head + `<div class="feedtabs" id="f_tabs">${[["all", "For you"], ["pro", "From professionals"], ["q", "Questions"], ["mine", "My posts"]].map(([k, l], i) => `<button class="chip${i ? "" : " on"}" data-f="${k}">${l}</button>`).join("")}</div>
+    <button class="fcompose" id="f_new">${commAvatar(p, p.name, "av40")}<span>Share a health tip or ask a question…</span><i>${SI('<rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/>')}</i></button>
+    <div id="f_list" class="flist"><div class="fskel"></div><div class="fskel"></div></div><div id="c_msg" class="small"></div>
+    <div class="btnrow" style="justify-content:center"><button class="btn btn-ghost" id="f_more" hidden>Load more</button></div>
+    <p class="small muted" style="text-align:center">Not for emergencies — call 112. Posts are general information, not personal medical advice.</p>`;
+}
+function bindFeed() {
+  if (COMM.state !== "in" || !COMM.profile) return;
+  const me = COMM.user.uid, posts = COMM.db.collection("posts"), list = $("#f_list"); let limit = 25, filt = "all", docs = [], open = new Set(), liked = {};
+  const myLikes = async ids => { await Promise.all(ids.filter(id => !(id in liked)).map(id => posts.doc(id).collection("likes").doc(me).get().then(d => liked[id] = d.exists).catch(() => liked[id] = false))); };
+  const card = d => { const m = d.data(), pe = COMM.people[m.uid] || {}, [, tl, th] = tagLook(m.tag), long = (m.text || "").length > 360;
+    return `<article class="fpost" data-id="${d.id}"><header>${commAvatar(pe.name ? pe : {name: m.name, photo: ""}, m.name, "av44")}<div class="fwho"><b>${esc(m.name)}${m.pro ? `<span class="vbadge" title="Verified health professional">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')}</span>` : ""}</b><small>${esc(m.role || (m.pro ? "Health professional" : "Member"))} · ${timeAgo(tsMs(m.ts))}</small></div><span class="ftag" style="--h:${th}">${tl}</span><button class="iconbtn fmore" data-more="${d.id}" aria-label="More">⋯</button></header>
+      <div class="ftext${long ? " clamp" : ""}">${linkifyMsg(m.text || "")}</div>${long ? `<button class="fsee" data-see="${d.id}">See more</button>` : ""}
+      ${m.img ? `<button class="fimg" data-img="${d.id}"><img src="${m.img}" alt="Photo shared with the post" loading="lazy"></button>` : ""}
+      <footer><button class="fact flike${liked[d.id] ? " on" : ""}" data-like="${d.id}"><span class="heart">${SI('<path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"/>')}</span><b>${m.likes || 0}</b></button><button class="fact" data-com="${d.id}">${SI('<path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3 21l1.4-5.4A8.5 8.5 0 1 1 21 12z"/>')}<b>${m.comments || 0}</b></button><button class="fact" data-share="${d.id}">${SI('<path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/>')}<b>Share</b></button></footer>
+      <div class="fcoms" id="fc_${d.id}" ${open.has(d.id) ? "" : "hidden"}></div></article>`; };
+  const shown = () => docs.filter(d => { const m = d.data(); return filt === "all" || (filt === "pro" && m.pro) || (filt === "q" && m.tag === "q") || (filt === "mine" && m.uid === me); });
+  const draw = async () => {
+    await commPeople(docs.map(d => d.data().uid)); await myLikes(docs.map(d => d.id));
+    const s = shown(); list.innerHTML = s.length ? s.map(card).join("") : `<div class="cempty"><b>${filt === "mine" ? "You haven't posted yet" : "Nothing here yet"}</b><span>Be the first to share a health tip 🌱</span></div>`;
+    $$("[data-see]", list).forEach(b => b.onclick = () => { b.previousElementSibling.classList.remove("clamp"); b.remove(); });
+    $$("[data-img]", list).forEach(b => b.onclick = () => imgViewer(b.querySelector("img").src, ""));
+    $$("[data-like]", list).forEach(b => b.onclick = async () => { const id = b.dataset.like, on = !liked[id], n = b.querySelector("b"); liked[id] = on; b.classList.toggle("on", on); b.classList.remove("pop"); void b.offsetWidth; if (on) b.classList.add("pop"); n.textContent = Math.max(0, +n.textContent + (on ? 1 : -1));
+      try { const lr = posts.doc(id).collection("likes").doc(me), inc = COMM.fb.firestore.FieldValue.increment(on ? 1 : -1), batch = COMM.db.batch(); if (on) batch.set(lr, {ts: COMM.fb.firestore.FieldValue.serverTimestamp()}); else batch.delete(lr); batch.update(posts.doc(id), {likes: inc}); await batch.commit(); } catch (e) { liked[id] = !on; commMsg(commErr(e), true); } });
+    $$("[data-share]", list).forEach(b => b.onclick = async () => { const m = docs.find(x => x.id === b.dataset.share).data(), t = `${m.text}\n\n— shared from Bhutan Clinical Reference`; try { if (navigator.share) await navigator.share({text: t}); else { await navigator.clipboard.writeText(t); b.querySelector("b").textContent = "Copied"; } } catch (e) {} });
+    $$("[data-com]", list).forEach(b => b.onclick = () => toggleComs(b.dataset.com));
+    $$("[data-more]", list).forEach(b => b.onclick = () => moreSheet(b.dataset.more));
+    open.forEach(id => { const el = $("#fc_" + id); if (el && !el.dataset.on) loadComs(id); });
+    $("#f_more").hidden = docs.length < limit;
+  };
+  const sub = () => { if (COMM.feedU) COMM.feedU(); COMM.feedU = posts.orderBy("ts", "desc").limit(limit).onSnapshot(s => { docs = []; s.forEach(d => docs.push(d)); draw().catch(() => {}); }, e => list.innerHTML = `<div class="warn small">${esc(commErr(e))}</div>`); COMM.unsub.push(() => { if (COMM.feedU) { COMM.feedU(); COMM.feedU = null; } }); };
+  sub();
+  $("#f_more").onclick = () => { limit += 25; sub(); };
+  $$("#f_tabs .chip").forEach(b => b.onclick = () => { $$("#f_tabs .chip").forEach(x => x.classList.toggle("on", x === b)); filt = b.dataset.f; draw().catch(() => {}); });
+  const comsU = {};
+  const loadComs = id => { const el = $("#fc_" + id); if (!el) return; el.dataset.on = 1; el.innerHTML = `<div class="muted small">Loading comments…</div>`;
+    if (comsU[id]) comsU[id]();
+    comsU[id] = posts.doc(id).collection("comments").orderBy("ts").limitToLast(100).onSnapshot(async s => { const cs = []; s.forEach(d => cs.push(d)); await commPeople(cs.map(d => d.data().uid)); const e2 = $("#fc_" + id); if (!e2) return;
+      e2.innerHTML = cs.map(d => { const c = d.data(), pe = COMM.people[c.uid] || {}; return `<div class="fcom">${commAvatar(pe, c.name, "av32")}<div class="fcb"><b>${esc(c.name)}${c.pro ? `<span class="vbadge">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')}</span>` : ""}</b><span>${linkifyMsg(c.text)}</span><small>${timeAgo(tsMs(c.ts))}${c.uid === me || COMM.isAdmin ? ` · <button class="lnk" data-dc="${d.id}">Delete</button>` : ""}</small></div></div>`; }).join("") + `<form class="fcomin" onsubmit="return false"><input maxlength="1000" placeholder="Write a comment…" enterkeyhint="send"><button class="sendbtn" aria-label="Send comment">➤</button></form>`;
+      const f = e2.querySelector("form"), inp = f.querySelector("input");
+      f.querySelector("button").onclick = async () => { const t = inp.value.trim(); if (!t) return; const ids = deidFind(t); if (ids.length && !inp.dataset.w) { inp.dataset.w = 1; commMsg(`Possible personal identifier: ${ids[0][1]}. Remove it, or send again.`, true); return; } inp.value = ""; delete inp.dataset.w;
+        try { const pp = COMM.profile, b2 = COMM.db.batch(), cr = posts.doc(id).collection("comments").doc(); b2.set(cr, {uid: me, name: pp.name, pro: !!commMember(), text: t.slice(0, 1000), ts: COMM.fb.firestore.FieldValue.serverTimestamp()}); b2.update(posts.doc(id), {comments: COMM.fb.firestore.FieldValue.increment(1)}); await b2.commit(); } catch (er) { inp.value = t; commMsg(commErr(er), true); } };
+      $$("[data-dc]", e2).forEach(b => b.onclick = async () => { const b2 = COMM.db.batch(); b2.delete(posts.doc(id).collection("comments").doc(b.dataset.dc)); b2.update(posts.doc(id), {comments: COMM.fb.firestore.FieldValue.increment(-1)}); await b2.commit().catch(er => commMsg(commErr(er), true)); });
+    }, e => { el.innerHTML = `<div class="warn small">${esc(commErr(e))}</div>`; });
+    COMM.unsub.push(() => comsU[id] && comsU[id]()); };
+  const toggleComs = id => { const el = $("#fc_" + id); if (!el) return; if (open.has(id)) { open.delete(id); el.hidden = true; return; } open.add(id); el.hidden = false; loadComs(id); };
+  const moreSheet = id => { const m = docs.find(x => x.id === id).data(), mine = m.uid === me;
+    const sh = document.createElement("div"); sh.className = "sheet"; sh.innerHTML = `<div class="sheetin"><h3>Post options</h3><div class="btnrow" style="flex-direction:column;align-items:stretch">${mine || COMM.isAdmin ? `<button class="btn btn-danger" id="fo_del">Delete post</button>` : ""}${mine ? "" : `<button class="btn btn-ghost" id="fo_rep">Report to the administrator</button><button class="btn btn-ghost" id="fo_dm">Message ${esc(m.name.split(" ")[0])}</button>`}<button class="btn btn-ghost" id="fo_x">Close</button></div><div class="small" id="fo_msg"></div></div>`;
+    document.body.appendChild(sh); const close = () => sh.remove(); sh.querySelector("#fo_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
+    const del = sh.querySelector("#fo_del"); if (del) del.onclick = async () => { if (!del.dataset.arm) { del.dataset.arm = 1; del.textContent = "Tap again to delete"; return; } try { await posts.doc(id).delete(); close(); } catch (e) { sh.querySelector("#fo_msg").textContent = commErr(e); } };
+    const rep = sh.querySelector("#fo_rep"); if (rep) rep.onclick = async () => { try { await COMM.db.collection("reports").add({post: id, uid: me, ts: COMM.fb.firestore.FieldValue.serverTimestamp()}); sh.querySelector("#fo_msg").textContent = "Thank you — the administrator will review it."; rep.disabled = true; } catch (e) { sh.querySelector("#fo_msg").textContent = commErr(e); } };
+    const dm = sh.querySelector("#fo_dm"); if (dm) dm.onclick = () => { close(); openDM(m.uid); }; };
+  /* composer */
+  $("#f_new").onclick = () => {
+    const sh = document.createElement("div"); sh.className = "sheet psheet"; let tag = commMember() ? "tip" : "q", img = null;
+    sh.innerHTML = `<div class="sheetin"><div class="pshead"><h3>New post</h3><button class="iconbtn" id="fp_x" aria-label="Close">✕</button></div>
+      <div class="chips wrap" id="fp_tags">${FEED_TAGS.map(([k, l, h]) => `<button class="chip ftagc${k === tag ? " on" : ""}" data-t="${k}" style="--h:${h}">${l}</button>`).join("")}</div>
+      <textarea id="fp_t" rows="5" maxlength="2000" placeholder="${commMember() ? "Share a health tip, awareness message or answer…" : "Ask a health question or share an awareness message…"}"></textarea>
+      <div id="fp_prev"></div><div class="fpbar"><button class="btn btn-ghost" id="fp_ph">${SI('<rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/>')} Photo</button><input type="file" id="fp_f" accept="image/*" hidden><span class="small muted" id="fp_n">0 / 2000</span></div>
+      <label class="shchk"><input type="checkbox" id="fp_ok"> No one's personal details (name, face, CID, phone, address) appear, and this is general information — not a private medical case.</label>
+      <div class="btnrow"><button class="btn" id="fp_go" disabled>Post</button></div><div class="small" id="fp_msg"></div></div>`;
+    document.body.appendChild(sh);
+    const close = () => sh.remove(), t = sh.querySelector("#fp_t"), goB = sh.querySelector("#fp_go"), ok = sh.querySelector("#fp_ok"), msg = sh.querySelector("#fp_msg");
+    sh.querySelector("#fp_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
+    const upd = () => { goB.disabled = !ok.checked || (!t.value.trim() && !img); sh.querySelector("#fp_n").textContent = `${t.value.length} / 2000`; };
+    t.addEventListener("input", upd); ok.onchange = upd;
+    $$("#fp_tags .chip", sh).forEach(b => b.onclick = () => { tag = b.dataset.t; $$("#fp_tags .chip", sh).forEach(x => x.classList.toggle("on", x === b)); });
+    sh.querySelector("#fp_ph").onclick = () => sh.querySelector("#fp_f").click();
+    sh.querySelector("#fp_f").onchange = async e => { const f = e.target.files[0]; e.target.value = ""; if (!f) return; try { img = (await commImage(f, 1080, 0.72, 320000)).data; sh.querySelector("#fp_prev").innerHTML = `<div class="fpimg"><img src="${img}" alt=""><button class="iconbtn" id="fp_rm" aria-label="Remove photo">✕</button></div>`; sh.querySelector("#fp_rm").onclick = () => { img = null; sh.querySelector("#fp_prev").innerHTML = ""; upd(); }; upd(); } catch (er) { msg.textContent = er.message; } };
+    goB.onclick = async () => { const text = t.value.trim(), ids = deidFind(text); if (ids.length && !goB.dataset.w) { goB.dataset.w = 1; msg.innerHTML = `<span style="color:var(--red)">Possible personal identifier: ${esc(ids[0][1])} (“${esc(ids[0][0])}”). Remove it, or tap Post again.</span>`; return; }
+      goB.disabled = true; goB.textContent = "Posting…";
+      try { const pp = COMM.profile; await posts.add({uid: me, name: pp.name, role: (pp.role || "").slice(0, 60), pro: !!commMember(), tag, text: text.slice(0, 2000), ...(img ? {img} : {}), likes: 0, comments: 0, ts: COMM.fb.firestore.FieldValue.serverTimestamp()}); close(); }
+      catch (er) { goB.disabled = false; goB.textContent = "Post"; msg.textContent = commErr(er); } };
+    setTimeout(() => t.focus(), 250);
+  };
 }
 
 function membersView() {
@@ -20612,8 +20965,9 @@ function bindComm(view, arg) {
     load().catch(e => commMsg(commErr(e), true));
   }
   if (view === "chat" && !arg && commIn()) {
+    bindChatsHome();
     const col = COMM.db.collection("rooms"), qy = commMember() ? col.orderBy("order") : col.where("audience", "==", "public");
-    COMM.unsub.push(qy.onSnapshot(s => { const rs = []; s.forEach(d => rs.push({id: d.id, ...d.data()})); rs.sort((a, b) => (a.order || 0) - (b.order || 0)); COMM.rooms = rs; const el = $("#c_rooms"); if (el) el.innerHTML = rs.length ? rs.map(r => { const lt = r.lastTs && r.lastTs.toDate ? r.lastTs.toDate() : null, unread = lt && lt.getTime() > (store.get("lastRead:" + r.id, 0) || 0); return `<a class="room${unread ? " unread" : ""}" href="#chat/${esc(r.id)}"><span class="ricon${r.audience === "public" ? " rpub" : ""}">${r.readonly ? "📣" : r.audience === "public" ? "🏡" : "#"}</span><span class="rtx"><b>${esc(r.name)}</b><small>${r.lastText ? `<i>${esc(r.lastBy || "")}:</i> ${esc(r.lastText)}` : esc(r.desc || "")}</small></span><span class="rmeta">${lt ? `<small>${lt.toDateString() === new Date().toDateString() ? lt.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}) : lt.toLocaleDateString([], {day: "numeric", month: "short"})}</small>` : ""}${unread ? '<span class="udot"></span>' : ""}</span></a>`; }).join("") : `<div class="card muted">No rooms yet.${COMM.isAdmin ? " Open “Manage rooms” below and create the default rooms." : " The administrator will create them soon."}</div>`; }, e => commMsg(commErr(e), true)));
+    COMM.unsub.push(qy.onSnapshot(s => { const rs = []; s.forEach(d => rs.push({id: d.id, ...d.data()})); rs.sort((a, b) => (a.order || 0) - (b.order || 0)); COMM.rooms = rs; const el = $("#c_rooms"); if (el) el.innerHTML = rs.length ? rs.map(r => { const lt = r.lastTs && r.lastTs.toDate ? r.lastTs.toDate() : null, unread = lt && lt.getTime() > (store.get("lastRead:" + r.id, 0) || 0); return `<a class="crow${unread ? " unread" : ""}" href="#chat/${esc(r.id)}" data-q="${esc((r.name + " " + (r.desc || "")).toLowerCase())}"><span class="av av52 avroom${r.audience === "public" ? " rpub" : ""}" style="--h:${(r.order || 1) * 47 % 360}">${r.readonly ? "📣" : r.audience === "public" ? "🏡" : "#"}</span><span class="crt"><b>${esc(r.name)}</b><small>${r.lastText ? `${esc((r.lastBy || "").split(" ")[0])}: ${esc(r.lastText)}` : esc(r.desc || "")}</small></span><span class="cmeta"><small>${lt ? timeAgo(lt.getTime()) : ""}</small>${unread ? `<i class="cdot"></i>` : ""}</span></a>`; }).join("") : `<div class="card muted">No rooms yet.${COMM.isAdmin ? " Open “Manage rooms” below and create the default rooms." : " The administrator will create them soon."}</div>`; }, e => commMsg(commErr(e), true)));
     on("c_seed", async () => { await Promise.all(DEFAULT_ROOMS.map(([id, name, desc, order, ro, aud]) => col.doc(id).set({name, desc, order, readonly: !!ro, ...(aud ? {audience: aud} : {})}, {merge: true}))); commMsg("Default rooms created or updated (existing messages kept)."); });
     on("c_radd", async () => { const name = $("#c_rname").value.trim(); if (!name) return commMsg("Enter a name.", true); const id = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "room" + Date.now(); await col.doc(id).set({name, desc: $("#c_rdesc").value.trim(), order: 50, readonly: $("#c_rro").checked, ...($("#c_rpub") && $("#c_rpub").checked ? {audience: "public"} : {})}); commMsg("Room added."); });
   }
@@ -21029,18 +21383,22 @@ const NAV = [
   ["ai/chatgpt", "ChatGPT", ICON.aiGpt], ["ai/claude", "Claude", ICON.aiClaude], ["ai/gemini", "Gemini", ICON.aiGemini], ["ai/google", "Google search", ICON.google]
 ];
 /* categories: each opens like a tab to show its icons, then folds away again */
-const NAV_PIN = ["home", "search"];
+/* bottom bar: Home · Clinical Hub · Chat · Settings. The Hub holds four sections, in this order: Tools, Emergency, Reference, AI */
+NAV.push(["chat", "Chat", ICON.chat], ["hub", "Clinical Hub", ICON.list], ["foryou", "For You", ICON.heart]);
+const NAV_PIN = ["home", "search", "foryou", "chat", "settings"];
 const NAV_GROUPS = [
-  ["ref", "Reference", ICON.book, ["drugs", "cond", "criteria", "stg", "glossary"]],
-  ["emerg", "Emergency & bedside", ICON.siren, ["protocols", "flow", "picu", "nicu", "vent"]],
   ["tools", "Tools", ICON.ruler, ["calc", "fluids", "equip", "growth", "notes"]],
-  ["ai", "AI", ICON.spark, ["ask", "ai/chatgpt", "ai/claude", "ai/gemini", "ai/google", "ai"]],
-  ["me", "Community", ICON.chat, ["aware", "account", "settings"]]
+  ["emerg", "Emergency", ICON.siren, ["protocols", "flow", "picu", "nicu", "vent"]],
+  ["ref", "Reference", ICON.book, ["drugs", "cond", "criteria", "stg", "glossary", "aware"]],
+  ["ai", "AI", ICON.spark, ["ai"]]
 ];
+const HUB_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><circle cx="17" cy="17" r="3.6"/></svg>';
 const NAV_BY = Object.fromEntries(NAV.map(n => [n[0], n]));
 /* each menu item gets its own colour and a matching icon tile */
 const NAV_LOOK = {picu: [192, IC2.vent], nicu: [322, IC2.baby], criteria: [268, IC2.score],home: [205, ICON.home], search: [215, ICON.search], drugs: [150, IC2.drugs], cond: [262, IC2.med], stg: [28, IC2.guide], glossary: [42, ICON.book], protocols: [354, IC2.emerg], flow: [328, ICON.flow], calc: [222, IC2.calc], vent: [188, IC2.vent], fluids: [200, IC2.drop], equip: [16, IC2.equip], growth: [128, IC2.growth], notes: [48, ICON.note], account: [174, ICON.chat], settings: [236, ICON.gear], ask: [276, ICON.spark], aware: [338, IC2.heart], ai: [292, ICON.ai], "ai/chatgpt": [160, ICON.aiGpt], "ai/claude": [18, ICON.aiClaude], "ai/gemini": [224, ICON.aiGemini], "ai/google": [210, ICON.google]};
-const GRP_LOOK = {ref: [28, ICON.book], emerg: [354, ICON.siren], tools: [222, ICON.ruler], ai: [276, ICON.spark], me: [174, IC2.people]};
+const GRP_LOOK = {ref: [28, ICON.book], emerg: [354, ICON.siren], tools: [222, ICON.ruler], ai: [276, ICON.spark], me: [174, IC2.people], hub: [250, HUB_ICON]};
+const FY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.2-9.6A5 5 0 0 1 12 6.3a5 5 0 0 1 9.2 5.1C19.5 16.4 12 21 12 21z"/><path d="M9.5 12.5h5M12 10v5"/></svg>';
+Object.assign(NAV_LOOK, {chat: [174, ICON.chat], hub: [250, HUB_ICON], ai: [276, ICON.spark], foryou: [345, FY_ICON]});
 const nic = (look, cls = "") => look ? `<span class="nic ic-tile ${cls}" style="--h:${look[0]}" aria-hidden="true">${look[1]}</span>` : "";
 const navIc = id => NAV_LOOK[id] ? nic(NAV_LOOK[id]) : NAV_BY[id][2];
 const navBtn = id => { const [i, t] = NAV_BY[id]; return `<button class="nav" data-nav="${i}">${navIc(i)}<span>${t}</span></button>`; };
@@ -21051,10 +21409,13 @@ function navSetGroup(gid, open) {
 }
 function mpopClose() { const p = $("#mpop"); if (p) p.hidden = true; $$(".mbtn[data-mg]").forEach(b => b.setAttribute("aria-expanded", "false")); }
 function mpopOpen(gid) {
-  const p = $("#mpop"), g = NAV_GROUPS.find(x => x[0] === gid); if (!p || !g) return;
+  const p = $("#mpop"), groups = gid === "hub" ? NAV_GROUPS : NAV_GROUPS.filter(x => x[0] === gid); if (!p || !groups.length) return;
   if (!p.hidden && p.dataset.g === gid) { mpopClose(); return; }
   p.dataset.g = gid; p.hidden = false;
-  p.innerHTML = `<div class="mpin"><div class="mph">${nic(GRP_LOOK[gid], "nic-sm")}<b>${g[1]}</b>${arrBtn("nav." + gid)}<button class="iconbtn" id="mpx" aria-label="Close">✕</button></div><div class="mpgrid" data-ord="nav.${gid}">${ORD.apply("nav." + gid, g[3], x => x).map((id, k) => { const [i, t, ic] = NAV_BY[id], lk = NAV_LOOK[i]; return `<button class="mpi" style="--d:${k * 35}ms" data-nav="${i}"${current.view && navGroupOf(current.view) === gid && (NAV_BY[current.view] || [])[0] === i ? ' aria-current="page"' : ""}>${lk ? `<span class="mpic nic ic-tile" style="--h:${lk[0]}">${lk[1]}</span>` : `<span class="mpic">${ic}</span>`}<span>${t}</span></button>`; }).join("")}</div></div>`;
+  let k = 0;
+  const tile = id => { const [i, t, ic] = NAV_BY[id], lk = NAV_LOOK[i]; return `<button class="mpi" style="--d:${(k++) * 28}ms" data-nav="${i}"${(NAV_BY[current.view] || [])[0] === i ? ' aria-current="page"' : ""}>${lk ? `<span class="mpic nic ic-tile" style="--h:${lk[0]}">${lk[1]}</span>` : `<span class="mpic">${ic}</span>`}<span>${t}</span></button>`; };
+  const sec = ([g, t, , ids]) => `<div class="mpsec"><div class="mpsh"><span class="mpdot" style="--h:${GRP_LOOK[g][0]}"></span><b>${t}</b>${ids.length > 1 ? arrBtn("nav." + g) : ""}</div><div class="mpgrid" data-ord="nav.${g}">${ORD.apply("nav." + g, ids, x => x).map(tile).join("")}</div></div>`;
+  p.innerHTML = `<div class="mpin${gid === "hub" ? " mphub" : ""}"><div class="mph">${nic(GRP_LOOK[gid], "nic-sm")}<b>${gid === "hub" ? "Clinical Hub" : groups[0][1]}</b><button class="iconbtn" id="mpx" aria-label="Close">✕</button></div>${groups.map(sec).join("")}</div>`;
   $$(".mbtn[data-mg]").forEach(b => b.setAttribute("aria-expanded", b.dataset.mg === gid));
   $$(".mpi", p).forEach(b => b.onclick = () => { mpopClose(); go("#" + b.dataset.nav); });
   $("#mpx").onclick = mpopClose;
@@ -21081,7 +21442,7 @@ function shell() {
       ${NAV_PIN.map(navBtn).join("")}
       ${NAV_GROUPS.map(([g, t, ic, ids]) => `<div class="ngrp" data-g="${g}"><button class="ngh" data-gh="${g}" aria-expanded="false" title="${t}">${GRP_LOOK[g] ? nic(GRP_LOOK[g], "nic-sm") : ic}<span>${t}</span>${CHEV}</button><div class="ngb" data-ord="nav.${g}">${ids.map(navBtn).join("")}</div></div>`).join("")}
       <div class="spacer"></div><button class="railbtn" id="railmini" title="Collapse / expand the sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg><span>Collapse menu</span></button><button class="themebtn" id="theme">Light / dark</button></nav>
-    <nav class="mbar" aria-label="Sections"><button class="mbtn" data-nav="home">${nic(NAV_LOOK.home)}<span>Home</span></button>${NAV_GROUPS.map(([g, t, ic]) => `<button class="mbtn" data-mg="${g}" aria-expanded="false">${GRP_LOOK[g] ? nic(GRP_LOOK[g]) : ic}<span>${t.replace(" & bedside", "")}</span></button>`).join("")}</nav>
+    <nav class="mbar" aria-label="Sections"><button class="mbtn" data-nav="home">${nic(NAV_LOOK.home)}<span>Home</span></button><button class="mbtn" data-mg="hub" aria-expanded="false">${nic(GRP_LOOK.hub)}<span>Hub</span></button><button class="mbtn" data-nav="foryou">${nic(NAV_LOOK.foryou)}<span>For You</span></button><button class="mbtn" data-nav="chat">${nic(NAV_LOOK.chat)}<span>Chat</span><i class="mbadge" id="chatbadge" hidden></i></button><button class="mbtn" data-nav="settings">${nic(NAV_LOOK.settings)}<span>Settings</span></button></nav>
     <div class="mpop" id="mpop" hidden></div>
     <div class="main">
       <div class="topbar"><a class="tb-brand" href="#home">${ICON.home}<span>Bhutan Clinical Reference</span></a><div class="tbnav"><button class="tbn" id="navback" aria-label="Back" title="Back (Alt+←)">${ICON.back}</button><button class="tbn" id="navfwd" aria-label="Forward" title="Forward (Alt+→)"><span style="display:inline-flex;transform:scaleX(-1)">${ICON.back}</span></button></div><div class="app-actions"><button class="tbn" id="apprefresh" aria-label="Refresh app" title="Check for updates and refresh">${AP_ICONS.refresh}</button><button class="tbn" id="appshare" aria-label="Share app" title="Share app">${SI('<path d="M12 16V3m-4 4 4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/>')}</button></div><div class="search tsearch">${ICON.search}<input id="gq" type="search" placeholder="Search everything — drugs, conditions, guidelines, calculators (press /)" autocomplete="off"></div><a class="tb-me meslot" href="#account" aria-label="My profile"></a></div>
@@ -21196,10 +21557,10 @@ function route() {
   if (NAVSTACK[NAVSTACK.length - 1] !== "#" + h) { NAVSTACK.push("#" + h); if (NAVSTACK.length > 60) NAVSTACK.shift(); }
   const [view, ...rest] = h.split("/"); const arg = rest.join("/");
   current = {view, arg};
-  const navId = view === "ai" && arg && NAV_BY["ai/" + arg] ? "ai/" + arg : view === "drug" ? "drugs" : view === "p" ? "protocols" : view === "gl" ? "stg" : view === "lib" ? "stg" : (view === "chat" || view === "members") ? "account" : (view === "calc" && CALC_BY[arg] && CALC_BY[arg].g === "Ventilation") ? "vent" : view;
+  const navId = view === "ai" && arg && NAV_BY["ai/" + arg] ? "ai/" + arg : view === "drug" ? "drugs" : view === "p" ? "protocols" : view === "gl" ? "stg" : view === "lib" ? "stg" : (view === "chat" || view === "members" || view === "account") ? "chat" : view === "hub" ? "hub" : (view === "calc" && CALC_BY[arg] && CALC_BY[arg].g === "Ventilation") ? "vent" : view;
   setLinkSkip(view, arg);
   $$("[data-nav]").forEach(b => b.setAttribute("aria-current", b.dataset.nav === navId ? "page" : "false"));
-  { const gid = navGroupOf(navId); $$(".ngrp").forEach(el => el.classList.toggle("cur", el.dataset.g === gid)); navSetGroup(gid, true); $$(".mbtn").forEach(b => b.setAttribute("aria-current", (b.dataset.mg ? b.dataset.mg === gid : b.dataset.nav === navId) ? "page" : "false")); mpopClose(); }
+  { const gid = navGroupOf(navId); $$(".ngrp").forEach(el => el.classList.toggle("cur", el.dataset.g === gid)); navSetGroup(gid, true); $$(".mbtn").forEach(b => b.setAttribute("aria-current", (b.dataset.mg ? (b.dataset.mg === "hub" ? !!gid || navId === "hub" : b.dataset.mg === gid) : b.dataset.nav === navId) ? "page" : "false")); mpopClose(); }
   const v = $("#view");
   document.body.dataset.view = view;
   document.body.classList.toggle("inroom", view === "chat" && !!arg);
@@ -21221,6 +21582,8 @@ function route() {
   else if (view === "aware") { v.innerHTML = awareView(arg); autolinkDom(v); }
   else if (view === "ask") { v.innerHTML = askView(arg); bindAsk(arg); }
   else if (view === "ai") { v.innerHTML = aiView(arg); bindAi(arg); }
+  else if (view === "hub") { v.innerHTML = hubPageView(arg); }
+  else if (view === "foryou") { v.innerHTML = feedView(arg); bindFeed(arg); }
   else if (view === "notes") { v.innerHTML = notesView(); bindNotesView(); }
   else if (view === "settings") { v.innerHTML = settingsView() + `<div class="card ht-replay"><b>App tour</b><p class="small muted" style="margin:4px 0 10px">A one-minute guided tour of search, drugs, conditions, tools and settings.</p><button class="btn" id="ht_again">Show the app tour</button></div>`; bindSettings(); $("#ht_again").onclick = () => helpTour(); }
   else if (view === "account" || view === "chat" || view === "members") { v.innerHTML = commView(view, arg); bindComm(view, arg); }
@@ -21344,7 +21707,7 @@ async function gateVerifiedCheck(manual) {
     try { await u.getIdToken(true); } catch (e) {}
     try { await commLoadMe(); } catch (e) {}
     COMM.state = "in"; if (COMM.syncOn) commSyncNotes().catch(() => {});
-    commBadge(); gateSync(); route();
+    commBadge(); chatWatch(); gateSync(); route();
   } else if (manual) gMsg("Not verified yet. Open the link in the email first, then tap again.", "bad");
 }
 function gateBind(st) {
@@ -21452,11 +21815,11 @@ function helpTour() {
     {sel: [".pbar"], t: "Patient details", p: "Use the Patient bar at the top of drug and calculator pages to add age and weight. Doses and calculators then fill in automatically."},
     {sel: ['.h2-mod[href="#protocols"]', '.nav[data-nav="protocols"]'], t: "Emergencies", p: `${c.prot} step-by-step emergency protocols with flowcharts, for when every minute counts.`},
     {sel: ['.mbtn[data-nav="home"]', '.nav[data-nav="home"]'], t: "Home", p: "Tap Home at any time to come back to this page."},
-    {sel: ['.mbtn[data-mg="ref"]', '.nav[data-nav="stg"]'], t: "Reference", p: "Drugs, conditions, the Bhutan STG 2024, national guidelines and the glossary are all in this menu."},
-    {sel: ['.mbtn[data-mg="tools"]', '.nav[data-nav="calc"]'], t: "Tools", p: `${c.calcs} calculators and scores, plus fluids, ventilation, growth charts, equipment sizes and your notes.`},
-    {sel: ['.mbtn[data-mg="me"]', '.nav[data-nav="account"]'], t: "Community and your account", p: "Discussion rooms with colleagues, your profile, synced notes and sign-out are here."},
+    {sel: ['.mbtn[data-mg="hub"]', '.nav[data-nav="calc"]'], t: "Clinical Hub", p: "One button for everything: Tools first (calculators, fluids, growth, sizes, notes), then Emergency, Reference (drugs, criteria, guidelines) and AI."},
+    {sel: ['.mbtn[data-nav="foryou"]', '.nav[data-nav="foryou"]'], t: "For You", p: "Health tips, awareness and questions from health workers and the public. Like, comment and share."},
+    {sel: ['.mbtn[data-nav="chat"]', '.nav[data-nav="chat"]'], t: "Chat", p: "Message colleagues privately or in groups, send voice notes, photos, videos, PDFs and pages from the app. Rooms and AI assistants are here too."},
     {sel: ['.home-actions a[href="#settings"]', '.nav[data-nav="settings"]'], t: "Settings", p: "Change the colours, dark mode, text size and start page, or replay this tour."},
-    {sel: ['.mbtn[data-mg="ai"]', '.nav[data-nav="ask"]'], t: "Ask and AI help", p: "Ask the app a question in plain words, or open ChatGPT, Claude, Gemini or Google with your question ready. Always check AI answers against the guideline."},
+    {sel: ['.cai', '.nav[data-nav="ai"]'], t: "Ask and AI help", p: "Ask the app a question in plain words, or open ChatGPT, Claude, Gemini or Google with your question ready. Always check AI answers against the guideline."},
     {sel: ['.h2-mod[href="#learn"]', '.nav[data-nav="notes"]'], t: "Learning", p: `${c.cards} flashcards built from the topic pages, repeated at the right time so you remember, plus interactive study guides.`},
     {t: "How to use a topic page", p: "Each condition page follows the same order: definition, diagnosis, investigations, management for adults and children, follow-up, advice and sources. Tap any drug name inside a page to see its dose."},
     {t: "Pins and notes", p: "Tap ☆ Pin on any page to keep it in My shortcuts on Home. Use My note on a page to write your own points. Notes sync to your account on all your devices."},
