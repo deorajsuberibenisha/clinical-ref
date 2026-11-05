@@ -1462,6 +1462,74 @@ body.tb-auto.bars-hidden .pbar{transform:translateY(-110%)}
 .fcpick{margin:22px auto 0;max-width:820px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 14px}.fcpick summary{cursor:pointer;font-weight:700;display:flex;align-items:center;gap:8px}.fcpick summary svg{width:18px;height:18px}
 .fcpick .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}.fctopics{display:flex;flex-wrap:wrap;gap:6px;max-height:320px;overflow-y:auto}.fctopics small{opacity:.6}
 @media (prefers-reduced-motion:reduce){.fcinner{transition:none}}
+/* word lookup bar and dictionary */
+.wlook{position:fixed;z-index:120;display:flex;gap:2px;padding:5px;border-radius:16px;background:#111827;color:#fff;box-shadow:0 14px 34px -12px rgba(0,0,0,.6);opacity:0;transform:translateY(6px) scale(.96);pointer-events:none;transition:opacity .18s,transform .22s cubic-bezier(.2,.9,.25,1)}
+.wlook.on{opacity:1;transform:none;pointer-events:auto}
+.wlook button{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:54px;padding:6px 8px;border:0;border-radius:11px;background:none;color:#fff;font:600 11px var(--ui-font);cursor:pointer;line-height:1}
+.wlook button:hover{background:rgba(255,255,255,.12)}.wlook button svg{width:19px;height:19px}.wlook button:first-child{font-size:17px}.wlook button:first-child span{font-size:11px}
+.dfbody{margin:6px 0 12px}.dfph{color:var(--accent);font-weight:700;margin-bottom:6px}.dfm i{display:inline-block;font:700 12px var(--ui-font);padding:2px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.dfm ol{margin:6px 0 10px;padding-left:20px}.dfm li{margin:4px 0;line-height:1.45}.dfm li small{display:block;color:var(--muted);font-style:italic}.dflinks{display:flex;gap:6px;flex-wrap:wrap}
+/* For You: question of the day, anonymous posts */
+.fqod{padding:14px 16px;border-radius:18px;margin-bottom:12px;background:linear-gradient(135deg,hsl(265 80% 60% / .14),hsl(205 85% 50% / .1));border:1px solid hsl(265 70% 60% / .28);animation:foldIn .45s both}
+.fqodh{display:flex;align-items:center;gap:8px;margin-bottom:6px}.fqodh small{font:800 11px var(--ui-font);letter-spacing:.08em;text-transform:uppercase;color:hsl(265 60% 50%)}:root[data-mode="dark"] .fqodh small{color:hsl(265 85% 75%)}
+.fqodh em{margin-left:auto;font-style:normal;font-size:12px;color:var(--muted)}.fqod>b{display:block;font-size:16px;line-height:1.45}
+.fqoda{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--panel);border-left:4px solid hsl(150 60% 42%);line-height:1.5;animation:foldIn .3s both}
+.fqodb{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}.fqodb .lnk{font-weight:600;color:var(--accent);text-decoration:none}
+.avanon{display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#64748b,#334155)}.avanon svg{width:55%;height:55%}
+.fanon{background:var(--panel2);border-radius:12px;padding:10px}.fanon span{font-size:13.5px;line-height:1.4}
+/* ===== Notebook ===== */
+body.innb .pbar,body.innb .topbar,body.innb .foot,body.innb details.notes,body.innb .mbar,body.innb #bbfab{display:none!important}
+body.innb .view{max-width:none!important;padding:0!important;zoom:1}
+@media (max-width:860px){body.innb .rail{display:none!important}}
+.nbwrap{position:relative;display:flex;flex-direction:column;height:100dvh;background:#e9edf2;overflow:hidden}
+:root[data-mode="dark"] .nbwrap{background:#1a1f26}
+.nbbar{display:flex;align-items:center;gap:4px;padding:6px 8px;padding-top:calc(6px + env(safe-area-inset-top));background:linear-gradient(120deg,hsl(222 70% 52%),hsl(250 65% 50%));color:#fff;flex:none;box-shadow:0 4px 14px -8px rgba(0,0,0,.5)}
+.nbtitle{flex:1;min-width:60px;background:transparent;border:0;color:#fff;font:700 17px var(--ui-font);padding:6px 8px;border-radius:8px;outline:0}.nbtitle:focus{background:rgba(255,255,255,.15)}
+.nbsave{font-size:11.5px;opacity:.8;margin-right:4px;white-space:nowrap}
+.nbpdf{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;border:0;border-radius:99px;background:#fff;color:hsl(230 60% 40%);font:800 14px var(--ui-font);cursor:pointer;box-shadow:0 4px 12px -6px rgba(0,0,0,.4)}.nbpdf svg{width:18px;height:18px}.nbpdf:disabled{opacity:.7}
+.nbtools{display:flex;align-items:center;gap:4px;padding:6px 8px;background:var(--panel);border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none;flex:none}.nbtools::-webkit-scrollbar{display:none}
+.nbt{width:42px;height:42px;flex:none;border:0;border-radius:12px;background:none;color:var(--muted);display:grid;place-items:center;cursor:pointer;position:relative;transition:background .15s,color .15s,transform .15s}
+.nbt svg{width:22px;height:22px}.nbt:hover{background:var(--panel2)}.nbt.on{color:#fff;background:linear-gradient(135deg,hsl(222 70% 55%),hsl(250 65% 52%));box-shadow:0 6px 14px -8px hsl(240 70% 40%)}
+.nbsep{width:1px;height:28px;background:var(--line);margin:0 4px;flex:none}.nbcolors,.nbsizes{display:flex;gap:4px;align-items:center;flex:none}
+.nbc{width:28px;height:28px;border-radius:50%;border:3px solid var(--panel);background:var(--c);box-shadow:0 0 0 1.5px var(--line);cursor:pointer;flex:none;transition:transform .15s}.nbc.on{box-shadow:0 0 0 2.5px var(--c);transform:scale(1.12)}
+.nbz{width:34px;height:34px;border-radius:10px;border:0;background:none;display:grid;place-items:center;cursor:pointer;flex:none}.nbz i{width:var(--z);height:var(--z);border-radius:50%;background:var(--ink)}.nbz.on{background:var(--panel2)}
+.nbpalm{margin-left:auto}.nbpalm i{position:absolute;right:5px;top:5px;width:8px;height:8px;border-radius:50%;background:var(--muted);opacity:.4}.nbpalm.on i{background:hsl(150 70% 45%);opacity:1}
+.nbscroll{flex:1;min-height:0;overflow:auto;touch-action:none;-webkit-user-select:none;user-select:none;overscroll-behavior:contain;position:relative}
+.nbpages{display:flex;flex-direction:column;align-items:center;gap:22px;padding:18px 12px 30px;min-width:min-content}
+.nbp{position:relative;background:#fff;border-radius:4px;box-shadow:0 2px 4px rgba(0,0,0,.06),0 14px 34px -18px rgba(0,0,0,.45);flex:none}
+.nbcv,.nblive{position:absolute;inset:0;width:100%;height:100%;border-radius:4px}.nblive{pointer-events:none}
+.nbpn{position:absolute;right:-2px;bottom:-22px;font-size:11.5px;color:var(--muted)}
+.nbtx{position:absolute;inset:0;pointer-events:none}
+.nbtext{position:absolute;pointer-events:auto;min-height:1.4em;padding:.25em;line-height:1.35;font-family:"Source Sans 3","Segoe UI",system-ui,sans-serif;outline:0;border-radius:4px;white-space:pre-wrap;word-wrap:break-word;-webkit-user-select:text;user-select:text}
+.nbtext:focus{background:rgba(37,99,235,.06);box-shadow:0 0 0 1.5px rgba(37,99,235,.5)}
+.nbwrap[data-tool="pen"] .nbtext,.nbwrap[data-tool="hl"] .nbtext,.nbwrap[data-tool="erase"] .nbtext{pointer-events:none}
+.nbwrap[data-tool="select"] .nbtext{cursor:move;box-shadow:0 0 0 1px rgba(37,99,235,.3)}
+.nbselbox{position:absolute;border:2px solid hsl(222 80% 55%);border-radius:4px;box-shadow:0 0 0 9999px rgba(15,23,42,.06);cursor:move;z-index:5;touch-action:none}
+.nbselbox .h{position:absolute;right:-11px;bottom:-11px;width:22px;height:22px;border-radius:50%;background:#fff;border:2.5px solid hsl(222 80% 55%);cursor:nwse-resize}
+.nbselbar{position:absolute;left:50%;top:-50px;transform:translateX(-50%);display:flex;gap:2px;padding:4px;border-radius:12px;background:#111827;box-shadow:0 8px 20px -8px rgba(0,0,0,.5);white-space:nowrap}
+.nbselbar button{border:0;background:none;color:#fff;font:600 13px var(--ui-font);padding:7px 10px;border-radius:8px;cursor:pointer}.nbselbar button:hover{background:rgba(255,255,255,.12)}
+.nbaddp{display:block;margin:0 auto 90px;padding:12px 22px;border-radius:99px;border:2px dashed color-mix(in srgb,var(--muted) 40%,transparent);background:none;color:var(--muted);font:700 14px var(--ui-font);cursor:pointer}
+.nbzoom{position:absolute;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:2px;padding:4px;border-radius:99px;background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(10px);box-shadow:0 8px 22px -10px rgba(0,0,0,.45);border:1px solid var(--line)}
+.nbzoom button{width:34px;height:34px;border:0;border-radius:50%;background:none;color:var(--ink);font-size:18px;cursor:pointer}.nbzoom span{min-width:46px;text-align:center;font:700 12.5px var(--ui-font)}
+#nbtoast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;z-index:200;padding:10px 16px;border-radius:14px;background:#111827;color:#fff;font:600 14px var(--ui-font);box-shadow:0 12px 30px -12px rgba(0,0,0,.6);pointer-events:none;transition:all .3s cubic-bezier(.2,.9,.25,1);max-width:calc(100vw - 32px);text-align:center}
+#nbtoast.on{opacity:1;transform:translate(-50%,0)}
+.nbcropov{position:fixed;inset:0;z-index:150;background:#0b0f16;display:flex;flex-direction:column}
+.nbcropbar{display:flex;align-items:center;gap:8px;padding:10px;padding-top:calc(10px + env(safe-area-inset-top));color:#fff}.nbcropbar b{flex:1;text-align:center}.nbcropbar .btn-ghost{color:#fff;border-color:rgba(255,255,255,.3)}
+.nbcropstage{flex:1;display:grid;place-items:center;padding:16px;min-height:0}.nbcropwrap{position:relative;max-width:100%;max-height:100%;touch-action:none}
+.nbcropwrap img{display:block;max-width:calc(100vw - 32px);max-height:calc(100dvh - 120px);-webkit-user-select:none;user-select:none;pointer-events:none}
+.nbcropbox{position:absolute;border:2px solid #fff;box-shadow:0 0 0 9999px rgba(0,0,0,.55);cursor:move}
+.nbcropbox i{position:absolute;width:26px;height:26px;border:4px solid #fff}.nbcropbox i[data-c="nw"]{left:-4px;top:-4px;border-right:0;border-bottom:0;cursor:nwse-resize}.nbcropbox i[data-c="ne"]{right:-4px;top:-4px;border-left:0;border-bottom:0;cursor:nesw-resize}.nbcropbox i[data-c="sw"]{left:-4px;bottom:-4px;border-right:0;border-top:0;cursor:nesw-resize}.nbcropbox i[data-c="se"]{right:-4px;bottom:-4px;border-left:0;border-top:0;cursor:nwse-resize}
+.nbnew{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.nbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+.nbcard{position:relative;animation:foldIn .4s both;animation-delay:var(--d,0ms)}.nbcard a{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--ink)}
+.nbthumb{aspect-ratio:1/1.414;border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.06),0 12px 26px -16px rgba(0,0,0,.45);transition:transform .2s}.nbcard a:hover .nbthumb{transform:translateY(-3px)}
+.nbthumb img{width:100%;height:100%;object-fit:cover;display:block}.nbcard b{font-size:14.5px;margin-top:6px}.nbcard small{font-size:12px;color:var(--muted)}
+.nbmore{position:absolute;top:6px;right:6px;background:rgba(255,255,255,.9);color:#111;width:32px;height:32px}
+.nbtpl{display:block;width:100%;height:100%;aspect-ratio:1/1.414;background:#fff;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.nbtpl-lined{background:repeating-linear-gradient(#fff 0 9px,#cfe0f3 9px 10px),#fff}.nbtpl-grid{background:linear-gradient(#e3e9f1 1px,transparent 1px) 0 0/10px 10px,linear-gradient(90deg,#e3e9f1 1px,#fff 1px) 0 0/10px 10px}.nbtpl-dots{background:radial-gradient(#c7d0dc 1.2px,#fff 1.4px) 0 0/10px 10px}
+.thsw .nbtpl{width:70%}
+.tnote{background:linear-gradient(135deg,hsl(222 70% 55%),hsl(250 65% 52%))!important;color:#fff!important;border-color:transparent!important}
+@media (max-width:600px){.nbt{width:38px;height:38px}.nbc{width:24px;height:24px}.nbpages{gap:14px;padding:10px 6px 30px}.nbsave{display:none}}
 /* ===== chat v2: themes, icons, bubbles, reactions ===== */
 .chatwrap{--cA:var(--accent);--cB:color-mix(in srgb,var(--accent) 70%,#000);--cW:color-mix(in srgb,var(--accent) 6%,var(--bg));position:relative}
 .chatwrap .chathead2{background:linear-gradient(120deg,var(--cA),var(--cB));box-shadow:0 6px 18px -10px color-mix(in srgb,var(--cB) 80%,#000);gap:6px;padding-left:6px;padding-right:6px}
@@ -19845,14 +19913,14 @@ function natlBox(t) {
 function topicView(id) {
   const t = TOPIC_BY[id]; if (!t) return topicsIndexView();
   const specs = t.spec.map(s => SPEC_BY[s]).filter(Boolean);
-  return `<div class="thead"><h1 class="vt">${esc(t.n)}</h1><div class="tmeta"><span>${esc(t.ages)}</span>${specs.map(s => `<a href="#spec/${s[0]}">${esc(s[1])}</a>`).join("")}${t.emerg ? `<span class="temerg">${esc(t.emerg)}</span>` : ""}</div><div class="small muted">${esc(t.reviewed)}</div><div class="tact"><button class="tpdf" id="tpdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><path d="M14 2.5V8h5.5M12 11.5v6m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg>Save as PDF</button></div></div>
+  return `<div class="thead"><h1 class="vt">${esc(t.n)}</h1><div class="tmeta"><span>${esc(t.ages)}</span>${specs.map(s => `<a href="#spec/${s[0]}">${esc(s[1])}</a>`).join("")}${t.emerg ? `<span class="temerg">${esc(t.emerg)}</span>` : ""}</div><div class="small muted">${esc(t.reviewed)}</div><div class="tact"><button class="tpdf" id="tpdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><path d="M14 2.5V8h5.5M12 11.5v6m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg>Save as PDF</button><button class="tpdf tnote" id="tnote" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Highlight</button></div></div>
     ${natlBox(t)}
     <nav class="ttoc">${t.sec.map(([h], i) => `<a href="#topic/${id}" data-tj="${i}">${esc(h)}</a>`).join("")}<a href="#cards/${id}" class="ttocards">Flashcards (${t.cards.length})</a></nav>
     ${t.sec.map(([h, bs], i) => `<section class="tsec" id="tsec${i}"><h2>${esc(h)}</h2>${bs.map(b => topicBlock(t, b)).join("")}</section>`).join("")}
     <section class="tsec"><h2>Related</h2><div class="chips wrap">${t.links.map(([h, n]) => `<a class="chip" href="${h}">${esc(n)}</a>`).join("")}</div></section>
     <section class="tsec"><h2>Sources</h2><ol class="tsrcs">${Object.entries(t.src).map(([k, [n, h]]) => `<li><b>${k}</b> <a href="${esc(h)}"${/^https?:/.test(h) ? ' target="_blank" rel="noopener"' : ""}>${esc(n)}</a></li>`).join("")}</ol><p class="small muted">${t.pediatricUpdate ? "Paediatric/neonatal source-specific guidance: check gestation, age, weight, renal function and the exact formulation. Bhutan guidance is used where available; international recommendations are labelled by source. New content is a clinical draft awaiting specialist and local formulary review." : t.surgicalUpdate ? "Source-specific guidance: review the publication date, population, product and linked source before applying a regimen. The older Bhutan manual is identified explicitly; specialist review of this draft is pending." : "Bhutan sources (STG) are national guidance. IPNA, KDIGO and ICMR are international or regional references, used where the STG is silent. Doses shown only where a source gives them."}</p></section>`;
 }
-function bindTopic() { $$("[data-tj]").forEach(a => a.onclick = e => { e.preventDefault(); const s = document.getElementById("tsec" + a.dataset.tj); if (s) s.scrollIntoView({behavior: "smooth", block: "start"}); }); const p = $("#tpdf"); if (p) p.onclick = () => topicPdf(current.arg); }
+function bindTopic() { $$("[data-tj]").forEach(a => a.onclick = e => { e.preventDefault(); const s = document.getElementById("tsec" + a.dataset.tj); if (s) s.scrollIntoView({behavior: "smooth", block: "start"}); }); const p = $("#tpdf"); if (p) p.onclick = () => topicToPdf(current.arg).catch(e => nbToast("PDF failed: " + (e.message || e))); const an = $("#tnote"); if (an) an.onclick = () => { const t = TOPIC_BY[current.arg]; if (t) nbFromBlocks(topicBlocks(t), t.n).catch(e => nbToast(e.message || String(e))); }; }
 /* PDF export: builds a clean A4 layout of the topic and opens the device's print / save-as-PDF dialog */
 function topicPdf(id) {
   const t = TOPIC_BY[id]; if (!t) return;
@@ -19874,6 +19942,401 @@ function topicPdf(id) {
   addEventListener("afterprint", done);
   const img = doc.querySelector("img");
   (img.complete ? Promise.resolve() : new Promise(r => { img.onload = img.onerror = r; setTimeout(r, 1500); })).then(() => setTimeout(() => window.print(), 50));
+}
+/* ===== Notebook: handwriting with Apple Pencil (pressure, palm rejection), highlighter, eraser, text notes, photos with crop,
+   app pages turned into paper you can write on, and real PDF export — stored on this device (IndexedDB), works offline ===== */
+const NB_W = 1240, NB_H = 1754;   /* A4 at 150 dpi, in page units */
+const nbDB = (() => {
+  let p; const open = () => p || (p = new Promise((ok, no) => { const r = indexedDB.open("bcr-notebooks", 1); r.onupgradeneeded = () => r.result.createObjectStore("books", {keyPath: "id"}); r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error); }));
+  const tx = async (mode, fn) => { const db = await open(); return new Promise((ok, no) => { const t = db.transaction("books", mode), req = fn(t.objectStore("books")); t.oncomplete = () => ok(req && req.result); t.onerror = () => no(t.error); }); };
+  return {all: () => tx("readonly", s => s.getAll()), get: id => tx("readonly", s => s.get(id)), put: b => tx("readwrite", s => s.put(b)), del: id => tx("readwrite", s => s.delete(id))};
+})();
+const nbId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const nbPage = (tpl, bg) => ({id: nbId(), tpl: tpl || "lined", bg: bg || null, strokes: [], imgs: [], texts: []});
+const NB_TPL = [["blank", "Blank"], ["lined", "Lined"], ["grid", "Grid"], ["dots", "Dotted"]];
+const NB_PENS = ["#111827", "#2563eb", "#dc2626", "#16a34a", "#7c3aed", "#ea580c", "#0891b2", "#be185d"];
+const NB_HLS = ["#fde047", "#86efac", "#f9a8d4", "#93c5fd", "#fdba74"];
+const NB_IMG = new Map();
+const nbImg = src => { let i = NB_IMG.get(src); if (!i) { i = new Image(); i.src = src; NB_IMG.set(src, i); } return i; };
+const nbReady = srcs => Promise.all(srcs.map(s => { const i = nbImg(s); return i.complete && i.naturalWidth ? null : new Promise(r => { i.onload = i.onerror = r; }); }));
+/* ---- drawing a page (background, photos, ink) onto any canvas; s = canvas pixels per page unit ---- */
+function nbTemplate(x, tpl, s) {
+  x.save(); x.scale(s, s);
+  if (tpl === "lined") { x.strokeStyle = "#cfe0f3"; x.lineWidth = 1.6; for (let y = 200; y < NB_H - 60; y += 54) { x.beginPath(); x.moveTo(60, y); x.lineTo(NB_W - 60, y); x.stroke(); } x.strokeStyle = "#f3b4b4"; x.beginPath(); x.moveTo(150, 60); x.lineTo(150, NB_H - 60); x.stroke(); }
+  else if (tpl === "grid") { x.strokeStyle = "#e3e9f1"; x.lineWidth = 1.3; for (let g = 40; g < NB_W; g += 40) { x.beginPath(); x.moveTo(g, 0); x.lineTo(g, NB_H); x.stroke(); } for (let g = 40; g < NB_H; g += 40) { x.beginPath(); x.moveTo(0, g); x.lineTo(NB_W, g); x.stroke(); } }
+  else if (tpl === "dots") { x.fillStyle = "#c7d0dc"; for (let a = 40; a < NB_W; a += 40) for (let b = 40; b < NB_H; b += 40) { x.beginPath(); x.arc(a, b, 2.2, 0, 7); x.fill(); } }
+  x.restore();
+}
+function nbStroke(x, st, s, from) {
+  const p = st.p, n = p.length / 3; if (!n) return;
+  x.save(); x.scale(s, s); x.lineCap = "round"; x.lineJoin = "round"; x.strokeStyle = st.c;
+  if (st.t === "hl") {
+    x.globalAlpha = 0.38; x.lineWidth = st.w; x.beginPath(); x.moveTo(p[0], p[1]);
+    for (let i = 1; i < n - 1; i++) { const mx = (p[i * 3] + p[i * 3 + 3]) / 2, my = (p[i * 3 + 1] + p[i * 3 + 4]) / 2; x.quadraticCurveTo(p[i * 3], p[i * 3 + 1], mx, my); }
+    if (n > 1) x.lineTo(p[(n - 1) * 3], p[(n - 1) * 3 + 1]); else x.lineTo(p[0] + .1, p[1]); x.stroke();
+  } else {
+    const W = i => st.w * (0.35 + 1.05 * p[i * 3 + 2]);
+    if (n < 3 && !from) { x.fillStyle = st.c; x.beginPath(); x.arc(p[0], p[1], W(0) / 2, 0, 7); x.fill(); }
+    for (let i = Math.max(2, from || 2); i < n; i++) {
+      const ax = (p[i * 3 - 6] + p[i * 3 - 3]) / 2, ay = (p[i * 3 - 5] + p[i * 3 - 2]) / 2, bx = (p[i * 3 - 3] + p[i * 3]) / 2, by = (p[i * 3 - 2] + p[i * 3 + 1]) / 2;
+      x.lineWidth = (W(i - 1) + W(i)) / 2; x.beginPath(); x.moveTo(i === 2 ? p[0] : ax, i === 2 ? p[1] : ay); x.quadraticCurveTo(p[i * 3 - 3], p[i * 3 - 2], bx, by); x.stroke();
+    }
+  }
+  x.restore();
+}
+function nbDraw(x, pg, s, opts) {
+  x.save(); x.setTransform(1, 0, 0, 1, 0, 0); x.fillStyle = "#fff"; x.fillRect(0, 0, x.canvas.width, x.canvas.height); x.restore();
+  nbTemplate(x, pg.tpl, s);
+  if (pg.bg) { const im = nbImg(pg.bg); if (im.complete && im.naturalWidth) x.drawImage(im, 0, 0, NB_W * s, NB_H * s); }
+  pg.imgs.forEach(o => { const im = nbImg(o.src); if (im.complete && im.naturalWidth) x.drawImage(im, o.x * s, o.y * s, o.w * s, o.h * s); });
+  pg.strokes.forEach(st => nbStroke(x, st, s));
+  if (opts && opts.texts) pg.texts.forEach(t => nbTextDraw(x, t, s));
+}
+function nbWrap(x, text, maxW) { const out = []; String(text).split("\n").forEach(para => { let line = ""; para.split(/\s+/).forEach(w => { const tryL = line ? line + " " + w : w; if (x.measureText(tryL).width > maxW && line) { out.push(line); line = w; } else line = tryL; }); out.push(line); }); return out; }
+function nbTextDraw(x, t, s) { x.save(); x.scale(s, s); x.font = `${t.size || 30}px ${NB_FONT}`; x.fillStyle = t.c || "#111827"; x.textBaseline = "top"; nbWrap(x, t.t || "", t.w).forEach((l, i) => x.fillText(l, t.x + 8, t.y + 8 + i * (t.size || 30) * 1.35)); x.restore(); }
+const NB_FONT = '"Source Sans 3","Segoe UI",system-ui,-apple-system,Arial,sans-serif', NB_SERIF = '"Source Serif 4",Georgia,serif';
+
+/* ---- app content → paper: lays out a topic or guideline as A4 page images ---- */
+function topicBlocks(t) {
+  const c = s => String(s || "").replace(/\s?\[S\d+\]/g, "");
+  const out = [{k: "title", t: t.n}, {k: "meta", t: [t.ages, t.emerg].filter(Boolean).join(" · ")}];
+  t.sec.forEach(([h, bs], i) => { out.push({k: "h2", t: `${i + 1}. ${h}`}); bs.forEach(b => {
+    if (b[0] === "p") out.push({k: "p", t: c(b[1])}); else if (b[0] === "h") out.push({k: "h3", t: c(b[1])}); else if (b[0] === "l") b[1].forEach(li => out.push({k: "li", t: c(li)}));
+    else if (b[0] === "warn" || b[0] === "note") out.push({k: "box", t: c(b[1]), warn: b[0] === "warn"}); else if (b[0] === "qa") b[1].forEach(([q, a]) => out.push({k: "qa", q: c(q), a: c(a)}));
+    else if (b[0] === "t") out.push({k: "table", rows: b[1].map(r => r.map(c))}); }); });
+  out.push({k: "h2", t: "Sources"}); Object.entries(t.src).forEach(([k, [n]]) => out.push({k: "li", t: `${k} ${n}`}));
+  return out;
+}
+function domBlocks(root, title) {
+  const out = title ? [{k: "title", t: title}] : [];
+  const walk = el => { for (const n of el.children) { const tg = n.tagName, tx = n.innerText ? n.innerText.trim() : "";
+    if (n.closest("button,nav,.chips,.srcbox ul") && tg !== "TABLE") continue;
+    if (/^H1$/.test(tg)) { if (!title) out.push({k: "title", t: tx}); } else if (/^H2$/.test(tg)) out.push({k: "h2", t: tx}); else if (/^H[3-6]$/.test(tg)) out.push({k: "h3", t: tx});
+    else if (tg === "P") tx && out.push({k: "p", t: tx}); else if (tg === "LI") tx && out.push({k: "li", t: tx});
+    else if (tg === "TABLE") out.push({k: "table", rows: [...n.rows].map(r => [...r.cells].map(c => c.innerText.trim()))});
+    else if (n.classList && (n.classList.contains("flag") || n.classList.contains("warn"))) tx && out.push({k: "box", t: tx, warn: true});
+    else walk(n); } };
+  walk(root); return out;
+}
+async function nbRenderDoc(blocks, label) {
+  try { await document.fonts.ready; } catch (e) {}
+  const pages = [], L = 100, R = 100, T = 120, B = 130, CW = NB_W - L - R; let cv, x, y;
+  const page = () => { cv = document.createElement("canvas"); cv.width = NB_W; cv.height = NB_H; x = cv.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, NB_W, NB_H);
+    x.fillStyle = "#0f5f57"; x.fillRect(0, 0, NB_W, 10); x.font = `600 20px ${NB_FONT}`; x.fillStyle = "#6b7c78"; x.textBaseline = "top"; x.fillText("Bhutan Clinical Reference" + (label ? "  ·  " + label : ""), L, 44);
+    pages.push(cv); y = T; };
+  const need = h => { if (y + h > NB_H - B) page(); };
+  const text = (t, font, color, lh, indent, maxW) => { x.font = font; x.fillStyle = color; x.textBaseline = "top"; nbWrap(x, t, maxW || CW - (indent || 0)).forEach(l => { need(lh); x.fillText(l, L + (indent || 0), y); y += lh; }); };
+  page();
+  for (const b of blocks) {
+    if (b.k === "title") { text(b.t, `700 50px ${NB_SERIF}`, "#0f5f57", 62); y += 6; }
+    else if (b.k === "meta") { if (b.t) text(b.t, `400 24px ${NB_FONT}`, "#5b6b67", 34); y += 14; }
+    else if (b.k === "h2") { need(90); y += 22; text(b.t, `700 34px ${NB_SERIF}`, "#0f5f57", 44); x.fillStyle = "#cfe3df"; x.fillRect(L, y + 2, CW, 3); y += 18; }
+    else if (b.k === "h3") { need(60); y += 10; text(b.t, `700 27px ${NB_FONT}`, "#17675f", 36); y += 4; }
+    else if (b.k === "p") { text(b.t, `400 25px ${NB_FONT}`, "#1b2220", 36); y += 10; }
+    else if (b.k === "li") { need(36); x.fillStyle = "#0f5f57"; x.beginPath(); x.arc(L + 10, y + 15, 5, 0, 7); x.fill(); text(b.t, `400 25px ${NB_FONT}`, "#1b2220", 36, 30); y += 4; }
+    else if (b.k === "qa") { text(b.q, `700 25px ${NB_FONT}`, "#1b2220", 36); text(b.a, `400 25px ${NB_FONT}`, "#334", 36, 20); y += 10; }
+    else if (b.k === "box") { x.font = `400 24px ${NB_FONT}`; const ls = nbWrap(x, b.t, CW - 44), h = ls.length * 34 + 30; need(Math.min(h, 400)); const y0 = y;
+      x.fillStyle = b.warn ? "#fff4e5" : "#eef6ff"; x.fillRect(L, y0, CW, h); x.fillStyle = b.warn ? "#e8890c" : "#2b7bd6"; x.fillRect(L, y0, 6, h); y += 15; ls.forEach(l => { need(34); x.fillStyle = "#1b2220"; x.fillText(l, L + 24, y); y += 34; }); y += 22; }
+    else if (b.k === "table") {
+      const rows = b.rows.filter(r => r.length), nc = Math.max(...rows.map(r => r.length)); if (!nc) continue;
+      const lens = [...Array(nc).keys()].map(i => Math.max(4, ...rows.map(r => Math.min(40, (r[i] || "").length)))), sum = lens.reduce((a, c) => a + c, 0), cws = lens.map(l => l / sum * CW);
+      y += 6; rows.forEach((r, ri) => { x.font = `${ri ? 400 : 700} 21px ${NB_FONT}`; const cl = cws.map((w, i) => nbWrap(x, r[i] || "", w - 16)), h = Math.max(...cl.map(c => c.length)) * 28 + 16;
+        need(h); x.fillStyle = ri ? (ri % 2 ? "#fff" : "#f6f9f8") : "#e3f0ed"; x.fillRect(L, y, CW, h); x.strokeStyle = "#d4e0dd"; x.lineWidth = 1.5; x.strokeRect(L, y, CW, h);
+        let cx = L; cl.forEach((c, i) => { x.fillStyle = "#1b2220"; c.forEach((l, k) => x.fillText(l, cx + 8, y + 8 + k * 28)); cx += cws[i]; if (i < nc - 1) { x.beginPath(); x.moveTo(cx, y); x.lineTo(cx, y + h); x.stroke(); } }); y += h; });
+      y += 16; }
+  }
+  pages.forEach((cv, i) => { const g = cv.getContext("2d"); g.font = `400 19px ${NB_FONT}`; g.fillStyle = "#8a9894"; g.textBaseline = "top"; g.fillText(`Page ${i + 1} of ${pages.length}  ·  decision support only — check doses against the product and local protocol`, L, NB_H - 70); });
+  return pages.map(cv => cv.toDataURL("image/jpeg", 0.9));
+}
+/* ---- a tiny PDF writer: one JPEG per A4 page ---- */
+function nbPdf(jpegs) {
+  const enc = new TextEncoder(), parts = [], offs = []; let len = 0;
+  const add = d => { const b = typeof d === "string" ? enc.encode(d) : d; parts.push(b); len += b.length; };
+  const obj = (n, body) => { offs[n] = len; add(`${n} 0 obj\n`); body(); add("\nendobj\n"); };
+  const n = jpegs.length, kids = jpegs.map((_, i) => `${3 + i * 3} 0 R`).join(" ");
+  add("%PDF-1.4\n%\xE2\xE3\xCF\xD3\n");
+  obj(1, () => add("<< /Type /Catalog /Pages 2 0 R >>")); obj(2, () => add(`<< /Type /Pages /Kids [${kids}] /Count ${n} >>`));
+  jpegs.forEach((j, i) => { const p = 3 + i * 3, cs = `q 595.28 0 0 841.89 0 0 cm /Im${i} Do Q`;
+    obj(p, () => add(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im${i} ${p + 2} 0 R >> >> /Contents ${p + 1} 0 R >>`));
+    obj(p + 1, () => { add(`<< /Length ${cs.length} >>\nstream\n${cs}\nendstream`); });
+    obj(p + 2, () => { add(`<< /Type /XObject /Subtype /Image /Width ${j.w} /Height ${j.h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${j.bytes.length} >>\nstream\n`); add(j.bytes); add("\nendstream"); }); });
+  const xref = len, total = 3 + n * 3; add(`xref\n0 ${total}\n0000000000 65535 f \n`); for (let i = 1; i < total; i++) add(String(offs[i]).padStart(10, "0") + " 00000 n \n");
+  add(`trailer\n<< /Size ${total} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`);
+  return new Blob(parts, {type: "application/pdf"});
+}
+const nbJpeg = async cv => new Uint8Array(await (await new Promise(r => cv.toBlob(r, "image/jpeg", 0.88))).arrayBuffer());
+async function nbExportPdf(book, onProg) {
+  await nbReady([...new Set(book.pages.flatMap(p => [p.bg, ...p.imgs.map(i => i.src)].filter(Boolean)))]);
+  const out = [];
+  for (let i = 0; i < book.pages.length; i++) { const cv = document.createElement("canvas"); cv.width = NB_W; cv.height = NB_H; nbDraw(cv.getContext("2d"), book.pages[i], 1, {texts: true}); out.push({w: NB_W, h: NB_H, bytes: await nbJpeg(cv)}); onProg && onProg((i + 1) / book.pages.length); }
+  return nbPdf(out);
+}
+async function nbSharePdf(blob, name) {
+  const file = new File([blob], name.replace(/[\\/:*?"<>|]+/g, " ").slice(0, 80) + ".pdf", {type: "application/pdf"});
+  try { if (navigator.canShare && navigator.canShare({files: [file]})) { await navigator.share({files: [file], title: name}); return "shared"; } } catch (e) { if (e && e.name === "AbortError") return "cancelled"; }
+  saveBlob(blob, file.name); return "saved";
+}
+function nbToast(t) { let el = $("#nbtoast"); if (!el) { el = document.createElement("div"); el.id = "nbtoast"; document.body.appendChild(el); } el.textContent = t; el.classList.remove("on"); void el.offsetWidth; el.classList.add("on"); clearTimeout(nbToast.t); nbToast.t = setTimeout(() => el.classList.remove("on"), 2600); }
+/* topic page buttons: a real PDF file (works on iPad), or open the topic as notebook pages to write on */
+async function topicToPdf(id) { const t = TOPIC_BY[id]; if (!t) return; nbToast("Making the PDF…"); const imgs = await nbRenderDoc(topicBlocks(t), t.n);
+  const book = {title: t.n, pages: imgs.map(src => nbPage("blank", src))}; const blob = await nbExportPdf(book); const r = await nbSharePdf(blob, t.n + " - Bhutan Clinical Reference"); if (r === "saved") nbToast("PDF saved — check Downloads / Files"); }
+async function nbFromBlocks(blocks, title, label) { nbToast("Preparing pages to write on…"); const imgs = await nbRenderDoc(blocks, label || title); const book = {id: nbId(), title, created: Date.now(), updated: Date.now(), pages: imgs.map(src => nbPage("blank", src))}; await nbDB.put(book); go("#nb/" + book.id); }
+
+/* ---- notebook library ---- */
+function nbLibView() {
+  return `<div class="hub-head" style="--h:222"><span class="hub-ic ic-tile" style="--h:222">${SI('<path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3z"/><path d="M5 18a3 3 0 0 1 3-3h11"/><path d="m10 7 4 4m0-4-4 4" stroke-width="0"/><path d="M9 8h6M9 11h4"/>')}</span><div><h1 class="vt">PDF notes</h1><p>Open any topic or guideline as clean pages, highlight with Apple Pencil or your finger, and export a real PDF. Saved on this device.</p></div></div>
+    <div class="nbnew"><button class="btn" id="nb_app">📄 Open a topic or guideline</button><button class="btn btn-ghost" id="nb_new" hidden>＋ New notebook</button></div>
+    <div class="pssearch">${ICON.search}<input id="nb_q" type="search" placeholder="Search notebooks" autocomplete="off"></div>
+    <div class="nbgrid" id="nb_list"><div class="muted small">Loading…</div></div>`;
+}
+function bindNbLib() {
+  const list = $("#nb_list"); let books = [];
+  const thumb = b => { const p = b.pages[0]; return `<div class="nbthumb">${b.thumb ? `<img src="${b.thumb}" alt="">` : `<span class="nbtpl nbtpl-${p ? p.tpl : "lined"}"></span>`}</div>`; };
+  const draw = () => { const q = $("#nb_q").value.trim().toLowerCase(), bs = books.filter(b => !q || b.title.toLowerCase().includes(q)).sort((a, b) => b.updated - a.updated);
+    list.innerHTML = bs.length ? bs.map((b, i) => `<div class="nbcard" style="--d:${Math.min(i, 12) * 40}ms"><a href="#nb/${b.id}">${thumb(b)}<b>${esc(b.title)}</b><small>${b.pages.length} page${b.pages.length > 1 ? "s" : ""} · ${new Date(b.updated).toLocaleDateString([], {day: "numeric", month: "short"})}</small></a><button class="iconbtn nbmore" data-m="${b.id}" aria-label="Notebook options">${CI.more}</button></div>`).join("")
+      : `<div class="cempty"><b>${q ? "No notebook matches" : "No notebooks yet"}</b><span>Tap “Open a topic or guideline”, or use the ✎ Annotate button on any topic page.</span></div>`;
+    $$("[data-m]", list).forEach(bt => bt.onclick = () => nbMenu(books.find(b => b.id === bt.dataset.m), load)); };
+  const load = () => nbDB.all().then(bs => { books = bs || []; draw(); }).catch(e => list.innerHTML = `<div class="warn small">Notebooks need browser storage: ${esc(e.message || e)}</div>`);
+  $("#nb_q").addEventListener("input", draw); load();
+  $("#nb_new").onclick = () => { const sh = document.createElement("div"); sh.className = "sheet"; sh.innerHTML = `<div class="sheetin"><div class="pshead"><h3>New notebook</h3><button class="iconbtn" id="nn_x">${CI.x}</button></div><input class="psname" id="nn_t" maxlength="80" placeholder="Title (e.g. Ward round notes)" value="Notes ${new Date().toLocaleDateString([], {day: "numeric", month: "short"})}"><div class="thgrid">${NB_TPL.map(([k, l], i) => `<button class="thsw${i === 1 ? " on" : ""}" data-tpl="${k}"><span class="nbtpl nbtpl-${k}"></span><b>${l}</b></button>`).join("")}</div><div class="btnrow"><button class="btn" id="nn_go">Create</button></div></div>`;
+    document.body.appendChild(sh); let tpl = "lined"; sh.querySelector("#nn_x").onclick = () => sh.remove(); sh.addEventListener("click", e => { if (e.target === sh) sh.remove(); });
+    $$("[data-tpl]", sh).forEach(b => b.onclick = () => { tpl = b.dataset.tpl; $$("[data-tpl]", sh).forEach(x => x.classList.toggle("on", x === b)); });
+    sh.querySelector("#nn_go").onclick = async () => { const book = {id: nbId(), title: sh.querySelector("#nn_t").value.trim() || "Notes", created: Date.now(), updated: Date.now(), pages: [nbPage(tpl)]}; await nbDB.put(book); sh.remove(); go("#nb/" + book.id); }; };
+  $("#nb_app").onclick = () => appShareSheet(async h => { if (h[2].startsWith("#topic/")) { const t = TOPIC_BY[h[2].slice(7)]; await nbFromBlocks(topicBlocks(t), t.n); return; }
+    const m = h[2].match(/^#gl\/([^/]+)(?:\/(\d+))?$/); if (m) { const b = GL_BY[m[1]], i = +(m[2] || 0), d = document.createElement("div"); d.innerHTML = glRender(glSecs(m[1])[i] || [], b.u, 0); await nbFromBlocks(domBlocks(d, (b.toc[i] || [b.s])[0]), (b.toc[i] || [b.s])[0], b.s); return; }
+    nbToast("Open that page and use its Annotate button, or choose a topic or guideline."); });
+}
+function nbMenu(b, reload) {
+  const sh = document.createElement("div"); sh.className = "sheet"; sh.innerHTML = `<div class="sheetin"><h3>${esc(b.title)}</h3><div class="btnrow" style="flex-direction:column;align-items:stretch"><button class="btn" id="nm_pdf">Export PDF</button><button class="btn btn-ghost" id="nm_ren">Rename</button><button class="btn btn-ghost" id="nm_dup">Duplicate</button><button class="btn btn-danger" id="nm_del">Delete</button><button class="btn btn-ghost" id="nm_x">Close</button></div><div class="small" id="nm_m"></div></div>`;
+  document.body.appendChild(sh); const close = () => sh.remove(), msg = t => sh.querySelector("#nm_m").textContent = t; sh.querySelector("#nm_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
+  sh.querySelector("#nm_pdf").onclick = async () => { msg("Making the PDF…"); const blob = await nbExportPdf(b, x => msg(`Making the PDF… ${Math.round(x * 100)}%`)); const r = await nbSharePdf(blob, b.title); msg(r === "saved" ? "PDF saved — check Downloads / Files." : r === "shared" ? "Shared." : ""); };
+  sh.querySelector("#nm_ren").onclick = async () => { const t = prompt("Notebook name", b.title); if (t && t.trim()) { b.title = t.trim().slice(0, 80); b.updated = Date.now(); await nbDB.put(b); close(); reload(); } };
+  sh.querySelector("#nm_dup").onclick = async () => { const c = JSON.parse(JSON.stringify(b)); c.id = nbId(); c.title = b.title + " (copy)"; c.created = c.updated = Date.now(); await nbDB.put(c); close(); reload(); };
+  const del = sh.querySelector("#nm_del"); del.onclick = async () => { if (!del.dataset.arm) { del.dataset.arm = 1; del.textContent = "Tap again to delete for ever"; return; } await nbDB.del(b.id); close(); reload(); };
+}
+
+/* ---- notebook editor ---- */
+function nbEditorView() {
+  const tool = (k, ic, l) => `<button class="nbt" data-tool="${k}" aria-label="${l}" title="${l}">${ic}</button>`;
+  return `<div class="nbwrap" id="nbw"><div class="nbbar"><button class="iconbtn chb" onclick="go('#nb')" aria-label="All notebooks">${CI.back}</button><input class="nbtitle" id="nb_title" maxlength="80" aria-label="Notebook title"><span class="nbsave" id="nb_saved"></span>
+      <button class="iconbtn chb" id="nb_undo" aria-label="Undo">${SI('<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>')}</button><button class="iconbtn chb" id="nb_redo" aria-label="Redo">${SI('<path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/>')}</button>
+      <button class="nbpdf" id="nb_pdf">${SI('<path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><path d="M14 2.5V8h5.5M12 11.5v6m-2.5-2.5 2.5 2.5 2.5-2.5"/>')}<span>PDF</span></button><button class="iconbtn chb" id="nb_more" aria-label="Page options">${CI.more}</button></div>
+    <div class="nbtools" id="nb_tools">${tool("hl", SI('<path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/>'), "Highlighter")}${tool("pen", SI('<path d="M12 19l7-7 3 3-7 7z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"/><circle cx="11" cy="11" r="2"/>'), "Pen")}${tool("erase", SI('<path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L13 19"/><path d="M22 21H7M5 11l9 9"/>'), "Eraser")}<span hidden>${tool("text", SI('<path d="M4 7V4h16v3M9 20h6M12 4v16"/>'), "Text")}${tool("select", SI('<path d="M5 3l14 8-6 2-2 6z"/>'), "Move photos and text")}</span><button class="nbt" id="nb_img" hidden aria-label="Add a photo" title="Add a photo">${SI('<rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/>')}</button><input type="file" id="nb_file" accept="image/*" hidden>
+      <span class="nbsep"></span><span class="nbcolors" id="nb_colors"></span><span class="nbsep"></span><span class="nbsizes" id="nb_sizes"></span><button class="nbt nbpalm" id="nb_palm" aria-label="Pencil-only mode" title="Pencil only: fingers scroll and zoom, your palm is ignored">${SI('<path d="M18 11V6a2 2 0 0 0-4 0M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.4L2.4 16a2 2 0 0 1 2.8-2.8L7 15"/>')}<i></i></button></div>
+    <div class="nbscroll" id="nb_scroll"><div class="nbpages" id="nb_pages"></div><button class="nbaddp" id="nb_addp">＋ Add page</button></div>
+    <div class="nbzoom"><button id="nb_zo" aria-label="Zoom out">−</button><span id="nb_zv">100%</span><button id="nb_zi" aria-label="Zoom in">＋</button></div></div>`;
+}
+function bindNbEditor(id) {
+  const S = {tool: ["hl", "pen", "erase"].includes(store.get("nbTool", "hl")) ? store.get("nbTool", "hl") : "hl", pen: store.get("nbPen", NB_PENS[0]), hl: store.get("nbHl", NB_HLS[0]), size: store.get("nbSize", 4), zoom: 1, pencil: store.get("nbPencil", false), penDown: false, sel: null};
+  let book = null, pages = [], undo = [], redo = [], saveT = 0;
+  const scroll = $("#nb_scroll"), wrap = $("#nb_pages"), dpr = () => Math.min(window.devicePixelRatio || 1, 2.5);
+  const baseW = () => Math.min(scroll.clientWidth - 24, 980);
+  const pw = () => Math.round(baseW() * S.zoom), sc = () => pw() / NB_W;
+  /* ---- persistence ---- */
+  const thumbOf = () => { const cv = document.createElement("canvas"); cv.width = 248; cv.height = 351; nbDraw(cv.getContext("2d"), book.pages[0], 0.2, {texts: true}); return cv.toDataURL("image/jpeg", 0.7); };
+  const save = () => { clearTimeout(saveT); $("#nb_saved").textContent = "…"; saveT = setTimeout(async () => { book.updated = Date.now(); try { book.thumb = thumbOf(); } catch (e) {} try { await nbDB.put(book); $("#nb_saved").textContent = "Saved"; } catch (e) { $("#nb_saved").textContent = "Not saved!"; nbToast("Could not save: " + (e.message || e)); } }, 600); };
+  const snap = pg => JSON.stringify({strokes: pg.strokes, imgs: pg.imgs, texts: pg.texts});
+  const pushUndo = pg => { undo.push([pg.id, snap(pg)]); if (undo.length > 80) undo.shift(); redo = []; };
+  const restore = (stackA, stackB) => { const it = stackA.pop(); if (!it) return; const pg = book.pages.find(p => p.id === it[0]); if (!pg) return; stackB.push([pg.id, snap(pg)]); Object.assign(pg, JSON.parse(it[1])); const P = pages.find(p => p.pg === pg); if (P) { paint(P); drawTexts(P); } save(); };
+  /* ---- pages: one canvas each, created only while near the screen so long notebooks stay light on iPad memory ---- */
+  const mk = pg => { const el = document.createElement("div"); el.className = "nbp"; el.dataset.pid = pg.id; el.innerHTML = `<div class="nbpn">${book.pages.indexOf(pg) + 1}</div><div class="nbtx"></div>`; const P = {pg, el, cv: null}; el.__P = P; return P; };
+  const size = P => { P.el.style.width = pw() + "px"; P.el.style.height = Math.round(pw() * NB_H / NB_W) + "px"; P.el.style.setProperty("--s", sc()); };
+  const paint = P => { if (!P.cv) return; const d = dpr(); P.cv.width = Math.round(pw() * d); P.cv.height = Math.round(pw() * NB_H / NB_W * d); nbDraw(P.cv.getContext("2d"), P.pg, sc() * d); };
+  const attach = P => { if (P.cv) return; P.cv = document.createElement("canvas"); P.cv.className = "nbcv"; P.el.insertBefore(P.cv, P.el.firstChild); paint(P); };
+  const detach = P => { if (!P.cv) return; P.cv.width = P.cv.height = 0; P.cv.remove(); P.cv = null; };
+  const io = new IntersectionObserver(es => es.forEach(e => { const P = e.target.__P; e.isIntersecting ? attach(P) : detach(P); }), {root: scroll, rootMargin: "120% 0px"});
+  const layout = () => { pages.forEach(P => { size(P); paint(P); drawTexts(P); }); $("#nb_zv").textContent = Math.round(S.zoom * 100) + "%"; };
+  const build = () => { io.disconnect(); wrap.innerHTML = ""; pages = book.pages.map(mk); pages.forEach(P => { wrap.appendChild(P.el); size(P); io.observe(P.el); drawTexts(P); }); };
+  const pageAt = (cx, cy) => { for (const P of pages) { const r = P.el.getBoundingClientRect(); if (cx >= r.left && cx <= r.right && cy >= r.top && cy <= r.bottom) return [P, r]; } return [null, null]; };
+  const toPage = (r, cx, cy) => [(cx - r.left) / r.width * NB_W, (cy - r.top) / r.height * NB_H];
+  /* ---- text notes (typed) ---- */
+  const drawTexts = P => { const L = P.el.querySelector(".nbtx"); L.innerHTML = ""; P.pg.texts.forEach(t => L.appendChild(textEl(P, t))); };
+  const textEl = (P, t) => { const d = document.createElement("div"); d.className = "nbtext"; d.contentEditable = "true"; d.spellcheck = true; d.textContent = t.t || "";
+    const pos = () => { d.style.left = t.x / NB_W * 100 + "%"; d.style.top = t.y / NB_H * 100 + "%"; d.style.width = t.w / NB_W * 100 + "%"; d.style.fontSize = (t.size || 30) * sc() + "px"; d.style.color = t.c || "#111827"; }; pos();
+    d.addEventListener("input", () => { t.t = d.innerText; save(); });
+    d.addEventListener("blur", () => { if (!(t.t || "").trim()) { P.pg.texts = P.pg.texts.filter(x => x !== t); d.remove(); save(); } });
+    d.addEventListener("pointerdown", e => { if (S.tool !== "select") return; e.preventDefault(); e.stopPropagation(); dragObj(P, t, e, pos, "text"); });
+    return d; };
+  /* ---- moving and resizing photos and text in Select mode ---- */
+  const selBox = $("#nbw").appendChild(Object.assign(document.createElement("div"), {className: "nbselbox", hidden: true}));
+  selBox.innerHTML = `<i class="h"></i><div class="nbselbar"><button data-a="crop">Crop</button><button data-a="front">Front</button><button data-a="del">Delete</button></div>`;
+  const showSel = () => { const s = S.sel; if (!s || s.kind !== "img") { selBox.hidden = true; return; } const r = s.P.el.getBoundingClientRect(), w = $("#nbw").getBoundingClientRect(), o = s.o;
+    Object.assign(selBox.style, {left: r.left - w.left + o.x / NB_W * r.width + "px", top: r.top - w.top + o.y / NB_H * r.height + "px", width: o.w / NB_W * r.width + "px", height: o.h / NB_H * r.height + "px"}); selBox.hidden = false; };
+  scroll.addEventListener("scroll", () => { if (S.sel) showSel(); }, {passive: true});
+  const dragObj = (P, o, e, pos, kind) => { pushUndo(P.pg); const r = P.el.getBoundingClientRect(), x0 = e.clientX, y0 = e.clientY, ox = o.x, oy = o.y;
+    const mv = ev => { o.x = Math.max(-o.w / 2, Math.min(NB_W - o.w / 2, ox + (ev.clientX - x0) / r.width * NB_W)); o.y = Math.max(0, Math.min(NB_H - 40, oy + (ev.clientY - y0) / r.height * NB_H)); if (kind === "img") { paint(P); showSel(); } else pos(); };
+    const up = () => { removeEventListener("pointermove", mv); removeEventListener("pointerup", up); save(); }; addEventListener("pointermove", mv); addEventListener("pointerup", up); };
+  selBox.addEventListener("pointerdown", e => { const s = S.sel; if (!s || e.target.closest(".nbselbar")) return; e.preventDefault(); e.stopPropagation();
+    if (e.target.classList.contains("h")) { pushUndo(s.P.pg); const r = s.P.el.getBoundingClientRect(), x0 = e.clientX, w0 = s.o.w, ratio = s.o.h / s.o.w;
+      const mv = ev => { s.o.w = Math.max(60, w0 + (ev.clientX - x0) / r.width * NB_W); s.o.h = s.o.w * ratio; paint(s.P); showSel(); }, up = () => { removeEventListener("pointermove", mv); removeEventListener("pointerup", up); save(); }; addEventListener("pointermove", mv); addEventListener("pointerup", up); return; }
+    dragObj(s.P, s.o, e, null, "img"); });
+  selBox.querySelector(".nbselbar").onclick = async e => { const a = e.target.dataset.a, s = S.sel; if (!a || !s) return; pushUndo(s.P.pg);
+    if (a === "del") { s.P.pg.imgs = s.P.pg.imgs.filter(x => x !== s.o); S.sel = null; showSel(); }
+    else if (a === "front") { s.P.pg.imgs = s.P.pg.imgs.filter(x => x !== s.o).concat(s.o); }
+    else if (a === "crop") { const out = await nbCrop(s.o.src); if (out) { const ratio = out.h / out.w; s.o.src = out.src; s.o.h = s.o.w * ratio; await nbReady([out.src]); showSel(); } }
+    paint(s.P); save(); };
+  /* ---- palm rejection, finger scrolling and pinch zoom ---- */
+  const touches = new Map(); let pinch = null, vel = 0, lastT = 0, fling = 0;
+  const setPencil = on => { S.pencil = on; store.set("nbPencil", on); $("#nb_palm").classList.toggle("on", on); };
+  const setZoom = (z, cx, cy) => { const old = S.zoom; S.zoom = Math.max(0.5, Math.min(3, z)); if (S.zoom === old) return; const r = scroll.getBoundingClientRect(), fx = (scroll.scrollLeft + (cx - r.left)) / old, fy = (scroll.scrollTop + (cy - r.top)) / old;
+    pages.forEach(size); scroll.scrollLeft = fx * S.zoom - (cx - r.left); scroll.scrollTop = fy * S.zoom - (cy - r.top); clearTimeout(setZoom.t); setZoom.t = setTimeout(layout, 140); $("#nb_zv").textContent = Math.round(S.zoom * 100) + "%"; showSel(); };
+  /* ---- the drawing itself ---- */
+  let cur = null;
+  const live = P => { let l = P.el.querySelector(".nblive"); if (!l) { l = document.createElement("canvas"); l.className = "nblive"; P.el.appendChild(l); } const d = dpr(); l.width = P.cv.width; l.height = P.cv.height; return l; };
+  const erase = (P, x, y) => { const R = 14 + S.size * 2, n0 = P.pg.strokes.length; P.pg.strokes = P.pg.strokes.filter(st => { const p = st.p; for (let i = 0; i < p.length; i += 3) if (Math.abs(p[i] - x) < R + st.w / 2 && Math.abs(p[i + 1] - y) < R + st.w / 2) return false; return true; }); if (P.pg.strokes.length !== n0) paint(P); };
+  const down = e => {
+    if (e.pointerType === "pen" && !S.pencil) { setPencil(true); nbToast("Apple Pencil detected — Pencil draws, fingers scroll and zoom"); }
+    const drawer = e.pointerType === "pen" || e.pointerType === "mouse" || (e.pointerType === "touch" && !S.pencil && touches.size === 0);
+    if (e.pointerType === "touch") { touches.set(e.pointerId, {x: e.clientX, y: e.clientY}); cancelAnimationFrame(fling);
+      if (S.penDown) return;                                       /* palm rejection: ignore skin while the Pencil writes */
+      if (!drawer || touches.size > 1) { if (cur && touches.size > 1) { cancelStroke(); } if (touches.size === 2) { const [a, b] = [...touches.values()]; pinch = {d: Math.hypot(a.x - b.x, a.y - b.y), z: S.zoom}; } lastT = performance.now(); return; } }
+    if (S.tool === "select") { const [P, r] = pageAt(e.clientX, e.clientY); if (!P) return; const [x, y] = toPage(r, e.clientX, e.clientY); const o = [...P.pg.imgs].reverse().find(o => x >= o.x && x <= o.x + o.w && y >= o.y && y <= o.y + o.h); S.sel = o ? {P, o, kind: "img"} : null; showSel(); if (o) dragObj(P, o, e, null, "img"); return; }
+    const [P, r] = pageAt(e.clientX, e.clientY); if (!P || !P.cv) return; e.preventDefault();
+    const [x, y] = toPage(r, e.clientX, e.clientY);
+    if (S.tool === "text") { pushUndo(P.pg); const t = {id: nbId(), x: Math.min(x, NB_W - 300), y, w: Math.min(640, NB_W - x - 40), t: "", size: Math.round(22 + S.size * 3), c: S.pen}; P.pg.texts.push(t); const d = textEl(P, t); P.el.querySelector(".nbtx").appendChild(d); setTimeout(() => d.focus(), 30); return; }
+    if (e.pointerType === "pen") S.penDown = true;
+    try { scroll.setPointerCapture(e.pointerId); } catch (er) {}
+    pushUndo(P.pg);
+    if (S.tool === "erase") { cur = {P, r, erase: true}; erase(P, x, y); return; }
+    const pr = e.pointerType === "pen" ? e.pressure || 0.5 : 0.55;
+    cur = {P, r, st: {t: S.tool === "hl" ? "hl" : "pen", c: S.tool === "hl" ? S.hl : S.pen, w: S.tool === "hl" ? 18 + S.size * 6 : 1.2 + S.size * 1.15, p: [+x.toFixed(1), +y.toFixed(1), pr]}, drawn: 1, ctx: null};
+    cur.ctx = (cur.st.t === "hl" ? live(P) : P.cv).getContext("2d", {desynchronized: true});
+    if (cur.st.t === "pen") nbStroke(cur.ctx, cur.st, sc() * dpr());
+  };
+  const move = e => {
+    if (e.pointerType === "touch" && touches.has(e.pointerId)) { const t0 = touches.get(e.pointerId), now = performance.now(); touches.set(e.pointerId, {x: e.clientX, y: e.clientY});
+      if (!cur || touches.size > 1) { if (S.penDown) return;
+        if (touches.size === 2 && pinch) { const [a, b] = [...touches.values()], d = Math.hypot(a.x - b.x, a.y - b.y); setZoom(pinch.z * d / pinch.d, (a.x + b.x) / 2, (a.y + b.y) / 2); }
+        scroll.scrollLeft -= (e.clientX - t0.x) / (touches.size); scroll.scrollTop -= (e.clientY - t0.y) / (touches.size); vel = (e.clientY - t0.y) / Math.max(1, now - lastT); lastT = now; return; } }
+    if (!cur || (e.pointerType === "touch" && S.penDown)) return; e.preventDefault();
+    if (cur.erase) { const [x, y] = toPage(cur.r, e.clientX, e.clientY); erase(cur.P, x, y); return; }
+    const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e], pen = e.pointerType === "pen";
+    for (const ev of (evs.length ? evs : [e])) { const [x, y] = toPage(cur.r, ev.clientX, ev.clientY), p = cur.st.p, lx = p[p.length - 3], ly = p[p.length - 2]; if (Math.abs(x - lx) + Math.abs(y - ly) < 0.6) continue; p.push(+x.toFixed(1), +y.toFixed(1), pen ? (ev.pressure || 0.5) : 0.55); }
+    if (!cur.raf) cur.raf = requestAnimationFrame(() => { if (!cur) return; cur.raf = 0; const s = sc() * dpr();
+      if (cur.st.t === "hl") { const c = cur.ctx; c.clearRect(0, 0, c.canvas.width, c.canvas.height); nbStroke(c, cur.st, s); }
+      else { const n = cur.st.p.length / 3; if (n > cur.drawn) { nbStroke(cur.ctx, cur.st, s, Math.max(2, cur.drawn)); cur.drawn = n; } } });
+  };
+  const cancelStroke = () => { if (!cur) return; const P = cur.P; undo.pop(); cur = null; const l = P.el.querySelector(".nblive"); if (l) l.remove(); paint(P); };
+  const up = e => {
+    if (e.pointerType === "touch") { touches.delete(e.pointerId); if (touches.size < 2) pinch = null;
+      if (!cur && touches.size === 0 && !S.penDown && Math.abs(vel) > 0.25) { let v = vel * 16; const step = () => { scroll.scrollTop -= v; v *= 0.94; if (Math.abs(v) > 0.4) fling = requestAnimationFrame(step); }; fling = requestAnimationFrame(step); } vel = 0;
+      if (!cur) return; }
+    if (e.pointerType === "pen") S.penDown = false;
+    if (!cur) return; const c = cur; cur = null; if (c.raf) cancelAnimationFrame(c.raf);
+    if (c.erase) { save(); return; }
+    c.P.pg.strokes.push(c.st);
+    if (c.st.t === "hl") { const l = c.P.el.querySelector(".nblive"); if (l) l.remove(); nbStroke(c.P.cv.getContext("2d"), c.st, sc() * dpr()); }
+    else if (c.st.p.length / 3 > c.drawn) nbStroke(c.ctx, c.st, sc() * dpr(), Math.max(2, c.drawn));
+    save();
+  };
+  scroll.addEventListener("pointerdown", down); scroll.addEventListener("pointermove", move, {passive: false}); scroll.addEventListener("pointerup", up); scroll.addEventListener("pointercancel", e => { if (e.pointerType === "pen") S.penDown = false; touches.delete(e.pointerId); if (cur && cur.P) { if (cur.st) { up(e); } else cur = null; } });
+  scroll.addEventListener("wheel", e => { if (e.ctrlKey) { e.preventDefault(); setZoom(S.zoom * (e.deltaY < 0 ? 1.1 : 0.9), e.clientX, e.clientY); } }, {passive: false});
+  ["gesturestart", "gesturechange"].forEach(g => scroll.addEventListener(g, e => e.preventDefault()));
+  /* ---- toolbar ---- */
+  const tools = () => { $$("#nb_tools [data-tool]").forEach(b => b.classList.toggle("on", b.dataset.tool === S.tool));
+    const cols = S.tool === "hl" ? NB_HLS : NB_PENS, curC = S.tool === "hl" ? S.hl : S.pen;
+    $("#nb_colors").innerHTML = S.tool === "erase" || S.tool === "select" ? "" : cols.map(c => `<button class="nbc${c === curC ? " on" : ""}" data-c="${c}" style="--c:${c}" aria-label="Colour"></button>`).join("");
+    $("#nb_sizes").innerHTML = S.tool === "select" ? "" : [1, 3, 5, 8].map(z => `<button class="nbz${z === S.size ? " on" : ""}" data-z="${z}" aria-label="Size ${z}"><i style="--z:${3 + z * 1.6}px"></i></button>`).join("");
+    $$("[data-c]").forEach(b => b.onclick = () => { if (S.tool === "hl") store.set("nbHl", S.hl = b.dataset.c); else store.set("nbPen", S.pen = b.dataset.c); tools(); });
+    $$("[data-z]").forEach(b => b.onclick = () => { store.set("nbSize", S.size = +b.dataset.z); tools(); });
+    $("#nbw").dataset.tool = S.tool; if (S.tool !== "select") { S.sel = null; showSel(); } };
+  $$("#nb_tools [data-tool]").forEach(b => b.onclick = () => { store.set("nbTool", S.tool = b.dataset.tool); tools(); });
+  $("#nb_palm").onclick = () => { setPencil(!S.pencil); nbToast(S.pencil ? "Pencil only — fingers scroll and zoom, palm ignored" : "Finger drawing on — two fingers scroll and zoom"); };
+  $("#nb_img").onclick = () => $("#nb_file").click();
+  $("#nb_file").onchange = async e => { const f = e.target.files[0]; e.target.value = ""; if (!f) return; try { const im = await commImage(f, 1800, 0.85, 1200000); const out = await nbCrop(im.data); if (!out) return;
+      const P = pages.find(P => { const r = P.el.getBoundingClientRect(); return r.bottom > 120 && r.top < innerHeight - 120; }) || pages[0]; pushUndo(P.pg);
+      const w = NB_W * 0.6, o = {id: nbId(), src: out.src, x: (NB_W - w) / 2, y: Math.max(80, Math.min(NB_H - w * out.h / out.w - 80, (scroll.getBoundingClientRect().top + 140 - P.el.getBoundingClientRect().top) / P.el.getBoundingClientRect().height * NB_H)), w, h: w * out.h / out.w};
+      P.pg.imgs.push(o); await nbReady([o.src]); attach(P); paint(P); store.set("nbTool", S.tool = "select"); tools(); S.sel = {P, o, kind: "img"}; showSel(); save(); } catch (er) { nbToast(er.message || "Could not add the photo"); } };
+  $("#nb_undo").onclick = () => restore(undo, redo); $("#nb_redo").onclick = () => restore(redo, undo);
+  $("#nb_zi").onclick = () => { const r = scroll.getBoundingClientRect(); setZoom(S.zoom * 1.2, r.left + r.width / 2, r.top + r.height / 2); }; $("#nb_zo").onclick = () => { const r = scroll.getBoundingClientRect(); setZoom(S.zoom / 1.2, r.left + r.width / 2, r.top + r.height / 2); };
+  $("#nb_addp").onclick = () => { const last = book.pages[book.pages.length - 1], pg = nbPage(last && last.tpl !== "blank" ? last.tpl : "lined"); book.pages.push(pg); const P = mk(pg); pages.push(P); wrap.appendChild(P.el); size(P); io.observe(P.el); save(); setTimeout(() => P.el.scrollIntoView({behavior: "smooth", block: "start"}), 60); };
+  $("#nb_title").addEventListener("input", e => { book.title = e.target.value.trim() || "Notes"; save(); });
+  $("#nb_pdf").onclick = async () => { const b = $("#nb_pdf"); b.disabled = true; b.querySelector("span").textContent = "0%"; try { const blob = await nbExportPdf(book, x => b.querySelector("span").textContent = Math.round(x * 100) + "%"); const r = await nbSharePdf(blob, book.title); nbToast(r === "saved" ? "PDF saved — check Downloads / Files" : r === "shared" ? "PDF shared" : "PDF ready"); } catch (er) { nbToast("PDF failed: " + (er.message || er)); } b.disabled = false; b.querySelector("span").textContent = "PDF"; };
+  $("#nb_more").onclick = () => { const vis = pages.find(P => { const r = P.el.getBoundingClientRect(); return r.bottom > innerHeight / 2; }) || pages[0], i = pages.indexOf(vis);
+    const sh = document.createElement("div"); sh.className = "sheet"; sh.innerHTML = `<div class="sheetin"><div class="pshead"><h3>Page ${i + 1} of ${pages.length}</h3><button class="iconbtn" id="pm_x">${CI.x}</button></div>
+      <div class="thgrid">${NB_TPL.map(([k, l]) => `<button class="thsw${vis.pg.tpl === k ? " on" : ""}" data-tpl="${k}"><span class="nbtpl nbtpl-${k}"></span><b>${l}</b></button>`).join("")}</div>
+      <div class="btnrow" style="flex-wrap:wrap"><button class="btn btn-ghost" id="pm_dup">Duplicate page</button><button class="btn btn-ghost" id="pm_clear">Clear my writing</button><button class="btn btn-danger" id="pm_del"${pages.length < 2 ? " disabled" : ""}>Delete page</button></div></div>`;
+    document.body.appendChild(sh); const close = () => sh.remove(); sh.querySelector("#pm_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
+    $$("[data-tpl]", sh).forEach(b => b.onclick = () => { vis.pg.tpl = b.dataset.tpl; paint(vis); save(); close(); });
+    sh.querySelector("#pm_dup").onclick = () => { const c = JSON.parse(JSON.stringify(vis.pg)); c.id = nbId(); book.pages.splice(i + 1, 0, c); build(); save(); close(); };
+    sh.querySelector("#pm_clear").onclick = () => { pushUndo(vis.pg); vis.pg.strokes = []; vis.pg.texts = []; vis.pg.imgs = []; paint(vis); drawTexts(vis); save(); close(); };
+    const del = sh.querySelector("#pm_del"); del.onclick = () => { if (!del.dataset.arm) { del.dataset.arm = 1; del.textContent = "Tap again to delete"; return; } book.pages.splice(i, 1); build(); save(); close(); }; };
+  const onKey = e => { if (e.target.closest("input,textarea,[contenteditable]")) return; if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") { e.preventDefault(); e.shiftKey ? restore(redo, undo) : restore(undo, redo); } };
+  const onResize = () => { clearTimeout(onResize.t); onResize.t = setTimeout(() => { layout(); showSel(); }, 150); };
+  addEventListener("keydown", onKey); addEventListener("resize", onResize);
+  COMM.unsub.push(() => { removeEventListener("keydown", onKey); removeEventListener("resize", onResize); io.disconnect(); clearTimeout(saveT); if (book) nbDB.put(book).catch(() => {}); });
+  /* ---- load ---- */
+  nbDB.get(id).then(async b => { if (!b) { wrap.innerHTML = `<div class="card">This notebook was not found on this device. <a href="#nb">All notebooks</a></div>`; return; }
+    book = b; $("#nb_title").value = b.title; await nbReady([...new Set(b.pages.flatMap(p => [p.bg, ...p.imgs.map(i => i.src)].filter(Boolean)))]); build(); setPencil(S.pencil); tools(); $("#nb_saved").textContent = "Saved"; })
+    .catch(e => wrap.innerHTML = `<div class="warn">Could not open the notebook: ${esc(e.message || e)}</div>`);
+}
+/* ===== select a word on any page: dictionary, Google, search this app, ask AI, copy ===== */
+(() => {
+  let bar = null, word = "", t = 0;
+  const hide = () => { if (bar) bar.classList.remove("on"); };
+  const make = () => { const b = document.createElement("div"); b.className = "wlook"; b.setAttribute("role", "toolbar");
+    b.innerHTML = `<button data-w="def">📖<span>Define</span></button><button data-w="g">${SI('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>')}<span>Google</span></button><button data-w="app">${SI('<path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3z"/><path d="M5 18a3 3 0 0 1 3-3h11"/>')}<span>In app</span></button><button data-w="ai">${ICON.spark}<span>Ask AI</span></button><button data-w="copy">${SI('<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>')}<span>Copy</span></button>`;
+    b.addEventListener("pointerdown", e => e.preventDefault());   /* keep the selection while tapping */
+    b.addEventListener("click", e => { const a = (e.target.closest("[data-w]") || {}).dataset; if (!a || !a.w) return; const w = word; hide();
+      if (a.w === "def") defineSheet(w); else if (a.w === "g") window.open("https://www.google.com/search?q=" + encodeURIComponent(w), "_blank", "noopener");
+      else if (a.w === "app") { getSelection().removeAllRanges(); go("#search/" + encodeURIComponent(w)); }
+      else if (a.w === "ai") { store.set("aiQ", `Explain “${w}” in a clinical context (Bhutan, adult and child).`); getSelection().removeAllRanges(); go("#ai"); }
+      else if (a.w === "copy") { navigator.clipboard && navigator.clipboard.writeText(w).then(() => nbToast("Copied")).catch(() => {}); } });
+    document.body.appendChild(b); return b; };
+  const show = () => { const s = getSelection(), txt = s ? String(s).replace(/\s+/g, " ").trim() : "";
+    if (!txt || txt.length > 60 || !s.rangeCount) return hide();
+    const n = s.anchorNode && (s.anchorNode.nodeType === 1 ? s.anchorNode : s.anchorNode.parentElement);
+    if (!n || !n.closest("#view") || n.closest("input,textarea,[contenteditable],.nbwrap,.composer,.sheet")) return hide();
+    const r = s.getRangeAt(0).getBoundingClientRect(); if (!r.width && !r.height) return hide();
+    word = txt; bar = bar || make(); bar.classList.add("on");
+    const bw = bar.offsetWidth || 300, below = r.bottom + 14 + 52 < innerHeight;   /* below the word: the phone's own copy menu sits above it */
+    bar.style.left = Math.max(8, Math.min(innerWidth - bw - 8, r.left + r.width / 2 - bw / 2)) + "px"; bar.style.top = (below ? r.bottom + 12 : Math.max(8, r.top - 58)) + "px"; };
+  document.addEventListener("selectionchange", () => { clearTimeout(t); t = setTimeout(show, 260); });
+  addEventListener("scroll", hide, {passive: true}); addEventListener("hashchange", hide);
+})();
+async function defineSheet(w) {
+  const sh = document.createElement("div"); sh.className = "sheet";
+  const q = encodeURIComponent(w.toLowerCase());
+  sh.innerHTML = `<div class="sheetin"><div class="pshead"><h3>📖 ${esc(w)}</h3><button class="iconbtn" id="df_x" aria-label="Close">${CI.x}</button></div><div id="df_b" class="dfbody"><div class="fskel" style="height:90px"></div></div>
+    <div class="dflinks"><a class="chip" href="https://www.merriam-webster.com/medical/${q}" target="_blank" rel="noopener">Medical dictionary ↗</a><a class="chip" href="https://www.google.com/search?q=define+${q}" target="_blank" rel="noopener">Google ↗</a><a class="chip" href="#search/${q}">Search this app</a></div></div>`;
+  document.body.appendChild(sh); const close = () => sh.remove(); sh.querySelector("#df_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh || e.target.closest(".dflinks a")) close(); });
+  const body = sh.querySelector("#df_b");
+  if (!/^[a-z][a-z\s'-]{0,40}$/i.test(w)) { body.innerHTML = `<p class="muted small">Use the links below for this phrase.</p>`; return; }
+  try {
+    const r = await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + q); if (!r.ok) throw new Error("none");
+    const d = await r.json(), e = d[0], ph = (e.phonetics || []).find(p => p.text) || {}, au = (e.phonetics || []).find(p => p.audio);
+    body.innerHTML = `${ph.text ? `<div class="dfph">${esc(ph.text)}${au ? ` <button class="lnk" id="df_au">🔊 listen</button>` : ""}</div>` : ""}${(e.meanings || []).slice(0, 3).map(m => `<div class="dfm"><i>${esc(m.partOfSpeech)}</i><ol>${m.definitions.slice(0, 3).map(x => `<li>${esc(x.definition)}${x.example ? `<small>“${esc(x.example)}”</small>` : ""}</li>`).join("")}</ol></div>`).join("")}<p class="small muted">General English dictionary (Free Dictionary API, Wiktionary). For medical meanings use the medical dictionary.</p>`;
+    const a = sh.querySelector("#df_au"); if (a) a.onclick = () => new Audio(au.audio).play().catch(() => {});
+  } catch (e) {
+    /* backup: Wiktionary (also free, no key) */
+    try {
+      const r2 = await fetch("https://en.wiktionary.org/api/rest_v1/page/definition/" + q); if (!r2.ok) throw new Error("none");
+      const strip = h => { const d = document.createElement("div"); d.innerHTML = h || ""; return d.textContent.replace(/\s+/g, " ").trim(); };
+      const ms = ((await r2.json()).en || []).map(m => ({p: m.partOfSpeech, d: (m.definitions || []).map(x => strip(x.definition)).filter(Boolean).slice(0, 3)})).filter(m => m.d.length).slice(0, 3);
+      if (!ms.length) throw new Error("none");
+      body.innerHTML = ms.map(m => `<div class="dfm"><i>${esc(m.p)}</i><ol>${m.d.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>`).join("") + `<p class="small muted">General English dictionary (Wiktionary). For medical meanings use the medical dictionary.</p>`;
+    } catch (e2) { body.innerHTML = `<p class="muted">${navigator.onLine ? "No general-English entry for this word — it may be a medical term. Try the medical dictionary below." : "You are offline — the dictionary needs internet."}</p>`; }
+  }
+}
+/* crop a photo: drag the frame or its corners; returns {src, w, h} */
+function nbCrop(src) {
+  return new Promise(res => {
+    const sh = document.createElement("div"); sh.className = "nbcropov";
+    sh.innerHTML = `<div class="nbcropbar"><button class="btn btn-ghost" id="cr_x">Cancel</button><b>Crop</b><button class="btn btn-ghost" id="cr_full">Full photo</button><button class="btn" id="cr_ok">Done</button></div><div class="nbcropstage"><div class="nbcropwrap"><img src="${src}" alt=""><div class="nbcropbox"><i data-c="nw"></i><i data-c="ne"></i><i data-c="sw"></i><i data-c="se"></i></div></div></div>`;
+    document.body.appendChild(sh);
+    const img = sh.querySelector("img"), box = sh.querySelector(".nbcropbox"); let r = {x: .05, y: .05, w: .9, h: .9};
+    const put = () => Object.assign(box.style, {left: r.x * 100 + "%", top: r.y * 100 + "%", width: r.w * 100 + "%", height: r.h * 100 + "%"}); put();
+    box.addEventListener("pointerdown", e => { e.preventDefault(); const c = e.target.dataset.c, W = img.getBoundingClientRect(), x0 = e.clientX, y0 = e.clientY, r0 = {...r};
+      const mv = ev => { const dx = (ev.clientX - x0) / W.width, dy = (ev.clientY - y0) / W.height, cl = v => Math.max(0, Math.min(1, v));
+        if (!c) { r.x = cl(Math.min(1 - r.w, r0.x + dx)); r.y = cl(Math.min(1 - r.h, r0.y + dy)); }
+        else { let x1 = r0.x, y1 = r0.y, x2 = r0.x + r0.w, y2 = r0.y + r0.h; if (c.includes("w")) x1 = cl(Math.min(x2 - .05, x1 + dx)); if (c.includes("e")) x2 = cl(Math.max(x1 + .05, x2 + dx)); if (c.includes("n")) y1 = cl(Math.min(y2 - .05, y1 + dy)); if (c.includes("s")) y2 = cl(Math.max(y1 + .05, y2 + dy)); r = {x: x1, y: y1, w: x2 - x1, h: y2 - y1}; }
+        put(); };
+      const up = () => { removeEventListener("pointermove", mv); removeEventListener("pointerup", up); }; addEventListener("pointermove", mv); addEventListener("pointerup", up); });
+    const done = v => { sh.remove(); res(v); };
+    sh.querySelector("#cr_x").onclick = () => done(null);
+    sh.querySelector("#cr_full").onclick = () => { r = {x: 0, y: 0, w: 1, h: 1}; put(); };
+    sh.querySelector("#cr_ok").onclick = () => { const W = img.naturalWidth, H = img.naturalHeight, cv = document.createElement("canvas"); cv.width = Math.max(1, Math.round(r.w * W)); cv.height = Math.max(1, Math.round(r.h * H)); cv.getContext("2d").drawImage(img, r.x * W, r.y * H, r.w * W, r.h * H, 0, 0, cv.width, cv.height); done({src: cv.toDataURL("image/jpeg", 0.86), w: cv.width, h: cv.height}); };
+  });
 }
 function topicsIndexView() {
   const mode = store.get("topicsMode", "spec"), byName = (a, b) => a.n.localeCompare(b.n);
@@ -20791,7 +21254,7 @@ function bindRoom(arg) {
 }
 
 /* ===== Clinical Hub page: Tools, Emergency, Reference and AI as icon folders (#hub, #hub/tools …) ===== */
-const NAV_DESC = {calc: "Scores, doses, formulas", fluids: "Maintenance, bolus, electrolytes", equip: "Sizes, kits, oxygen", growth: "WHO charts, BP centiles", notes: "Your own notes", protocols: "Step-by-step emergency care", flow: "Algorithms at a glance", picu: "Paediatric intensive care", nicu: "Newborn intensive care", vent: "Settings and troubleshooting", drugs: "NEML doses, forms, international", cond: "Conditions A–Z", criteria: "Diagnostic criteria", stg: "Bhutan STG and national guidelines", glossary: "Terms and abbreviations", aware: "Public health information", ai: "Ask the app, ChatGPT, Claude, Gemini"};
+const NAV_DESC = {nb: "View, highlight and export PDFs", calc: "Scores, doses, formulas", fluids: "Maintenance, bolus, electrolytes", equip: "Sizes, kits, oxygen", growth: "WHO charts, BP centiles", notes: "Your own notes", protocols: "Step-by-step emergency care", flow: "Algorithms at a glance", picu: "Paediatric intensive care", nicu: "Newborn intensive care", vent: "Settings and troubleshooting", drugs: "NEML doses, forms, international", cond: "Conditions A–Z", criteria: "Diagnostic criteria", stg: "Bhutan STG and national guidelines", glossary: "Terms and abbreviations", aware: "Public health information", ai: "Ask the app, ChatGPT, Claude, Gemini"};
 function hubPageView(g) {
   const groups = g ? NAV_GROUPS.filter(x => x[0] === g) : NAV_GROUPS;
   if (!groups.length) return hubPageView();
@@ -21109,7 +21572,8 @@ function feedView() {
   const p = COMM.profile;
   const tip = FEED_TIPS[Math.floor(Date.now() / 864e5) % FEED_TIPS.length];
   return head + `<div class="pssearch fsearch">${ICON.search}<input id="f_q" type="search" placeholder="Search posts, people or #topics" autocomplete="off"></div>
-    <div class="ftip"><span class="ftipic">💡</span><div><small>Tip of the day</small><b>${esc(tip[0])}</b><span>${esc(tip[1])} <i>— ${esc(tip[2])}</i></span></div></div>
+    <div class="ftip"><span class="ftipic">💡</span><div><small>Health awareness · today</small><b>${esc(tip[0])}</b><span>${esc(tip[1])} <i>— ${esc(tip[2])}</i></span></div></div>
+    ${commMember() && FC_ALL.length ? (() => { const c = FC_ALL[(Math.floor(Date.now() / 864e5) * 37) % FC_ALL.length], tp = TOPIC_BY[c.topic]; return `<div class="fqod"><div class="fqodh"><span>🧠</span><small>Question of the day</small>${tp ? `<em>${esc(tp.n)}</em>` : ""}</div><b>${esc(c.q)}</b><div class="fqoda" id="f_qa" hidden>${esc(c.a)}</div><div class="fqodb"><button class="btn btn-sm" id="f_qshow">Show answer</button><a class="lnk" href="#cards/${esc(c.topic)}">More questions on this topic →</a><a class="lnk" href="#cards">All flashcards</a></div></div>`; })() : ""}
     <div class="feedtabs" id="f_tabs">${[["all", "For you"], ["top", "🔥 Trending"], ["pro", "Professionals"], ["q", "Questions"], ["saved", "Saved"], ["mine", "My posts"]].map(([k, l], i) => `<button class="chip${i ? "" : " on"}" data-f="${k}">${l}</button>`).join("")}</div><div id="f_tagbar" hidden></div>
     <button class="fcompose" id="f_new">${commAvatar(p, p.name, "av40")}<span>Share a health tip or ask a question…</span><i>${SI('<rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/>')}</i></button>
     <div id="f_list" class="flist"><div class="fskel"></div><div class="fskel"></div></div><div id="c_msg" class="small"></div>
@@ -21122,14 +21586,19 @@ function bindFeed() {
   const saved = () => new Set(store.get("savedPosts", []));
   const tagify = h => h.replace(/(^|[\s>(])#([A-Za-z][\w-]{1,30})/g, (m0, pre, tg) => `${pre}<button class="htag" data-tag="${tg.toLowerCase()}">#${tg}</button>`);
   const myLikes = async ids => { await Promise.all(ids.filter(id => !(id in liked)).map(id => posts.doc(id).collection("likes").doc(me).get().then(d => liked[id] = d.exists).catch(() => liked[id] = false))); };
-  const card = d => { const m = d.data(), pe = COMM.people[m.uid] || {}, [, tl, th] = tagLook(m.tag), long = (m.text || "").length > 360;
-    return `<article class="fpost" data-id="${d.id}"><header><button class="fava" data-prof="${m.uid}" aria-label="View ${esc(m.name)}">${commAvatar(pe.name ? pe : {name: m.name, photo: ""}, m.name, "av44")}</button><div class="fwho" data-prof="${m.uid}"><b>${esc(m.name)}${m.pro ? `<span class="vbadge" title="Verified health professional">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')}</span>` : ""}</b><small>${esc(m.role || (m.pro ? "Health professional" : "Member"))} · ${timeAgo(tsMs(m.ts))}</small></div><span class="ftag" style="--h:${th}">${tl}</span><button class="iconbtn fmore" data-more="${d.id}" aria-label="More">⋯</button></header>
+  const myAnon = () => new Set(store.get("myAnonPosts", []));
+  const card = d => { const m = d.data(), pe = m.anon ? {} : COMM.people[m.uid] || {}, [, tl, th] = tagLook(m.tag), long = (m.text || "").length > 360;
+    if (m.anon) return `<article class="fpost fanonp" data-id="${d.id}"><header><span class="av av44 avanon">${SI('<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>')}</span><div class="fwho"><b>Anonymous${myAnon().has(d.id) ? ` <span class="ftag" style="--h:220">you</span>` : ""}</b><small>Member · ${timeAgo(tsMs(m.ts))}</small></div><span class="ftag" style="--h:${th}">${tl}</span><button class="iconbtn fmore" data-more="${d.id}" aria-label="More">⋯</button></header>`
+      + cardBody(d, m, long) ;
+    return `<article class="fpost" data-id="${d.id}"><header><button class="fava" data-prof="${m.uid}" aria-label="View ${esc(m.name)}">${commAvatar(pe.name ? pe : {name: m.name, photo: ""}, m.name, "av44")}</button><div class="fwho" data-prof="${m.uid}"><b>${esc(m.name)}${m.pro ? `<span class="vbadge" title="Verified health professional">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')}</span>` : ""}</b><small>${esc(m.role || (m.pro ? "Health professional" : "Member"))} · ${timeAgo(tsMs(m.ts))}</small></div><span class="ftag" style="--h:${th}">${tl}</span><button class="iconbtn fmore" data-more="${d.id}" aria-label="More">⋯</button></header>` + cardBody(d, m, long); };
+  const cardBody = (d, m, long) => {
+    return `
       <div class="ftext${long ? " clamp" : ""}" data-dbl="${d.id}">${tagify(linkifyMsg(m.text || ""))}</div>${long ? `<button class="fsee" data-see="${d.id}">See more</button>` : ""}
       ${m.img ? `<button class="fimg" data-img="${d.id}" data-dbl="${d.id}"><img src="${m.img}" alt="Photo shared with the post" loading="lazy"><span class="fheartbig">${SI('<path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"/>')}</span></button>` : ""}
       <footer><button class="fact flike${liked[d.id] ? " on" : ""}" data-like="${d.id}"><span class="heart">${SI('<path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"/>')}</span><b>${m.likes || 0}</b></button><button class="fact" data-com="${d.id}">${SI('<path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3 21l1.4-5.4A8.5 8.5 0 1 1 21 12z"/>')}<b>${m.comments || 0}</b></button><button class="fact" data-share="${d.id}">${SI('<path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/>')}<b>Share</b></button><button class="fact fsave${saved().has(d.id) ? " on" : ""}" data-save="${d.id}" aria-label="Save post">${CI.bookmark}</button></footer>
       <div class="fcoms" id="fc_${d.id}" ${open.has(d.id) ? "" : "hidden"}></div></article>`; };
   const shown = () => { const sv = saved(); let s = docs.filter(d => { const m = d.data(), txt = ((m.text || "") + " " + (m.name || "")).toLowerCase();
-      return (filt === "all" || filt === "top" || (filt === "pro" && m.pro) || (filt === "q" && m.tag === "q") || (filt === "mine" && m.uid === me) || (filt === "saved" && sv.has(d.id)))
+      return (filt === "all" || filt === "top" || (filt === "pro" && m.pro) || (filt === "q" && m.tag === "q") || (filt === "mine" && (m.uid === me || myAnon().has(d.id))) || (filt === "saved" && sv.has(d.id)))
         && (!fq || txt.includes(fq)) && (!tagQ || txt.includes("#" + tagQ)); });
     if (filt === "top") s = s.filter(d => Date.now() - tsMs(d.data().ts) < 14 * 864e5).sort((a, b) => ((b.data().likes || 0) + 2 * (b.data().comments || 0)) - ((a.data().likes || 0) + 2 * (a.data().comments || 0)));
     return s; };
@@ -21153,6 +21622,7 @@ function bindFeed() {
   const sub = () => { if (COMM.feedU) COMM.feedU(); COMM.feedU = posts.orderBy("ts", "desc").limit(limit).onSnapshot(s => { docs = []; s.forEach(d => docs.push(d)); draw().catch(() => {}); }, e => list.innerHTML = `<div class="warn small">${esc(commErr(e))}</div>`); COMM.unsub.push(() => { if (COMM.feedU) { COMM.feedU(); COMM.feedU = null; } }); };
   sub();
   $("#f_more").onclick = () => { limit += 25; sub(); };
+  const qs = $("#f_qshow"); if (qs) qs.onclick = () => { const a = $("#f_qa"); a.hidden = !a.hidden; qs.textContent = a.hidden ? "Show answer" : "Hide answer"; };
   $$("#f_tabs .chip").forEach(b => b.onclick = () => { $$("#f_tabs .chip").forEach(x => x.classList.toggle("on", x === b)); filt = b.dataset.f; draw().catch(() => {}); });
   const setTag = tg => { tagQ = tg || ""; const tb = $("#f_tagbar"); tb.hidden = !tagQ; tb.innerHTML = tagQ ? `<span class="htag on">#${esc(tagQ)}</span><button class="lnk" id="f_tagx">Show all posts</button>` : ""; const x = $("#f_tagx"); if (x) x.onclick = () => setTag(""); draw().catch(() => {}); scrollTo({top: 0, behavior: "smooth"}); };
   $("#f_q").addEventListener("input", e => { fq = e.target.value.trim().toLowerCase(); if (fq.startsWith("#")) { fq = ""; setTag(e.target.value.trim().slice(1).toLowerCase()); return; } draw().catch(() => {}); });
@@ -21168,10 +21638,11 @@ function bindFeed() {
     }, e => { el.innerHTML = `<div class="warn small">${esc(commErr(e))}</div>`; });
     COMM.unsub.push(() => comsU[id] && comsU[id]()); };
   const toggleComs = id => { const el = $("#fc_" + id); if (!el) return; if (open.has(id)) { open.delete(id); el.hidden = true; return; } open.add(id); el.hidden = false; loadComs(id); };
-  const moreSheet = id => { const m = docs.find(x => x.id === id).data(), mine = m.uid === me;
-    const sh = document.createElement("div"); sh.className = "sheet"; sh.innerHTML = `<div class="sheetin"><h3>Post options</h3><div class="btnrow" style="flex-direction:column;align-items:stretch">${mine || COMM.isAdmin ? `<button class="btn btn-danger" id="fo_del">Delete post</button>` : ""}${mine ? "" : `<button class="btn btn-ghost" id="fo_rep">Report to the administrator</button><button class="btn btn-ghost" id="fo_dm">Message ${esc(m.name.split(" ")[0])}</button>`}<button class="btn btn-ghost" id="fo_x">Close</button></div><div class="small" id="fo_msg"></div></div>`;
+  const moreSheet = id => { const m = docs.find(x => x.id === id).data(), mine = m.uid === me || (m.anon && myAnon().has(id));
+    const sh = document.createElement("div"); sh.className = "sheet"; sh.innerHTML = `<div class="sheetin"><h3>Post options</h3><div class="btnrow" style="flex-direction:column;align-items:stretch">${mine || COMM.isAdmin ? `<button class="btn btn-danger" id="fo_del">Delete post</button>` : ""}${m.anon && COMM.isAdmin ? `<button class="btn btn-ghost" id="fo_who">Who posted this? (administrator)</button>` : ""}${mine ? "" : `<button class="btn btn-ghost" id="fo_rep">Report to the administrator</button>${m.anon ? "" : `<button class="btn btn-ghost" id="fo_dm">Message ${esc(m.name.split(" ")[0])}</button>`}`}<button class="btn btn-ghost" id="fo_x">Close</button></div><div class="small" id="fo_msg"></div></div>`;
     document.body.appendChild(sh); const close = () => sh.remove(); sh.querySelector("#fo_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
-    const del = sh.querySelector("#fo_del"); if (del) del.onclick = async () => { if (!del.dataset.arm) { del.dataset.arm = 1; del.textContent = "Tap again to delete"; return; } try { await posts.doc(id).delete(); close(); } catch (e) { sh.querySelector("#fo_msg").textContent = commErr(e); } };
+    const del = sh.querySelector("#fo_del"); if (del) del.onclick = async () => { if (!del.dataset.arm) { del.dataset.arm = 1; del.textContent = "Tap again to delete"; return; } try { if (m.anon) { const b2 = COMM.db.batch(); b2.delete(posts.doc(id).collection("owner").doc("o")); b2.delete(posts.doc(id)); await b2.commit(); } else await posts.doc(id).delete(); close(); } catch (e) { sh.querySelector("#fo_msg").textContent = commErr(e); } };
+    const who = sh.querySelector("#fo_who"); if (who) who.onclick = async () => { try { const o = await posts.doc(id).collection("owner").doc("o").get(); const u = o.exists ? o.data().uid : null; if (!u) { sh.querySelector("#fo_msg").textContent = "Not recorded."; return; } await commPeople([u]); const p = COMM.people[u] || {}; sh.querySelector("#fo_msg").textContent = `Posted by ${p.name || "unknown"}${p.role ? " · " + p.role : ""}${p.place ? " · " + p.place : ""} — keep this confidential.`; } catch (e) { sh.querySelector("#fo_msg").textContent = commErr(e); } };
     const rep = sh.querySelector("#fo_rep"); if (rep) rep.onclick = async () => { try { await COMM.db.collection("reports").add({post: id, uid: me, ts: COMM.fb.firestore.FieldValue.serverTimestamp()}); sh.querySelector("#fo_msg").textContent = "Thank you — the administrator will review it."; rep.disabled = true; } catch (e) { sh.querySelector("#fo_msg").textContent = commErr(e); } };
     const dm = sh.querySelector("#fo_dm"); if (dm) dm.onclick = () => { close(); openDM(m.uid); }; };
   /* composer */
@@ -21181,6 +21652,7 @@ function bindFeed() {
       <div class="chips wrap" id="fp_tags">${FEED_TAGS.map(([k, l, h]) => `<button class="chip ftagc${k === tag ? " on" : ""}" data-t="${k}" style="--h:${h}">${l}</button>`).join("")}</div>
       <textarea id="fp_t" rows="5" maxlength="2000" placeholder="${commMember() ? "Share a health tip, awareness message or answer…" : "Ask a health question or share an awareness message…"}"></textarea>
       <div id="fp_prev"></div><div class="fpbar"><button class="btn btn-ghost" id="fp_ph">${SI('<rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/>')} Photo</button><input type="file" id="fp_f" accept="image/*" hidden><span class="small muted" id="fp_n">0 / 2000</span></div>
+      <label class="shchk fanon"><input type="checkbox" id="fp_anon"> <span><b>Post anonymously</b> — others see “Anonymous”. Only the administrator can see who wrote it, to keep the feed safe.</span></label>
       <label class="shchk"><input type="checkbox" id="fp_ok"> No one's personal details (name, face, CID, phone, address) appear, and this is general information — not a private medical case.</label>
       <div class="btnrow"><button class="btn" id="fp_go" disabled>Post</button></div><div class="small" id="fp_msg"></div></div>`;
     document.body.appendChild(sh);
@@ -21193,7 +21665,10 @@ function bindFeed() {
     sh.querySelector("#fp_f").onchange = async e => { const f = e.target.files[0]; e.target.value = ""; if (!f) return; try { img = (await commImage(f, 1080, 0.72, 320000)).data; sh.querySelector("#fp_prev").innerHTML = `<div class="fpimg"><img src="${img}" alt=""><button class="iconbtn" id="fp_rm" aria-label="Remove photo">✕</button></div>`; sh.querySelector("#fp_rm").onclick = () => { img = null; sh.querySelector("#fp_prev").innerHTML = ""; upd(); }; upd(); } catch (er) { msg.textContent = er.message; } };
     goB.onclick = async () => { const text = t.value.trim(), ids = deidFind(text); if (ids.length && !goB.dataset.w) { goB.dataset.w = 1; msg.innerHTML = `<span style="color:var(--red)">Possible personal identifier: ${esc(ids[0][1])} (“${esc(ids[0][0])}”). Remove it, or tap Post again.</span>`; return; }
       goB.disabled = true; goB.textContent = "Posting…";
-      try { const pp = COMM.profile; await posts.add({uid: me, name: pp.name, role: (pp.role || "").slice(0, 60), pro: !!commMember(), tag, text: text.slice(0, 2000), ...(img ? {img} : {}), likes: 0, comments: 0, ts: COMM.fb.firestore.FieldValue.serverTimestamp()}); close(); }
+      try { const pp = COMM.profile, anon = sh.querySelector("#fp_anon").checked, base = {tag, text: text.slice(0, 2000), ...(img ? {img} : {}), likes: 0, comments: 0, ts: COMM.fb.firestore.FieldValue.serverTimestamp()};
+        if (anon) { const ref = posts.doc(), b2 = COMM.db.batch(); b2.set(ref, {...base, anon: true, name: "Anonymous", role: "", pro: false}); b2.set(ref.collection("owner").doc("o"), {uid: me}); await b2.commit(); store.set("myAnonPosts", [...store.get("myAnonPosts", []), ref.id].slice(-200)); }
+        else await posts.add({...base, uid: me, name: pp.name, role: (pp.role || "").slice(0, 60), pro: !!commMember()});
+        close(); }
       catch (er) { goB.disabled = false; goB.textContent = "Post"; msg.textContent = commErr(er); } };
     setTimeout(() => t.focus(), 250);
   };
@@ -21695,10 +22170,10 @@ const NAV = [
 ];
 /* categories: each opens like a tab to show its icons, then folds away again */
 /* bottom bar: Home · Clinical Hub · Chat · Settings. The Hub holds four sections, in this order: Tools, Emergency, Reference, AI */
-NAV.push(["chat", "Chat", ICON.chat], ["hub", "Clinical Hub", ICON.list], ["foryou", "For You", ICON.heart]);
+NAV.push(["chat", "Chat", ICON.chat], ["hub", "Clinical Hub", ICON.list], ["foryou", "For You", ICON.heart], ["nb", "PDF notes", ICON.note]);
 const NAV_PIN = ["home", "search", "foryou", "chat", "settings"];
 const NAV_GROUPS = [
-  ["tools", "Tools", ICON.ruler, ["calc", "fluids", "equip", "growth", "notes"]],
+  ["tools", "Tools", ICON.ruler, ["calc", "nb", "fluids", "equip", "growth", "notes"]],
   ["emerg", "Emergency", ICON.siren, ["protocols", "flow", "picu", "nicu", "vent"]],
   ["ref", "Reference", ICON.book, ["drugs", "cond", "criteria", "stg", "glossary", "aware"]],
   ["ai", "AI", ICON.spark, ["ai"]]
@@ -21709,7 +22184,7 @@ const NAV_BY = Object.fromEntries(NAV.map(n => [n[0], n]));
 const NAV_LOOK = {picu: [192, IC2.vent], nicu: [322, IC2.baby], criteria: [268, IC2.score],home: [205, ICON.home], search: [215, ICON.search], drugs: [150, IC2.drugs], cond: [262, IC2.med], stg: [28, IC2.guide], glossary: [42, ICON.book], protocols: [354, IC2.emerg], flow: [328, ICON.flow], calc: [222, IC2.calc], vent: [188, IC2.vent], fluids: [200, IC2.drop], equip: [16, IC2.equip], growth: [128, IC2.growth], notes: [48, ICON.note], account: [174, ICON.chat], settings: [236, ICON.gear], ask: [276, ICON.spark], aware: [338, IC2.heart], ai: [292, ICON.ai], "ai/chatgpt": [160, ICON.aiGpt], "ai/claude": [18, ICON.aiClaude], "ai/gemini": [224, ICON.aiGemini], "ai/google": [210, ICON.google]};
 const GRP_LOOK = {ref: [28, ICON.book], emerg: [354, ICON.siren], tools: [222, ICON.ruler], ai: [276, ICON.spark], me: [174, IC2.people], hub: [250, HUB_ICON]};
 const FY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.2-9.6A5 5 0 0 1 12 6.3a5 5 0 0 1 9.2 5.1C19.5 16.4 12 21 12 21z"/><path d="M9.5 12.5h5M12 10v5"/></svg>';
-Object.assign(NAV_LOOK, {chat: [174, ICON.chat], hub: [250, HUB_ICON], ai: [276, ICON.spark], foryou: [345, FY_ICON]});
+Object.assign(NAV_LOOK, {chat: [174, ICON.chat], hub: [250, HUB_ICON], ai: [276, ICON.spark], foryou: [345, FY_ICON], nb: [222, '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3z"/><path d="M5 18a3 3 0 0 1 3-3h11"/><path d="m9.5 11.5 4-4 1.5 1.5-4 4H9.5z"/></svg>']});
 const nic = (look, cls = "") => look ? `<span class="nic ic-tile ${cls}" style="--h:${look[0]}" aria-hidden="true">${look[1]}</span>` : "";
 const navIc = id => NAV_LOOK[id] ? nic(NAV_LOOK[id]) : NAV_BY[id][2];
 const navBtn = id => { const [i, t] = NAV_BY[id]; return `<button class="nav" data-nav="${i}">${navIc(i)}<span>${t}</span></button>`; };
@@ -21875,6 +22350,7 @@ function route() {
   const v = $("#view");
   document.body.dataset.view = view;
   document.body.classList.toggle("inroom", view === "chat" && !!arg);
+  document.body.classList.toggle("innb", view === "nb" && !!arg);
   { const g = document.getElementById("gq"); if (g && view !== "search" && document.activeElement !== g) g.value = ""; }
   if (view === "home" || view === "home2") { v.innerHTML = homeView2(); bindHome(); }
   else if (view === "homeold") { v.innerHTML = homeView(); bindHome(); }
@@ -21894,6 +22370,7 @@ function route() {
   else if (view === "ask") { v.innerHTML = askView(arg); bindAsk(arg); }
   else if (view === "ai") { v.innerHTML = aiView(arg); bindAi(arg); }
   else if (view === "hub") { v.innerHTML = hubPageView(arg); }
+  else if (view === "nb") { if (arg) { v.innerHTML = nbEditorView(); bindNbEditor(arg); } else { v.innerHTML = nbLibView(); bindNbLib(); } }
   else if (view === "foryou") { v.innerHTML = feedView(arg); bindFeed(arg); }
   else if (view === "notes") { v.innerHTML = notesView(); bindNotesView(); }
   else if (view === "settings") { v.innerHTML = settingsView() + `<div class="card ht-replay"><b>App tour</b><p class="small muted" style="margin:4px 0 10px">A one-minute guided tour of search, drugs, conditions, tools and settings.</p><button class="btn" id="ht_again">Show the app tour</button></div>`; bindSettings(); $("#ht_again").onclick = () => helpTour(); }
