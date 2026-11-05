@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="color-scheme" content="light dark"><!-- the app has its own dark theme: stops phone browsers (Samsung, Chrome) from force-darkening and muddying its colours -->
 <meta name="theme-color" content="#0f5f57">
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="application-name" content="Bhutan Clinical Reference">
@@ -1461,6 +1462,92 @@ body.tb-auto.bars-hidden .pbar{transform:translateY(-110%)}
 .fcpick{margin:22px auto 0;max-width:820px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 14px}.fcpick summary{cursor:pointer;font-weight:700;display:flex;align-items:center;gap:8px}.fcpick summary svg{width:18px;height:18px}
 .fcpick .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}.fctopics{display:flex;flex-wrap:wrap;gap:6px;max-height:320px;overflow-y:auto}.fctopics small{opacity:.6}
 @media (prefers-reduced-motion:reduce){.fcinner{transition:none}}
+/* ===== chat v2: themes, icons, bubbles, reactions ===== */
+.chatwrap{--cA:var(--accent);--cB:color-mix(in srgb,var(--accent) 70%,#000);--cW:color-mix(in srgb,var(--accent) 6%,var(--bg));position:relative}
+.chatwrap .chathead2{background:linear-gradient(120deg,var(--cA),var(--cB));box-shadow:0 6px 18px -10px color-mix(in srgb,var(--cB) 80%,#000);gap:6px;padding-left:6px;padding-right:6px}
+.chb{width:40px;height:40px;border-radius:50%;color:#fff!important;background:transparent;display:grid;place-items:center;transition:background .15s}.chb:hover,.chb:active{background:rgba(255,255,255,.18)}.chb svg{width:22px;height:22px}
+.chathead2 .chtitle{flex:1;min-width:0}.chathead2 .chtitle b{display:flex;align-items:center;gap:4px;font-size:16.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chathead2 .chtitle small{opacity:.85;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.chathead2 .chav .av{box-shadow:0 0 0 2px rgba(255,255,255,.55)}
+.chatwrap .chatlog{background:radial-gradient(color-mix(in srgb,var(--cB) 13%,transparent) 1.1px,transparent 1.6px) 0 0/22px 22px,var(--cW)!important;gap:2px}
+:root[data-mode="dark"] .chatwrap .chatlog{background:radial-gradient(color-mix(in srgb,var(--cA) 16%,transparent) 1.1px,transparent 1.6px) 0 0/22px 22px,color-mix(in srgb,var(--cW) 7%,var(--bg))!important}
+.chatwrap[data-ctheme="midnight"] .chatlog{background:radial-gradient(rgba(140,160,255,.16) 1.1px,transparent 1.6px) 0 0/22px 22px,linear-gradient(180deg,#0b1020,#111a35)!important}
+.chatwrap[data-ctheme="midnight"] .daysep{background:rgba(255,255,255,.1);color:#cbd5ff}
+.chatwrap .msg{margin-top:1px}.chatwrap .msg.first{margin-top:8px}
+.chatwrap .msg .mb{border:0!important;border-radius:20px!important;padding:8px 12px 6px;box-shadow:0 1px 1.5px rgba(0,0,0,.08),0 4px 14px -10px rgba(0,0,0,.35);background:var(--panel);max-width:min(78%,560px);position:relative;transition:transform .15s}
+.chatwrap .msg:not(.mine).first .mb{border-top-left-radius:6px!important}
+.chatwrap .msg.mine .mb{background:linear-gradient(135deg,var(--cA),var(--cB))!important;color:#fff}.chatwrap .msg.mine.first .mb{border-top-right-radius:6px!important}
+.chatwrap .msg.mine .mf,.chatwrap .msg.mine .mt a{color:rgba(255,255,255,.85)}.chatwrap .msg.mine .mquote{background:rgba(255,255,255,.18);color:#fff;border-left-color:#fff}
+.chatwrap .mf{display:flex;justify-content:flex-end;align-items:center;gap:4px;font-size:10.5px;margin-top:3px;opacity:.85}
+.mtick svg{width:14px;height:14px;stroke-width:2.6}
+.chatwrap .msg.act .mb{transform:scale(1.02)}
+.chatwrap .msg{flex-wrap:wrap}.chatwrap .msg>.mreacts,.chatwrap .msg>.mact{flex-basis:100%}
+.chatwrap .msg:not(.mine)>.mreacts,.chatwrap .msg:not(.mine)>.mact{padding-left:40px}
+.mact{display:none}.msg.act .mact{display:flex}.msg.mine .mact{justify-content:flex-end}
+.macti{display:flex;align-items:center;gap:2px;margin:6px 0 4px;padding:5px;border-radius:24px;background:var(--panel);box-shadow:0 10px 30px -10px rgba(0,0,0,.45);border:1px solid var(--line);max-width:100%;flex-wrap:wrap;animation:pop .22s cubic-bezier(.3,1.5,.5,1)}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
+.mre{width:38px;height:38px;border:0;border-radius:50%;background:none;font-size:22px;cursor:pointer;transition:transform .15s,background .15s}.mre:hover{transform:scale(1.25) translateY(-2px)}.mre.on{background:var(--accent-soft)}
+.msep{width:1px;height:26px;background:var(--line);margin:0 4px}
+.mab{display:inline-flex;align-items:center;gap:5px;height:34px;padding:0 10px;border:0;border-radius:99px;background:none;color:var(--ink);font:600 13px var(--ui-font);cursor:pointer}.mab:hover{background:var(--panel2)}.mab svg{width:16px;height:16px}.mab.mdel{color:var(--red)}
+.mreacts{display:flex;gap:4px;margin:-6px 10px 2px;position:relative;z-index:1}.msg.mine .mreacts{justify-content:flex-end}
+.mrc{display:inline-flex;align-items:center;gap:3px;height:24px;padding:0 7px;border-radius:99px;border:1px solid var(--line);background:var(--panel);font-size:14px;cursor:pointer;box-shadow:0 2px 6px -3px rgba(0,0,0,.3)}.mrc b{font-size:11.5px;color:var(--muted)}.mrc.mine{border-color:var(--cA);background:color-mix(in srgb,var(--cA) 14%,var(--panel))}
+.msg.hearted .mb::after{content:"❤️";position:absolute;left:50%;top:50%;font-size:46px;transform:translate(-50%,-50%);animation:heartFly .7s ease-out forwards;pointer-events:none}
+@keyframes heartFly{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}30%{opacity:1;transform:translate(-50%,-60%) scale(1.2)}100%{opacity:0;transform:translate(-50%,-120%) scale(1)}}
+/* composer */
+.chatwrap .composer{gap:8px!important;padding:8px 10px calc(8px + env(safe-area-inset-bottom))!important;background:color-mix(in srgb,var(--panel) 92%,transparent)!important;backdrop-filter:blur(12px);align-items:flex-end}
+.cpill{flex:1;min-width:0;display:flex;align-items:flex-end;gap:2px;padding:3px 4px;border-radius:26px;background:var(--panel2);border:1px solid var(--line);transition:border-color .2s,box-shadow .2s}
+.cpill:focus-within{border-color:color-mix(in srgb,var(--cA) 60%,var(--line));box-shadow:0 0 0 3px color-mix(in srgb,var(--cA) 15%,transparent)}
+.chatwrap .cpill textarea{flex:1;min-width:0;border:0!important;background:transparent!important;box-shadow:none!important;padding:10px 4px!important;min-height:42px;outline:0}
+.cbtn{width:40px;height:40px;flex:none;border:0;border-radius:50%;background:none;color:var(--muted);display:grid;place-items:center;cursor:pointer;transition:color .15s,background .15s,transform .15s}.cbtn:hover{color:var(--cA);background:color-mix(in srgb,var(--cA) 10%,transparent)}.cbtn.on{color:var(--cA)}.cbtn svg{width:23px;height:23px}
+.chatwrap .sendbtn{width:48px!important;height:48px!important;background:linear-gradient(135deg,var(--cA),var(--cB))!important;color:#fff!important;border:0!important;box-shadow:0 8px 18px -8px color-mix(in srgb,var(--cB) 80%,#000);transition:transform .15s}
+.chatwrap .sendbtn:active{transform:scale(.9)}.chatwrap .sendbtn svg{width:22px;height:22px}.chatwrap .sendbtn.mic svg{width:24px;height:24px}
+.chatwrap #c_send:not([hidden]){animation:pop .2s cubic-bezier(.3,1.5,.5,1)}
+.chatfind{display:flex;align-items:center;gap:8px;margin:8px 10px 0;padding:0 6px 0 14px;height:44px;border-radius:99px;background:var(--panel);border:1px solid var(--line);box-shadow:0 6px 16px -12px rgba(0,0,0,.4)}
+.chatfind input{flex:1;border:0;background:none;outline:0;font:15px var(--ui-font);color:var(--ink)}.cfi{display:grid;color:var(--muted)}.cfi svg,.chatfind .iconbtn svg{width:19px;height:19px}
+.chatwrap .recbar{display:flex;align-items:center;gap:10px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:var(--panel);border-top:1px solid var(--line)}
+.recx{color:var(--red)!important}.recdot{width:11px;height:11px;border-radius:50%;background:hsl(0 80% 55%);animation:recPulse 1s ease-in-out infinite}
+@keyframes recPulse{50%{opacity:.35;transform:scale(.8)}}
+.recwave{flex:1;display:flex;align-items:center;gap:3px;height:28px}.recwave i{flex:1;max-width:5px;border-radius:3px;background:linear-gradient(var(--cA),var(--cB));animation:wave 1s ease-in-out infinite}
+.recwave i:nth-child(2n){animation-delay:-.3s}.recwave i:nth-child(3n){animation-delay:-.6s}.recwave i:nth-child(5n){animation-delay:-.15s}
+@keyframes wave{0%,100%{height:20%}50%{height:100%}}
+.emopanel{max-height:230px;overflow-y:auto;padding:8px 10px;background:var(--panel);border-top:1px solid var(--line);animation:slideUp .22s ease-out}
+@keyframes slideUp{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
+.emos small{display:block;font:700 11px var(--ui-font);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:6px 2px 4px}.emos>div{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr))}
+.emo{height:40px;border:0;background:none;font-size:24px;border-radius:10px;cursor:pointer}.emo:hover{background:var(--panel2)}.emo.pop{animation:pop .25s}
+.tobottom{position:absolute;right:14px;bottom:86px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);display:grid;place-items:center;box-shadow:0 8px 20px -8px rgba(0,0,0,.45);cursor:pointer;z-index:5;animation:pop .2s}.tobottom svg{width:22px;height:22px}
+.chatwrap .mvoice{background:color-mix(in srgb,var(--cA) 8%,var(--panel));border:0}.chatwrap .msg.mine .mvoice{background:rgba(255,255,255,.18)}
+.chatwrap .vplay{background:linear-gradient(135deg,var(--cA),var(--cB));color:#fff;border:0}.chatwrap .msg.mine .vplay{background:#fff;color:var(--cB)}
+.thgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.thsw{display:flex;flex-direction:column;align-items:center;gap:6px;border:2px solid transparent;border-radius:16px;padding:6px;background:none;cursor:pointer;color:var(--ink);font:600 12.5px var(--ui-font)}.thsw.on{border-color:var(--b)}
+.thprev{width:100%;aspect-ratio:3/4;border-radius:12px;position:relative;overflow:hidden;background:radial-gradient(rgba(0,0,0,.08) 1px,transparent 1.5px) 0 0/10px 10px,var(--w);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.thprev::before{content:"";position:absolute;inset:0 0 auto;height:18%;background:linear-gradient(120deg,var(--a),var(--b))}
+.thprev i{position:absolute;height:12%;border-radius:8px}.tb1{left:8%;top:28%;width:55%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15)}.tb2{right:8%;top:46%;width:55%;background:linear-gradient(135deg,var(--a),var(--b))}.tb3{left:8%;top:64%;width:40%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.mgone{display:flex;align-items:center;gap:8px;padding:8px 10px;margin:2px 0 4px;border-radius:12px;font-size:13px;font-style:italic;opacity:.8;background:color-mix(in srgb,currentColor 7%,transparent);border:1px dashed color-mix(in srgb,currentColor 25%,transparent)}.mgone svg{width:16px;height:16px;flex:none}
+.notcontact{margin:8px 10px 0;padding:8px 12px;border-radius:12px;font-size:13.5px;background:hsl(205 90% 50% / .1);border:1px solid hsl(205 90% 50% / .25)}
+/* contacts, profile, rooms with membership */
+.av.av96{width:96px;height:96px;font-size:36px}.av.avadd{display:grid;place-items:center;font-size:26px;color:var(--accent);background:var(--accent-soft);border:2px dashed color-mix(in srgb,var(--accent) 45%,transparent)}
+.pslab{font:700 11.5px var(--ui-font);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 8px 4px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.pmin{cursor:pointer}.padd{width:38px;height:38px;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:20px;cursor:pointer;flex:none;box-shadow:0 6px 14px -8px var(--accent);transition:transform .15s}.padd:active{transform:scale(.9)}
+.pfhero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:4px 0 10px}.pfhero h3{margin:8px 0 0;display:flex;align-items:center;gap:4px}.pfhero p{margin:0;color:var(--muted)}.pfbio{font-style:italic}
+.pfver{display:inline-flex;align-items:center;gap:5px;margin-top:6px;padding:4px 10px;border-radius:99px;background:hsl(205 90% 50% / .12);color:hsl(205 80% 40%);font:700 12.5px var(--ui-font)}.pfver svg{width:15px;height:15px;stroke-width:3}
+.pfbtns{display:flex;gap:8px;justify-content:center;margin:8px 0}.pfbtns .btn svg{width:16px;height:16px;vertical-align:-3px}
+.crowwrap{display:flex;align-items:center;gap:4px}.crowwrap>.crow{flex:1;min-width:0}.crow.locked{opacity:.92}.lock{font-size:12px}
+.rpill{flex:none;border:0;border-radius:99px;padding:7px 14px;font:700 13px var(--ui-font);cursor:pointer;color:#fff;background:var(--accent)}.rpill.wait{background:var(--panel2);color:var(--muted);cursor:default}
+.rgear{position:relative;width:38px;height:38px;border-radius:50%;border:0;background:none;color:var(--muted);display:grid;place-items:center;cursor:pointer}.rgear:hover{background:var(--panel2)}.rgear svg{width:19px;height:19px}
+.rgear i{position:absolute;top:2px;right:2px;min-width:17px;height:17px;border-radius:99px;background:hsl(352 80% 52%);color:#fff;font:800 10.5px/17px var(--ui-font);font-style:normal;text-align:center}
+.modtag{font:700 10.5px var(--ui-font);padding:2px 7px;border-radius:99px;background:hsl(32 90% 50% / .15);color:hsl(28 80% 40%);vertical-align:2px}
+.btn-sm{padding:6px 12px!important;font-size:13px!important;min-height:0!important}
+/* For You extras */
+.fsearch{margin-bottom:10px}
+.ftip{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:18px;margin-bottom:12px;background:linear-gradient(135deg,hsl(45 95% 55% / .18),hsl(150 60% 45% / .12));border:1px solid hsl(45 80% 50% / .3);animation:foldIn .4s both}
+.ftipic{font-size:26px}.ftip div{display:flex;flex-direction:column;gap:2px}.ftip small{font:800 11px var(--ui-font);letter-spacing:.08em;text-transform:uppercase;color:hsl(35 80% 38%)}:root[data-mode="dark"] .ftip small{color:hsl(45 90% 65%)}
+.ftip b{font-size:15.5px}.ftip span{font-size:14px;line-height:1.45;color:var(--ink)}.ftip i{color:var(--muted);font-style:normal;font-size:12.5px}
+#f_tagbar{display:flex;align-items:center;gap:10px;margin:-4px 0 12px}
+.htag{display:inline;border:0;background:none;padding:0;color:hsl(205 85% 45%);font:inherit;font-weight:700;cursor:pointer}.htag.on{padding:5px 12px;border-radius:99px;background:hsl(205 85% 50% / .12)}
+.fava{border:0;background:none;padding:0;border-radius:50%;cursor:pointer}.fwho{cursor:pointer}
+.fsave{flex:0 0 46px!important}.fsave.on{color:hsl(205 85% 48%)}.fsave.on svg{fill:currentColor}.fsave.pop svg{animation:heartPop .4s}
+.fimg{position:relative}.fheartbig{position:absolute;left:50%;top:50%;width:90px;height:90px;transform:translate(-50%,-50%) scale(0);color:#fff;filter:drop-shadow(0 4px 14px rgba(0,0,0,.4));pointer-events:none}.fheartbig svg{width:100%;height:100%;fill:currentColor}
+.fpost.burst .fheartbig{animation:bigHeart .8s ease-out}
+@keyframes bigHeart{0%{transform:translate(-50%,-50%) scale(0);opacity:0}25%{transform:translate(-50%,-50%) scale(1.15);opacity:1}60%{transform:translate(-50%,-50%) scale(.95);opacity:1}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
 /* dose first */
 .dosecard{margin:12px 0;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--panel)),var(--panel) 70%);border:1.5px solid color-mix(in srgb,var(--accent) 30%,var(--line))}
 .dosecard h2{margin:0 0 6px;font-size:18px;color:var(--accent)}.dosecard .fld p{margin:4px 0;line-height:1.55}
@@ -20391,16 +20478,17 @@ function deidScrub(t) { let s = String(t); DEID_RULES.forEach(([rx]) => { s = s.
 
 function roomView(id) {
   if (!commMember() && !commIn()) return profileView();
-  return `<div class="chatwrap"><div class="chathead2"><button class="iconbtn" onclick="go('#chat')" aria-label="Back to rooms">${ICON.back}</button><div class="chtitle"><b id="c_rt">Chat</b><small id="c_rd"></small></div><button class="iconbtn" id="c_find" aria-label="Search this room">🔍</button><button class="iconbtn" id="c_more" aria-label="Room options">⋮</button></div>
-    <div class="chatfind" id="c_findbar" hidden><input id="c_fq" type="search" placeholder="Search messages and files in this room" autocomplete="off"><button class="iconbtn" id="c_fx" aria-label="Close search">✕</button></div>
+  return `<div class="chatwrap"><div class="chathead2"><button class="iconbtn chb" onclick="go('#chat')" aria-label="Back to chats">${CI.back}</button><div class="chtitle"><b id="c_rt">Chat</b><small id="c_rd"></small></div><button class="iconbtn chb" id="c_theme" aria-label="Chat theme" title="Chat theme">${CI.palette}</button><button class="iconbtn chb" id="c_find" aria-label="Search this chat">${CI.search}</button><button class="iconbtn chb" id="c_more" aria-label="Chat options">${CI.more}</button></div>
+    <div class="chatfind" id="c_findbar" hidden><span class="cfi">${CI.search}</span><input id="c_fq" type="search" placeholder="Search messages and files" autocomplete="off"><button class="iconbtn" id="c_fx" aria-label="Close search">${CI.x}</button></div>
     <div class="privacy small" id="c_priv" ${store.get("privOK", false) ? "hidden" : ""}>🔒 <b>No patient-identifiable information</b> — no names, faces, CID or record numbers in text, photos or documents. Messages are visible to approved members; the administrator can remove messages. <button class="linkbtn" id="c_privok">OK, got it</button></div>
     <div class="chatlog" id="c_log"><div class="muted small" style="text-align:center;padding:20px">Loading messages…</div></div>
     <div id="c_msg" class="small chatmsg"></div>
     <div class="replybar" id="c_reply" hidden></div>
-    <div class="recbar" id="c_rec" hidden><span class="recdot"></span><b id="c_rect">0:00</b><span class="muted small">Recording voice message…</span><button class="btn btn-ghost" id="c_recx">Cancel</button><button class="btn" id="c_recok">Send</button></div>
-    <form class="composer" id="c_comp" onsubmit="return false"><button type="button" class="iconbtn attach" id="c_att" aria-label="Attach photo, document or file">📎</button>
+    <div class="recbar" id="c_rec" hidden><button type="button" class="cbtn recx" id="c_recx" aria-label="Cancel recording">${CI.trash}</button><span class="recdot"></span><b id="c_rect">0:00</b><span class="recwave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><button type="button" class="sendbtn" id="c_recok" aria-label="Send voice message">${CI.send}</button></div>
+    <div class="emopanel" id="c_emop" hidden></div><button type="button" class="tobottom" id="c_down" aria-label="Jump to the latest message" hidden>${CI.down}</button>
+    <form class="composer" id="c_comp" onsubmit="return false"><div class="cpill"><button type="button" class="cbtn" id="c_emo" aria-label="Emoji">${CI.smile}</button>
       <input type="file" id="c_file" accept="image/*" multiple hidden><input type="file" id="c_cam" accept="image/*" capture="environment" hidden><input type="file" id="c_doc" multiple hidden><input type="file" id="c_vid" accept="video/*" hidden>
-      <textarea id="c_txt" rows="1" maxlength="4000" placeholder="Message" enterkeyhint="send" autocomplete="off" autocapitalize="sentences"></textarea><button type="button" class="sendbtn mic" id="c_mic" aria-label="Record a voice message">🎤</button><button class="sendbtn" id="c_send" aria-label="Send" hidden>➤</button></form></div>`;
+      <textarea id="c_txt" rows="1" maxlength="4000" placeholder="Message" enterkeyhint="send" autocomplete="off" autocapitalize="sentences"></textarea><button type="button" class="cbtn attach" id="c_att" aria-label="Attach photo, video, document or file">${CI.clip}</button><button type="button" class="cbtn" id="c_camq" aria-label="Camera">${CI.camera}</button></div><button type="button" class="sendbtn mic" id="c_mic" aria-label="Record a voice message">${CI.mic}</button><button class="sendbtn" id="c_send" aria-label="Send" hidden>${CI.send}</button></form></div>`;
 }
 function bindRoom(arg) {
   const isChat = arg.startsWith("c:"), room = isChat ? chatsCol().doc(arg.slice(2)) : COMM.db.collection("rooms").doc(arg), me = COMM.user.uid, msgs = room.collection("messages");
@@ -20410,7 +20498,11 @@ function bindRoom(arg) {
   const keepDays = () => { const a = +(roomData && roomData.retention) || 0, b = +store.get("myRetention", 0) || 0; const xs = [a, b].filter(x => x > 0); return xs.length ? Math.min(...xs) : 0; };
   const expireAt = () => { const d = keepDays(); return d ? new Date(Date.now() + d * 864e5) : null; };
   const delMsg = async (d) => { const m = d.data(); await msgs.doc(d.id).delete(); if (m.img) await room.collection("media").doc(m.img.id).delete().catch(() => {}); if (m.file) await commDeleteFile(room, m.file.id); };
-  const canDel = m => COMM.isAdmin || m.uid === me;
+  const canDel = m => COMM.isAdmin || m.uid === me || (!isChat && roomData && roomMod(roomData));
+  /* free up server space: remove a photo, video or file but keep the message (sender, either person in a private chat, or a room admin) */
+  const canFree = m => canDel(m) || (isChat && roomData && roomData.type === "dm");
+  const goneCard = m => `<div class="mgone">${CI.broom}<span>${m.img ? "Photo" : m.file && m.file.dur != null ? "Voice message" : "File" }${m.file && m.file.name && m.file.dur == null ? ` “${esc(m.file.name)}”` : ""} removed to save space</span></div>`;
+  const freeMsg = async d => { const m = d.data(); if (m.img) await room.collection("media").doc(m.img.id).delete().catch(() => {}); if (m.file) await commDeleteFile(room, m.file.id); await msgs.doc(d.id).update({gone: true}); };
   /* keep the chat exactly the height of the visible screen (keyboard open or closed) */
   const vv = window.visualViewport, setH = () => { document.documentElement.style.setProperty("--vvh", (vv ? vv.height : innerHeight) + "px"); if (vv && current.view === "chat") window.scrollTo(0, 0); };
   setH(); if (vv) { vv.addEventListener("resize", setH); COMM.unsub.push(() => vv.removeEventListener("resize", setH)); }
@@ -20422,8 +20514,11 @@ function bindRoom(arg) {
     const rd = +(roomData && roomData.retention) || 0, my = +store.get("myRetention", 0) || 0;
     sh.innerHTML = `<div class="sheetin"><h3>${isChat ? "Chat options" : "Room options"}</h3>
       <div class="setrow"><div><b>Auto-delete my messages</b><span>New messages you send (with their photos and files) are erased after this time</span></div><div class="setctl"><select id="ro_my">${RET.map(([v, l]) => `<option value="${v}"${v === my ? " selected" : ""}>${l}</option>`).join("")}</select></div></div>
+      ${isChat && roomData ? `<div class="setrow"><div><b>Disappearing messages</b><span>New messages in this chat — with their photos and files — are deleted for everyone after this time</span></div><div class="setctl"><select id="ro_chatret">${RET.map(([v, l]) => `<option value="${v}"${v === (+roomData.retention || 0) ? " selected" : ""}>${l}</option>`).join("")}</select></div></div>` : ""}
+      <div class="setrow"><div><b>Free up storage</b><span>Remove photos, videos, voice notes and files${isChat && roomData && roomData.type === "dm" ? " in this chat" : COMM.isAdmin || (roomData && roomMod(roomData)) ? " in this room" : " you sent here"} — messages stay. Save anything you need first.</span></div><div class="setctl"><button class="btn" id="ro_free">Free up</button></div></div>
       <div class="setrow"><div><b>Select messages to delete</b><span>${COMM.isAdmin ? "Any message in this room" : "Your own messages"}</span></div><div class="setctl"><button class="btn" id="ro_sel">Select</button></div></div>
       ${isChat && roomData && roomData.type === "group" ? `<div class="pgroup">Group</div><div class="setrow"><div><b>Members</b><span id="go_mem">Loading…</span></div>${roomData.by === me ? `<div class="setctl"><button class="btn" id="go_add">Add people</button></div>` : ""}</div>${roomData.by === me ? `<div class="setrow"><div><b>Group name</b><span><input id="go_name" maxlength="60" value="${esc(roomData.name || "")}"></span></div><div class="setctl"><button class="btn btn-ghost" id="go_ren">Rename</button></div></div>` : ""}<div class="setrow"><div><b>Leave this group</b><span>You will stop receiving its messages</span></div><div class="setctl"><button class="btn btn-danger" id="go_leave">Leave</button></div></div>` : ""}
+      ${!isChat && roomData ? `<div class="pgroup">Members</div>${roomMod(roomData) ? `<div class="setrow"><div><b>Members & requests</b><span>Approve people who applied, add or remove members${COMM.isAdmin ? ", appoint room admins" : ""}</span></div><div class="setctl"><button class="btn" id="ro_mem">Manage</button></div></div>` : ""}${!COMM.isAdmin && (roomData.members || []).includes(me) ? `<div class="setrow"><div><b>Leave this room</b><span>You can apply again later</span></div><div class="setctl"><button class="btn btn-danger" id="ro_leave">Leave</button></div></div>` : ""}` : ""}
       ${COMM.isAdmin && !isChat ? `<div class="pgroup">Administrator</div>
       <div class="setrow"><div><b>Auto-delete for everyone in this room</b><span>Applies to new messages from now on</span></div><div class="setctl"><select id="ro_room">${RET.map(([v, l]) => `<option value="${v}"${v === rd ? " selected" : ""}>${l}</option>`).join("")}</select></div></div>
       <div class="setrow"><div><b>Storage used by this room</b><span id="ro_use">Counting…</span></div></div>
@@ -20435,6 +20530,13 @@ function bindRoom(arg) {
     sh.addEventListener("click", e => { if (e.target === sh) close(); }); sh.querySelector("#ro_x").onclick = close;
     sh.querySelector("#ro_my").onchange = e => { store.set("myRetention", +e.target.value); roomSub(); msgEl.textContent = +e.target.value ? "Saved — your new messages will be erased automatically." : "Saved — your messages are kept."; };
     sh.querySelector("#ro_sel").onclick = () => { close(); sel = new Set(); render(latest).catch(() => {}); };
+    const rm = sh.querySelector("#ro_mem"); if (rm) rm.onclick = () => { close(); manageRoomSheet(arg); };
+    const cr = sh.querySelector("#ro_chatret"); if (cr) cr.onchange = async e => { const v = +e.target.value; try { await room.update({retention: v}); roomData.retention = v; chatSub(); msgEl.textContent = v ? `New messages will disappear after ${v} day${v > 1 ? "s" : ""}.` : "Messages are kept."; } catch (er) { msgEl.textContent = commErr(er); } };
+    const fr = sh.querySelector("#ro_free"); fr.onclick = async () => { if (!fr.dataset.arm) { fr.dataset.arm = 1; fr.textContent = "Tap again to remove"; msgEl.textContent = "This removes the files for everyone in this chat."; return; } fr.disabled = true;
+      const s = await msgs.get(), todo = []; s.forEach(d => { const m = d.data(); if ((m.img || m.file) && !m.gone && canFree(m)) todo.push(d); });
+      let k = 0, bytes = 0; for (const d of todo) { try { bytes += (d.data().file && d.data().file.size) || 300000; await freeMsg(d); k++; msgEl.textContent = `Removing… ${k} of ${todo.length}`; } catch (er) {} }
+      msgEl.textContent = k ? `Done — ${k} file${k > 1 ? "s" : ""} removed (about ${fmtSize(bytes)} freed).` : "Nothing to remove."; fr.textContent = "Done"; };
+    const rl = sh.querySelector("#ro_leave"); if (rl) rl.onclick = async () => { if (!rl.dataset.arm) { rl.dataset.arm = 1; rl.textContent = "Tap again to leave"; return; } try { await room.update({members: COMM.fb.firestore.FieldValue.arrayRemove(me)}); close(); go("#chat"); } catch (er) { msgEl.textContent = commErr(er); } };
     if (isChat && roomData && roomData.type === "group") {
       commPeople(roomData.members).then(() => { const el = sh.querySelector("#go_mem"); if (el) el.innerHTML = roomData.members.map(u => esc((COMM.people[u] || {}).name || "Member")).join(", "); });
       const ad = sh.querySelector("#go_add"); if (ad) ad.onclick = () => { close(); peopleSheet("add", async uids => { await room.update({members: COMM.fb.firestore.FieldValue.arrayUnion(...uids)}); roomData.members = [...new Set([...roomData.members, ...uids])]; $("#c_rd").textContent = `${roomData.members.length} members · group`; }); };
@@ -20455,14 +20557,15 @@ function bindRoom(arg) {
   $("#c_fx").onclick = () => $("#c_find").onclick();
   $("#c_fq").addEventListener("input", e => { findQ = e.target.value.trim().toLowerCase(); render(latest).catch(() => {}); });
   /* private and group chats: the header shows the person (photo, tick, role) or the group and its members */
+  const chatSub = () => { const d = keepDays(), el = $("#c_rd"); if (!el) return; el.textContent = el.textContent.replace(/ · ⏱.*$/, "") + (d ? ` · ⏱ ${d} day${d > 1 ? "s" : ""}` : ""); };
   const chatHead = async () => {
     const t = $("#c_rt"); if (!t) return;
     if (roomData.type === "dm") { const o = roomData.members.find(x => x !== me); await commPeople([o]); const op = COMM.people[o] || {};
-      t.innerHTML = `${esc(op.name || "Member")}${vBadge(op)}`; $("#c_rd").textContent = [op.role, op.place].filter(Boolean).join(" · ") || "Private chat";
-      t.closest(".chtitle").insertAdjacentHTML("beforebegin", `<span class="chav">${commAvatar(op, op.name, "av40")}</span>`); }
-    else { t.textContent = roomData.name || "Group"; $("#c_rd").textContent = `${roomData.members.length} members · group`; t.closest(".chtitle").insertAdjacentHTML("beforebegin", `<span class="chav"><span class="av av40 avg" style="--h:${[...(roomData.name || "G")].reduce((a, c) => a + c.charCodeAt(0), 0) % 360}">${IC2.people}</span></span>`); }
+      t.innerHTML = `${esc(op.name || "Member")}${vBadge(op)}`; $("#c_rd").textContent = [op.role, op.place].filter(Boolean).join(" · ") || "Private chat"; chatSub();
+      t.closest(".chtitle").insertAdjacentHTML("beforebegin", `<span class="chav">${commAvatar(op, op.name, "av40")}</span>`); if (!COMM.isAdmin && !isContact(o)) $(".chatwrap .privacy").insertAdjacentHTML("afterend", `<div class="notcontact">${esc((op.name || "This person").replace(/^dr\.?\s+/i, "").split(" ")[0])} is not in your contacts. <button class="lnk" id="c_addc">＋ Add</button></div>`), $("#c_addc").onclick = async () => { try { await setContact(o, true); $(".notcontact").remove(); } catch (er) { commMsg(commErr(er), true); } }; }
+    else { t.textContent = roomData.name || "Group"; $("#c_rd").textContent = `${roomData.members.length} members · group`; chatSub(); t.closest(".chtitle").insertAdjacentHTML("beforebegin", `<span class="chav"><span class="av av40 avg" style="--h:${[...(roomData.name || "G")].reduce((a, c) => a + c.charCodeAt(0), 0) % 360}">${IC2.people}</span></span>`); }
   };
-  room.get().then(d => { if (!d.exists) { $("#c_rt").textContent = isChat ? "Chat not found" : "Room not found"; return; } roomData = d.data(); if (isChat) { chatHead().catch(() => {}); return; } $("#c_rt").textContent = roomData.name; roomSub(); if (roomData.readonly && !COMM.isAdmin) { const c = $("#c_comp"); if (c) c.outerHTML = `<div class="composer ro small muted">📣 Read-only room — only administrators post here.</div>`; } }).catch(e => commMsg(commErr(e), true));
+  room.get().then(d => { if (!d.exists) { $("#c_rt").textContent = isChat ? "Chat not found" : "Room not found"; return; } roomData = {id: arg, ...d.data()}; if (isChat) { chatHead().catch(() => {}); return; } $("#c_rt").textContent = roomData.name; roomSub(); if (roomData.readonly && !roomMod(roomData)) { const c = $("#c_comp"); if (c) c.outerHTML = `<div class="composer ro small muted">📣 Read-only room — only administrators post here.</div>`; } }).catch(e => commMsg(commErr(e), true));
   const fmtT = ts => { const d = ts && ts.toDate ? ts.toDate() : new Date(); return d.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}); };
   const fmtDur = s => Math.floor(s / 60) + ":" + String(Math.round(s % 60)).padStart(2, "0");
   const fileCard = (m, id) => {
@@ -20487,7 +20590,7 @@ function bindRoom(arg) {
       const img = m.img && m.img.thumb ? `<button class="mimg" data-mid="${esc(m.img.id)}" data-who="${esc(m.name || "")}" style="aspect-ratio:${m.img.w || 4}/${m.img.h || 3}"><img src="${m.img.thumb}" alt="Shared image" loading="lazy"></button>` : "";
       const rep = m.reply ? `<button class="mquote" data-jump="${esc(m.reply.id)}"><b>${esc(m.reply.name || "")}</b> ${esc(m.reply.text || "")}</button>` : "";
       const selOK = sel && canDel(m);
-      out.push(`<div class="msg${mine ? " mine" : ""}${first ? " first" : ""}${sel ? " selmode" : ""}${selOK && sel.has(d.id) ? " picked" : ""}" data-id="${d.id}">${sel ? `<label class="msel${selOK ? "" : " off"}"><input type="checkbox" data-sel="${d.id}"${selOK ? "" : " disabled"}${selOK && sel.has(d.id) ? " checked" : ""}></label>` : ""}${mine ? "" : `<span class="avslot">${first ? commAvatar(p, m.name) : ""}</span>`}<div class="mb">${!mine && first ? `<div class="mn">${esc(m.name || "")} <span>${esc(m.role || "")}</span></div>` : ""}${rep}${img}${fileCard(m, d.id)}${m.text ? `<div class="mt${/^🩺 CASE/.test(m.text) ? " mcase" : ""}">${linkifyMsg(m.text)}</div>` : ""}<div class="mf">${fmtT(m.ts)}${expMs(m) ? ` · <span title="Auto-deletes">⏱ ${Math.max(1, Math.ceil((expMs(m) - now) / 864e5))}d</span>` : ""} · <button class="linkbtn" data-rep="${d.id}">reply</button>${m.text ? ` · <button class="linkbtn" data-copy="${d.id}">copy</button>` : ""}${mine || COMM.isAdmin ? ` · <button class="linkbtn" data-delm="${d.id}">delete</button>` : ""}</div></div></div>`);
+      out.push(`<div class="msg${mine ? " mine" : ""}${first ? " first" : ""}${sel ? " selmode" : ""}${selOK && sel.has(d.id) ? " picked" : ""}" data-id="${d.id}">${sel ? `<label class="msel${selOK ? "" : " off"}"><input type="checkbox" data-sel="${d.id}"${selOK ? "" : " disabled"}${selOK && sel.has(d.id) ? " checked" : ""}></label>` : ""}${mine ? "" : `<span class="avslot">${first ? commAvatar(p, m.name) : ""}</span>`}<div class="mb">${!mine && first ? `<div class="mn">${esc(m.name || "")} <span>${esc(m.role || "")}</span></div>` : ""}${rep}${m.gone ? goneCard(m) : img + fileCard(m, d.id)}${m.text ? `<div class="mt${/^🩺 CASE/.test(m.text) ? " mcase" : ""}">${linkifyMsg(m.text)}</div>` : ""}<div class="mf">${expMs(m) ? `<span title="Auto-deletes">⏱ ${Math.max(1, Math.ceil((expMs(m) - now) / 864e5))}d</span> ` : ""}${fmtT(m.ts)}${mine ? `<span class="mtick">${CI.tick}</span>` : ""}</div></div>${reactHTML(m, d.id)}<div class="mact"><div class="macti">${REACTS.map(e => `<button class="mre${m.re && m.re[me] === e ? " on" : ""}" data-react="${d.id}" data-e="${e}">${e}</button>`).join("")}<span class="msep"></span><button class="mab" data-rep="${d.id}">${CI.reply}<span>Reply</span></button>${m.text ? `<button class="mab" data-copy="${d.id}">${CI.copy}<span>Copy</span></button>` : ""}${(m.img || m.file) && !m.gone && canFree(m) ? `<button class="mab" data-free="${d.id}">${CI.broom}<span>Remove file</span></button>` : ""}${mine || COMM.isAdmin ? `<button class="mab mdel" data-delm="${d.id}">${CI.trash}<span>Delete</span></button>` : ""}</div></div></div>`);
     });
     log.innerHTML = out.join("") || `<div class="muted small" style="text-align:center;padding:24px">${findQ ? "Nothing in this room matches “" + esc(findQ) + "”." : "No messages yet — start the discussion 👋"}</div>`;
     if (store.get("chatlinks", true)) $$(".mt", log).forEach(el => { try { autolinkDom(el); } catch (e) {} });
@@ -20496,9 +20599,16 @@ function bindRoom(arg) {
     selBar();
     const byId = id => docs.find(x => x.id === id);
     $$("[data-delm]", log).forEach(b => b.onclick = async () => { if (!b.dataset.arm) { b.dataset.arm = 1; b.textContent = "tap to confirm"; return; } const d = byId(b.dataset.delm), m = d ? d.data() : {}; try { await msgs.doc(b.dataset.delm).delete(); if (m.img) await room.collection("media").doc(m.img.id).delete().catch(() => {}); if (m.file) await commDeleteFile(room, m.file.id); } catch (e) { commMsg(commErr(e), true); } });
+    $$("[data-free]", log).forEach(b => b.onclick = async e => { e.stopPropagation(); if (!b.dataset.arm) { b.dataset.arm = 1; b.querySelector("span").textContent = "Tap again — save it first"; return; } const d = byId(b.dataset.free); if (!d) return; b.querySelector("span").textContent = "Removing…"; try { await freeMsg(d); commMsg("File removed from the server — the message stays."); } catch (er) { commMsg(commErr(er), true); } });
     $$("[data-copy]", log).forEach(b => b.onclick = async () => { const d = byId(b.dataset.copy); try { await navigator.clipboard.writeText(d.data().text || ""); b.textContent = "copied ✓"; } catch (e) { b.textContent = "copy failed"; } });
     $$("[data-rep]", log).forEach(b => b.onclick = () => { const d = byId(b.dataset.rep); if (!d) return; const m = d.data(); replyTo = {id: d.id, name: m.name || "", text: summary(m).slice(0, 140)}; const r = $("#c_reply"); r.hidden = false; r.innerHTML = `<div><b>Replying to ${esc(replyTo.name)}</b><span>${esc(replyTo.text)}</span></div><button class="iconbtn" id="c_repx">✕</button>`; $("#c_repx").onclick = () => { replyTo = null; r.hidden = true; }; txt && txt.focus(); });
     $$("[data-jump]", log).forEach(b => b.onclick = () => { const el = log.querySelector(`.msg[data-id="${CSS.escape(b.dataset.jump)}"]`); if (el) { el.scrollIntoView({block: "center", behavior: "smooth"}); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1400); } });
+    /* reactions: one emoji per person per message; tap a bubble for the reaction bar and actions, double-tap for ❤️ */
+    $$("[data-react]", log).forEach(b => b.onclick = async e => { e.stopPropagation(); const id = b.dataset.react, cur = ((byId(id) || {data: () => ({})}).data().re || {})[me]; b.closest(".msg").classList.remove("act"); try { await msgs.doc(id).update({["re." + me]: cur === b.dataset.e ? COMM.fb.firestore.FieldValue.delete() : b.dataset.e}); } catch (er) { commMsg(commErr(er), true); } });
+    $$(".msg", log).forEach(el => { if (sel) return; const mb = el.querySelector(".mb"); if (!mb) return; let lastTap = 0;
+      mb.addEventListener("click", e => { if (e.target.closest("a,button,.mimg,.mfile,.mvoice,input")) return; const now2 = Date.now();
+        if (now2 - lastTap < 300) { lastTap = 0; el.classList.remove("act"); const id = el.dataset.id, cur = ((byId(id) || {data: () => ({})}).data().re || {})[me]; if (cur !== "❤️") { el.classList.add("hearted"); setTimeout(() => el.classList.remove("hearted"), 700); msgs.doc(id).update({["re." + me]: "❤️"}).catch(er => commMsg(commErr(er), true)); } return; }
+        lastTap = now2; setTimeout(() => { if (lastTap === now2) { const on = !el.classList.contains("act"); $$(".msg.act", log).forEach(x => x.classList.remove("act")); el.classList.toggle("act", on); } }, 280); }); });
     $$(".mimg", log).forEach(b => b.onclick = async () => { const full = await room.collection("media").doc(b.dataset.mid).get().catch(() => null); imgViewer(full && full.exists ? full.data().data : b.querySelector("img").src, b.dataset.who); });
     $$(".mfile", log).forEach(b => b.onclick = () => { if (sel) return; const d = byId(b.dataset.mid); if (d) openFileUI(room, d.data().file); });
     $$(".fdl", log).forEach(b => b.onclick = () => { if (sel) return; const d = byId(b.dataset.dl); if (d) saveFileUI(room, d.data().file); });
@@ -20529,7 +20639,16 @@ function bindRoom(arg) {
   };
   /* send ➤ appears when there is text; otherwise the 🎤 voice button shows (like Telegram/WhatsApp) */
   const sb = $("#c_send"), mic = $("#c_mic");
-  const swap = () => { const has = !!txt.value.trim(); sb.hidden = !has; mic.hidden = has; };
+  const swap = () => { const has = !!txt.value.trim(); sb.hidden = !has; mic.hidden = has; const cq = $("#c_camq"); if (cq) cq.hidden = has; };
+  /* camera shortcut, emoji panel, jump-to-latest and themes */
+  $("#c_camq").onclick = () => $("#c_cam").click();
+  const emop = $("#c_emop");
+  emop.innerHTML = EMOJI_SETS.map(([n, es]) => `<div class="emos"><small>${n}</small><div>${[...es].filter(x => x.trim()).map(x => `<button type="button" class="emo">${x}</button>`).join("")}</div></div>`).join("");
+  $("#c_emo").onclick = () => { emop.hidden = !emop.hidden; $("#c_emo").classList.toggle("on", !emop.hidden); };
+  $$(".emo", emop).forEach(b => b.onclick = () => { const s = txt.selectionStart ?? txt.value.length, e2 = txt.selectionEnd ?? s; txt.value = txt.value.slice(0, s) + b.textContent + txt.value.slice(e2); txt.selectionStart = txt.selectionEnd = s + b.textContent.length; txt.dispatchEvent(new Event("input")); b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); });
+  const down = $("#c_down"); log.addEventListener("scroll", () => { down.hidden = log.scrollHeight - log.scrollTop - log.clientHeight < 300; }, {passive: true}); down.onclick = () => log.scrollTo({top: log.scrollHeight, behavior: "smooth"});
+  document.addEventListener("click", e => { if (!e.target.closest(".msg")) $$(".msg.act", log).forEach(x => x.classList.remove("act")); });
+  applyChatTheme(arg); $("#c_theme").onclick = () => themeSheet(arg);
   const send = async () => {
     const t = txt.value.trim(); if (!t) return;
     const ids = deidFind(t);
@@ -20681,6 +20800,88 @@ function hubPageView(g) {
     groups.map(([gg, t, , ids]) => `<div class="hubsec"><span class="mpdot" style="--h:${GRP_LOOK[gg][0]}"></span><b>${esc(t)}</b>${ids.length > 1 ? arrBtn("nav." + gg) : ""}</div><div class="fold-grid" data-ord="nav.${gg}">${ORD.apply("nav." + gg, ids, x => x).map((id, i) => { const [nid, nt] = NAV_BY[id], lk = NAV_LOOK[id] || [210, ICON.list]; return `<a class="fold" data-oid="${nid}" href="#${nid}" style="--h:${lk[0]};--d:${i * 40}ms"><span class="fold-ic ic-tile">${lk[1]}</span><b>${esc(nt)}</b><small>${esc(NAV_DESC[id] || "")}</small></a>`; }).join("")}</div>`).join("");
 }
 
+/* ===== chat look: hand-drawn icons, reactions, emoji panel and themes ===== */
+const CIs = p => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const CI = {
+  back: CIs('<path d="M15 18l-6-6 6-6"/>'), search: CIs('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>'), more: CIs('<circle cx="12" cy="5" r="1.4" fill="currentColor"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/><circle cx="12" cy="19" r="1.4" fill="currentColor"/>'),
+  palette: CIs('<path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.6 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10.5" cy="7" r="1.2" fill="currentColor"/><circle cx="15" cy="7.5" r="1.2" fill="currentColor"/>'),
+  x: CIs('<path d="M18 6 6 18M6 6l12 12"/>'), smile: CIs('<circle cx="12" cy="12" r="9"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/>'),
+  clip: CIs('<path d="m21.4 11.1-8.9 8.9a5.5 5.5 0 0 1-7.8-7.8l8.9-8.9a3.7 3.7 0 0 1 5.2 5.2l-8.9 8.9a1.8 1.8 0 0 1-2.6-2.6l8.2-8.2"/>'),
+  camera: CIs('<path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.6"/>'),
+  mic: CIs('<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>'),
+  send: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6l.1 6.6L15 12 3.5 13.8z"/></svg>',
+  trash: CIs('<path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/>'), down: CIs('<path d="m6 9 6 6 6-6"/>'),
+  tick: CIs('<path d="m4 12.5 4.5 4.5L20 6"/>'), reply: CIs('<path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 6 6v4"/>'), copy: CIs('<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>'),
+  bookmark: CIs('<path d="M6 3h12v18l-6-4-6 4z"/>'), broom: CIs('<path d="M14 4 9.5 8.5M7 11l6 6M4 21l3.5-.5 9-9-3-3-9 9z"/><path d="M17 3l4 4"/>')
+};
+const REACTS = ["❤️", "👍", "😂", "😮", "😢", "🙏"];
+function reactHTML(m, id) {
+  const re = m.re || {}, me = COMM.user && COMM.user.uid, counts = {};
+  Object.values(re).forEach(e => counts[e] = (counts[e] || 0) + 1);
+  const ks = Object.keys(counts); if (!ks.length) return "";
+  return `<div class="mreacts">${ks.sort((a, b) => counts[b] - counts[a]).map(e => `<button class="mrc${re[me] === e ? " mine" : ""}" data-react="${id}" data-e="${e}">${e}${counts[e] > 1 ? `<b>${counts[e]}</b>` : ""}</button>`).join("")}</div>`;
+}
+const EMOJI_SETS = [
+  ["Smileys", "😀 😃 😄 😁 😊 🙂 😉 😍 🥰 😘 😎 🤩 🥳 😇 🤗 🤔 🤨 😐 😴 😷 🤒 🤕 😢 😭 😤 😡 😱 😳 🥺 🙈"],
+  ["Gestures", "👍 👎 👏 🙌 🙏 🤝 💪 👌 ✌️ 🤞 👋 ☝️ 👉 👀 🫶"],
+  ["Health", "🩺 💊 💉 🩸 🩹 🫀 🫁 🧠 🦷 🦴 👶 🤰 🧑‍⚕️ 👩‍⚕️ 👨‍⚕️ 🏥 🚑 🌡️ 😷 🦠 🧬 🧪 🔬 ❤️‍🩹 🧘 🥗 🍎 💧 🚭 🛌"],
+  ["Hearts & symbols", "❤️ 🧡 💛 💚 💙 💜 🤍 💯 ✅ ❌ ⚠️ ❗ ❓ ⭐ 🔥 🎉 📌 📎 📚 📝 ⏰ 📅"],
+  ["Bhutan & nature", "🇧🇹 🏔️ 🌄 🌸 🌼 🌿 🍃 ☀️ 🌧️ ❄️ 🐉 🙏 🏹 🍵"]
+];
+/* themes: wallpaper, header and bubble colours — chosen for one chat or for all chats */
+const CHAT_THEMES = [
+  ["app", "Classic", "var(--accent)", "var(--accent)", null],
+  ["ocean", "Ocean", "#0ea5e9", "#2563eb", "#e6f4fd"],
+  ["sunset", "Sunset", "#fb7185", "#f97316", "#fff1ea"],
+  ["forest", "Forest", "#22c55e", "#0f766e", "#e9f7ef"],
+  ["lavender", "Lavender", "#a78bfa", "#7c3aed", "#f2edff"],
+  ["rose", "Rose", "#f472b6", "#db2777", "#fdecf4"],
+  ["bhutan", "Bhutan", "#f59e0b", "#b91c1c", "#fff6e6"],
+  ["midnight", "Midnight", "#6366f1", "#0ea5e9", "#0b1020"]
+];
+const chatThemeOf = arg => store.get("chatTheme:" + arg, null) || store.get("chatTheme", "app");
+function applyChatTheme(arg) {
+  const w = $(".chatwrap"); if (!w) return;
+  const th = CHAT_THEMES.find(x => x[0] === chatThemeOf(arg)) || CHAT_THEMES[0];
+  w.dataset.ctheme = th[0]; w.style.setProperty("--cA", th[2]); w.style.setProperty("--cB", th[3]); if (th[4]) w.style.setProperty("--cW", th[4]); else w.style.removeProperty("--cW");
+}
+function themeSheet(arg) {
+  const sh = document.createElement("div"); sh.className = "sheet"; const cur = chatThemeOf(arg), own = !!store.get("chatTheme:" + arg, null);
+  sh.innerHTML = `<div class="sheetin"><div class="pshead"><h3>Chat theme</h3><button class="iconbtn" id="th_x" aria-label="Close">${CI.x}</button></div>
+    <div class="thgrid">${CHAT_THEMES.map(([k, n, a, b, w]) => `<button class="thsw${k === cur ? " on" : ""}" data-th="${k}" style="--a:${a};--b:${b};--w:${w || "var(--panel2)"}"><span class="thprev"><i class="tb1"></i><i class="tb2"></i><i class="tb3"></i></span><b>${n}</b></button>`).join("")}</div>
+    <label class="shchk"><input type="checkbox" id="th_all"${own ? "" : " checked"}> Use this theme for all my chats</label></div>`;
+  document.body.appendChild(sh);
+  const close = () => sh.remove(); sh.querySelector("#th_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
+  $$(".thsw", sh).forEach(b => b.onclick = () => { const k = b.dataset.th; if (sh.querySelector("#th_all").checked) { store.set("chatTheme", k); try { localStorage.removeItem("bcr.chatTheme:" + arg); } catch (e) {} } else store.set("chatTheme:" + arg, k); $$(".thsw", sh).forEach(x => x.classList.toggle("on", x === b)); applyChatTheme(arg); });
+}
+
+/* ===== contacts: people add each other; only the administrator sees everyone's full profile ===== */
+COMM.contacts = COMM.contacts || new Set();
+const isContact = uid => COMM.contacts.has(uid);
+function contactsWatch() {
+  if (COMM.contW) { COMM.contW(); COMM.contW = null; }
+  if (!(COMM.state === "in" && COMM.user && COMM.db)) return;
+  COMM.contW = COMM.db.collection("users").doc(COMM.user.uid).collection("contacts").onSnapshot(s => { COMM.contacts = new Set(); s.forEach(d => COMM.contacts.add(d.id)); const st = $("#m_strip"); if (st && st.dataset.fill) st.dataset.fill = ""; if (typeof drawStrip === "function") drawStrip(); }, () => {});
+}
+async function setContact(uid, on) {
+  const ref = COMM.db.collection("users").doc(COMM.user.uid).collection("contacts").doc(uid);
+  if (on) await ref.set({ts: COMM.fb.firestore.FieldValue.serverTimestamp()}); else await ref.delete();
+  on ? COMM.contacts.add(uid) : COMM.contacts.delete(uid);
+}
+function profileSheet(uid) {
+  const u = (COMM.dir || []).find(x => x.uid === uid) || COMM.people[uid] || {}; if (!u) return;
+  const sh = document.createElement("div"); sh.className = "sheet psheet profsh";
+  const draw = () => { const added = isContact(uid);
+    sh.innerHTML = `<div class="sheetin"><div class="pshead"><span></span><button class="iconbtn" id="pf_x" aria-label="Close">${CI.x}</button></div>
+      <div class="pfhero">${commAvatar(u, u.name, "av96")}<h3>${esc(u.name || "Member")}${vBadge(u)}</h3><p>${esc([u.role, u.place].filter(Boolean).join(" · ") || (u.kind === "public" ? "Member of the public" : "Member"))}</p>${u.bio ? `<p class="pfbio">${esc(u.bio)}</p>` : ""}${isVerified(u) ? `<span class="pfver">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')} Verified health professional</span>` : ""}</div>
+      <div class="pfbtns"><button class="btn${added ? " btn-ghost" : ""}" id="pf_add">${added ? "✓ In your contacts" : "＋ Add to contacts"}</button><button class="btn btn-ghost" id="pf_msg"${added || COMM.isAdmin ? "" : " disabled title=\"Add them first\""}>${CI.send} Message</button></div>${added || COMM.isAdmin ? "" : `<p class="small muted" style="text-align:center">Add ${esc((u.name || "").replace(/^dr\.?\s+/i, "").split(" ")[0])} to your contacts to start chatting.</p>`}<div class="small" id="pf_m"></div></div>`;
+    sh.querySelector("#pf_x").onclick = () => sh.remove();
+    sh.querySelector("#pf_msg").onclick = () => { sh.remove(); openDM(uid); };
+    sh.querySelector("#pf_add").onclick = async () => { try { await setContact(uid, !isContact(uid)); draw(); } catch (e) { sh.querySelector("#pf_m").textContent = commErr(e); } };
+  };
+  draw(); document.body.appendChild(sh); sh.addEventListener("click", e => { if (e.target === sh) sh.remove(); });
+}
+
 /* ===== Messenger: private and group chats (Firestore "chats"), people directory, rooms, AI and sharing from the app ===== */
 const chatsCol = () => COMM.db.collection("chats");
 const dmId = (a, b) => [a, b].sort().join("_");
@@ -20692,7 +20893,7 @@ COMM.chats = COMM.chats || [];
 async function openDM(uid) {
   const me = COMM.user.uid; if (uid === me) return;
   const id = dmId(me, uid), ref = chatsCol().doc(id);
-  try { const d = await ref.get(); if (!d.exists) await ref.set({type: "dm", members: [me, uid].sort(), by: me, created: COMM.fb.firestore.FieldValue.serverTimestamp(), lastTs: COMM.fb.firestore.FieldValue.serverTimestamp(), lastText: "", lastBy: ""}); }
+  try { const d = await ref.get(); if (!d.exists && !COMM.isAdmin && !isContact(uid)) { profileSheet(uid); return; } if (!d.exists) await ref.set({type: "dm", members: [me, uid].sort(), by: me, created: COMM.fb.firestore.FieldValue.serverTimestamp(), lastTs: COMM.fb.firestore.FieldValue.serverTimestamp(), lastText: "", lastBy: ""}); }
   catch (e) { commMsg(commErr(e), true); return; }
   go("#chat/c:" + id);
 }
@@ -20723,9 +20924,17 @@ function peopleSheet(mode, onDone, preset) {
   const close = () => sh.remove(); sh.querySelector("#ps_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
   const list = sh.querySelector("#ps_list"), q = sh.querySelector("#ps_q"), goB = sh.querySelector("#ps_go");
   const upd = () => { if (goB) goB.disabled = !picked.size || (mode === "group" && !sh.querySelector("#ps_name").value.trim()); };
-  const draw = () => { const t = q.value.trim().toLowerCase(), ppl = (COMM.dir || []).filter(u => !t || (u.name + " " + (u.role || "") + " " + (u.place || "")).toLowerCase().includes(t));
-    list.innerHTML = ppl.length ? ppl.slice(0, 200).map(u => personRow(u, mode !== "dm" ? `<span class="pck${picked.has(u.uid) ? " on" : ""}">${SI('<path d="m6 12.5 4 4 8-9"/>')}</span>` : "")).join("") : `<div class="muted small" style="padding:14px">No one matches.</div>`;
-    $$(".prow[data-uid]", list).forEach(b => b.onclick = () => { const u = b.dataset.uid; if (mode === "dm") { close(); openDM(u); return; } picked.has(u) ? picked.delete(u) : picked.add(u); b.querySelector(".pck").classList.toggle("on", picked.has(u)); upd(); }); };
+  /* contacts show in full; anyone else appears by name only with a ＋ until you open their profile and add them (the administrator sees everyone) */
+  const draw = () => { const t = q.value.trim().toLowerCase(), all = COMM.dir || [], hit = u => !t || (u.name + " " + (u.role || "") + " " + (u.place || "")).toLowerCase().includes(t);
+    const known = COMM.isAdmin ? all.filter(hit) : all.filter(u => isContact(u.uid) && hit(u));
+    const others = COMM.isAdmin || t.length < 2 ? [] : all.filter(u => !isContact(u.uid) && u.name.toLowerCase().includes(t)).slice(0, 30);
+    const pick = u => mode !== "dm" ? `<span class="pck${picked.has(u.uid) ? " on" : ""}">${SI('<path d="m6 12.5 4 4 8-9"/>')}</span>` : "";
+    list.innerHTML = (known.length ? `${COMM.isAdmin ? "" : `<div class="pslab">My contacts</div>`}${known.slice(0, 300).map(u => personRow(u, pick(u))).join("")}` : (t ? "" : `<div class="cempty"><b>No contacts yet</b><span>Type a colleague's name above, open their profile and tap ＋ to add them. You can chat once they are in your contacts.</span></div>`))
+      + (others.length ? `<div class="pslab">Find people</div>${others.map(u => `<div class="prow pmin" data-p="${u.uid}">${commAvatar({name: u.name}, u.name, "av44")}<span class="prt"><b>${esc(u.name)}${vBadge(u)}</b><small>Tap to view profile</small></span><button class="padd" data-add="${u.uid}" aria-label="Add ${esc(u.name)} to contacts">＋</button></div>`).join("")}` : "")
+      + (t && !known.length && !others.length ? `<div class="muted small" style="padding:14px">No one matches “${esc(t)}”.</div>` : "");
+    $$(".prow[data-uid]", list).forEach(b => b.onclick = () => { const u = b.dataset.uid; if (mode === "dm") { close(); openDM(u); return; } picked.has(u) ? picked.delete(u) : picked.add(u); b.querySelector(".pck").classList.toggle("on", picked.has(u)); upd(); });
+    $$(".pmin", list).forEach(b => b.onclick = e => { if (e.target.closest("[data-add]")) return; profileSheet(b.dataset.p); });
+    $$("[data-add]", list).forEach(b => b.onclick = async () => { b.disabled = true; try { await setContact(b.dataset.add, true); b.textContent = "✓"; setTimeout(draw, 500); } catch (er) { b.disabled = false; sh.querySelector("#ps_msg").textContent = commErr(er); } }); };
   q.addEventListener("input", draw); if (mode === "group") sh.querySelector("#ps_name").addEventListener("input", upd);
   const gb = sh.querySelector("#ps_group"); if (gb) gb.onclick = () => { close(); peopleSheet("group"); };
   if (goB) goB.onclick = async () => { goB.disabled = true; try { if (mode === "group") await createGroup(sh.querySelector("#ps_name").value.trim(), [...picked]); else await onDone([...picked]); close(); } catch (e) { sh.querySelector("#ps_msg").textContent = commErr(e); goB.disabled = false; } };
@@ -20766,7 +20975,75 @@ function bindChatsHome() {
   $("#m_new").onclick = $("#m_fab").onclick = () => peopleSheet("dm");
   COMM.unsub.push(chatsCol().where("members", "array-contains", me).onSnapshot(s => { COMM.chats = []; s.forEach(d => COMM.chats.push({id: d.id, ...d.data()})); draw().catch(() => {}); chatBadge(); }, e => { list.innerHTML = `<div class="warn small">${esc(commErr(e))}</div>`; }));
   /* people strip: quick start with colleagues */
-  loadDirectory().then(ppl => { const el = $("#m_strip"); if (!el) return; el.innerHTML = ppl.slice(0, 24).map(u => `<button class="spers" data-uid="${u.uid}">${commAvatar(u, u.name, "av56")}${isVerified(u) ? `<i class="sv">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')}</i>` : ""}<span>${esc(u.name.replace(/^dr\.?\s*/i, "").split(" ")[0])}</span></button>`).join(""); $$(".spers", el).forEach(b => b.onclick = () => openDM(b.dataset.uid)); }).catch(() => {});
+  loadDirectory().then(drawStrip).catch(() => {});
+}
+/* ===== rooms with membership: people apply, the administrator or a room admin approves; the administrator appoints room admins ===== */
+const roomOpen = r => r.open != null ? !!r.open : !!r.readonly;   /* announcement rooms are open to all approved members unless closed */
+const roomMod = r => COMM.isAdmin || (r.mods || []).includes(COMM.user.uid);
+const roomIn = r => COMM.isAdmin || roomMod(r) || (r.members || []).includes(COMM.user.uid) || r.audience === "public" || (roomOpen(r) && commMember());
+COMM.myReq = COMM.myReq || {};
+async function drawRooms(rs) {
+  const el = $("#c_rooms"); if (!el) return; const me = COMM.user.uid;
+  await Promise.all(rs.filter(r => !roomIn(r) && !(r.id in COMM.myReq)).map(r => COMM.db.collection("rooms").doc(r.id).collection("requests").doc(me).get().then(d => COMM.myReq[r.id] = d.exists).catch(() => COMM.myReq[r.id] = false)));
+  if (!el.isConnected) return;
+  el.innerHTML = rs.length ? rs.map(r => { const lt = r.lastTs && r.lastTs.toDate ? r.lastTs.toDate() : null, inside = roomIn(r), unread = inside && lt && lt.getTime() > (store.get("lastRead:" + r.id, 0) || 0);
+    const av = `<span class="av av52 avroom${r.audience === "public" ? " rpub" : ""}" style="--h:${(r.order || 1) * 47 % 360}">${r.readonly ? "📣" : r.audience === "public" ? "🏡" : "#"}</span>`;
+    const sub = inside ? (r.lastText ? `${esc((r.lastBy || "").split(" ")[0])}: ${esc(r.lastText)}` : esc(r.desc || "")) : esc(r.desc || "");
+    const tail = inside ? `<span class="cmeta"><small>${lt ? timeAgo(lt.getTime()) : ""}</small>${unread ? `<i class="cdot"></i>` : ""}</span>` : COMM.myReq[r.id] ? `<span class="rpill wait">Requested</span>` : `<button class="rpill" data-apply="${esc(r.id)}">Apply</button>`;
+    const gear = roomMod(r) ? `<button class="rgear" data-manage="${esc(r.id)}" aria-label="Manage ${esc(r.name)}">${SI('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>')}${r.reqN ? `<i>${r.reqN}</i>` : ""}</button>` : "";
+    return `<div class="crowwrap">${inside ? `<a class="crow${unread ? " unread" : ""}" href="#chat/${esc(r.id)}" data-q="${esc((r.name + " " + (r.desc || "")).toLowerCase())}">` : `<div class="crow locked" data-q="${esc((r.name + " " + (r.desc || "")).toLowerCase())}">`}${av}<span class="crt"><b>${esc(r.name)}${inside ? "" : ` <span class="lock">🔒</span>`}</b><small>${sub}</small></span>${tail}${inside ? "</a>" : "</div>"}${gear}</div>`; }).join("")
+    : `<div class="card muted">No rooms yet.${COMM.isAdmin ? " Open “Manage rooms” below and create the default rooms." : " The administrator will create them soon."}</div>`;
+  $$("[data-apply]", el).forEach(b => b.onclick = () => applySheet(rs.find(r => r.id === b.dataset.apply)));
+  $$("[data-manage]", el).forEach(b => b.onclick = e => { e.preventDefault(); manageRoomSheet(b.dataset.manage); });
+  /* pending-request counts for rooms I manage */
+  rs.filter(r => roomMod(r) && !r._rq).forEach(r => { r._rq = 1; COMM.unsub.push(COMM.db.collection("rooms").doc(r.id).collection("requests").onSnapshot(s => { r.reqN = s.size; const g = el.querySelector(`[data-manage="${CSS.escape(r.id)}"]`); if (g) { let i = g.querySelector("i"); if (s.size) { if (!i) { i = document.createElement("i"); g.appendChild(i); } i.textContent = s.size; } else if (i) i.remove(); } }, () => {})); });
+}
+function applySheet(r) {
+  if (!r) return; const p = COMM.profile || {};
+  const sh = document.createElement("div"); sh.className = "sheet";
+  sh.innerHTML = `<div class="sheetin"><div class="pshead"><h3>Join “${esc(r.name)}”</h3><button class="iconbtn" id="ap_x" aria-label="Close">${CI.x}</button></div><p class="small muted">${esc(r.desc || "")}</p><p>The administrator or a room admin will review your request. Your name, designation and workplace are shared with them.</p>
+    <div class="card small"><b>${esc(p.name || "")}</b><br>${esc([p.role, p.place].filter(Boolean).join(" · "))}</div>
+    <textarea id="ap_note" rows="2" maxlength="200" placeholder="Why would you like to join? (optional)" style="width:100%;margin-top:10px"></textarea>
+    <div class="btnrow"><button class="btn" id="ap_go">Send request</button></div><div class="small" id="ap_m"></div></div>`;
+  document.body.appendChild(sh); const close = () => sh.remove(); sh.querySelector("#ap_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
+  sh.querySelector("#ap_go").onclick = async () => { const b = sh.querySelector("#ap_go"); b.disabled = true;
+    try { await COMM.db.collection("rooms").doc(r.id).collection("requests").doc(COMM.user.uid).set({name: p.name || "", role: (p.role || "").slice(0, 60), place: (p.place || "").slice(0, 80), note: sh.querySelector("#ap_note").value.trim().slice(0, 200), ts: COMM.fb.firestore.FieldValue.serverTimestamp()}); COMM.myReq[r.id] = true; close(); drawRooms(COMM.rooms).catch(() => {}); }
+    catch (e) { b.disabled = false; sh.querySelector("#ap_m").textContent = commErr(e); } };
+}
+function manageRoomSheet(id) {
+  const room = COMM.db.collection("rooms").doc(id), fv = COMM.fb.firestore.FieldValue;
+  const sh = document.createElement("div"); sh.className = "sheet psheet"; let r = COMM.rooms.find(x => x.id === id) || {}, reqs = [];
+  sh.innerHTML = `<div class="sheetin"><div class="pshead"><h3>Manage “${esc(r.name || id)}”</h3><button class="iconbtn" id="mr_x" aria-label="Close">${CI.x}</button></div><div class="pslist" id="mr_body"></div><div class="small" id="mr_m"></div></div>`;
+  document.body.appendChild(sh); const close = () => { un(); sh.remove(); }; sh.querySelector("#mr_x").onclick = close; sh.addEventListener("click", e => { if (e.target === sh) close(); });
+  const body = sh.querySelector("#mr_body"), msg = t => sh.querySelector("#mr_m").textContent = t;
+  const act = async (fn, ok) => { try { await fn(); if (ok) msg(ok); } catch (e) { msg(commErr(e)); } };
+  const draw = async () => {
+    const mem = [...new Set([...(r.mods || []), ...(r.members || [])])]; await commPeople([...mem, ...reqs.map(q => q.id)]);
+    const P = u => COMM.people[u] || {};
+    body.innerHTML = `${COMM.isAdmin ? `<div class="setrow"><div><b>Open room</b><span>Every approved member can enter without applying</span></div><div class="setctl"><label class="sw"><input type="checkbox" id="mr_open"${roomOpen(r) ? " checked" : ""}><span></span></label></div></div>` : ""}
+      <div class="pslab">Requests to join (${reqs.length})</div>${reqs.length ? reqs.map(q => { const d = q.data(); return `<div class="prow">${commAvatar(P(q.id), d.name, "av44")}<span class="prt"><b>${esc(d.name)}${vBadge(P(q.id))}</b><small>${esc([d.role, d.place].filter(Boolean).join(" · "))}${d.note ? " — “" + esc(d.note) + "”" : ""}</small></span><button class="btn btn-sm" data-ok="${q.id}">Approve</button><button class="iconbtn" data-no="${q.id}" aria-label="Decline">${CI.x}</button></div>`; }).join("") : `<div class="muted small" style="padding:8px">No pending requests.</div>`}
+      <div class="pslab">Members (${mem.length}) <button class="lnk" id="mr_add">＋ Add people</button>${COMM.isAdmin ? ` · <button class="lnk" id="mr_all">Add all approved members</button>` : ""}</div>
+      ${mem.map(u => { const m = (r.mods || []).includes(u); return `<div class="prow">${commAvatar(P(u), P(u).name, "av44")}<span class="prt"><b>${esc(P(u).name || "Member")}${vBadge(P(u))}${m ? ` <span class="modtag">Room admin</span>` : ""}</b><small>${esc([P(u).role, P(u).place].filter(Boolean).join(" · "))}</small></span>${COMM.isAdmin ? `<button class="btn btn-sm btn-ghost" data-mod="${u}">${m ? "Remove admin" : "Make admin"}</button>` : ""}${u !== COMM.user.uid && !m ? `<button class="iconbtn" data-rm="${u}" aria-label="Remove from room">${CI.x}</button>` : ""}</div>`; }).join("") || `<div class="muted small" style="padding:8px">No members yet.</div>`}`;
+    const op = body.querySelector("#mr_open"); if (op) op.onchange = () => act(() => room.update({open: op.checked}), op.checked ? "Room is open to all approved members." : "Members now need to apply.");
+    $$("[data-ok]", body).forEach(b => b.onclick = () => act(async () => { await room.update({members: fv.arrayUnion(b.dataset.ok)}); await room.collection("requests").doc(b.dataset.ok).delete(); }, "Approved."));
+    $$("[data-no]", body).forEach(b => b.onclick = () => act(() => room.collection("requests").doc(b.dataset.no).delete(), "Request declined."));
+    $$("[data-rm]", body).forEach(b => b.onclick = () => act(() => room.update({members: fv.arrayRemove(b.dataset.rm)}), "Removed."));
+    $$("[data-mod]", body).forEach(b => b.onclick = () => { const u = b.dataset.mod, on = !(r.mods || []).includes(u); act(() => room.update(on ? {mods: fv.arrayUnion(u), members: fv.arrayUnion(u)} : {mods: fv.arrayRemove(u)}), on ? "Room admin appointed." : "Room admin removed."); });
+    body.querySelector("#mr_add").onclick = () => peopleSheet("add", uids => room.update({members: fv.arrayUnion(...uids)}));
+    const all = body.querySelector("#mr_all"); if (all) all.onclick = () => act(async () => { const dir = await loadDirectory(); const ids = dir.filter(isVerified).map(u => u.uid); for (let i = 0; i < ids.length; i += 200) await room.update({members: fv.arrayUnion(...ids.slice(i, i + 200))}); }, "All approved members added.");
+  };
+  const u1 = room.onSnapshot(d => { r = {id, ...d.data()}; draw().catch(() => {}); }, e => msg(commErr(e)));
+  const u2 = room.collection("requests").orderBy("ts").onSnapshot(s => { reqs = []; s.forEach(d => reqs.push(d)); draw().catch(() => {}); }, e => msg(commErr(e)));
+  const un = () => { u1(); u2(); };
+}
+
+/* people strip: your contacts (everyone, for the administrator), with an Add button first */
+function drawStrip() {
+  const el = $("#m_strip"); if (!el || !COMM.dir) return;
+  const ppl = COMM.isAdmin ? COMM.dir : COMM.dir.filter(u => isContact(u.uid));
+  el.innerHTML = `<button class="spers sadd" id="m_addp"><span class="av av56 avadd">＋</span><span>Add</span></button>` + ppl.slice(0, 30).map(u => `<button class="spers" data-uid="${u.uid}">${commAvatar(u, u.name, "av56")}${isVerified(u) ? `<i class="sv">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')}</i>` : ""}<span>${esc(u.name.replace(/^dr\.?\s*/i, "").split(" ")[0])}</span></button>`).join("");
+  $$(".spers[data-uid]", el).forEach(b => b.onclick = () => openDM(b.dataset.uid));
+  $("#m_addp").onclick = () => peopleSheet("dm");
 }
 /* unread badge on the Chat button, kept live while signed in */
 function chatBadge() {
@@ -20775,6 +21052,7 @@ function chatBadge() {
   b.hidden = !n; b.textContent = n > 9 ? "9+" : n;
 }
 function chatWatch() {
+  contactsWatch();
   if (COMM.chatW) { COMM.chatW(); COMM.chatW = null; }
   if (!(COMM.state === "in" && COMM.user && COMM.profile && COMM.db)) { const b = $("#chatbadge"); if (b) b.hidden = true; return; }
   COMM.chatW = chatsCol().where("members", "array-contains", COMM.user.uid).onSnapshot(s => { COMM.chats = []; s.forEach(d => COMM.chats.push({id: d.id, ...d.data()})); chatBadge(); }, () => {});
@@ -20807,11 +21085,32 @@ function appShareSheet(onPick) {
 /* ===== For You: a public feed for health awareness, tips and questions (Firestore "posts") ===== */
 const FEED_TAGS = [["tip", "Health tip", 150], ["aware", "Awareness", 200], ["q", "Question", 262], ["news", "News", 28], ["story", "Story", 330]];
 const tagLook = k => FEED_TAGS.find(t => t[0] === k) || FEED_TAGS[1];
+/* one general public-health tip a day (title, message, source) */
+const FEED_TIPS = [
+  ["Wash your hands", "Use soap and water for at least 20 seconds — before eating, after the toilet and after caring for someone who is sick.", "WHO"],
+  ["Diarrhoea? Give ORS", "Give oral rehydration solution and keep feeding; children also need zinc for 10–14 days.", "WHO / UNICEF"],
+  ["Know your blood pressure", "High blood pressure often has no symptoms. Adults should have it checked at least once a year.", "WHO"],
+  ["Breast milk first", "Breast milk alone for the first 6 months, then continue breastfeeding with other foods up to 2 years or beyond.", "WHO / UNICEF"],
+  ["Stroke: BE FAST", "Balance, Eyes, Face, Arm, Speech — Time to call 112. Every minute counts.", "American Stroke Association"],
+  ["Stop dengue at home", "Empty standing water around the house every week and use bed nets or repellents.", "WHO"],
+  ["Vaccinate on time", "Follow the national immunisation schedule and ask at your health centre if a dose was missed.", "MoH Bhutan / WHO"],
+  ["Quit tobacco", "Stopping at any age lowers the risk of heart disease, stroke and cancer.", "WHO"],
+  ["Move more", "Adults need at least 150 minutes of moderate activity a week — brisk walking counts.", "WHO"],
+  ["Less salt", "Keep salt below 5 g a day (about one teaspoon) to protect your heart.", "WHO"],
+  ["Antibiotics are not for colds", "Take antibiotics only when a health worker prescribes them, and exactly as advised.", "WHO"],
+  ["Danger signs in pregnancy", "Bleeding, severe headache, blurred vision, fits, fever or fewer baby movements need urgent care.", "WHO"],
+  ["After a dog bite", "Wash the wound with soap and running water for 15 minutes and get rabies vaccine the same day.", "WHO"],
+  ["Talking helps", "If you have felt low for weeks, reach out to someone you trust or a health worker.", "WHO"],
+  ["Safe drinking water", "Boil or treat drinking water, especially during the monsoon.", "WHO"]
+];
 function feedView() {
   const head = `<div class="feedhead"><div><h1 class="vt">For You</h1><p class="vsub">Health tips, awareness and questions from health workers and the public in Bhutan.</p></div></div>`;
   if (COMM.state !== "in" || !COMM.profile) return head + `<div class="card"><p><b>Sign in to read and post.</b> The For You feed is open to everyone with a free account.</p><a class="btn" href="#account">Sign in or create an account</a></div>`;
   const p = COMM.profile;
-  return head + `<div class="feedtabs" id="f_tabs">${[["all", "For you"], ["pro", "From professionals"], ["q", "Questions"], ["mine", "My posts"]].map(([k, l], i) => `<button class="chip${i ? "" : " on"}" data-f="${k}">${l}</button>`).join("")}</div>
+  const tip = FEED_TIPS[Math.floor(Date.now() / 864e5) % FEED_TIPS.length];
+  return head + `<div class="pssearch fsearch">${ICON.search}<input id="f_q" type="search" placeholder="Search posts, people or #topics" autocomplete="off"></div>
+    <div class="ftip"><span class="ftipic">💡</span><div><small>Tip of the day</small><b>${esc(tip[0])}</b><span>${esc(tip[1])} <i>— ${esc(tip[2])}</i></span></div></div>
+    <div class="feedtabs" id="f_tabs">${[["all", "For you"], ["top", "🔥 Trending"], ["pro", "Professionals"], ["q", "Questions"], ["saved", "Saved"], ["mine", "My posts"]].map(([k, l], i) => `<button class="chip${i ? "" : " on"}" data-f="${k}">${l}</button>`).join("")}</div><div id="f_tagbar" hidden></div>
     <button class="fcompose" id="f_new">${commAvatar(p, p.name, "av40")}<span>Share a health tip or ask a question…</span><i>${SI('<rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/>')}</i></button>
     <div id="f_list" class="flist"><div class="fskel"></div><div class="fskel"></div></div><div id="c_msg" class="small"></div>
     <div class="btnrow" style="justify-content:center"><button class="btn btn-ghost" id="f_more" hidden>Load more</button></div>
@@ -20819,19 +21118,29 @@ function feedView() {
 }
 function bindFeed() {
   if (COMM.state !== "in" || !COMM.profile) return;
-  const me = COMM.user.uid, posts = COMM.db.collection("posts"), list = $("#f_list"); let limit = 25, filt = "all", docs = [], open = new Set(), liked = {};
+  const me = COMM.user.uid, posts = COMM.db.collection("posts"), list = $("#f_list"); let limit = 25, filt = "all", docs = [], open = new Set(), liked = {}, fq = "", tagQ = "";
+  const saved = () => new Set(store.get("savedPosts", []));
+  const tagify = h => h.replace(/(^|[\s>(])#([A-Za-z][\w-]{1,30})/g, (m0, pre, tg) => `${pre}<button class="htag" data-tag="${tg.toLowerCase()}">#${tg}</button>`);
   const myLikes = async ids => { await Promise.all(ids.filter(id => !(id in liked)).map(id => posts.doc(id).collection("likes").doc(me).get().then(d => liked[id] = d.exists).catch(() => liked[id] = false))); };
   const card = d => { const m = d.data(), pe = COMM.people[m.uid] || {}, [, tl, th] = tagLook(m.tag), long = (m.text || "").length > 360;
-    return `<article class="fpost" data-id="${d.id}"><header>${commAvatar(pe.name ? pe : {name: m.name, photo: ""}, m.name, "av44")}<div class="fwho"><b>${esc(m.name)}${m.pro ? `<span class="vbadge" title="Verified health professional">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')}</span>` : ""}</b><small>${esc(m.role || (m.pro ? "Health professional" : "Member"))} · ${timeAgo(tsMs(m.ts))}</small></div><span class="ftag" style="--h:${th}">${tl}</span><button class="iconbtn fmore" data-more="${d.id}" aria-label="More">⋯</button></header>
-      <div class="ftext${long ? " clamp" : ""}">${linkifyMsg(m.text || "")}</div>${long ? `<button class="fsee" data-see="${d.id}">See more</button>` : ""}
-      ${m.img ? `<button class="fimg" data-img="${d.id}"><img src="${m.img}" alt="Photo shared with the post" loading="lazy"></button>` : ""}
-      <footer><button class="fact flike${liked[d.id] ? " on" : ""}" data-like="${d.id}"><span class="heart">${SI('<path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"/>')}</span><b>${m.likes || 0}</b></button><button class="fact" data-com="${d.id}">${SI('<path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3 21l1.4-5.4A8.5 8.5 0 1 1 21 12z"/>')}<b>${m.comments || 0}</b></button><button class="fact" data-share="${d.id}">${SI('<path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/>')}<b>Share</b></button></footer>
+    return `<article class="fpost" data-id="${d.id}"><header><button class="fava" data-prof="${m.uid}" aria-label="View ${esc(m.name)}">${commAvatar(pe.name ? pe : {name: m.name, photo: ""}, m.name, "av44")}</button><div class="fwho" data-prof="${m.uid}"><b>${esc(m.name)}${m.pro ? `<span class="vbadge" title="Verified health professional">${SI('<path d="m8.5 12.5 2.3 2.3 4.7-5"/>')}</span>` : ""}</b><small>${esc(m.role || (m.pro ? "Health professional" : "Member"))} · ${timeAgo(tsMs(m.ts))}</small></div><span class="ftag" style="--h:${th}">${tl}</span><button class="iconbtn fmore" data-more="${d.id}" aria-label="More">⋯</button></header>
+      <div class="ftext${long ? " clamp" : ""}" data-dbl="${d.id}">${tagify(linkifyMsg(m.text || ""))}</div>${long ? `<button class="fsee" data-see="${d.id}">See more</button>` : ""}
+      ${m.img ? `<button class="fimg" data-img="${d.id}" data-dbl="${d.id}"><img src="${m.img}" alt="Photo shared with the post" loading="lazy"><span class="fheartbig">${SI('<path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"/>')}</span></button>` : ""}
+      <footer><button class="fact flike${liked[d.id] ? " on" : ""}" data-like="${d.id}"><span class="heart">${SI('<path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"/>')}</span><b>${m.likes || 0}</b></button><button class="fact" data-com="${d.id}">${SI('<path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3 21l1.4-5.4A8.5 8.5 0 1 1 21 12z"/>')}<b>${m.comments || 0}</b></button><button class="fact" data-share="${d.id}">${SI('<path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/>')}<b>Share</b></button><button class="fact fsave${saved().has(d.id) ? " on" : ""}" data-save="${d.id}" aria-label="Save post">${CI.bookmark}</button></footer>
       <div class="fcoms" id="fc_${d.id}" ${open.has(d.id) ? "" : "hidden"}></div></article>`; };
-  const shown = () => docs.filter(d => { const m = d.data(); return filt === "all" || (filt === "pro" && m.pro) || (filt === "q" && m.tag === "q") || (filt === "mine" && m.uid === me); });
+  const shown = () => { const sv = saved(); let s = docs.filter(d => { const m = d.data(), txt = ((m.text || "") + " " + (m.name || "")).toLowerCase();
+      return (filt === "all" || filt === "top" || (filt === "pro" && m.pro) || (filt === "q" && m.tag === "q") || (filt === "mine" && m.uid === me) || (filt === "saved" && sv.has(d.id)))
+        && (!fq || txt.includes(fq)) && (!tagQ || txt.includes("#" + tagQ)); });
+    if (filt === "top") s = s.filter(d => Date.now() - tsMs(d.data().ts) < 14 * 864e5).sort((a, b) => ((b.data().likes || 0) + 2 * (b.data().comments || 0)) - ((a.data().likes || 0) + 2 * (a.data().comments || 0)));
+    return s; };
   const draw = async () => {
     await commPeople(docs.map(d => d.data().uid)); await myLikes(docs.map(d => d.id));
     const s = shown(); list.innerHTML = s.length ? s.map(card).join("") : `<div class="cempty"><b>${filt === "mine" ? "You haven't posted yet" : "Nothing here yet"}</b><span>Be the first to share a health tip 🌱</span></div>`;
     $$("[data-see]", list).forEach(b => b.onclick = () => { b.previousElementSibling.classList.remove("clamp"); b.remove(); });
+    $$("[data-prof]", list).forEach(b => b.onclick = () => { if (b.dataset.prof !== me) loadDirectory().then(() => profileSheet(b.dataset.prof)).catch(() => {}); });
+    $$(".htag", list).forEach(b => b.onclick = e => { e.stopPropagation(); setTag(b.dataset.tag); });
+    $$("[data-save]", list).forEach(b => b.onclick = () => { const sv = saved(), id = b.dataset.save; sv.has(id) ? sv.delete(id) : sv.add(id); store.set("savedPosts", [...sv]); b.classList.toggle("on", sv.has(id)); b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); });
+    $$("[data-dbl]", list).forEach(el => { let t0 = 0; el.addEventListener("click", e => { if (e.target.closest("a,.htag")) return; const n = Date.now(); if (n - t0 < 300) { e.preventDefault(); e.stopPropagation(); t0 = 0; const post = el.closest(".fpost"), lb = post.querySelector("[data-like]"); post.classList.remove("burst"); void post.offsetWidth; post.classList.add("burst"); if (!liked[el.dataset.dbl]) lb.click(); } else t0 = n; }, true); });
     $$("[data-img]", list).forEach(b => b.onclick = () => imgViewer(b.querySelector("img").src, ""));
     $$("[data-like]", list).forEach(b => b.onclick = async () => { const id = b.dataset.like, on = !liked[id], n = b.querySelector("b"); liked[id] = on; b.classList.toggle("on", on); b.classList.remove("pop"); void b.offsetWidth; if (on) b.classList.add("pop"); n.textContent = Math.max(0, +n.textContent + (on ? 1 : -1));
       try { const lr = posts.doc(id).collection("likes").doc(me), inc = COMM.fb.firestore.FieldValue.increment(on ? 1 : -1), batch = COMM.db.batch(); if (on) batch.set(lr, {ts: COMM.fb.firestore.FieldValue.serverTimestamp()}); else batch.delete(lr); batch.update(posts.doc(id), {likes: inc}); await batch.commit(); } catch (e) { liked[id] = !on; commMsg(commErr(e), true); } });
@@ -20845,6 +21154,8 @@ function bindFeed() {
   sub();
   $("#f_more").onclick = () => { limit += 25; sub(); };
   $$("#f_tabs .chip").forEach(b => b.onclick = () => { $$("#f_tabs .chip").forEach(x => x.classList.toggle("on", x === b)); filt = b.dataset.f; draw().catch(() => {}); });
+  const setTag = tg => { tagQ = tg || ""; const tb = $("#f_tagbar"); tb.hidden = !tagQ; tb.innerHTML = tagQ ? `<span class="htag on">#${esc(tagQ)}</span><button class="lnk" id="f_tagx">Show all posts</button>` : ""; const x = $("#f_tagx"); if (x) x.onclick = () => setTag(""); draw().catch(() => {}); scrollTo({top: 0, behavior: "smooth"}); };
+  $("#f_q").addEventListener("input", e => { fq = e.target.value.trim().toLowerCase(); if (fq.startsWith("#")) { fq = ""; setTag(e.target.value.trim().slice(1).toLowerCase()); return; } draw().catch(() => {}); });
   const comsU = {};
   const loadComs = id => { const el = $("#fc_" + id); if (!el) return; el.dataset.on = 1; el.innerHTML = `<div class="muted small">Loading comments…</div>`;
     if (comsU[id]) comsU[id]();
@@ -20967,7 +21278,7 @@ function bindComm(view, arg) {
   if (view === "chat" && !arg && commIn()) {
     bindChatsHome();
     const col = COMM.db.collection("rooms"), qy = commMember() ? col.orderBy("order") : col.where("audience", "==", "public");
-    COMM.unsub.push(qy.onSnapshot(s => { const rs = []; s.forEach(d => rs.push({id: d.id, ...d.data()})); rs.sort((a, b) => (a.order || 0) - (b.order || 0)); COMM.rooms = rs; const el = $("#c_rooms"); if (el) el.innerHTML = rs.length ? rs.map(r => { const lt = r.lastTs && r.lastTs.toDate ? r.lastTs.toDate() : null, unread = lt && lt.getTime() > (store.get("lastRead:" + r.id, 0) || 0); return `<a class="crow${unread ? " unread" : ""}" href="#chat/${esc(r.id)}" data-q="${esc((r.name + " " + (r.desc || "")).toLowerCase())}"><span class="av av52 avroom${r.audience === "public" ? " rpub" : ""}" style="--h:${(r.order || 1) * 47 % 360}">${r.readonly ? "📣" : r.audience === "public" ? "🏡" : "#"}</span><span class="crt"><b>${esc(r.name)}</b><small>${r.lastText ? `${esc((r.lastBy || "").split(" ")[0])}: ${esc(r.lastText)}` : esc(r.desc || "")}</small></span><span class="cmeta"><small>${lt ? timeAgo(lt.getTime()) : ""}</small>${unread ? `<i class="cdot"></i>` : ""}</span></a>`; }).join("") : `<div class="card muted">No rooms yet.${COMM.isAdmin ? " Open “Manage rooms” below and create the default rooms." : " The administrator will create them soon."}</div>`; }, e => commMsg(commErr(e), true)));
+    COMM.unsub.push(qy.onSnapshot(s => { const rs = []; s.forEach(d => rs.push({id: d.id, ...d.data()})); rs.sort((a, b) => (a.order || 0) - (b.order || 0)); COMM.rooms = rs; drawRooms(rs).catch(() => {}); }, e => commMsg(commErr(e), true)));
     on("c_seed", async () => { await Promise.all(DEFAULT_ROOMS.map(([id, name, desc, order, ro, aud]) => col.doc(id).set({name, desc, order, readonly: !!ro, ...(aud ? {audience: aud} : {})}, {merge: true}))); commMsg("Default rooms created or updated (existing messages kept)."); });
     on("c_radd", async () => { const name = $("#c_rname").value.trim(); if (!name) return commMsg("Enter a name.", true); const id = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "room" + Date.now(); await col.doc(id).set({name, desc: $("#c_rdesc").value.trim(), order: 50, readonly: $("#c_rro").checked, ...($("#c_rpub") && $("#c_rpub").checked ? {audience: "public"} : {})}); commMsg("Room added."); });
   }
