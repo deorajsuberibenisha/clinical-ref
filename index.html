@@ -1300,12 +1300,51 @@ body[data-icon-style="signature"] .h2-mi{background:linear-gradient(150deg,color
 .arr-btn{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:99px;padding:4px 10px;font:600 12px var(--ui-font);cursor:pointer;flex:none;margin-left:auto}
 .arr-btn svg{width:14px;height:14px}.arr-btn:hover{color:var(--accent);border-color:var(--accent)}
 .h2-sec .arr-btn{margin-left:auto;margin-right:8px}.h2-qh{display:flex;align-items:center;gap:8px}.mph .arr-btn{margin-right:6px}.fold-head .arr-btn{margin-left:6px}
-.arranging>*{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;animation:arrWig .32s ease-in-out infinite alternate!important;outline:2px dashed color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
-.arranging>*:nth-child(2n){animation-delay:-.16s!important}
-.arranging>.h2-qh{animation:none!important;outline:0;cursor:default}
-.arranging>.dragging{animation:none!important;z-index:60;position:relative;cursor:grabbing;box-shadow:0 18px 36px -12px rgba(0,0,0,.45);opacity:.96;transition:none}
-@keyframes arrWig{from{transform:rotate(-1.1deg)}to{transform:rotate(1.1deg)}}
-#arrbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom));z-index:80;display:flex;align-items:center;gap:8px;padding:8px 8px 8px 14px;border-radius:16px;background:var(--panel);border:1px solid var(--line);box-shadow:0 14px 36px -12px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+/* icons keep their intro animation only once; arranging uses the separate rotate/scale properties so sliding (transform) never fights the wiggle */
+[data-ord]>*{transition:transform .18s,scale .22s cubic-bezier(.2,.9,.25,1),box-shadow .22s,opacity .22s,border-color .18s,background .18s}
+.arr-settled{animation:none!important}
+.lp-press{scale:.95}
+.arranging>*{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab;position:relative;animation:arrWig .9s ease-in-out infinite!important;animation-delay:var(--wd,0s)!important;scale:.97}
+.arranging>*::before{content:"";position:absolute;inset:-2px;border-radius:inherit;pointer-events:none;opacity:0;box-shadow:0 0 0 1.5px color-mix(in srgb,var(--accent) 50%,transparent),0 0 22px -4px color-mix(in srgb,var(--accent) 55%,transparent);animation:arrRing .35s ease forwards,arrGlow 1.8s ease-in-out .35s infinite alternate}
+.arranging>.h2-qh{animation:none!important;scale:1;cursor:default}.arranging>.h2-qh::before{display:none}
+.arranging>.dragging,.dropping{animation:none!important;rotate:0deg;z-index:60;cursor:grabbing;will-change:transform}
+.arranging>.dragging{scale:1.07;box-shadow:0 22px 44px -14px rgba(0,0,0,.5),0 0 0 2px color-mix(in srgb,var(--accent) 60%,transparent);opacity:.97}
+.arranging>.dragging::before{display:none}
+.dropping{scale:1;box-shadow:0 6px 16px -10px rgba(0,0,0,.3)}
+.arr-leaving>*{scale:1;rotate:0deg}
+@keyframes arrWig{0%,100%{rotate:-.7deg}50%{rotate:.7deg}}
+@keyframes arrRing{to{opacity:1}}
+@keyframes arrGlow{from{opacity:.55}to{opacity:1}}
+/* arrange toolbar: glassy pill with a round reset icon and a bright Done button */
+#arrbar{gap:6px!important;padding:6px!important;border-radius:999px!important;background:color-mix(in srgb,var(--panel) 78%,transparent)!important;border:1px solid color-mix(in srgb,var(--accent) 22%,var(--line))!important;box-shadow:0 20px 44px -16px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04) inset!important;backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
+.arrb-reset{width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--muted);cursor:pointer;flex:none;transition:background .2s,color .2s,rotate .45s cubic-bezier(.2,.9,.25,1)}
+.arrb-reset:hover{color:var(--accent);background:var(--accent-soft)}.arrb-reset:active{rotate:-200deg}.arrb-reset svg{width:18px!important;height:18px!important;color:inherit!important}
+.arrb-tip{display:flex;align-items:center;gap:7px;padding:0 6px;font:600 13.5px var(--ui-font);color:var(--ink);white-space:nowrap}
+.arrb-hand{display:grid;place-items:center;font-style:normal;animation:handNudge 1.6s ease-in-out infinite}.arrb-hand svg{width:18px!important;height:18px!important}
+@keyframes handNudge{0%,100%{translate:0 0}50%{translate:4px -2px}}
+.arrb-done{display:flex;align-items:center;gap:6px;height:40px;padding:0 16px 0 13px;border:0;border-radius:999px;cursor:pointer;flex:none;font:700 14px var(--ui-font);color:#fff;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 85%,#fff),var(--accent) 55%,color-mix(in srgb,var(--accent) 80%,#000));box-shadow:0 8px 18px -8px color-mix(in srgb,var(--accent) 80%,transparent),inset 0 1px 0 rgba(255,255,255,.3);transition:transform .15s,box-shadow .2s}
+.arrb-done:hover{box-shadow:0 10px 24px -8px color-mix(in srgb,var(--accent) 90%,transparent),inset 0 1px 0 rgba(255,255,255,.3)}.arrb-done:active{transform:scale(.95)}.arrb-done svg{width:17px!important;height:17px!important;color:#fff!important;stroke-width:2.6}
+/* Arrange button: a soft pill whose arrows gently bob */
+.arr-btn{gap:6px!important;padding:5px 12px 5px 8px!important;border:1px solid color-mix(in srgb,var(--accent) 25%,var(--line))!important;background:linear-gradient(135deg,var(--accent-soft),color-mix(in srgb,var(--accent) 4%,var(--panel)))!important;color:var(--accent)!important;box-shadow:0 4px 12px -8px color-mix(in srgb,var(--accent) 70%,transparent);transition:transform .15s,box-shadow .2s!important}
+.arr-btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px -10px color-mix(in srgb,var(--accent) 80%,transparent)}.arr-btn:active{transform:scale(.95)}
+.arr-btn svg{width:15px!important;height:15px!important;animation:arrBob 2.4s ease-in-out infinite}
+@keyframes arrBob{0%,100%{translate:0 0}50%{translate:0 -1.5px}}
+/* idle life: icons float gently and catch a soft light sweep, staggered so the screen feels alive but calm */
+:is(.fold-ic,.fitem-ic,.h2-mi,.mpic,.h2-qi,.cti){position:relative;overflow:hidden;animation:idleFloat 5.5s ease-in-out infinite;animation-delay:calc(var(--i,0) * -0.7s)}
+:is(.fold-ic,.fitem-ic,.h2-mi,.mpic,.h2-qi,.cti)::after{content:"";position:absolute;inset:-40%;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.38) 50%,transparent 58%);translate:-120% 0;animation:idleShine 7s ease-in-out infinite;animation-delay:calc(var(--i,0) * 0.55s + 1s);pointer-events:none}
+:is(.fold,.fitem,.h2-mod,.h2-spec,.mpi,.h2-q):nth-child(4n+1){--i:0}:is(.fold,.fitem,.h2-mod,.h2-spec,.mpi,.h2-q):nth-child(4n+2){--i:1}:is(.fold,.fitem,.h2-mod,.h2-spec,.mpi,.h2-q):nth-child(4n+3){--i:2}:is(.fold,.fitem,.h2-mod,.h2-spec,.mpi,.h2-q):nth-child(4n+4){--i:3}
+@keyframes idleFloat{0%,100%{translate:0 0}50%{translate:0 -2.5px}}
+@keyframes idleShine{0%,72%{translate:-120% 0}86%,100%{translate:120% 0}}
+.fold-ic{box-shadow:0 8px 18px -10px hsl(var(--h) 70% 40% / .9),inset 0 1px 0 rgba(255,255,255,.3)}
+.fold:hover .fold-ic,.fitem:hover .fitem-ic,.h2-mod:hover .h2-mi{animation:idleHop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes idleHop{0%{translate:0 0;scale:1}40%{translate:0 -4px;scale:1.08}100%{translate:0 0;scale:1}}
+body.reduce-motion :is(.fold-ic,.fitem-ic,.h2-mi,.mpic,.h2-qi,.cti,.arr-btn svg,.arrb-hand),body.reduce-motion :is(.fold-ic,.fitem-ic,.h2-mi,.mpic,.h2-qi,.cti)::after{animation:none!important}
+@media (prefers-reduced-motion:reduce){:is(.fold-ic,.fitem-ic,.h2-mi,.mpic,.h2-qi,.cti),:is(.fold-ic,.fitem-ic,.h2-mi,.mpic,.h2-qi,.cti)::after{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.arranging>*{animation:none!important}}
+#arrbar{position:fixed;left:50%;translate:-50% 0;bottom:calc(76px + env(safe-area-inset-bottom));z-index:80;display:flex;align-items:center;gap:8px;padding:8px 8px 8px 14px;border-radius:18px;background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 18px 40px -14px rgba(0,0,0,.5);font-size:13.5px;max-width:calc(100vw - 24px);opacity:0;transform:translateY(20px) scale(.96)}
+#arrbar.in{animation:barIn .38s cubic-bezier(.2,.9,.25,1) forwards}#arrbar.out{animation:barOut .24s ease forwards}
+@keyframes barIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes barOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(16px) scale(.97)}}
 #arrbar[hidden]{display:none}#arrbar span{display:flex;align-items:center;gap:6px;flex:1}#arrbar svg{width:16px;height:16px;color:var(--accent)}
 @media (min-width:861px){#arrbar{bottom:24px}}
 /* bar modes: hide on scroll, or fold the bottom bar into a small button */
@@ -20901,15 +20940,29 @@ const ORD = {
 };
 const arrBtn = key => `<button class="arr-btn" data-arr="${key}" aria-label="Arrange these icons">${SI('<path d="M7 4v16m0-16L3 8m4-4 4 4m6 12V4m0 16-4-4m4 4 4-4"/>')}<span>Arrange</span></button>`;
 let ARR = null, DRAG = null, LP = null, SKIPCLICK = false;
-function arrStart(c) {
-  if (!c) return; arrStop(true); ARR = c; c.classList.add("arranging"); navigator.vibrate && navigator.vibrate(18);
-  let bar = $("#arrbar"); if (!bar) { bar = document.createElement("div"); bar.id = "arrbar"; document.body.appendChild(bar); }
-  bar.innerHTML = `<span>${SI('<path d="M7 4v16m0-16L3 8m4-4 4 4m6 12V4m0 16-4-4m4 4 4-4"/>')} Drag the icons into your order</span><button class="btn ghost" id="arrreset">Reset</button><button class="btn" id="arrdone">Done</button>`;
-  bar.hidden = false;
-  $("#arrdone").onclick = () => arrStop();
-  $("#arrreset").onclick = () => { const k = ARR.dataset.ord; try { localStorage.removeItem("bcr.ord." + k); } catch (e) {} arrStop(); route(); if (k.startsWith("nav.")) location.reload(); };
+const EASE = "cubic-bezier(.2,.9,.25,1)";
+/* FLIP: remember where every icon was, move the DOM, then let each icon glide from its old spot to the new one */
+function flip(c, change) {
+  const kids = ORD.kids(c).filter(k => !k.classList.contains("dragging")), first = new Map(kids.map(k => [k, k.getBoundingClientRect()]));
+  change();
+  kids.forEach(k => { const a = first.get(k), b = k.getBoundingClientRect(), dx = a.left - b.left, dy = a.top - b.top; if (!dx && !dy) return;
+    k.style.transition = "none"; k.style.transform = `translate(${dx}px,${dy}px)`; k.getBoundingClientRect();
+    k.style.transition = `transform .32s ${EASE}`; k.style.transform = ""; });
 }
-function arrStop(silent) { if (ARR) { ORD.save(ARR); ARR.classList.remove("arranging"); } ARR = null; const b = $("#arrbar"); if (b) b.hidden = true; }
+function arrStart(c) {
+  if (!c) return; arrStop(true); ARR = c;
+  ORD.kids(c).forEach((k, i) => { k.classList.add("arr-settled"); k.style.setProperty("--wd", `${-(i % 5) * 0.07}s`); });
+  c.classList.add("arranging"); navigator.vibrate && navigator.vibrate(12);
+  let bar = $("#arrbar"); if (!bar) { bar = document.createElement("div"); bar.id = "arrbar"; document.body.appendChild(bar); }
+  bar.innerHTML = `<button class="arrb-reset" id="arrreset" aria-label="Reset to the original order" title="Reset to the original order">${SI('<path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/>')}</button><span class="arrb-tip"><i class="arrb-hand">${SI('<path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.5 13a1.5 1.5 0 0 1 2.4-1.8L9 14"/>')}</i>Drag to arrange</span><button class="arrb-done" id="arrdone">${SI('<path d="m5 12 5 5L20 7"/>')}<span>Done</span></button>`;
+  bar.hidden = false; bar.classList.remove("out"); void bar.offsetWidth; bar.classList.add("in");
+  $("#arrdone").onclick = () => arrStop();
+  $("#arrreset").onclick = () => { const k = ARR.dataset.ord, def = ORD.kids(ARR).slice().sort((a, b) => (+a.dataset.home || 0) - (+b.dataset.home || 0)); try { localStorage.removeItem("bcr.ord." + k); } catch (e) {} const cc = ARR; flip(cc, () => def.forEach(el => cc.appendChild(el))); arrStop(); };
+}
+function arrStop(silent) {
+  if (ARR) { ORD.save(ARR); const c = ARR; c.classList.add("arr-leaving"); c.classList.remove("arranging"); setTimeout(() => c.classList.remove("arr-leaving"), 350); }
+  ARR = null; const b = $("#arrbar"); if (b && !b.hidden) { b.classList.remove("in"); b.classList.add("out"); setTimeout(() => { if (b.classList.contains("out")) b.hidden = true; }, 260); }
+}
 document.addEventListener("click", e => {
   const b = e.target.closest("[data-arr]");
   if (b) { e.preventDefault(); e.stopPropagation(); const c = $(`[data-ord="${b.dataset.arr}"]`, b.closest(".mpin") || document); ARR === c ? arrStop() : arrStart(c); return; }
@@ -20917,21 +20970,47 @@ document.addEventListener("click", e => {
 }, true);
 document.addEventListener("contextmenu", e => { if (e.target.closest("[data-ord]")) e.preventDefault(); });
 document.addEventListener("pointerdown", e => {
+  if (e.button > 0) return;
   const c = e.target.closest("[data-ord]"), it = c && e.target.closest("[data-ord] > *");
   if (!c || !it || !oidOf(it) || it.parentElement !== c) return;
-  if (ARR === c) { e.preventDefault(); const r = it.getBoundingClientRect(); DRAG = {it, c, x: e.clientX, y: e.clientY, id: e.pointerId}; it.classList.add("dragging"); try { it.setPointerCapture(e.pointerId); } catch (x) {} return; }
-  LP = {x: e.clientX, y: e.clientY, t: setTimeout(() => { LP = null; SKIPCLICK = true; arrStart(c); setTimeout(() => SKIPCLICK = false, 700); }, 550)};
+  /* remember the original order once, so Reset can glide back */
+  if (!c.dataset.homed) { ORD.kids(c).forEach((k, i) => k.dataset.home = i); c.dataset.homed = 1; }
+  if (ARR === c) {
+    e.preventDefault(); const r = it.getBoundingClientRect();
+    DRAG = {it, c, x: e.clientX, y: e.clientY, ox: e.clientX - r.left, oy: e.clientY - r.top, lock: 0, raf: 0, px: e.clientX, py: e.clientY};
+    it.style.transition = "none"; it.classList.add("dragging"); try { it.setPointerCapture(e.pointerId); } catch (x) {} navigator.vibrate && navigator.vibrate(8); return;
+  }
+  const press = setTimeout(() => it.classList.add("lp-press"), 160);
+  LP = {x: e.clientX, y: e.clientY, it, press, t: setTimeout(() => { it.classList.remove("lp-press"); LP = null; SKIPCLICK = true; arrStart(c); setTimeout(() => SKIPCLICK = false, 700); }, 520)};
 });
+function dragFrame() {
+  if (!DRAG) return; DRAG.raf = 0;
+  const {it, c, px, py} = DRAG, now = performance.now();
+  if (now > DRAG.lock) {
+    /* test against where each icon is settling, not where it is mid-glide, so icons never bounce back */
+    const over = ORD.kids(c).find(k => { if (k === it) return false; const r = k.getBoundingClientRect(), m = new DOMMatrix(getComputedStyle(k).transform), L = r.left - m.m41, T = r.top - m.m42, ix = r.width * .12, iy = r.height * .12; return px >= L + ix && px <= L + r.width - ix && py >= T + iy && py <= T + r.height - iy; });
+    if (over) {
+      const kids = ORD.kids(c), before = kids.indexOf(it) > kids.indexOf(over), r0 = it.getBoundingClientRect();
+      flip(c, () => c.insertBefore(it, before ? over : over.nextSibling));
+      const r1 = it.getBoundingClientRect(); DRAG.x += r1.left - r0.left; DRAG.y += r1.top - r0.top; DRAG.lock = now + 180; navigator.vibrate && navigator.vibrate(6);
+    }
+  }
+  it.style.transform = `translate3d(${px - DRAG.x}px,${py - DRAG.y}px,0)`;
+  if (py < 90) scrollBy(0, -10); else if (py > innerHeight - 150) scrollBy(0, 10);
+}
 document.addEventListener("pointermove", e => {
-  if (LP && Math.hypot(e.clientX - LP.x, e.clientY - LP.y) > 8) { clearTimeout(LP.t); LP = null; }
-  if (!DRAG) return; e.preventDefault();
-  const {it, c} = DRAG;
-  const over = ORD.kids(c).find(k => { if (k === it) return false; const r = k.getBoundingClientRect(); return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom; });
-  if (over) { const kids = ORD.kids(c), before = kids.indexOf(it) > kids.indexOf(over), r0 = it.getBoundingClientRect(); c.insertBefore(it, before ? over : over.nextSibling); const r1 = it.getBoundingClientRect(); DRAG.x += r1.left - r0.left; DRAG.y += r1.top - r0.top; }
-  it.style.transform = `translate(${e.clientX - DRAG.x}px,${e.clientY - DRAG.y}px) scale(1.06)`;
-  if (e.clientY < 90) scrollBy(0, -12); else if (e.clientY > innerHeight - 140) scrollBy(0, 12);
+  if (LP && Math.hypot(e.clientX - LP.x, e.clientY - LP.y) > 8) { clearTimeout(LP.t); clearTimeout(LP.press); LP.it.classList.remove("lp-press"); LP = null; }
+  if (!DRAG) return; e.preventDefault(); DRAG.px = e.clientX; DRAG.py = e.clientY;
+  if (!DRAG.raf) DRAG.raf = requestAnimationFrame(dragFrame);
 }, {passive: false});
-const dragEnd = () => { if (LP) { clearTimeout(LP.t); LP = null; } if (!DRAG) return; DRAG.it.style.transform = ""; DRAG.it.classList.remove("dragging"); ORD.save(DRAG.c); DRAG = null; };
+const dragEnd = () => {
+  if (LP) { clearTimeout(LP.t); clearTimeout(LP.press); LP.it.classList.remove("lp-press"); LP = null; }
+  if (!DRAG) return; const {it, c} = DRAG; if (DRAG.raf) cancelAnimationFrame(DRAG.raf); DRAG = null;
+  it.classList.remove("dragging"); it.classList.add("dropping");
+  it.style.transition = `transform .34s ${EASE}`; it.style.transform = "";
+  setTimeout(() => { it.classList.remove("dropping"); it.style.transition = ""; }, 360);
+  ORD.save(c);
+};
 document.addEventListener("pointerup", dragEnd); document.addEventListener("pointercancel", dragEnd);
 /* bars: always shown, hidden while scrolling down, or (bottom bar) folded into a small button */
 function barModes() {
