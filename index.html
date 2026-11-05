@@ -1276,6 +1276,50 @@ body[data-icon-style="signature"] .h2-mi{background:linear-gradient(150deg,color
 .hub-ls{display:flex;flex-direction:column;gap:2px}.hub-ls2{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:2px 10px}
 .hub-l{display:flex;flex-direction:column;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--ink);transition:background .15s}
 .hub-l:hover{background:hsl(var(--h) 70% 50% / .08)}.hub-l b{font-size:14px;font-weight:600}.hub-l small{font-size:12px;color:var(--muted)}
+/* folder tiles (PICU, NICU, criteria, calculators) and folder pages */
+.fold-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:4px}
+.fold{position:relative;display:flex;flex-direction:column;gap:6px;padding:16px 14px 14px;border-radius:20px;text-decoration:none;color:var(--ink);background:linear-gradient(150deg,hsl(var(--h) 75% 55% / .2),hsl(var(--h) 75% 55% / .05) 65%),var(--panel);border:1px solid hsl(var(--h) 60% 50% / .28);box-shadow:0 10px 24px -20px hsl(var(--h) 60% 30% / .9);min-height:132px;cursor:pointer;font:inherit;text-align:left;animation:foldIn .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0ms);transition:transform .18s,box-shadow .18s,border-color .18s}
+.fold:hover{transform:translateY(-3px);box-shadow:0 16px 30px -18px hsl(var(--h) 60% 30% / .9);border-color:hsl(var(--h) 65% 50% / .6)}.fold:active{transform:scale(.97)}
+.fold-ic.ic-tile{--h:inherit;width:48px;height:48px;border-radius:15px!important;display:grid;place-items:center;flex:none}.fold-ic svg{width:26px;height:26px}
+.fold b{font-size:15px;line-height:1.3;font-weight:700;margin-top:auto}.fold small{font-size:12px;color:var(--muted)}
+.fold-num{position:absolute;top:12px;right:12px;min-width:24px;height:24px;border-radius:99px;display:grid;place-items:center;font-size:12px;font-weight:800;color:hsl(var(--h) 70% 35%);background:hsl(var(--h) 70% 50% / .15)}
+.fold-head{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:18px;margin:6px 0 12px;background:linear-gradient(135deg,hsl(var(--h) 70% 50% / .16),hsl(var(--h) 70% 50% / .03) 70%),var(--panel);border:1px solid hsl(var(--h) 60% 50% / .25)}
+.fold-head>div{flex:1;min-width:0}.fold-head h1{margin:2px 0 0}
+.fitems{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+.fitem{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:var(--panel);border:1px solid var(--line);text-decoration:none;color:var(--ink);font:inherit;text-align:left;cursor:pointer;animation:foldIn .4s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0ms);transition:transform .15s,border-color .15s,background .15s}
+.fitem:hover{border-color:hsl(var(--h) 65% 50% / .55);background:hsl(var(--h) 70% 50% / .06);transform:translateY(-1px)}
+.fitem-ic.ic-tile{width:40px;height:40px;border-radius:12px!important;display:grid;place-items:center;flex:none}.fitem-ic svg{width:21px;height:21px}
+.fitem-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.fitem-t b{font-size:14.5px;font-weight:650;line-height:1.3}.fitem-t small{font-size:12.5px;color:var(--muted);line-height:1.35}
+.fitem-go{font-size:22px;color:hsl(var(--h) 60% 50%);flex:none}
+.fold-nav{display:flex;justify-content:space-between;gap:10px;margin:16px 0 4px;flex-wrap:wrap}
+@keyframes foldIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+@media (max-width:520px){.fold-grid{grid-template-columns:1fr 1fr;gap:10px}.fold{min-height:122px;padding:14px 12px 12px}.fitems{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.fold,.fitem{animation:none}}
+/* arrange icons (long-press or Arrange, then drag) */
+.arr-row{display:flex;justify-content:flex-end;margin:-4px 0 8px}
+.arr-btn{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:99px;padding:4px 10px;font:600 12px var(--ui-font);cursor:pointer;flex:none;margin-left:auto}
+.arr-btn svg{width:14px;height:14px}.arr-btn:hover{color:var(--accent);border-color:var(--accent)}
+.h2-sec .arr-btn{margin-left:auto;margin-right:8px}.h2-qh{display:flex;align-items:center;gap:8px}.mph .arr-btn{margin-right:6px}.fold-head .arr-btn{margin-left:6px}
+.arranging>*{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;animation:arrWig .32s ease-in-out infinite alternate!important;outline:2px dashed color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
+.arranging>*:nth-child(2n){animation-delay:-.16s!important}
+.arranging>.h2-qh{animation:none!important;outline:0;cursor:default}
+.arranging>.dragging{animation:none!important;z-index:60;position:relative;cursor:grabbing;box-shadow:0 18px 36px -12px rgba(0,0,0,.45);opacity:.96;transition:none}
+@keyframes arrWig{from{transform:rotate(-1.1deg)}to{transform:rotate(1.1deg)}}
+#arrbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom));z-index:80;display:flex;align-items:center;gap:8px;padding:8px 8px 8px 14px;border-radius:16px;background:var(--panel);border:1px solid var(--line);box-shadow:0 14px 36px -12px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#arrbar[hidden]{display:none}#arrbar span{display:flex;align-items:center;gap:6px;flex:1}#arrbar svg{width:16px;height:16px;color:var(--accent)}
+@media (min-width:861px){#arrbar{bottom:24px}}
+/* bar modes: hide on scroll, or fold the bottom bar into a small button */
+.mbar,.pbar{transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+#bbfab{display:none}
+@media (max-width:860px){
+  body.bb-auto.bars-hidden .mbar{transform:translateY(115%)}
+  body.bb-tap .mbar{transform:translateY(115%)}body.bb-tap.bb-open .mbar{transform:none}
+  body.bb-tap #bbfab{display:grid;place-items:center;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:45;width:52px;height:52px;border-radius:18px;border:0;background:var(--accent);color:var(--accent-ink);box-shadow:0 12px 26px -10px rgba(0,0,0,.5);cursor:pointer;transition:bottom .28s}
+  body.bb-tap.bb-open #bbfab{bottom:calc(80px + env(safe-area-inset-bottom))}
+  #bbfab svg{width:24px;height:24px}
+  body.bb-tap #arrbar{bottom:calc(80px + env(safe-area-inset-bottom))}
+}
+body.tb-auto.bars-hidden .pbar{transform:translateY(-110%)}
 /* dose first */
 .dosecard{margin:12px 0;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--panel)),var(--panel) 70%);border:1.5px solid color-mix(in srgb,var(--accent) 30%,var(--line))}
 .dosecard h2{margin:0 0 6px;font-size:18px;color:var(--accent)}.dosecard .fld p{margin:4px 0;line-height:1.55}
@@ -2816,7 +2860,8 @@ function presetInfusion(drug) {
   const sel = document.getElementById("fpre"); if (sel && i >= 0) { sel.value = i; applyPreset(i); sel.dispatchEvent(new Event("change")); }
 }
 function fluidsView(id) {
-  if (!id) return `<h1 class="vt">Fluids &amp; electrolytes</h1><p class="vsub">Calculators use the weight in the patient bar (you can override it in each calculator).</p><div class="calcgrid">${FLUIDS.map(f => `<button class="ctile ctx" onclick="go('#fluids/${f.id}')">${ctIc("fluids")}<b>${esc(f.t)}</b><span>${esc(f.s)}</span></button>`).join("")}</div>`;
+  if (!id) { const rank = ["maint", "bolus", "dehyd", "drip", "infusion", "dextrose", "neo", "kcl", "sodium", "insulin", "transfuse", "burns", "lytes", "calcium", "mgso4", "bicarb"], r = f => { const i = rank.indexOf(f.id); return i < 0 ? 99 : i; };
+    return `<div class="hub-head" style="--h:200"><span class="hub-ic ic-tile" style="--h:200">${IC2.drop}</span><div><h1 class="vt">Fluids &amp; electrolytes</h1><p>Most-used first. Every calculator follows the weight and age in the patient bar and updates as soon as you change it.</p></div></div><div class="arr-row">${arrBtn("fluids")}</div><div class="fitems" style="--h:200" data-ord="fluids">${[...FLUIDS].sort((a, b) => r(a) - r(b)).map((f, j) => `<a class="fitem" href="#fluids/${f.id}" style="--d:${Math.min(j, 14) * 30}ms"><span class="fitem-ic ic-tile">${IC2.drop}</span><span class="fitem-t"><b>${esc(f.t)}</b><small>${esc(f.s)}</small></span><span class="fitem-go" aria-hidden="true">›</span></a>`).join("")}</div>`; }
   const f = FLUIDS.find(x => x.id === id); if (!f) return "Not found";
   return `<button class="back" onclick="goUp('#fluids')">${ICON.back} Fluids</button><h1 class="vt">${esc(f.t)}</h1><p class="vsub">${esc(f.s)}</p><div class="card" id="fcard">${f.html()}</div>`;
 }
@@ -3065,22 +3110,34 @@ const CALCS = [
 /* a coloured icon for each calculator and protocol group */
 function groupLook(g) { return ({"Acid–base & gases": [200, IC2.lab], "Kidney": [15, IC2.kidney], "Body size": [130, IC2.growth], "Cardiovascular": [345, IC2.heart], "Infection & sepsis": [160, IC2.germ], "Neurology": [270, IC2.brain], "Liver": [35, IC2.liver], "Obstetrics & neonates": [320, IC2.baby], "Paediatrics": [25, IC2.child], "Gastrointestinal & surgery": [185, IC2.surg], "Drugs & conversions": [150, IC2.drugs], "Ventilation": [195, IC2.vent], "Respiratory": [205, IC2.lung], "Sedation & pain": [268, IC2.mind], "Obstetric emergencies": [330, IC2.obg], "Medical emergencies": [8, IC2.emerg], "Paediatric": [25, IC2.child], "Poisoning": [95, IC2.lab], "Surgical & trauma": [205, IC2.ambul], fluids: [200, IC2.drop], equip: [16, IC2.equip]})[g] || [210, IC2.calc]; }
 const ctIc = g => { const [h, ic] = groupLook(g); return `<span class="cti ic-tile" style="--h:${h}" aria-hidden="true">${ic}</span>`; };
+/* calculators: one icon folder per group (#calc/grp/3), each opening its own page of calculators */
+const calcGroups = () => [...new Set(CALCS.map(c => c.g))].sort((a, b) => { const ia = CALC_GROUP_ORDER.indexOf(a), ib = CALC_GROUP_ORDER.indexOf(b); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
+const calcTile = (c, j = 0) => { const [h] = groupLook(c.g); return `<a class="fitem ctx" href="#calc/${c.id}" style="--h:${h};--d:${Math.min(j, 14) * 30}ms" data-q="${esc((c.t + " " + c.s + " " + c.g).toLowerCase())}"><span class="fitem-ic ic-tile">${groupLook(c.g)[1]}</span><span class="fitem-t"><b>${esc(c.t)}</b><small>${esc(c.s)}</small></span><span class="fitem-go" aria-hidden="true">›</span></a>`; };
 function calcsView(id) {
+  const gs = calcGroups();
   if (!id) {
-    const gs = [...new Set(CALCS.map(c => c.g))].sort((a, b) => { const ia = CALC_GROUP_ORDER.indexOf(a), ib = CALC_GROUP_ORDER.indexOf(b); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
-    return `<h1 class="vt">Calculators</h1><p class="vsub">${CALCS.length} clinical formulas, scores and ventilator tools from published sources. Values from the patient bar are pre-filled. Child growth z-scores are in the Growth tab.</p>
-      <div class="fi" style="max-width:420px;margin-bottom:6px"><label for="cfilter">Find a calculator</label><input id="cfilter" type="search" placeholder="e.g. ventilator, sodium, Wells, Apgar"></div>
-      <div class="chips" style="margin:4px 0 10px">${gs.map(g => `<a class="chip" href="#calc" onclick="event.preventDefault();document.getElementById('cg-${gs.indexOf(g)}').scrollIntoView({behavior:'smooth'})">${esc(g)}</a>`).join("")}</div>` +
-      gs.map((g, gi) => `<div class="cgrp" id="cg-${gi}"><div class="pgroup">${esc(g)}</div><div class="calcgrid">${CALCS.filter(c => c.g === g).map(c => `<button class="ctile ctx" data-q="${esc((c.t + " " + c.s + " " + c.g).toLowerCase())}" onclick="go('#calc/${c.id}')">${ctIc(g)}<b>${esc(c.t)}</b><span>${esc(c.s)}</span></button>`).join("")}</div></div>`).join("") +
-      `<div class="pgroup">Trusted online calculators (open in your browser)</div><div class="card"><ul class="extl">${EXT_CALCS.map(([t, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(t)} ↗</a></li>`).join("")}</ul><p class="small muted">External sites need internet access; everything above works offline.</p></div>`;
+    return `<div class="hub-head" style="--h:222"><span class="hub-ic ic-tile" style="--h:222">${IC2.calc}</span><div><h1 class="vt">Calculators</h1><p>${CALCS.length} clinical formulas, scores and ventilator tools from published sources, in ${gs.length} folders. Values from the patient bar are pre-filled.</p></div></div>
+      <div class="fi" style="max-width:480px;margin-bottom:12px"><label for="cfilter">Find a calculator</label><input id="cfilter" type="search" placeholder="e.g. ventilator, sodium, Wells, Apgar"></div>
+      <div class="arr-row">${arrBtn("calc")}</div><div id="cfolders" class="fold-grid" data-ord="calc">${gs.map((g, gi) => { const [h, ic] = groupLook(g), n = CALCS.filter(c => c.g === g).length; return `<a class="fold" href="#calc/grp/${gi}" style="--h:${h};--d:${gi * 35}ms"><span class="fold-ic ic-tile">${ic}</span><b>${esc(g)}</b><small>${n} calculator${n === 1 ? "" : "s"}</small></a>`; }).join("")}
+        <a class="fold" href="#calc/grp/web" style="--h:210;--d:${gs.length * 35}ms"><span class="fold-ic ic-tile">${ICON.search}</span><b>Trusted online calculators</b><small>${EXT_CALCS.length} websites</small></a></div>
+      <div id="call" class="fitems" hidden>${[...CALCS].sort((a, b) => calcRank(a) - calcRank(b)).map(c => calcTile(c)).join("")}</div><p id="cnone" class="muted" hidden>No calculator matches. Try another word.</p>`;
+  }
+  if (id.startsWith("grp/")) {
+    const k = id.slice(4), back = `<button class="back" onclick="goUp('#calc')">${ICON.back} Calculators</button>`;
+    if (k === "web") return back + `<div class="fold-head" style="--h:210"><span class="fold-ic ic-tile">${ICON.search}</span><div><div class="small muted">Calculators</div><h1 class="vt">Trusted online calculators</h1></div></div><div class="card"><ul class="extl">${EXT_CALCS.map(([t, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(t)} ↗</a></li>`).join("")}</ul><p class="small muted">External sites need internet access; every calculator in the folders works offline.</p></div>`;
+    const g = gs[+k]; if (!g) return calcsView();
+    const [h, ic] = groupLook(g), list = CALCS.filter(c => c.g === g).sort((a, b) => calcRank(a) - calcRank(b)), prev = gs[+k - 1], next = gs[+k + 1];
+    return back + `<div class="fold-head" style="--h:${h}"><span class="fold-ic ic-tile">${ic}</span><div><div class="small muted">Calculators</div><h1 class="vt">${esc(g)}</h1></div><span class="hub-n">${list.length}</span>${arrBtn("calc." + k)}</div>
+      <div class="fitems" data-ord="calc.${k}">${list.map(calcTile).join("")}</div>
+      <div class="fold-nav">${prev ? `<a class="btn ghost" href="#calc/grp/${+k - 1}">‹ ${esc(prev)}</a>` : "<span></span>"}${next ? `<a class="btn ghost" href="#calc/grp/${+k + 1}">${esc(next)} ›</a>` : ""}</div>`;
   }
   const c = CALC_BY[id]; if (!c) return "Not found";
-  const rel = CALCS.filter(x => x.g === c.g && x.id !== id).slice(0, 8);
-  return `<button class="back" onclick="goUp('#calc')">${ICON.back} Calculators</button><h1 class="vt">${esc(c.t)}</h1><p class="vsub">${esc(c.s)}</p><div class="card" id="ccard">${c.html()}</div>` +
+  const rel = CALCS.filter(x => x.g === c.g && x.id !== id).sort((a, b) => calcRank(a) - calcRank(b)).slice(0, 8);
+  return `<button class="back" onclick="goUp('#calc/grp/${gs.indexOf(c.g)}')">${ICON.back} ${esc(c.g)}</button><h1 class="vt">${esc(c.t)}</h1><p class="vsub">${esc(c.s)}</p><div class="card" id="ccard">${c.html()}</div>` +
     (rel.length ? `<div class="pgroup">More in ${esc(c.g)}</div><div class="chips wrap">${rel.map(x => `<a class="chip" href="#calc/${x.id}">${esc(x.t)}</a>`).join("")}</div>` : "");
 }
-function bindCalcList() { const f = $("#cfilter"); if (!f) return; f.addEventListener("input", () => { const q = f.value.trim().toLowerCase(); $$(".cgrp").forEach(g => { let n = 0; $$(".ctile", g).forEach(t => { const ok = !q || q.split(/\s+/).every(w => t.dataset.q.includes(w)); t.style.display = ok ? "" : "none"; if (ok) n++; }); g.style.display = n ? "" : "none"; }); }); }
-function bindCalc(id) { if (!id) return bindCalcList(); const c = CALC_BY[id]; if (!c) return; if (c.bind) c.bind(); bindAll($("#ccard"), c.run); }
+function bindCalcList() { const f = $("#cfilter"); if (!f) return; f.addEventListener("input", () => { const q = f.value.trim().toLowerCase(); let n = 0; $$("#call .ctx").forEach(t => { const ok = !!q && q.split(/\s+/).every(w => t.dataset.q.includes(w)); t.style.display = ok ? "" : "none"; if (ok) n++; }); $("#cfolders").hidden = !!q; $("#call").hidden = !q; $("#cnone").hidden = !q || n > 0; }); }
+function bindCalc(id) { if (!id || id.startsWith("grp/")) return bindCalcList(); const c = CALC_BY[id]; if (!c) return; if (c.bind) c.bind(); bindAll($("#ccard"), c.run); }
 
 /* ===== additional validated scores & formulas (sources named on each) ===== */
 const ptsSel = (id, label, opts) => sel(id, label, opts.map(([p, t]) => [String(p), t]));
@@ -3688,7 +3745,10 @@ const CALCS3 = [
 ];
 CALCS.push(...CALCS3);
 const CALC_BY = Object.fromEntries(CALCS.map(c => [c.id, c]));
-const CALC_GROUP_ORDER = ["Acid–base & gases", "Ventilation", "Infection & sepsis", "Cardiovascular", "Respiratory", "Neurology", "Sedation & pain", "Kidney", "Liver", "Gastrointestinal & surgery", "Obstetrics & neonates", "Paediatrics", "Body size", "Drugs & conversions"];
+/* most-used first: folders, then calculators inside each folder */
+const CALC_GROUP_ORDER = ["Paediatrics", "Obstetrics & neonates", "Infection & sepsis", "Cardiovascular", "Neurology", "Kidney", "Body size", "Acid–base & gases", "Ventilation", "Gastrointestinal & surgery", "Respiratory", "Sedation & pain", "Liver", "Drugs & conversions"];
+const CALC_RANK = ["paeds", "westley", "pas", "edd", "apgar", "bishop", "silverman", "corrage", "downes", "thompson", "qsofa", "curb", "news2", "centor", "map", "wells", "wellsdvt", "heart", "chads", "qtc", "nyha", "hasbled", "perc", "killip", "spesi", "ldl", "ccs", "gcs", "abcd2", "mrs", "egfr", "fwd", "fena", "body", "convert", "abg", "osm", "cordgas", "vent", "oxyidx", "ventco2", "venttrouble", "ventwean", "ventmodes", "ventmech", "alvarado", "gbs", "mmrc", "flacc", "rass", "sas", "childpugh", "meld", "fib4", "steroid"];
+const calcRank = c => { const i = CALC_RANK.indexOf(c.id); return i < 0 ? 999 : i; };
 
 /* ===== WHO growth z-scores (Child Growth Standards 0–5 y, Growth Reference 2007 5–19 y) ===== */
 function lmsAt(tab, sex, x, interp) {
@@ -6062,19 +6122,19 @@ function homeView2() {
     <div class="search hero-s h2-search">${ICON.search}<input id="hq" type="search" placeholder="Search diseases, drugs, guidelines, calculators, protocols…" autocomplete="off" aria-label="Search the whole app"></div>
     <button class="instbtn" id="installbtn" hidden>Install app on this device</button></section>
     ${store.get("motto",true)?`<div class="home-quote" id="motto">${AP_ICONS.quote}<div>${mottoHtml()}</div><button class="mnext" id="mnext" aria-label="Another quote" title="Another quote">${AP_ICONS.refresh}</button></div>`:""}
-    <div class="h2-mods hs-mods">${MODULES2.map(([h, ic, t, s, c]) => `<a class="h2-mod ${c}" href="${h}"><span class="h2-mi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
+    <div class="h2-mods hs-mods" data-ord="home.mods">${MODULES2.map(([h, ic, t, s, c]) => `<a class="h2-mod ${c}" href="${h}"><span class="h2-mi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
     ${pinsHtml()}
-    <div class="h2-sec hs-specs"><h2>${IC2.med.replace("<svg", '<svg class="h2-hi"')}Clinical specialties</h2><a href="#specs">View all</a></div>
-    <div class="h2-specs hs-specs">${SPECS.slice(0, 24).map(tile).join("")}</div>
-    <div class="h2-quick hs-quick"><div class="h2-qh">Quick tools &amp; resources</div>${QUICK2.map(([h, ic, t, s]) => `<a class="h2-q" href="${h}"><span class="h2-qi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
-    <div class="h2-sec hs-emerg"><h2>Emergencies</h2><a href="#protocols">All protocols</a></div>
-    <div class="emgrid hs-emerg">${EMERG.filter(([id]) => pr.has(id)).map(([id, t]) => emTile(id, t)).join("")}</div>
+    <div class="h2-sec hs-specs"><h2>${IC2.med.replace("<svg", '<svg class="h2-hi"')}Clinical specialties</h2>${arrBtn("specs")}<a href="#specs">View all</a></div>
+    <div class="h2-specs hs-specs" data-ord="specs">${ORD.apply("specs", SPECS, s => "#spec/" + s[0]).slice(0, 24).map(tile).join("")}</div>
+    <div class="h2-quick hs-quick" data-ord="home.quick"><div class="h2-qh">Quick tools &amp; resources ${arrBtn("home.quick")}</div>${QUICK2.map(([h, ic, t, s]) => `<a class="h2-q" href="${h}"><span class="h2-qi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
+    <div class="h2-sec hs-emerg"><h2>Emergencies</h2>${arrBtn("home.emerg")}<a href="#protocols">All protocols</a></div>
+    <div class="emgrid hs-emerg" data-ord="home.emerg">${EMERG.filter(([id]) => pr.has(id)).map(([id, t]) => emTile(id, t)).join("")}</div>
     <div class="hcols"><div class="hs-recent"><div class="h2-sec"><h2>Recently viewed</h2></div>${rec.length ? `<div class="dl">${rec.slice(0, 6).map(x => `<a class="di" href="${esc(x.h)}"><div><div class="nm">${esc(x.t)}</div><div class="gp">${esc(x.k)}</div></div></a>`).join("")}</div>` : `<div class="card muted small">Pages you open appear here.</div>`}</div>
       <div class="hs-guides"><div class="h2-sec"><h2>My guides</h2><a href="#learn">Learning</a></div><div class="dl">${mine.slice(0, 6).map(b => `<a class="di" href="#gl/${b.id}"><div><div class="nm">${esc(b.s)}</div><div class="gp">${esc(b.t.slice(0, 70))}</div></div></a>`).join("")}</div></div></div>
     <p class="small muted" style="margin-top:14px"><a href="#homeold">Classic home page</a></p>`;
 }
 function specsView() {
-  return `<h1 class="vt">Clinical specialties</h1><p class="vsub">Each specialty gathers its Bhutan STG chapter, national guidelines and the conditions already in the app.</p><div class="h2-specs h2-all">${SPECS.map(([id, n, ic]) => { const c = TOPICS.filter(t => t.spec.includes(id)).length; return `<a class="h2-spec" href="#spec/${id}">${specIcon(id, ic)}<span>${esc(n)}<small class="spc">${c} topic${c === 1 ? "" : "s"}</small></span></a>`; }).join("")}</div><p class="small muted" style="margin-top:12px"><a href="#topics">See all ${TOPICS.length} topics arranged by specialty →</a></p>`;
+  return `<h1 class="vt">Clinical specialties</h1><p class="vsub">Each specialty gathers its Bhutan STG chapter, national guidelines and the conditions already in the app. Long-press an icon or tap Arrange to put them in your own order.</p><div class="arr-row">${arrBtn("specs")}</div><div class="h2-specs h2-all" data-ord="specs">${SPECS.map(([id, n, ic]) => { const c = TOPICS.filter(t => t.spec.includes(id)).length; return `<a class="h2-spec" href="#spec/${id}">${specIcon(id, ic)}<span>${esc(n)}<small class="spc">${c} topic${c === 1 ? "" : "s"}</small></span></a>`; }).join("")}</div><p class="small muted" style="margin-top:12px"><a href="#topics">See all ${TOPICS.length} topics arranged by specialty →</a></p>`;
 }
 function specView(id) {
   if (HUB[id]) return hubView(id);
@@ -6116,7 +6176,7 @@ const HUB = {
     ["4 · Kidney, diabetes and metabolism", "drop", 210, [["Acute kidney injury: KDIGO (and neonatal)", "#gl/criteria/11", "Stages by creatinine and urine output"], ["Chronic kidney disease: KDIGO 2024", "#gl/criteria/12", "G and A categories"], ["Nephrotic syndrome in children (IPNA)", "#gl/criteria/13", "Remission, relapse, steroid resistance"], ["Diabetes, prediabetes and gestational diabetes", "#gl/criteria/8", "ADA and WHO 2013"], ["Metabolic syndrome and Asian BMI", "#gl/criteria/31", "3 of 5; BMI 23 and 27.5"]]],
     ["5 · Women and pregnancy", "baby", 322, [["Pre-eclampsia, HELLP and eclampsia", "#gl/criteria/10", "Severe features"], ["Gestational diabetes (WHO 2013)", "#gl/criteria/8", "75 g OGTT cut-offs"], ["Anaemia in pregnancy (WHO 2024)", "#gl/criteria/14", "By trimester"]]],
     ["6 · Blood, infection and immunity", "germ", 160, [["Anaemia: WHO 2024 cut-offs", "#gl/criteria/14", "By age, sex and pregnancy; altitude"], ["Febrile neutropenia", "#gl/criteria/32", "38.3 °C and ANC below 500"], ["HLH-2004", "#gl/criteria/26", "5 of 8"], ["MIS-C (CDC 2023)", "#gl/criteria/25", "Fever, CRP, 2 organ systems"], ["Acute liver failure: children and adults", "#gl/criteria/33", "INR and encephalopathy"], ["Acute pancreatitis: revised Atlanta", "#gl/criteria/21", "2 of 3; severity"]]],
-    ["7 · Joints and autoimmune disease", "bone", 30, [["Systemic lupus erythematosus (EULAR/ACR 2019)", "#gl/criteria/22", "ANA entry, 10 points"], ["Rheumatoid arthritis (ACR/EULAR 2010)", "#gl/criteria/23", "6 of 10 points"], ["Juvenile idiopathic arthritis (ILAR)", "#gl/criteria/24", "Seven categories"], ["Rheumatic fever (Jones 2015)", "#gl/criteria/3", "Also in Most used"]]],
+    ["7 · Joints and autoimmune disease", "joint", 30, [["Systemic lupus erythematosus (EULAR/ACR 2019)", "#gl/criteria/22", "ANA entry, 10 points"], ["Rheumatoid arthritis (ACR/EULAR 2010)", "#gl/criteria/23", "6 of 10 points"], ["Juvenile idiopathic arthritis (ILAR)", "#gl/criteria/24", "Seven categories"], ["Rheumatic fever (Jones 2015)", "#gl/criteria/3", "Also in Most used"]]],
     ["8 · Brain and nerves", "mind", 268, [["Febrile seizures and status epilepticus", "#gl/criteria/27", "Simple vs complex; 5-minute rule"], ["Encephalitis (International Consortium)", "#gl/criteria/28", "Major + minor criteria"], ["Guillain–Barré syndrome", "#gl/criteria/29", "Required, supportive, doubtful features"], ["Delirium: CAM", "#gl/criteria/30", "Also in Lungs and critical care"]]],
     ["9 · Injury and imaging rules", "emerg", 8, [["Ottawa ankle and NEXUS cervical spine", "#gl/criteria/35", "When an X-ray is needed"]]]
   ]},
@@ -6131,14 +6191,28 @@ const HUB = {
     ["8 · Equipment and practice", "equip", 30, [["ET tube size and depth (6 + weight)", "#gl/picu_equip/0", "Preterm to term"], ["IV cannula and IO needles", "#gl/picu_equip/1", "24–26 G in newborns"], ["Case: preterm RDS on CPAP", "#picu/case/rds", "CPAP, surfactant, tube size — interactive"]]]
   ]}
 };
-function hubView(id) {
+/* each folder opens as a grid of icon tiles; each tile opens its own page of topics (#picu/g/2) */
+const hubName = g => g.replace(/^\d+\s*·\s*/, "");
+const hubNum = g => (g.match(/^(\d+)\s*·/) || [])[1] || "";
+function hubItemIc(h) {
+  const k = h.startsWith("#calc") ? "calc" : h.startsWith("#picu/dev") || h.startsWith("#vent") ? "vent" : h.startsWith("#picu/case") ? "score" : /^#(p|flow)\//.test(h) ? "emerg" : h.startsWith("#topic") ? "med" : /^#(fluids|picu\/feed)/.test(h) ? "drop" : /^#(drug|idrug|drugs|picu\/dilute)/.test(h) ? "drugs" : h.startsWith("#growth") ? "growth" : h.startsWith("#equip") ? "equip" : "guide";
+  return IC2[k];
+}
+function hubView(id, sub) {
   const H = HUB[id]; if (!H) return specsView();
   const tps = TOPICS.filter(t => t.spec.includes(id)).sort((a, b) => a.n.localeCompare(b.n));
-  const link = ([t, h, s, js]) => `<a class="hub-l" href="${h}"${js ? ` onclick="${js}"` : ""}><b>${esc(t)}</b><small>${esc(s)}</small></a>`;
-  return `<div class="hub-head" style="--h:${H.h}"><span class="hub-ic ic-tile" style="--h:${H.h}">${IC2[H.ic]}</span><div><h1 class="vt">${esc(H.t)}</h1><p>${esc(H.s)}</p></div></div>
-    <div class="hub-jump">${H.groups.map(([g, ic, h], k) => `<button class="chip" onclick="document.getElementById('hub-${k}').scrollIntoView({behavior:'smooth',block:'start'})"><span class="hub-dot" style="--h:${h}"></span>${esc(g)}</button>`).join("")}${tps.length ? `<button class="chip" onclick="document.getElementById('hub-t').scrollIntoView({behavior:'smooth',block:'start'})"><span class="hub-dot" style="--h:${H.h}"></span>Conditions (${tps.length})</button>` : ""}</div>
-    <div class="hub-grid">${H.groups.map(([g, ic, h, items], k) => `<section class="hub-f" id="hub-${k}" style="--h:${h}"><div class="hub-fh"><span class="ic-tile hub-fi" style="--h:${h}">${IC2[ic] || IC2.guide}</span><b>${esc(g)}</b><span class="hub-n">${items.length}</span></div><div class="hub-ls">${items.map(link).join("")}</div></section>`).join("")}</div>
-    ${!tps.length ? "" : `<section class="hub-f hub-topics" id="hub-t" style="--h:${H.h}"><div class="hub-fh"><span class="ic-tile hub-fi" style="--h:${H.h}">${IC2.guide}</span><b>${id === "nicu" ? "NICU conditions" : "PICU conditions"}</b><span class="hub-n">${tps.length}</span></div><div class="hub-ls hub-ls2">${tps.map(t => `<a class="hub-l" href="#topic/${t.id}"><b>${esc(t.n)}</b><small>${esc(t.ages)}</small></a>`).join("")}</div></section>`}`;
+  const tLabel = id === "nicu" ? "NICU conditions" : "PICU conditions";
+  const folders = H.groups.map(([g, ic, h, items], k) => ({k: String(k), n: hubName(g), num: hubNum(g), ic: IC2[ic] || IC2.guide, h, items}));
+  if (tps.length) folders.push({k: "t", n: tLabel, num: "", ic: IC2.med, h: H.h, items: tps.map(t => [t.n, "#topic/" + t.id, t.ages])});
+  const head = `<div class="hub-head" style="--h:${H.h}"><span class="hub-ic ic-tile" style="--h:${H.h}">${IC2[H.ic]}</span><div><h1 class="vt">${esc(H.t)}</h1><p>${esc(H.s)}</p></div></div>`;
+  const f = sub != null && folders.find(x => x.k === String(sub));
+  if (!f) return head + `<div class="arr-row">${arrBtn("hub." + id)}</div><div class="fold-grid" data-ord="hub.${id}">${folders.map((x, i) => `<a class="fold" href="#${id}/g/${x.k}" style="--h:${x.h};--d:${i * 40}ms"><span class="fold-ic ic-tile">${x.ic}</span>${x.num ? `<span class="fold-num">${x.num}</span>` : ""}<b>${esc(x.n)}</b><small>${x.items.length} item${x.items.length === 1 ? "" : "s"}</small></a>`).join("")}</div>`;
+  const i = folders.indexOf(f), prev = folders[i - 1], next = folders[i + 1];
+  const item = ([t, h, s, js], j) => `<a class="fitem" href="${h}" style="--d:${Math.min(j, 14) * 30}ms"${js ? ` onclick="${js}"` : ""}><span class="fitem-ic ic-tile">${hubItemIc(h)}</span><span class="fitem-t"><b>${esc(t)}</b>${s ? `<small>${esc(s)}</small>` : ""}</span><span class="fitem-go" aria-hidden="true">›</span></a>`;
+  return `<button class="back" onclick="goUp('#${id}')">${ICON.back} ${esc(H.t.split(" · ")[0])}</button>
+    <div class="fold-head" style="--h:${f.h}"><span class="fold-ic ic-tile">${f.ic}</span><div><div class="small muted">${esc(H.t.split(" · ")[0])}${f.num ? ` · Folder ${f.num}` : ""}</div><h1 class="vt">${esc(f.n)}</h1></div><span class="hub-n">${f.items.length}</span>${arrBtn("hub." + id + "." + f.k)}</div>
+    <div class="fitems" style="--h:${f.h}" data-ord="hub.${id}.${f.k}">${f.items.map(item).join("")}</div>
+    <div class="fold-nav">${prev ? `<a class="btn ghost" href="#${id}/g/${prev.k}">‹ ${esc(prev.n)}</a>` : "<span></span>"}${next ? `<a class="btn ghost" href="#${id}/g/${next.k}">${esc(next.n)} ›</a>` : ""}</div>`;
 }
 /* ===== PICU drug dilution calculator: ward final concentrations (JDWNRH chart) with step-by-step preparation =====
    [name, unit, final concentration per mL, diluent, infusion time, default reconstituted strength per mL, default reconstitution, note] — vial defaults are common presentations: always check your vial. */
@@ -19768,6 +19842,9 @@ function settingsView() {
       ${setRow("Header style", "Adjust the home header presentation", segCtl("s_header", [["balanced", "Balanced"], ["minimal", "Minimal"], ["immersive", "Immersive"]], store.get("headerStyle", "balanced")))}
       ${setRow("Spacing", "Compact fits more on the screen", segCtl("s_dense", [["comfy", "Comfortable"], ["compact", "Compact"]], store.get("density", "comfy")))}
       ${setRow("Corners", "", segCtl("s_corner", [["round", "Rounded"], ["square", "Sharper"]], store.get("corners", "round")))}
+      ${setRow("Bottom menu bar (phone)", "Hide it while you scroll down, or keep it folded into a small button you tap to open", segCtl("s_bbar", [["show", "Always show"], ["auto", "Hide on scroll"], ["tap", "Tap to show"]], store.get("bbar", "show")))}
+      ${setRow("Top bar and patient bar", "Hide while scrolling down; they come back as soon as you scroll up", segCtl("s_tbar", [["show", "Always show"], ["auto", "Hide on scroll"]], store.get("tbar", "show")))}
+      ${setRow("Arrange icons", "Long-press any icon on Home, Specialties, the menus, PICU/NICU, Criteria or Calculators (or tap Arrange), then drag it where you want. Reset puts everything back.", `<button class="btn btn-ghost" id="s_ordreset">Reset all arrangements</button>`)}
       ${setRow("Show on my home page", "Tick the sections you want", `<div class="hschk">${HOME_SECS.map(([k, l]) => `<label><input type="checkbox" data-hs="${k}"${store.get("hs_" + k, true) === false ? "" : " checked"}> ${l}</label>`).join("")}</div>`)}
       ${setRow("My shortcuts", "Reorder or remove pinned pages. Pin pages inside the app to add more.", appearanceShortcuts())}
       ${setRow("Clear all shortcuts", "Remove all pins from Home", `<button class="btn btn-ghost" id="s_pinclr">Clear shortcuts</button>`)}
@@ -19834,6 +19911,9 @@ function bindSettings() {
   seg("s_font", v => { store.set("font", v); applyPrefs(); });
   seg("s_bg", v => { store.set("bg", v || null); applyPrefs(); });
   seg("s_dense", v => { store.set("density", v); applyPrefs(); });
+  seg("s_bbar", v => { store.set("bbar", v); barModes(); });
+  seg("s_tbar", v => { store.set("tbar", v); barModes(); });
+  const sor = $("#s_ordreset"); if (sor) sor.onclick = () => { ORD.resetAll(); sor.textContent = "Done: default order restored"; };
   seg("s_corner", v => { store.set("corners", v); applyPrefs(); });
   $$("[data-hs]").forEach(c => c.onchange = () => { store.set("hs_" + c.dataset.hs, c.checked); applyPrefs(); });
   $("#s_pinclr").onclick = () => { store.set("pins", []); route(); };
@@ -20808,6 +20888,59 @@ function bindAi(arg) {
   if (!matchMedia("(pointer:coarse)").matches) qa.focus();
 }
 
+/* ===== arrange icons like a phone home screen: long-press or "Arrange", drag, saved per list ===== */
+const oidOf = el => el.dataset.oid || el.dataset.nav || el.getAttribute("href") || "";
+const ORD = {
+  get: k => store.get("ord." + k, null),
+  apply(k, items, idOf) { const o = ORD.get(k); if (!o) return items; const pos = new Map(o.map((id, i) => [id, i])); return items.map((x, i) => [x, pos.has(idOf(x)) ? pos.get(idOf(x)) : 1e4 + i]).sort((a, b) => a[1] - b[1]).map(x => x[0]); },
+  kids: c => [...c.children].filter(el => oidOf(el) && !el.classList.contains("arr-skip")),
+  sync(c) { const o = ORD.get(c.dataset.ord); if (!o) return; ORD.apply(c.dataset.ord, ORD.kids(c), oidOf).forEach(el => c.appendChild(el)); },
+  syncAll(root = document) { $$("[data-ord]", root).forEach(ORD.sync); },
+  save(c) { store.set("ord." + c.dataset.ord, ORD.kids(c).map(oidOf)); $$(`[data-ord="${c.dataset.ord}"]`).forEach(x => x !== c && ORD.sync(x)); },
+  resetAll() { try { Object.keys(localStorage).filter(k => k.startsWith("bcr.ord.")).forEach(k => localStorage.removeItem(k)); } catch (e) {} arrStop(); route(); }
+};
+const arrBtn = key => `<button class="arr-btn" data-arr="${key}" aria-label="Arrange these icons">${SI('<path d="M7 4v16m0-16L3 8m4-4 4 4m6 12V4m0 16-4-4m4 4 4-4"/>')}<span>Arrange</span></button>`;
+let ARR = null, DRAG = null, LP = null, SKIPCLICK = false;
+function arrStart(c) {
+  if (!c) return; arrStop(true); ARR = c; c.classList.add("arranging"); navigator.vibrate && navigator.vibrate(18);
+  let bar = $("#arrbar"); if (!bar) { bar = document.createElement("div"); bar.id = "arrbar"; document.body.appendChild(bar); }
+  bar.innerHTML = `<span>${SI('<path d="M7 4v16m0-16L3 8m4-4 4 4m6 12V4m0 16-4-4m4 4 4-4"/>')} Drag the icons into your order</span><button class="btn ghost" id="arrreset">Reset</button><button class="btn" id="arrdone">Done</button>`;
+  bar.hidden = false;
+  $("#arrdone").onclick = () => arrStop();
+  $("#arrreset").onclick = () => { const k = ARR.dataset.ord; try { localStorage.removeItem("bcr.ord." + k); } catch (e) {} arrStop(); route(); if (k.startsWith("nav.")) location.reload(); };
+}
+function arrStop(silent) { if (ARR) { ORD.save(ARR); ARR.classList.remove("arranging"); } ARR = null; const b = $("#arrbar"); if (b) b.hidden = true; }
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-arr]");
+  if (b) { e.preventDefault(); e.stopPropagation(); const c = $(`[data-ord="${b.dataset.arr}"]`, b.closest(".mpin") || document); ARR === c ? arrStop() : arrStart(c); return; }
+  if (SKIPCLICK || (ARR && e.target.closest(".arranging"))) { e.preventDefault(); e.stopPropagation(); SKIPCLICK = false; }
+}, true);
+document.addEventListener("contextmenu", e => { if (e.target.closest("[data-ord]")) e.preventDefault(); });
+document.addEventListener("pointerdown", e => {
+  const c = e.target.closest("[data-ord]"), it = c && e.target.closest("[data-ord] > *");
+  if (!c || !it || !oidOf(it) || it.parentElement !== c) return;
+  if (ARR === c) { e.preventDefault(); const r = it.getBoundingClientRect(); DRAG = {it, c, x: e.clientX, y: e.clientY, id: e.pointerId}; it.classList.add("dragging"); try { it.setPointerCapture(e.pointerId); } catch (x) {} return; }
+  LP = {x: e.clientX, y: e.clientY, t: setTimeout(() => { LP = null; SKIPCLICK = true; arrStart(c); setTimeout(() => SKIPCLICK = false, 700); }, 550)};
+});
+document.addEventListener("pointermove", e => {
+  if (LP && Math.hypot(e.clientX - LP.x, e.clientY - LP.y) > 8) { clearTimeout(LP.t); LP = null; }
+  if (!DRAG) return; e.preventDefault();
+  const {it, c} = DRAG;
+  const over = ORD.kids(c).find(k => { if (k === it) return false; const r = k.getBoundingClientRect(); return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom; });
+  if (over) { const kids = ORD.kids(c), before = kids.indexOf(it) > kids.indexOf(over), r0 = it.getBoundingClientRect(); c.insertBefore(it, before ? over : over.nextSibling); const r1 = it.getBoundingClientRect(); DRAG.x += r1.left - r0.left; DRAG.y += r1.top - r0.top; }
+  it.style.transform = `translate(${e.clientX - DRAG.x}px,${e.clientY - DRAG.y}px) scale(1.06)`;
+  if (e.clientY < 90) scrollBy(0, -12); else if (e.clientY > innerHeight - 140) scrollBy(0, 12);
+}, {passive: false});
+const dragEnd = () => { if (LP) { clearTimeout(LP.t); LP = null; } if (!DRAG) return; DRAG.it.style.transform = ""; DRAG.it.classList.remove("dragging"); ORD.save(DRAG.c); DRAG = null; };
+document.addEventListener("pointerup", dragEnd); document.addEventListener("pointercancel", dragEnd);
+/* bars: always shown, hidden while scrolling down, or (bottom bar) folded into a small button */
+function barModes() {
+  const b = document.body, bb = store.get("bbar", "show"), tb = store.get("tbar", "show");
+  b.classList.toggle("bb-auto", bb === "auto"); b.classList.toggle("bb-tap", bb === "tap"); b.classList.toggle("tb-auto", tb === "auto"); b.classList.remove("bars-hidden", "bb-open");
+  let f = $("#bbfab"); if (!f) { f = document.createElement("button"); f.id = "bbfab"; f.setAttribute("aria-label", "Show menu"); f.innerHTML = SI('<rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/>'); f.onclick = () => { b.classList.toggle("bb-open"); if (!b.classList.contains("bb-open")) mpopClose(); }; document.body.appendChild(f); }
+}
+let BAR_Y = 0;
+addEventListener("scroll", () => { const y = scrollY, b = document.body; if (!b.classList.contains("bb-auto") && !b.classList.contains("tb-auto")) return; if (DRAG) return; if (y > BAR_Y + 8 && y > 90) b.classList.add("bars-hidden"); else if (y < BAR_Y - 8 || y < 40) b.classList.remove("bars-hidden"); BAR_Y = y; }, {passive: true});
 /* ===== shell, router, patient bar ===== */
 Object.keys(ICON).forEach(k=>{ ICON[k] = ICON[k].replace(/stroke-width="[\d.]+"/g, 'stroke-width="1.75"'); if(!ICON[k].includes("aria-hidden=")) ICON[k]=ICON[k].replace("<svg",'<svg aria-hidden="true" focusable="false"'); });
 const NAV = [
@@ -20820,8 +20953,8 @@ const NAV = [
 const NAV_PIN = ["home", "search"];
 const NAV_GROUPS = [
   ["ref", "Reference", ICON.book, ["drugs", "cond", "criteria", "stg", "glossary"]],
-  ["emerg", "Emergency & bedside", ICON.siren, ["protocols", "flow", "picu", "nicu", "calc", "vent", "fluids"]],
-  ["tools", "Tools", ICON.ruler, ["equip", "growth", "notes"]],
+  ["emerg", "Emergency & bedside", ICON.siren, ["protocols", "flow", "picu", "nicu", "vent"]],
+  ["tools", "Tools", ICON.ruler, ["calc", "fluids", "equip", "growth", "notes"]],
   ["ai", "AI", ICON.spark, ["ask", "ai/chatgpt", "ai/claude", "ai/gemini", "ai/google", "ai"]],
   ["me", "Community", ICON.chat, ["aware", "account", "settings"]]
 ];
@@ -20842,7 +20975,7 @@ function mpopOpen(gid) {
   const p = $("#mpop"), g = NAV_GROUPS.find(x => x[0] === gid); if (!p || !g) return;
   if (!p.hidden && p.dataset.g === gid) { mpopClose(); return; }
   p.dataset.g = gid; p.hidden = false;
-  p.innerHTML = `<div class="mpin"><div class="mph">${nic(GRP_LOOK[gid], "nic-sm")}<b>${g[1]}</b><button class="iconbtn" id="mpx" aria-label="Close">✕</button></div><div class="mpgrid">${g[3].map((id, k) => { const [i, t, ic] = NAV_BY[id], lk = NAV_LOOK[i]; return `<button class="mpi" style="--d:${k * 35}ms" data-nav="${i}"${current.view && navGroupOf(current.view) === gid && (NAV_BY[current.view] || [])[0] === i ? ' aria-current="page"' : ""}>${lk ? `<span class="mpic nic ic-tile" style="--h:${lk[0]}">${lk[1]}</span>` : `<span class="mpic">${ic}</span>`}<span>${t}</span></button>`; }).join("")}</div></div>`;
+  p.innerHTML = `<div class="mpin"><div class="mph">${nic(GRP_LOOK[gid], "nic-sm")}<b>${g[1]}</b>${arrBtn("nav." + gid)}<button class="iconbtn" id="mpx" aria-label="Close">✕</button></div><div class="mpgrid" data-ord="nav.${gid}">${ORD.apply("nav." + gid, g[3], x => x).map((id, k) => { const [i, t, ic] = NAV_BY[id], lk = NAV_LOOK[i]; return `<button class="mpi" style="--d:${k * 35}ms" data-nav="${i}"${current.view && navGroupOf(current.view) === gid && (NAV_BY[current.view] || [])[0] === i ? ' aria-current="page"' : ""}>${lk ? `<span class="mpic nic ic-tile" style="--h:${lk[0]}">${lk[1]}</span>` : `<span class="mpic">${ic}</span>`}<span>${t}</span></button>`; }).join("")}</div></div>`;
   $$(".mbtn[data-mg]").forEach(b => b.setAttribute("aria-expanded", b.dataset.mg === gid));
   $$(".mpi", p).forEach(b => b.onclick = () => { mpopClose(); go("#" + b.dataset.nav); });
   $("#mpx").onclick = mpopClose;
@@ -20867,7 +21000,7 @@ function shell() {
     <nav class="rail" aria-label="Sections"><div class="brand"><img class="brand-icon" src="data:image/png;base64,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" width="32" height="32" alt="">Bhutan Clinical Reference<small>NEML 2025 · NEMF 2022 · STG 2024 · MoH guidelines</small><small class="dev">Developed by Dr Deo Raj Suberi<br>GDMO · Reg. No. MM711</small></div>
       <a class="railme" href="#account"><span class="meslot"></span><span class="rmt"><b id="rmname"></b><small id="rmsub"></small></span></a>
       ${NAV_PIN.map(navBtn).join("")}
-      ${NAV_GROUPS.map(([g, t, ic, ids]) => `<div class="ngrp" data-g="${g}"><button class="ngh" data-gh="${g}" aria-expanded="false" title="${t}">${GRP_LOOK[g] ? nic(GRP_LOOK[g], "nic-sm") : ic}<span>${t}</span>${CHEV}</button><div class="ngb">${ids.map(navBtn).join("")}</div></div>`).join("")}
+      ${NAV_GROUPS.map(([g, t, ic, ids]) => `<div class="ngrp" data-g="${g}"><button class="ngh" data-gh="${g}" aria-expanded="false" title="${t}">${GRP_LOOK[g] ? nic(GRP_LOOK[g], "nic-sm") : ic}<span>${t}</span>${CHEV}</button><div class="ngb" data-ord="nav.${g}">${ids.map(navBtn).join("")}</div></div>`).join("")}
       <div class="spacer"></div><button class="railbtn" id="railmini" title="Collapse / expand the sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg><span>Collapse menu</span></button><button class="themebtn" id="theme">Light / dark</button></nav>
     <nav class="mbar" aria-label="Sections"><button class="mbtn" data-nav="home">${nic(NAV_LOOK.home)}<span>Home</span></button>${NAV_GROUPS.map(([g, t, ic]) => `<button class="mbtn" data-mg="${g}" aria-expanded="false">${GRP_LOOK[g] ? nic(GRP_LOOK[g]) : ic}<span>${t.replace(" & bedside", "")}</span></button>`).join("")}</nav>
     <div class="mpop" id="mpop" hidden></div>
@@ -21020,7 +21153,7 @@ function route() {
   else if (view === "picu" && arg === "dilute") { v.innerHTML = diluteView(); bindDilute(); }
   else if (view === "picu" && arg && (arg === "case" || arg.startsWith("case/"))) { v.innerHTML = casesView(arg.slice(5)); bindCases(); }
   else if (view === "picu" && arg && arg.startsWith("dev/")) { v.innerHTML = devView(arg.slice(4)); bindDev(arg.slice(4)); }
-  else if (view === "picu" || view === "nicu" || view === "criteria") { v.innerHTML = hubView(view); }
+  else if (view === "picu" || view === "nicu" || view === "criteria") { v.innerHTML = hubView(view, arg && arg.startsWith("g/") ? arg.slice(2) : null); }
   else if (view === "drug") { v.innerHTML = drugDetail(arg); autolinkDom(v); v.insertAdjacentHTML("beforeend", drugBooks(arg)); fillGlDrugBox(); }
   else if (view === "gl" && !GL_BY[(arg || "").split("/")[0]]) { v.innerHTML = stgView(""); bindStg(""); }
   else if (view === "gl") { const [id, i] = arg.split("/"); if (i != null && i !== "" && GL_BY[id].pack && !GL_PACK[id + ":ok"]) { const now = HASH; v.innerHTML = `<p class="muted">Opening the pages…</p>`; glPack(id).then(() => { GL_PACK[id + ":ok"] = 1; if (HASH === now) route(); }).catch(() => { if (HASH === now) v.innerHTML = `<button class="back" onclick="goUp('#gl/${id}')">${ICON.back} ${esc(GL_BY[id].s)}</button><div class="warn">These pages have not been saved on this device yet. Connect to the internet once, then open this section again.</div>`; }); } else if (i != null && i !== "") v.innerHTML = glSecView(id, i); else { v.innerHTML = glBookView(id); bindGlBook(id); } }
@@ -21035,22 +21168,29 @@ function route() {
   if (VIEW_KEY !== view + "/" + arg) { VIEW_KEY = view + "/" + arg; v.classList.remove("vin"); void v.offsetWidth; v.classList.add("vin"); }
   paintMe(); gateSync();
   try { afterRoute(view, arg); } catch (e) { console.error(e); }
+  ORD.syncAll(v); document.body.classList.remove("bb-open", "bars-hidden");
   NAV_HASH[NAV_I] = "#" + h; navBtns();
   v.insertAdjacentHTML("beforeend", `<div class="foot">Sources: National Essential Medicines List 2025, National Essential Medicines Formulary 2022, Standard Treatment Guidelines 2024 and national programme guidelines (Ministry of Health, Bhutan); WHO growth standards; named international guidelines where stated. Decision support only — verify doses against the product, local protocol and clinical judgement.</div>`);
 }
+/* every tool follows the patient bar: the open tool is redrawn from the new patient,
+   and any box the user typed that is not a patient value (e.g. sodium, a dose) is put back */
+const fieldDefault = el => el.tagName === "SELECT" ? ([...el.options].find(o => o.defaultSelected) || el.options[0] || {}).value : el.type === "checkbox" || el.type === "radio" ? el.defaultChecked : el.defaultValue;
+const fieldNow = el => el.type === "checkbox" || el.type === "radio" ? el.checked : el.value;
+function redrawKeepingInputs() {
+  const y = scrollY, old = {}, sel = "#view input:not([type=search]), #view select, #view textarea";
+  $$(sel).forEach(el => { if (el.id) old[el.id] = [fieldNow(el), fieldDefault(el)]; });
+  route();
+  const touched = [];
+  $$(sel).forEach(el => { const o = old[el.id]; if (!o) return; const [v, d] = o; if (v !== d && fieldDefault(el) === d) { if (el.type === "checkbox" || el.type === "radio") el.checked = v; else el.value = v; touched.push(el); } });
+  (touched.length ? touched : $$(sel).slice(0, 1)).forEach(el => { el.dispatchEvent(new Event("input", {bubbles: true})); el.dispatchEvent(new Event("change", {bubbles: true})); });
+  scrollTo(0, y);
+}
+const PT_TOOL = ({view, arg}) => ["drug", "idrug", "p", "fluids", "equip", "growth"].includes(view) || (view === "calc" && arg && !arg.startsWith("grp/")) || (view === "picu" || view === "nicu") && /^(feed|dilute|dev\/)/.test(arg || "");
 function onPatientChanged() {
   renderSummary();
-  const {view, arg} = current;
-  if (view === "drug" || view === "idrug" || view === "p" || (view === "equip" && arg !== "vent" && arg !== "sizes")) { const y = scrollY; route(); scrollTo(0, y); return; }
-  // update weight-type inputs in calculators and rerun
-  const w = P.wt, h = P.ht;
-  ["fw", "cwt", "gwt", "pw"].forEach(id => { const el = document.getElementById(id); if (el && el.closest("#view")) { el.value = w; el.dispatchEvent(new Event("input")); } });
-  ["cht", "ght"].forEach(id => { const el = document.getElementById(id); if (el) { el.value = h; el.dispatchEvent(new Event("input")); } });
-  if (view === "growth") runGrowth();
-  if (view === "equip" && arg === "sizes") { const e = $("#ega"); e && e.dispatchEvent(new Event("input")); }
-  if (view === "equip" && arg === "vent") { const hEl = $("#vht"), sEl = $("#vsex"); if (hEl) hEl.value = P.ht; if (sEl) sEl.value = P.sex; hEl && hEl.dispatchEvent(new Event("input")); }
+  if (PT_TOOL(current)) redrawKeepingInputs();
 }
-shell(); renderSummary(); onPatient(onPatientChanged); paintMe();
+shell(); ORD.syncAll(); barModes(); renderSummary(); onPatient(onPatientChanged); paintMe();
 /* launch splash: app name + developer credit, shown once each time the app is opened, then it fades away */
 (function splash() {
   let seen = false; try { seen = sessionStorage.getItem("splashSeen") === "1"; sessionStorage.setItem("splashSeen", "1"); } catch (e) {}
