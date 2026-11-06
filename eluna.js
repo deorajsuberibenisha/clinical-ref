@@ -260,6 +260,7 @@ function settingsSheet(onChange) {
     <div class="setrow"><div><b>Page scrolling</b><span>Read top to bottom, or left to right like a book</span></div><div class="setctl">${segCtl("es_scroll", [["v", "Vertical"], ["h", "Left–right"]], s.scroll)}</div></div>
     <div class="setrow"><div><b>Pen smoothing</b><span>More smoothing steadies shaky lines</span></div><div class="setctl">${segCtl("es_sm", [["0.2", "Light"], ["0.38", "Medium"], ["0.55", "Strong"]], String(s.smooth))}</div></div>
     <div class="setrow"><div><b>Page outline</b><span>Show page thumbnails at the side</span></div><div class="setctl">${segCtl("es_ol", [["1", "Show"], ["0", "Hide"]], s.outline ? "1" : "0")}</div></div>
+    <div class="setrow"><div><b>Palm rejection</b><span>On: only the Apple Pencil / S Pen writes, so your hand can rest on the screen. Off: fingers write too.</span></div><div class="setctl">${segCtl("es_palm", [["1", "On"], ["0", "Off"]], store.get("nbPencil", false) ? "1" : "0")}</div></div>
     <div class="setrow"><div><b>Desk colour</b><span>The background around the pages</span></div><div class="setctl">${segCtl("es_desk", [["grey", "Grey"], ["warm", "Warm"], ["lav", "Lilac"], ["dark", "Dark"]], s.desk)}</div></div>
     <div class="setrow"><div><b>Toolbar size</b><span>Bigger buttons are easier with a finger</span></div><div class="setctl">${segCtl("es_tbs", [["s", "Compact"], ["m", "Normal"], ["l", "Large"]], s.tbs)}</div></div>
     <div class="setrow"><div><b>Space between pages</b><span></span></div><div class="setctl">${segCtl("es_gap", [["s", "Tight"], ["m", "Normal"], ["l", "Roomy"]], s.gap)}</div></div>
@@ -273,6 +274,7 @@ function settingsSheet(onChange) {
   $$("[data-pap]", sh).forEach(b => b.onclick = () => { put("paper", b.dataset.pap); $$("[data-pap]", sh).forEach(x => x.classList.toggle("on", x === b)); paintTpls(sh, b.dataset.pap); });
   const seg2 = (id, k, conv) => $$("#" + id + " button", sh).forEach(b => b.onclick = () => { $$("#" + id + " button", sh).forEach(x => x.setAttribute("aria-pressed", x === b)); put(k, conv(b.dataset.v)); });
   seg2("es_scroll", "scroll", v => v); seg2("es_sm", "smooth", v => +v); seg2("es_ol", "outline", v => v === "1");
+  $$("#es_palm button", sh).forEach(b => b.onclick = () => { $$("#es_palm button", sh).forEach(x => x.setAttribute("aria-pressed", x === b)); const on = b.dataset.v === "1", n = PEN(); store.set("nbPencil", on); n.palm = on; store.set("eluPen2", n); onChange && onChange(); });
   seg2("es_desk", "desk", v => v); seg2("es_tbs", "tbs", v => v); seg2("es_gap", "gap", v => v); seg2("es_pn", "pnum", v => v === "1"); seg2("es_hs", "hlsnap", v => v === "1"); seg2("es_hold", "hold", v => v === "1");
   $("#es_tb", sh).onclick = () => { store.set("eluTb", null); onChange && onChange(); nbToast("Toolbar moved back to the top."); };
 }
@@ -335,11 +337,23 @@ async function editor(v, id) {
         if (oc && oc.words && oc.words.length) { ocrLayer(L, oc, pg); return; }
         const d = await pdfDoc(pg.fid), page = await d.getPage(pg.pi + 1), vp1 = page.getViewport({scale: 1}), vp = page.getViewport({scale: pw() / vp1.width}), tc = await page.getTextContent();
         if (!tc.items.length) { L.dataset.empty = 1; return; } L.style.setProperty("--scale-factor", vp.scale);
-        await window.pdfjsLib.renderTextLayer({textContentSource: tc, container: L, viewport: vp, textDivs: []}).promise;
+        await window.pdfjsLib.renderTextLayer({textContentSource: tc, container: L, viewport: vp, textDivs: []}).promise; eoc(L);
       } else if (pg.ocr) ocrLayer(L, pg.ocr, pg);
     } catch (e) {}
   };
-  const ocrLayer = (L, oc, pg) => { L.innerHTML = oc.words.map(w => `<span style="left:${w.x0 / oc.W * 100}%;top:${w.y0 / oc.H * 100}%;width:${(w.x1 - w.x0) / oc.W * 100}%;height:${(w.y1 - w.y0) / oc.H * 100}%;font-size:${(w.y1 - w.y0) / oc.H * pg.h * sc() * 0.92}px">${esc(w.t)} </span>`).join(""); L.classList.add("ocr"); };
+  const ocrLayer = (L, oc, pg) => { L.innerHTML = oc.words.map(w => `<span style="left:${w.x0 / oc.W * 100}%;top:${w.y0 / oc.H * 100}%;width:${(w.x1 - w.x0) / oc.W * 100}%;height:${(w.y1 - w.y0) / oc.H * 100}%;font-size:${(w.y1 - w.y0) / oc.H * pg.h * sc() * 0.92}px">${esc(w.t)} </span>`).join(""); L.classList.add("ocr"); eoc(L); };
+  const eoc = L => { const d = document.createElement("div"); d.className = "eleoc"; L.appendChild(d); };
+  /* while a selection is being made, the guard covers the gaps between words; if a selection still jumps to the whole page, go back to the last good one */
+  let goodSel = null;
+  const onSelDown = e => { const L = e.target.closest && e.target.closest(".eltl"); if (L) L.classList.add("selecting"); };
+  const onSelUp = () => $$(".eltl.selecting").forEach(L => L.classList.remove("selecting"));
+  const onSelChange = () => { const s = getSelection(); if (!s.rangeCount) { goodSel = null; return; } const r = s.getRangeAt(0), ca = r.commonAncestorContainer, el = ca.nodeType === 1 ? ca : ca.parentElement, L = el && el.closest(".eltl"); if (!L && !(el && el.querySelector && el.querySelector(".eltl") && W.contains(el))) { goodSel = null; return; }
+    const bad = n => n.nodeType === 1 && (n.classList.contains("eltl") || n.classList.contains("eleoc") || n.classList.contains("elp") || n.classList.contains("elpages") || n.classList.contains("elscroll"));
+    const words = String(s).trim().split(/\s+/).length;
+    if (bad(r.startContainer) || bad(r.endContainer) || !L || (goodSel && words > goodSel.words * 3 + 40)) { if (goodSel) try { s.setBaseAndExtent(goodSel.an, goodSel.ao, goodSel.fn, goodSel.fo); } catch (e) {} else s.removeAllRanges(); return; }
+    goodSel = {an: s.anchorNode, ao: s.anchorOffset, fn: s.focusNode, fo: s.focusOffset, words}; };
+  W.addEventListener("pointerdown", onSelDown, true); addEventListener("pointerup", onSelUp); addEventListener("pointercancel", onSelUp); document.addEventListener("selectionchange", onSelChange);
+  COMM.unsub.push(() => { removeEventListener("pointerup", onSelUp); removeEventListener("pointercancel", onSelUp); document.removeEventListener("selectionchange", onSelChange); });
   const textLayers = on => pages.forEach(P => { if (on) textLayer(P); });
   /* ---- outline ---- */
   const outline = () => { const L = $("#el_olist"); L.innerHTML = book.pages.map((p, i) => `<button class="elth" data-go="${i}"><canvas data-th="${i}"></canvas><span>${i + 1}</span></button>`).join("");
@@ -434,7 +448,11 @@ async function editor(v, id) {
     $$("[data-pk]", pop).forEach(b => b.onclick = () => { const n = PEN(); n[b.dataset.pk] = !n[b.dataset.pk]; store.set("eluPen2", n); if (b.dataset.pk === "palm") { setPencil(n.palm); $("#el_palm").classList.toggle("on", n.palm); } penPop(); });
     $$("[data-pb]", pop).forEach(b => b.onclick = () => { const n = PEN(); n.btn = b.dataset.pb; store.set("eluPen2", n); penPop(); }); };
   $("#el_sty").onclick = () => pop.hidden ? penPop() : closePop();
-  $("#el_palm").onclick = () => { const on = !S.pencil, n = PEN(); setPencil(on); n.palm = on; store.set("eluPen2", n); $("#el_palm").classList.toggle("on", on); closePop(); nbToast(on ? "Palm rejection on — only the pen writes; fingers scroll, zoom and hold to select" : "Palm rejection off — fingers can write too"); };
+  const setPalm = on => { const n = PEN(); setPencil(on); n.palm = on; store.set("eluPen2", n); $("#el_palm").classList.toggle("on", on); };
+  const palmPop = () => { popAt($("#el_palm"), `<div class="elpoph">Palm rejection</div><div class="elseg elseg2"><button class="${S.pencil ? "on" : ""}" data-pr="1">On</button><button class="${S.pencil ? "" : "on"}" data-pr="0">Off</button></div>
+      <small class="muted elpnote"><b>On</b> — only the Apple Pencil / S Pen writes. Your hand can rest on the screen; fingers scroll, zoom and hold to select words.<br><b>Off</b> — fingers write too (for drawing without a pen).</small>`);
+    $$("[data-pr]", pop).forEach(b => b.onclick = () => { setPalm(b.dataset.pr === "1"); palmPop(); nbToast(b.dataset.pr === "1" ? "Palm rejection on" : "Palm rejection off"); }); };
+  $("#el_palm").onclick = () => pop.hidden ? palmPop() : closePop();
   window.__eluUd = udUpd; COMM.unsub.push(() => { if (window.__eluUd === udUpd) delete window.__eluUd; });
   $("#el_undo").onclick = () => restore(undo, redo); $("#el_redo").onclick = () => restore(redo, undo);
   $("#el_emo").onclick = () => { popAt($("#el_emo"), `<div class="elemo">${STICKERS.map(e => `<button data-e="${e}">${e}</button>`).join("")}</div><small class="muted">Tap a sticker, then tap the page</small>`); $$("[data-e]", pop).forEach(b => b.onclick = () => { S.emoji = b.dataset.e; closePop(); nbToast(`Tap the page to place ${S.emoji}`); }); };
@@ -489,7 +507,7 @@ async function editor(v, id) {
     s.P.pg.strokes = s.P.pg.strokes.filter(x => !s.sts.includes(x)); s.P.pg.imgs = s.P.pg.imgs.filter(x => !s.ims.includes(x)); s.P.pg.texts = s.P.pg.texts.filter(x => !s.txs.includes(x));
     P2.pg.strokes.push(...s.sts); P2.pg.imgs.push(...s.ims); P2.pg.texts.push(...s.txs); [s.P, P2].forEach(P => { ink(P); texts(P); }); S.sel = {P: P2, sts: s.sts, ims: s.ims, txs: s.txs}; showSel(); nbToast("Moved to page " + (pages.indexOf(P2) + 1)); };
   /* highlighter: a roughly straight stroke straightens when the pen lifts; over PDF text it snaps to the line of text */
-  const look = () => { const s = SET(); W.dataset.desk = s.desk; W.dataset.tbs = s.tbs; W.dataset.gap = s.gap; W.classList.toggle("nopn", !s.pnum); };
+  const look = () => { const s = SET(); S.pencil = store.get("nbPencil", false); $("#el_palm").classList.toggle("on", !!S.pencil); W.dataset.desk = s.desk; W.dataset.tbs = s.tbs; W.dataset.gap = s.gap; W.classList.toggle("nopn", !s.pnum); };
   const hlSnap = (P, st) => { if (!SET().hlsnap) return; const p = st.p, n = p.length / 3; if (n < 2) return; const x0 = p[0], y0 = p[1], x1 = p[p.length - 3], y1 = p[p.length - 2], len = Math.hypot(x1 - x0, y1 - y0); if (len < 24) return;
     let dev = 0, sy = 0; for (let i = 0; i < p.length; i += 3) { dev = Math.max(dev, Math.abs((x1 - x0) * (y0 - p[i + 1]) - (x0 - p[i]) * (y1 - y0)) / len); sy += p[i + 1]; } if (dev > Math.max(22, len * 0.14)) return;   /* a circle or scribble stays as drawn */
     const ym = sy / n, xa = Math.min(x0, x1), xb = Math.max(x0, x1);
@@ -790,6 +808,8 @@ body.inel .rail{display:none!important}body.inel{overflow:hidden}
 .eltb-mini svg{transition:transform .3s}.eltb.mini .eltb-mini svg{transform:rotate(180deg)}.eltb.vert .eltb-mini svg{transform:rotate(90deg)}.eltb.vert.mini .eltb-mini svg{transform:rotate(-90deg)}
 .eltb.mini>:not(.eltb-grip):not(.on):not(.eltb-mini):not(.eltb-c){display:none!important}
 .elseg{flex-wrap:wrap}
+.eltl .eleoc{display:block;position:absolute;left:0;right:0;top:100%;bottom:0;z-index:-1;cursor:default;-webkit-user-select:none;user-select:none}.eltl.selecting .eleoc{top:0}
+.elseg2 button{font-size:14px;padding:9px 4px}.elseg2 button.on{background:#7c3aed;color:#fff;box-shadow:0 6px 14px -6px rgba(124,58,237,.7)}
 .elfab{position:fixed;right:22px;bottom:calc(26px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:8px;padding:0 22px 0 16px;height:56px;border:0;border-radius:20px;color:#fff;font:800 15px var(--ui-font);background:linear-gradient(140deg,#818cf8,#7c3aed 55%,#c026d3);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 16px 32px -12px rgba(124,58,237,.75);cursor:pointer;transition:transform .25s cubic-bezier(.3,1.5,.5,1),box-shadow .25s;animation:elpopin .35s cubic-bezier(.2,.9,.3,1.2)}.elfab svg{width:24px;height:24px;stroke-width:2.4}.elfab:hover{transform:translateY(-2px)}.elfab:active{transform:scale(.94)}
 @media (max-width:860px){.elfab{bottom:calc(88px + env(safe-area-inset-bottom));right:16px}}
 .elnewm{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}.elnewm button{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:14px;border-radius:18px;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-align:left;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;animation:foldIn .35s both}.elnewm button:nth-child(2){animation-delay:40ms}.elnewm button:nth-child(3){animation-delay:80ms}.elnewm button:nth-child(4){animation-delay:120ms}
