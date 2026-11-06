@@ -1754,6 +1754,7 @@ body.reduce-motion :is(.h2-mod,.h2-mi,.em,.emi,.ctile,.cti){animation:none!impor
 @media (prefers-reduced-motion:reduce){.vin{animation:none}}
 /* full page: away from Home the sidebar folds away; Back (or Home) brings it back */
 body.fullpg .rail{display:none!important}
+.nbcropwrap img{background:repeating-conic-gradient(#e5e7eb 0 25%,#fff 0 50%) 0 0/16px 16px}   /* see cut-out writing while cropping */
 /* nine home tiles: three rows of three; on phones (two columns) the last one fills its row */
 @media (min-width:640px){body .h2-mods{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:639px){body .h2-mods>:last-child:nth-child(odd){grid-column:1/-1}}
@@ -20379,7 +20380,7 @@ function nbCrop(src) {
     const done = v => { sh.remove(); res(v); };
     sh.querySelector("#cr_x").onclick = () => done(null);
     sh.querySelector("#cr_full").onclick = () => { r = {x: 0, y: 0, w: 1, h: 1}; put(); };
-    sh.querySelector("#cr_ok").onclick = () => { const W = img.naturalWidth, H = img.naturalHeight, cv = document.createElement("canvas"); cv.width = Math.max(1, Math.round(r.w * W)); cv.height = Math.max(1, Math.round(r.h * H)); cv.getContext("2d").drawImage(img, r.x * W, r.y * H, r.w * W, r.h * H, 0, 0, cv.width, cv.height); done({src: cv.toDataURL("image/jpeg", 0.86), w: cv.width, h: cv.height}); };
+    sh.querySelector("#cr_ok").onclick = () => { const W = img.naturalWidth, H = img.naturalHeight, cv = document.createElement("canvas"); cv.width = Math.max(1, Math.round(r.w * W)); cv.height = Math.max(1, Math.round(r.h * H)); cv.getContext("2d").drawImage(img, r.x * W, r.y * H, r.w * W, r.h * H, 0, 0, cv.width, cv.height); done({src: /^data:image\/png/.test(src) ? cv.toDataURL("image/png") : cv.toDataURL("image/jpeg", 0.86), w: cv.width, h: cv.height}); };   /* PNG stays PNG, so cut-out writing keeps a clear background */
   });
 }
 function topicsIndexView() {
