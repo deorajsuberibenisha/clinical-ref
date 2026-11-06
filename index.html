@@ -22403,7 +22403,7 @@ function route() {
   document.body.classList.toggle("inroom", view === "chat" && !!arg);
   document.body.classList.toggle("innb", view === "nb" && !!arg);
   document.body.classList.toggle("inel", view === "eluna" && !!arg);
-  document.body.classList.toggle("fullpg", !["home", "home2", "homeold", ""].includes(view));   /* every page but Home opens full width, without the sidebar */
+  document.body.classList.toggle("fullpg", ["eluna", "nb", "chat"].includes(view) && !!arg);   /* Focused editors use full width; reference pages keep navigation available. */
   { const g = document.getElementById("gq"); if (g && view !== "search" && document.activeElement !== g) g.value = ""; }
   if (view === "home" || view === "home2") { v.innerHTML = homeView2(); bindHome(); }
   else if (view === "homeold") { v.innerHTML = homeView(); bindHome(); }
