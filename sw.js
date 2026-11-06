@@ -1,5 +1,5 @@
 // offline cache — version d9b79bf634
-const C = "bcr-polish-8aa92370d3a2";
+const C = "bcr-polish-136ba7602a6f";
 const CORE = ["./", "./index.html", "./eluna.js", "./assets-1.js", "./assets-2.js", "./assets-3.js", "./manifest.webmanifest", "./firebase-sdk.js", "./firebase-config.js", "./icon-192.png", "./icon-512.png", "./maskable-512.png"];
 const PACKS = [];  /* original page photos removed: every guide is fully typed */
 self.addEventListener("install", e => { e.waitUntil(caches.open(C).then(c => c.addAll(CORE.map(u => new Request(u, {cache: "reload"}))).then(() => Promise.allSettled(PACKS.map(u => c.add(new Request(u, {cache: "reload"})))))).then(() => self.skipWaiting())); });
