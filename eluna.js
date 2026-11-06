@@ -23,6 +23,7 @@ const I = {
   side: ic('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/>'), read: ic('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
   gear: ic('<path d="M10.3 2.9a1.8 1.8 0 0 1 3.4 0l.3.9a1.8 1.8 0 0 0 2.5 1l.9-.4a1.8 1.8 0 0 1 2.4 2.4l-.4.9a1.8 1.8 0 0 0 1 2.5l.9.3a1.8 1.8 0 0 1 0 3.4l-.9.3a1.8 1.8 0 0 0-1 2.5l.4.9a1.8 1.8 0 0 1-2.4 2.4l-.9-.4a1.8 1.8 0 0 0-2.5 1l-.3.9a1.8 1.8 0 0 1-3.4 0l-.3-.9a1.8 1.8 0 0 0-2.5-1l-.9.4a1.8 1.8 0 0 1-2.4-2.4l.4-.9a1.8 1.8 0 0 0-1-2.5l-.9-.3a1.8 1.8 0 0 1 0-3.4l.9-.3a1.8 1.8 0 0 0 1-2.5l-.4-.9a1.8 1.8 0 0 1 2.4-2.4l.9.4a1.8 1.8 0 0 0 2.5-1z"/><circle cx="12" cy="12" r="3"/>'),
   pdf: ic('<path d="M14 2.8H7a2.5 2.5 0 0 0-2.5 2.5v13.4A2.5 2.5 0 0 0 7 21.2h10a2.5 2.5 0 0 0 2.5-2.5V8.3z"/><path d="M14 2.8v3.5a2 2 0 0 0 2 2h3.5M12 11.5v5.6m-2.4-2.4 2.4 2.4 2.4-2.4"/>', "M14 2.8H7a2.5 2.5 0 0 0-2.5 2.5v13.4A2.5 2.5 0 0 0 7 21.2h10a2.5 2.5 0 0 0 2.5-2.5V8.3z"),
+  folder: ic('<path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h3.6a2 2 0 0 1 1.4.6l1.3 1.3a2 2 0 0 0 1.4.6h5.3A2.5 2.5 0 0 1 21 10v7.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><path d="M3 10.5h18"/>', "M3 10.5h18v7a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"),
   book: ic('<path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H19v15H7.5A2.5 2.5 0 0 0 5 20.5z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5M9 7.5h6"/>', "M5 5.5A2.5 2.5 0 0 1 7.5 3H19v15H7.5A2.5 2.5 0 0 0 5 20.5z"),
   scan: ic('<path d="M3.8 8.2V6.3a2.5 2.5 0 0 1 2.5-2.5h1.9M15.8 3.8h1.9a2.5 2.5 0 0 1 2.5 2.5v1.9M20.2 15.8v1.9a2.5 2.5 0 0 1-2.5 2.5h-1.9M8.2 20.2H6.3a2.5 2.5 0 0 1-2.5-2.5v-1.9"/><path d="M8.5 9h7M8.5 12h7M8.5 15h4.5"/>', "M7.5 6.5h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z"),
   emoji: ic('<circle cx="12" cy="12" r="9"/><path d="M8.6 14.3a4.3 4.3 0 0 0 6.8 0"/><circle cx="9.2" cy="9.8" r=".9" fill="currentColor"/><circle cx="14.8" cy="9.8" r=".9" fill="currentColor"/>', "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z"),
@@ -128,32 +129,53 @@ E.mount = async (v, arg) => {
 };
 const coverHTML = b => { const c = COVERS[(b.cover || 0) % COVERS.length], isPdf = b.pages.some(p => p.type === "pdf");
   return `<div class="elcov" style="--a:${c[0]};--b:${c[1]}">${b.thumb ? `<img src="${b.thumb}" alt="">` : `<span class="elcovic">${isPdf ? I.pdf : I.book}</span>`}<i class="elspine"></i>${isPdf ? `<em>PDF</em>` : ""}</div>`; };
+/* folders live in local storage: [{id, name, c}]; a book keeps the id of its folder in b.folder */
+const FOLD = () => store.get("eluFolders", []), saveFold = f => store.set("eluFolders", f);
+let curF = "";
+const folderSheet = (fo, done) => { const sh = sheet(`<h3>${fo ? "Folder" : "New folder"}</h3><input class="psname" id="fo_n" maxlength="60" placeholder="Folder name (e.g. Paediatrics, Exam PDFs)" value="${fo ? esc(fo.name) : ""}">
+    <div class="elcovs">${COVERS.map((c, i) => `<button class="elcv${i === (fo ? fo.c : 0) ? " on" : ""}" data-cov="${i}" style="--a:${c[0]};--b:${c[1]}" aria-label="Folder colour"></button>`).join("")}</div>
+    <div class="btnrow"><button class="btn" id="fo_go">${fo ? "Save" : "Create folder"}</button>${fo ? `<button class="btn btn-danger" id="fo_del">Delete folder</button>` : ""}</div>${fo ? `<div class="small muted">Deleting a folder keeps its notebooks and PDFs — they move back to the main shelf.</div>` : ""}`);
+  let c = fo ? fo.c : 0; $$("[data-cov]", sh).forEach(x => x.onclick = () => { c = +x.dataset.cov; $$("[data-cov]", sh).forEach(y => y.classList.toggle("on", y === x)); });
+  const nm = $("#fo_n", sh); setTimeout(() => nm.focus(), 50);
+  $("#fo_go", sh).onclick = () => { const name = nm.value.trim(); if (!name) return nm.focus(); const all = FOLD(); if (fo) Object.assign(all.find(x => x.id === fo.id) || {}, {name, c}); else all.push({id: uid(), name, c}); saveFold(all); sh.remove(); done(); };
+  const del = $("#fo_del", sh); if (del) del.onclick = async () => { if (!del.dataset.arm) { del.dataset.arm = 1; del.textContent = "Tap again to delete"; return; }
+    for (const b of await DB.all("books")) if (b.folder === fo.id) { delete b.folder; await DB.put("books", b); }
+    saveFold(FOLD().filter(x => x.id !== fo.id)); if (curF === fo.id) curF = ""; sh.remove(); done(); }; };
 async function library(v) {
-  const books = (await DB.all("books")) || []; let q = "", tag = "";
-  const tags = [...new Set(books.flatMap(b => b.tags || []))].sort();
+  const books = (await DB.all("books")) || [], folders = FOLD(); let q = "", tag = "";
+  if (curF && !folders.some(f => f.id === curF)) curF = "";
+  const fo = folders.find(f => f.id === curF), inF = b => curF ? b.folder === curF : !folders.some(f => f.id === b.folder);
+  const tags = [...new Set(books.filter(inF).flatMap(b => b.tags || []))].sort();
   v.innerHTML = `<div class="elib"><div class="elhead"><div class="ellogo">${I.book}</div><div><h1 class="vt">Eluna</h1><p>Notebooks and PDFs — write, highlight and read together. Saved on this device.</p></div><button class="iconbtn" id="el_set" aria-label="Eluna settings">${I.gear}</button></div>
     <div class="elacts"><button class="btn" id="el_new">${I.plus} New notebook</button><button class="btn btn-ghost" id="el_imp">${I.pdf} Import PDFs</button><button class="btn btn-ghost" id="el_app">📚 From the app</button><input type="file" id="el_file" accept="application/pdf,.pdf" multiple hidden></div>
     ${(() => { const open = store.get("eluTabs", []).map(t => books.find(b => b.id === t)).filter(Boolean).slice(0, 6); return open.length ? `<div class="elcont"><span>Continue</span>${open.map(b => `<a href="#eluna/${b.id}" class="elchip"><i>${b.pages.some(p => p.type === "pdf") ? I.pdf : I.book}</i>${esc(b.title)}</a>`).join("")}</div>` : ""; })()}
-    <div class="pssearch">${ICON.search}<input id="el_q" type="search" placeholder="Search notebooks" autocomplete="off"></div>
+    ${fo ? `<div class="elfhead" style="--a:${COVERS[fo.c % COVERS.length][0]};--b:${COVERS[fo.c % COVERS.length][1]}"><button class="iconbtn" id="el_up" aria-label="Back to all folders">${I.back}</button><i class="elfic">${I.folder}</i><div><b>${esc(fo.name)}</b><small>${books.filter(inF).length} item${books.filter(inF).length === 1 ? "" : "s"}</small></div><button class="iconbtn" id="el_fedit" aria-label="Rename or delete folder">${I.more}</button></div>`
+      : `<div class="elsec"><b>Folders</b></div><div class="elfolds">${folders.map((f, i) => { const n = books.filter(b => b.folder === f.id).length, c = COVERS[f.c % COVERS.length]; return `<button class="elfold" data-f="${f.id}" style="--a:${c[0]};--b:${c[1]};--d:${i * 30}ms"><i class="elfic">${I.folder}</i><b>${esc(f.name)}</b><small>${n} item${n === 1 ? "" : "s"}</small></button>`; }).join("")}<button class="elfold elfnew" id="el_fnew"><i class="elfic">${I.plus}</i><b>New folder</b><small>Group PDFs and notes</small></button></div>`}
+    <div class="pssearch">${ICON.search}<input id="el_q" type="search" placeholder="${fo ? "Search in " + esc(fo.name) : "Search all notebooks and PDFs"}" autocomplete="off"></div>
+    ${fo ? "" : `<div class="elsec"><b>On the shelf</b></div>`}
     ${tags.length ? `<div class="eltags" id="el_tags"><button class="chip on" data-t="">All</button>${tags.map(t => `<button class="chip" data-t="${esc(t)}">#${esc(t)}</button>`).join("")}</div>` : ""}
     <div class="elgrid" id="el_grid"></div><div id="el_msg" class="small"></div></div>`;
   const grid = $("#el_grid");
-  const draw = () => { const bs = books.filter(b => (!q || b.title.toLowerCase().includes(q)) && (!tag || (b.tags || []).includes(tag))).sort((a, b) => b.updated - a.updated);
+  const draw = () => { const bs = books.filter(b => (q ? true : inF(b)) && (!q || b.title.toLowerCase().includes(q)) && (!q || !curF || b.folder === curF) && (!tag || (b.tags || []).includes(tag))).sort((a, b) => b.updated - a.updated);
     grid.innerHTML = bs.length ? bs.map((b, i) => `<div class="elcard" style="--d:${Math.min(i, 12) * 35}ms"><a href="#eluna/${b.id}">${coverHTML(b)}<b>${esc(b.title)}</b><small>${b.pages.length} page${b.pages.length > 1 ? "s" : ""}${(b.tags || []).length ? " · " + b.tags.map(t => "#" + esc(t)).join(" ") : ""}</small></a><button class="iconbtn elcm" data-m="${b.id}" aria-label="Options">${I.more}</button></div>`).join("")
-      : `<div class="cempty"><b>${q || tag ? "Nothing matches" : "Your shelf is empty"}</b><span>Create a notebook, import PDFs, or open a topic from the app.</span></div>`;
+      : `<div class="cempty"><b>${q || tag ? "Nothing matches" : fo ? "This folder is empty" : "Your shelf is empty"}</b><span>${fo ? "Import PDFs or create a notebook here — or move one in from its ⋮ menu." : "Create a notebook, import PDFs, or open a topic from the app."}</span></div>`;
     $$("[data-m]", grid).forEach(bt => bt.onclick = () => bookMenu(books.find(b => b.id === bt.dataset.m), () => library(v))); };
   draw();
   $("#el_q").addEventListener("input", e => { q = e.target.value.trim().toLowerCase(); draw(); });
   $$("#el_tags .chip").forEach(c => c.onclick = () => { tag = c.dataset.t; $$("#el_tags .chip").forEach(x => x.classList.toggle("on", x === c)); draw(); });
-  $("#el_new").onclick = () => newBookSheet();
+  $$("[data-f]").forEach(x => x.onclick = () => { curF = x.dataset.f; library(v); scrollTo(0, 0); });
+  if ($("#el_fnew")) $("#el_fnew").onclick = () => folderSheet(null, () => library(v));
+  if ($("#el_up")) $("#el_up").onclick = () => { curF = ""; library(v); };
+  if ($("#el_fedit")) $("#el_fedit").onclick = () => folderSheet(fo, () => library(v));
+  $("#el_new").onclick = () => newBookSheet(curF);
   $("#el_imp").onclick = () => $("#el_file").click();
-  $("#el_file").onchange = async e => { const fs = [...e.target.files]; e.target.value = ""; if (!fs.length) return; const ids = await importPdfs(fs, null, t => $("#el_msg").textContent = t); if (ids.length) { const tabs = [...new Set([...ids, ...store.get("eluTabs", [])])].slice(0, 8); store.set("eluTabs", tabs); go("#eluna/" + ids[0]); } };
+  $("#el_file").onchange = async e => { const fs = [...e.target.files]; e.target.value = ""; if (!fs.length) return; const ids = await importPdfs(fs, null, t => $("#el_msg").textContent = t, curF); if (ids.length) { const tabs = [...new Set([...ids, ...store.get("eluTabs", [])])].slice(0, 8); store.set("eluTabs", tabs); go("#eluna/" + ids[0]); } };
   $("#el_app").onclick = () => appShareSheet(async h => { try { if (h[2].startsWith("#topic/")) { const t = TOPIC_BY[h[2].slice(7)]; return E.fromBlocks(topicBlocks(t), t.n); }
     const m = h[2].match(/^#gl\/([^/]+)(?:\/(\d+))?$/); if (m) { const b = GL_BY[m[1]], i = +(m[2] || 0), d = document.createElement("div"); d.innerHTML = glRender(glSecs(m[1])[i] || [], b.u, 0); const ti = (b.toc[i] || [b.s])[0]; return E.fromBlocks(domBlocks(d, ti), ti, b.s); }
     nbToast("Choose a topic, guideline or criteria page."); } catch (er) { nbToast(er.message || String(er)); } });
   $("#el_set").onclick = () => settingsSheet();
 }
-async function importPdfs(files, intoBook, msg) {
+async function importPdfs(files, intoBook, msg, folder) {
   const ids = []; let lib;
   try { lib = await pdfjs(); } catch (e) { nbToast(e.message); return ids; }
   for (const f of files) {
@@ -161,7 +183,7 @@ async function importPdfs(files, intoBook, msg) {
       const d = await lib.getDocument({data: new Uint8Array(bytes.slice(0))}).promise, pages = [];
       for (let i = 0; i < d.numPages; i++) { const vp = (await d.getPage(i + 1)).getViewport({scale: 1}); pages.push(newPage("blank", "white", {type: "pdf", fid, pi: i, w: PW, h: Math.round(PW * vp.height / vp.width)})); }
       if (intoBook) { intoBook.pages.push(...pages); continue; }
-      const b = {id: uid(), title: f.name.replace(/\.pdf$/i, "").slice(0, 80), tags: ["pdf"], cover: ids.length + 1, created: Date.now(), updated: Date.now(), pages};
+      const b = {id: uid(), title: f.name.replace(/\.pdf$/i, "").slice(0, 80), tags: ["pdf"], cover: ids.length + 1, created: Date.now(), updated: Date.now(), pages}; if (folder) b.folder = folder;
       await DB.put("books", b); ids.push(b.id); thumbFor(b);
     } catch (e) { nbToast(`Could not open “${f.name}”: ${e.message || e}`); }
   }
@@ -174,25 +196,27 @@ E.fromBlocks = async (blocks, title, label) => { nbToast("Preparing pages…"); 
 function tplPicker(cur, paper) { return `<div class="eltpls">${TPL.map(([k, l]) => `<button class="eltpl${k === cur ? " on" : ""}" data-tpl="${k}"><canvas width="62" height="88" data-cv="${k}"></canvas><b>${l}</b></button>`).join("")}</div>
   <div class="elpapers">${Object.keys(PAPERS).map(p => `<button class="elpap${p === paper ? " on" : ""}" data-pap="${p}" style="--p:${PAPERS[p]}" aria-label="${p} paper"></button>`).join("")}</div>`; }
 function paintTpls(root, paper) { $$("[data-cv]", root).forEach(c => drawPaper(c.getContext("2d"), {type: "paper", tpl: c.dataset.cv, paper, w: PW, h: A4H}, 62 / PW)); }
-function newBookSheet() {
+function newBookSheet(folder) {
   const st = SET(); let tpl = st.tpl, paper = st.paper, cover = 0;
   const sh = sheet(`<h3>New notebook</h3><input class="psname" id="nb_t" maxlength="80" placeholder="Title" value="Notes ${new Date().toLocaleDateString([], {day: "numeric", month: "short"})}">
     <div class="elcovs">${COVERS.map((c, i) => `<button class="elcv${i ? "" : " on"}" data-cov="${i}" style="--a:${c[0]};--b:${c[1]}" aria-label="Cover colour"></button>`).join("")}</div>
+    ${FOLD().length ? `<div class="small muted">Folder</div><select class="psname" id="nb_f"><option value="">— Main shelf —</option>${FOLD().map(x => `<option value="${x.id}"${x.id === folder ? " selected" : ""}>${esc(x.name)}</option>`).join("")}</select>` : ""}
     <div class="small muted">Paper</div>${tplPicker(tpl, paper)}<input class="psname" id="nb_tags" placeholder="Tags (e.g. paeds, exam) — separate with commas"><div class="btnrow"><button class="btn" id="nb_go">Create</button></div>`);
   paintTpls(sh, paper);
   $$("[data-cov]", sh).forEach(b => b.onclick = () => { cover = +b.dataset.cov; $$("[data-cov]", sh).forEach(x => x.classList.toggle("on", x === b)); });
   $$("[data-tpl]", sh).forEach(b => b.onclick = () => { tpl = b.dataset.tpl; $$("[data-tpl]", sh).forEach(x => x.classList.toggle("on", x === b)); });
   $$("[data-pap]", sh).forEach(b => b.onclick = () => { paper = b.dataset.pap; $$("[data-pap]", sh).forEach(x => x.classList.toggle("on", x === b)); paintTpls(sh, paper); });
-  $("#nb_go", sh).onclick = async () => { const b = {id: uid(), title: $("#nb_t", sh).value.trim() || "Notes", tags: $("#nb_tags", sh).value.split(",").map(s => s.trim().toLowerCase()).filter(Boolean).slice(0, 8), cover, created: Date.now(), updated: Date.now(), pages: [newPage(tpl, paper)]};
+  $("#nb_go", sh).onclick = async () => { const b = {id: uid(), title: $("#nb_t", sh).value.trim() || "Notes", tags: $("#nb_tags", sh).value.split(",").map(s => s.trim().toLowerCase()).filter(Boolean).slice(0, 8), cover, created: Date.now(), updated: Date.now(), pages: [newPage(tpl, paper)]}; const fsel = $("#nb_f", sh), fid = fsel ? fsel.value : folder; if (fid) b.folder = fid;
     await DB.put("books", b); sh.remove(); store.set("eluTabs", [b.id, ...store.get("eluTabs", [])].slice(0, 8)); go("#eluna/" + b.id); };
 }
 function sheet(html) { const sh = document.createElement("div"); sh.className = "sheet elsheet"; sh.innerHTML = `<div class="sheetin"><button class="iconbtn elsx" aria-label="Close">${I.x}</button>${html}</div>`; document.body.appendChild(sh); sh.querySelector(".elsx").onclick = () => sh.remove(); sh.addEventListener("click", e => { if (e.target === sh) sh.remove(); }); return sh; }
 function bookMenu(b, reload) {
   const sh = sheet(`<h3>${esc(b.title)}</h3><input class="psname" id="bm_t" maxlength="80" value="${esc(b.title)}"><input class="psname" id="bm_tags" value="${esc((b.tags || []).join(", "))}" placeholder="Tags, separated by commas">
     <div class="elcovs">${COVERS.map((c, i) => `<button class="elcv${i === (b.cover || 0) % COVERS.length ? " on" : ""}" data-cov="${i}" style="--a:${c[0]};--b:${c[1]}"></button>`).join("")}</div>
+    <div class="small muted">Folder</div><select class="psname" id="bm_f"><option value="">— Main shelf —</option>${FOLD().map(x => `<option value="${x.id}"${x.id === b.folder ? " selected" : ""}>${esc(x.name)}</option>`).join("")}</select>
     <div class="btnrow" style="flex-wrap:wrap"><button class="btn" id="bm_save">Save</button><button class="btn btn-ghost" id="bm_pdf">${I.pdf} Export PDF</button><button class="btn btn-ghost" id="bm_dup">Duplicate</button><button class="btn btn-danger" id="bm_del">Delete</button></div><div class="small" id="bm_m"></div>`);
   let cover = b.cover || 0; $$("[data-cov]", sh).forEach(x => x.onclick = () => { cover = +x.dataset.cov; $$("[data-cov]", sh).forEach(y => y.classList.toggle("on", y === x)); });
-  $("#bm_save", sh).onclick = async () => { b.title = $("#bm_t", sh).value.trim() || b.title; b.tags = $("#bm_tags", sh).value.split(",").map(s => s.trim().toLowerCase()).filter(Boolean).slice(0, 8); b.cover = cover; b.updated = Date.now(); await DB.put("books", b); sh.remove(); reload(); };
+  $("#bm_save", sh).onclick = async () => { b.title = $("#bm_t", sh).value.trim() || b.title; b.tags = $("#bm_tags", sh).value.split(",").map(s => s.trim().toLowerCase()).filter(Boolean).slice(0, 8); b.cover = cover; const nf = $("#bm_f", sh).value; if (nf) b.folder = nf; else delete b.folder; b.updated = Date.now(); await DB.put("books", b); sh.remove(); reload(); };
   $("#bm_pdf", sh).onclick = () => exportPdf(b, t => $("#bm_m", sh).textContent = t);
   $("#bm_dup", sh).onclick = async () => { const c = JSON.parse(JSON.stringify(b)); c.id = uid(); c.title += " (copy)"; c.created = c.updated = Date.now(); await DB.put("books", c); sh.remove(); reload(); };
   const del = $("#bm_del", sh); del.onclick = async () => { if (!del.dataset.arm) { del.dataset.arm = 1; del.textContent = "Tap again to delete"; return; } await DB.del("books", b.id); store.set("eluTabs", store.get("eluTabs", []).filter(x => x !== b.id)); sh.remove(); reload(); };
@@ -514,7 +538,16 @@ css.textContent = `
 .elcov em{position:absolute;right:8px;bottom:8px;font:800 9.5px var(--ui-font);font-style:normal;color:#fff;background:rgba(0,0,0,.32);backdrop-filter:blur(6px);padding:3px 8px;border-radius:99px;letter-spacing:.08em}
 .elcont{display:flex;align-items:center;gap:6px;overflow-x:auto;margin:0 0 12px;scrollbar-width:none;padding:2px 0}.elcont::-webkit-scrollbar{display:none}.elcont>span{font:800 11px var(--ui-font);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);flex:none;margin-right:2px}
 .elchip{display:flex;align-items:center;gap:7px;flex:none;max-width:220px;padding:7px 13px 7px 9px;border-radius:99px;background:var(--panel);border:1px solid var(--line);color:var(--ink);text-decoration:none;font:600 13px var(--ui-font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 4px 12px -10px rgba(0,0,0,.5);transition:transform .2s,border-color .2s}.elchip:hover{transform:translateY(-1px);border-color:#a78bfa}.elchip i{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;flex:none}.elchip svg{width:14px;height:14px}
-.elsheet .sheetin{position:relative}.elsx{position:absolute;right:10px;top:10px}
+.elsheet .sheetin{position:relative}
+.elsec{display:flex;align-items:center;margin:16px 2px 10px}.elsec b{font:800 11.5px var(--ui-font);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.elfolds{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:6px}
+.elfold{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px 14px 12px;border:0;border-radius:18px;cursor:pointer;text-align:left;color:#fff;background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.28),transparent 55%),linear-gradient(150deg,var(--a),var(--b));box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 14px 26px -16px rgba(0,0,0,.6);animation:foldIn .4s both;animation-delay:var(--d,0ms);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.elfold:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 20px 30px -16px rgba(0,0,0,.6)}.elfold:active{transform:scale(.97)}
+.elfold b{font:700 15px var(--ui-font);margin-top:10px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.elfold small{font-size:12px;opacity:.85}
+.elfic{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.22);backdrop-filter:blur(4px)}.elfic svg{width:22px;height:22px}
+.elfnew{background:var(--panel);color:var(--ink);border:1.5px dashed var(--line);box-shadow:none}.elfnew .elfic{background:var(--accent-soft);color:var(--accent)}.elfnew small{color:var(--muted);opacity:1}.elfnew:hover{border-color:var(--accent)}
+.elfhead{display:flex;align-items:center;gap:12px;padding:12px 12px 12px 8px;margin:4px 0 14px;border-radius:20px;color:#fff;background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.25),transparent 55%),linear-gradient(130deg,var(--a),var(--b));box-shadow:0 14px 28px -18px rgba(0,0,0,.6)}
+.elfhead .iconbtn{color:#fff;background:rgba(255,255,255,.16);flex:none}.elfhead>div{flex:1;min-width:0;display:flex;flex-direction:column}.elfhead b{font:800 18px var(--ui-font);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.elfhead small{opacity:.85;font-size:12.5px}.elsx{position:absolute;right:10px;top:10px}
 .elcovs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}.elcv{width:34px;height:44px;border-radius:4px 8px 8px 4px;border:0;background:linear-gradient(145deg,var(--a),var(--b));cursor:pointer;box-shadow:0 4px 10px -6px rgba(0,0,0,.5);transition:transform .15s}.elcv.on{outline:3px solid var(--accent);outline-offset:2px;transform:translateY(-2px)}
 .eltpls{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:10px;margin:8px 0}.eltpl{display:flex;flex-direction:column;align-items:center;gap:5px;border:2px solid transparent;background:none;border-radius:12px;padding:5px;cursor:pointer;color:var(--ink);font:600 11.5px var(--ui-font)}
 .eltpl canvas{width:62px;height:88px;border-radius:4px;box-shadow:0 2px 8px -3px rgba(0,0,0,.35)}.eltpl.on{border-color:var(--accent);background:var(--accent-soft)}
@@ -522,8 +555,8 @@ css.textContent = `
 .elpick{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:12px;max-height:50vh;overflow:auto;margin:8px 0}.elpk{text-decoration:none;color:var(--ink);font-size:12.5px;display:flex;flex-direction:column;gap:6px}
 .elmenu{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:10px 0}.elmenu button{display:flex;align-items:center;gap:10px;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:600 13.5px var(--ui-font);cursor:pointer;text-align:left}.elmenu button:hover{background:var(--panel2)}.elmenu svg{width:20px;height:20px;color:var(--accent);flex:none}
 body.inel .pbar,body.inel .topbar,body.inel .foot,body.inel details.notes,body.inel .mbar,body.inel #bbfab,body.inel .mtoast,body.inroom .mtoast,body.innb .mtoast{display:none!important}body.inel .view{max-width:none!important;padding:0!important;zoom:1}
-@media (max-width:860px){body.inel .rail{display:none!important}}
-.elw{position:relative;display:flex;flex-direction:column;height:100dvh;background:#e8ecf2;overflow:hidden}:root[data-mode="dark"] .elw{background:#161a21}
+body.inel .rail{display:none!important}body.inel{overflow:hidden}
+.elw{position:fixed;inset:0;z-index:36;display:flex;flex-direction:column;height:100dvh;background:#e8ecf2;overflow:hidden}:root[data-mode="dark"] .elw{background:#161a21}
 .eltop{display:flex;align-items:center;gap:4px;padding:6px 8px;padding-top:calc(6px + env(safe-area-inset-top));background:linear-gradient(120deg,#4f46e5,#7c3aed 55%,#a21caf);color:#fff;flex:none;box-shadow:0 4px 16px -8px rgba(0,0,0,.5);z-index:8}
 .eltop .chb{flex:none}.eltop .chb.on{background:rgba(255,255,255,.25)}
 .eltabs{flex:1;min-width:0;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none}.eltabs::-webkit-scrollbar{display:none}
