@@ -610,7 +610,7 @@ body.reduce-motion *{transition:none!important;animation:none!important;scroll-b
 .shprog{height:6px;border-radius:3px;background:var(--panel2);overflow:hidden;margin:8px 0}.shprog i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
 .chatfind{display:flex;gap:6px;align-items:center;padding:6px 10px;background:var(--panel);border-bottom:1px solid var(--line);flex:none}
 .chatfind input{flex:1;font:inherit;font-size:16px;padding:8px 12px;border-radius:20px;border:1px solid var(--line);background:var(--panel2);color:var(--ink)}
-.ivpdf{flex:1;border:0;background:#fff;width:100%}
+.ivbar{flex-shrink:0;z-index:2}.ivpdf{min-height:0;flex:1;border:0;background:#fff;width:100%}
 .ivfile{display:flex;flex-direction:column;align-items:center;gap:8px;color:#fff;text-align:center;padding:24px;max-width:340px}.ivfile .fic{width:64px;height:76px;font-size:15px}.ivfile b{word-break:break-word}.ivfile p{opacity:.8;font-size:14px}
 /* ===== every device: phones (iPhone, Samsung/Android), tablets (iPad, Galaxy Tab) and Windows ===== */
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -20962,7 +20962,7 @@ function fileViewer(blob, f) {
   const inner = k === "img" ? `<div class="ivwrap"><img src="${u}" alt=""></div>` : k === "vid" ? `<div class="ivwrap"><video src="${u}" controls playsinline style="max-width:100%;max-height:100%"></video></div>`
     : k === "aud" ? `<div class="ivwrap"><audio src="${u}" controls autoplay></audio></div>` : pdfOK ? `<iframe class="ivpdf" src="${u}#view=FitH" title="${esc(f.name)}"></iframe><div class="ivnote">Not showing? Use <b>⬇ Download</b> or <b>↗ Open in new tab</b> above.</div>`
     : `<div class="ivwrap"><div class="ivfile"><span class="fic fic-${k}">${fileKind(f.type, f.name)[1]}</span><b>${esc(f.name)}</b><span>${fmtSize(f.size || blob.size)}</span><p>Tap <b>⬇ Download</b> to save it, or <b>Open</b> to view it in your ${k === "pdf" ? "PDF viewer" : "apps"}.</p></div></div>`;
-  v.innerHTML = `<div class="ivbar"><span>${esc(f.name || "")}</span><span class="ivbtns"><button class="ivbtn ivdl" id="ivs">⬇ Download</button><a class="ivbtn" href="${u}" target="_blank" rel="noopener">↗ Open in new tab</a>${navigator.canShare ? `<button class="ivbtn" id="ivsh">Share</button>` : ""}<button class="ivbtn" id="ivx" aria-label="Close">✕</button></span></div>${inner}`;
+  v.innerHTML = `<div class="ivbar"><span>${esc(f.name || "")}</span><span class="ivbtns"><button class="ivbtn ivdl" id="ivs">⬇ Download</button><a class="ivbtn" href="${u}" target="_blank" rel="noopener">↗ Open in new tab</a>${navigator.canShare ? `<button class="ivbtn" id="ivsh">Share</button>` : ""}<button class="ivbtn" id="ivx" aria-label="Back to app">← Back to app</button></span></div>${inner}`;
   document.body.appendChild(v);
   const close = () => { v.remove(); setTimeout(() => URL.revokeObjectURL(u), 1000); };
   v.querySelector("#ivx").onclick = close; v.querySelector("#ivs").onclick = () => saveBlob(blob, f.name);

@@ -327,7 +327,7 @@ async function editor(v, id) {
   const st = SET(), S = {tool: store.get("eluTool", "pen"), sub: Object.assign({eraser: "stroke", lasso: "free", laser: "line"}, store.get("eluSub", {})), pen: store.get("eluPen", PENS[0]), hl: store.get("eluHl", HLS[0]), size: store.get("eluSize", 3), zoom: 1, ro: false, pencil: store.get("nbPencil", false), penDown: false, ruler: null, sel: null, emoji: null};
   const tool = (k, l) => `<button class="eltb-b" data-tool="${k}" aria-label="${l}" title="${l}">${I[k]}</button>`;
   v.innerHTML = `<div class="elw" id="elw">
-    <div class="eltop"><button class="iconbtn chb" onclick="goBack()" aria-label="Back to previous screen" title="Back to previous screen">${I.back}</button><a class="iconbtn chb" href="#eluna" aria-label="Eluna library" title="All notebooks">${I.book}</a><a class="iconbtn chb elhm" href="#home" aria-label="Home" title="Home">${ICON.home}</a><div class="eltabs" id="el_tabs">${tabs.map(t => `<div class="eltab${t === id ? " on" : ""}"><a href="#eluna/${t}"><i class="eltabi">${kinds[t] ? I.pdf : I.book}</i>${esc(metas[t])}</a><button data-close="${t}" aria-label="Close tab">${I.x}</button></div>`).join("")}<button class="eltabadd" id="el_tabadd" aria-label="Open another notebook">${I.plus}</button></div>
+    <div class="eltop"><button class="iconbtn chb" onclick="goBack()" aria-label="Back to previous screen" title="Back to previous screen">${I.back}</button><a class="iconbtn chb" href="#eluna" aria-label="Eluna library" title="All notebooks">${I.book}</a><a class="iconbtn chb elhm" href="#home" aria-label="Home" title="Home">${ICON.home}</a><div class="eltabs" id="el_tabs">${tabs.map(t => `<div class="eltab${t === id ? " on" : ""}" draggable="true" data-tab="${t}"><a href="#eluna/${t}"><i class="eltabi">${kinds[t] ? I.pdf : I.book}</i>${esc(metas[t])}</a><button data-tab-left="${t}" aria-label="Move tab left" title="Move tab left">‹</button><button data-tab-right="${t}" aria-label="Move tab right" title="Move tab right">›</button><button data-close="${t}" aria-label="Close tab">${I.x}</button></div>`).join("")}<button class="eltabadd" id="el_tabadd" aria-label="Open another notebook">${I.plus}</button></div>
       <button class="iconbtn chb" id="el_ro" aria-label="Read-only mode" title="Read-only mode">${I.read}</button><button class="iconbtn chb" id="el_side" aria-label="Page outline" title="Page outline">${I.side}</button><button class="iconbtn chb" id="el_more" aria-label="More">${I.more}</button></div>
     <div class="elbody"><aside class="elol" id="el_ol"${st.outline ? "" : " hidden"}><div class="elolh"><b>Pages</b><button class="iconbtn" id="el_addp2" aria-label="Add page">${I.plus}</button></div><div class="elolist" id="el_olist"></div></aside>
       <div class="elscroll${st.scroll === "h" ? " horiz" : ""}" id="el_scroll"><div class="elpages" id="el_pages"></div></div>
@@ -445,17 +445,11 @@ async function editor(v, id) {
   };
   const ocrLayer = (L, oc, pg) => { L.innerHTML = oc.words.map(w => `<span style="left:${w.x0 / oc.W * 100}%;top:${w.y0 / oc.H * 100}%;width:${(w.x1 - w.x0) / oc.W * 100}%;height:${(w.y1 - w.y0) / oc.H * 100}%;font-size:${(w.y1 - w.y0) / oc.H * pg.h * sc() * 0.92}px">${esc(w.t)} </span>`).join(""); L.classList.add("ocr"); eoc(L); };
   const eoc = L => { const d = document.createElement("div"); d.className = "eleoc"; L.appendChild(d); };
-  /* while a selection is being made, the guard covers the gaps between words; if a selection still jumps to the whole page, go back to the last good one */
-  let goodSel = null;
+  /* Keep native selection handles free to extend across words, lines and pages. */
   const onSelDown = e => { const L = e.target.closest && e.target.closest(".eltl"); if (L) L.classList.add("selecting"); };
-  const onSelUp = () => $$(".eltl.selecting").forEach(L => L.classList.remove("selecting"));
-  const onSelChange = () => { const s = getSelection(); if (!s.rangeCount) { goodSel = null; return; } const r = s.getRangeAt(0), ca = r.commonAncestorContainer, el = ca.nodeType === 1 ? ca : ca.parentElement, L = el && el.closest(".eltl"); if (!L && !(el && el.querySelector && el.querySelector(".eltl") && W.contains(el))) { goodSel = null; return; }
-    const bad = n => n.nodeType === 1 && (n.classList.contains("eltl") || n.classList.contains("eleoc") || n.classList.contains("elp") || n.classList.contains("elpages") || n.classList.contains("elscroll"));
-    const words = String(s).trim().split(/\s+/).length;
-    if (bad(r.startContainer) || bad(r.endContainer) || !L || (goodSel && words > goodSel.words * 3 + 40)) { if (goodSel) try { s.setBaseAndExtent(goodSel.an, goodSel.ao, goodSel.fn, goodSel.fo); } catch (e) {} else s.removeAllRanges(); return; }
-    goodSel = {an: s.anchorNode, ao: s.anchorOffset, fn: s.focusNode, fo: s.focusOffset, words}; };
-  W.addEventListener("pointerdown", onSelDown, true); addEventListener("pointerup", onSelUp); addEventListener("pointercancel", onSelUp); document.addEventListener("selectionchange", onSelChange);
-  COMM.unsub.push(() => { removeEventListener("pointerup", onSelUp); removeEventListener("pointercancel", onSelUp); document.removeEventListener("selectionchange", onSelChange); });
+  const onSelUp = () => W.querySelectorAll(".eltl.selecting").forEach(L => L.classList.remove("selecting"));
+  W.addEventListener("pointerdown", onSelDown, true); addEventListener("pointerup", onSelUp); addEventListener("pointercancel", onSelUp);
+  COMM.unsub.push(() => { removeEventListener("pointerup", onSelUp); removeEventListener("pointercancel", onSelUp); });
   const textLayers = on => pages.forEach(P => { if (on) textLayer(P); });
   /* ---- outline ---- */
   const outline = () => { const L = $("#el_olist"); L.innerHTML = book.pages.map((p, i) => `<button class="elth" data-go="${i}"><canvas data-th="${i}"></canvas><span>${i + 1}</span></button>`).join("");
@@ -499,6 +493,21 @@ async function editor(v, id) {
         const P = pages[i]; if (P) { P.tl = 0; if (S.ro || S.tool === "select") textLayer(P); } } catch (e) { nbToast(`Page ${i + 1}: ${e.message || e}`); } }
     nbToast(`Text recognised on ${todo.length} page${todo.length > 1 ? "s" : ""}. Use the select tool (I) to pick words.`); };
   /* ---- tabs ---- */
+  const tabStrip = W.querySelector("#el_tabs");
+  const reorderTab = (id, to) => {
+    const nodes=[...tabStrip.querySelectorAll("[data-tab]")], from=nodes.findIndex(n=>n.dataset.tab===id);
+    if(from<0 || to<0 || to>=nodes.length || from===to) return;
+    const [node]=nodes.splice(from,1); nodes.splice(to,0,node);
+    nodes.forEach(n=>tabStrip.insertBefore(n,tabStrip.querySelector("#el_tabadd")));
+    store.set("eluTabs",nodes.map(n=>n.dataset.tab)); node.scrollIntoView({block:"nearest",inline:"nearest"});
+  };
+  let draggedTab=null;
+  tabStrip.addEventListener("dragstart",e=>{const n=e.target.closest("[data-tab]");if(!n)return;draggedTab=n.dataset.tab;e.dataTransfer.effectAllowed="move";e.dataTransfer.setData("text/plain",draggedTab);});
+  tabStrip.addEventListener("dragover",e=>{if(draggedTab && e.target.closest("[data-tab]")){e.preventDefault();e.dataTransfer.dropEffect="move";}});
+  tabStrip.addEventListener("drop",e=>{const n=e.target.closest("[data-tab]");if(!n||!draggedTab)return;e.preventDefault();reorderTab(draggedTab,[...tabStrip.querySelectorAll("[data-tab]")].indexOf(n));draggedTab=null;});
+  tabStrip.addEventListener("dragend",()=>draggedTab=null);
+  tabStrip.querySelectorAll("[data-tab-left],[data-tab-right]").forEach(button=>button.onclick=e=>{e.preventDefault();e.stopPropagation();const node=button.closest("[data-tab]"),i=[...tabStrip.querySelectorAll("[data-tab]")].indexOf(node);reorderTab(node.dataset.tab,i+(button.hasAttribute("data-tab-left")?-1:1));});
+
   $$("[data-close]").forEach(b => b.onclick = e => { e.preventDefault(); const t = b.dataset.close, list = store.get("eluTabs", []).filter(x => x !== t); store.set("eluTabs", list); if (t === id) go(list.length ? "#eluna/" + list[0] : "#eluna"); else b.parentElement.remove(); });
   $("#el_tabadd").onclick = async () => { const bs = (await DB.all("books")).sort((a, b) => b.updated - a.updated); const sh = sheet(`<h3>Open in a new tab</h3><div class="elpick">${bs.map(b => `<a href="#eluna/${b.id}" class="elpk">${coverHTML(b)}<span>${esc(b.title)}</span></a>`).join("")}</div><div class="btnrow"><button class="btn btn-ghost" id="tb_imp">${I.pdf} Import PDFs</button><button class="btn btn-ghost" id="tb_new">${I.plus} New notebook</button></div>`);
     $$(".elpk", sh).forEach(a => a.onclick = () => sh.remove()); $("#tb_new", sh).onclick = () => { sh.remove(); newBookSheet(); };
@@ -507,8 +516,17 @@ async function editor(v, id) {
   const setRO = on => { S.ro = on; W.classList.toggle("ro", on); $("#el_robadge").hidden = !on; $("#el_ro").classList.toggle("on", on); $$(".elt").forEach(d => { if (!d.classList.contains("emo")) d.contentEditable = !on; }); textLayers(on || S.tool === "select"); };
   $("#el_ro").onclick = () => setRO(!S.ro); $("#el_edit").onclick = () => setRO(false);
   $("#el_side").onclick = () => { const o = $("#el_ol"); o.hidden = !o.hidden; const n = SET(); n.outline = !o.hidden; store.set("eluSet", n); setTimeout(relayout, 60); };
-  $("#el_more").onclick = () => { const i = curPage(), isPdf = book.pages.some(p => p.type === "pdf");
-    const sh = sheet(`<h3>${esc(book.title)}</h3><div class="elmenu"><button id="mo_pdf">${I.pdf}<span>Export PDF</span></button><button id="mo_add">${I.plus}<span>Add page</span></button><button id="mo_page">${I.book}<span>This page…</span></button>${isPdf ? `<button id="mo_ocr1">${I.scan}<span>Recognise text: this page</span></button><button id="mo_ocra">${I.scan}<span>Recognise text: all pages</span></button>` : ""}<button id="mo_set">${I.gear}<span>Settings</span></button></div><div class="small" id="mo_m"></div>`);
+  $("#el_more").onclick = () => { const i = curPage(), isPdf = book.pages.some(p => p.type === "pdf" || p.type === "image");
+    const sh = sheet(`<h3>${esc(book.title)}</h3><div class="elmenu"><button id="mo_pdf">${I.pdf}<span>Export PDF</span></button><button id="mo_text">${I.select}<span>Read / copy page text</span></button><button id="mo_add">${I.plus}<span>Add page</span></button><button id="mo_page">${I.book}<span>This page…</span></button>${isPdf ? `<button id="mo_ocr1">${I.scan}<span>Recognise text: this page</span></button><button id="mo_ocra">${I.scan}<span>Recognise text: all pages</span></button>` : ""}<button id="mo_set">${I.gear}<span>Settings</span></button></div><div class="small" id="mo_m"></div>`);
+    $("#mo_text", sh).onclick = async () => {
+      const pg = book.pages[i]; let text = "";
+      const panel = sheet('<h3>Page text</h3><p class="muted">Select any amount of text below. Scanned pages need Recognise text first.</p><textarea id="el_readtext" readonly aria-label="Selectable page text" style="width:100%;min-height:45vh;font:16px/1.6 system-ui;padding:16px"></textarea><div class="btnrow"><button class="btn" id="el_copytext">Copy selected text</button><button class="btn btn-ghost" id="el_alltext">Select all</button></div><p id="el_textstatus" role="status"></p>'); sh.remove();
+      try { if(pg.type === "pdf") { const f=await DB.get("files",pg.fid); const oc=f && f.ocr && f.ocr[pg.pi]; if(oc) text=oc.text || oc.words.map(w=>w.t).join(" "); else { const doc=await pdfDoc(pg.fid), page=await doc.getPage(pg.pi+1), tc=await page.getTextContent(); text=tc.items.map(x=>x.str+(x.hasEOL?"\n":" ")).join(""); } } else if(pg.ocr) text=pg.ocr.text; else text=pg.texts.map(t=>t.t).join("\n");
+        const field=$("#el_readtext",panel); field.value=text || ""; $("#el_textstatus",panel).textContent=text ? "" : "No text found. Use Recognise text for a scanned PDF or photo.";
+        $("#el_alltext",panel).onclick=()=>{field.focus();field.select();};
+        $("#el_copytext",panel).onclick=async()=>{ const selected=field.value.slice(field.selectionStart,field.selectionEnd); if(!selected){$("#el_textstatus",panel).textContent="Select the words you want, or choose Select all.";return;}try{await navigator.clipboard.writeText(selected);$("#el_textstatus",panel).textContent="Copied.";}catch(e){field.focus();$("#el_textstatus",panel).textContent="Use your device’s Copy command on the selected text.";} };
+      }catch(e){$("#el_textstatus",panel).textContent="Could not read this page: "+e.message;}
+    };
     $("#mo_pdf", sh).onclick = () => exportPdf(book, t => $("#mo_m", sh).textContent = t);
     $("#mo_add", sh).onclick = () => { sh.remove(); addSheet(i + 1); }; $("#mo_page", sh).onclick = () => { sh.remove(); pageMenu(i); };
     const o1 = $("#mo_ocr1", sh); if (o1) o1.onclick = () => { sh.remove(); runOcr([i]); }; const oa = $("#mo_ocra", sh); if (oa) oa.onclick = () => { sh.remove(); runOcr(book.pages.map((_, k) => k)); };
