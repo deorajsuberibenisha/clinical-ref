@@ -20327,8 +20327,9 @@ function bindNbEditor(id) {
       else if (a.w === "copy") { navigator.clipboard && navigator.clipboard.writeText(w).then(() => nbToast("Copied")).catch(() => {}); } });
     document.body.appendChild(b); return b; };
   const show = () => { const s = getSelection(), txt = s ? String(s).replace(/\s+/g, " ").trim() : "";
-    if (!txt || txt.length > 60 || !s.rangeCount) return hide();
+    if (!txt || !s.rangeCount) return hide();
     const n = s.anchorNode && (s.anchorNode.nodeType === 1 ? s.anchorNode : s.anchorNode.parentElement);
+    if (!n || txt.length > (n.closest(".eltl") ? 2000 : 60)) return hide();
     if (!n || !n.closest("#view") || n.closest("input,textarea,[contenteditable],.nbwrap,.composer,.sheet,.elt")) return hide();
     const r = s.getRangeAt(0).getBoundingClientRect(); if (!r.width && !r.height) return hide();
     word = txt; bar = bar || make(); bar.classList.add("on"); bar.querySelector('[data-w="hl"]').hidden = !n.closest(".eltl");

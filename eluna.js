@@ -30,6 +30,7 @@ const I = {
   scan: ic('<path d="M3.8 8.2V6.3a2.5 2.5 0 0 1 2.5-2.5h1.9M15.8 3.8h1.9a2.5 2.5 0 0 1 2.5 2.5v1.9M20.2 15.8v1.9a2.5 2.5 0 0 1-2.5 2.5h-1.9M8.2 20.2H6.3a2.5 2.5 0 0 1-2.5-2.5v-1.9"/><path d="M8.5 9h7M8.5 12h7M8.5 15h4.5"/>', "M7.5 6.5h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z"),
   emoji: ic('<circle cx="12" cy="12" r="9"/><path d="M8.6 14.3a4.3 4.3 0 0 0 6.8 0"/><circle cx="9.2" cy="9.8" r=".9" fill="currentColor"/><circle cx="14.8" cy="9.8" r=".9" fill="currentColor"/>', "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z"),
   image: ic('<rect x="3" y="4.5" width="18" height="15" rx="3.5"/><circle cx="9" cy="10" r="1.8"/><path d="m20.6 15.6-4.2-4.2a1.5 1.5 0 0 0-2.1 0L6 19.5"/>', "M6.5 4.5h11A3.5 3.5 0 0 1 21 8v8a3.5 3.5 0 0 1-3.5 3.5h-11A3.5 3.5 0 0 1 3 16V8a3.5 3.5 0 0 1 3.5-3.5z"),
+  palm: ic('<path d="M7.2 12.6V6.2a1.5 1.5 0 0 1 3 0v5M10.2 10.6V4.4a1.5 1.5 0 0 1 3 0v6.2M13.2 10.6V5.8a1.5 1.5 0 0 1 3 0v5.6M16.2 11.4V8.6a1.5 1.5 0 0 1 3 0v5.2a7.2 7.2 0 0 1-7.2 7.2h-.7a6.4 6.4 0 0 1-5.1-2.6l-2.6-3.5a1.6 1.6 0 0 1 2.4-2.1l1.2 1.3"/>', "M7.2 12.6V6.2a1.5 1.5 0 0 1 3 0V4.4a1.5 1.5 0 0 1 3 0v1.4a1.5 1.5 0 0 1 3 0v2.8a1.5 1.5 0 0 1 3 0v5.2a7.2 7.2 0 0 1-7.2 7.2h-.7a6.4 6.4 0 0 1-5.1-2.6l-2.6-3.5a1.6 1.6 0 0 1 2.4-2.1l1.2 1.3z"),
   stylus: ic('<path d="M14.6 4.4a2.2 2.2 0 0 1 3.1 0l1.9 1.9a2.2 2.2 0 0 1 0 3.1L9.2 19.8 4 21l1.2-5.2z"/><path d="M12.6 6.4l5 5"/><path d="M19.5 15v4.5M17.3 17.3h4.4"/>', "M14.6 4.4a2.2 2.2 0 0 1 3.1 0l1.9 1.9a2.2 2.2 0 0 1 0 3.1L9.2 19.8 4 21l1.2-5.2z"),
   ruler: ic('<path d="M21 9.2 9.2 21a1.4 1.4 0 0 1-2 0L3 16.8a1.4 1.4 0 0 1 0-2L14.8 3a1.4 1.4 0 0 1 2 0L21 7.2a1.4 1.4 0 0 1 0 2z"/><path d="m7.6 10.6 1.8 1.8M10.6 7.6l1.8 1.8M13.6 4.6l1.8 1.8"/>', "M21 9.2 9.2 21a1.4 1.4 0 0 1-2 0L3 16.8a1.4 1.4 0 0 1 0-2L14.8 3a1.4 1.4 0 0 1 2 0L21 7.2a1.4 1.4 0 0 1 0 2z")
 };
@@ -42,7 +43,7 @@ const HLS = ["#fde047", "#86efac", "#f9a8d4", "#93c5fd", "#fdba74"];
 const STICKERS = "🫀 🫁 🧠 🦷 🦴 👁️ 👂 👃 👅 🩸 🦠 🧬 💊 💉 🩺 🩹 🌡️ 🧪 🔬 🩻 🏥 🚑 ⚕️ 👶 🤰 ✅ ❌ ⚠️ ❗ ❓ ⭐ 📌 ➡️ ⬆️ ⬇️ 🔁 💡 🎯".split(" ");
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 const PEN = () => Object.assign({palm: true, btn: "eraser", pressure: true, hover: true}, store.get("eluPen2", {}));
-const SET = () => Object.assign({tpl: "lined", paper: "white", scroll: "v", smooth: 0.38, outline: true}, store.get("eluSet", {}));
+const SET = () => Object.assign({tpl: "lined", paper: "white", scroll: "v", smooth: 0.38, outline: true, desk: "grey", tbs: "m", gap: "m", pnum: true, hlsnap: true, hold: true}, store.get("eluSet", {}));
 
 /* ---------- storage ---------- */
 const DB = (() => {
@@ -148,7 +149,7 @@ const coverHTML = b => { const c = COVERS[(b.cover || 0) % COVERS.length], isPdf
   return `<div class="elcov" style="--a:${c[0]};--b:${c[1]}">${b.thumb ? `<img src="${b.thumb}" alt="">` : `<span class="elcovic">${isPdf ? I.pdf : I.book}</span>`}<i class="elspine"></i>${isPdf ? `<em>PDF</em>` : ""}</div>`; };
 /* folders live in local storage: [{id, name, c}]; a book keeps the id of its folder in b.folder */
 const FOLD = () => store.get("eluFolders", []), saveFold = f => store.set("eluFolders", f);
-let curF = "";
+let curF = "", CLIP = null;   /* CLIP: what was copied with the lasso — pastes into any page of any notebook */
 const folderSheet = (fo, done) => { const sh = sheet(`<h3>${fo ? "Folder" : "New folder"}</h3><input class="psname" id="fo_n" maxlength="60" placeholder="Folder name (e.g. Paediatrics, Exam PDFs)" value="${fo ? esc(fo.name) : ""}">
     <div class="elcovs">${COVERS.map((c, i) => `<button class="elcv${i === (fo ? fo.c : 0) ? " on" : ""}" data-cov="${i}" style="--a:${c[0]};--b:${c[1]}" aria-label="Folder colour"></button>`).join("")}</div>
     <div class="small muted">Icon</div><div class="elfics">${FOLDER_ICONS.map(e => `<button class="${e === ((fo && fo.e) || "📁") ? "on" : ""}" data-fe="${e}">${e}</button>`).join("")}</div>
@@ -165,11 +166,11 @@ async function library(v) {
   if (curF && !folders.some(f => f.id === curF)) curF = "";
   const fo = folders.find(f => f.id === curF), inF = b => curF ? b.folder === curF : !folders.some(f => f.id === b.folder);
   const tags = [...new Set(books.filter(inF).flatMap(b => b.tags || []))].sort();
-  v.innerHTML = `<div class="elib"><div class="elhead"><div class="ellogo">${I.book}</div><div><h1 class="vt">Eluna</h1><p>Notebooks and PDFs — write, highlight and read together. Saved on this device.</p></div><button class="iconbtn" id="el_set" aria-label="Eluna settings">${I.gear}</button></div>
-    <div class="elacts"><button class="btn" id="el_new">${I.plus} New notebook</button><button class="btn btn-ghost" id="el_imp">${I.pdf} Import PDFs</button><button class="btn btn-ghost" id="el_app">📚 From the app</button><input type="file" id="el_file" accept="application/pdf,.pdf" multiple hidden></div>
+  v.innerHTML = `<div class="elib"><div class="elhead"><a class="iconbtn elhome" href="#home" aria-label="Home" title="Home">${ICON.home}</a><div class="ellogo">${I.book}</div><div><h1 class="vt">Eluna</h1><p>Notebooks and PDFs — write, highlight and read together. Saved on this device.</p></div><button class="iconbtn" id="el_set" aria-label="Eluna settings">${I.gear}</button></div>
+    <button class="elfab" id="el_plus" aria-label="New notebook, folder or PDF">${I.plus}<span>New</span></button><div class="elacts" hidden><button class="btn" id="el_new">${I.plus} New notebook</button><button class="btn btn-ghost" id="el_imp">${I.pdf} Import PDFs</button><button class="btn btn-ghost" id="el_app">📚 From the app</button><input type="file" id="el_file" accept="application/pdf,.pdf" multiple hidden></div>
     ${(() => { const open = store.get("eluTabs", []).map(t => books.find(b => b.id === t)).filter(Boolean).slice(0, 6); return open.length ? `<div class="elcont"><span>Continue</span>${open.map(b => `<a href="#eluna/${b.id}" class="elchip"><i>${b.pages.some(p => p.type === "pdf") ? I.pdf : I.book}</i>${esc(b.title)}</a>`).join("")}</div>` : ""; })()}
     ${fo ? `<div class="elfhead" style="--a:${COVERS[fo.c % COVERS.length][0]};--b:${COVERS[fo.c % COVERS.length][1]}"><button class="iconbtn" id="el_up" aria-label="Back to all folders">${I.back}</button><i class="elfic">${fo.e && fo.e !== "📁" ? `<span class="elfe">${fo.e}</span>` : I.folder}</i><div><b>${esc(fo.name)}</b><small>${books.filter(inF).length} item${books.filter(inF).length === 1 ? "" : "s"}</small></div><button class="iconbtn" id="el_fedit" aria-label="Rename or delete folder">${I.more}</button></div>`
-      : `<div class="elsec"><b>Folders</b></div><div class="elfolds">${folders.map((f, i) => { const n = books.filter(b => b.folder === f.id).length, c = COVERS[f.c % COVERS.length]; return `<button class="elfold" data-f="${f.id}" style="--a:${c[0]};--b:${c[1]};--d:${i * 30}ms"><i class="elfic">${f.e && f.e !== "📁" ? `<span class="elfe">${f.e}</span>` : I.folder}</i><b>${esc(f.name)}</b><small>${n} item${n === 1 ? "" : "s"}</small></button>`; }).join("")}<button class="elfold elfnew" id="el_fnew"><i class="elfic">${I.plus}</i><b>New folder</b><small>Group PDFs and notes</small></button></div>`}
+      : !folders.length ? "" : `<div class="elsec"><b>Folders</b></div><div class="elfolds">${folders.map((f, i) => { const n = books.filter(b => b.folder === f.id).length, c = COVERS[f.c % COVERS.length]; return `<button class="elfold" data-f="${f.id}" style="--a:${c[0]};--b:${c[1]};--d:${i * 30}ms"><i class="elfic">${f.e && f.e !== "📁" ? `<span class="elfe">${f.e}</span>` : I.folder}</i><b>${esc(f.name)}</b><small>${n} item${n === 1 ? "" : "s"}</small></button>`; }).join("")}</div>`}
     <div class="pssearch">${ICON.search}<input id="el_q" type="search" placeholder="${fo ? "Search in " + esc(fo.name) : "Search all notebooks and PDFs"}" autocomplete="off"></div>
     ${fo ? "" : `<div class="elsec"><b>On the shelf</b></div>`}
     ${tags.length ? `<div class="eltags" id="el_tags"><button class="chip on" data-t="">All</button>${tags.map(t => `<button class="chip" data-t="${esc(t)}">#${esc(t)}</button>`).join("")}</div>` : ""}
@@ -187,6 +188,12 @@ async function library(v) {
   if ($("#el_up")) $("#el_up").onclick = () => { curF = ""; library(v); };
   if ($("#el_fedit")) $("#el_fedit").onclick = () => folderSheet(fo, () => library(v));
   $("#el_new").onclick = () => newBookSheet(curF);
+  $("#el_plus").onclick = () => { const sh = sheet(`<h3>Create</h3><div class="elnewm">
+      <button data-n="nb"><i style="--a:#6366f1;--b:#a855f7">${I.book}</i><b>New notebook</b><small>Blank, lined, SOAP, ward round, planners…</small></button>
+      <button data-n="fo"><i style="--a:#f59e0b;--b:#ea580c">${I.folder}</i><b>New folder</b><small>Keep PDFs and notes together</small></button>
+      <button data-n="pdf"><i style="--a:#f43f5e;--b:#be185d">${I.pdf}</i><b>Import PDFs</b><small>One or many, from Files or Downloads</small></button>
+      <button data-n="app"><i style="--a:#10b981;--b:#0f766e">${I.scan}</i><b>From the app</b><small>A topic or guideline as a notebook</small></button></div>${fo ? `<div class="small muted">New items go into “${esc(fo.name)}”.</div>` : ""}`);
+    $$("[data-n]", sh).forEach(b => b.onclick = () => { sh.remove(); ({nb: () => newBookSheet(curF), fo: () => folderSheet(null, () => library(v)), pdf: () => $("#el_file").click(), app: () => $("#el_app").click()})[b.dataset.n](); }); };
   $("#el_imp").onclick = () => $("#el_file").click();
   $("#el_file").onchange = async e => { const fs = [...e.target.files]; e.target.value = ""; if (!fs.length) return; const ids = await importPdfs(fs, null, t => $("#el_msg").textContent = t, curF); if (ids.length) { const tabs = [...new Set([...ids, ...store.get("eluTabs", [])])].slice(0, 8); store.set("eluTabs", tabs); go("#eluna/" + ids[0]); } };
   $("#el_app").onclick = () => appShareSheet(async h => { try { if (h[2].startsWith("#topic/")) { const t = TOPIC_BY[h[2].slice(7)]; return E.fromBlocks(topicBlocks(t), t.n); }
@@ -252,6 +259,12 @@ function settingsSheet(onChange) {
     <div class="setrow"><div><b>Page scrolling</b><span>Read top to bottom, or left to right like a book</span></div><div class="setctl">${segCtl("es_scroll", [["v", "Vertical"], ["h", "Left–right"]], s.scroll)}</div></div>
     <div class="setrow"><div><b>Pen smoothing</b><span>More smoothing steadies shaky lines</span></div><div class="setctl">${segCtl("es_sm", [["0.2", "Light"], ["0.38", "Medium"], ["0.55", "Strong"]], String(s.smooth))}</div></div>
     <div class="setrow"><div><b>Page outline</b><span>Show page thumbnails at the side</span></div><div class="setctl">${segCtl("es_ol", [["1", "Show"], ["0", "Hide"]], s.outline ? "1" : "0")}</div></div>
+    <div class="setrow"><div><b>Desk colour</b><span>The background around the pages</span></div><div class="setctl">${segCtl("es_desk", [["grey", "Grey"], ["warm", "Warm"], ["lav", "Lilac"], ["dark", "Dark"]], s.desk)}</div></div>
+    <div class="setrow"><div><b>Toolbar size</b><span>Bigger buttons are easier with a finger</span></div><div class="setctl">${segCtl("es_tbs", [["s", "Compact"], ["m", "Normal"], ["l", "Large"]], s.tbs)}</div></div>
+    <div class="setrow"><div><b>Space between pages</b><span></span></div><div class="setctl">${segCtl("es_gap", [["s", "Tight"], ["m", "Normal"], ["l", "Roomy"]], s.gap)}</div></div>
+    <div class="setrow"><div><b>Page numbers</b><span>Small numbers under each page</span></div><div class="setctl">${segCtl("es_pn", [["1", "Show"], ["0", "Hide"]], s.pnum ? "1" : "0")}</div></div>
+    <div class="setrow"><div><b>Straighten highlighter</b><span>Straight strokes snap neatly onto the line of text</span></div><div class="setctl">${segCtl("es_hs", [["1", "On"], ["0", "Off"]], s.hlsnap ? "1" : "0")}</div></div>
+    <div class="setrow"><div><b>Hold to select words</b><span>Press and hold on PDF text with any tool, then slide to select more</span></div><div class="setctl">${segCtl("es_hold", [["1", "On"], ["0", "Off"]], s.hold ? "1" : "0")}</div></div>
     <div class="setrow"><div><b>Toolbar position</b><span>Put the floating toolbar back at the top</span></div><div class="setctl"><button class="btn btn-ghost" id="es_tb">Reset</button></div></div>`);
   const put = (k, val) => { const n = SET(); n[k] = val; store.set("eluSet", n); onChange && onChange(); };
   paintTpls(sh, s.paper);
@@ -259,6 +272,7 @@ function settingsSheet(onChange) {
   $$("[data-pap]", sh).forEach(b => b.onclick = () => { put("paper", b.dataset.pap); $$("[data-pap]", sh).forEach(x => x.classList.toggle("on", x === b)); paintTpls(sh, b.dataset.pap); });
   const seg2 = (id, k, conv) => $$("#" + id + " button", sh).forEach(b => b.onclick = () => { $$("#" + id + " button", sh).forEach(x => x.setAttribute("aria-pressed", x === b)); put(k, conv(b.dataset.v)); });
   seg2("es_scroll", "scroll", v => v); seg2("es_sm", "smooth", v => +v); seg2("es_ol", "outline", v => v === "1");
+  seg2("es_desk", "desk", v => v); seg2("es_tbs", "tbs", v => v); seg2("es_gap", "gap", v => v); seg2("es_pn", "pnum", v => v === "1"); seg2("es_hs", "hlsnap", v => v === "1"); seg2("es_hold", "hold", v => v === "1");
   $("#es_tb", sh).onclick = () => { store.set("eluTb", null); onChange && onChange(); nbToast("Toolbar moved back to the top."); };
 }
 
@@ -272,13 +286,13 @@ async function editor(v, id) {
   const st = SET(), S = {tool: store.get("eluTool", "pen"), sub: Object.assign({eraser: "stroke", lasso: "free", laser: "line"}, store.get("eluSub", {})), pen: store.get("eluPen", PENS[0]), hl: store.get("eluHl", HLS[0]), size: store.get("eluSize", 3), zoom: 1, ro: false, pencil: store.get("nbPencil", false), penDown: false, ruler: null, sel: null, emoji: null};
   const tool = (k, l) => `<button class="eltb-b" data-tool="${k}" aria-label="${l}" title="${l}">${I[k]}</button>`;
   v.innerHTML = `<div class="elw" id="elw">
-    <div class="eltop"><a class="iconbtn chb" href="#eluna" aria-label="Eluna library">${I.back}</a><div class="eltabs" id="el_tabs">${tabs.map(t => `<div class="eltab${t === id ? " on" : ""}"><a href="#eluna/${t}"><i class="eltabi">${kinds[t] ? I.pdf : I.book}</i>${esc(metas[t])}</a><button data-close="${t}" aria-label="Close tab">${I.x}</button></div>`).join("")}<button class="eltabadd" id="el_tabadd" aria-label="Open another notebook">${I.plus}</button></div>
+    <div class="eltop"><a class="iconbtn chb" href="#eluna" aria-label="Eluna library" title="Library">${I.back}</a><a class="iconbtn chb elhm" href="#home" aria-label="Home" title="Home">${ICON.home}</a><div class="eltabs" id="el_tabs">${tabs.map(t => `<div class="eltab${t === id ? " on" : ""}"><a href="#eluna/${t}"><i class="eltabi">${kinds[t] ? I.pdf : I.book}</i>${esc(metas[t])}</a><button data-close="${t}" aria-label="Close tab">${I.x}</button></div>`).join("")}<button class="eltabadd" id="el_tabadd" aria-label="Open another notebook">${I.plus}</button></div>
       <button class="iconbtn chb" id="el_ro" aria-label="Read-only mode" title="Read-only mode">${I.read}</button><button class="iconbtn chb" id="el_side" aria-label="Page outline" title="Page outline">${I.side}</button><button class="iconbtn chb" id="el_more" aria-label="More">${I.more}</button></div>
     <div class="elbody"><aside class="elol" id="el_ol"${st.outline ? "" : " hidden"}><div class="elolh"><b>Pages</b><button class="iconbtn" id="el_addp2" aria-label="Add page">${I.plus}</button></div><div class="elolist" id="el_olist"></div></aside>
       <div class="elscroll${st.scroll === "h" ? " horiz" : ""}" id="el_scroll"><div class="elpages" id="el_pages"></div></div>
-      <canvas class="elfx" id="el_fx"></canvas><div class="elruler" id="el_ruler" hidden><div class="elrn">${Array.from({length: 13}, (_, k) => `<b style="left:${k * 50}px">${k}</b>`).join("")}</div><em class="elrdeg" id="el_rdeg">0°</em><i></i><span>drag · two fingers or the handle to turn</span></div><div class="elselbox" id="el_sel" hidden><i class="h"></i><div class="elselbar"><button data-a="shot" class="elshotb">📸 Screenshot</button><button data-a="del">Delete</button><button data-a="dup">Duplicate</button><button data-a="col">Colour</button></div></div>
-      <div class="eltb" id="el_tb"><span class="eltb-grip" id="el_grip">${I.grip}</span>${tool("pen", "Pen")}${tool("hl", "Highlighter")}${tool("eraser", "Eraser")}${tool("lasso", "Lasso")}${tool("laser", "Laser pointer")}${tool("text", "Text box")}${tool("select", "Select text in PDFs")}<span class="eltb-sep"></span><button class="eltb-b" id="el_emo" aria-label="Medical stickers" title="Medical stickers">${I.emoji}</button><button class="eltb-b" id="el_img" aria-label="Insert photo" title="Insert photo">${I.image}</button><button class="eltb-b" id="el_rul" aria-label="Ruler" title="Ruler">${I.ruler}</button><button class="eltb-b" id="el_sty" aria-label="Apple Pencil and S Pen" title="Apple Pencil & S Pen">${I.stylus}</button><span class="eltb-sep"></span><button class="eltb-c" id="el_col" aria-label="Colour and size"><i></i></button><button class="eltb-b" id="el_undo" aria-label="Undo">${I.undo}</button><button class="eltb-b" id="el_redo" aria-label="Redo">${I.redo}</button><input type="file" id="el_imgf" accept="image/*" hidden><input type="file" id="el_pdff" accept="application/pdf,.pdf" multiple hidden></div>
-      <div class="elpop" id="el_pop" hidden></div><button class="ellzc" id="el_lzc" hidden>✕ Clear laser</button>
+      <canvas class="elfx" id="el_fx"></canvas><div class="elruler" id="el_ruler" hidden><div class="elrn">${Array.from({length: 13}, (_, k) => `<b style="left:${k * 50}px">${k}</b>`).join("")}</div><em class="elrdeg" id="el_rdeg">0°</em><i></i><span>drag · two fingers or the handle to turn</span></div><div class="elselbox" id="el_sel" hidden><i class="h"></i><div class="elselbar"><button data-a="shot" class="elshotb">📸 Screenshot</button><button data-a="copy">Copy</button><button data-a="cut">Cut</button><button data-a="dup">Duplicate</button><button data-a="col">Colour</button><button data-a="del">Delete</button></div></div>
+      <div class="eltb" id="el_tb"><span class="eltb-grip" id="el_grip">${I.grip}</span>${tool("pen", "Pen")}${tool("hl", "Highlighter")}${tool("eraser", "Eraser")}${tool("lasso", "Lasso")}${tool("laser", "Laser pointer")}${tool("text", "Text box")}${tool("select", "Select text in PDFs")}<span class="eltb-sep"></span><button class="eltb-b" id="el_emo" aria-label="Medical stickers" title="Medical stickers">${I.emoji}</button><button class="eltb-b" id="el_img" aria-label="Insert photo" title="Insert photo">${I.image}</button><button class="eltb-b" id="el_rul" aria-label="Ruler" title="Ruler">${I.ruler}</button><button class="eltb-b" id="el_palm" aria-label="Palm rejection" title="Palm rejection — only the pen writes">${I.palm}</button><button class="eltb-b" id="el_sty" aria-label="Apple Pencil and S Pen" title="Apple Pencil & S Pen">${I.stylus}</button><span class="eltb-sep"></span><button class="eltb-c" id="el_col" aria-label="Colour and size"><i></i></button><button class="eltb-b" id="el_undo" aria-label="Undo">${I.undo}</button><button class="eltb-b" id="el_redo" aria-label="Redo">${I.redo}</button><input type="file" id="el_imgf" accept="image/*" hidden><input type="file" id="el_pdff" accept="application/pdf,.pdf" multiple hidden></div>
+      <div class="elpop" id="el_pop" hidden></div><button class="elpaste" id="el_paste" hidden></button><button class="ellzc" id="el_lzc" hidden>✕ Clear laser</button>
       <div class="elnav"><button id="el_zo" aria-label="Zoom out">−</button><span id="el_zv">100%</span><button id="el_zi" aria-label="Zoom in">+</button><span class="elnsep"></span><input id="el_pg" inputmode="numeric" aria-label="Go to page"><span id="el_pn">/ 1</span></div>
       <div class="elro" id="el_robadge" hidden>${I.read} Read-only · <button class="lnk" id="el_edit">Edit</button></div></div></div>`;
   const W = $("#elw"), scroll = $("#el_scroll"), wrap = $("#el_pages"), fx = $("#el_fx"), dpr = () => Math.min(window.devicePixelRatio || 1, 2.5);
@@ -376,7 +390,7 @@ async function editor(v, id) {
     $("#mo_pdf", sh).onclick = () => exportPdf(book, t => $("#mo_m", sh).textContent = t);
     $("#mo_add", sh).onclick = () => { sh.remove(); addSheet(i + 1); }; $("#mo_page", sh).onclick = () => { sh.remove(); pageMenu(i); };
     const o1 = $("#mo_ocr1", sh); if (o1) o1.onclick = () => { sh.remove(); runOcr([i]); }; const oa = $("#mo_ocra", sh); if (oa) oa.onclick = () => { sh.remove(); runOcr(book.pages.map((_, k) => k)); };
-    $("#mo_set", sh).onclick = () => { sh.remove(); settingsSheet(() => { scroll.classList.toggle("horiz", horiz()); $("#el_ol").hidden = !SET().outline; tbPlace(); relayout(); }); }; };
+    $("#mo_set", sh).onclick = () => { sh.remove(); settingsSheet(() => { look(); scroll.classList.toggle("horiz", horiz()); $("#el_ol").hidden = !SET().outline; tbPlace(); relayout(); }); }; };
   /* ---- floating toolbar: drag the grip anywhere; it turns vertical near the left or right edge ---- */
   const tb = $("#el_tb");
   const tbPlace = () => { const p = store.get("eluTb", null), r = W.getBoundingClientRect(); if (!p) { tb.classList.remove("vert"); tb.style.left = "50%"; tb.style.top = "58px"; tb.style.transform = "translateX(-50%)"; return; }
@@ -402,17 +416,18 @@ async function editor(v, id) {
     $$("[data-lzh]", pop).forEach(b => b.onclick = () => { store.set("eluLzHold", +b.dataset.lzh); if (lpts.some(p => p.live)) laserOff(); subPop(k); }); };
   const sweepTexts = () => pages.forEach(P => { const keep = P.pg.texts.filter(t => t.emoji || (t.t || "").trim()); if (keep.length !== P.pg.texts.length) { P.pg.texts = keep; texts(P); save(); } });
   const udUpd = () => { $("#el_undo").classList.toggle("dis", !undo.length); $("#el_redo").classList.toggle("dis", !redo.length); };
-  const tbUpd = () => { sweepTexts(); udUpd(); { const lb = $('[data-tool="lasso"]', tb); lb.innerHTML = S.sub.lasso === "rect" ? I.lassoRect : I.lasso; } $$("[data-tool]", tb).forEach(b => b.classList.toggle("on", b.dataset.tool === S.tool)); $("#el_col i").style.backgroundColor = S.tool === "hl" ? S.hl : S.pen; W.dataset.tool = S.tool; W.classList.toggle("selmode", S.tool === "select"); if (S.tool !== "lasso") clearSel(); };
-  $$("[data-tool]", tb).forEach(b => b.onclick = () => { const k = b.dataset.tool; if (S.tool === k && ["eraser", "lasso", "laser", "pen", "hl"].includes(k)) { pop.hidden ? subPop(k) : closePop(); return; } closePop(); if (S.tool === "laser" && k !== "laser") laserFade(); store.set("eluTool", S.tool = k); tbUpd(); if (["eraser", "lasso", "laser"].includes(k)) subPop(k); if (k === "select") { textLayers(true); nbToast(book.pages.some(p => p.type === "pdf") ? "Press and hold a word to select it — then Define, Google or highlight." : "Select text works on PDFs (and pages after OCR)."); } });
+  const tbUpd = () => { sweepTexts(); udUpd(); $("#el_palm").classList.toggle("on", !!S.pencil); { const lb = $('[data-tool="lasso"]', tb); lb.innerHTML = S.sub.lasso === "rect" ? I.lassoRect : I.lasso; } $$("[data-tool]", tb).forEach(b => b.classList.toggle("on", b.dataset.tool === S.tool)); $("#el_col i").style.backgroundColor = S.tool === "hl" ? S.hl : S.pen; W.dataset.tool = S.tool; W.classList.toggle("selmode", S.tool === "select"); if (S.tool !== "lasso") clearSel(); };
+  $$("[data-tool]", tb).forEach(b => b.onclick = () => { const k = b.dataset.tool; if (S.tool === k && ["eraser", "lasso", "laser", "pen", "hl"].includes(k)) { pop.hidden ? subPop(k) : closePop(); return; } closePop(); S.paste = false; pasteUpd(); if (S.tool === "laser" && k !== "laser") laserFade(); store.set("eluTool", S.tool = k); tbUpd(); if (["eraser", "lasso", "laser"].includes(k)) subPop(k); if (k === "select") { textLayers(true); nbToast(book.pages.some(p => p.type === "pdf") ? "Press and hold a word to select it — then Define, Google or highlight." : "Select text works on PDFs (and pages after OCR)."); } });
   $("#el_col").onclick = () => pop.hidden ? colPop() : closePop();
   /* Apple Pencil and S Pen options */
   const penPop = () => { const p = PEN(), row = (k, l, d) => `<button class="elsw${p[k] ? " on" : ""}" data-pk="${k}"><span><b>${l}</b><small>${d}</small></span><i></i></button>`;
     popAt($("#el_sty"), `<div class="elpoph">Apple Pencil & S Pen</div><div class="elsub">${row("palm", "Pen only — palm rejection", "the pen writes; fingers scroll, zoom and hold to select words")}${row("pressure", "Pressure", "press harder for thicker lines")}${row("hover", "Hover preview", "see the nib before it touches (Pencil hover, S Pen air view)")}</div>
       <div class="elpoph" style="margin-top:10px">S Pen button / barrel button</div><div class="elseg">${[["eraser", "Eraser"], ["lasso", "Lasso"], ["hl", "Highlighter"], ["laser", "Laser"]].map(([v, l]) => `<button class="${p.btn === v ? "on" : ""}" data-pb="${v}">${l}</button>`).join("")}</div>
       <small class="muted elpnote">Hold the S Pen button (or flip a stylus to its eraser end) while writing. On iPad, Apple Pencil double-tap and squeeze are reserved for Apple apps — use the toolbar instead.</small>`);
-    $$("[data-pk]", pop).forEach(b => b.onclick = () => { const n = PEN(); n[b.dataset.pk] = !n[b.dataset.pk]; store.set("eluPen2", n); if (b.dataset.pk === "palm") setPencil(n.palm && S.pencil); penPop(); });
+    $$("[data-pk]", pop).forEach(b => b.onclick = () => { const n = PEN(); n[b.dataset.pk] = !n[b.dataset.pk]; store.set("eluPen2", n); if (b.dataset.pk === "palm") { setPencil(n.palm); $("#el_palm").classList.toggle("on", n.palm); } penPop(); });
     $$("[data-pb]", pop).forEach(b => b.onclick = () => { const n = PEN(); n.btn = b.dataset.pb; store.set("eluPen2", n); penPop(); }); };
   $("#el_sty").onclick = () => pop.hidden ? penPop() : closePop();
+  $("#el_palm").onclick = () => { const on = !S.pencil, n = PEN(); setPencil(on); n.palm = on; store.set("eluPen2", n); $("#el_palm").classList.toggle("on", on); closePop(); nbToast(on ? "Palm rejection on — only the pen writes; fingers scroll, zoom and hold to select" : "Palm rejection off — fingers can write too"); };
   window.__eluUd = udUpd; COMM.unsub.push(() => { if (window.__eluUd === udUpd) delete window.__eluUd; });
   $("#el_undo").onclick = () => restore(undo, redo); $("#el_redo").onclick = () => restore(redo, undo);
   $("#el_emo").onclick = () => { popAt($("#el_emo"), `<div class="elemo">${STICKERS.map(e => `<button data-e="${e}">${e}</button>`).join("")}</div><small class="muted">Tap a sticker, then tap the page</small>`); $$("[data-e]", pop).forEach(b => b.onclick = () => { S.emoji = b.dataset.e; closePop(); nbToast(`Tap the page to place ${S.emoji}`); }); };
@@ -454,6 +469,41 @@ async function editor(v, id) {
   const LZH = () => store.get("eluLzHold", 3000);
   const laserOff = () => { clearTimeout(lzT); if (S.sub.laser === "dot") return laserFade(); const h = LZH(); if (h > 0) lzT = setTimeout(laserFade, h); kick(); };
   lzc.onclick = laserFade;
+  const pasteUpd = () => { const b = $("#el_paste"); if (!b) return; b.hidden = !CLIP; b.classList.toggle("on", !!S.paste); b.textContent = S.paste ? "Tap where it should go  ✕" : "📋 Paste"; };
+  $("#el_paste").onclick = () => { S.paste = !S.paste; closePop(); clearSel(); pasteUpd(); };
+  const doPaste = async (P, x, y) => { const c = JSON.parse(JSON.stringify(CLIP)), b = c.b, dx = x - (b.x0 + b.x1) / 2, dy = y - (b.y0 + b.y1) / 2; pushU(P.pg);
+    c.sts.forEach(st => { for (let i = 0; i < st.p.length; i += 3) { st.p[i] += dx; st.p[i + 1] += dy; } }); c.ims.forEach(o => { o.id = uid(); o.x += dx; o.y += dy; }); c.txs.forEach(q => { q.id = uid(); q.x += dx; q.y += dy; });
+    P.pg.strokes.push(...c.sts); P.pg.imgs.push(...c.ims); P.pg.texts.push(...c.txs); await ready(c.ims.map(o => o.src)); ink(P); texts(P); save(); S.paste = false; pasteUpd();
+    store.set("eluTool", S.tool = "lasso"); tbUpd(); selectItems(P, c.sts, c.ims, c.txs); nbToast("Pasted — drag it to move, even onto another page"); };
+  /* dropped over a different page: the selection moves to that page */
+  const dropTo = () => { const s = S.sel; if (!s) return; const bx = selBox.getBoundingClientRect(), [P2, r2] = pageAt(bx.left + bx.width / 2, bx.top + bx.height / 2); if (!P2 || P2 === s.P) return;
+    const r1 = s.P.el.getBoundingClientRect(), k1 = r1.width / s.P.pg.w, k2 = r2.width / P2.pg.w, f = k1 / k2, cx = x => (x * k1 + r1.left - r2.left) / k2, cy = y => (y * k1 + r1.top - r2.top) / k2; pushU(P2.pg);
+    s.sts.forEach(st => { for (let i = 0; i < st.p.length; i += 3) { st.p[i] = cx(st.p[i]); st.p[i + 1] = cy(st.p[i + 1]); } st.w *= f; }); s.ims.forEach(o => { o.x = cx(o.x); o.y = cy(o.y); o.w *= f; o.h *= f; }); s.txs.forEach(q => { q.x = cx(q.x); q.y = cy(q.y); q.w *= f; q.size = (q.size || 30) * f; });
+    s.P.pg.strokes = s.P.pg.strokes.filter(x => !s.sts.includes(x)); s.P.pg.imgs = s.P.pg.imgs.filter(x => !s.ims.includes(x)); s.P.pg.texts = s.P.pg.texts.filter(x => !s.txs.includes(x));
+    P2.pg.strokes.push(...s.sts); P2.pg.imgs.push(...s.ims); P2.pg.texts.push(...s.txs); [s.P, P2].forEach(P => { ink(P); texts(P); }); S.sel = {P: P2, sts: s.sts, ims: s.ims, txs: s.txs}; showSel(); nbToast("Moved to page " + (pages.indexOf(P2) + 1)); };
+  /* highlighter: a roughly straight stroke straightens when the pen lifts; over PDF text it snaps to the line of text */
+  const look = () => { const s = SET(); W.dataset.desk = s.desk; W.dataset.tbs = s.tbs; W.dataset.gap = s.gap; W.classList.toggle("nopn", !s.pnum); };
+  const hlSnap = (P, st) => { if (!SET().hlsnap) return; const p = st.p, n = p.length / 3; if (n < 2) return; const x0 = p[0], y0 = p[1], x1 = p[p.length - 3], y1 = p[p.length - 2], len = Math.hypot(x1 - x0, y1 - y0); if (len < 24) return;
+    let dev = 0, sy = 0; for (let i = 0; i < p.length; i += 3) { dev = Math.max(dev, Math.abs((x1 - x0) * (y0 - p[i + 1]) - (x0 - p[i]) * (y1 - y0)) / len); sy += p[i + 1]; } if (dev > Math.max(22, len * 0.14)) return;   /* a circle or scribble stays as drawn */
+    const ym = sy / n, xa = Math.min(x0, x1), xb = Math.max(x0, x1);
+    if (Math.abs(y1 - y0) < len * 0.26) { const L = P.el.querySelector(".eltl"), r = P.el.getBoundingClientRect(), k = P.pg.w / r.width;
+      const sp = L ? [...L.querySelectorAll("span")].map(q => q.getBoundingClientRect()).filter(q => q.width > 1 && q.height > 1).map(q => ({x0: (q.left - r.left) * k, x1: (q.right - r.left) * k, y0: (q.top - r.top) * k, y1: (q.bottom - r.top) * k})).filter(q => q.x1 > xa && q.x0 < xb && ym > q.y0 - st.w / 2 && ym < q.y1 + st.w / 2) : [];
+      if (sp.length) { const best = sp.reduce((a, q) => Math.abs((q.y0 + q.y1) / 2 - ym) < Math.abs((a.y0 + a.y1) / 2 - ym) ? q : a), cy = (best.y0 + best.y1) / 2, row = sp.filter(q => Math.abs((q.y0 + q.y1) / 2 - cy) < (best.y1 - best.y0) * 0.5);
+        const ty0 = Math.min(...row.map(q => q.y0)), ty1 = Math.max(...row.map(q => q.y1)), lx = Math.max(xa, Math.min(...row.map(q => q.x0))), rx = Math.min(xb, Math.max(...row.map(q => q.x1))), yc = +((ty0 + ty1) / 2).toFixed(1);
+        if (rx > lx) { st.w = (ty1 - ty0) * 1.1; st.p = [+lx.toFixed(1), yc, .5, +rx.toFixed(1), yc, .5]; st.flat = 1; return; } }
+      st.p = [x0, +ym.toFixed(1), .5, x1, +ym.toFixed(1), .5]; return; }
+    st.p = [x0, y0, .5, x1, y1, .5]; };
+  /* paste a picture from the clipboard (Ctrl/Cmd+V), or the last lasso copy */
+  const onPaste = async e => { const n = e.target && e.target.closest ? e.target : null; if (n && n.closest("input,textarea,[contenteditable]")) return; const f = [...((e.clipboardData && e.clipboardData.files) || [])].find(x => /^image\//.test(x.type));
+    if (!f) { if (CLIP) { S.paste = true; pasteUpd(); } return; } e.preventDefault();
+    try { const im = await commImage(f, 2000, 0.86, 1500000), img = new Image(); img.src = im.data; await img.decode(); const P = pages[curPage()]; pushU(P.pg); const w = Math.min(P.pg.w * 0.6, img.naturalWidth * 1.2), o = {id: uid(), src: im.data, x: (P.pg.w - w) / 2, y: P.pg.h * 0.15, w, h: w * img.naturalHeight / img.naturalWidth};
+      P.pg.imgs.push(o); await ready([o.src]); ink(P); save(); store.set("eluTool", S.tool = "lasso"); tbUpd(); selectItems(P, [], [o], []); nbToast("Picture pasted — drag it where you like"); } catch (er) { nbToast("Could not paste that picture"); } };
+  addEventListener("paste", onPaste);
+  /* stop the browser zooming the whole app while a notebook is open (iPad Safari, Android Chrome) */
+  const vm = document.querySelector('meta[name="viewport"]'), vm0 = vm ? vm.content : ""; if (vm) vm.content = vm0.replace(/,?\s*(maximum-scale|minimum-scale|user-scalable)=[^,]*/g, "") + ", maximum-scale=1, user-scalable=no";
+  const noG = e => e.preventDefault(), noT = e => { if (e.touches && e.touches.length > 1) e.preventDefault(); }, noW = e => { if (e.ctrlKey && !e.target.closest(".elscroll")) e.preventDefault(); };
+  ["gesturestart", "gesturechange", "gestureend"].forEach(g => document.addEventListener(g, noG, {passive: false})); document.addEventListener("touchmove", noT, {passive: false}); addEventListener("wheel", noW, {passive: false});
+  COMM.unsub.push(() => { if (vm) vm.content = vm0; ["gesturestart", "gesturechange", "gestureend"].forEach(g => document.removeEventListener(g, noG)); document.removeEventListener("touchmove", noT); removeEventListener("wheel", noW); });
   const wxy = e => { const w = W.getBoundingClientRect(); return {x: e.clientX - w.left, y: e.clientY - w.top}; };
   /* ---- lasso selection: strokes, photos, text and stickers can be moved, duplicated, recoloured or deleted ---- */
   const selBox = $("#el_sel");
@@ -480,16 +530,22 @@ async function editor(v, id) {
     $("#ss_save", sh).onclick = () => { saveBlob(blob, `${book.title.replace(/[^\w -]+/g, "").slice(0, 40) || "Eluna"} p${pi + 1}.png`); m("Saved — check Downloads / Files."); };
     $("#ss_put", sh).onclick = async () => { sh.remove(); pushU(P.pg); const w = x1 - x0, h = y1 - y0, o = {id: uid(), src: url, x: Math.min(P.pg.w - w, x0 + 40), y: Math.min(P.pg.h - h, y0 + 40), w, h}; P.pg.imgs.push(o); await ready([url]); ink(P); save(); selectItems(P, [], [o], []); };
     $("#ss_new", sh).onclick = async () => { sh.remove(); const pg = newPage("blank", "white"), w = Math.min(PW * 0.84, (x1 - x0) * 1.6), h = w * (y1 - y0) / (x1 - x0); pg.imgs.push({id: uid(), src: url, x: (PW - w) / 2, y: 120, w, h: Math.min(h, A4H - 200)}); book.pages.splice(pi + 1, 0, pg); await ready([url]); build(); save(); setTimeout(() => goPage(pi + 1), 80); nbToast("Added on a new page"); }; };
-  selBox.addEventListener("pointerdown", e => { const s = S.sel; if (!s || e.target.closest(".elselbar")) return; e.preventDefault(); e.stopPropagation(); pushU(s.P.pg); const r = s.P.el.getBoundingClientRect(), k = s.P.pg.w / r.width, x0 = e.clientX, y0 = e.clientY, resize = e.target.classList.contains("h"), b0 = itemBox(s.P, s.sts, s.ims, s.txs);
+  selBox.addEventListener("pointerdown", e => { const s = S.sel; if (!s || e.target.closest(".elselbar")) return; e.preventDefault(); e.stopPropagation(); pushU(s.P.pg); const r = s.P.el.getBoundingClientRect(), k = s.P.pg.w / r.width, x0 = e.clientX, y0 = e.clientY, sl0 = scroll.scrollLeft, st0 = scroll.scrollTop, resize = e.target.classList.contains("h"), b0 = itemBox(s.P, s.sts, s.ims, s.txs);
     const orig = {sts: s.sts.map(st => st.p.slice()), ims: s.ims.map(o => ({...o})), txs: s.txs.map(t => ({...t}))};
-    const mv = ev => { const dx = (ev.clientX - x0) * k, dy = (ev.clientY - y0) * k;
+    let lastEv = null, eraf = 0; selBox.classList.add("drag");
+    const mv = ev => { lastEv = ev; const dx = (ev.clientX - x0 + scroll.scrollLeft - sl0) * k, dy = (ev.clientY - y0 + scroll.scrollTop - st0) * k;
       if (resize) { const f = Math.max(0.15, ((b0.x1 - b0.x0) + dx) / (b0.x1 - b0.x0)); s.sts.forEach((st, n) => { const o = orig.sts[n]; for (let i = 0; i < o.length; i += 3) { st.p[i] = b0.x0 + (o[i] - b0.x0) * f; st.p[i + 1] = b0.y0 + (o[i + 1] - b0.y0) * f; } });
         s.ims.forEach((o, n) => { const q = orig.ims[n]; o.x = b0.x0 + (q.x - b0.x0) * f; o.y = b0.y0 + (q.y - b0.y0) * f; o.w = q.w * f; o.h = q.h * f; }); s.txs.forEach((t, n) => { const q = orig.txs[n]; t.x = b0.x0 + (q.x - b0.x0) * f; t.y = b0.y0 + (q.y - b0.y0) * f; t.size = (q.size || 30) * f; t.w = q.w * f; }); }
       else { s.sts.forEach((st, n) => { const o = orig.sts[n]; for (let i = 0; i < o.length; i += 3) { st.p[i] = o[i] + dx; st.p[i + 1] = o[i + 1] + dy; } }); s.ims.forEach((o, n) => { o.x = orig.ims[n].x + dx; o.y = orig.ims[n].y + dy; }); s.txs.forEach((t, n) => { t.x = orig.txs[n].x + dx; t.y = orig.txs[n].y + dy; }); }
       ink(s.P); texts(s.P); showSel(); };
-    const up = () => { removeEventListener("pointermove", mv); removeEventListener("pointerup", up); save(); }; addEventListener("pointermove", mv); addEventListener("pointerup", up); });
+    const edge = () => { if (lastEv && !resize) { const sr = scroll.getBoundingClientRect(), H = horiz(), p = H ? lastEv.clientX : lastEv.clientY, lo = H ? sr.left : sr.top, hi = H ? sr.right : sr.bottom, sp = p > hi - 70 ? 14 : p < lo + 70 ? -14 : 0; if (sp) { if (H) scroll.scrollLeft += sp; else scroll.scrollTop += sp; mv(lastEv); } } eraf = requestAnimationFrame(edge); }; eraf = requestAnimationFrame(edge);
+    const up = () => { cancelAnimationFrame(eraf); selBox.classList.remove("drag"); removeEventListener("pointermove", mv); removeEventListener("pointerup", up); if (!resize) dropTo(); save(); }; addEventListener("pointermove", mv); addEventListener("pointerup", up); });
   selBox.querySelector(".elselbar").onclick = e => { const a = (e.target.closest("[data-a]") || {}).dataset; if (!a || !a.a || !S.sel) return; const s = S.sel;
-    if (a.a === "shot") { shot(s.P, s.poly ? polyBox(s.poly) : itemBox(s.P, s.sts, s.ims, s.txs), s.poly); return; } pushU(s.P.pg);
+    if (a.a === "shot") { shot(s.P, s.poly ? polyBox(s.poly) : itemBox(s.P, s.sts, s.ims, s.txs), s.poly); return; }
+    if (a.a === "copy" || a.a === "cut") { CLIP = JSON.parse(JSON.stringify({sts: s.sts, ims: s.ims, txs: s.txs, b: itemBox(s.P, s.sts, s.ims, s.txs)}));
+      if (a.a === "cut") { pushU(s.P.pg); s.P.pg.strokes = s.P.pg.strokes.filter(x => !s.sts.includes(x)); s.P.pg.imgs = s.P.pg.imgs.filter(x => !s.ims.includes(x)); s.P.pg.texts = s.P.pg.texts.filter(x => !s.txs.includes(x)); clearSel(); ink(s.P); texts(s.P); save(); }
+      pasteUpd(); nbToast((a.a === "cut" ? "Cut" : "Copied") + " — tap 📋 Paste, then tap where it should go (any page, any notebook)"); return; }
+    pushU(s.P.pg);
     if (a.a === "del") { s.P.pg.strokes = s.P.pg.strokes.filter(x => !s.sts.includes(x)); s.P.pg.imgs = s.P.pg.imgs.filter(x => !s.ims.includes(x)); s.P.pg.texts = s.P.pg.texts.filter(x => !s.txs.includes(x)); clearSel(); }
     else if (a.a === "dup") { const c = o => JSON.parse(JSON.stringify(o)), sh = (o, k) => { if (o.p) for (let i = 0; i < o.p.length; i += 3) { o.p[i] += k; o.p[i + 1] += k; } else { o.x += k; o.y += k; } return o; };
       const ns = s.sts.map(x => sh(c(x), 40)), ni = s.ims.map(x => sh(c(x), 40)), nt = s.txs.map(x => sh(c(x), 40)); s.P.pg.strokes.push(...ns); s.P.pg.imgs.push(...ni); s.P.pg.texts.push(...nt); S.sel = {P: s.P, sts: ns, ims: ni, txs: nt}; }
@@ -507,21 +563,27 @@ async function editor(v, id) {
   /* ---- press and hold on PDF text, with any tool, to select a word ---- */
   let lp = null;
   const lpClear = e => { if (lp && (!e || e.pointerId === lp.id)) { clearTimeout(lp.t); lp = null; } };
-  const wordAt = async (cx, cy) => { const [P] = pageAt(cx, cy); if (!P || !P.b) return; if (cur) cancel();
-    if (!P.tl) await textLayer(P); const L = P.el.querySelector(".eltl"); L.style.pointerEvents = "auto"; L.style.zIndex = 20;
-    let rg = null; try { if (document.caretRangeFromPoint) rg = document.caretRangeFromPoint(cx, cy); else if (document.caretPositionFromPoint) { const p = document.caretPositionFromPoint(cx, cy); if (p) { rg = document.createRange(); rg.setStart(p.offsetNode, p.offset); } } } catch (e) {}
-    L.style.pointerEvents = L.style.zIndex = "";
-    if (!rg || !L.contains(rg.startContainer) || rg.startContainer.nodeType !== 3) { if (P.pg.type !== "paper") nbToast(L.dataset.empty ? "This page is a scan — More ⋯ › Recognise text, then hold on a word." : "Hold right on a word to select it."); return; }
+  const caretAt = (cx, cy, L) => { L.style.pointerEvents = "auto"; L.style.zIndex = 20; let rg = null;
+    try { if (document.caretRangeFromPoint) rg = document.caretRangeFromPoint(cx, cy); else if (document.caretPositionFromPoint) { const p = document.caretPositionFromPoint(cx, cy); if (p) { rg = document.createRange(); rg.setStart(p.offsetNode, p.offset); } } } catch (e) {}
+    L.style.pointerEvents = L.style.zIndex = ""; return rg && L.contains(rg.startContainer) && rg.startContainer.nodeType === 3 ? rg : null; };
+  const extendSel = (cx, cy) => { const d = S.selDrag, rg = caretAt(cx, cy, d.L); if (!rg) return; const tn = rg.startContainer, s = tn.data, wc = /[\p{L}\p{N}'’-]/u; let o = Math.min(rg.startOffset, s.length);
+    const fwd = tn === d.tn ? o >= d.a : !!(d.tn.compareDocumentPosition(tn) & Node.DOCUMENT_POSITION_FOLLOWING), sel = getSelection();
+    try { if (fwd) { while (o < s.length && wc.test(s[o])) o++; sel.setBaseAndExtent(d.tn, d.a, tn, o); } else { while (o > 0 && wc.test(s[o - 1])) o--; sel.setBaseAndExtent(d.tn, d.b, tn, o); } } catch (e) {} };
+  const wordAt = async (cx, cy, pid) => { if (S.penDown && pid == null) return; const [P] = pageAt(cx, cy); if (!P || !P.b) return; if (cur) cancel();
+    if (!P.tl) await textLayer(P); const L = P.el.querySelector(".eltl"), rg = caretAt(cx, cy, L);
+    if (!rg) { if (P.pg.type !== "paper") nbToast(L.dataset.empty ? "This page is a scan — More ⋯ › Recognise text, then hold on a word." : "Hold right on a word to select it."); return; }
     const tn = rg.startContainer, s = tn.data, wc = /[\p{L}\p{N}'’-]/u; let a = Math.min(rg.startOffset, s.length), b = a;
     while (a > 0 && wc.test(s[a - 1])) a--; while (b < s.length && wc.test(s[b])) b++; if (a === b) return;
-    const r2 = document.createRange(); r2.setStart(tn, a); r2.setEnd(tn, b); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r2); try { navigator.vibrate && navigator.vibrate(10); } catch (e) {} };
+    const r2 = document.createRange(); r2.setStart(tn, a); r2.setEnd(tn, b); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r2); S.selDrag = pid == null ? null : {id: pid, P, L, tn, a, b}; try { navigator.vibrate && navigator.vibrate(10); } catch (e) {} };
   const down = e => {
     closePop();
-    if (e.pointerType === "pen" && !S.pencil && PEN().palm) { setPencil(true); nbToast("Pen detected — palm rejection on: the pen writes, fingers scroll and zoom"); }
-    if (S.ro || S.tool === "select") return;   /* native scrolling and text selection */
+    if (e.pointerType === "pen" && !S.pencil && PEN().palm) { setPencil(true); $("#el_palm").classList.toggle("on", true); nbToast("Pen detected — palm rejection on: the pen writes, fingers scroll and zoom"); }
+    if (S.ro || S.tool === "select") { if (e.pointerType === "touch") { touches.set(e.pointerId, {x: e.clientX, y: e.clientY}); if (touches.size === 2) { const [a, b] = [...touches.values()]; pinch = {d: Math.hypot(a.x - b.x, a.y - b.y), z: S.zoom}; } } return; }   /* native scrolling and text selection */
     if (e.target.closest && e.target.closest(".elt:not(.emo)")) return;   /* typing in a text box */
+    if (S.paste && CLIP) { const [P, r] = pageAt(e.clientX, e.clientY); if (!P || !P.i) return; e.preventDefault(); const [x, y] = toPage(P, r, e.clientX, e.clientY); doPaste(P, x, y); return; }
     { const gs = getSelection(), an = gs.anchorNode; if (gs.rangeCount && an && (an.nodeType === 1 ? an : an.parentElement).closest(".eltl")) gs.removeAllRanges(); }
-    lpClear(); if (["pen", "hl", "eraser", "lasso"].includes(S.tool) && touches.size < 1) { const x0 = e.clientX, y0 = e.clientY; lp = {id: e.pointerId, x: x0, y: y0, t: setTimeout(() => { lp = null; wordAt(x0, y0); }, 520)}; }
+    const palmy = e.pointerType === "touch" && (Math.max(e.width || 0, e.height || 0) > 34 || performance.now() - (S.lastPen || 0) < 1500);
+    lpClear(); if (SET().hold && !S.penDown && !palmy && !S.paste && touches.size < 1 && (e.pointerType === "pen" ? ["hl", "lasso"] : ["pen", "hl", "eraser", "lasso"]).includes(S.tool)) { const x0 = e.clientX, y0 = e.clientY; lp = {id: e.pointerId, x: x0, y: y0, t: setTimeout(() => { lp = null; wordAt(x0, y0, e.pointerId); }, 520)}; }
     const finger = e.pointerType === "touch", drawer = !finger || (!S.pencil && touches.size === 0);
     if (finger) { touches.set(e.pointerId, {x: e.clientX, y: e.clientY}); cancelAnimationFrame(fling); if (S.penDown) return;
       if (!drawer || touches.size > 1) { if (cur && touches.size > 1) cancel(); if (touches.size === 2) { const [a, b] = [...touches.values()]; pinch = {d: Math.hypot(a.x - b.x, a.y - b.y), z: S.zoom}; } lastT = performance.now(); return; } }
@@ -533,7 +595,10 @@ async function editor(v, id) {
     const [x, y] = toPage(P, r, e.clientX, e.clientY);
     if (S.emoji) { pushU(P.pg); const t2 = {id: uid(), emoji: 1, t: S.emoji, x: x - 30, y: y - 30, w: 90, size: 60}; P.pg.texts.push(t2); P.el.querySelector(".elx").appendChild(textEl(P, t2)); S.emoji = null; save(); return; }
     if (t === "text") { pushU(P.pg); const t2 = {id: uid(), x: Math.min(x, P.pg.w - 300), y, w: Math.min(640, P.pg.w - x - 40), t: "", size: Math.round(20 + S.size * 4), c: S.pen}; P.pg.texts.push(t2); const d = textEl(P, t2); P.el.querySelector(".elx").appendChild(d); lpClear(); d.focus(); setTimeout(() => { if (document.activeElement !== d) d.focus(); }, 60); return; }
-    if (t === "lasso") { clearSel(); cur = {lasso: 1, P, r, start: wxy(e)}; lassoPath = [wxy(e)]; kick(); return; }
+    if (t === "lasso") { const hi = [...P.pg.imgs].reverse().find(o => x >= o.x && x <= o.x + o.w && y >= o.y && y <= o.y + o.h), ht = hi ? null : [...P.pg.texts].reverse().find(q => x >= q.x && x <= q.x + (q.emoji ? (q.size || 60) * 1.3 : q.w) && y >= q.y && y <= q.y + (q.size || 30) * 1.6);
+      if (hi || ht) { selectItems(P, [], hi ? [hi] : [], ht ? [ht] : []); return; }
+      clearSel(); cur = {lasso: 1, P, r, start: wxy(e)}; lassoPath = [wxy(e)]; kick(); return; }
+    if (t === "hl" && P.pg.type !== "paper" && !P.tl) textLayer(P);
     pushU(P.pg);
     if (t === "eraser" && S.sub.eraser === "stroke") { cur = {P, r, erase: 1}; eraseAt(P, x, y); ring = {...wxy(e), r: (12 + S.size * 3) * r.width / P.pg.w}; kick(); return; }
     const pr = e.pointerType === "pen" && PEN().pressure ? e.pressure || .5 : .55, px = t === "eraser", w = px ? (S.sub.eraser === "precision" ? 8 : 34 + S.size * 6) : t === "hl" ? 18 + S.size * 6 : 1.2 + S.size * 1.15;
@@ -543,8 +608,11 @@ async function editor(v, id) {
   };
   cvSize.d = () => Math.min(dpr(), 4096 / Math.max(1, pw()));
   const move = e => {
+    if (S.selDrag && e.pointerId === S.selDrag.id) { e.preventDefault(); extendSel(e.clientX, e.clientY); return; }
+    if (e.pointerType === "pen") S.lastPen = performance.now();
     if (lp && e.pointerId === lp.id && Math.hypot(e.clientX - lp.x, e.clientY - lp.y) > 9) lpClear();
     if (e.pointerType === "pen" && !cur && e.buttons === 0 && !S.ro && PEN().hover && ["pen", "hl"].includes(S.tool)) { const p = wxy(e); hover = {...p, c: S.tool === "hl" ? S.hl : S.pen, r: (S.tool === "hl" ? 9 + S.size * 3 : 1 + S.size) * sc()}; kick(); clearTimeout(hoverT); hoverT = setTimeout(() => { hover = null; kick(); }, 400); return; }
+    if (e.pointerType === "touch" && touches.has(e.pointerId) && (S.ro || S.tool === "select")) { touches.set(e.pointerId, {x: e.clientX, y: e.clientY}); if (touches.size === 2 && pinch) { e.preventDefault(); const [a, b] = [...touches.values()]; setZoom(pinch.z * Math.hypot(a.x - b.x, a.y - b.y) / pinch.d, (a.x + b.x) / 2, (a.y + b.y) / 2); } return; }
     if (e.pointerType === "touch" && touches.has(e.pointerId)) { const t0 = touches.get(e.pointerId), now = performance.now(); touches.set(e.pointerId, {x: e.clientX, y: e.clientY});
       if (!cur || touches.size > 1) { if (S.penDown) return; if (touches.size === 2 && pinch) { const [a, b] = [...touches.values()]; setZoom(pinch.z * Math.hypot(a.x - b.x, a.y - b.y) / pinch.d, (a.x + b.x) / 2, (a.y + b.y) / 2); }
         scroll.scrollLeft -= (e.clientX - t0.x) / touches.size; scroll.scrollTop -= (e.clientY - t0.y) / touches.size; vel = {x: (e.clientX - t0.x) / Math.max(1, now - lastT), y: (e.clientY - t0.y) / Math.max(1, now - lastT)}; lastT = now; return; } }
@@ -562,7 +630,7 @@ async function editor(v, id) {
   };
   const cancel = () => { if (!cur) return; const P = cur.P; if (cur.st || cur.erase) undo.pop(); cur = null; ring = null; lassoPath = null; kick(); if (P) ink(P); };
   const up = e => {
-    lpClear(e);
+    lpClear(e); if (S.selDrag && e.pointerId === S.selDrag.id) { S.selDrag = null; if (e.pointerType === "pen") S.penDown = false; touches.delete(e.pointerId); return; }
     if (e.pointerType === "touch") { touches.delete(e.pointerId); if (touches.size < 2) pinch = null;
       if (!cur && !touches.size && !S.penDown && vel && Math.hypot(vel.x, vel.y) > .25) { let vx = vel.x * 16, vy = vel.y * 16; const stp = () => { scroll.scrollLeft -= vx; scroll.scrollTop -= vy; vx *= .94; vy *= .94; if (Math.hypot(vx, vy) > .4) fling = requestAnimationFrame(stp); }; fling = requestAnimationFrame(stp); } vel = 0; if (!cur) return; }
     if (e.pointerType === "pen") S.penDown = false;
@@ -573,9 +641,14 @@ async function editor(v, id) {
     if (c.erase) { save(); return; }
     if (c.st.t === "pen" && e.clientX != null && !c.snap) { const [x, y] = toPage(c.P, c.r, e.clientX, e.clientY), p = c.st.p; if (Math.abs(x - p[p.length - 3]) + Math.abs(y - p[p.length - 2]) > .5) p.push(+x.toFixed(1), +y.toFixed(1), p[p.length - 1]); }
     if (c.st.t === "pen") c.st.e = 1;   /* finished: redraw so the end tapers too */
+    if (c.st.t === "hl") hlSnap(c.P, c.st);
     c.P.pg.strokes.push(c.st); ink(c.P);
     save();
   };
+  /* no system text selection or long-press menu while writing — only the select tool, read-only mode and text boxes select */
+  const selOK = e => { const n = e.target && (e.target.nodeType === 1 ? e.target : e.target.parentElement); return S.ro || S.tool === "select" || (n && n.closest(".elt")); };
+  scroll.addEventListener("selectstart", e => { if (!selOK(e)) e.preventDefault(); });
+  scroll.addEventListener("contextmenu", e => { if (!selOK(e)) e.preventDefault(); });
   scroll.addEventListener("pointerdown", down); scroll.addEventListener("pointermove", move, {passive: false}); scroll.addEventListener("pointerup", up);
   scroll.addEventListener("pointercancel", e => { if (e.pointerType === "pen") S.penDown = false; touches.delete(e.pointerId); lpClear(e); if (cur) { if (cur.st) up(e); else { cur = null; ring = null; lassoPath = null; laserOff(); } } });
   scroll.addEventListener("wheel", e => { if (e.ctrlKey) { e.preventDefault(); setZoom(S.zoom * (e.deltaY < 0 ? 1.1 : .9), e.clientX, e.clientY); } }, {passive: false});
@@ -590,10 +663,10 @@ async function editor(v, id) {
   const onKey = e => { if (e.target.closest("input,textarea,[contenteditable]")) return; if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") { e.preventDefault(); e.shiftKey ? restore(redo, undo) : restore(undo, redo); } else if (e.key === "Delete" && S.sel) selBox.querySelector('[data-a="del"]').click(); };
   const onResize = () => { clearTimeout(onResize.t); onResize.t = setTimeout(() => { relayout(); tbPlace(); rulDraw(); }, 160); };
   addEventListener("keydown", onKey); addEventListener("resize", onResize);
-  COMM.unsub.push(() => { removeEventListener("keydown", onKey); removeEventListener("resize", onResize); io.disconnect(); clearTimeout(saveT); DB.put("books", book).then(() => thumbFor(book)).catch(() => {}); delete E.highlightSelection; });
+  COMM.unsub.push(() => { removeEventListener("paste", onPaste); removeEventListener("keydown", onKey); removeEventListener("resize", onResize); io.disconnect(); clearTimeout(saveT); DB.put("books", book).then(() => thumbFor(book)).catch(() => {}); delete E.highlightSelection; });
   /* ---- go ---- */
   await ready(book.pages.flatMap(p => [p.bg, ...p.imgs.map(i => i.src)]));
-  build(); tbUpd(); tbPlace(); navUpd();
+  S.paste = false; look(); build(); tbUpd(); tbPlace(); navUpd(); pasteUpd();
   if (book.pages.some(p => p.type === "pdf")) pdfjs().catch(e => nbToast(e.message));
 }
 
@@ -681,6 +754,19 @@ body.inel .rail{display:none!important}body.inel{overflow:hidden}
 .elsw{flex-direction:row!important;align-items:center!important;justify-content:space-between;gap:12px}.elsw>span{display:flex;flex-direction:column;gap:1px}.elsw>i{flex:none;width:38px;height:22px;border-radius:99px;background:var(--line);position:relative;transition:background .2s}.elsw>i::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .25s cubic-bezier(.3,1.5,.5,1)}.elsw.on{box-shadow:none!important;background:none!important}.elsw.on>i{background:#7c3aed}.elsw.on>i::after{transform:translateX(16px)}
 .elseg{display:flex;gap:3px;padding:3px;border-radius:12px;background:var(--panel2)}.elseg button{flex:1;border:0;background:none;color:var(--ink);font:600 12.5px var(--ui-font);padding:7px 4px;border-radius:9px;cursor:pointer}.elseg button.on{background:var(--panel);box-shadow:0 2px 6px -2px rgba(0,0,0,.3);color:#7c3aed}.elpnote{display:block;margin-top:10px;font-size:11.5px;line-height:1.4;max-width:270px}
 .ellzc{position:absolute;left:50%;bottom:calc(64px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:9;border:0;border-radius:99px;padding:9px 18px;font:700 13px var(--ui-font);color:#fff;background:linear-gradient(135deg,#ff5a4f,#e11d48);box-shadow:0 10px 24px -10px rgba(225,29,72,.8);cursor:pointer;animation:elpopin .2s ease-out}.ellzc:active{transform:translateX(-50%) scale(.94)}
+.elw{touch-action:none}.eltabs{touch-action:pan-x}.elolist{touch-action:pan-y}.elpop,.elselbar{touch-action:pan-x pan-y}
+.elw.selmode .elscroll,.elw.ro .elscroll{touch-action:pan-x pan-y!important}
+.elw[data-desk="warm"]{background:#ece6da}.elw[data-desk="lav"]{background:#e9e6f6}.elw[data-desk="dark"]{background:#14171d}:root[data-mode="dark"] .elw[data-desk="warm"]{background:#221f1a}:root[data-mode="dark"] .elw[data-desk="lav"]{background:#1d1b29}
+.elw[data-tbs="s"] .eltb-b,.elw[data-tbs="s"] .eltb-c{width:33px;height:33px}.elw[data-tbs="s"] .eltb-b svg{width:18px;height:18px}.elw[data-tbs="l"] .eltb-b,.elw[data-tbs="l"] .eltb-c{width:50px;height:50px}.elw[data-tbs="l"] .eltb-b svg{width:27px;height:27px}.elw[data-tbs="l"] .eltb-c i{width:28px;height:28px}
+.elw[data-gap="s"] .elpages{gap:8px}.elw[data-gap="l"] .elpages{gap:44px}.elw.nopn .elpn{display:none}
+.elhead .elhome{flex:none}.eltop .elhm{flex:none}@media (max-width:600px){.eltop .elhm{display:none}}
+.elfab{position:fixed;right:22px;bottom:calc(26px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:8px;padding:0 22px 0 16px;height:56px;border:0;border-radius:20px;color:#fff;font:800 15px var(--ui-font);background:linear-gradient(140deg,#818cf8,#7c3aed 55%,#c026d3);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 16px 32px -12px rgba(124,58,237,.75);cursor:pointer;transition:transform .25s cubic-bezier(.3,1.5,.5,1),box-shadow .25s;animation:elpopin .35s cubic-bezier(.2,.9,.3,1.2)}.elfab svg{width:24px;height:24px;stroke-width:2.4}.elfab:hover{transform:translateY(-2px)}.elfab:active{transform:scale(.94)}
+@media (max-width:860px){.elfab{bottom:calc(88px + env(safe-area-inset-bottom));right:16px}}
+.elnewm{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}.elnewm button{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:14px;border-radius:18px;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-align:left;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;animation:foldIn .35s both}.elnewm button:nth-child(2){animation-delay:40ms}.elnewm button:nth-child(3){animation-delay:80ms}.elnewm button:nth-child(4){animation-delay:120ms}
+.elnewm button:hover{transform:translateY(-2px);border-color:#a78bfa;box-shadow:0 12px 24px -16px rgba(124,58,237,.6)}.elnewm i{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;color:#fff;background:linear-gradient(140deg,var(--a),var(--b));box-shadow:0 8px 16px -8px var(--b);margin-bottom:6px}.elnewm i svg{width:24px;height:24px}.elnewm b{font:700 15px var(--ui-font)}.elnewm small{font-size:12.5px;color:var(--muted);line-height:1.35}
+.elpaste{position:absolute;left:50%;bottom:calc(64px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:9;border:0;border-radius:99px;padding:10px 20px;font:700 13.5px var(--ui-font);color:#fff;background:linear-gradient(135deg,#6366f1,#7c3aed);box-shadow:0 12px 26px -10px rgba(124,58,237,.8);cursor:pointer;animation:elpopin .2s ease-out}.elpaste.on{background:#111827;box-shadow:0 0 0 3px rgba(139,92,246,.5),0 12px 26px -10px rgba(0,0,0,.6)}.elpaste:active{transform:translateX(-50%) scale(.95)}.ellzc{bottom:calc(112px + env(safe-area-inset-bottom))}
+.elselbox.drag{border-style:dashed;background:rgba(139,92,246,.12)}.elselbar{max-width:min(92vw,560px);overflow-x:auto;scrollbar-width:none}
+.elw,.elscroll{-webkit-touch-callout:none}
 .elemo{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;margin-bottom:6px}.elemo button{font-size:24px;height:40px;border:0;background:none;border-radius:10px;cursor:pointer}.elemo button:hover{background:var(--panel2)}
 .elnav{position:absolute;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:8;display:flex;align-items:center;gap:2px;padding:4px 8px;border-radius:99px;background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:0 8px 22px -10px rgba(0,0,0,.45);font:700 12.5px var(--ui-font)}
 .elnav button{width:30px;height:30px;border:0;border-radius:50%;background:none;color:var(--ink);font-size:18px;cursor:pointer;transition:background .15s,transform .2s}.elnav button:hover{background:var(--panel2)}.elnav button:active{transform:scale(.88)}.elnav input{width:38px;text-align:center;border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--ink);font:700 13px var(--ui-font);padding:4px}.elnsep{width:1px;height:18px;background:var(--line);margin:0 6px}
