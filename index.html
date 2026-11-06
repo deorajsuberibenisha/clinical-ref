@@ -20092,7 +20092,10 @@ function nbToast(t) { let el = $("#nbtoast"); if (!el) { el = document.createEle
 /* topic page buttons: a real PDF file (works on iPad), or open the topic as notebook pages to write on */
 async function topicToPdf(id) { const t = TOPIC_BY[id]; if (!t) return; nbToast("Making the PDF…"); const imgs = await nbRenderDoc(topicBlocks(t), t.n);
   const book = {title: t.n, pages: imgs.map(src => nbPage("blank", src))}; const blob = await nbExportPdf(book); const r = await nbSharePdf(blob, t.n + " - Bhutan Clinical Reference"); if (r === "saved") nbToast("PDF saved — check Downloads / Files"); }
-async function nbFromBlocks(blocks, title, label) { nbToast("Preparing pages to write on…"); const imgs = await nbRenderDoc(blocks, label || title); const book = {id: nbId(), title, created: Date.now(), updated: Date.now(), pages: imgs.map(src => nbPage("blank", src))}; await nbDB.put(book); go("#nb/" + book.id); }
+/* Eluna (eluna.js) is loaded only when it is opened */
+const elunaLoad = () => window.Eluna && window.Eluna.mount ? Promise.resolve(window.Eluna) : (elunaLoad.p = elunaLoad.p || new Promise((ok, no) => { const s = document.createElement("script"); s.src = "eluna.js"; s.onload = () => ok(window.Eluna); s.onerror = () => { elunaLoad.p = null; no(new Error("You are offline and Eluna has not been downloaded yet.")); }; document.head.appendChild(s); }));
+async function nbFromBlocks(blocks, title, label) { return elunaLoad().then(E => E.fromBlocks(blocks, title, label)); }
+async function nbFromBlocksOld(blocks, title, label) { nbToast("Preparing pages to write on…"); const imgs = await nbRenderDoc(blocks, label || title); const book = {id: nbId(), title, created: Date.now(), updated: Date.now(), pages: imgs.map(src => nbPage("blank", src))}; await nbDB.put(book); go("#nb/" + book.id); }
 
 /* ---- notebook library ---- */
 function nbLibView() {
@@ -20307,9 +20310,10 @@ function bindNbEditor(id) {
   let bar = null, word = "", t = 0;
   const hide = () => { if (bar) bar.classList.remove("on"); };
   const make = () => { const b = document.createElement("div"); b.className = "wlook"; b.setAttribute("role", "toolbar");
-    b.innerHTML = `<button data-w="def">📖<span>Define</span></button><button data-w="g">${SI('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>')}<span>Google</span></button><button data-w="app">${SI('<path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3z"/><path d="M5 18a3 3 0 0 1 3-3h11"/>')}<span>In app</span></button><button data-w="ai">${ICON.spark}<span>Ask AI</span></button><button data-w="copy">${SI('<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>')}<span>Copy</span></button>`;
+    b.innerHTML = `<button data-w="hl" hidden>🖍️<span>Highlight</span></button><button data-w="def">📖<span>Define</span></button><button data-w="g">${SI('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>')}<span>Google</span></button><button data-w="app">${SI('<path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3z"/><path d="M5 18a3 3 0 0 1 3-3h11"/>')}<span>In app</span></button><button data-w="ai">${ICON.spark}<span>Ask AI</span></button><button data-w="copy">${SI('<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>')}<span>Copy</span></button>`;
     b.addEventListener("pointerdown", e => e.preventDefault());   /* keep the selection while tapping */
     b.addEventListener("click", e => { const a = (e.target.closest("[data-w]") || {}).dataset; if (!a || !a.w) return; const w = word; hide();
+      if (a.w === "hl") { if (window.Eluna && Eluna.highlightSelection) Eluna.highlightSelection(); return; }
       if (a.w === "def") defineSheet(w); else if (a.w === "g") window.open("https://www.google.com/search?q=" + encodeURIComponent(w), "_blank", "noopener");
       else if (a.w === "app") { getSelection().removeAllRanges(); go("#search/" + encodeURIComponent(w)); }
       else if (a.w === "ai") { store.set("aiQ", `Explain “${w}” in a clinical context (Bhutan, adult and child).`); getSelection().removeAllRanges(); go("#ai"); }
@@ -20318,9 +20322,9 @@ function bindNbEditor(id) {
   const show = () => { const s = getSelection(), txt = s ? String(s).replace(/\s+/g, " ").trim() : "";
     if (!txt || txt.length > 60 || !s.rangeCount) return hide();
     const n = s.anchorNode && (s.anchorNode.nodeType === 1 ? s.anchorNode : s.anchorNode.parentElement);
-    if (!n || !n.closest("#view") || n.closest("input,textarea,[contenteditable],.nbwrap,.composer,.sheet")) return hide();
+    if (!n || !n.closest("#view") || n.closest("input,textarea,[contenteditable],.nbwrap,.composer,.sheet,.elt")) return hide();
     const r = s.getRangeAt(0).getBoundingClientRect(); if (!r.width && !r.height) return hide();
-    word = txt; bar = bar || make(); bar.classList.add("on");
+    word = txt; bar = bar || make(); bar.classList.add("on"); bar.querySelector('[data-w="hl"]').hidden = !n.closest(".eltl");
     const bw = bar.offsetWidth || 300, below = r.bottom + 14 + 52 < innerHeight;   /* below the word: the phone's own copy menu sits above it */
     bar.style.left = Math.max(8, Math.min(innerWidth - bw - 8, r.left + r.width / 2 - bw / 2)) + "px"; bar.style.top = (below ? r.bottom + 12 : Math.max(8, r.top - 58)) + "px"; };
   document.addEventListener("selectionchange", () => { clearTimeout(t); t = setTimeout(show, 260); });
@@ -21286,7 +21290,7 @@ function bindRoom(arg) {
 }
 
 /* ===== Clinical Hub page: Tools, Emergency, Reference and AI as icon folders (#hub, #hub/tools …) ===== */
-const NAV_DESC = {nb: "View, highlight and export PDFs", calc: "Scores, doses, formulas", fluids: "Maintenance, bolus, electrolytes", equip: "Sizes, kits, oxygen", growth: "WHO charts, BP centiles", notes: "Your own notes", protocols: "Step-by-step emergency care", flow: "Algorithms at a glance", picu: "Paediatric intensive care", nicu: "Newborn intensive care", vent: "Settings and troubleshooting", drugs: "NEML doses, forms, international", cond: "Conditions A–Z", criteria: "Diagnostic criteria", stg: "Bhutan STG and national guidelines", glossary: "Terms and abbreviations", aware: "Public health information", ai: "Ask the app, ChatGPT, Claude, Gemini"};
+const NAV_DESC = {eluna: "Notebooks, PDFs, Pencil, OCR", nb: "View, highlight and export PDFs", calc: "Scores, doses, formulas", fluids: "Maintenance, bolus, electrolytes", equip: "Sizes, kits, oxygen", growth: "WHO charts, BP centiles", notes: "Your own notes", protocols: "Step-by-step emergency care", flow: "Algorithms at a glance", picu: "Paediatric intensive care", nicu: "Newborn intensive care", vent: "Settings and troubleshooting", drugs: "NEML doses, forms, international", cond: "Conditions A–Z", criteria: "Diagnostic criteria", stg: "Bhutan STG and national guidelines", glossary: "Terms and abbreviations", aware: "Public health information", ai: "Ask the app, ChatGPT, Claude, Gemini"};
 function hubPageView(g) {
   const groups = g ? NAV_GROUPS.filter(x => x[0] === g) : NAV_GROUPS;
   if (!groups.length) return hubPageView();
@@ -21645,7 +21649,13 @@ function bindFeed() {
     $$("[data-img]", list).forEach(b => b.onclick = () => imgViewer(b.querySelector("img").src, ""));
     $$("[data-like]", list).forEach(b => b.onclick = async () => { const id = b.dataset.like, on = !liked[id], n = b.querySelector("b"); liked[id] = on; b.classList.toggle("on", on); b.classList.remove("pop"); void b.offsetWidth; if (on) b.classList.add("pop"); n.textContent = Math.max(0, +n.textContent + (on ? 1 : -1));
       try { const lr = posts.doc(id).collection("likes").doc(me), inc = COMM.fb.firestore.FieldValue.increment(on ? 1 : -1), batch = COMM.db.batch(); if (on) batch.set(lr, {ts: COMM.fb.firestore.FieldValue.serverTimestamp()}); else batch.delete(lr); batch.update(posts.doc(id), {likes: inc}); await batch.commit(); } catch (e) { liked[id] = !on; commMsg(commErr(e), true); } });
-    $$("[data-share]", list).forEach(b => b.onclick = async () => { const m = docs.find(x => x.id === b.dataset.share).data(), t = `${m.text}\n\n— shared from Bhutan Clinical Reference`; try { if (navigator.share) await navigator.share({text: t}); else { await navigator.clipboard.writeText(t); b.querySelector("b").textContent = "Copied"; } } catch (e) {} });
+    /* share the post itself: its text and, when there is one, its photo as a real image file (not just a link) */
+    $$("[data-share]", list).forEach(b => b.onclick = async () => { const m = docs.find(x => x.id === b.dataset.share).data(), t = `${m.text || ""}\n\n— ${m.anon ? "Anonymous" : m.name}, shared from Bhutan Clinical Reference`.trim();
+      try {
+        if (m.img && navigator.share) { const blob = await (await fetch(m.img)).blob(), file = new File([blob], "health-post.jpg", {type: blob.type || "image/jpeg"});
+          if (navigator.canShare && navigator.canShare({files: [file], text: t})) { await navigator.share({files: [file], text: t, title: "Health post"}); return; } }
+        if (navigator.share) await navigator.share({text: t}); else { await navigator.clipboard.writeText(t); b.querySelector("b").textContent = "Copied"; }
+      } catch (e) { if (e && e.name !== "AbortError") { try { await navigator.clipboard.writeText(t); b.querySelector("b").textContent = "Copied"; } catch (e2) {} } } });
     $$("[data-com]", list).forEach(b => b.onclick = () => toggleComs(b.dataset.com));
     $$("[data-more]", list).forEach(b => b.onclick = () => moreSheet(b.dataset.more));
     open.forEach(id => { const el = $("#fc_" + id); if (el && !el.dataset.on) loadComs(id); });
@@ -22202,10 +22212,10 @@ const NAV = [
 ];
 /* categories: each opens like a tab to show its icons, then folds away again */
 /* bottom bar: Home · Clinical Hub · Chat · Settings. The Hub holds four sections, in this order: Tools, Emergency, Reference, AI */
-NAV.push(["chat", "Chat", ICON.chat], ["hub", "Clinical Hub", ICON.list], ["foryou", "For You", ICON.heart], ["nb", "PDF notes", ICON.note]);
+NAV.push(["chat", "Chat", ICON.chat], ["hub", "Clinical Hub", ICON.list], ["foryou", "For You", ICON.heart], ["eluna", "Eluna notes", ICON.note]);
 const NAV_PIN = ["home", "search", "foryou", "chat", "settings"];
 const NAV_GROUPS = [
-  ["tools", "Tools", ICON.ruler, ["calc", "nb", "fluids", "equip", "growth", "notes"]],
+  ["tools", "Tools", ICON.ruler, ["calc", "eluna", "fluids", "equip", "growth", "notes"]],
   ["emerg", "Emergency", ICON.siren, ["protocols", "flow", "picu", "nicu", "vent"]],
   ["ref", "Reference", ICON.book, ["drugs", "cond", "criteria", "stg", "glossary", "aware"]],
   ["ai", "AI", ICON.spark, ["ai"]]
@@ -22216,7 +22226,7 @@ const NAV_BY = Object.fromEntries(NAV.map(n => [n[0], n]));
 const NAV_LOOK = {picu: [192, IC2.vent], nicu: [322, IC2.baby], criteria: [268, IC2.score],home: [205, ICON.home], search: [215, ICON.search], drugs: [150, IC2.drugs], cond: [262, IC2.med], stg: [28, IC2.guide], glossary: [42, ICON.book], protocols: [354, IC2.emerg], flow: [328, ICON.flow], calc: [222, IC2.calc], vent: [188, IC2.vent], fluids: [200, IC2.drop], equip: [16, IC2.equip], growth: [128, IC2.growth], notes: [48, ICON.note], account: [174, ICON.chat], settings: [236, ICON.gear], ask: [276, ICON.spark], aware: [338, IC2.heart], ai: [292, ICON.ai], "ai/chatgpt": [160, ICON.aiGpt], "ai/claude": [18, ICON.aiClaude], "ai/gemini": [224, ICON.aiGemini], "ai/google": [210, ICON.google]};
 const GRP_LOOK = {ref: [28, ICON.book], emerg: [354, ICON.siren], tools: [222, ICON.ruler], ai: [276, ICON.spark], me: [174, IC2.people], hub: [250, HUB_ICON]};
 const FY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.2-9.6A5 5 0 0 1 12 6.3a5 5 0 0 1 9.2 5.1C19.5 16.4 12 21 12 21z"/><path d="M9.5 12.5h5M12 10v5"/></svg>';
-Object.assign(NAV_LOOK, {chat: [174, ICON.chat], hub: [250, HUB_ICON], ai: [276, ICON.spark], foryou: [345, FY_ICON], nb: [222, '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3z"/><path d="M5 18a3 3 0 0 1 3-3h11"/><path d="m9.5 11.5 4-4 1.5 1.5-4 4H9.5z"/></svg>']});
+Object.assign(NAV_LOOK, {chat: [174, ICON.chat], hub: [250, HUB_ICON], ai: [276, ICON.spark], foryou: [345, FY_ICON], eluna: [265, '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3z"/><path d="M5 18a3 3 0 0 1 3-3h11"/><path d="m9.5 11.5 4-4 1.5 1.5-4 4H9.5z"/></svg>']});
 const nic = (look, cls = "") => look ? `<span class="nic ic-tile ${cls}" style="--h:${look[0]}" aria-hidden="true">${look[1]}</span>` : "";
 const navIc = id => NAV_LOOK[id] ? nic(NAV_LOOK[id]) : NAV_BY[id][2];
 const navBtn = id => { const [i, t] = NAV_BY[id]; return `<button class="nav" data-nav="${i}">${navIc(i)}<span>${t}</span></button>`; };
@@ -22383,6 +22393,7 @@ function route() {
   document.body.dataset.view = view;
   document.body.classList.toggle("inroom", view === "chat" && !!arg);
   document.body.classList.toggle("innb", view === "nb" && !!arg);
+  document.body.classList.toggle("inel", view === "eluna" && !!arg);
   { const g = document.getElementById("gq"); if (g && view !== "search" && document.activeElement !== g) g.value = ""; }
   if (view === "home" || view === "home2") { v.innerHTML = homeView2(); bindHome(); }
   else if (view === "homeold") { v.innerHTML = homeView(); bindHome(); }
@@ -22402,7 +22413,8 @@ function route() {
   else if (view === "ask") { v.innerHTML = askView(arg); bindAsk(arg); }
   else if (view === "ai") { v.innerHTML = aiView(arg); bindAi(arg); }
   else if (view === "hub") { v.innerHTML = hubPageView(arg); }
-  else if (view === "nb") { if (arg) { v.innerHTML = nbEditorView(); bindNbEditor(arg); } else { v.innerHTML = nbLibView(); bindNbLib(); } }
+  else if (view === "nb") { location.replace("#eluna"); return; }
+  else if (view === "eluna") { v.innerHTML = `<div class="card muted" style="margin:20px">Opening Eluna…</div>`; const want = location.hash; elunaLoad().then(E => { if (location.hash === want) E.mount(v, arg); }).catch(e => { v.innerHTML = `<div class="warn" style="margin:20px">Eluna could not open: ${esc(e.message || e)}</div>`; }); }
   else if (view === "foryou") { v.innerHTML = feedView(arg); bindFeed(arg); }
   else if (view === "notes") { v.innerHTML = notesView(); bindNotesView(); }
   else if (view === "settings") { v.innerHTML = settingsView() + `<div class="card ht-replay"><b>App tour</b><p class="small muted" style="margin:4px 0 10px">A one-minute guided tour of search, drugs, conditions, tools and settings.</p><button class="btn" id="ht_again">Show the app tour</button></div>`; bindSettings(); $("#ht_again").onclick = () => helpTour(); }
