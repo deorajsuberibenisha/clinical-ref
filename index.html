@@ -1759,6 +1759,26 @@ body.fullpg .rail{display:none!important}
 @media (min-width:640px){body .h2-mods{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:639px){body .h2-mods>:last-child:nth-child(odd){grid-column:1/-1}}
 </style>
+<style id="searchfix">/* iPad/iPhone Safari: no native square frame, focus square or grey tap box on search boxes */
+input[type=search]{-webkit-appearance:none;appearance:none;box-shadow:none;outline:none;background-clip:padding-box}
+input[type=search]:focus,input[type=search]:focus-visible{outline:none!important}
+input[type=search]::-webkit-search-decoration,input[type=search]::-webkit-search-results-button,input[type=search]::-webkit-search-results-decoration{-webkit-appearance:none;display:none}
+.search,.search *,#ares a,#ares .di{-webkit-tap-highlight-color:transparent}
+/* app-wide polish: crisp text, instant taps (no double-tap zoom wait), no grey tap flash, soft press feedback */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+a,button,input,select,textarea,label,summary,[role=button],[onclick]{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.btn,.chip,.di,.fold,.fitem,.h2-spec,.h2-mod,.h2-q,.emtile,.mbtn{transition:transform .14s cubic-bezier(.3,.7,.4,1),background-color .18s,border-color .18s,box-shadow .18s}
+.btn:active,.chip:active,.di:active,.fold:active,.fitem:active,.h2-spec:active,.h2-mod:active,.h2-q:active,.emtile:active{transform:scale(.97)}
+@media (hover:none){.di:hover{border-color:var(--line)}}
+/* long lists render only what is on screen, so scrolling stays smooth */
+.dl>.di{content-visibility:auto;contain-intrinsic-size:auto 62px}
+::selection{background:color-mix(in srgb,var(--accent,#14b8a6) 30%,transparent)}
+/* soft fade when changing page (opacity only, so full-screen tools are never shifted) */
+#view.vin{animation:vin .2s ease-out}
+@keyframes vin{from{opacity:.35}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){#view.vin{animation:none}.btn:active,.chip:active,.di:active,.fold:active,.fitem:active,.h2-spec:active,.h2-mod:active,.h2-q:active,.emtile:active{transform:none}}
+</style>
 </head>
 <body>
 <div id="app"></div>
@@ -23571,6 +23591,7 @@ function route() {
   $$("[data-nav]").forEach(b => b.setAttribute("aria-current", b.dataset.nav === navId ? "page" : "false"));
   { const gid = navGroupOf(navId); $$(".ngrp").forEach(el => el.classList.toggle("cur", el.dataset.g === gid)); navSetGroup(gid, true); $$(".mbtn").forEach(b => b.setAttribute("aria-current", (b.dataset.mg ? (b.dataset.mg === "hub" ? !!gid || navId === "hub" : b.dataset.mg === gid) : b.dataset.nav === navId) ? "page" : "false")); mpopClose(); }
   const v = $("#view");
+  if (v && view !== "eluna") { v.classList.remove("vin"); void v.offsetWidth; v.classList.add("vin"); }
   document.body.dataset.view = view;
   document.body.classList.toggle("inroom", view === "chat" && !!arg);
   document.body.classList.toggle("innb", view === "nb" && !!arg);
