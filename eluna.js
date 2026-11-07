@@ -414,7 +414,7 @@ async function editor(v, id) {
   const st = SET(), S = {tool: store.get("eluTool", "pen"), sub: Object.assign({eraser: "stroke", lasso: "free", laser: "line"}, store.get("eluSub", {})), pen: store.get("eluPen", PENS[0]), hl: store.get("eluHl", HLS[0]), tape: store.get("eluTape", TAPES[0]), penk: store.get("eluPenK", ""), zw: null, zwDirty: 0, size: store.get("eluSize", 3), zoom: 1, ro: false, pencil: store.get("nbPencil", false), penDown: false, ruler: null, sel: null, emoji: null};
   const tool = (k, l) => `<button class="eltb-b" data-tool="${k}" aria-label="${l}" title="${l}">${I[k]}</button>`;
   v.innerHTML = `<div class="elw" id="elw">
-    <div class="eltop"><button class="iconbtn chb" onclick="goBack()" aria-label="Back to previous screen" title="Back to previous screen">${I.back}</button><a class="iconbtn chb" href="#eluna" aria-label="Eluna library" title="All notebooks">${I.book}</a><a class="iconbtn chb elhm" href="#home" aria-label="Home" title="Home">${ICON.home}</a><div class="eltabs" id="el_tabs">${tabs.map(t => `<div class="eltab${t === id ? " on" : ""}" draggable="true" data-tab="${t}"><a href="#eluna/${t}"><i class="eltabi">${kinds[t] ? I.pdf : I.book}</i>${esc(metas[t])}</a><button data-tab-left="${t}" aria-label="Move tab left" title="Move tab left">‹</button><button data-tab-right="${t}" aria-label="Move tab right" title="Move tab right">›</button><button data-close="${t}" aria-label="Close tab">${I.x}</button></div>`).join("")}<button class="eltabadd" id="el_tabadd" aria-label="Open another notebook">${I.plus}</button></div>
+    <div class="eltop"><button class="iconbtn chb elbk" onclick="goBack()" aria-label="Back" title="Back to where you came from">${I.back}</button><a class="iconbtn chb ellibb" href="#eluna" aria-label="Library" title="Library — all notebooks">${I.book}<span>Library</span></a><a class="iconbtn chb elhm" href="#home" aria-label="Home" title="Home">${ICON.home}</a><div class="eltabs" id="el_tabs">${tabs.map(t => `<div class="eltab${t === id ? " on" : ""}" draggable="true" data-tab="${t}"><a href="#eluna/${t}"><i class="eltabi">${kinds[t] ? I.pdf : I.book}</i>${esc(metas[t])}</a><button data-tab-left="${t}" aria-label="Move tab left" title="Move tab left">‹</button><button data-tab-right="${t}" aria-label="Move tab right" title="Move tab right">›</button><button data-close="${t}" aria-label="Close tab">${I.x}</button></div>`).join("")}<button class="eltabadd" id="el_tabadd" aria-label="Open another notebook">${I.plus}</button></div>
       <button class="iconbtn chb" id="el_find" aria-label="Search this notebook" title="Search this notebook (Ctrl/⌘ F)">${I.find}</button><button class="iconbtn chb" id="el_bmk" aria-label="Bookmark this page" title="Bookmark this page">${I.bmk}</button><button class="iconbtn chb" id="el_ro" aria-label="Read-only mode" title="Read-only mode">${I.read}</button><button class="iconbtn chb" id="el_side" aria-label="Page outline" title="Page outline">${I.side}</button><button class="iconbtn chb" id="el_more" aria-label="More">${I.more}</button></div>
     <div class="elbody"><aside class="elol" id="el_ol"${st.outline ? "" : " hidden"}><div class="elolh"><div class="elolt"><button data-ot="pages" class="on">Pages</button><button data-ot="toc">Outline</button></div><button class="iconbtn elbmf" id="el_bmf" aria-label="Show bookmarked pages only" title="Bookmarked pages only">${I.bmk}</button><button class="iconbtn" id="el_addp2" aria-label="Add page">${I.plus}</button></div><div class="elolist" id="el_olist"></div><div class="eltoc" id="el_toc" hidden></div></aside>
       <div class="elscroll${st.scroll === "h" ? " horiz" : ""}" id="el_scroll"><div class="elpages" id="el_pages"></div></div>
@@ -933,7 +933,10 @@ async function editor(v, id) {
     }
     if (cur && e.pointerType !== "touch") return;
     if (e.pointerType === "pen" && !S.pencil && PEN().palm) { setPencil(true); $("#el_palm").classList.toggle("on", true); nbToast("Pen detected — palm rejection on: the pen writes, fingers scroll and zoom"); }
-    if (S.ro || S.tool === "select") { if (e.pointerType === "touch") { touches.set(e.pointerId, {x: e.clientX, y: e.clientY}); if (touches.size === 2) { const [a, b] = [...touches.values()]; beginPinch(); } } return; }   /* native scrolling and text selection */
+    if (S.ro || S.tool === "select") { lpClear();
+      /* finger / pen: the app's own hold-to-select (one menu, one pair of handles) instead of the system's */
+      if (e.pointerType !== "mouse" && SET().hold && !(e.pointerType === "touch" && Math.max(e.width || 0, e.height || 0) > 72) && touches.size < 1) { const x0 = e.clientX, y0 = e.clientY, pid = e.pointerId; lp = {id: pid, x: x0, y: y0, t: setTimeout(() => { lp = null; wordAt(x0, y0, pid); }, 450)}; }
+      if (e.pointerType === "touch") { touches.set(e.pointerId, {x: e.clientX, y: e.clientY}); if (touches.size === 2) { const [a, b] = [...touches.values()]; beginPinch(); } } return; }   /* native scrolling and text selection */
     if (e.target.closest && e.target.closest(".elt:not(.emo)")) return;   /* typing in a text box */
     if (S.paste && CLIP) { const [P, r] = pageAt(e.clientX, e.clientY); if (!P || !P.i) return; e.preventDefault(); const [x, y] = toPage(P, r, e.clientX, e.clientY); doPaste(P, x, y); return; }
     { const gs = getSelection(), an = gs.anchorNode; if (gs.rangeCount && an && (an.nodeType === 1 ? an : an.parentElement).closest(".eltl")) gs.removeAllRanges(); }
@@ -1060,7 +1063,9 @@ async function editor(v, id) {
   };
   /* no system text selection or long-press menu while writing — only the select tool, read-only mode and text boxes select */
   const editable = n => n && n.closest(".elt:not(.emo),input,textarea,[contenteditable=true]");
-  const selOK = e => { const n = e.target && (e.target.nodeType === 1 ? e.target : e.target.parentElement); return editable(n) || (n && n.closest(".eltl") && (S.ro || S.tool === "select")); };
+  /* the system's own text selection only for a mouse (drag to select); touch and pen use the app's hold-to-select */
+  W.addEventListener("pointerdown", e => { S.lastPT = e.pointerType; }, true);
+  const selOK = e => { const n = e.target && (e.target.nodeType === 1 ? e.target : e.target.parentElement); return editable(n) || (n && n.closest(".eltl") && (S.ro || S.tool === "select") && S.lastPT === "mouse"); };
   W.addEventListener("selectstart", e => { if (!selOK(e)) e.preventDefault(); });
   W.addEventListener("contextmenu", e => { if (!selOK(e)) e.preventDefault(); });
   /* a resting palm must never start the system's long-press selection (iPad) */
@@ -1253,7 +1258,22 @@ async function editor(v, id) {
   /* ---- fit the whole page on screen, or back to page width ---- */
   const fitPage = () => { const P = pages[curPage()]; if (!P) return; const full = Math.max(0.4, Math.min(1, (scroll.clientHeight - 36) * P.pg.w / P.pg.h / Math.max(1, baseW()))); if (full > 0.98 && Math.abs(S.zoom - 1) < 0.02) return nbToast("The whole page is already on screen"); const z = Math.abs(S.zoom - full) < 0.02 ? 1 : full, r = scroll.getBoundingClientRect(); setZoom(z, r.left + r.width / 2, r.top + 10); setTimeout(() => goPage(curPage()), 60); nbToast(z === 1 ? "Page width" : "Whole page"); };
   $("#el_fit").onclick = fitPage;
-  COMM.unsub.push(() => { removeEventListener("pointerup", tgUp); removeEventListener("pointercancel", tgUp); removeEventListener("keydown", fKey); zwClose(); clearTimeout(hpAll.t); clearTimeout(fq.t); ftok++; });
+  /* ---- tabs: switching replaces the history entry, so Back leaves the notebooks instead of walking through every tab ---- */
+  const tabGo = href => { if (!href || href === location.hash) return; closePop(); try { location.replace(location.pathname + location.search + href); } catch (e) { location.hash = href; } };
+  tabStrip.addEventListener("click", e => { const a = e.target.closest && e.target.closest('a[href^="#eluna/"]'); if (!a || e.button) return; e.preventDefault(); tabGo(a.getAttribute("href")); });
+  pop.addEventListener("click", e => { const a = e.target.closest && e.target.closest('.eltabl a[href^="#eluna/"]'); if (!a) return; e.preventDefault(); tabGo(a.getAttribute("href")); });
+  const tabStep = d => { const hs = [...tabStrip.querySelectorAll(".eltab a")].map(a => a.getAttribute("href")), i = hs.indexOf("#eluna/" + id); if (hs.length > 1) tabGo(hs[(i + d + hs.length) % hs.length]); };
+  const tabKey = e => { const t = e.target; if (t && t.closest && (t.closest("input,textarea") || t.isContentEditable)) return;
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "]" || e.key === "}")) { e.preventDefault(); tabStep(1); } else if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "[" || e.key === "{")) { e.preventDefault(); tabStep(-1); }
+    else if (e.altKey && e.key === "ArrowRight") { e.preventDefault(); tabStep(1); } else if (e.altKey && e.key === "ArrowLeft") { e.preventDefault(); tabStep(-1); } };
+  addEventListener("keydown", tabKey);
+  requestAnimationFrame(() => { const on = tabStrip.querySelector(".eltab.on"); if (on) on.scrollIntoView({block: "nearest", inline: "nearest"}); });
+  /* ---- each notebook reopens at the page you left it on ---- */
+  const savePos = () => { const i = curPage(), P = pages[i]; if (!P) return; const all = store.get("eluPos", {}) || {}; all[id] = {i, f: Math.max(0, Math.min(1, (scroll.scrollTop - P.el.offsetTop) / Math.max(1, P.el.offsetHeight))), x: scroll.scrollLeft, z: S.zoom}; const ks = Object.keys(all); if (ks.length > 60) delete all[ks[0]]; store.set("eluPos", all); };
+  const restorePos = () => { const ps = (store.get("eluPos", {}) || {})[id]; if (!ps || !pages[ps.i]) return; const go2 = () => { const P = pages[ps.i]; if (!P) return; scroll.scrollTop = P.el.offsetTop + ps.f * P.el.offsetHeight; navUpd(); bmUpd(); };
+    if (ps.z && Math.abs(ps.z - 1) > 0.02) { S.zoom = Math.max(0.4, Math.min(4, ps.z)); pages.forEach(size); $("#el_zv").textContent = Math.round(S.zoom * 100) + "%"; requestAnimationFrame(() => { go2(); scroll.scrollLeft = ps.x || 0; relayout(); }); } else requestAnimationFrame(go2); };
+  scroll.addEventListener("scroll", () => { clearTimeout(savePos.t); savePos.t = setTimeout(savePos, 400); }, {passive: true});
+  COMM.unsub.push(() => { removeEventListener("pointerup", tgUp); removeEventListener("pointercancel", tgUp); removeEventListener("keydown", fKey); removeEventListener("keydown", tabKey); clearTimeout(savePos.t); try { savePos(); } catch (e) {} zwClose(); clearTimeout(hpAll.t); clearTimeout(fq.t); ftok++; });
   // A release outside the page, a lost capture, or an app switch must never leave the pen stuck down.
   const onLostCapture = e => { if (cur && cur.id === e.pointerId) up({pointerId: e.pointerId, pointerType: activePen === e.pointerId ? "pen" : "touch", type: "pointercancel"}); };
   const endInput = () => {
@@ -1293,7 +1313,7 @@ async function editor(v, id) {
     flushSave().then(ok => { if (ok) thumbFor(book); }); delete E.highlightSelection; });
   /* ---- go ---- */
   await ready(book.pages.flatMap(p => [p.bg, ...p.imgs.map(i => i.src)]));
-  S.paste = false; look(); build(); tbUpd(); tbPlace(); navUpd(); pasteUpd(); if (revision) flushSave();
+  S.paste = false; look(); build(); tbUpd(); tbPlace(); navUpd(); restorePos(); pasteUpd(); if (revision) flushSave();
   if (book.pages.some(p => p.type === "pdf")) pdfjs().catch(e => nbToast(e.message));
 }
 
@@ -1449,8 +1469,8 @@ body.inel .rail{display:none!important}body.inel{overflow:hidden}
 .eltci>button[data-up],.eltci>button[data-dn]{width:34px;height:34px;border:1px solid var(--line);background:transparent;color:inherit;border-radius:9px;font-size:16px;cursor:pointer}.eltci>button:disabled{opacity:.3}
 #el_fit{font-size:17px}
 /* full screen: tools only */
-.elw.focus .eltop,.elw.focus .elnav,.elw.focus .elsavestatus{display:none}.elw.focus.tbdock .elbody{padding-top:calc(54px + env(safe-area-inset-top))}.elw.focus .eltb.dock{padding-top:calc(4px + env(safe-area-inset-top))}
-.elw.focus .elbody{height:100dvh}
+.elw.focus .elnav,.elw.focus .elsavestatus{display:none}.elw.focus .eltop{padding:3px 8px;padding-top:calc(3px + env(safe-area-inset-top));gap:2px;box-shadow:none}.elw.focus .eltop .iconbtn{width:34px;height:34px}.elw.focus .eltop .elhm,.elw.focus #el_ro,.elw.focus #el_side,.elw.focus #el_bmk{display:none}
+
 /* colourful tools: each tool has its own colour; the active one gets a soft tinted pill */
 .eltb [data-tool="pen"]{--ic:#4f46e5}.eltb [data-tool="hl"]{--ic:#ca8a04}.eltb [data-tool="eraser"]{--ic:#db2777}.eltb [data-tool="lasso"]{--ic:#7c3aed}.eltb [data-tool="laser"]{--ic:#dc2626}.eltb [data-tool="tape"]{--ic:#0d9488}.eltb [data-tool="text"]{--ic:#2563eb}.eltb [data-tool="select"]{--ic:#0891b2}
 #el_emo{--ic:#ea580c}#el_img{--ic:#16a34a}#el_rul{--ic:#9333ea}#el_zwb{--ic:#0284c7}#el_palm{--ic:#c026d3}#el_sty{--ic:#64748b}#el_undo,#el_redo{--ic:#475569}#el_sideb{--ic:#6366f1}#el_full{--ic:#4338ca}#el_tbc,#el_mini{--ic:#94a3b8}
@@ -1461,7 +1481,7 @@ body.inel .rail{display:none!important}body.inel{overflow:hidden}
 .eltb.dock{background:linear-gradient(90deg,rgba(99,102,241,.09),transparent 35%,transparent 65%,rgba(236,72,153,.08)),color-mix(in srgb,var(--panel) 94%,transparent)}
 /* soft, rounded look everywhere */
 .eltb.dock{left:8px!important;top:6px!important;width:calc(100% - 16px);max-width:calc(100% - 16px);border-radius:999px;border-width:1px;padding:4px 10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 26px -16px rgba(15,23,42,.6)}
-.elw.tbdock .elbody{padding-top:62px}.elw.focus.tbdock .elbody{padding-top:calc(62px + env(safe-area-inset-top))}.elw.focus .eltb.dock{top:calc(6px + env(safe-area-inset-top))!important;padding-top:4px}
+.elw.tbdock .elbody{padding-top:62px}
 .eltb{border-radius:999px}.eltb.vert{border-radius:28px}.eltb .eltb-b{border-radius:50%}.eltb-c{border-radius:50%}
 .elpop{border-radius:22px!important}.elpop button,.elctx button,.elsub button{border-radius:14px}.elfind{border-radius:22px}.elfrow input{border-radius:12px}
 .elzw{border-radius:24px 24px 0 0;overflow:hidden}.elzwbar button,.elfrow button{border-radius:50%}
@@ -1476,6 +1496,11 @@ body.inel .rail{display:none!important}body.inel{overflow:hidden}
 #elw .elth.on{box-shadow:none}
 .eltabl{display:flex;flex-direction:column;gap:2px;min-width:230px;max-height:50vh;overflow-y:auto}.eltabl a,.eltabl button{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;border:0;background:transparent;color:inherit;text-decoration:none;font:600 14px var(--ui-font);cursor:pointer;text-align:left}.eltabl a:hover,.eltabl button:hover{background:rgba(127,127,127,.12)}.eltabl a.on{background:rgba(124,58,237,.12);color:#6d28d9}.eltabl svg{width:18px;height:18px;flex:none}.eltabl button{color:#7c3aed}
 #el_tabsb{--ic:#7c3aed}
+/* tabs: big, easy targets; move arrows only on the open tab; clear Library button */
+#elw .eltab a{padding:8px 6px 8px 12px;min-height:20px;font-size:13.5px}#elw .eltab:not(.on) [data-tab-left],#elw .eltab:not(.on) [data-tab-right]{display:none}#elw .eltab [data-close]{width:28px;height:28px;border-radius:50%}
+#elw .eltab.on{background:color-mix(in srgb,#7c3aed 14%,var(--panel));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,#7c3aed 45%,transparent)}
+#elw .ellibb{width:auto;padding:0 12px 0 8px;gap:6px;display:inline-flex;align-items:center;border-radius:999px;background:color-mix(in srgb,#7c3aed 10%,transparent);font:700 13px var(--ui-font);color:#6d28d9;text-decoration:none}#elw .ellibb svg{width:18px;height:18px}
+@media(max-width:700px){#elw .ellibb span{display:none}#elw .ellibb{padding:0 8px}}
 /* lasso selection bar: icon over label, each action its own colour, in a rounded pill */
 #elw .elselbar{display:flex;gap:2px;padding:5px;border-radius:999px!important;background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 12px 30px -12px rgba(15,23,42,.5),0 0 0 1px var(--line)}
 #elw .elselbar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:54px;height:50px;padding:4px 6px;border:0;border-radius:999px;background:transparent;color:var(--ac,var(--ink));font:700 10.5px var(--ui-font);cursor:pointer;white-space:nowrap}
