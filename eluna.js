@@ -9,6 +9,11 @@ const PW = 1240, A4H = 1754, XR = 1.6;
 const ic = (p, soft) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision" aria-hidden="true">${soft ? `<path d="${soft}" fill="currentColor" stroke="none" opacity=".16"/>` : ""}${p}</svg>`;
 /* duotone line icons: a soft tinted body under a fine outline */
 const I = {
+  tape: ic('<path d="M3.6 9.2l15.6-4.4 1.4 5-15.6 4.4z"/><path d="M7.2 8.2l1.4 5M11 7.1l1.4 5M14.8 6l1.4 5M4 18.5h16"/>', "M3.6 9.2l15.6-4.4 1.4 5-15.6 4.4z"),
+  zoomw: ic('<rect x="3" y="3.5" width="18" height="10" rx="2"/><rect x="7" y="6" width="5" height="4.5" rx=".8"/><path d="M3 17h18M3 20.5h12"/>', "M3 3.5h18v10H3z"),
+  find: ic('<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5M8 10.5h5"/>', "M10.5 4.5a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"),
+  bmk: ic('<path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-4-6 4V4.5a1 1 0 0 1 1-1z"/>', "M7 3.5h10a1 1 0 0 1 1 1V21l-6-4-6 4V4.5a1 1 0 0 1 1-1z"),
+  star: ic('<path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/>', "M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"),
   pen: ic('<path d="M4.2 19.8l1-4.1L15.6 5.3a2.3 2.3 0 0 1 3.2 3.2L8.4 18.9z"/><path d="M13.9 7l3.2 3.2M5.2 15.7l3.2 3.2"/>', "M4.2 19.8l1-4.1L15.6 5.3a2.3 2.3 0 0 1 3.2 3.2L8.4 18.9z"),
   hl: ic('<path d="m9.4 11.4-5.9 5.9v2.9h8.8l3-3"/><path d="m21.6 12.2-4.4 4.4a2 2 0 0 1-2.8 0l-5-5a2 2 0 0 1 0-2.8l4.4-4.4"/><path d="m14.8 3.4 7 7"/>', "m14 4.2 7.6 7.6-4.4 4.4a2 2 0 0 1-2.8 0l-5-5a2 2 0 0 1 0-2.8z"),
   eraser: ic('<path d="m7.4 20.5-4-4a1.4 1.4 0 0 1 0-2l9.8-9.8a1.4 1.4 0 0 1 2 0l5.2 5.2a1.4 1.4 0 0 1 0 2l-8.6 8.6"/><path d="M21 20.5H7.4M6.6 11.3l6.1 6.1"/>', "M6.6 11.3l6.6-6.6a1.4 1.4 0 0 1 2 0l5.2 5.2a1.4 1.4 0 0 1 0 2l-6.6 6.6z"),
@@ -41,10 +46,12 @@ const COVERS = [["#2563eb", "#7c3aed"], ["#0ea5e9", "#2563eb"], ["#10b981", "#0f
 const FOLDER_ICONS = ["📁", "🫀", "🫁", "🧠", "👶", "🤰", "💊", "🩺", "🚑", "🦴", "🦠", "🧪", "🩻", "📚", "📝", "🎓", "⭐", "🏥"];
 const PENS = ["#111827", "#2563eb", "#dc2626", "#16a34a", "#7c3aed", "#ea580c", "#0891b2", "#be185d"];
 const HLS = ["#fde047", "#86efac", "#f9a8d4", "#93c5fd", "#fdba74"];
+const TAPES = ["#f472b6", "#60a5fa", "#34d399", "#fbbf24", "#a78bfa", "#94a3b8"];
+const PENK = [["", "Smooth"], ["fountain", "Fountain"], ["ball", "Ballpoint"], ["brush", "Brush"]];
 const STICKERS = "🫀 🫁 🧠 🦷 🦴 👁️ 👂 👃 👅 🩸 🦠 🧬 💊 💉 🩺 🩹 🌡️ 🧪 🔬 🩻 🏥 🚑 ⚕️ 👶 🤰 ✅ ❌ ⚠️ ❗ ❓ ⭐ 📌 ➡️ ⬆️ ⬇️ 🔁 💡 🎯".split(" ");
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 const PEN = () => Object.assign({palm: true, btn: "eraser", pressure: true, hover: true}, store.get("eluPen2", {}));
-const SET = () => Object.assign({tpl: "lined", paper: "white", scroll: "v", smooth: 0.38, outline: true, desk: "grey", tbs: "m", gap: "m", pnum: true, hlsnap: true, hold: true}, store.get("eluSet", {}));
+const SET = () => Object.assign({tpl: "lined", paper: "white", scroll: "v", smooth: 0.38, outline: true, desk: "grey", tbs: "m", gap: "m", pnum: true, hlsnap: true, hold: true, shapes: true, gest: true}, store.get("eluSet", {}));
 
 /* ---------- storage ---------- */
 const DB = (() => {
@@ -134,6 +141,13 @@ function drawPaper(x, pg, s) {
 function stroke(x, st, s, from) {
   const p = st.p, n = p.length / 3; if (!n) return;
   x.save(); x.scale(s, s); x.lineCap = "round"; x.lineJoin = "round";
+  if (st.t === "tape") {   /* revision tape: solid with soft stripes; revealed tape is a faint dashed outline */
+    const ax = p[0], ay = p[1], bx = n > 1 ? p[(n - 1) * 3] : ax + 1, by = n > 1 ? p[(n - 1) * 3 + 1] : ay, L = Math.max(1, Math.hypot(bx - ax, by - ay)), ux = (bx - ax) / L, uy = (by - ay) / L, hw = st.w / 2;
+    x.beginPath(); x.moveTo(ax - uy * hw, ay + ux * hw); x.lineTo(bx - uy * hw, by + ux * hw); x.lineTo(bx + uy * hw, by - ux * hw); x.lineTo(ax + uy * hw, ay - ux * hw); x.closePath();
+    if (st.r) { x.globalAlpha = .13; x.fillStyle = st.c; x.fill(); x.globalAlpha = .75; x.setLineDash([7, 6]); x.lineWidth = 1.6; x.strokeStyle = st.c; x.stroke(); }
+    else { x.fillStyle = st.c; x.fill(); x.clip(); x.globalAlpha = .2; x.strokeStyle = "#fff"; x.lineWidth = 5; x.beginPath(); for (let t = -st.w; t < L + st.w; t += 16) { x.moveTo(ax + ux * t + uy * hw * 1.5, ay + uy * t - ux * hw * 1.5); x.lineTo(ax + ux * (t + st.w) - uy * hw * 1.5, ay + uy * (t + st.w) + ux * hw * 1.5); } x.stroke(); }
+    x.restore(); return;
+  }
   if (st.t === "hl" || st.t === "px") {
     if (st.t === "px") { x.globalCompositeOperation = "destination-out"; x.strokeStyle = "#000"; } else { x.globalAlpha = 0.5; x.strokeStyle = st.c; }
     x.lineWidth = st.w; x.beginPath(); x.moveTo(p[0], p[1]);
@@ -141,7 +155,12 @@ function stroke(x, st, s, from) {
     if (n > 1) x.lineTo(p[(n - 1) * 3], p[(n - 1) * 3 + 1]); else x.lineTo(p[0] + .1, p[1]); x.stroke();
   } else {
     /* pressure, a soft nib-like start and — once the stroke is finished — a matching taper at the end */
-    x.strokeStyle = st.c; const W = i => st.w * (0.42 + 0.95 * p[i * 3 + 2]) * Math.min(1, 0.4 + i * 0.15) * (st.e ? Math.min(1, 0.35 + (n - 1 - i) * 0.16) : 1);
+    /* pen types: smooth (default), fountain (angled nib), ballpoint (even), brush (very pressure-led); shapes are even */
+    x.strokeStyle = st.c; const k = st.k, W = i => { if (st.u) return st.w * 0.9; const pz = p[i * 3 + 2], ramp = Math.min(1, 0.4 + i * 0.15) * (st.e ? Math.min(1, 0.35 + (n - 1 - i) * 0.16) : 1);
+      if (k === "ball") return st.w * (0.8 + 0.3 * pz) * Math.min(1, 0.75 + i * 0.08) * (st.e ? Math.min(1, 0.7 + (n - 1 - i) * 0.1) : 1);
+      if (k === "brush") return st.w * (0.15 + 2.2 * Math.pow(pz, 1.25)) * ramp;
+      if (k === "fountain") { const j = Math.min(n - 1, i + 1), h = Math.max(0, i - 1), a = Math.atan2(p[j * 3 + 1] - p[h * 3 + 1], p[j * 3] - p[h * 3]); return st.w * (0.42 + 0.95 * pz) * (0.36 + 0.95 * Math.abs(Math.sin(a - 0.785))) * ramp; }
+      return st.w * (0.42 + 0.95 * pz) * ramp; };
     if (n === 1 && !from) { x.fillStyle = st.c; x.beginPath(); x.arc(p[0], p[1], W(0) / 2, 0, 7); x.fill(); }
     for (let i = Math.max(2, from || 2); i < n; i++) { x.lineWidth = (W(i - 1) + W(i)) / 2; x.beginPath(); x.moveTo(i === 2 ? p[0] : (p[i * 3 - 6] + p[i * 3 - 3]) / 2, i === 2 ? p[1] : (p[i * 3 - 5] + p[i * 3 - 2]) / 2); x.quadraticCurveTo(p[i * 3 - 3], p[i * 3 - 2], (p[i * 3 - 3] + p[i * 3]) / 2, (p[i * 3 - 2] + p[i * 3 + 1]) / 2); x.stroke(); }
     if (!from && n === 2) { x.lineWidth = (W(0) + W(1)) / 2; x.beginPath(); x.moveTo(p[0], p[1]); x.lineTo(p[3], p[4]); x.stroke(); }
@@ -151,16 +170,66 @@ function stroke(x, st, s, from) {
 }
 const IMGS = new Map(); const img = src => { let i = IMGS.get(src); if (!i) { i = new Image(); i.src = src; IMGS.set(src, i); } return i; };
 const ready = srcs => Promise.all(srcs.filter(Boolean).map(s => { const i = img(s); return i.complete ? 0 : new Promise(r => { const done = () => { i.removeEventListener("load", done); i.removeEventListener("error", done); r(); }; i.addEventListener("load", done, {once:true}); i.addEventListener("error", done, {once:true}); }); }));
-function drawInk(x, pg, s) { x.clearRect(0, 0, x.canvas.width, x.canvas.height); pg.imgs.forEach(o => { const i = img(o.src); if (i.complete && i.naturalWidth) x.drawImage(i, o.x * s, o.y * s, o.w * s, o.h * s); }); pg.strokes.forEach(st => stroke(x, st, s)); }
+/* stroke bounds (page units), cached until the stroke's points change */
+const BB = new WeakMap();
+const sbox = st => { const p = st.p, n = p.length, c = BB.get(st); if (c && c.p === p && c.n === n && c.a === p[0] && c.b === p[1] && c.z === p[n - 2] && c.w === st.w) return c.r;
+  let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9; for (let i = 0; i < n; i += 3) { const X = p[i], Y = p[i + 1]; if (X < x0) x0 = X; if (X > x1) x1 = X; if (Y < y0) y0 = Y; if (Y > y1) y1 = Y; }
+  const m = st.w * 1.6 + 3, r = [x0 - m, y0 - m, x1 + m, y1 + m]; BB.set(st, {p, n, a: p[0], b: p[1], z: p[n - 2], w: st.w, r}); return r; };
+const boxU = (a, b) => !a ? b && b.slice() : !b ? a : [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])];
+/* o (optional): {ox, oy} device-pixel offset for a partial canvas, r = only repaint this page-unit box, keep = do not clear first */
+function drawInk(x, pg, s, o) { const cw = x.canvas.width, ch = x.canvas.height, ox = o ? o.ox || 0 : 0, oy = o ? o.oy || 0 : 0, v = o ? o.r || [ox / s, oy / s, (ox + cw) / s, (oy + ch) / s] : null;
+  x.save();
+  if (o && o.r) { const X0 = Math.floor(v[0] * s - ox) - 1, Y0 = Math.floor(v[1] * s - oy) - 1, X1 = Math.ceil(v[2] * s - ox) + 1, Y1 = Math.ceil(v[3] * s - oy) + 1; x.beginPath(); x.rect(X0, Y0, X1 - X0, Y1 - Y0); x.clip(); x.clearRect(X0, Y0, X1 - X0, Y1 - Y0); }
+  else if (!o || !o.keep) x.clearRect(0, 0, cw, ch);
+  if (ox || oy) x.translate(-ox, -oy);
+  const hit = (a0, b0, a1, b1) => !v || (a1 >= v[0] && a0 <= v[2] && b1 >= v[1] && b0 <= v[3]);
+  pg.imgs.forEach(im => { if (!hit(im.x, im.y, im.x + im.w, im.y + im.h)) return; const i = img(im.src); if (i.complete && i.naturalWidth) x.drawImage(i, im.x * s, im.y * s, im.w * s, im.h * s); });
+  pg.strokes.forEach(st => { if (v) { const b = sbox(st); if (!hit(b[0], b[1], b[2], b[3])) return; } stroke(x, st, s); });
+  x.restore(); }
+/* ---------- shape recognition: draw a line, circle, oval, triangle, rectangle or polygon and keep the pen still ---------- */
+const segD = (q, a, b) => { const dx = b[0] - a[0], dy = b[1] - a[1], L = dx * dx + dy * dy, t = L ? Math.max(0, Math.min(1, ((q[0] - a[0]) * dx + (q[1] - a[1]) * dy) / L)) : 0; return Math.hypot(a[0] + t * dx - q[0], a[1] + t * dy - q[1]); };
+function rdp(pts, eps) { if (pts.length < 3) return pts.slice(); const a = pts[0], b = pts[pts.length - 1]; let dm = 0, at = 0;
+  for (let i = 1; i < pts.length - 1; i++) { const d = segD(pts[i], a, b); if (d > dm) { dm = d; at = i; } }
+  if (dm <= eps) return [a, b]; return rdp(pts.slice(0, at + 1), eps).slice(0, -1).concat(rdp(pts.slice(at), eps)); }
+const polyErr = (pts, v, closed) => { let e = 0; pts.forEach(q => { let m = 1e9; for (let i = 0; i < v.length - (closed ? 0 : 1); i++) m = Math.min(m, segD(q, v[i], v[(i + 1) % v.length])); e += m; }); return e / pts.length; };
+const turn = (a, b, c) => { const a1 = Math.atan2(b[1] - a[1], b[0] - a[0]), a2 = Math.atan2(c[1] - b[1], c[0] - b[0]); let d = Math.abs(a2 - a1); if (d > Math.PI) d = 2 * Math.PI - d; return d; };
+function cleanPoly(v, diag) { let ch = true; v = v.slice(); while (ch && v.length > 3) { ch = false;
+  for (let i = 0; i < v.length; i++) { const a = v[(i - 1 + v.length) % v.length], b = v[i], c = v[(i + 1) % v.length];
+    if (Math.hypot(b[0] - a[0], b[1] - a[1]) < 0.09 * diag || turn(a, b, c) < 0.38) { v.splice(i, 1); ch = true; break; } } } return v; }
+const snapAng = (ax, ay, bx, by) => { const L = Math.hypot(bx - ax, by - ay), a = Math.atan2(by - ay, bx - ax), s = Math.round(a / (Math.PI / 4)) * (Math.PI / 4); return Math.abs(a - s) < 0.07 ? [ax + Math.cos(s) * L, ay + Math.sin(s) * L] : [bx, by]; };
+function recogniseShape(p) { const pts = []; for (let i = 0; i < p.length; i += 3) pts.push([p[i], p[i + 1]]); if (pts.length < 5) return null;
+  let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9, len = 0; pts.forEach((q, i) => { x0 = Math.min(x0, q[0]); y0 = Math.min(y0, q[1]); x1 = Math.max(x1, q[0]); y1 = Math.max(y1, q[1]); if (i) len += Math.hypot(q[0] - pts[i - 1][0], q[1] - pts[i - 1][1]); });
+  const bw = x1 - x0, bh = y1 - y0, diag = Math.hypot(bw, bh); if (diag < 28) return null;
+  const s = pts[0], e = pts[pts.length - 1], gap = Math.hypot(e[0] - s[0], e[1] - s[1]);
+  if (gap / len > 0.93) return {v: [s, snapAng(s[0], s[1], e[0], e[1])], closed: false};   /* straight line */
+  if (gap > Math.max(22, 0.24 * diag)) { const q = rdp(pts, 0.06 * diag + 3); return q.length >= 3 && q.length <= 5 && polyErr(pts, q, false) < 0.035 * diag ? {v: q, closed: false} : null; }
+  let f = 0, fd = 0; pts.forEach((q, i) => { const d = Math.hypot(q[0] - s[0], q[1] - s[1]); if (d > fd) { fd = d; f = i; } });
+  const eps = 0.06 * diag + 2; let v = cleanPoly(rdp(pts.slice(0, f + 1), eps).slice(0, -1).concat(rdp(pts.slice(f), eps).slice(0, -1)), diag);
+  const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, rx = Math.max(1, bw / 2), ry = Math.max(1, bh / 2); let ee = 0; pts.forEach(([x, y]) => { ee += Math.abs(Math.hypot((x - cx) / rx, (y - cy) / ry) - 1); });
+  const eErr = ee / pts.length * (rx + ry) / 2, pErr = v.length >= 3 && v.length <= 6 ? polyErr(pts, v, true) : 1e9;
+  if (eErr < pErr && eErr < 0.05 * diag) { const r0 = Math.abs(rx - ry) / Math.max(rx, ry) < 0.14 ? (rx + ry) / 2 : 0; return {ell: [cx, cy, r0 || rx, r0 || ry]}; }
+  if (pErr > 0.045 * diag) return null;
+  if (v.length === 4 && [0, 1, 2, 3].every(i => Math.abs(turn(v[(i + 3) % 4], v[i], v[(i + 1) % 4]) - Math.PI / 2) < 0.3)) {   /* tidy rectangle, square to its own angle */
+    let a = Math.atan2(v[1][1] - v[0][1], v[1][0] - v[0][0]); const sa = Math.round(a / (Math.PI / 2)) * (Math.PI / 2); if (Math.abs(a - sa) < 0.14) a = sa;
+    const mx = v.reduce((t, q) => t + q[0], 0) / 4, my = v.reduce((t, q) => t + q[1], 0) / 4, c = Math.cos(-a), sn = Math.sin(-a);
+    const rot = v.map(([x, y]) => [(x - mx) * c - (y - my) * sn, (x - mx) * sn + (y - my) * c]), hx = (Math.max(...rot.map(q => q[0])) - Math.min(...rot.map(q => q[0]))) / 2, hy = (Math.max(...rot.map(q => q[1])) - Math.min(...rot.map(q => q[1]))) / 2, c2 = Math.cos(a), s2 = Math.sin(a);
+    v = [[-hx, -hy], [hx, -hy], [hx, hy], [-hx, hy]].map(([x, y]) => [mx + x * c2 - y * s2, my + x * s2 + y * c2]); }
+  return {v, closed: true}; }
+/* a recognised shape as dense, evenly spaced points so corners stay crisp */
+function shapePoints(r) { const out = []; const add = (x, y) => out.push(+x.toFixed(1), +y.toFixed(1), .5);
+  if (r.ell) { const [cx, cy, rx, ry] = r.ell, n = Math.max(48, Math.round((rx + ry) / 3)); for (let i = 0; i <= n; i++) { const t = i / n * Math.PI * 2 - Math.PI / 2; add(cx + Math.cos(t) * rx, cy + Math.sin(t) * ry); } return out; }
+  const v = r.closed ? [...r.v, r.v[0]] : r.v; for (let i = 0; i < v.length - 1; i++) { const a = v[i], b = v[i + 1], k = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 5)); for (let j = 0; j < k; j++) add(a[0] + (b[0] - a[0]) * j / k, a[1] + (b[1] - a[1]) * j / k); }
+  const z = v[v.length - 1]; add(z[0], z[1]); return out; }
 const FONT = '"Source Sans 3","Segoe UI",system-ui,-apple-system,Arial,sans-serif';
 function wrapText(x, t, w) { const out = []; String(t).split("\n").forEach(par => { let l = ""; par.split(/\s+/).forEach(wd => { const tl = l ? l + " " + wd : wd; if (x.measureText(tl).width > w && l) { out.push(l); l = wd; } else l = tl; }); out.push(l); }); return out; }
 function drawTexts(x, pg, s) { pg.texts.forEach(t => { x.save(); x.scale(s, s); x.font = `${t.b ? 700 : 400} ${t.size || 30}px ${t.emoji ? "system-ui" : FONT}`; x.fillStyle = t.c || "#111827"; x.textBaseline = "top"; wrapText(x, t.t || "", t.w).forEach((l, i) => x.fillText(l, t.x + 8, t.y + 8 + i * (t.size || 30) * 1.3)); x.restore(); }); }
 /* base layer: paper, an app page image, or a PDF page */
-async function drawBase(x, pg, s, task) {
-  drawPaper(x, pg, s);
+async function drawBase(x, pg, s, task, ox = 0, oy = 0) {
+  x.save(); if (ox || oy) x.translate(-ox, -oy); drawPaper(x, pg, s);
   if (pg.bg) { await ready([pg.bg]); const i = img(pg.bg); x.imageSmoothingQuality = "high"; if (i.naturalWidth) x.drawImage(i, 0, 0, pg.w * s, pg.h * s); }
+  x.restore();
   if (pg.type === "pdf") { const d = await pdfDoc(pg.fid), page = await d.getPage(pg.pi + 1), vp1 = page.getViewport({scale: 1}), vp = page.getViewport({scale: pg.w * s / vp1.width});
-    const t = page.render({canvasContext: x, viewport: vp}); if (task) task.t = t; await t.promise; }
+    const t = page.render(ox || oy ? {canvasContext: x, viewport: vp, transform: [1, 0, 0, 1, -ox, -oy]} : {canvasContext: x, viewport: vp}); if (task) task.t = t; await t.promise; }
 }
 /* a whole page as one image (for export and thumbnails) */
 async function pageImage(pg, s) {
@@ -206,13 +275,14 @@ async function library(v) {
       : !folders.length ? "" : `<div class="elsec"><b>Folders</b></div><div class="elfolds">${folders.map((f, i) => { const n = books.filter(b => b.folder === f.id).length, c = COVERS[f.c % COVERS.length]; return `<button class="elfold" data-f="${f.id}" style="--a:${c[0]};--b:${c[1]};--d:${i * 30}ms"><i class="elfic">${f.e && f.e !== "📁" ? `<span class="elfe">${f.e}</span>` : I.folder}</i><b>${esc(f.name)}</b><small>${n} item${n === 1 ? "" : "s"}</small></button>`; }).join("")}</div>`}
     <div class="pssearch">${ICON.search}<input id="el_q" type="search" placeholder="${fo ? "Search in " + esc(fo.name) : "Search all notebooks and PDFs"}" autocomplete="off"></div>
     ${fo ? "" : `<div class="elsec"><b>On the shelf</b></div>`}
-    ${tags.length ? `<div class="eltags" id="el_tags"><button class="chip on" data-t="">All</button>${tags.map(t => `<button class="chip" data-t="${esc(t)}">#${esc(t)}</button>`).join("")}</div>` : ""}
+    ${tags.length || books.some(b => b.fav) ? `<div class="eltags" id="el_tags"><button class="chip on" data-t="">All</button>${books.some(b => b.fav) ? `<button class="chip" data-t="★">★ Favourites</button>` : ""}${tags.map(t => `<button class="chip" data-t="${esc(t)}">#${esc(t)}</button>`).join("")}</div>` : ""}
     <div class="elgrid" id="el_grid"></div><div id="el_msg" class="small"></div></div>`;
   const grid = $("#el_grid");
-  const draw = () => { const bs = books.filter(b => (q ? true : inF(b)) && (!q || b.title.toLowerCase().includes(q)) && (!q || !curF || b.folder === curF) && (!tag || (b.tags || []).includes(tag))).sort((a, b) => b.updated - a.updated);
-    grid.innerHTML = bs.length ? bs.map((b, i) => `<div class="elcard" style="--d:${Math.min(i, 12) * 35}ms"><a href="#eluna/${b.id}">${coverHTML(b)}<b>${esc(b.title)}</b><small>${b.pages.length} page${b.pages.length > 1 ? "s" : ""}${(b.tags || []).length ? " · " + b.tags.map(t => "#" + esc(t)).join(" ") : ""}</small></a><button class="iconbtn elcm" data-m="${b.id}" aria-label="Options">${I.more}</button></div>`).join("")
+  const draw = () => { const bs = books.filter(b => (q ? true : inF(b)) && (!q || b.title.toLowerCase().includes(q)) && (!q || !curF || b.folder === curF) && (!tag || (tag === "★" ? b.fav : (b.tags || []).includes(tag)))).sort((a, b) => (!!b.fav - !!a.fav) || b.updated - a.updated);
+    grid.innerHTML = bs.length ? bs.map((b, i) => `<div class="elcard" style="--d:${Math.min(i, 12) * 35}ms"><a href="#eluna/${b.id}">${coverHTML(b)}<b>${esc(b.title)}</b><small>${b.pages.length} page${b.pages.length > 1 ? "s" : ""}${(b.tags || []).length ? " · " + b.tags.map(t => "#" + esc(t)).join(" ") : ""}</small></a><button class="iconbtn elcm" data-m="${b.id}" aria-label="Options">${I.more}</button><button class="iconbtn elfav${b.fav ? " on" : ""}" data-fav="${b.id}" aria-label="${b.fav ? "Remove from favourites" : "Add to favourites"}" title="Favourite">${I.star}</button></div>`).join("")
       : `<div class="cempty"><b>${q || tag ? "Nothing matches" : fo ? "This folder is empty" : "Your shelf is empty"}</b><span>${fo ? "Import PDFs or create a notebook here — or move one in from its ⋮ menu." : "Create a notebook, import PDFs, or open a topic from the app."}</span></div>`;
-    $$("[data-m]", grid).forEach(bt => bt.onclick = () => bookMenu(books.find(b => b.id === bt.dataset.m), () => library(v))); };
+    $$("[data-m]", grid).forEach(bt => bt.onclick = () => bookMenu(books.find(b => b.id === bt.dataset.m), () => library(v)));
+    $$("[data-fav]", grid).forEach(bt => bt.onclick = async e => { e.preventDefault(); const b = books.find(x => x.id === bt.dataset.fav); if (!b) return; const had = books.some(x => x.fav); b.fav = !b.fav; try { await DB.put("books", b); } catch (er) {} nbToast(b.fav ? "★ Added to favourites" : "Removed from favourites"); if (had !== books.some(x => x.fav) && !q) library(v); else draw(); }); };
   draw();
   $("#el_q").addEventListener("input", e => { q = e.target.value.trim().toLowerCase(); draw(); });
   $$("#el_tags .chip").forEach(c => c.onclick = () => { tag = c.dataset.t; $$("#el_tags .chip").forEach(x => x.classList.toggle("on", x === c)); draw(); });
@@ -305,6 +375,8 @@ function settingsSheet(onChange) {
     <div class="setrow"><div><b>Page numbers</b><span>Small numbers under each page</span></div><div class="setctl">${segCtl("es_pn", [["1", "Show"], ["0", "Hide"]], s.pnum ? "1" : "0")}</div></div>
     <div class="setrow"><div><b>Straighten highlighter</b><span>Straight strokes snap neatly onto the line of text</span></div><div class="setctl">${segCtl("es_hs", [["1", "On"], ["0", "Off"]], s.hlsnap ? "1" : "0")}</div></div>
     <div class="setrow"><div><b>Hold to select words</b><span>Press and hold on PDF text with any tool, then slide to select more</span></div><div class="setctl">${segCtl("es_hold", [["1", "On"], ["0", "Off"]], s.hold ? "1" : "0")}</div></div>
+    <div class="setrow"><div><b>Shape snapping</b><span>Draw a line, circle, triangle or box and keep the pen still for a moment — it becomes a neat shape</span></div><div class="setctl">${segCtl("es_shp", [["1", "On"], ["0", "Off"]], s.shapes ? "1" : "0")}</div></div>
+    <div class="setrow"><div><b>Finger tap gestures</b><span>Tap with two fingers to undo, three fingers to redo</span></div><div class="setctl">${segCtl("es_gst", [["1", "On"], ["0", "Off"]], s.gest ? "1" : "0")}</div></div>
     <div class="setrow"><div><b>Toolbar position</b><span>Put the floating toolbar back at the top</span></div><div class="setctl"><button class="btn btn-ghost" id="es_tb">Reset</button></div></div>`);
   const put = (k, val) => { const n = SET(); n[k] = val; store.set("eluSet", n); onChange && onChange(); };
   paintTpls(sh, s.paper);
@@ -313,7 +385,7 @@ function settingsSheet(onChange) {
   const seg2 = (id, k, conv) => $$("#" + id + " button", sh).forEach(b => b.onclick = () => { $$("#" + id + " button", sh).forEach(x => x.setAttribute("aria-pressed", x === b)); put(k, conv(b.dataset.v)); });
   seg2("es_scroll", "scroll", v => v); seg2("es_sm", "smooth", v => +v); seg2("es_ol", "outline", v => v === "1");
   $$("#es_palm button", sh).forEach(b => b.onclick = () => { $$("#es_palm button", sh).forEach(x => x.setAttribute("aria-pressed", x === b)); const on = b.dataset.v === "1", n = PEN(); store.set("nbPencil", on); n.palm = on; store.set("eluPen2", n); onChange && onChange(); });
-  seg2("es_desk", "desk", v => v); seg2("es_tbs", "tbs", v => v); seg2("es_gap", "gap", v => v); seg2("es_pn", "pnum", v => v === "1"); seg2("es_hs", "hlsnap", v => v === "1"); seg2("es_hold", "hold", v => v === "1");
+  seg2("es_desk", "desk", v => v); seg2("es_tbs", "tbs", v => v); seg2("es_gap", "gap", v => v); seg2("es_pn", "pnum", v => v === "1"); seg2("es_hs", "hlsnap", v => v === "1"); seg2("es_hold", "hold", v => v === "1"); seg2("es_shp", "shapes", v => v === "1"); seg2("es_gst", "gest", v => v === "1");
   $("#es_tb", sh).onclick = () => { store.set("eluTb", null); onChange && onChange(); nbToast("Toolbar moved back to the top."); };
 }
 
@@ -324,15 +396,17 @@ async function editor(v, id) {
   let tabs = store.get("eluTabs", []); if (!tabs.includes(id)) tabs = [id, ...tabs].slice(0, 8); store.set("eluTabs", tabs);
   const allB = await DB.all("books"), metas = allB.reduce((m, b) => (m[b.id] = b.title, m), {}), kinds = allB.reduce((m, b) => (m[b.id] = b.pages.some(p => p.type === "pdf"), m), {});
   tabs = tabs.filter(t => metas[t]); store.set("eluTabs", tabs);
-  const st = SET(), S = {tool: store.get("eluTool", "pen"), sub: Object.assign({eraser: "stroke", lasso: "free", laser: "line"}, store.get("eluSub", {})), pen: store.get("eluPen", PENS[0]), hl: store.get("eluHl", HLS[0]), size: store.get("eluSize", 3), zoom: 1, ro: false, pencil: store.get("nbPencil", false), penDown: false, ruler: null, sel: null, emoji: null};
+  const st = SET(), S = {tool: store.get("eluTool", "pen"), sub: Object.assign({eraser: "stroke", lasso: "free", laser: "line"}, store.get("eluSub", {})), pen: store.get("eluPen", PENS[0]), hl: store.get("eluHl", HLS[0]), tape: store.get("eluTape", TAPES[0]), penk: store.get("eluPenK", ""), zw: null, zwDirty: 0, size: store.get("eluSize", 3), zoom: 1, ro: false, pencil: store.get("nbPencil", false), penDown: false, ruler: null, sel: null, emoji: null};
   const tool = (k, l) => `<button class="eltb-b" data-tool="${k}" aria-label="${l}" title="${l}">${I[k]}</button>`;
   v.innerHTML = `<div class="elw" id="elw">
     <div class="eltop"><button class="iconbtn chb" onclick="goBack()" aria-label="Back to previous screen" title="Back to previous screen">${I.back}</button><a class="iconbtn chb" href="#eluna" aria-label="Eluna library" title="All notebooks">${I.book}</a><a class="iconbtn chb elhm" href="#home" aria-label="Home" title="Home">${ICON.home}</a><div class="eltabs" id="el_tabs">${tabs.map(t => `<div class="eltab${t === id ? " on" : ""}" draggable="true" data-tab="${t}"><a href="#eluna/${t}"><i class="eltabi">${kinds[t] ? I.pdf : I.book}</i>${esc(metas[t])}</a><button data-tab-left="${t}" aria-label="Move tab left" title="Move tab left">‹</button><button data-tab-right="${t}" aria-label="Move tab right" title="Move tab right">›</button><button data-close="${t}" aria-label="Close tab">${I.x}</button></div>`).join("")}<button class="eltabadd" id="el_tabadd" aria-label="Open another notebook">${I.plus}</button></div>
-      <button class="iconbtn chb" id="el_ro" aria-label="Read-only mode" title="Read-only mode">${I.read}</button><button class="iconbtn chb" id="el_side" aria-label="Page outline" title="Page outline">${I.side}</button><button class="iconbtn chb" id="el_more" aria-label="More">${I.more}</button></div>
-    <div class="elbody"><aside class="elol" id="el_ol"${st.outline ? "" : " hidden"}><div class="elolh"><b>Pages</b><button class="iconbtn" id="el_addp2" aria-label="Add page">${I.plus}</button></div><div class="elolist" id="el_olist"></div></aside>
+      <button class="iconbtn chb" id="el_find" aria-label="Search this notebook" title="Search this notebook (Ctrl/⌘ F)">${I.find}</button><button class="iconbtn chb" id="el_bmk" aria-label="Bookmark this page" title="Bookmark this page">${I.bmk}</button><button class="iconbtn chb" id="el_ro" aria-label="Read-only mode" title="Read-only mode">${I.read}</button><button class="iconbtn chb" id="el_side" aria-label="Page outline" title="Page outline">${I.side}</button><button class="iconbtn chb" id="el_more" aria-label="More">${I.more}</button></div>
+    <div class="elbody"><aside class="elol" id="el_ol"${st.outline ? "" : " hidden"}><div class="elolh"><b>Pages</b><button class="iconbtn elbmf" id="el_bmf" aria-label="Show bookmarked pages only" title="Bookmarked pages only">${I.bmk}</button><button class="iconbtn" id="el_addp2" aria-label="Add page">${I.plus}</button></div><div class="elolist" id="el_olist"></div></aside>
       <div class="elscroll${st.scroll === "h" ? " horiz" : ""}" id="el_scroll"><div class="elpages" id="el_pages"></div></div>
+      <div class="elfind" id="el_fbar" hidden><div class="elfrow">${I.find}<input id="el_fq" type="search" placeholder="Search PDF text, recognised text and text boxes" autocomplete="off" enterkeyhint="search"><span id="el_fn"></span><button id="el_fp" aria-label="Previous result">‹</button><button id="el_fnx" aria-label="Next result">›</button><button id="el_fc" aria-label="Close search">${I.x}</button></div><div class="elfres" id="el_fres"></div></div>
+      <div class="elzw" id="el_zw" hidden><div class="elzwbar"><button data-zw="left" aria-label="Move window left">‹</button><button data-zw="right" aria-label="Move window right">›</button><button data-zw="nl" aria-label="Next line" title="Next line">↵</button><span class="elnsep"></span><button data-zw="out" aria-label="Bigger area">−</button><button data-zw="in" aria-label="More zoom">+</button><span class="elzwh">Write here — it lands inside the box on the page</span><button data-zw="x" aria-label="Close zoom window">${I.x}</button></div><canvas id="el_zwc"></canvas></div>
       <canvas class="elfx" id="el_fx"></canvas><div class="elruler" id="el_ruler" hidden><div class="elrn">${Array.from({length: 13}, (_, k) => `<b style="left:${k * 50}px">${k}</b>`).join("")}</div><em class="elrdeg" id="el_rdeg">0°</em><i></i><span>drag · two fingers or the handle to turn</span></div><div class="elselbox" id="el_sel" hidden><i class="h" data-c="br"></i><i class="h" data-c="bl"></i><i class="h" data-c="tr"></i><i class="h" data-c="tl"></i><div class="elselbar"><button data-a="shot" class="elshotb">📸 Screenshot</button><button data-a="copy">Copy</button><button data-a="cut">Cut</button><button data-a="dup">Duplicate</button><button data-a="crop">Crop</button><button data-a="rot">Rotate</button><button data-a="col">Colour</button><button data-a="del">Delete</button></div></div>
-      <div class="eltb" id="el_tb"><span class="eltb-grip" id="el_grip">${I.grip}</span>${tool("pen", "Pen")}${tool("hl", "Highlighter")}${tool("eraser", "Eraser")}${tool("lasso", "Lasso")}${tool("laser", "Laser pointer")}${tool("text", "Text box")}${tool("select", "Select text in PDFs")}<span class="eltb-sep"></span><button class="eltb-b" id="el_emo" aria-label="Medical stickers" title="Medical stickers">${I.emoji}</button><button class="eltb-b" id="el_img" aria-label="Insert photo" title="Insert photo">${I.image}</button><button class="eltb-b" id="el_rul" aria-label="Ruler" title="Ruler">${I.ruler}</button><button class="eltb-b" id="el_palm" aria-label="Palm rejection" title="Palm rejection — only the pen writes">${I.palm}</button><button class="eltb-b" id="el_sty" aria-label="Apple Pencil and S Pen" title="Apple Pencil & S Pen">${I.stylus}</button><span class="eltb-sep"></span><button class="eltb-c" id="el_col" aria-label="Colour and size"><i></i></button><button class="eltb-b" id="el_undo" aria-label="Undo">${I.undo}</button><button class="eltb-b" id="el_redo" aria-label="Redo">${I.redo}</button><button class="eltb-b eltb-mini" id="el_mini" aria-label="Fold toolbar" title="Fold toolbar">${I.fold}</button><input type="file" id="el_imgf" accept="image/*" hidden><input type="file" id="el_pdff" accept="application/pdf,.pdf" multiple hidden></div>
+      <div class="eltb" id="el_tb"><span class="eltb-grip" id="el_grip">${I.grip}</span>${tool("pen", "Pen")}${tool("hl", "Highlighter")}${tool("eraser", "Eraser")}${tool("lasso", "Lasso")}${tool("laser", "Laser pointer")}${tool("tape", "Tape — cover answers, tap to peek")}${tool("text", "Text box")}${tool("select", "Select text in PDFs")}<span class="eltb-sep"></span><button class="eltb-b" id="el_emo" aria-label="Medical stickers" title="Medical stickers">${I.emoji}</button><button class="eltb-b" id="el_img" aria-label="Insert photo" title="Insert photo">${I.image}</button><button class="eltb-b" id="el_rul" aria-label="Ruler" title="Ruler">${I.ruler}</button><button class="eltb-b" id="el_zwb" aria-label="Zoom window" title="Zoom window — write small text big">${I.zoomw}</button><button class="eltb-b" id="el_palm" aria-label="Palm rejection" title="Palm rejection — only the pen writes">${I.palm}</button><button class="eltb-b" id="el_sty" aria-label="Apple Pencil and S Pen" title="Apple Pencil & S Pen">${I.stylus}</button><span class="eltb-sep"></span><button class="eltb-c" id="el_col" aria-label="Colour and size"><i></i></button><button class="eltb-b" id="el_undo" aria-label="Undo">${I.undo}</button><button class="eltb-b" id="el_redo" aria-label="Redo">${I.redo}</button><button class="eltb-b eltb-mini" id="el_mini" aria-label="Fold toolbar" title="Fold toolbar">${I.fold}</button><input type="file" id="el_imgf" accept="image/*" hidden><input type="file" id="el_pdff" accept="application/pdf,.pdf" multiple hidden></div>
       <div class="elpop" id="el_pop" hidden></div><button class="elpaste" id="el_paste" hidden></button><button class="ellzc" id="el_lzc" hidden>✕ Clear laser</button>
       <button class="elsavestatus" id="el_save" type="button" aria-live="polite" title="Notes are stored on this device">Saved on device</button><div class="elnav"><button id="el_zo" aria-label="Zoom out">−</button><span id="el_zv">100%</span><button id="el_zi" aria-label="Zoom in">+</button><span class="elnsep"></span><input id="el_pg" inputmode="numeric" aria-label="Go to page"><span id="el_pn">/ 1</span></div>
       <div class="elro" id="el_robadge" hidden>${I.read} Read-only · <button class="lnk" id="el_edit">Edit</button></div></div></div>`;
@@ -380,8 +454,8 @@ async function editor(v, id) {
   document.addEventListener("visibilitychange", onHidden); addEventListener("pagehide", onPageHide); addEventListener("beforeunload", onBeforeUnload);
   const snap = pg => JSON.stringify({strokes: pg.strokes, imgs: pg.imgs, texts: pg.texts, tpl: pg.tpl, paper: pg.paper});
   const historyChanged = () => { if (window.__eluUd) __eluUd(); };
-  const pushU = (pg, joinPrevious = false) => {
-    const entry = [pg.id, snap(pg)];
+  const pushU = (pg, joinPrevious = false, pre) => {
+    const entry = [pg.id, pre || snap(pg)];
     if (joinPrevious && undo.length) { const prior = undo[undo.length - 1]; undo[undo.length - 1] = prior[0] === "$group" ? ["$group", [...prior[1], entry]] : ["$group", [prior, entry]]; }
     else undo.push(entry);
     if (undo.length > 100) undo.shift(); redo = []; historyChanged();
@@ -405,19 +479,39 @@ async function editor(v, id) {
   };
 
   /* ---- pages (canvases only near the screen) ---- */
-  const mk = pg => { const el = document.createElement("div"); el.className = "elp" + (pg.paper === "night" ? " night" : ""); el.innerHTML = `<div class="eltl"></div><div class="elx"></div><span class="elpn">${book.pages.indexOf(pg) + 1}</span>`; const P = {pg, el}; el.__P = P; return P; };
+  const mk = pg => { const el = document.createElement("div"); el.className = "elp" + (pg.paper === "night" ? " night" : "") + (pg.bm ? " bmk" : ""); el.innerHTML = `<div class="eltl"></div><div class="elx"></div><span class="elpn">${book.pages.indexOf(pg) + 1}</span>`; const P = {pg, el}; el.__P = P; return P; };
   const size = P => { const w = Math.round(pw()), h = Math.round(w * P.pg.h / P.pg.w); P.el.style.width = w + "px"; P.el.style.height = h + "px"; };
   const cvSize = (c, P) => { const d = Math.min(dpr(), 4096 / Math.max(1, pw(), pw() * P.pg.h / P.pg.w)); c.width = Math.round(pw() * d); c.height = Math.round(pw() * d * P.pg.h / P.pg.w); return d; };
   const base = async P => { if (!P.b) return; if (P.task && P.task.t) try { P.task.t.cancel(); } catch (e) {} const task = P.task = {}, c = document.createElement("canvas"), d = cvSize(c, P);
     try { await drawBase(c.getContext("2d"), P.pg, sc() * d, task); } catch (e) { if (e && e.name === "RenderingCancelledException") return; }
-    if (P.task !== task || !P.b) return; P.b.width = c.width; P.b.height = c.height; P.b.getContext("2d").drawImage(c, 0, 0); P.el.classList.add("ready"); };
-  const ink = P => { if (!P.i) return; const d = cvSize(P.i, P); drawInk(P.i.getContext("2d"), P.pg, sc() * d); };
+    if (P.task !== task || !P.b) return; P.b.width = c.width; P.b.height = c.height; P.b.getContext("2d").drawImage(c, 0, 0); c.width = 0; P.el.classList.add("ready"); S.zwDirty = 1; if (P.hb) { P.hr = null; hpAll(); } };
+  /* r (optional): repaint only this page-unit box — much faster than redrawing every stroke on a busy page */
+  const ink = (P, r) => { if (!P.i) return; if (r && P.i.width) drawInk(P.i.getContext("2d"), P.pg, sc() * cvSize.d(P), {r}); else { const d = cvSize(P.i, P); drawInk(P.i.getContext("2d"), P.pg, sc() * d); } hpInk(P, r); S.zwDirty = 1; };
+  /* ---- sharp zoom: when a page canvas is capped below screen resolution, its visible part gets a full-resolution layer ---- */
+  const hpNeed = P => P.b && P.i && P.i.width / Math.max(1, pw()) < dpr() * 0.92;
+  const hpClear = P => { [P.hb, P.hi].forEach(c => { if (c) { c.width = c.height = 0; c.remove(); } }); P.hb = P.hi = P.hr = null; if (P.htask && P.htask.t) try { P.htask.t.cancel(); } catch (e) {} P.htask = null; };
+  const hpInk = (P, r) => { const h = P.hr; if (!P.hi || !h || P.hi.width !== h.w) return; drawInk(P.hi.getContext("2d"), P.pg, h.s, {ox: h.ox, oy: h.oy, r}); P.hi.style.visibility = ""; };
+  const hpMake = async P => { const r = P.el.getBoundingClientRect(), v = scroll.getBoundingClientRect(), x0 = Math.max(r.left, v.left), y0 = Math.max(r.top, v.top), x1 = Math.min(r.right, v.right), y1 = Math.min(r.bottom, v.bottom);
+    if (x1 - x0 < 4 || y1 - y0 < 4) { if (P.hb) hpClear(P); return; }
+    const D = dpr(), cx = x0 - r.left, cy = y0 - r.top, w = Math.round((x1 - x0) * D), h = Math.round((y1 - y0) * D), hr = {ox: Math.round(cx * D), oy: Math.round(cy * D), s: sc() * D, w, h};
+    if (P.hr && P.hr.ox === hr.ox && P.hr.oy === hr.oy && P.hr.w === w && P.hr.h === h && P.hr.s === hr.s) return;
+    if (P.htask && P.htask.t) try { P.htask.t.cancel(); } catch (e) {}
+    const task = P.htask = {}, c = document.createElement("canvas"); c.width = w; c.height = h;
+    try { await drawBase(c.getContext("2d"), P.pg, hr.s, task, hr.ox, hr.oy); } catch (e) { c.width = 0; return; }
+    if (P.htask !== task || !P.b || cur && cur.P === P) { c.width = 0; return; }
+    if (!P.hb) { P.hb = document.createElement("canvas"); P.hb.className = "elhp"; P.hi = document.createElement("canvas"); P.hi.className = "elhp elhi"; P.b.after(P.hb); P.i.after(P.hi); }
+    [P.hb, P.hi].forEach(k => Object.assign(k.style, {left: cx + "px", top: cy + "px", width: (x1 - x0) + "px", height: (y1 - y0) + "px"}));
+    P.hb.width = w; P.hb.height = h; P.hb.getContext("2d").drawImage(c, 0, 0); c.width = 0; P.hi.width = w; P.hi.height = h; P.hr = hr; hpInk(P); };
+  const hpAll = () => { clearTimeout(hpAll.t); hpAll.t = setTimeout(() => { if (cur) return hpAll(); pages.forEach(P => { if (!P.b || !hpNeed(P)) { if (P.hb) hpClear(P); return; } hpMake(P); }); }, 180); };
   const attach = P => { if (P.b) return; P.b = document.createElement("canvas"); P.b.className = "elb"; P.i = document.createElement("canvas"); P.i.className = "eli"; P.el.prepend(P.b, P.i); base(P); ink(P); if (S.ro || S.tool === "select") textLayer(P); };
-  const detach = P => { if (!P.b) return; [P.b, P.i].forEach(c => { c.width = c.height = 0; c.remove(); }); P.b = P.i = null; P.el.querySelector(".eltl").innerHTML = ""; P.tl = 0; P.el.classList.remove("ready"); };
+  const detach = P => { if (!P.b) return; hpClear(P); [P.b, P.i].forEach(c => { c.width = c.height = 0; c.remove(); }); P.b = P.i = null; P.el.querySelector(".eltl").innerHTML = ""; P.tl = 0; P.el.classList.remove("ready"); };
   const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? attach(e.target.__P) : detach(e.target.__P)), {root: scroll, rootMargin: "150% 150%"});
-  const relayout = () => { pages.forEach(P => { size(P); if (P.b) { base(P); ink(P); texts(P); if (P.tl) { P.tl = 0; textLayer(P); } } }); $("#el_zv").textContent = Math.round(S.zoom * 100) + "%"; };
-  const build = () => { io.disconnect(); wrap.innerHTML = ""; pages = book.pages.map(mk); pages.forEach(P => { wrap.appendChild(P.el); size(P); io.observe(P.el); texts(P); }); outline(); $("#el_pn").textContent = "/ " + pages.length; };
-  const pageAt = (cx, cy) => { for (const P of pages) { const r = P.el.getBoundingClientRect(); if (cx >= r.left && cx <= r.right && cy >= r.top && cy <= r.bottom) return [P, r]; } return [null, null]; };
+  const relayout = () => { pages.forEach(P => { size(P); if (P.b) { base(P); ink(P); texts(P); if (P.tl) { P.tl = 0; textLayer(P); } } }); $("#el_zv").textContent = Math.round(S.zoom * 100) + "%"; hpAll(); };
+  const build = () => { if (S.zw) zwClose(); pages.forEach(P => { if (P.hb) hpClear(P); }); io.disconnect(); wrap.innerHTML = ""; pages = book.pages.map(mk); pages.forEach(P => { wrap.appendChild(P.el); size(P); io.observe(P.el); texts(P); }); outline(); $("#el_pn").textContent = "/ " + pages.length; };
+  /* the zoom window acts as a magnified view of one box on a page: its virtual page rect maps panel points into that box */
+  const zwRect = () => { const z = S.zw, c = z.c.getBoundingClientRect(), k = c.width / z.w, P = z.P; return {zv: 1, left: c.left - z.x * k, top: c.top - z.y * k, width: P.pg.w * k, height: P.pg.h * k}; };
+  const pageAt = (cx, cy) => { if (S.zw) { const c = S.zw.c.getBoundingClientRect(); if (cx >= c.left && cx <= c.right && cy >= c.top && cy <= c.bottom) return S.zw.P.i ? [S.zw.P, zwRect()] : [null, null]; }
+    for (const P of pages) { const r = P.el.getBoundingClientRect(); if (cx >= r.left && cx <= r.right && cy >= r.top && cy <= r.bottom) return [P, r]; } return [null, null]; };
   const toPage = (P, r, cx, cy) => [(cx - r.left) / r.width * P.pg.w, (cy - r.top) / r.height * P.pg.h];
   /* ---- text boxes and stickers ---- */
   const texts = P => { const L = P.el.querySelector(".elx"); L.innerHTML = ""; P.pg.texts.forEach(t => L.appendChild(textEl(P, t))); };
@@ -452,7 +546,7 @@ async function editor(v, id) {
   COMM.unsub.push(() => { removeEventListener("pointerup", onSelUp); removeEventListener("pointercancel", onSelUp); });
   const textLayers = on => pages.forEach(P => { if (on) textLayer(P); });
   /* ---- outline ---- */
-  const outline = () => { const L = $("#el_olist"); L.innerHTML = book.pages.map((p, i) => `<button class="elth" data-go="${i}"><canvas data-th="${i}"></canvas><span>${i + 1}</span></button>`).join("");
+  const outline = () => { const L = $("#el_olist"); L.innerHTML = book.pages.map((p, i) => `<button class="elth${p.bm ? " bm" : ""}" data-go="${i}"><canvas data-th="${i}"></canvas><span>${i + 1}</span></button>`).join("");
     const io2 = new IntersectionObserver(es => es.forEach(async e => { if (!e.isIntersecting) return; io2.unobserve(e.target); const c = e.target.querySelector("canvas"), pg = book.pages[+e.target.dataset.go]; if (!pg) return;
       try { const im = await pageImage(pg, 110 / pg.w); c.width = im.width; c.height = im.height; c.getContext("2d").drawImage(im, 0, 0); } catch (er) {} }), {root: L});
     $$(".elth", L).forEach(b => { io2.observe(b); b.onclick = () => goPage(+b.dataset.go); b.oncontextmenu = e => { e.preventDefault(); pageMenu(+b.dataset.go); }; }); };
@@ -549,10 +643,14 @@ async function editor(v, id) {
   const pop = $("#el_pop");
   const popAt = (btn, html) => { pop.innerHTML = html; pop.hidden = false; const r = btn.getBoundingClientRect(), w = W.getBoundingClientRect(); pop.style.left = Math.max(8, Math.min(w.width - pop.offsetWidth - 8, r.left - w.left + r.width / 2 - pop.offsetWidth / 2)) + "px"; pop.style.top = (r.bottom - w.top + 8 + pop.offsetHeight > w.height ? r.top - w.top - pop.offsetHeight - 8 : r.bottom - w.top + 8) + "px"; };
   const closePop = () => { pop.hidden = true; };
-  const colPop = () => { const hl = S.tool === "hl", cols = hl ? HLS : PENS, curC = hl ? S.hl : S.pen;
-    popAt($("#el_col"), `<div class="elpoph">${hl ? "Highlighter" : "Pen"} colour</div><div class="elcols">${cols.map(c => `<button class="elc${c === curC ? " on" : ""}" data-c="${c}" style="--c:${c}" aria-label="Colour"></button>`).join("")}<label class="elc elcust" title="Any colour"><input type="color" id="el_cc" value="${curC}"></label></div><div class="elpoph">Thickness</div><div class="elsizes">${[1, 2, 3, 5, 8].map(z => `<button class="elz${z === S.size ? " on" : ""}" data-z="${z}"><i style="--z:${3 + z * 1.8}px"></i></button>`).join("")}</div>`);
-    const setC = c => { if (hl) store.set("eluHl", S.hl = c); else store.set("eluPen", S.pen = c); tbUpd(); colPop(); };
+  const colPop = () => { const kd = S.tool === "hl" ? "hl" : S.tool === "tape" ? "tape" : "pen", cols = kd === "hl" ? HLS : kd === "tape" ? TAPES : PENS, curC = S[kd];
+    const kinds = kd === "pen" ? `<div class="elpoph">Pen type</div><div class="elseg elpenk">${PENK.map(([v, l]) => `<button class="${S.penk === v ? "on" : ""}" data-pk2="${v}">${l}</button>`).join("")}</div>` : "";
+    const tapeX = kd === "tape" ? `<div class="elpoph">All tape in this notebook</div><div class="elseg"><button data-ta="hide">Hide all</button><button data-ta="show">Reveal all</button></div><small class="muted elpnote">Cover answers with tape, then tap it (finger, or the tape tool) to peek. Great for revision.</small>` : "";
+    popAt($("#el_col"), `<div class="elpoph">${{hl: "Highlighter", tape: "Tape", pen: "Pen"}[kd]} colour</div><div class="elcols">${cols.map(c => `<button class="elc${c === curC ? " on" : ""}" data-c="${c}" style="--c:${c}" aria-label="Colour"></button>`).join("")}<label class="elc elcust" title="Any colour"><input type="color" id="el_cc" value="${curC}"></label></div>${kinds}<div class="elpoph">Thickness</div><div class="elsizes">${[1, 2, 3, 5, 8].map(z => `<button class="elz${z === S.size ? " on" : ""}" data-z="${z}"><i style="--z:${3 + z * 1.8}px"></i></button>`).join("")}</div>${tapeX}`);
+    const setC = c => { store.set({hl: "eluHl", tape: "eluTape", pen: "eluPen"}[kd], S[kd] = c); tbUpd(); colPop(); };
     $$("[data-c]", pop).forEach(b => b.onclick = () => setC(b.dataset.c)); $("#el_cc", pop).onchange = e => setC(e.target.value);
+    $$("[data-pk2]", pop).forEach(b => b.onclick = () => { store.set("eluPenK", S.penk = b.dataset.pk2); colPop(); });
+    $$("[data-ta]", pop).forEach(b => b.onclick = () => { const show = b.dataset.ta === "show"; let n = 0; book.pages.forEach(pg => pg.strokes.forEach(st => { if (st.t === "tape") { st.r = show; n++; } })); pages.forEach(P => ink(P)); if (n) save(); nbToast(n ? (show ? "All tape revealed" : "All tape hidden") : "No tape in this notebook yet"); });
     $$("[data-z]", pop).forEach(b => b.onclick = () => { store.set("eluSize", S.size = +b.dataset.z); colPop(); }); };
   const subPop = k => { const opts = {eraser: [["stroke", "Stroke eraser", "removes whole lines"], ["standard", "Standard eraser", "rubs out like a real eraser"], ["precision", "Precision eraser", "fine tip for small details"]], lasso: [["free", "Freehand", "draw any shape around it"], ["rect", "Rectangle", "drag a box"]], laser: [["line", "Laser pen", "write or circle — it stays while you keep going"], ["dot", "Laser dot", "a single bright pointer"]]}[k]; if (!opts) return colPop();
     const head = {eraser: "Eraser", lasso: "Lasso — select or screenshot", laser: "Laser pointer"}[k], extra = k === "laser" ? `<div class="elpoph" style="margin-top:10px">Laser writing stays for</div><div class="elseg">${[[100, "0.1 s"], [500, "0.5 s"], [1000, "1 s"], [2000, "2 s"], [5000, "5 s"], [0, "Until clear"]].map(([v, l]) => `<button class="${LZH() === v ? "on" : ""}" data-lzh="${v}">${l}</button>`).join("")}</div>`
@@ -562,8 +660,8 @@ async function editor(v, id) {
     $$("[data-lzh]", pop).forEach(b => b.onclick = () => { store.set("eluLzHold", +b.dataset.lzh); if (lpts.some(p => p.live)) laserOff(); subPop(k); }); };
   const sweepTexts = () => pages.forEach(P => { const keep = P.pg.texts.filter(t => t.emoji || (t.t || "").trim()); if (keep.length !== P.pg.texts.length) { P.pg.texts = keep; texts(P); save(); } });
   const udUpd = () => { $("#el_undo").classList.toggle("dis", !undo.length); $("#el_redo").classList.toggle("dis", !redo.length); };
-  const tbUpd = () => { sweepTexts(); udUpd(); { const pb = $('.eltb [data-tool="pen"]'), hb = $('.eltb [data-tool="hl"]'); if (pb) pb.style.setProperty("--tc", S.pen); if (hb) hb.style.setProperty("--tc", S.hl); } $("#el_palm").classList.toggle("on", !!S.pencil); { const lb = $('[data-tool="lasso"]', tb); lb.innerHTML = S.sub.lasso === "rect" ? I.lassoRect : I.lasso; } $$("[data-tool]", tb).forEach(b => b.classList.toggle("on", b.dataset.tool === S.tool)); $("#el_col i").style.backgroundColor = S.tool === "hl" ? S.hl : S.pen; W.dataset.tool = S.tool; W.classList.toggle("selmode", S.tool === "select"); if (S.tool !== "lasso") clearSel(); };
-  $$("[data-tool]", tb).forEach(b => b.onclick = () => { const k = b.dataset.tool; if (S.tool === k && ["eraser", "lasso", "laser", "pen", "hl"].includes(k)) { pop.hidden ? subPop(k) : closePop(); return; } closePop(); S.paste = false; pasteUpd(); if (S.tool === "laser" && k !== "laser") laserFade(); store.set("eluTool", S.tool = k); tbUpd(); if (["eraser", "lasso", "laser"].includes(k)) subPop(k); if (k === "select") { textLayers(true); nbToast(book.pages.some(p => p.type === "pdf") ? "Press and hold a word to select it — then Define, Google or highlight." : "Select text works on PDFs (and pages after OCR)."); } });
+  const tbUpd = () => { sweepTexts(); udUpd(); { const pb = $('.eltb [data-tool="pen"]'), hb = $('.eltb [data-tool="hl"]'); if (pb) pb.style.setProperty("--tc", S.pen); if (hb) hb.style.setProperty("--tc", S.hl); const tp = $('.eltb [data-tool="tape"]'); if (tp) tp.style.setProperty("--tc", S.tape); } $("#el_palm").classList.toggle("on", !!S.pencil); { const lb = $('[data-tool="lasso"]', tb); lb.innerHTML = S.sub.lasso === "rect" ? I.lassoRect : I.lasso; } $$("[data-tool]", tb).forEach(b => b.classList.toggle("on", b.dataset.tool === S.tool)); $("#el_col i").style.backgroundColor = S.tool === "hl" ? S.hl : S.tool === "tape" ? S.tape : S.pen; W.dataset.tool = S.tool; W.classList.toggle("selmode", S.tool === "select"); if (S.tool !== "lasso") clearSel(); };
+  $$("[data-tool]", tb).forEach(b => b.onclick = () => { const k = b.dataset.tool; if (S.tool === k && ["eraser", "lasso", "laser", "pen", "hl", "tape"].includes(k)) { pop.hidden ? subPop(k) : closePop(); return; } closePop(); S.paste = false; pasteUpd(); if (S.tool === "laser" && k !== "laser") laserFade(); store.set("eluTool", S.tool = k); tbUpd(); if (["eraser", "lasso", "laser"].includes(k)) subPop(k); if (k === "select") { textLayers(true); nbToast(book.pages.some(p => p.type === "pdf") ? "Press and hold a word to select it — then Define, Google or highlight." : "Select text works on PDFs (and pages after OCR)."); } });
   $("#el_col").onclick = () => pop.hidden ? colPop() : closePop();
   /* Apple Pencil and S Pen options */
   const penPop = () => { const p = PEN(), row = (k, l, d) => `<button class="elsw${p[k] ? " on" : ""}" data-pk="${k}"><span><b>${l}</b><small>${d}</small></span><i></i></button>`;
@@ -748,7 +846,7 @@ async function editor(v, id) {
     if (!Number.isFinite(next) || cur || disposedInput) return;
     anchor = anchor || zoomAnchor(cx, cy);
     if (!anchor) return;
-    S.zoom = next; pages.forEach(size);
+    S.zoom = next; pages.forEach(size); pages.forEach(P => { if (P.hb) hpClear(P); });
     const r = anchor.P.el.getBoundingClientRect();
     scroll.scrollLeft += r.left + anchor.x * r.width - cx;
     scroll.scrollTop += r.top + anchor.y * r.height - cy;
@@ -766,8 +864,8 @@ async function editor(v, id) {
     setZoom(pinch.z * Math.hypot(a.x - b.x, a.y - b.y) / pinch.d, (a.x + b.x) / 2, (a.y + b.y) / 2, pinch.anchor);
   };
   $("#el_zi").onclick = () => { const r = scroll.getBoundingClientRect(); setZoom(S.zoom * 1.25, r.left + r.width / 2, r.top + r.height / 2); }; $("#el_zo").onclick = () => { const r = scroll.getBoundingClientRect(); setZoom(S.zoom / 1.25, r.left + r.width / 2, r.top + r.height / 2); };
-  const eraseAt = (P, x, y) => { const R = 12 + S.size * 3, n0 = P.pg.strokes.length; P.pg.strokes = P.pg.strokes.filter(st => { if (st.t === "px") return true; const p = st.p; for (let i = 0; i < p.length; i += 3) { if (Math.hypot(p[i] - x, p[i + 1] - y) < R + st.w / 2) return false; if (i >= 3) { const ax = p[i - 3], ay = p[i - 2], dx = p[i] - ax, dy = p[i + 1] - ay, den = dx * dx + dy * dy, k = den ? Math.max(0, Math.min(1, ((x - ax) * dx + (y - ay) * dy) / den)) : 0; if (Math.hypot(ax + k * dx - x, ay + k * dy - y) < R + st.w / 2) return false; } } return true; });
-    const t0 = P.pg.texts.length; P.pg.texts = P.pg.texts.filter(t => !(t.emoji && Math.hypot(t.x + 30 - x, t.y + 30 - y) < R + 30)); if (P.pg.texts.length !== t0) texts(P); if (P.pg.strokes.length !== n0) ink(P); };
+  const eraseAt = (P, x, y) => { const R = 12 + S.size * 3, n0 = P.pg.strokes.length; let rb = null; P.pg.strokes = P.pg.strokes.filter(st => { const keep = (() => { if (st.t === "px") return true; const p = st.p; for (let i = 0; i < p.length; i += 3) { if (Math.hypot(p[i] - x, p[i + 1] - y) < R + st.w / 2) return false; if (i >= 3) { const ax = p[i - 3], ay = p[i - 2], dx = p[i] - ax, dy = p[i + 1] - ay, den = dx * dx + dy * dy, k = den ? Math.max(0, Math.min(1, ((x - ax) * dx + (y - ay) * dy) / den)) : 0; if (Math.hypot(ax + k * dx - x, ay + k * dy - y) < R + st.w / 2) return false; } } return true; })(); if (!keep) rb = boxU(rb, sbox(st)); return keep; });
+    const t0 = P.pg.texts.length; P.pg.texts = P.pg.texts.filter(t => !(t.emoji && Math.hypot(t.x + 30 - x, t.y + 30 - y) < R + 30)); if (P.pg.texts.length !== t0) texts(P); if (P.pg.strokes.length !== n0) ink(P, rb); };
   /* S Pen side button or a stylus eraser end: does what the Pen settings say (eraser by default) */
   const toolFor = e => (e.pointerType === "pen" && ((e.buttons & 32) || (e.buttons & 2))) ? (e.buttons & 32 ? "eraser" : PEN().btn) : S.tool;
   /* ---- press and hold on PDF text, with any tool, to select a word ---- */
@@ -802,7 +900,7 @@ async function editor(v, id) {
     if (S.paste && CLIP) { const [P, r] = pageAt(e.clientX, e.clientY); if (!P || !P.i) return; e.preventDefault(); const [x, y] = toPage(P, r, e.clientX, e.clientY); doPaste(P, x, y); return; }
     { const gs = getSelection(), an = gs.anchorNode; if (gs.rangeCount && an && (an.nodeType === 1 ? an : an.parentElement).closest(".eltl")) gs.removeAllRanges(); }
     const palmy = e.pointerType === "touch" && (Math.max(e.width || 0, e.height || 0) > 34 || performance.now() - (S.lastPen || 0) < 1500);
-    lpClear(); if (SET().hold && !S.penDown && !palmy && !S.paste && touches.size < 1 && (e.pointerType === "pen" ? ["hl", "lasso"] : ["pen", "hl", "eraser", "lasso"]).includes(S.tool)) { const x0 = e.clientX, y0 = e.clientY; lp = {id: e.pointerId, x: x0, y: y0, t: setTimeout(() => { lp = null; wordAt(x0, y0, e.pointerId); }, 520)}; }
+    lpClear(); if (SET().hold && !S.penDown && !palmy && !S.paste && !(S.zw && e.target === S.zw.c) && touches.size < 1 && (e.pointerType === "pen" ? ["hl", "lasso"] : ["pen", "hl", "eraser", "lasso"]).includes(S.tool)) { const x0 = e.clientX, y0 = e.clientY; lp = {id: e.pointerId, x: x0, y: y0, t: setTimeout(() => { lp = null; wordAt(x0, y0, e.pointerId); }, 520)}; }
     const finger = e.pointerType === "touch", drawer = !finger || (!S.pencil && touches.size === 0);
     if (finger) { touches.set(e.pointerId, {x: e.clientX, y: e.clientY}); try { scroll.setPointerCapture(e.pointerId); } catch (_) {} if (S.penDown) return;
       if (!drawer || touches.size > 1) { if (cur && touches.size > 1) cancel(); if (touches.size === 2) { const [a, b] = [...touches.values()]; beginPinch(); } lastT = performance.now(); return; } }
@@ -818,15 +916,19 @@ async function editor(v, id) {
       const hs = hi || ht ? null : [...P.pg.strokes].reverse().find(st => { if (st.t === "px") return false; for (let i = 0; i < st.p.length; i += 3) if (Math.hypot(st.p[i] - x, st.p[i + 1] - y) < Math.max(12, st.w * 0.8)) return true; return false; }), hit = hi || ht || hs;
       if (hit) { const g = hit.g; if (g) selectItems(P, P.pg.strokes.filter(q => q.g === g), P.pg.imgs.filter(q => q.g === g), P.pg.texts.filter(q => q.g === g)); else selectItems(P, hs ? [hs] : [], hi ? [hi] : [], ht ? [ht] : []); return; }
       clearSel(); cur = {id: e.pointerId, lasso: 1, P, r, start: wxy(e)}; lassoPath = [wxy(e)]; kick(); return; }
+    if (t === "tape") { const hit = tapeAt(P, x, y); if (hit) { cur = {id: e.pointerId, P, r, tapeTap: hit}; return; } }
     if (t === "hl" && P.pg.type !== "paper" && !P.tl) textLayer(P);
-    const beforeDraw = snap(P.pg), redoBefore = redo.slice(); pushU(P.pg);
+    /* pen, highlighter and tape leave the page untouched until the pen lifts, so the undo snapshot is taken then — no lag at pen-down */
+    const lazy = t !== "eraser", beforeDraw = lazy ? null : snap(P.pg), redoBefore = redo.slice(); if (!lazy) pushU(P.pg, false, beforeDraw);
     if (t === "eraser" && S.sub.eraser === "stroke") { cur = {id: e.pointerId, P, r, erase: 1, beforeDraw, redoBefore}; eraseAt(P, x, y); ring = {...wxy(e), r: (12 + S.size * 3) * r.width / P.pg.w}; kick(); return; }
-    const pr = e.pointerType === "pen" && PEN().pressure ? e.pressure || .5 : .55, px = t === "eraser", w = px ? (S.sub.eraser === "precision" ? 8 : 34 + S.size * 6) : t === "hl" ? 18 + S.size * 6 : 1.2 + S.size * 1.15;
-    cur = {id: e.pointerId, P, r, beforeDraw, redoBefore, st: {t: px ? "px" : t === "hl" ? "hl" : "pen", c: t === "hl" ? S.hl : S.pen, w, p: [+x.toFixed(1), +y.toFixed(1), pr]}, drawn: 1, ctx: P.i.getContext("2d", {desynchronized: true})};
+    const pr = e.pointerType === "pen" && PEN().pressure ? e.pressure || .5 : .55, px = t === "eraser", tp = t === "tape", w = px ? (S.sub.eraser === "precision" ? 8 : 34 + S.size * 6) : t === "hl" ? 18 + S.size * 6 : tp ? 26 + S.size * 7 : 1.2 + S.size * 1.15;
+    cur = {id: e.pointerId, P, r, lazy, beforeDraw, redoBefore, st: {t: px ? "px" : t === "hl" ? "hl" : tp ? "tape" : "pen", c: t === "hl" ? S.hl : tp ? S.tape : S.pen, w, p: [+x.toFixed(1), +y.toFixed(1), pr]}, drawn: 1, ctx: P.i.getContext("2d", {desynchronized: true})};
+    if (cur.st.t === "pen" && S.penk) cur.st.k = S.penk;
+    if (cur.st.t !== "pen" && P.hi) P.hi.style.visibility = "hidden";
     // Snapshot existing ink once, rather than replay every previous stroke per frame.
     if (cur.st.t !== "pen") { cur.backdrop = document.createElement("canvas"); cur.backdrop.width = P.i.width; cur.backdrop.height = P.i.height; cur.backdrop.getContext("2d").drawImage(P.i, 0, 0); }
     if (px) { ring = {...wxy(e), r: w / 2 * r.width / P.pg.w}; kick(); }
-    cur.snap = !!S.ruler && t === "pen"; if (cur.st.t === "pen") stroke(cur.ctx, cur.st, sc() * cvSize.d(P));
+    cur.snap = !!S.ruler && t === "pen"; if (cur.st.t === "pen") paintCur(cur);
   };
   cvSize.d = P => P && P.i ? P.i.width / Math.max(1, pw()) : Math.min(dpr(), 4096 / Math.max(1, pw()));
   const move = e => {
@@ -849,17 +951,23 @@ async function editor(v, id) {
     if (cur.laser) { const w = W.getBoundingClientRect(), evs = e.getCoalescedEvents ? e.getCoalescedEvents() : []; const live = S.sub.laser !== "dot"; (evs.length ? evs : [e]).forEach(ev => lpts.push({x: ev.clientX - w.left, y: ev.clientY - w.top, t: performance.now(), live})); kick(); return; }
     if (cur.lasso) { const p = wxy(e); if (S.sub.lasso === "rect") { const s0 = cur.start; lassoPath = [s0, {x: p.x, y: s0.y}, p, {x: s0.x, y: p.y}]; } else lassoPath.push(p); kick(); return; }
     if (cur.erase) { const [x, y] = toPage(cur.P, cur.r, e.clientX, e.clientY); eraseAt(cur.P, x, y); ring = {...wxy(e), r: ring.r}; kick(); return; }
+    if (cur.tapeTap || cur.shaped) return;
     if (cur.st.t === "px") { ring = {...wxy(e), r: ring.r}; kick(); }
+    if (S.zw) S.zwDirty = 1;
     const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [], pen = e.pointerType === "pen" && PEN().pressure, k = cur.st.t === "pen" ? Math.max(0, Math.min(.85, SET().smooth)) : 0.25;
     for (const ev of (evs.length ? evs : [e])) { let cx = ev.clientX, cy = ev.clientY; if (cur.snap) { const s2 = snapRuler(cx, cy); if (s2) [cx, cy] = s2; }
       const [x, y] = toPage(cur.P, cur.r, cx, cy), p = cur.st.p, n = p.length, lx = p[n - 3], ly = p[n - 2], kk = cur.snap ? 0 : k;
       const sx = lx + (x - lx) * (1 - kk), sy = ly + (y - ly) * (1 - kk), sp = p[n - 1] * .7 + (pen ? ev.pressure || .5 : .55) * .3; if (Math.abs(sx - lx) + Math.abs(sy - ly) < .5) continue; p.push(+sx.toFixed(1), +sy.toFixed(1), +sp.toFixed(3)); }
+    if (cur.st.t === "tape") { const p = cur.st.p; if (p.length > 6) cur.st.p = [p[0], p[1], p[2], p[p.length - 3], p[p.length - 2], .5]; }
+    /* keep the pen still for a moment on a pen stroke → it snaps into a neat shape */
+    if (cur.st.t === "pen" && !cur.snap && SET().shapes) { const p = cur.st.p, hx = p[p.length - 3], hy = p[p.length - 2];
+      if (!cur.hold || Math.hypot(hx - cur.hx, hy - cur.hy) > 5) { clearTimeout(cur.hold); cur.hx = hx; cur.hy = hy; const c0 = cur; cur.hold = setTimeout(() => shapeNow(c0), 550); } }
     if (!cur.raf) cur.raf = requestAnimationFrame(() => { if (!cur || !cur.st) return; cur.raf = 0; const s = sc() * cvSize.d(cur.P);
-      if (cur.st.t === "pen") { const n = cur.st.p.length / 3; if (n > cur.drawn) { stroke(cur.ctx, cur.st, s, Math.max(2, cur.drawn)); cur.drawn = n; } } else { cur.ctx.clearRect(0, 0, cur.ctx.canvas.width, cur.ctx.canvas.height); cur.ctx.drawImage(cur.backdrop, 0, 0); stroke(cur.ctx, cur.st, s); } });
+      if (cur.st.t === "pen") { const n = cur.st.p.length / 3; if (n > cur.drawn) { paintCur(cur, Math.max(2, cur.drawn)); cur.drawn = n; } } else { cur.ctx.clearRect(0, 0, cur.ctx.canvas.width, cur.ctx.canvas.height); cur.ctx.drawImage(cur.backdrop, 0, 0); stroke(cur.ctx, cur.st, s); } });
   };
   const cancel = () => {
     if (!cur) return;
-    const c = cur; cur = null;
+    const c = cur; cur = null; clearTimeout(c.hold);
     if (c.raf) cancelAnimationFrame(c.raf);
     if (c.beforeDraw != null) { Object.assign(c.P.pg, JSON.parse(c.beforeDraw)); undo.pop(); redo = c.redoBefore; if (window.__eluUd) __eluUd(); }
     if (c.backdrop) c.backdrop.width = c.backdrop.height = 0;
@@ -890,28 +998,131 @@ async function editor(v, id) {
       vel = null; lastT = performance.now();
     }
     if (!ownsStroke) return;
-    const c = cur; cur = null; if (c.raf) cancelAnimationFrame(c.raf);
+    const c = cur; cur = null; if (c.raf) cancelAnimationFrame(c.raf); clearTimeout(c.hold);
     if (c.backdrop) c.backdrop.width = c.backdrop.height = 0;
+    if (c.tapeTap) { toggleTape(c.P, c.tapeTap); return; }
     if (c.laser) { laserOff(); return; }
     if (c.lasso) { lassoFinish(c.P, c.r); return; }
     ring = null; kick();
     if (c.erase) { save(); return; }
-    if (e.type !== "pointercancel" && c.st && e.clientX != null && !c.snap) { const [x, y] = toPage(c.P, c.r, e.clientX, e.clientY), p = c.st.p; if (Math.abs(x - p[p.length - 3]) + Math.abs(y - p[p.length - 2]) > .5) p.push(+x.toFixed(1), +y.toFixed(1), p[p.length - 1]); }
+    if (e.type !== "pointercancel" && c.st && e.clientX != null && !c.snap && !c.shaped && c.st.t !== "tape") { const [x, y] = toPage(c.P, c.r, e.clientX, e.clientY), p = c.st.p; if (Math.abs(x - p[p.length - 3]) + Math.abs(y - p[p.length - 2]) > .5) p.push(+x.toFixed(1), +y.toFixed(1), p[p.length - 1]); }
     if (c.st.t === "pen") c.st.e = 1;   /* finished: redraw so the end tapers too */
+    const drawnBox = sbox(c.st);
     if (c.st.t === "hl") hlSnap(c.P, c.st);
-    c.P.pg.strokes.push(c.st); ink(c.P);
+    if (c.st.t === "tape") { const p = c.st.p; if (p.length < 6 || Math.hypot(p[3] - p[0], p[4] - p[1]) < 12) { ink(c.P, drawnBox); return; } const [ex, ey] = snapAng(p[0], p[1], p[3], p[4]); p[3] = +ex.toFixed(1); p[4] = +ey.toFixed(1); }
+    if (c.lazy) pushU(c.P.pg);
+    c.P.pg.strokes.push(c.st);
+    /* repaint only what changed: a pen stroke is already on screen apart from its tapered end */
+    if (c.st.t === "pen" && !c.shaped) { const p = c.st.p, n = p.length, m = c.st.w * 2.4 + 4; let tb = null; for (let i = Math.max(0, n - 27); i < n; i += 3) tb = boxU(tb, [p[i] - m, p[i + 1] - m, p[i] + m, p[i + 1] + m]); ink(c.P, tb); }
+    else ink(c.P, boxU(drawnBox, sbox(c.st)));
+    if (c.r && c.r.zv) zwAuto(c);
     save();
   };
   /* no system text selection or long-press menu while writing — only the select tool, read-only mode and text boxes select */
-  const selOK = e => { const n = e.target && (e.target.nodeType === 1 ? e.target : e.target.parentElement); return S.ro || S.tool === "select" || (n && n.closest(".elt")); };
-  scroll.addEventListener("selectstart", e => { if (!selOK(e)) e.preventDefault(); });
-  scroll.addEventListener("contextmenu", e => { if (!selOK(e)) e.preventDefault(); });
+  const editable = n => n && n.closest(".elt:not(.emo),input,textarea,[contenteditable=true]");
+  const selOK = e => { const n = e.target && (e.target.nodeType === 1 ? e.target : e.target.parentElement); return editable(n) || (n && n.closest(".eltl") && (S.ro || S.tool === "select")); };
+  W.addEventListener("selectstart", e => { if (!selOK(e)) e.preventDefault(); });
+  W.addEventListener("contextmenu", e => { if (!selOK(e)) e.preventDefault(); });
+  /* a resting palm must never start the system's long-press selection (iPad) */
+  W.addEventListener("touchstart", e => { if (!S.pencil && !S.penDown) return; const t = e.changedTouches[0]; if (!t || !scroll.contains(t.target) || editable(t.target.nodeType === 1 ? t.target : t.target.parentElement)) return;
+    if (S.penDown || Math.max(t.radiusX || 0, t.radiusY || 0) * 2 > 34 || performance.now() - (S.lastPen || -2000) < 350) e.preventDefault(); }, {passive: false});
+  /* keep any selection inside one page's text layer or a text box — never the whole page, sidebar or toolbar */
+  const selGuard = () => { if (!W.isConnected) return document.removeEventListener("selectionchange", selGuard); const s = getSelection(); if (!s.rangeCount || s.isCollapsed) return;
+    const el = n => n && (n.nodeType === 1 ? n : n.parentElement), a = el(s.anchorNode), f = el(s.focusNode); if (!a || !W.contains(a)) return;
+    if (editable(a)) return; const la = a.closest(".eltl"); if (!la) { s.removeAllRanges(); return; }
+    if (!f || f.closest(".eltl") !== la) { try { s.collapse(s.anchorNode, s.anchorOffset); } catch (er) { s.removeAllRanges(); } } };
+  document.addEventListener("selectionchange", selGuard);
   scroll.addEventListener("pointerdown", down); scroll.addEventListener("pointermove", move, {passive: false}); scroll.addEventListener("pointerup", up);
   const onCancel = e => {
     if (cur && cur.id === e.pointerId && e.pointerType === "touch") cancel();
     up(e);
   };
   scroll.addEventListener("pointercancel", onCancel);
+  /* ---- live painting: the page canvas, plus the sharp-zoom layer when it is showing ---- */
+  const paintCur = (c, from) => { stroke(c.ctx, c.st, sc() * cvSize.d(c.P), from); const h = c.P.hr; if (c.P.hi && h && c.P.hi.width === h.w) { const hx = c.P.hi.getContext("2d"); hx.save(); hx.translate(-h.ox, -h.oy); stroke(hx, c.st, h.s, from); hx.restore(); } S.zwDirty = 1; };
+  const shapeNow = c => { if (cur !== c || c.shaped || !c.st || c.st.t !== "pen") return; const r = recogniseShape(c.st.p); if (!r) return;
+    c.shaped = 1; c.st.p = shapePoints(r); c.st.u = 1; if (c.raf) { cancelAnimationFrame(c.raf); c.raf = 0; } ink(c.P); paintCur(c); try { navigator.vibrate && navigator.vibrate(8); } catch (e) {} };
+  /* ---- tape ---- */
+  const tapeAt = (P, x, y) => { for (let i = P.pg.strokes.length - 1; i >= 0; i--) { const st = P.pg.strokes[i]; if (st.t !== "tape") continue; const p = st.p, n = p.length; if (segD([x, y], [p[0], p[1]], [p[n - 3], p[n - 2]]) <= st.w / 2 + 4) return st; } return null; };
+  const toggleTape = (P, st) => { st.r = !st.r; ink(P, sbox(st)); save(); try { navigator.vibrate && navigator.vibrate(6); } catch (e) {} };
+  /* ---- finger taps: two fingers = undo, three = redo, one finger on tape = peek (when fingers don't write) ---- */
+  const tg = {ids: new Map(), max: 0, t0: 0, moved: false};
+  const tgDown = e => { if (e.pointerType !== "touch" || rejectedTouches.has(e.pointerId)) return; if (!tg.ids.size) { tg.max = 0; tg.t0 = performance.now(); tg.moved = false; } tg.ids.set(e.pointerId, [e.clientX, e.clientY]); tg.max = Math.max(tg.max, tg.ids.size); };
+  const tgMove = e => { const q = tg.ids.get(e.pointerId); if (q && Math.hypot(e.clientX - q[0], e.clientY - q[1]) > 14) tg.moved = true; };
+  const tgUp = e => { const q = tg.ids.get(e.pointerId); if (!q) return; tg.ids.delete(e.pointerId); if (e.type === "pointercancel") tg.moved = true; if (tg.ids.size || tg.moved || S.penDown || performance.now() - tg.t0 > 350) return;
+    if (tg.max === 2 && SET().gest && !S.ro) { if (undo.length) { restore(undo, redo); nbToast("↶ Undo"); } }
+    else if (tg.max === 3 && SET().gest && !S.ro) { if (redo.length) { restore(redo, undo); nbToast("↷ Redo"); } }
+    else if (tg.max === 1 && (S.pencil || S.ro || S.tool === "select")) { const [P, r] = pageAt(q[0], q[1]); if (P) { const [x, y] = toPage(P, r, q[0], q[1]), st = tapeAt(P, x, y); if (st) toggleTape(P, st); } } };
+  scroll.addEventListener("pointerdown", tgDown); scroll.addEventListener("pointermove", tgMove, {passive: true}); addEventListener("pointerup", tgUp); addEventListener("pointercancel", tgUp);
+  /* ---- zoom window: write big in the bottom panel, ink lands small inside the box on the page ---- */
+  const zwEl = $("#el_zw"), zwc = $("#el_zwc"), zwFrame = document.createElement("div"); zwFrame.className = "elzwf"; zwFrame.innerHTML = '<i title="Drag to move the box"></i>';
+  const zwPlace = () => { const z = S.zw; if (!z) return; const P = z.P, ck = zwc.clientWidth / z.w || 1; z.h = Math.min(P.pg.h, zwc.clientHeight / ck || z.w / 3); z.x = Math.max(0, Math.min(P.pg.w - z.w, z.x)); z.y = Math.max(0, Math.min(P.pg.h - z.h, z.y));
+    if (zwFrame.parentNode !== P.el) P.el.appendChild(zwFrame); Object.assign(zwFrame.style, {left: z.x / P.pg.w * 100 + "%", top: z.y / P.pg.h * 100 + "%", width: z.w / P.pg.w * 100 + "%", height: z.h / P.pg.h * 100 + "%"}); S.zwDirty = 1; };
+  const zwShow = () => { if (!S.zw) return; const fr = zwFrame.getBoundingClientRect(), sr = scroll.getBoundingClientRect(), lim = zwEl.getBoundingClientRect().top - 12;
+    if (fr.top < sr.top + 12) scroll.scrollTop -= sr.top + 12 - fr.top; else if (fr.bottom > lim) scroll.scrollTop += fr.bottom - lim;
+    if (fr.left < sr.left + 8) scroll.scrollLeft -= sr.left + 8 - fr.left; else if (fr.right > sr.right - 8) scroll.scrollLeft += fr.right - sr.right + 8; };
+  const zwDraw = () => { const z = S.zw; if (!z) return; const D = dpr(), cw = Math.max(1, Math.round(zwc.clientWidth * D)), ch = Math.max(1, Math.round(zwc.clientHeight * D)); if (zwc.width !== cw || zwc.height !== ch) { zwc.width = cw; zwc.height = ch; zwPlace(); }
+    const P = z.P, k = cw / z.w, x = zwc.getContext("2d"); x.setTransform(1, 0, 0, 1, 0, 0); x.fillStyle = P.pg.paper === "night" ? PAPERS.night : "#fff"; x.fillRect(0, 0, cw, ch);
+    if (P.pg.type === "paper" && !P.pg.bg) { x.save(); x.translate(-z.x * k, -z.y * k); drawPaper(x, P.pg, k); x.restore(); }   /* paper lines stay razor sharp */
+    else if (P.b && P.b.width) { const sb = P.b.width / P.pg.w; x.imageSmoothingQuality = "high"; x.drawImage(P.b, z.x * sb, z.y * sb, z.w * sb, z.h * sb, 0, 0, cw, ch); }
+    drawInk(x, P.pg, k, {ox: z.x * k, oy: z.y * k, keep: 1}); if (cur && cur.P === P && cur.st) { x.save(); x.translate(-z.x * k, -z.y * k); stroke(x, cur.st, k); x.restore(); }
+    x.fillStyle = "rgba(99,102,241,.07)"; x.fillRect(cw * .8, 0, cw * .2, ch); };
+  const zwLoop = () => { if (!S.zw) return; if (S.zwDirty) { S.zwDirty = 0; zwDraw(); } S.zw.raf = requestAnimationFrame(zwLoop); };
+  const zwOpen = () => { const P = pages[curPage()]; if (!P || S.ro) return; if (!P.b) attach(P); const r = P.el.getBoundingClientRect(), sr = scroll.getBoundingClientRect(), topU = Math.max(0, (sr.top - r.top) / r.height * P.pg.h);
+    S.zw = {P, c: zwc, x: P.pg.w * 0.06, y: topU + P.pg.h * 0.06, w: P.pg.w * 0.4, h: 100}; zwEl.hidden = false; W.classList.add("zwon"); $("#el_zwb").classList.add("on");
+    requestAnimationFrame(() => { zwPlace(); zwShow(); }); S.zw.raf = requestAnimationFrame(zwLoop);
+    if (!store.get("eluZwTip", 0)) { store.set("eluZwTip", 1); nbToast("Write in the bottom panel — it lands inside the box. Drag the box's corner to move it; it moves on by itself as you reach the right edge."); } };
+  const zwClose = () => { if (!S.zw) return; cancelAnimationFrame(S.zw.raf); S.zw = null; zwEl.hidden = true; zwFrame.remove(); W.classList.remove("zwon"); $("#el_zwb").classList.remove("on"); };
+  const zwStep = a => { const z = S.zw; if (!z) return; const P = z.P, i = pages.indexOf(P);
+    if (a === "x") return zwClose();
+    if (a === "left") z.x -= z.w * 0.8; else if (a === "right") z.x += z.w * 0.8;
+    else if (a === "nl") { z.x = P.pg.w * 0.06; z.y += z.h; if (z.y + z.h > P.pg.h + 1) { const N = pages[i + 1]; if (N) { if (!N.b) attach(N); z.P = N; z.y = N.pg.h * 0.05; } else z.y = P.pg.h - z.h; } }
+    else if (a === "in" || a === "out") { const cx = z.x + z.w / 2, cy = z.y + z.h / 2, ar = z.h / (z.w || 1); z.w = a === "in" ? Math.max(PW * 0.12, z.w / 1.25) : Math.min(P.pg.w, z.w * 1.25); z.x = cx - z.w / 2; z.y = cy - z.w * ar / 2; }
+    zwPlace(); zwShow(); };
+  const zwAuto = c => { const z = S.zw; if (!z || c.P !== z.P) return; const p = c.st.p; let mx = -1e9; for (let i = 0; i < p.length; i += 3) mx = Math.max(mx, p[i]); if (mx < z.x + z.w * 0.8) return;
+    if (z.x + z.w >= z.P.pg.w - 2) zwStep("nl"); else { z.x = Math.min(z.P.pg.w - z.w, z.x + z.w * 0.55); zwPlace(); zwShow(); } };
+  $("#el_zwb").onclick = () => S.zw ? zwClose() : zwOpen();
+  $$("[data-zw]", zwEl).forEach(b => b.onclick = () => zwStep(b.dataset.zw));
+  zwc.addEventListener("pointerdown", e => { if (e.pointerType === "touch" && S.pencil) { e.preventDefault(); return; } down(e); });
+  zwFrame.addEventListener("pointerdown", e => { e.stopPropagation(); e.preventDefault(); const z = S.zw; if (!z) return; const r = z.P.el.getBoundingClientRect(), k = r.width / z.P.pg.w, sx = e.clientX, sy = e.clientY, x0 = z.x, y0 = z.y; try { zwFrame.setPointerCapture(e.pointerId); } catch (er) {}
+    const mv = ev => { z.x = x0 + (ev.clientX - sx) / k; z.y = y0 + (ev.clientY - sy) / k; zwPlace(); }, end = () => { zwFrame.removeEventListener("pointermove", mv); zwFrame.removeEventListener("pointerup", end); zwFrame.removeEventListener("pointercancel", end); };
+    zwFrame.addEventListener("pointermove", mv); zwFrame.addEventListener("pointerup", end); zwFrame.addEventListener("pointercancel", end); });
+  /* ---- search inside this notebook: PDF text, recognised (OCR) text and text boxes ---- */
+  const fbar = $("#el_fbar"), fq = $("#el_fq"), fres = $("#el_fres"), ptext = new Map(); let fhits = [], fcur = -1, ftok = 0;
+  const baseText = async pg => { if (ptext.has(pg.id)) return ptext.get(pg.id); let t = "";
+    try { if (pg.type === "pdf") { const f = await DB.get("files", pg.fid), oc = f && f.ocr && f.ocr[pg.pi]; if (oc) t = oc.text || (oc.words || []).map(w => w.t).join(" "); else { const d = await pdfDoc(pg.fid), page = await d.getPage(pg.pi + 1), tc = await page.getTextContent(); t = tc.items.map(x => x.str + (x.hasEOL ? "\n" : " ")).join(""); } }
+      else if (pg.ocr) t = pg.ocr.text || (pg.ocr.words || []).map(w => w.t).join(" "); } catch (e) {}
+    ptext.set(pg.id, t); return t; };
+  const clearHits = () => W.querySelectorAll(".elhit").forEach(s => s.classList.remove("elhit", "cur"));
+  const fRun = async () => { const q = fq.value.trim().toLowerCase(), tok = ++ftok, fn = $("#el_fn"); fhits = []; fcur = -1; clearHits(); if (q.length < 2) { fres.innerHTML = ""; fn.textContent = ""; return; }
+    fn.textContent = "Searching…"; const out = [];
+    for (let i = 0; i < book.pages.length; i++) { const pg = book.pages[i], t = (await baseText(pg)) + "\n" + pg.texts.filter(x => !x.emoji).map(x => x.t || "").join("\n"); if (tok !== ftok) return;
+      const norm = t.replace(/\s+/g, " "), low = norm.toLowerCase(); let at = low.indexOf(q), k = 0; while (at >= 0 && k < 30) { out.push({i, s: norm.slice(Math.max(0, at - 40), at + q.length + 50), a: Math.min(40, at)}); at = low.indexOf(q, at + q.length); k++; }
+      if (i % 6 === 5) { fn.textContent = `Searching… ${i + 1}/${book.pages.length}`; await new Promise(r => setTimeout(r)); if (tok !== ftok) return; } }
+    fhits = out; fn.textContent = out.length ? `${out.length} found` : "No matches";
+    fres.innerHTML = out.slice(0, 300).map((h, n) => `<button data-fh="${n}"><b>p. ${h.i + 1}</b><span>${esc(h.s.slice(0, h.a))}<mark>${esc(h.s.slice(h.a, h.a + q.length))}</mark>${esc(h.s.slice(h.a + q.length))}</span></button>`).join("")
+      + (!out.length ? `<small class="muted">Search finds PDF text, recognised (OCR) text and text boxes. Handwriting is not searchable — for scanned PDFs use More ⋯ › Recognise text first.</small>` : "");
+    $$("[data-fh]", fres).forEach(b => b.onclick = () => fGo(+b.dataset.fh)); };
+  const fGo = async n => { if (!fhits.length) return; fcur = (n + fhits.length) % fhits.length; const h = fhits[fcur], q = fq.value.trim().toLowerCase(); $("#el_fn").textContent = `${fcur + 1} / ${fhits.length}`;
+    $$("[data-fh]", fres).forEach(b => b.classList.toggle("on", +b.dataset.fh === fcur)); if (innerWidth < 760) fres.hidden = true;
+    goPage(h.i); const P = pages[h.i]; if (!P) return; await new Promise(r => setTimeout(r, 80)); if (!P.b) attach(P); await textLayer(P); await new Promise(r => setTimeout(r, 140)); if (fhits[fcur] !== h) return;
+    clearHits(); let first = null; P.el.querySelectorAll(".eltl span, .elt").forEach(s => { if ((s.textContent || "").toLowerCase().includes(q)) { s.classList.add("elhit"); first = first || s; } });
+    if (first) { first.classList.add("cur"); const fr = first.getBoundingClientRect(), sr = scroll.getBoundingClientRect(); if (fr.top < sr.top + 70 || fr.bottom > sr.bottom - 70) scroll.scrollTop += fr.top - sr.top - sr.height / 3; } };
+  const fOpen = () => { ptext.clear(); fbar.hidden = false; fres.hidden = false; $("#el_find").classList.add("on"); setTimeout(() => { fq.focus(); fq.select(); }, 30); if (fq.value.trim()) fRun(); };
+  const fClose = () => { fbar.hidden = true; ftok++; clearHits(); $("#el_find").classList.remove("on"); };
+  $("#el_find").onclick = () => fbar.hidden ? fOpen() : fClose();
+  fq.addEventListener("input", () => { clearTimeout(fq.t); fres.hidden = false; fq.t = setTimeout(fRun, 260); });
+  fq.addEventListener("focus", () => { fres.hidden = false; });
+  fq.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); if (fhits.length) fGo(e.shiftKey ? fcur - 1 : fcur + 1); else fRun(); } else if (e.key === "Escape") fClose(); });
+  $("#el_fnx").onclick = () => fGo(fcur + 1); $("#el_fp").onclick = () => fGo(fcur - 1); $("#el_fc").onclick = fClose;
+  const fKey = e => { if ((e.ctrlKey || e.metaKey) && !e.altKey && e.key.toLowerCase() === "f") { e.preventDefault(); fOpen(); } };
+  addEventListener("keydown", fKey);
+  /* ---- page bookmarks ---- */
+  const bmUpd = () => { const pg = book.pages[curPage()]; $("#el_bmk").classList.toggle("on", !!(pg && pg.bm)); };
+  $("#el_bmk").onclick = () => { const i = curPage(), pg = book.pages[i]; if (!pg) return; pg.bm = !pg.bm; save(); bmUpd(); const th = W.querySelector(`.elth[data-go="${i}"]`); if (th) th.classList.toggle("bm", pg.bm); if (pages[i]) pages[i].el.classList.toggle("bmk", pg.bm); nbToast(pg.bm ? `Page ${i + 1} bookmarked` : "Bookmark removed"); };
+  $("#el_bmf").onclick = () => { const L = $("#el_olist"), on = !L.classList.contains("bmonly"); if (on && !book.pages.some(p => p.bm)) { nbToast("No bookmarked pages yet — tap the bookmark at the top to add one."); return; } L.classList.toggle("bmonly", on); $("#el_bmf").classList.toggle("on", on); };
+  scroll.addEventListener("scroll", () => { clearTimeout(bmUpd.t); bmUpd.t = setTimeout(bmUpd, 140); hpAll(); }, {passive: true});
+  COMM.unsub.push(() => { removeEventListener("pointerup", tgUp); removeEventListener("pointercancel", tgUp); removeEventListener("keydown", fKey); zwClose(); clearTimeout(hpAll.t); clearTimeout(fq.t); ftok++; });
   // A release outside the page, a lost capture, or an app switch must never leave the pen stuck down.
   const onLostCapture = e => { if (cur && cur.id === e.pointerId) up({pointerId: e.pointerId, pointerType: activePen === e.pointerId ? "pen" : "touch", type: "pointercancel"}); };
   const endInput = () => {
@@ -1018,7 +1229,7 @@ body.inel .rail{display:none!important}body.inel{overflow:hidden}
 .eltl{position:absolute;inset:0;overflow:hidden;line-height:1;pointer-events:none;-webkit-user-select:text;user-select:text;z-index:2}
 .eltl span,.eltl br{color:transparent;position:absolute;white-space:pre;cursor:text;transform-origin:0 0}
 .eltl.ocr span{display:block;overflow:hidden;line-height:1}.eltl ::selection{background:rgba(124,58,237,.3)}
-.elw.selmode .elscroll,.elw.ro .elscroll{touch-action:auto;-webkit-user-select:text;user-select:text}.elw.selmode .eltl,.elw.ro .eltl{pointer-events:auto}
+.elw.selmode .elscroll,.elw.ro .elscroll{touch-action:auto}.elw.selmode .eltl,.elw.ro .eltl{pointer-events:auto}
 .elfx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:6}
 .eltb{position:absolute;z-index:9;display:flex;align-items:center;gap:3px;padding:6px;border-radius:20px;background:color-mix(in srgb,var(--panel) 82%,transparent);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);border:1px solid color-mix(in srgb,var(--line) 70%,transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 1px 2px rgba(0,0,0,.06),0 18px 40px -18px rgba(15,23,42,.55);max-width:calc(100% - 12px);overflow-x:auto;scrollbar-width:none;transition:box-shadow .2s}
 .eltb::-webkit-scrollbar{display:none}.eltb.drag{box-shadow:0 22px 50px -14px rgba(0,0,0,.6);transition:none}.eltb.vert{flex-direction:column;max-height:calc(100% - 70px);overflow-y:auto}
@@ -1066,6 +1277,28 @@ body.inel .rail{display:none!important}body.inel{overflow:hidden}
 .elpaste{position:absolute;left:50%;bottom:calc(64px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:9;border:0;border-radius:99px;padding:10px 20px;font:700 13.5px var(--ui-font);color:#fff;background:linear-gradient(135deg,#6366f1,#7c3aed);box-shadow:0 12px 26px -10px rgba(124,58,237,.8);cursor:pointer;animation:elpopin .2s ease-out}.elpaste.on{background:#111827;box-shadow:0 0 0 3px rgba(139,92,246,.5),0 12px 26px -10px rgba(0,0,0,.6)}.elpaste:active{transform:translateX(-50%) scale(.95)}.ellzc{bottom:calc(112px + env(safe-area-inset-bottom))}
 .elselbox.drag{border-style:dashed;background:rgba(139,92,246,.12)}.elselbar{max-width:min(92vw,560px);overflow-x:auto;scrollbar-width:none}
 .elw,.elscroll{-webkit-touch-callout:none}
+.elhp{position:absolute;pointer-events:none}.elhi{mix-blend-mode:multiply}.elp.night .elhi{mix-blend-mode:normal}
+.elp.bmk::after{content:"";position:absolute;top:-4px;right:22px;width:18px;height:30px;background:linear-gradient(#fb7185,#e11d48);clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%);z-index:4;pointer-events:none}
+.elth{position:relative}.elth.bm::after{content:"";position:absolute;top:-3px;right:10px;width:11px;height:18px;background:#e11d48;clip-path:polygon(0 0,100% 0,100% 100%,50% 74%,0 100%)}.elolist.bmonly .elth:not(.bm){display:none}
+.elbmf.on{color:#e11d48}.elbmf.on svg path,#el_bmk.on svg path{fill:currentColor;opacity:1}#el_bmk.on{color:#fecdd3}
+.elfav{position:absolute;top:6px;left:6px;width:30px;height:30px;background:rgba(255,255,255,.8);border-radius:50%;color:#64748b;z-index:2;display:grid;place-items:center;padding:0}.elfav svg{width:16px;height:16px}.elfav.on{color:#f59e0b}.elfav.on svg path{fill:#f59e0b;opacity:1}
+.elfind{position:absolute;top:66px;left:50%;transform:translateX(-50%);width:min(560px,calc(100% - 24px));z-index:9;background:var(--panel);color:var(--text,inherit);border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 34px -12px rgba(0,0,0,.45);overflow:hidden;animation:elpopin .18s ease-out}.elfind[hidden]{display:none}
+.elfrow{display:flex;align-items:center;gap:4px;padding:5px 8px}.elfrow>svg{width:18px;height:18px;flex:none;color:var(--muted)}
+.elfrow input{flex:1;min-width:0;border:0;background:transparent;font:500 16px var(--ui-font);color:inherit;padding:8px 4px;outline:0;-webkit-user-select:text;user-select:text}
+.elfrow span{font-size:12px;color:var(--muted);white-space:nowrap}
+.elfrow button,.elzwbar button{border:0;background:transparent;color:inherit;min-width:36px;height:36px;border-radius:9px;font:600 19px var(--ui-font);cursor:pointer;display:grid;place-items:center}.elfrow button:hover,.elzwbar button:hover{background:rgba(127,127,127,.12)}.elfrow button svg,.elzwbar button svg{width:16px;height:16px}
+.elfres{max-height:min(46vh,380px);overflow-y:auto;overscroll-behavior:contain;border-top:1px solid var(--line);touch-action:pan-y}.elfres:empty,.elfres[hidden]{display:none}
+.elfres button{display:flex;gap:10px;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:transparent;color:inherit;padding:9px 12px;font:13px/1.4 var(--ui-font);cursor:pointer}
+.elfres button b{flex:none;color:#6366f1;font-size:12px;min-width:40px}.elfres button.on,.elfres button:hover{background:rgba(99,102,241,.09)}
+.elfres mark{background:#fde047;color:#111;border-radius:2px;padding:0 1px}.elfres small{display:block;padding:10px 12px;line-height:1.4}
+.eltl .elhit{background:rgba(250,204,21,.45)!important;border-radius:2px}.eltl .elhit.cur{background:rgba(249,115,22,.5)!important;box-shadow:0 0 0 2px rgba(249,115,22,.55)}.elt.elhit{box-shadow:0 0 0 2px #facc15}
+.elzw{position:absolute;left:0;right:0;bottom:0;height:clamp(170px,32%,330px);z-index:8;display:flex;flex-direction:column;background:var(--panel);border-top:1px solid var(--line);box-shadow:0 -10px 30px -14px rgba(0,0,0,.45);touch-action:none;padding-bottom:env(safe-area-inset-bottom)}.elzw[hidden]{display:none}
+.elzwbar{display:flex;align-items:center;gap:2px;padding:3px 8px;flex:none}.elzwh{flex:1;text-align:center;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#el_zwc{flex:1;min-height:0;width:100%;display:block;touch-action:none;cursor:crosshair}
+.elzwf{position:absolute;z-index:5;border:2px solid #6366f1;border-radius:4px;background:rgba(99,102,241,.05);box-shadow:0 0 0 3px rgba(99,102,241,.14);pointer-events:none}
+.elzwf i{position:absolute;right:-13px;bottom:-13px;width:26px;height:26px;border-radius:50%;background:#6366f1;border:3px solid #fff;pointer-events:auto;cursor:move;touch-action:none;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.elw.zwon .elnav,.elw.zwon .elsavestatus{display:none}
+.elpenk button{flex:1}.elw{-webkit-user-select:none;user-select:none}.elw input,.elw textarea{-webkit-user-select:text;user-select:text}
 .elemo{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;margin-bottom:6px}.elemo button{font-size:24px;height:40px;border:0;background:none;border-radius:10px;cursor:pointer}.elemo button:hover{background:var(--panel2)}
 .elsavestatus{position:absolute;left:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:8;max-width:calc(100% - 250px);padding:8px 12px;border:1px solid var(--line);border-radius:99px;background:var(--panel);color:var(--muted);font:600 11px var(--ui-font);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.elsavestatus[data-state="error"]{color:#b91c1c;background:#fff1f2;border-color:#fda4af}.elsavestatus[data-state="saving"],.elsavestatus[data-state="pending"]{color:#7c3aed}@media(max-width:480px){.elsavestatus{left:8px;bottom:calc(56px + env(safe-area-inset-bottom));max-width:calc(100% - 16px)}}
 .elnav{position:absolute;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:8;display:flex;align-items:center;gap:2px;padding:4px 8px;border-radius:99px;background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:0 8px 22px -10px rgba(0,0,0,.45);font:700 12.5px var(--ui-font)}
