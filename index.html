@@ -1759,7 +1759,34 @@ body.fullpg .rail{display:none!important}
 @media (min-width:640px){body .h2-mods{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:639px){body .h2-mods>:last-child:nth-child(odd){grid-column:1/-1}}
 </style>
-<style id="searchfix">/* iPad/iPhone Safari: no native square frame, focus square or grey tap box on search boxes */
+<style id="searchfix">
+/* Growth & BP: resizable patient panel + summary tiles */
+.gpanel{padding:0;overflow:hidden;border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 20px -12px rgba(0,0,0,.25)}
+.gphead{display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 12%,var(--panel)),color-mix(in srgb,var(--blue2) 8%,var(--panel)));border-bottom:1px solid var(--line)}
+.gptitle{flex:1;font-size:15px}.gpmini{display:none;flex:1;min-width:0;align-items:center;gap:8px;border:0;background:none;padding:2px 0;text-align:left;color:var(--ink);font:inherit;cursor:pointer}
+.gpmini #gpline{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;font-size:14px}.gpic{font-size:18px}.gped{flex:none;font-size:12px;font-weight:700;color:var(--accent);padding:4px 10px;border-radius:99px;background:var(--panel)}
+.gpseg{display:flex;flex:none;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:2px}.gpseg button{border:0;background:none;font:inherit;font-size:12.5px;padding:5px 11px;border-radius:99px;color:var(--muted);cursor:pointer}.gpseg button.on{background:var(--accent);color:#fff;font-weight:700}
+.gpbody{padding:12px}.gpx{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}.gpfoot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}.gpdone{border-radius:99px!important}
+.gpanel[data-mode=partial] .gpx{display:none}.gpanel[data-mode=small] .gpbody{display:none}.gpanel[data-mode=small] .gptitle{display:none}.gpanel[data-mode=small] .gpmini{display:flex}.gpanel[data-mode=small] .gphead{border-bottom:0}
+@media (max-width:520px){.gpanel[data-mode=small] .gpseg{display:none}}
+#gsum{scroll-margin-top:64px}.gsumhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:16px 0 8px}.gsumhead h2{margin:0}.gpcopy{border-radius:99px!important;font-weight:700}
+.gtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:10px}
+.gtile{display:flex;flex-direction:column;gap:2px;padding:11px 13px;border-radius:14px;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--line);min-width:0}
+.gtile span{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700}.gtile b{font-size:19px;line-height:1.25}.gtile small{font-size:12.5px;color:var(--muted);line-height:1.4}
+.gtbig{grid-column:1/-1}.gtbig b{font-size:20px}
+@media (min-width:700px){.gtbig{grid-column:span 2}}
+.gtred{border-left-color:var(--red);background:color-mix(in srgb,var(--red) 7%,var(--panel))}.gtred b{color:var(--red)}
+.gtamb{border-left-color:var(--saffron);background:color-mix(in srgb,var(--saffron) 8%,var(--panel))}.gtamb b{color:var(--saffron)}
+.gtgrn{border-left-color:var(--accent)}.gtgrn b{color:var(--accent)}.gtblu{border-left-color:var(--blue2)}.gtblu b{color:var(--blue2)}
+.gsdet{margin-top:10px}.gsdet>summary{cursor:pointer;list-style:none;padding:2px 0}.gsdet>summary::-webkit-details-marker{display:none}.gsdet>summary::after{content:" ▾";color:var(--muted)}.gsdet[open]>summary::after{content:" ▴"}
+/* all calculators: fold the inputs to show the answer */
+.cbar{display:none;width:100%;align-items:center;gap:10px;margin:4px 0 10px;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--panel)),var(--panel));font:inherit;color:var(--ink);text-align:left;cursor:pointer;box-shadow:0 4px 14px -10px rgba(0,0,0,.35)}
+.cbsum{flex:1;min-width:0;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cbic{color:var(--accent)}.cbed{flex:none;font-size:12px;font-weight:700;color:var(--accent);padding:3px 10px;border-radius:99px;background:var(--panel)}
+.ccol .cbar{display:flex}.ccol .cin{display:none!important}
+.cgo{display:none}
+@media (max-width:760px){.cready:not(.ccol) .cgo{display:block;position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom));z-index:40;border:0;border-radius:99px;padding:11px 20px;font:inherit;font-weight:700;font-size:14.5px;color:#fff;background:var(--accent);box-shadow:0 8px 24px -8px rgba(0,0,0,.45)}}
+.res{scroll-margin-top:72px}
+/* iPad/iPhone Safari: no native square frame, focus square or grey tap box on search boxes */
 input[type=search]{-webkit-appearance:none;appearance:none;box-shadow:none;outline:none;background-clip:padding-box}
 input[type=search]:focus,input[type=search]:focus-visible{outline:none!important}
 input[type=search]::-webkit-search-decoration,input[type=search]::-webkit-search-results-button,input[type=search]::-webkit-search-results-decoration{-webkit-appearance:none;display:none}
@@ -2002,6 +2029,36 @@ function bindAll(root, fn) {
       if (errs.length && res) res.innerHTML = `<div class="warn" role="alert"><b>Check the highlighted field${errs.length > 1 ? "s" : ""}:</b> ${[...new Set(errs)].map(esc).join("; ")}. No result is shown until this is corrected.</div>`; }
   };
   $$("input,select", root).forEach(el => { el.addEventListener("input", run); el.addEventListener("change", run); }); run();
+  calcCollapse(root);
+}
+/* every calculator: inputs fold into a one-line bar so the answer fills the screen ("Show answer", or Enter / Go on the keyboard) */
+function calcCollapse(root) {
+  if (!root || root.querySelector("#gpanel")) return;
+  const res = root.querySelector(".res"); if (!res) return;
+  const grids = $$(".fgrid", root).filter(g => g.compareDocumentPosition(res) & Node.DOCUMENT_POSITION_FOLLOWING && !g.closest(".res"));
+  if (!grids.length) return;
+  $$(".cbar,.cgo", root).forEach(x => x.remove()); root.classList.remove("ccol");
+  grids.forEach(g => g.classList.add("cin"));
+  const bar = document.createElement("button"); bar.type = "button"; bar.className = "cbar"; bar.innerHTML = `<span class="cbic">✎</span><span class="cbsum"></span><span class="cbed">Edit</span>`;
+  grids[0].before(bar);
+  const go = document.createElement("button"); go.type = "button"; go.className = "cgo"; go.textContent = "Show answer ↓"; root.appendChild(go);
+  const sum = () => $$("input,select", root).filter(e => grids.some(g => g.contains(e)) && e.value !== "" && e.type !== "checkbox").map(e => {
+    const f = e.closest(".fi"), lab = f && f.querySelector("label") ? f.querySelector("label").textContent.replace(/\s*\(.*?\)\s*/g, " ").trim() : "", u = f && f.querySelector(".u") ? " " + f.querySelector(".u").textContent : "";
+    const v = e.tagName === "SELECT" ? e.selectedOptions[0] && e.selectedOptions[0].text : e.value + u;
+    return lab && v ? `${lab}: ${v}` : v;
+  }).filter(Boolean).slice(0, 6).join(" · ");
+  const ready = () => res.textContent.trim() !== "" && !res.querySelector('.warn[role="alert"]');
+  const upd = () => { root.classList.toggle("cready", ready()); };
+  const fold = on => {
+    root.classList.toggle("ccol", on);
+    if (on) { bar.querySelector(".cbsum").textContent = sum() || "Inputs"; if (document.activeElement && root.contains(document.activeElement)) document.activeElement.blur(); setTimeout(() => res.scrollIntoView({behavior: "smooth", block: "start"}), 50); }
+    else { const f = grids[0].querySelector("input,select"); grids[0].scrollIntoView({behavior: "smooth", block: "center"}); if (f) setTimeout(() => f.focus({preventScroll: true}), 250); }
+  };
+  bar.addEventListener("click", () => fold(false));
+  go.addEventListener("click", () => fold(true));
+  if (root._ccUpd) { root.removeEventListener("input", root._ccUpd); root.removeEventListener("change", root._ccUpd); }
+  root._ccUpd = upd; root.addEventListener("input", upd); root.addEventListener("change", upd); upd();
+  grids.forEach(g => g.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.matches("input") && ready()) { e.preventDefault(); fold(true); } }));
 }
 function V(x, unit) { return x == null || !isFinite(x) ? `<span class="v na">enter weight</span>` : `<span class="v">${x}${unit ? " " + unit : ""}</span>`; }
 /* word-start search matching: "aki" matches "AKI" but not "taking"; short terms (≤3) must be whole words */
@@ -4184,7 +4241,10 @@ function zLMS(y, lms, adjusted) {
 }
 function normCdf(z) { const t = 1 / (1 + 0.2316419 * Math.abs(z)), d = 0.3989423 * Math.exp(-z * z / 2); const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return z > 0 ? 1 - p : p; }
 function zBar(z) { const pos = Math.max(0, Math.min(100, (z + 4) / 8 * 100)); return `<div class="zbar"><i style="left:${pos}%"></i></div><div class="zlab"><span>−4</span><span>−3</span><span>−2</span><span>0</span><span>+2</span><span>+3</span><span>+4</span></div>`; }
+let GZ = [], BP_SUM = null, BP_TXT = "";   /* summary tiles: z-scores and BP of the current patient */
 function zRow(title, z, cls, note) {
+  const ab = (title.match(/\((WAZ|LAZ|HAZ|WLZ|WHZ|BAZ)\)/) || [])[1];
+  if (ab) GZ.push([ab, {z: z != null && isFinite(z) ? z : null, lab: String(cls || "").replace(/<[^>]*>/g, ""), note: String(note || "").replace(/<[^>]*>/g, ""), cls: /--red/.test(cls) ? "gtred" : /--saffron/.test(cls) ? "gtamb" : ""}]);
   if (z == null || !isFinite(z)) return `<div class="card"><b>${title}</b><div class="muted small">${note || "Not available for this age / measurement."}</div></div>`;
   const pct = normCdf(z) * 100;
   return `<div class="card"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>${title}</b><span><b style="font-size:20px;color:var(--accent)">${z >= 0 ? "+" : ""}${z.toFixed(2)}</b> SD · ${centileText(z)} centile</span></div>${zBar(z)}<div style="margin-top:6px">${cls}</div>${note ? `<div class="small muted">${note}</div>` : ""}</div>`;
@@ -4201,9 +4261,11 @@ const CL = {
 function growthView() {
   const today = new Date().toISOString().slice(0, 10);
   return `<h1 class="vt">Growth, BP centiles and patient summary</h1><p class="vsub">WHO Child Growth Standards (0–5 years) and WHO Growth Reference 2007 (5–19 years), using WHO's own LMS tables and z-score method. Enter age, sex, weight and height: the centile and graphs update as you type. Dates of birth and visit override the age box.</p>
-  <div class="card"><div class="fgrid">${field("gname", "Patient name (optional)", {type: "text"})}${ageField("gagein")}${field("gsex", "Sex", {options: [["1", "Boy"], ["2", "Girl"]], value: P.sex === "F" ? "2" : "1"})}${field("gdob", "Date of birth (optional)", {type: "date"})}${field("gdov", "Date of visit", {type: "date", value: today})}
-  ${field("gwt", "Weight", {u: "kg", value: wt() ?? ""})}${field("ght", "Length / height", {u: "cm", value: ht() ?? ""})}${field("gmeas", "Measured", {options: [["auto", "Lying if <2 y, standing if ≥2 y"], ["l", "Lying (recumbent length)"], ["h", "Standing (height)"]]})}
-  ${field("gsbp", "Systolic BP", {u: "mmHg"})}${field("gdbp", "Diastolic BP", {u: "mmHg"})}${field("ghc", "Head circumference", {u: "cm"})}${field("gmuac", "MUAC", {u: "cm"})}${field("goed", "Bilateral pitting oedema", {options: [["n", "No"], ["y", "Yes"]]})}</div><div id="gage" class="small muted" style="margin-top:8px"></div></div>
+  <div id="gpanel" class="card gpanel" data-mode="${gpMode()}"><div class="gphead"><button type="button" class="gpmini" data-gp="full" aria-label="Edit patient details"><span class="gpic">👤</span><span id="gpline">Patient details</span><span class="gped">✎ Edit</span></button><b class="gptitle">Patient details</b><div class="gpseg" role="group" aria-label="Panel size">${[["full", "Full"], ["partial", "Partial"], ["small", "Small"]].map(m => `<button type="button" data-gp="${m[0]}">${m[1]}</button>`).join("")}</div></div>
+  <div class="gpbody"><div class="fgrid">${ageField("gagein")}${field("gsex", "Sex", {options: [["1", "Boy"], ["2", "Girl"]], value: P.sex === "F" ? "2" : "1"})}${field("gwt", "Weight", {u: "kg", value: wt() ?? ""})}${field("ght", "Length / height", {u: "cm", value: ht() ?? ""})}${field("gsbp", "Systolic BP", {u: "mmHg"})}${field("gdbp", "Diastolic BP", {u: "mmHg"})}${field("gmuac", "MUAC", {u: "cm"})}${field("goed", "Bilateral pitting oedema", {options: [["n", "No"], ["y", "Yes"]]})}</div>
+  <div class="fgrid gpx">${field("gname", "Patient name (optional)", {type: "text"})}${field("gdob", "Date of birth (optional)", {type: "date"})}${field("gdov", "Date of visit", {type: "date", value: today})}${field("gmeas", "Measured", {options: [["auto", "Lying if <2 y, standing if ≥2 y"], ["l", "Lying (recumbent length)"], ["h", "Standing (height)"]]})}${field("ghc", "Head circumference", {u: "cm"})}</div>
+  <div class="gpfoot"><span id="gage" class="small muted"></span><button type="button" class="btn gpdone" data-gp="small">Done: show summary ↓</button></div></div></div>
+  <div id="gsum"></div>
   <div id="gres"></div>
   <p class="small muted">Weight-for-age, weight-for-length/height and BMI use WHO's adjusted z-scores beyond ±3 SD. Recumbent length is used below 2 years and standing height from 2 years; the app adds or subtracts 0.7 cm when the other method was used (WHO). SAM (6–59 months): weight-for-height &lt; −3 SD, MUAC &lt; 11.5 cm, or bilateral pitting oedema. MAM: WHZ −3 to −2 or MUAC 11.5–12.5 cm.</p>`;
 }
@@ -4216,8 +4278,8 @@ function runGrowth() {
   const w = val("gwt"), h0 = val("ght"), hc = val("ghc"), mu = val("gmuac"), oed = sval("goed") === "y";
   const months = days != null ? days / 30.4375 : null;
   $("#gage").innerHTML = days != null ? `Age used: <b>${days} days</b> (${fmtN(months)} months, ${fmtN(months / 12)} years)` : "Enter the age to see the graphs.";
-  const out = [];
-  if (days == null || days < 0) { $("#gres").innerHTML = ""; return; }
+  const out = []; GZ = []; BP_SUM = null;
+  if (days == null || days < 0) { $("#gres").innerHTML = ""; $("#gsum").innerHTML = `<div class="card muted">Enter the age (or date of birth), sex, weight and length/height. The summary with the WHO growth status and AAP BP centile appears here.</div>`; $("#gpline").textContent = "Patient details"; return; }
   let meas = sval("gmeas"); if (meas === "auto") meas = days < 731 ? "l" : "h";
   let h = h0;
   if (h != null) { if (days < 731 && meas === "h") h += 0.7; if (days >= 731 && meas === "l") h -= 0.7; }
@@ -4261,8 +4323,44 @@ function runGrowth() {
     out.push(z != null ? zRow("MUAC-for-age", z, (cut ? cut + "<br>" : "") + CL.ac(z)) : `<div class="card"><b>MUAC</b><div>${cut || "MUAC cut-offs apply to 6–59 months."}</div></div>`);
   }
   if (!out.length) out.push(`<div class="card muted">Enter weight, length/height, head circumference or MUAC to plot this patient.</div>`);
-  $("#gres").innerHTML = out.join("") + (days <= 6940 ? growthCharts({days, sex, w, h, hc, oed, name: sval("gname").trim()}) : `<div class="card muted">WHO growth graphs cover 0–19 years.</div>`) + bpSection({days, sex, h, sbp: val("gsbp"), dbp: val("gdbp")});
-  $("#gres").insertAdjacentHTML("beforeend", growthSummary({days, sex, w, h, h0, hc, mu, oed, name: sval("gname").trim()}));
+  const sbp = val("gsbp"), dbp = val("gdbp"), nm = sval("gname").trim();
+  $("#gres").innerHTML = (days <= 6940 ? growthCharts({days, sex, w, h, hc, oed, name: nm}) : `<div class="card muted">WHO growth graphs cover 0–19 years.</div>`) + bpSection({days, sex, h, sbp, dbp}) + `<h2 style="margin-top:18px">Z-scores in detail</h2>` + out.join("");
+  const ns = nutStatus({days, sex, w, h, mu, oed});
+  $("#gsum").innerHTML = glanceTiles(ns, {days, sex, w, h, h0, oed}) + growthSummary({days, sex, w, h, h0, hc, mu, oed, name: nm, ns});
+  $("#gpline").textContent = [nm, ageText(months), sex === "1" ? "boy" : "girl", w ? w + " kg" : "", h0 ? h0 + " cm" : "", sbp || dbp ? `BP ${sbp ?? "–"}/${dbp ?? "–"}` : ""].filter(Boolean).join(" · ");
+}
+/* WHO acute malnutrition / thinness status.
+   0–59 months: WHO 2013 Guideline "Updates on the management of severe acute malnutrition in infants and children" and WHO/UNICEF 2009 joint statement:
+   SAM = WHZ/WLZ < −3, or MUAC < 11.5 cm (6–59 months), or bilateral pitting oedema; MAM = WHZ −3 to < −2 or MUAC 11.5 to < 12.5 cm.
+   5–19 years: WHO Growth Reference 2007 BMI-for-age: thinness < −2, severe thinness < −3, overweight > +1, obesity > +2. */
+function nutStatus(p) {
+  const {days, sex, w, h, mu, oed} = p, months = days / 30.4375, txt = s => String(s || "").replace(/<[^>]*>/g, "");
+  if (days <= 1826) {
+    const useL = days < 731, l = w && h && !oed ? lmsAt(useL ? "wfl" : "wfh", sex, h, true) : null, z = l ? zLMS(w, l, true) : null, muOk = mu && months >= 6, nm = useL ? "WLZ" : "WHZ";
+    const basis = [z != null ? `${nm} ${z.toFixed(2)}` : "", muOk ? `MUAC ${mu} cm` : ""].filter(Boolean).join(", ");
+    if (oed) return {lvl: 3, t: "Severe acute malnutrition (SAM)", why: "bilateral pitting oedema", z, nm};
+    const sam = [z != null && z < -3 ? `${nm} < −3` : "", muOk && mu < 11.5 ? "MUAC < 11.5 cm" : ""].filter(Boolean);
+    if (sam.length) return {lvl: 3, t: "Severe acute malnutrition (SAM)", why: sam.join(" and ") + ` (${basis})`, z, nm};
+    const mam = [z != null && z < -2 ? `${nm} −3 to −2` : "", muOk && mu < 12.5 ? "MUAC 11.5–12.5 cm" : ""].filter(Boolean);
+    if (mam.length) return {lvl: 2, t: "Moderate acute malnutrition (MAM)", why: mam.join(" and ") + ` (${basis})`, z, nm};
+    if (z == null && !muOk) return {lvl: -1, t: "Not assessed", why: "enter weight and length/height" + (months >= 6 ? " or MUAC" : ""), z, nm};
+    return {lvl: z != null && z > 2 ? 1 : 0, t: z != null && z > 1 ? txt(CL.wh(z)) : "No acute malnutrition", why: basis + (z == null ? " (weight-for-height not done)" : ""), z, nm};
+  }
+  if (months <= 228) {
+    const l = w && h && !oed ? lmsAt("bfa07", sex, months, true) : null, z = l ? zLMS(w / Math.pow(h / 100, 2), l, true) : null;
+    if (z == null) return {lvl: -1, t: "Not assessed", why: oed ? "oedema: weight-based indices not valid" : "enter weight and height", z, nm: "BAZ"};
+    return {lvl: z < -3 ? 3 : z < -2 ? 2 : z > 1 ? 1 : 0, t: txt(CL.b19(z)), why: `BMI-for-age z ${z.toFixed(2)} (WHZ is not used after 5 years)`, z, nm: "BAZ"};
+  }
+  return null;
+}
+function glanceTiles(ns, p) {
+  const tone = l => l === 3 ? "gtred" : l === 2 ? "gtamb" : l === 1 ? "gtblu" : l === 0 ? "gtgrn" : "";
+  const t = [];
+  if (ns) t.push(`<div class="gtile gtbig ${tone(ns.lvl)}"><span>Nutrition (WHO)</span><b>${esc(ns.t)}</b><small>${esc(ns.why)}${ns.z != null ? ` · ${centileText(ns.z)} centile` : ""}</small></div>`);
+  if (BP_SUM) t.push(`<div class="gtile gtbig ${tone(BP_SUM.lvl)}"><span>Blood pressure (${esc(BP_SUM.src)})</span><b>${esc(BP_SUM.t)}</b><small>${esc(BP_SUM.why)}</small></div>`);
+  else t.push(`<div class="gtile gtbig"><span>Blood pressure</span><b>Not entered</b><small>Enter systolic and diastolic BP.</small></div>`);
+  for (const [k, z] of GZ) t.push(`<div class="gtile ${z.cls}"><span>${k}</span><b>${z.z == null ? "–" : (z.z > 0 ? "+" : "") + z.z.toFixed(2)}</b><small>${z.z == null ? z.note || "" : centileText(z.z) + " centile · " + esc(z.lab)}</small></div>`);
+  return `<div class="gsumhead"><h2>Patient summary</h2></div>`;
 }
 /* live centile graphs: WHO curves from the LMS tables, patient plotted on top */
 const GC_LINES = [[97, 1.881], [85, 1.036], [50, 0], [15, -1.036], [3, -1.881]];
@@ -4353,6 +4451,8 @@ function bpInfant(p) {
   if (pma != null && pma <= 44.5) {
     const row = BP_NEO.reduce((b, r) => Math.abs(r[0] - pma) < Math.abs(b[0] - pma) ? r : b);
     const st = (v, a) => v == null ? "" : v > a[2] + 5 ? `<b style="color:var(--red)">Stage 2 hypertension</b> (above the 99th + 5)` : v >= a[1] ? `<b style="color:var(--saffron)">Stage 1 hypertension</b> (95th to 99th + 5)` : `Normal (below the 95th)`;
+    if (has) { const lv = (v, a) => v == null ? 0 : v > a[2] + 5 ? 3 : v >= a[1] ? 2 : 0, L2 = Math.max(lv(sbp, row[1]), lv(dbp, row[2])), why = [sbp != null ? `Systolic ${sbp}: ${st(sbp, row[1]).replace(/<[^>]*>/g, "")}` : "", dbp != null ? `Diastolic ${dbp}: ${st(dbp, row[2]).replace(/<[^>]*>/g, "")}` : ""].filter(Boolean).join(" · ");
+      BP_SUM = {lvl: L2, t: ["Normal", "", "Stage 1 hypertension", "Stage 2 hypertension"][L2], src: `neonatal, ${row[0]} wk PMA`, why}; BP_LINES.push(["BP", `BP ${sbp ?? "-"}/${dbp ?? "-"} mmHg (Dionne 2012, ${row[0]} weeks PMA): ${why}`]); }
     h += `<p class="small">Postmenstrual age ${pma.toFixed(1)} weeks (birth ${ga} weeks + ${wk.toFixed(1)} weeks); nearest reference row ${row[0]} weeks.${days < 14 ? " <b>First 2 weeks:</b> BP rises quickly; these values apply from 2 weeks of age, so interpret with care (Zubrow charts are used in the first 2 weeks)." : ""}</p>
       <table class="t"><thead><tr><th>${row[0]} weeks PMA</th><th>50th</th><th>95th</th><th>99th</th></tr></thead><tbody><tr><th>Systolic</th>${row[1].map(x => `<td>${x}</td>`).join("")}</tr><tr><th>Diastolic</th>${row[2].map(x => `<td>${x}</td>`).join("")}</tr><tr><th>Mean (MAP)</th>${row[3].map(x => `<td>${x}</td>`).join("")}</tr></tbody></table>
       ${has ? `<p>${sbp != null ? `Systolic ${sbp}: ${st(sbp, row[1])}<br>` : ""}${dbp != null ? `Diastolic ${dbp}: ${st(dbp, row[2])}` : ""}</p>` : `<p class="small muted">Enter systolic and diastolic BP above to classify.</p>`}
@@ -4361,6 +4461,8 @@ function bpInfant(p) {
     const T = BP_INF[sex] || BP_INF[1], f = Math.min(1, Math.max(0, (days / 30.44 - 1) / 11));
     const ip = (a, b) => Math.round(a + (b - a) * f), p90 = [ip(T.m1[0][0], T.m12[0][0]), ip(T.m1[0][1], T.m12[0][1])], p95 = [ip(T.m1[1][0], T.m12[1][0]), ip(T.m1[1][1], T.m12[1][1])];
     const cls = (v, i) => v == null ? "" : v >= p95[i] ? `<b style="color:var(--red)">at or above the 95th centile: hypertension if confirmed on repeat readings</b>` : v >= p90[i] ? `<b style="color:var(--saffron)">90th–95th centile: high-normal, recheck</b>` : "below the 90th centile: normal";
+    if (has) { const lv = (v, i) => v == null ? 0 : v >= p95[i] ? 3 : v >= p90[i] ? 2 : 0, L2 = Math.max(lv(sbp, 0), lv(dbp, 1)), why = [sbp != null ? `Systolic ${sbp}: ${cls(sbp, 0).replace(/<[^>]*>/g, "")}` : "", dbp != null ? `Diastolic ${dbp}: ${cls(dbp, 1).replace(/<[^>]*>/g, "")}` : ""].filter(Boolean).join(" · ");
+      BP_SUM = {lvl: L2, t: ["Normal (below the 90th centile)", "", "High-normal (90th–95th): recheck", "At or above the 95th centile"][L2], src: "Task Force 1987, under 1 year", why}; BP_LINES.push(["BP", `BP ${sbp ?? "-"}/${dbp ?? "-"} mmHg (Second Task Force 1987, under 1 year): ${why}`]); }
     h += `<p class="small">Age ${(days / 30.44).toFixed(1)} months, ${String(sex) === "2" ? "girl" : "boy"}.</p><table class="t"><thead><tr><th></th><th>90th centile</th><th>95th centile</th></tr></thead><tbody><tr><th>Systolic</th><td>${p90[0]}</td><td>${p95[0]}</td></tr><tr><th>Diastolic</th><td>${p90[1]}</td><td>${p95[1]}</td></tr></tbody></table>
       ${has ? `<p>${sbp != null ? `Systolic ${sbp}: ${cls(sbp, 0)}<br>` : ""}${dbp != null ? `Diastolic ${dbp}: ${cls(dbp, 1)}` : ""}</p>` : `<p class="small muted">Enter systolic and diastolic BP above to classify.</p>`}
       <p class="small muted">Infants 1–12 months: Second Task Force on Blood Pressure Control in Children (Pediatrics 1987), which AAP 2017 still refers to under 1 year. Values between 1 and 12 months are estimated in a straight line between the published 1-month and 12-month centiles; check borderline readings on the Task Force chart. Under 1 year, hypertension is defined mainly by systolic BP.</p>`;
@@ -4371,6 +4473,7 @@ function bpSection(p) {
   const {days, sex, h, sbp, dbp} = p, yr = Math.floor((days + 1) / 365.25);
   BP_LINES = [];
   if (days < 365) return bpInfant(p);
+  if (yr > 17) { if (sbp || dbp) BP_SUM = {lvl: -1, t: `BP ${sbp ?? "–"}/${dbp ?? "–"} mmHg`, src: "adult", why: "AAP tables end at 17 years: use adult thresholds"}; }
   if (yr > 17) return sbp || dbp ? `<div class="card muted">AAP 2017 BP tables cover ages 1 to 17 years; from 18 years use adult thresholds (130/80 stage 1, 140/90 stage 2).</div>` : "";
   const T = BP2017[sex], row = T[yr];
   const col = h ? row.cm.reduce((b, c, i) => Math.abs(c - h) < Math.abs(row.cm[b] - h) ? i : b, 0) : 3, HP = ["5th", "10th", "25th", "50th", "75th", "90th", "95th"];
@@ -4387,10 +4490,13 @@ function bpSection(p) {
   const cell = (a, i) => `<td${i === col ? ' style="font-weight:700;background:var(--accent-soft)"' : ""}>${a}</td>`;
   const tr = (lab, a) => `<tr><th>${lab}</th>${a.map(cell).join("")}</tr>`;
   const tbl = (name, rows) => `<div style="overflow-x:auto;margin-top:8px"><table><thead><tr><th>${name}</th>${HP.map(x => `<th>${x}</th>`).join("")}</tr></thead><tbody>${tr("Height (cm)", row.cm)}${tr("50th", rows[0])}${tr("90th", rows[1])}${tr("95th", rows[2])}${tr("95th + 12", rows[2].map(x => x + 12))}</tbody></table></div>`;
+  BP_TXT = `AAP 2017 BP centiles: ${sex === "1" ? "boy" : "girl"}, ${yr} y, ${h ? `height ${fmtN(h)} cm, ` : "height not entered, "}${HP[col]} height-centile column\nSystolic (mmHg): 50th ${S[0]}, 90th ${S[1]}, 95th ${S[2]}, 95th + 12 = ${S[2] + 12}\nDiastolic (mmHg): 50th ${D[0]}, 90th ${D[1]}, 95th ${D[2]}, 95th + 12 = ${D[2] + 12}${teen ? "\nFrom 13 years AAP uses fixed cut-offs: elevated 120–129/<80, stage 1 130/80, stage 2 140/90." : ""}\nReference: Flynn JT et al. Pediatrics 2017;140(3):e20171904, Tables 4 and 5.`;
+  if (any) BP_SUM = {lvl: [0, 2, 3, 3][stage], t: ST[stage], src: "AAP 2017", why: [sbp != null ? `Systolic ${fmtN(sbp)}: ${bpCentile(sbp, S)}` : "", dbp != null ? `Diastolic ${fmtN(dbp)}: ${bpCentile(dbp, D)}` : ""].filter(Boolean).join(" · ") + ` · ${HP[col]} height column`};
   if (any) { BP_LINES.push(["BP", `BP ${sbp ?? "-"}/${dbp ?? "-"} mmHg (AAP 2017): ${ST[stage]}`]); if (sbp != null) BP_LINES.push(["Systolic", `Systolic ${fmtN(sbp)} mmHg: ${bpCentile(sbp, S)}`]); if (dbp != null) BP_LINES.push(["Diastolic", `Diastolic ${fmtN(dbp)} mmHg: ${bpCentile(dbp, D)}`]); BP_LINES.push(["BP height column", h ? `BP height column: ${HP[col]} (closest to ${fmtN(h)} cm)` : "BP height column: 50th (height not entered)"]); }
+  BP_LINES.push(["BP centiles", `AAP BP centiles for age and height (${HP[col]} height column): systolic 50th ${S[0]} / 90th ${S[1]} / 95th ${S[2]} / 95th+12 ${S[2] + 12}; diastolic 50th ${D[0]} / 90th ${D[1]} / 95th ${D[2]} / 95th+12 ${D[2] + 12} mmHg`]);
   const col3 = [`<b style="color:var(--accent)">`, `<b style="color:var(--saffron)">`, `<b style="color:var(--red)">`, `<b style="color:var(--red)">`][stage];
   const act = stage === 3 ? "Confirm with a manual reading. If symptomatic, or BP is more than 30 mmHg above the 95th (over 180/120 in an adolescent), send to the emergency department." : stage ? "Confirm with a manual reading, using the right cuff size. AAP needs high readings on 3 separate visits to diagnose hypertension." : "";
-  return `<h2 style="margin-top:18px">Blood pressure (AAP 2017)</h2><div class="card">${any ? `${col3}${ST[stage]}</b>${act ? `<div class="small" style="margin-top:6px">${act}</div>` : ""}` : "Enter systolic and diastolic BP to get the AAP stage."}<div class="small muted" style="margin-top:6px">Age ${yr} y, ${sex === "1" ? "boy" : "girl"}, ${h ? `${HP[col]} height column (closest to ${fmtN(h)} cm)` : "height not entered: 50th height column used"}. ${teen ? "From 13 years AAP uses fixed cut-offs: 120/80, 130/80, 140/90." : "Under 13 years AAP uses the centile or the fixed cut-off, whichever is lower."}</div></div><div class="gcgrid" style="margin-top:12px">${chart("Systolic BP by age", sbp, q => q.s.map(a => a[col]), S, "Systolic BP (mmHg)")}${chart("Diastolic BP by age", dbp, q => q.d.map(a => a[col]), D, "Diastolic BP (mmHg)")}</div>${tbl("Systolic, mmHg", row.s)}${tbl("Diastolic, mmHg", row.d)}<p class="small muted">AAP 2017 (Flynn et al., Pediatrics 140(3):e20171904), Tables 4 and 5, from normal-weight children. The table gives only the 50th, 90th, 95th and 95th + 12; a centile below the 95th is estimated between them, so go by the stage. The highlighted column is the one used.</p>`;
+  return `<h2 style="margin-top:18px">Blood pressure (AAP 2017)</h2><div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b>BP centiles for this age and height</b><button type="button" class="btn gpcopy" data-bpc="1">Copy BP centiles</button></div><textarea id="bpbox" rows="${teen ? 6 : 5}" style="width:100%;margin-top:8px;font-size:14.5px;line-height:1.45;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:inherit">${esc(BP_TXT)}</textarea><p class="small muted" style="margin:6px 0 0">AAP 2017 publishes only the 50th, 90th, 95th and 95th + 12 mmHg centiles. The 5th–95th labels are the child's <b>height</b> centile columns.</p></div><div class="card">${any ? `${col3}${ST[stage]}</b>${act ? `<div class="small" style="margin-top:6px">${act}</div>` : ""}` : "Enter systolic and diastolic BP to get the AAP stage."}<div class="small muted" style="margin-top:6px">Age ${yr} y, ${sex === "1" ? "boy" : "girl"}, ${h ? `${HP[col]} height column (closest to ${fmtN(h)} cm)` : "height not entered: 50th height column used"}. ${teen ? "From 13 years AAP uses fixed cut-offs: 120/80, 130/80, 140/90." : "Under 13 years AAP uses the centile or the fixed cut-off, whichever is lower."}</div></div><div class="gcgrid" style="margin-top:12px">${chart("Systolic BP by age", sbp, q => q.s.map(a => a[col]), S, "Systolic BP (mmHg)")}${chart("Diastolic BP by age", dbp, q => q.d.map(a => a[col]), D, "Diastolic BP (mmHg)")}</div>${tbl("Systolic, mmHg", row.s)}${tbl("Diastolic, mmHg", row.d)}<p class="small muted">AAP 2017 (Flynn et al., Pediatrics 140(3):e20171904), Tables 4 and 5, from normal-weight children. The table gives only the 50th, 90th, 95th and 95th + 12; a centile below the 95th is estimated between them, so go by the stage. The highlighted column is the one used.</p>`;
 }
 /* copy-ready patient summary: one tickable line per finding */
 const GS_OFF = new Set();
@@ -4401,6 +4507,7 @@ function growthSummary(p) {
   const txt = s => String(s || "").replace(/<[^>]*>/g, "").trim();
   const zt = (label, val, l, adj, cls) => { if (!l) return; const z = zLMS(val, l, adj); add(label, `${label}: ${val} kg, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(cls(z))}`); };
   add("Patient", `Patient: ${[name, ageText(months < 1 ? months : Math.round(months * 10) / 10), sex === "1" ? "boy" : "girl"].filter(Boolean).join(", ")}`);
+  if (p.ns && p.ns.lvl !== -1) add("Nutrition", `Nutritional status (WHO): ${p.ns.t}: ${p.ns.why}`);
   if (oed) add("Oedema", "Bilateral pitting oedema: severe acute malnutrition regardless of z-scores");
   if (w && !oed) { if (under5) zt("Weight-for-age", w, lmsAt("wfa", sex, days, false), true, CL.wa); else if (months <= 120) zt("Weight-for-age", w, lmsAt("wfa07", sex, months, true), true, CL.wa); }
   if (h) { const n = days < 731 ? "Length-for-age" : "Height-for-age"; if (under5) { const l = lmsAt("lhfa", sex, days, false); if (l) { const z = zLMS(h, l, false); add(n, `${n}: ${h0} cm, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(CL.ha(z))}`); } } else if (months <= 228) { const l = lmsAt("hfa07", sex, months, true); if (l) { const z = zLMS(h, l, false); add(n, `${n}: ${h0} cm, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(CL.ha(z))}`); } } }
@@ -4409,16 +4516,18 @@ function growthSummary(p) {
   if (hc && under5) { const l = lmsAt("hcfa", sex, days, false); if (l) { const z = zLMS(hc, l, false); add("Head circumference", `Head circumference: ${hc} cm, ${centileText(z)} centile (z ${z.toFixed(2)}), ${txt(CL.hc(z))}`); } }
   if (mu) add("MUAC", `MUAC: ${mu} cm${months >= 6 && months < 60 ? (mu < 11.5 ? ", SAM" : mu < 12.5 ? ", MAM" : ", no acute malnutrition by MUAC") : ""}`);
   BP_LINES.forEach(x => add(x[0], x[1]));
-  if (L.length > 1) add("Reference", `Reference: WHO growth standards${BP_LINES.length ? "; AAP 2017 BP tables" : ""}`);
+  if (L.length > 1) add("Reference", "References: " + [under5 ? "WHO Child Growth Standards 2006 (0–5 y)" : "WHO Growth Reference 2007 (5–19 y)", under5 ? "WHO 2013 guideline on severe acute malnutrition (WHZ, MUAC, oedema)" : "", BP_LINES.length ? (days < 365 ? (/Dionne/.test(BP_LINES[0][1]) ? "Dionne, Abitbol, Flynn. Pediatr Nephrol 2012;27:17–32" : "Second Task Force on BP Control in Children. Pediatrics 1987;79:1–25") : "AAP 2017 Clinical Practice Guideline (Flynn JT et al., Pediatrics 2017;140(3):e20171904)") : ""].filter(Boolean).join("; "));
   GS_LINES = L;
   if (L.length < 2) return "";
-  return `<h2 style="margin-top:18px">Patient summary</h2><div class="card"><p class="small muted" style="margin-top:0">Untick what you don't need, then copy. Use Copy on a line for just that line.</p>${L.map((x, i) => `<div class="gsrow"><label><input type="checkbox" data-gs="${i}"${GS_OFF.has(x.k) ? "" : " checked"}> <span>${esc(x.t)}</span></label><button type="button" class="chip" data-gc="${i}">Copy</button></div>`).join("")}<label class="small muted" for="gsbox" style="display:block;margin-top:10px">Selected text: edit it here if you need to</label><textarea id="gsbox" rows="8" style="width:100%;margin-top:4px;font-size:16px;padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:inherit">${esc(L.filter(x => !GS_OFF.has(x.k)).map(x => x.t).join("\n"))}</textarea><div style="margin-top:8px"><button type="button" class="chip" data-gc="all"><b>Copy selected</b></button></div><p class="small muted" id="gsmsg" style="margin:6px 0 0"></p></div>`;
+  const sel = L.filter(x => !GS_OFF.has(x.k)).map(x => x.t);
+  return `<div class="card"><label class="small muted" for="gsbox" style="display:block">Selected text: edit it here if you need to</label><textarea id="gsbox" rows="${Math.min(14, Math.max(6, sel.length + 1))}" style="width:100%;margin-top:4px;font-size:15px;line-height:1.45;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:inherit">${esc(sel.join("\n"))}</textarea><div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button type="button" class="btn gpcopy" data-gc="all">Copy selected</button><span class="small muted" id="gsmsg"></span></div></div>
+  <div class="card"><p class="small muted" style="margin-top:0">Tick or untick lines to change the text above. Use Copy on a line for just that line.</p>${L.map((x, i) => `<div class="gsrow"><label><input type="checkbox" data-gs="${i}"${GS_OFF.has(x.k) ? "" : " checked"}> <span>${esc(x.t)}</span></label><button type="button" class="chip" data-gc="${i}">Copy</button></div>`).join("")}</div>`;
 }
 function gsSelected() { return GS_LINES.filter(x => !GS_OFF.has(x.k)).map(x => x.t).join("\n"); }
-function gsCopy(t, btn) {
-  const m = $("#gsmsg"), box = $("#gsbox"), old = btn.innerHTML;
+function gsCopy(t, btn, boxSel) {
+  const m = boxSel ? null : $("#gsmsg"), box = $(boxSel || "#gsbox"), old = btn.innerHTML;
   const done = () => { btn.innerHTML = "Copied ✓"; setTimeout(() => { btn.innerHTML = old; }, 1600); if (m) m.textContent = "Copied. Long-press where you want it and choose Paste."; };
-  const refuse = () => { if (m) m.textContent = "Copy was blocked on this device: long-press the text in the box, Select all, then Copy."; if (box) { box.value = t; box.focus(); box.select(); } };
+  const refuse = () => { if (m) m.textContent = "Copy was blocked on this device: long-press the text in the box, Select all, then Copy."; if (box) { const d = box.closest("details"); if (d) d.open = true; box.value = t; box.focus(); box.select(); } };
   const a = document.createElement("textarea"); a.value = t; a.setAttribute("readonly", ""); a.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px"; document.body.appendChild(a); a.focus(); a.select(); a.setSelectionRange(0, t.length);
   let ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; } a.remove(); btn.focus();
   let api = null; try { api = navigator.clipboard && navigator.clipboard.writeText(t); } catch (e) { api = null; }
@@ -4426,8 +4535,20 @@ function gsCopy(t, btn) {
   if (api) { const late = ok ? null : setTimeout(refuse, 1500); api.then(() => { clearTimeout(late); if (!ok) done(); }, () => { clearTimeout(late); if (!ok) refuse(); }); }
   else if (!ok) refuse();
 }
+function gpMode() { const m = store.get("gpanel", "full"); return ["full", "partial", "small"].includes(m) ? m : "full"; }
+function gpSet(m, go) {
+  const p = $("#gpanel"); if (!p) return; p.dataset.mode = m; store.set("gpanel", m);
+  $$(".gpseg button", p).forEach(b => b.classList.toggle("on", b.dataset.gp === m));
+  if (go) { if (document.activeElement && p.contains(document.activeElement)) document.activeElement.blur(); setTimeout(() => { const s = $("#gsum"); if (s) s.scrollIntoView({behavior: "smooth", block: "start"}); }, 60); }
+}
 function bindSummary() {
-  const r = $("#gres");
+  const p = $("#gpanel");
+  p.addEventListener("click", e => { const b = e.target.closest("[data-gp]"); if (b) gpSet(b.dataset.gp, b.dataset.gp === "small"); });
+  p.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.matches("input")) { e.preventDefault(); gpSet("small", true); } });
+  const pre = $("#gagein").value && $("#gwt").value;   /* age and weight already in the patient bar: open straight on the summary */
+  gpSet(pre ? "small" : gpMode() === "small" ? "full" : gpMode());
+  $("#gres").addEventListener("click", e => { const b = e.target.closest("[data-bpc]"); if (b) gsCopy(($("#bpbox") || {}).value || BP_TXT, b, "#bpbox"); });
+  const r = $("#gsum");
   r.addEventListener("change", e => { const c = e.target.closest("[data-gs]"); if (!c) return; const k = GS_LINES[+c.dataset.gs].k; if (c.checked) GS_OFF.delete(k); else GS_OFF.add(k); const b = $("#gsbox"); if (b) b.value = gsSelected(); });
   r.addEventListener("click", e => { const b = e.target.closest("[data-gc]"); if (!b) return; gsCopy(b.dataset.gc === "all" ? ($("#gsbox") || {}).value || gsSelected() : GS_LINES[+b.dataset.gc].t, b); });
 }
