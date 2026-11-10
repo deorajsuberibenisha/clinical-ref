@@ -1761,7 +1761,7 @@ body.fullpg .rail{display:none!important}
 </style>
 <style id="searchfix">
 /* Ludo opens as a clean full page: no patient bar, top bar, menus or bottom bar */
-body.inludo .pbar,body.inludo .topbar,body.inludo .foot,body.inludo details.notes,body.inludo .mbar,body.inludo .rail{display:none!important}
+body.inludo .mtoast,body.inludo .pbar,body.inludo .topbar,body.inludo .foot,body.inludo details.notes,body.inludo .mbar,body.inludo .rail{display:none!important}
 body.inludo .view{max-width:1200px;padding:calc(8px + env(safe-area-inset-top)) 10px calc(14px + env(safe-area-inset-bottom))!important;margin:0 auto}
 body.inludo main,body.inludo .main{padding-bottom:0!important}
 /* in-app notification banner, Ludo entries */
@@ -24285,7 +24285,10 @@ function gateSync() {
   if (!GATE_EL) return;
   const st = COMM.state, html = document.documentElement, app = document.getElementById("app");
   if (st === "in") store.set("gateOk", 1); else if (st === "out" || st === "verify") store.set("gateOk", null);
-  if (st === "in" || st === "nocfg" || (st === "error" && store.get("gateOk", null))) {
+  /* Ludo invite links (and Ludo itself) open without signing in, so anyone sent a link can play as a guest */
+  let lh = ""; try { lh = location.hash; } catch (e) {}
+  const ludoPass = /^#ludo(\/|$)/.test(lh) && st !== "verify";
+  if (st === "in" || st === "nocfg" || (st === "error" && store.get("gateOk", null)) || ludoPass) {
     if (GATE_SHOWN !== "open") { GATE_SHOWN = "open"; clearInterval(GATE_POLL); clearTimeout(GATE_TIMER); html.classList.add("gate-open"); html.classList.remove("gate-lock"); GATE_EL.classList.add("out"); if (app) app.inert = false; if (st === "in" && !store.get("htDone", false)) setTimeout(helpTour, 900); }
     return;
   }
@@ -24402,6 +24405,7 @@ function helpTour() {
   if (!toured && !store.get("gateOk", null)) gateTour(); else gateMain();
   commStart().then(gateSync);
   addEventListener("online", () => { if (COMM.state === "error") { commStarting = null; commStart().then(gateSync); } });
+  addEventListener("hashchange", () => { if (COMM.state !== "init" && COMM.state !== "loading") gateSync(); });   /* leaving Ludo as a guest brings the sign-in screen back */
   addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && COMM.state === "verify") gateVerifiedCheck(false); });
 })();
 window.addEventListener("hashchange", () => { let h = ""; try { h = location.hash; } catch (e) {} if (h === HASH) return; HASH = h; route(); scrollTo(0, 0); });
