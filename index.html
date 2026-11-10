@@ -1760,6 +1760,15 @@ body.fullpg .rail{display:none!important}
 @media (max-width:639px){body .h2-mods>:last-child:nth-child(odd){grid-column:1/-1}}
 </style>
 <style id="searchfix">
+/* Ludo opens as a clean full page: no patient bar, top bar, menus or bottom bar */
+body.inludo .pbar,body.inludo .topbar,body.inludo .foot,body.inludo details.notes,body.inludo .mbar,body.inludo .rail{display:none!important}
+body.inludo .view{max-width:1200px;padding:calc(8px + env(safe-area-inset-top)) 10px calc(14px + env(safe-area-inset-bottom))!important;margin:0 auto}
+body.inludo main,body.inludo .main{padding-bottom:0!important}
+/* in-app notification banner, Ludo entries */
+.ntoast{position:fixed;left:50%;top:calc(10px + env(safe-area-inset-top));transform:translateX(-50%);z-index:96;display:flex;flex-direction:column;gap:2px;width:min(92vw,420px);padding:11px 15px;border-radius:16px;background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:0 14px 36px -12px rgba(0,0,0,.5);text-decoration:none;animation:ntin .28s ease-out;transition:opacity .4s,transform .4s}.ntoast b{font-size:14px}.ntoast span{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ntoast.out{opacity:0;transform:translate(-50%,-12px)}@keyframes ntin{from{opacity:0;transform:translate(-50%,-16px)}}
+.nbar{width:100%;font:inherit;text-align:left;cursor:pointer}
+.avludo{display:grid;place-items:center;font-size:26px;background:conic-gradient(#e53935 0 25%,#2e9d4f 0 50%,#f2b705 0 75%,#1e78d8 0)}
+.ludocard{background:linear-gradient(135deg,#e53935,#f2b705 45%,#2e9d4f 75%,#1e78d8)!important;color:#fff!important;font-weight:800}
 /* professional connections */
 .av72{width:72px;height:72px;font-size:28px}
 .cnseg{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:10px 0 12px}.cnseg button{flex:none;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;padding:8px 14px;border-radius:99px;cursor:pointer}.cnseg button.on{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -21596,6 +21605,8 @@ function nbToast(t) { let el = $("#nbtoast"); if (!el) { el = document.createEle
 /* topic page buttons: a real PDF file (works on iPad), or open the topic as notebook pages to write on */
 async function topicToPdf(id) { const t = TOPIC_BY[id]; if (!t) return; nbToast("Making the PDF…"); const imgs = await nbRenderDoc(topicBlocks(t), t.n);
   const book = {title: t.n, pages: imgs.map(src => nbPage("blank", src))}; const blob = await nbExportPdf(book); const r = await nbSharePdf(blob, t.n + " - Bhutan Clinical Reference"); if (r === "saved") nbToast("PDF saved — check Downloads / Files"); }
+/* Ludo (ludo.js) is loaded only when it is opened */
+const ludoLoad = () => window.Ludo && window.Ludo.mount ? Promise.resolve(window.Ludo) : (ludoLoad.p = ludoLoad.p || new Promise((ok, no) => { const s = document.createElement("script"); s.src = "ludo.js"; s.onload = () => ok(window.Ludo); s.onerror = () => { ludoLoad.p = null; no(new Error("You are offline and Ludo has not been downloaded yet.")); }; document.head.appendChild(s); }));
 /* Eluna (eluna.js) is loaded only when it is opened */
 const elunaLoad = () => window.Eluna && window.Eluna.mount ? Promise.resolve(window.Eluna) : (elunaLoad.p = elunaLoad.p || new Promise((ok, no) => { const s = document.createElement("script"); s.src = "eluna.js"; s.onload = () => ok(window.Eluna); s.onerror = () => { elunaLoad.p = null; no(new Error("You are offline and Eluna has not been downloaded yet.")); }; document.head.appendChild(s); }));
 async function nbFromBlocks(blocks, title, label) { return elunaLoad().then(E => E.fromBlocks(blocks, title, label)); }
@@ -22368,7 +22379,7 @@ function commAvatar(p, name, cls) {
   const n = (p && p.name) || name || "?", ini = esc(n.replace(/^dr\.?\s*/i, "").trim().slice(0, 1).toUpperCase() || "?");
   return p && p.photo ? `<img class="av ${cls || ""}" src="${p.photo}" alt="">` : `<span class="av ${cls || ""}" style="--h:${[...n].reduce((a, c) => a + c.charCodeAt(0), 0) % 360}">${ini}</span>`;
 }
-const linkifyMsg = t => esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>').replace(/app:(#[\w\/%.:+-]+)/g, '<a class="appcard" href="$1"><span>📚</span>Open in the app<i>›</i></a>').replace(/\n/g, "<br>");
+const linkifyMsg = t => esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>').replace(/app:(#[\w\/%.:+-]+)/g, (m, h) => h.startsWith("#ludo/") ? `<a class="appcard ludocard" href="${h}"><span>🎲</span>Join the Ludo game<i>›</i></a>` : `<a class="appcard" href="${h}"><span>📚</span>Open in the app<i>›</i></a>`).replace(/\n/g, "<br>");
 function imgViewer(src, name) {
   const v = document.createElement("div"); v.className = "imgview";
   v.innerHTML = `<div class="ivbar"><span>${esc(name || "")}</span><span><a class="ivbtn ivdl" download="clinical-image.jpg" href="${src}">⬇ Download</a><button class="ivbtn" id="ivx">✕</button></span></div><div class="ivwrap"><img src="${src}" alt=""></div>`;
@@ -22483,7 +22494,7 @@ function deidScrub(t) { let s = String(t); DEID_RULES.forEach(([rx]) => { s = s.
 
 function roomView(id) {
   if (!commMember() && !commIn()) return profileView();
-  return `<div class="chatwrap"><div class="chathead2"><button class="iconbtn chb" onclick="go('#chat')" aria-label="Back to chats">${CI.back}</button><div class="chtitle"><b id="c_rt">Chat</b><small id="c_rd"></small></div><button class="iconbtn chb" id="c_theme" aria-label="Chat theme" title="Chat theme">${CI.palette}</button><button class="iconbtn chb" id="c_find" aria-label="Search this chat">${CI.search}</button><button class="iconbtn chb" id="c_more" aria-label="Chat options">${CI.more}</button></div>
+  return `<div class="chatwrap"><div class="chathead2"><button class="iconbtn chb" onclick="go('#chat')" aria-label="Back to chats">${CI.back}</button><div class="chtitle"><b id="c_rt">Chat</b><small id="c_rd"></small></div>${id.startsWith("c:") ? `<button class="iconbtn chb" id="c_ludo" aria-label="Play Ludo together" title="Play Ludo together" style="font-size:20px">🎲</button>` : ""}<button class="iconbtn chb" id="c_theme" aria-label="Chat theme" title="Chat theme">${CI.palette}</button><button class="iconbtn chb" id="c_find" aria-label="Search this chat">${CI.search}</button><button class="iconbtn chb" id="c_more" aria-label="Chat options">${CI.more}</button></div>
     <div class="chatfind" id="c_findbar" hidden><span class="cfi">${CI.search}</span><input id="c_fq" type="search" placeholder="Search messages and files" autocomplete="off"><button class="iconbtn" id="c_fx" aria-label="Close search">${CI.x}</button></div>
     <div class="privacy small" id="c_priv" ${store.get("privOK", false) ? "hidden" : ""}>🔒 <b>No patient-identifiable information</b> — no names, faces, CID or record numbers in text, photos or documents. Messages are visible to approved members; the administrator can remove messages. <button class="linkbtn" id="c_privok">OK, got it</button></div>
     <div class="chatlog" id="c_log"><div class="muted small" style="text-align:center;padding:20px">Loading messages…</div></div>
@@ -22654,6 +22665,7 @@ function bindRoom(arg) {
   const down = $("#c_down"); log.addEventListener("scroll", () => { down.hidden = log.scrollHeight - log.scrollTop - log.clientHeight < 300; }, {passive: true}); down.onclick = () => log.scrollTo({top: log.scrollHeight, behavior: "smooth"});
   document.addEventListener("click", e => { if (!e.target.closest(".msg")) $$(".msg.act", log).forEach(x => x.classList.remove("act")); });
   applyChatTheme(arg); $("#c_theme").onclick = () => themeSheet(arg);
+  const lb = $("#c_ludo"); if (lb) lb.onclick = () => { lb.disabled = true; ludoLoad().then(L => L.fromChat(arg.slice(2), roomData, post)).catch(e => commMsg(commErr(e), true)).finally(() => lb.disabled = false); };
   const send = async () => {
     const t = txt.value.trim(); if (!t) return;
     const ids = deidFind(t);
@@ -22956,7 +22968,9 @@ function chatsHomeView() {
     <div class="pssearch msgrsearch">${ICON.search}<input id="m_q" type="search" placeholder="Search chats and people" autocomplete="off"></div>
     <div class="msgrstrip" id="m_strip"></div>
     <a class="cnbar" id="m_reqbar" href="#chat/people"${(COMM.inReq || []).length ? "" : " hidden"}><span class="cnbic">${IC2.people}</span><span><b>${(COMM.inReq || []).length} connection request${(COMM.inReq || []).length === 1 ? "" : "s"}</b><small>Tap to accept or ignore</small></span><span class="cnbgo">Review</span></a>
+    ${"Notification" in window && Notification.permission === "default" ? `<button class="cnbar nbar" id="m_note"><span class="cnbic">🔔</span><span><b>Turn on notifications</b><small>Messages, connection requests and Ludo turns</small></span><span class="cnbgo">Allow</span></button>` : ""}
     <a class="crow cnlink" href="#chat/people"><span class="av av52 avcn">${IC2.people}</span><span class="crt"><b>Connections</b><small>People you may know · requests · my connections</small></span><span class="cpin">＋</span></a>
+    <a class="crow cnlink" href="#ludo"><span class="av av52 avludo">🎲</span><span class="crt"><b>Ludo</b><small>Play with connections · live voice · tokens</small></span><span class="cpin">Play</span></a>
     <a class="crow cai" href="#ai"><span class="av av52 avai">${ICON.spark}</span><span class="crt"><b>AI assistants</b><small>Ask the app · ChatGPT · Claude · Gemini</small></span><span class="cpin">AI</span></a>
     <div id="m_list" class="clist"><div class="muted small" style="padding:16px">Loading your chats…</div></div>
     <div class="pgroup msgrrooms">${pub ? "Public rooms" : "Rooms"}</div><div id="c_rooms" class="clist"><div class="muted small" style="padding:12px">Loading rooms…</div></div>
@@ -22983,6 +22997,7 @@ function bindChatsHome() {
   const filter = () => { const t = q.value.trim().toLowerCase(); $$(".crow[data-q]").forEach(r => r.hidden = !!t && !r.dataset.q.includes(t)); };
   q.addEventListener("input", filter);
   $("#m_new").onclick = $("#m_fab").onclick = () => peopleSheet("dm");
+  const nb = $("#m_note"); if (nb) nb.onclick = () => Notification.requestPermission().then(p => { nb.remove(); if (p === "granted") { store.set("notifyOn", true); notify("Notifications are on", "You'll be told about new messages, requests and Ludo turns.", "#chat"); } });
   COMM.unsub.push(chatsCol().where("members", "array-contains", me).onSnapshot(s => { COMM.chats = []; s.forEach(d => COMM.chats.push({id: d.id, ...d.data()})); draw().catch(() => {}); chatBadge(); }, e => { list.innerHTML = `<div class="warn small">${esc(commErr(e))}</div>`; }));
   /* people strip: quick start with colleagues */
   loadDirectory().then(drawStrip).catch(() => {});
@@ -23065,7 +23080,7 @@ function connWatch() {
   (COMM.connW || []).forEach(f => f()); COMM.connW = [];
   if (!(COMM.state === "in" && COMM.user && COMM.db)) return;
   const me = uDoc(COMM.user.uid);
-  COMM.connW.push(me.collection("requests").onSnapshot(s => { COMM.inReq = []; s.forEach(d => COMM.inReq.push({uid: d.id, ...d.data()})); COMM.inReq.sort((a, b) => tsMs(b.ts) - tsMs(a.ts)); connRefresh(); }, () => {}));
+  COMM.connW.push(me.collection("requests").onSnapshot(s => { COMM.inReq = []; s.forEach(d => COMM.inReq.push({uid: d.id, ...d.data()})); COMM.inReq.sort((a, b) => tsMs(b.ts) - tsMs(a.ts)); connRefresh(); if (typeof noteReqs === "function") noteReqs(); }, () => {}));
   COMM.connW.push(me.collection("outbox").onSnapshot(s => { COMM.outbox = new Set(); s.forEach(d => COMM.outbox.add(d.id)); connRefresh(); }, () => {}));
 }
 function connRefresh() {
@@ -23090,7 +23105,7 @@ async function connCancel(uid) {
 }
 async function connAccept(uid) {
   const me = COMM.user.uid, ts = COMM.fb.firestore.FieldValue.serverTimestamp();
-  await uDoc(uid).collection("contacts").doc(me).set({ts});   /* must happen while the request still exists */
+  await uDoc(uid).collection("contacts").doc(me).set({ts}).catch(() => {});   /* must happen while the request still exists; fails harmlessly if they had already added me */
   await setContact(uid, true);
   await uDoc(me).collection("requests").doc(uid).delete();
   uDoc(me).collection("outbox").doc(uid).delete().catch(() => {});
@@ -23177,8 +23192,55 @@ function chatWatch() {
   contactsWatch();
   if (COMM.chatW) { COMM.chatW(); COMM.chatW = null; }
   if (!(COMM.state === "in" && COMM.user && COMM.profile && COMM.db)) { const b = $("#chatbadge"); if (b) b.hidden = true; return; }
-  COMM.chatW = chatsCol().where("members", "array-contains", COMM.user.uid).onSnapshot(s => { COMM.chats = []; s.forEach(d => COMM.chats.push({id: d.id, ...d.data()})); chatBadge(); }, () => {});
+  COMM.chatW = chatsCol().where("members", "array-contains", COMM.user.uid).onSnapshot(s => { COMM.chats = []; s.forEach(d => COMM.chats.push({id: d.id, ...d.data()})); chatBadge(); noteChats(); }, () => {});
+  gamesWatch();
 }
+/* ===== notifications: new messages, connection requests, Ludo invites and turns =====
+   While the app is open you get an in-app banner; while it is in the background (still running) the phone shows a system notification.
+   Notifications when the app is fully closed need a push server (Firebase Cloud Messaging + Cloud Functions), which this app does not have. */
+const NOTE = {chat: null, game: null, req: null};
+const notifyOK = () => "Notification" in window && Notification.permission === "granted" && store.get("notifyOn", true) !== false;
+function notify(title, body, url, tag) {
+  if (store.get("notifyOn", true) === false) return;
+  if (!document.hidden && location.hash === url) return;
+  if (document.hidden && notifyOK()) {
+    const opt = {body: String(body || "").slice(0, 160), tag: tag || url, renotify: true, icon: "icon-192.png", badge: "icon-192.png", data: {url}};
+    (navigator.serviceWorker ? navigator.serviceWorker.getRegistration() : Promise.resolve(null)).then(r => r ? r.showNotification(title, opt) : new Notification(title, opt)).catch(() => { try { new Notification(title, opt); } catch (e) {} });
+    return;
+  }
+  if (document.hidden) return;
+  $$(".ntoast").forEach(e => e.remove());
+  const t = document.createElement("a"); t.className = "ntoast"; t.href = url; t.innerHTML = `<b>${esc(title)}</b><span>${esc(String(body || "").slice(0, 120))}</span>`;
+  t.onclick = () => t.remove(); document.body.appendChild(t); try { navigator.vibrate && navigator.vibrate(25); } catch (e) {}
+  setTimeout(() => t.classList.add("out"), 4500); setTimeout(() => t.remove(), 5000);
+}
+function noteChats() {
+  const me = (COMM.profile || {}).name, first = !NOTE.chat; NOTE.chat = NOTE.chat || {};
+  COMM.chats.forEach(c => { const t = tsMs(c.lastTs), was = NOTE.chat[c.id]; NOTE.chat[c.id] = t;
+    if (first || was == null || t <= was || !c.lastText || !c.lastBy || c.lastBy === me) return;
+    const other = c.type === "dm" ? (COMM.people[c.members.find(x => x !== COMM.user.uid)] || {}).name : null;
+    notify(c.type === "dm" ? (other || c.lastBy) : `${c.name || "Group"} · ${c.lastBy.split(" ")[0]}`, c.lastText, "#chat/c:" + c.id, "c:" + c.id); });
+}
+function noteReqs() {
+  const first = !NOTE.req, ids = new Set((COMM.inReq || []).map(r => r.uid));
+  if (!first) (COMM.inReq || []).forEach(r => { if (!NOTE.req.has(r.uid)) notify("New connection request", `${r.name}${r.role ? " · " + r.role : ""} wants to connect`, "#chat/people", "req"); });
+  NOTE.req = ids;
+}
+function gamesWatch() {
+  if (COMM.gameW) { COMM.gameW(); COMM.gameW = null; }
+  if (!(COMM.state === "in" && COMM.user && COMM.db)) return;
+  const me = COMM.user.uid;
+  COMM.gameW = COMM.db.collection("games").where("uids", "array-contains", me).onSnapshot(s => {
+    const first = !NOTE.game; NOTE.game = NOTE.game || {};
+    s.forEach(d => { const g = d.data(), was = NOTE.game[d.id], cur = g.status === "playing" && g.players && g.players[g.turn], key = g.status + ":" + (cur ? cur.uid + ":" + g.turn : "");
+      NOTE.game[d.id] = key; if (first || was === key) return;
+      const url = "#ludo/" + d.id, host = (g.players || []).find(p => p.uid === g.host) || {};
+      if (was == null && g.status === "lobby" && g.host !== me) notify("🎲 Ludo invitation", `${host.name || "A colleague"} invited you to play`, url, "g:" + d.id);
+      else if (cur && cur.uid === me && !g.rolled) notify("🎲 Your turn in Ludo", g.log || "Tap to roll the dice", url, "g:" + d.id);
+      else if (g.status === "done" && was && !was.startsWith("done")) notify("🎲 Ludo game over", g.log || "See the results", url, "g:" + d.id); });
+  }, () => {});
+}
+if (navigator.serviceWorker) navigator.serviceWorker.addEventListener("message", e => { if (e.data && e.data.nav) location.hash = e.data.nav; });
 /* share a page of the app into a chat: topics, calculators, guidelines, criteria, hubs */
 function appIndex() {
   if (appIndex.c) return appIndex.c;
@@ -24016,7 +24078,7 @@ function route() {
   if (NAVSTACK[NAVSTACK.length - 1] !== "#" + h) { NAVSTACK.push("#" + h); if (NAVSTACK.length > 60) NAVSTACK.shift(); }
   const [view, ...rest] = h.split("/"); const arg = rest.join("/");
   current = {view, arg};
-  const navId = view === "ai" && arg && NAV_BY["ai/" + arg] ? "ai/" + arg : view === "drug" ? "drugs" : view === "p" ? "protocols" : view === "gl" ? "stg" : view === "lib" ? "stg" : (view === "chat" || view === "members" || view === "account") ? "chat" : view === "hub" ? "hub" : (view === "calc" && CALC_BY[arg] && CALC_BY[arg].g === "Ventilation") ? "vent" : view;
+  const navId = view === "ai" && arg && NAV_BY["ai/" + arg] ? "ai/" + arg : view === "drug" ? "drugs" : view === "p" ? "protocols" : view === "gl" ? "stg" : view === "lib" ? "stg" : (view === "chat" || view === "members" || view === "account" || view === "ludo") ? "chat" : view === "hub" ? "hub" : (view === "calc" && CALC_BY[arg] && CALC_BY[arg].g === "Ventilation") ? "vent" : view;
   setLinkSkip(view, arg);
   $$("[data-nav]").forEach(b => b.setAttribute("aria-current", b.dataset.nav === navId ? "page" : "false"));
   { const gid = navGroupOf(navId); $$(".ngrp").forEach(el => el.classList.toggle("cur", el.dataset.g === gid)); navSetGroup(gid, true); $$(".mbtn").forEach(b => b.setAttribute("aria-current", (b.dataset.mg ? (b.dataset.mg === "hub" ? !!gid || navId === "hub" : b.dataset.mg === gid) : b.dataset.nav === navId) ? "page" : "false")); mpopClose(); }
@@ -24024,6 +24086,8 @@ function route() {
   if (v && view !== "eluna") { v.classList.remove("vin"); void v.offsetWidth; v.classList.add("vin"); }
   document.body.dataset.view = view;
   document.body.classList.toggle("inroom", view === "chat" && !!arg && arg !== "people");
+  if (view !== "ludo" && window.Ludo) window.Ludo.stop();
+  document.body.classList.toggle("inludo", view === "ludo");
   document.body.classList.toggle("innb", view === "nb" && !!arg);
   document.body.classList.toggle("inel", view === "eluna" && !!arg);
   document.body.classList.toggle("fullpg", ["eluna", "nb", "chat"].includes(view) && !!arg);   /* Focused editors use full width; reference pages keep navigation available. */
@@ -24048,6 +24112,8 @@ function route() {
   else if (view === "hub") { v.innerHTML = hubPageView(arg); }
   else if (view === "nb") { location.replace("#eluna"); return; }
   else if (view === "eluna") { v.innerHTML = `<div class="card muted" style="margin:20px">Opening Eluna…</div>`; const want = location.hash; elunaLoad().then(E => { if (location.hash === want) E.mount(v, arg); }).catch(e => { v.innerHTML = `<div class="warn" style="margin:20px">Eluna could not open: ${esc(e.message || e)}</div>`; }); }
+  else if (view === "ludo") { v.innerHTML = `<div class="ludoroot" id="ludoroot"><div class="card muted" style="margin:20px">Opening Ludo…</div></div>`; const want = location.hash; const run = () => ludoLoad().then(L => { if (location.hash === want) L.mount($("#ludoroot"), arg); }).catch(e => { v.innerHTML = `<div class="warn" style="margin:20px">Ludo could not open: ${esc(e.message || e)}</div>`; });
+    if (COMM.state === "init" || COMM.state === "loading") commStart().then(run, run); else run(); }
   else if (view === "foryou") { v.innerHTML = feedView(arg); bindFeed(arg); }
   else if (view === "notes") { v.innerHTML = notesView(); bindNotesView(); }
   else if (view === "settings") { v.innerHTML = settingsView() + `<div class="card ht-replay"><b>App tour</b><p class="small muted" style="margin:4px 0 10px">A one-minute guided tour of search, drugs, conditions, tools and settings.</p><button class="btn" id="ht_again">Show the app tour</button></div>`; bindSettings(); $("#ht_again").onclick = () => helpTour(); }
