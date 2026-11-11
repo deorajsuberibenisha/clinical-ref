@@ -1,6 +1,6 @@
 // offline cache — version d9b79bf634
-const C = "bcr-ludo-20261110-2";
-const CORE = ["./", "./index.html", "./eluna.js", "./ludo.js", "./assets-1.js", "./assets-2.js", "./assets-3.js", "./manifest.webmanifest", "./firebase-sdk.js", "./icon-192.png", "./icon-512.png", "./maskable-512.png"];
+const C = "bcr-2.0-20261111-1";
+const CORE = ["./", "./index.html", "./eluna.js", "./ludo.js", "./assets-1.js", "./manifest.webmanifest", "./firebase-sdk.js", "./icon-192.png", "./icon-512.png", "./maskable-512.png"];
 /* optional files are cached when available but can never stop offline mode from installing (all-or-nothing addAll used to include the config) */
 const PACKS = ["./firebase-config.js"];  /* original page photos removed: every guide is fully typed */
 self.addEventListener("install", e => { e.waitUntil(caches.open(C).then(c => c.addAll(CORE.map(u => new Request(u, {cache: "reload"}))).then(() => Promise.allSettled(PACKS.map(u => c.add(new Request(u, {cache: "reload"})))))).then(() => self.skipWaiting())); });

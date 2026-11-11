@@ -465,7 +465,7 @@
       }
       ctl.show(S); Object.keys(VN.last).forEach(u => ctl.note(u, () => vnPlay(VN.last[u])));
       if (S.status === "done" && !claimed) { claimed = true; claimReward(gid, S).then(n => { if (n) { lToast(`🪙 +${n} token${n > 1 ? "s" : ""} added to your wallet.`); } }).catch(() => {}); }
-    }, e => { root.innerHTML = `<div class="warn">${H(commErr(e))}</div><p><a href="#ludo">Back to Ludo</a></p>`; });
+    }, e => { const denied = /permission/i.test((e && (e.code || e.message)) || ""); root.innerHTML = `<div class="ltop"><a class="lback" href="#ludo">‹ Ludo</a></div><div class="card"><b>${denied ? "This game link isn't open" : "Couldn't open the game"}</b><p class="small">${denied ? "The game may have ended or been cancelled, or the link is incomplete. Ask your friend to send the invite link again." : H(commErr(e))}</p></div>`; });
     CUR = {stop: () => { un(); vnUn(); if (VN.rec) VN.rec.stop(); if (ctl) ctl.stop(); if (voice) voice.stop(); voice = null; }};
   }
 
