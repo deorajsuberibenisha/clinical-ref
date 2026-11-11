@@ -24642,8 +24642,13 @@ const APP_ICONS = [
 const appNative = () => !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
 const appIconId = () => { const v = store.get("appIcon", "classic"); return APP_ICONS.some(x => x[0] === v) ? v : "classic"; };
 let BRAND_SRC0 = null;
+/* icon images live in appicons/; on the website they were uploaded to the top folder, so fall back there if appicons/ is missing */
+let AI_DIR = "appicons/";
+const aiSrc = f => AI_DIR + f;
+window.aiImgErr = im => { if (AI_DIR && !im.dataset.aiRetry) { im.dataset.aiRetry = "1"; AI_DIR = ""; im.src = im.getAttribute("src").replace(/^appicons\//, ""); applyAppIcon(); } };
+(() => { const p = new Image(); p.onerror = () => { if (AI_DIR) { AI_DIR = ""; applyAppIcon(); } }; p.src = "appicons/classic-96.png"; })();
 function applyAppIcon() {
-  const id = appIconId(), small = `appicons/${id}-96.png`, big = `appicons/${id}-192.png`;
+  const id = appIconId(), small = aiSrc(`${id}-96.png`), big = aiSrc(`${id}-192.png`);
   const brand = document.querySelectorAll("img.brand-icon"); if (!BRAND_SRC0 && brand[0]) BRAND_SRC0 = brand[0].getAttribute("src");
   brand.forEach(im => im.setAttribute("src", id === "classic" && BRAND_SRC0 ? BRAND_SRC0 : big));
   document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(l => { if (!l.dataset.src0) l.dataset.src0 = l.getAttribute("href"); l.setAttribute("href", id === "classic" ? l.dataset.src0 : (l.rel === "icon" ? small : big)); });
@@ -24651,7 +24656,7 @@ function applyAppIcon() {
 function appIconRow() {
   const cur = appIconId();
   return `<div class="setrow appiconrow" id="s_appiconrow"><div><b>App icon</b><span>${appNative() ? "Choose the icon on your home screen. It changes within a few seconds; some phones need the app reopened." : "Choose the icon for this app. In the browser it changes the tab icon and the logo inside the app; the Android app from the Play Store also changes its home-screen icon."}</span></div>
-    <div class="aigrid" role="radiogroup" aria-label="App icon">${APP_ICONS.map(([id, n, d]) => `<button class="aicell" data-appicon="${id}" role="radio" aria-checked="${id === cur}" title="${esc(n)} — ${esc(d)}"><img src="appicons/${id}-96.png" alt="" width="64" height="64"><span>${esc(n)}</span></button>`).join("")}</div></div>`;
+    <div class="aigrid" role="radiogroup" aria-label="App icon">${APP_ICONS.map(([id, n, d]) => `<button class="aicell" data-appicon="${id}" role="radio" aria-checked="${id === cur}" title="${esc(n)} — ${esc(d)}"><img src="${aiSrc(id + "-96.png")}" onerror="aiImgErr(this)" alt="" width="64" height="64"><span>${esc(n)}</span></button>`).join("")}</div></div>`;
 }
 async function setAppIcon(id) {
   if (!APP_ICONS.some(x => x[0] === id)) return;
