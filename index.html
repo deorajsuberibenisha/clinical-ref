@@ -24645,7 +24645,7 @@ let BRAND_SRC0 = null;
 /* icon images live in appicons/; on the website they were uploaded to the top folder, so fall back there if appicons/ is missing */
 let AI_DIR = "appicons/";
 const aiSrc = f => AI_DIR + f;
-window.aiImgErr = im => { if (AI_DIR && !im.dataset.aiRetry) { im.dataset.aiRetry = "1"; AI_DIR = ""; im.src = im.getAttribute("src").replace(/^appicons\//, ""); applyAppIcon(); } };
+window.aiImgErr = im => { const s = im.getAttribute("src") || ""; if (im.dataset.aiRetry || !/^appicons\//.test(s)) return; im.dataset.aiRetry = "1"; im.src = s.replace(/^appicons\//, ""); if (AI_DIR) { AI_DIR = ""; applyAppIcon(); } };
 (() => { const p = new Image(); p.onerror = () => { if (AI_DIR) { AI_DIR = ""; applyAppIcon(); } }; p.src = "appicons/classic-96.png"; })();
 function applyAppIcon() {
   const id = appIconId(), small = aiSrc(`${id}-96.png`), big = aiSrc(`${id}-192.png`);
