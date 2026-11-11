@@ -22156,6 +22156,7 @@ function settingsView() {
   return `<h1 class="vt">Settings</h1><p class="vsub">Saved on this device.${STORE_OK ? "" : " <b>Storage is blocked in this preview — settings will not be kept.</b>"}</p>
     <div class="settings-nav"><a href="#settings" data-settings-jump="look">${AP_ICONS.palette} Make it yours</a><a href="#settings" data-settings-jump="access">${ICON.gear} Appearance</a><a href="#settings" data-settings-jump="ai">${ICON.spark} AI assistant</a><a href="#settings" data-settings-jump="data">${ICON.note} Your data</a></div>
     <div class="setcard card persona" id="settings-look"><div class="settings-preview-head"><h3>${AP_ICONS.palette} Make it yours</h3><small>Your app, your style</small></div>${appearancePreview()}
+      ${appIconRow()}
       ${setRow("Colour theme", "One tap sets a matching colour and background across the whole app", themeChoices())}
       ${setRow("Home page style", "Four views of the same clinical workspace", appearanceChoices("s_homeStyle", HOME_STYLES, store.get("homeStyle", "signature"), "style"))}
       ${setRow("Theme colour", "Coordinated across the page, cards, buttons and icons", `<div class="swatches" id="s_accent">${ACCENTS.map(([c, l]) => `<button style="--sw:${c}" data-v="${c === ACCENTS[0][0] ? "" : c}" title="${l}" aria-label="${l}" aria-pressed="${(store.get("accent", "") || "") === (c === ACCENTS[0][0] ? "" : c)}"></button>`).join("")}<label class="swcustom" title="Pick any colour"><input type="color" id="s_accentc" value="${esc(store.get("accent", "") || "#0f5f57")}"><span>＋</span></label></div>`)}
@@ -22408,7 +22409,7 @@ function profileView() {
       <div class="proonly"${pub ? " hidden" : ""}>${field("c_reg", "BMHC registration no.", {type: "text", value: p.regno || ""})}</div></div>
       <div class="fi"><label for="c_bio">About me (optional, 160 characters)</label><textarea id="c_bio" rows="2" maxlength="160" placeholder="${pub ? "e.g. Teacher, Paro" : "e.g. GDMO with an interest in emergency medicine"}">${esc(p.bio || "")}</textarea></div>
       <button class="btn" id="c_save">Save profile</button><p class="small muted">Your name, ${pub ? "" : "profession, workplace, "}photo and “about me” are visible to other members; your email is not.${!pub ? " Switching to a public account removes access to the professional rooms." : " Switching to health professional needs verification by the administrator."}</p>${p.photo ? `<button class="btn btn-ghost" id="c_nophoto">Remove profile photo</button>` : ""}</details>
-    <div class="card">${setRow("Sync my notes", "Keep notes the same on all your devices", `<label class="sw"><input type="checkbox" id="c_sync"${COMM.syncOn ? " checked" : ""}><span></span></label>`)}${setRow("Sync now", "", `<button class="btn" id="c_syncnow">Sync</button>`)}${setRow("User ID", "Needed once by the administrator", `<span class="mono small">${esc(u.uid)}</span>`)}${setRow("Change password", "We email you a secure link", `<button class="btn" id="c_pwreset">Send link</button>`)}${setRow("Sign out", "", `<button class="btn" id="c_out">Sign out</button>`)}${setRow("Delete my account", "Removes your profile and sign-in", `<button class="btn btn-danger" id="c_del">Delete…</button>`)}</div><div id="c_msg" class="small"></div>`;
+    <div class="card">${setRow("Sync my notes", "Keep notes the same on all your devices", `<label class="sw"><input type="checkbox" id="c_sync"${COMM.syncOn ? " checked" : ""}><span></span></label>`)}${setRow("Sync now", "", `<button class="btn" id="c_syncnow">Sync</button>`)}${setRow("User ID", "Needed once by the administrator", `<span class="mono small">${esc(u.uid)}</span>`)}${setRow("Change password", "We email you a secure link", `<button class="btn" id="c_pwreset">Send link</button>`)}${setRow("Sign out", "", `<button class="btn" id="c_out">Sign out</button>`)}${setRow("Delete my account", "Deletes your sign-in, profile, messages, files, posts, connections and synced notes. Notes kept only on this phone stay until you clear them", `<button class="btn btn-danger" id="c_del">Delete…</button>`)}</div><div id="c_msg" class="small"></div>`;
 }
 function roomsView() {
   if (!commMember() && !commIn()) return profileView();
@@ -23147,6 +23148,37 @@ function drawStrip() {
    On accept the receiver adds itself to the sender's contacts (allowed by the rules only while the request exists), then deletes the request. */
 COMM.inReq = COMM.inReq || []; COMM.outbox = COMM.outbox || new Set();
 const uDoc = uid => COMM.db.collection("users").doc(uid);
+/* 2.0: delete the account and the person's data. Everything a member may delete under the security rules is removed here;
+   what only the administrator can remove (token wallet, likes and comments on other people's posts) is explained on the web deletion page. */
+async function commDeleteEverything(say) {
+  const db = COMM.db, me = COMM.user.uid, step = t => { try { say && say(t); } catch (e) {} };
+  const delAll = async q => { try { const s = await q.get(); for (const d of s.docs) await d.ref.delete().catch(() => {}); return s.size; } catch (e) { return 0; } };
+  step("Deleting messages…");
+  for (const [col, ids] of [["chats", null], ["rooms", (COMM.rooms || []).map(r => r.id)]]) {
+    let refs = [];
+    if (col === "chats") { try { refs = (await db.collection("chats").where("members", "array-contains", me).get()).docs.map(d => [d.ref, d.data()]); } catch (e) {} }
+    else refs = (ids || []).map(id => [db.collection("rooms").doc(id), null]);
+    for (const [ref, data] of refs) {
+      await delAll(ref.collection("messages").where("uid", "==", me)); await delAll(ref.collection("media").where("uid", "==", me));
+      try { const fl = await ref.collection("files").where("uid", "==", me).get(); for (const d of fl.docs) { await delAll(d.ref.collection("p").where("uid", "==", me)); await d.ref.delete().catch(() => {}); } } catch (e) {}
+      if (col === "chats" && data) { if (data.by === me) await ref.delete().catch(() => {}); else if (data.type === "group") await ref.update({members: (data.members || []).filter(x => x !== me)}).catch(() => {}); }
+    }
+  }
+  step("Deleting posts…");
+  await delAll(db.collection("posts").where("uid", "==", me));
+  for (const p of store.get("myAnonPosts", [])) { await db.collection("posts").doc(p).delete().catch(() => {}); await db.collection("posts").doc(p).collection("owner").doc("o").delete().catch(() => {}); }
+  step("Deleting connections and notes…");
+  try { const cs = await uDoc(me).collection("contacts").get(); for (const d of cs.docs) { await uDoc(d.id).collection("contacts").doc(me).delete().catch(() => {}); await d.ref.delete().catch(() => {}); } } catch (e) {}
+  try { const ob = await uDoc(me).collection("outbox").get(); for (const d of ob.docs) { await uDoc(d.id).collection("requests").doc(me).delete().catch(() => {}); await d.ref.delete().catch(() => {}); } } catch (e) {}
+  for (const sub of ["requests", "notes", "private"]) await delAll(uDoc(me).collection(sub));
+  await delAll(db.collection("games").where("host", "==", me));
+  step("Deleting your profile…");
+  await uDoc(me).delete().catch(() => {});
+  await COMM.user.delete();
+  ["myAnonPosts", "meCache", "pendingProfile", "savedPosts", "syncnotes"].forEach(k => { try { store.set(k, null); } catch (e) {} });
+  step("Account deleted");
+}
+
 function connWatch() {
   (COMM.connW || []).forEach(f => f()); COMM.connW = [];
   if (!(COMM.state === "in" && COMM.user && COMM.db)) return;
@@ -23532,7 +23564,7 @@ function bindComm(view, arg) {
     on("c_pwreset", async () => { await COMM.auth.sendPasswordResetEmail(COMM.user.email); commMsg("A password-change link has been sent to " + COMM.user.email + "."); });
     on("c_syncnow", async () => { const n = await commSyncNotes(); commMsg(`Notes synced (${n} changed).`); });
     on("c_out", () => COMM.auth.signOut());
-    const del = $("#c_del"); if (del) del.onclick = async () => { if (!del.dataset.arm) { del.dataset.arm = 1; del.textContent = "Tap again to delete"; return; } try { await COMM.db.collection("users").doc(COMM.user.uid).delete().catch(() => {}); await COMM.user.delete(); } catch (e) { commMsg(commErr(e), true); } };
+    const del = $("#c_del"); if (del) del.onclick = async () => { if (!del.dataset.arm) { del.dataset.arm = 1; del.textContent = "Tap again to delete everything"; return; } del.disabled = true; try { await commDeleteEverything(t => { del.textContent = t; }); } catch (e) { del.disabled = false; del.textContent = "Delete…"; delete del.dataset.arm; commMsg(/recent/i.test((e && (e.code || e.message)) || "") ? "For your security, sign out, sign in again, then delete your account." : commErr(e), true); } };
   }
   if (view === "members" && COMM.isAdmin) {
     const card = (d, pending) => { const p = d.data(); return `<div class="di memrow">${commAvatar(p, p.name)}<div style="flex:1;min-width:0"><div class="nm">${esc(p.name || "?")} <span class="small muted">${esc(p.role || "")}</span></div><div class="gp">${esc(p.place || "")}${p.regno ? " · Reg. " + esc(p.regno) : ""} · <span class="mono">${esc(d.id.slice(0, 8))}…</span> <span class="memmail" data-uid="${d.id}"></span></div></div><div class="btnrow">${pending === null ? `<button class="btn btn-ghost" data-rej="${d.id}">Remove</button>` : pending ? `<button class="btn" data-ap="${d.id}">Approve</button><button class="btn btn-ghost" data-rej="${d.id}">Reject</button>` : `<button class="btn btn-ghost" data-rev="${d.id}">Revoke</button>`}</div></div>`; };
@@ -24598,6 +24630,46 @@ function helpTour() {
   addEventListener("hashchange", () => { if (COMM.state !== "init" && COMM.state !== "loading") gateSync(); });   /* leaving Ludo as a guest brings the sign-in screen back */
   addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && COMM.state === "verify") gateVerifiedCheck(false); });
 })();
+/* ===== 2.0 — App Icon Studio =====
+   Eleven app icons; the two original icons stay first. The choice is saved on this device ("appIcon").
+   Android app (Play Store): the home-screen icon itself changes, through the AppIcon plugin in the Android project.
+   Browser and installed web app: the tab icon and the app's own logo change; a home-screen shortcut made by the browser keeps the icon it was made with. */
+const APP_ICONS = [
+  ["classic", "Classic", "The app's current icon"], ["himalaya", "Himalaya", "The first icon"], ["lifebook", "Lifebook", "Book, heart and heartbeat"],
+  ["palbeu", "Palbeu", "The endless knot"], ["lungta", "Lungta", "Prayer flags over a heart"], ["dzong", "Dzong", "A dzong at sunset"],
+  ["pema", "Pema", "Lotus with a heartbeat"], ["peak", "Peak cross", "Cross and snow peaks"], ["midnight", "Midnight gold", "Gold on black"],
+  ["clean", "Clean", "Light and simple"], ["druk", "Druk", "Colours of the national flag"]];
+const appNative = () => !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+const appIconId = () => { const v = store.get("appIcon", "classic"); return APP_ICONS.some(x => x[0] === v) ? v : "classic"; };
+let BRAND_SRC0 = null;
+function applyAppIcon() {
+  const id = appIconId(), small = `appicons/${id}-96.png`, big = `appicons/${id}-192.png`;
+  const brand = document.querySelectorAll("img.brand-icon"); if (!BRAND_SRC0 && brand[0]) BRAND_SRC0 = brand[0].getAttribute("src");
+  brand.forEach(im => im.setAttribute("src", id === "classic" && BRAND_SRC0 ? BRAND_SRC0 : big));
+  document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(l => { if (!l.dataset.src0) l.dataset.src0 = l.getAttribute("href"); l.setAttribute("href", id === "classic" ? l.dataset.src0 : (l.rel === "icon" ? small : big)); });
+}
+function appIconRow() {
+  const cur = appIconId();
+  return `<div class="setrow appiconrow" id="s_appiconrow"><div><b>App icon</b><span>${appNative() ? "Choose the icon on your home screen. It changes within a few seconds; some phones need the app reopened." : "Choose the icon for this app. In the browser it changes the tab icon and the logo inside the app; the Android app from the Play Store also changes its home-screen icon."}</span></div>
+    <div class="aigrid" role="radiogroup" aria-label="App icon">${APP_ICONS.map(([id, n, d]) => `<button class="aicell" data-appicon="${id}" role="radio" aria-checked="${id === cur}" title="${esc(n)} — ${esc(d)}"><img src="appicons/${id}-96.png" alt="" width="64" height="64"><span>${esc(n)}</span></button>`).join("")}</div></div>`;
+}
+async function setAppIcon(id) {
+  if (!APP_ICONS.some(x => x[0] === id)) return;
+  store.set("appIcon", id); applyAppIcon();
+  $$("[data-appicon]").forEach(b => b.setAttribute("aria-checked", b.dataset.appicon === id));
+  if (appNative()) { try { await window.Capacitor.Plugins.AppIcon.set({id}); nbToast("Home-screen icon changed to " + APP_ICONS.find(x => x[0] === id)[1] + "."); } catch (e) { nbToast("This phone did not allow the icon change: " + ((e && e.message) || e)); } }
+  else nbToast("App icon set to " + APP_ICONS.find(x => x[0] === id)[1] + ".");
+}
+document.addEventListener("click", e => { const b = e.target.closest("[data-appicon]"); if (b) { e.preventDefault(); setAppIcon(b.dataset.appicon); } });
+addEventListener("hashchange", () => setTimeout(applyAppIcon, 0));
+setTimeout(applyAppIcon, 0);
+(function () { const st = document.createElement("style"); st.textContent = `.appiconrow{flex-direction:column;align-items:stretch!important}
+.aigrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));grid-auto-rows:max-content;align-content:start;align-items:start;gap:10px;margin-top:10px;height:auto!important;min-height:0!important;flex:none!important}
+.aicell{height:auto!important;min-height:0!important;align-self:start;display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px 8px;border-radius:16px;border:1.5px solid transparent;background:var(--panel2,transparent);color:var(--ink);font:600 12px var(--ui-font,inherit);cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
+.aicell img{width:60px;height:60px;border-radius:15px;box-shadow:0 4px 12px -6px rgba(0,0,0,.45)}
+.aicell:hover{transform:translateY(-2px)}.aicell[aria-checked="true"]{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
+.aicell[aria-checked="true"] span::after{content:" ✓";color:var(--accent)}`; document.head.appendChild(st); })();
+/* ===== /App Icon Studio ===== */
 window.addEventListener("hashchange", () => { let h = ""; try { h = location.hash; } catch (e) {} if (h === HASH) return; HASH = h; route(); scrollTo(0, 0); });
 route();
 </script>
