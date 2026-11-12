@@ -24637,7 +24637,7 @@ function helpTour() {
 const APP_ICONS = [
   ["classic", "Classic", "The app's current icon"], ["himalaya", "Himalaya", "The first icon"], ["lifebook", "Lifebook", "Book, heart and heartbeat"],
   ["palbeu", "Palbeu", "The endless knot"], ["lungta", "Lungta", "Prayer flags over a heart"], ["dzong", "Dzong", "A dzong at sunset"],
-  ["pema", "Pema", "Lotus with a heartbeat"], ["peak", "Peak cross", "Cross and snow peaks"], ["midnight", "Midnight gold", "Gold on black"],
+  ["pema", "Pema", "Lotus with a heartbeat"], ["peak", "Peak cross", "Cross and snow peaks"], ["midnight", "Midnight", "Gold on black"],
   ["clean", "Clean", "Light and simple"], ["druk", "Druk", "Colours of the national flag"]];
 const appNative = () => !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
 const appIconId = () => { const v = store.get("appIcon", "classic"); return APP_ICONS.some(x => x[0] === v) ? v : "classic"; };
@@ -24655,7 +24655,7 @@ function applyAppIcon() {
 }
 function appIconRow() {
   const cur = appIconId();
-  return `<div class="setrow appiconrow" id="s_appiconrow"><div><b>App icon</b><span>${appNative() ? "Choose the icon on your home screen. It changes within a few seconds; some phones need the app reopened." : "Choose the icon for this app. In the browser it changes the tab icon and the logo inside the app; the Android app from the Play Store also changes its home-screen icon."}</span></div>
+  return `<div class="setrow appiconrow" id="s_appiconrow"><div><b>App icon</b><span>${appNative() ? "Choose the icon on your home screen. It changes within a few seconds; some phones need the app reopened." : "Changes the logo inside the app and the browser-tab icon. The home-screen or desktop icon of an app installed from the browser is fixed when it is installed, and browsers do not let a website change it. The Android app from the Play Store changes its home-screen icon too."}</span></div>
     <div class="aigrid" role="radiogroup" aria-label="App icon">${APP_ICONS.map(([id, n, d]) => `<button class="aicell" data-appicon="${id}" role="radio" aria-checked="${id === cur}" title="${esc(n)} — ${esc(d)}"><img src="${aiSrc(id + "-96.png")}" onerror="aiImgErr(this)" alt="" width="64" height="64"><span>${esc(n)}</span></button>`).join("")}</div></div>`;
 }
 async function setAppIcon(id) {
@@ -24668,11 +24668,11 @@ async function setAppIcon(id) {
 document.addEventListener("click", e => { const b = e.target.closest("[data-appicon]"); if (b) { e.preventDefault(); setAppIcon(b.dataset.appicon); } });
 addEventListener("hashchange", () => setTimeout(applyAppIcon, 0));
 setTimeout(applyAppIcon, 0);
-(function () { const st = document.createElement("style"); st.textContent = `.appiconrow{flex-direction:column;align-items:stretch!important}
-.aigrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));grid-auto-rows:max-content;align-content:start;align-items:start;gap:10px;margin-top:10px;height:auto!important;min-height:0!important;flex:none!important}
-.aicell{height:auto!important;min-height:0!important;align-self:start;display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px 8px;border-radius:16px;border:1.5px solid transparent;background:var(--panel2,transparent);color:var(--ink);font:600 12px var(--ui-font,inherit);cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
-.aicell img{width:60px;height:60px;border-radius:15px;box-shadow:0 4px 12px -6px rgba(0,0,0,.45)}
-.aicell:hover{transform:translateY(-2px)}.aicell[aria-checked="true"]{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
+(function () { const st = document.createElement("style"); st.textContent = `.appiconrow{display:block!important}.appiconrow>div:first-child{margin-bottom:2px}
+.aigrid{display:grid;grid-template-columns:repeat(auto-fill,74px);justify-content:start;grid-auto-rows:74px;gap:8px;margin-top:10px;height:auto!important;min-height:0!important;flex:none!important}
+.aicell{width:74px;height:74px!important;min-height:0!important;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:5px 3px;border-radius:14px;overflow:hidden;border:1.5px solid transparent;background:var(--panel2,transparent);color:var(--ink);font:600 10.5px var(--ui-font,inherit);cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
+.aicell img{width:44px;height:44px;flex:none;border-radius:11px;box-shadow:0 3px 8px -5px rgba(0,0,0,.45)}.aicell span{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+.aicell:hover{transform:translateY(-1px)}.aicell[aria-checked="true"]{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
 .aicell[aria-checked="true"] span::after{content:" ✓";color:var(--accent)}`; document.head.appendChild(st); })();
 /* ===== /App Icon Studio ===== */
 window.addEventListener("hashchange", () => { let h = ""; try { h = location.hash; } catch (e) {} if (h === HASH) return; HASH = h; route(); scrollTo(0, 0); });
