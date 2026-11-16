@@ -988,9 +988,33 @@ body[data-banner="mount"] .h2-head{background:linear-gradient(90deg,#082d42b5,#0
 </style><link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script src="firebase-config.js"></script>
-<script>if ("serviceWorker" in navigator && /^https?:/.test(location.protocol)) addEventListener("load", () => {
-  navigator.serviceWorker.register("sw.js").then(r => addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") r.update().catch(() => {}); })).catch(() => {});
-  if (navigator.serviceWorker.controller) { let done = false; navigator.serviceWorker.addEventListener("controllerchange", () => { if (!done) { done = true; location.reload(); } }); }
+<script>/* 2.1 automatic updates: check at once when the app opens and whenever it comes back to the screen; the new version downloads in
+   the background and the app reloads into it straight away — unless someone is typing, in a chat room, a game or a notebook, in which
+   case it waits until they finish (leave that page or put the app away) so nothing typed is lost. */
+if ("serviceWorker" in navigator && /^https?:/.test(location.protocol)) addEventListener("load", () => {
+  const T0 = Date.now(), note = (t, ms) => { try { let d = document.getElementById("updnote"); if (!d) { d = document.createElement("div"); d.id = "updnote"; d.setAttribute("role", "status"); d.style.cssText = "position:fixed;left:50%;top:calc(10px + env(safe-area-inset-top));transform:translateX(-50%);z-index:300;padding:8px 14px;border-radius:999px;font:600 13px/1.2 system-ui,sans-serif;background:rgba(15,40,45,.92);color:#fff;box-shadow:0 10px 26px -10px rgba(0,0,0,.55);transition:opacity .3s;pointer-events:none"; document.body.appendChild(d); } d.textContent = t; d.style.opacity = "1"; clearTimeout(d._t); if (ms) d._t = setTimeout(() => { d.style.opacity = "0"; }, ms); } catch (e) {} };
+  try { if (sessionStorage.getItem("bcrUpdated") === "1") { sessionStorage.removeItem("bcrUpdated"); setTimeout(() => note("✓ Updated to the latest version", 2600), 600); } } catch (e) {}
+  const busy = () => { const a = document.activeElement, h = location.hash || "";
+    if (a && (a.tagName === "TEXTAREA" || a.isContentEditable || (a.tagName === "INPUT" && !/^(search|checkbox|radio|button)$/.test(a.type) && a.value))) return true;
+    /* numbers typed into a calculator or a form on the page (not values the app filled in itself) */
+    if ([...document.querySelectorAll("#view input, #view textarea")].some(e => !/^(search|checkbox|radio|button|file)$/.test(e.type) && e.value && e.value !== e.defaultValue)) return true;
+    return /^#(chat\/|ludo|eluna\/|nb\/)/.test(h) || document.body.classList.contains("inludo"); };
+  let pending = false;
+  const reloadNow = () => { try { sessionStorage.setItem("bcrUpdated", "1"); } catch (e) {} location.reload(); };
+  const tryReload = () => { if (!pending) return; if (document.visibilityState === "hidden" || !busy()) reloadNow(); };
+  navigator.serviceWorker.register("sw.js").then(r => {
+    const watch = w => { if (!w || !navigator.serviceWorker.controller) return; if (Date.now() - T0 < 20000 || !busy()) note("Updating to the latest version…"); };
+    r.addEventListener("updatefound", () => watch(r.installing));
+    r.update().catch(() => {});   /* check now, not only when the browser decides to */
+    addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") r.update().catch(() => {}); else tryReload(); });
+    setInterval(() => { if (document.visibilityState === "visible") r.update().catch(() => {}); }, 30 * 60 * 1000);   /* long sessions: every 30 minutes */
+  }).catch(() => {});
+  if (navigator.serviceWorker.controller) navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (pending) return; pending = true;
+    if (!busy()) return reloadNow();
+    note("Update ready — it will apply when you finish here", 5000);
+    addEventListener("hashchange", () => setTimeout(tryReload, 300));
+  });
 });</script>
 <style>/* ===== sign-in gate ===== */
 html:not(.gate-open) #app{visibility:hidden}
@@ -1773,6 +1797,7 @@ body.fullpg .rail{display:none!important}
 /* ===== 2.0 opening: app reveal, then the Aexoryn Technologies credit ===== */
 .splash.op{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:hidden;padding:calc(28px + env(safe-area-inset-top)) 20px calc(28px + env(safe-area-inset-bottom));background:radial-gradient(120% 80% at 50% 38%,#0f4a4f 0%,#082a33 45%,#03141a 100%);transition:opacity .7s ease,transform .7s ease,filter .7s ease,visibility .7s}
 .splash.op.out{opacity:0;transform:scale(1.06);filter:blur(6px)}
+.splash.op.quick.out{transition:opacity .3s ease,transform .3s ease,filter .3s ease,visibility 0s .3s!important}.splash.op.quick .op-skip{display:none}
 .op-sky{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .op-sky i{position:absolute;border-radius:50%;filter:blur(60px);opacity:.45;animation:opdrift 10s ease-in-out infinite alternate}
 .op-sky i:nth-child(1){width:60vmax;height:60vmax;left:-20vmax;top:-25vmax;background:#1aa58a}.op-sky i:nth-child(2){width:50vmax;height:50vmax;right:-22vmax;bottom:-18vmax;background:#c98a2b;opacity:.28;animation-delay:-4s}
@@ -1830,6 +1855,166 @@ body.fullpg .rail{display:none!important}
 .jr .jd{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--panel);border:2px solid var(--accent);font-size:9px}.jr .jv .jd{width:34px;height:34px;margin:-5px -5px 0;background:linear-gradient(135deg,#ffe08a,#ffb84d);border-color:#ffe08a;color:#2a1d00;font-size:12px}
 .jr div{display:flex;flex-direction:column;line-height:1.3}.jr small{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}.jr b{font-size:14.5px;color:var(--ink)}.jr span{font-size:12.5px;color:var(--muted)}
 .about .verchip{display:inline-block;padding:3px 11px;border-radius:99px;font-weight:800;font-size:12.5px;color:#2a1d00;background:linear-gradient(135deg,#ffe08a,#ffb84d);margin-left:4px}
+</style>
+<style id="homebadgecss">
+.homebadge{position:absolute;top:-7px;right:-7px;z-index:5;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;padding:0;border:2px solid var(--panel);background:var(--accent);color:var(--accent-ink);box-shadow:0 4px 10px -3px rgb(0 0 0/.45);cursor:pointer;animation:hbIn .32s cubic-bezier(.3,1.6,.5,1) both;rotate:0deg}
+.homebadge svg{width:15px;height:15px;stroke-width:2.6}
+.homebadge.on{background:#1f9d6b;color:#fff}.homebadge.rm{background:#d64545;color:#fff}
+.homebadge.pop{animation:hbPop .42s cubic-bezier(.3,1.6,.5,1)}
+@keyframes hbIn{from{transform:scale(0)}to{transform:scale(1)}}@keyframes hbPop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+.arranging>*>.homebadge{animation-name:hbIn}
+.flyclone{border-radius:14px;box-shadow:0 14px 30px -10px rgb(0 0 0/.5)}
+.hmtoast{position:fixed;left:50%;bottom:calc(140px + env(safe-area-inset-bottom));z-index:120;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:18px;width:max-content;line-height:1.3;background:color-mix(in srgb,var(--ink) 92%,transparent);color:var(--bg);font-size:.88rem;box-shadow:0 16px 36px -14px rgb(0 0 0/.6);backdrop-filter:blur(12px);opacity:0;transform:translate(-50%,14px) scale(.96);transition:opacity .25s,transform .3s cubic-bezier(.2,.9,.25,1);max-width:calc(100vw - 32px)}
+.hmtoast.in{opacity:1;transform:translate(-50%,0) scale(1)}
+.hmtoast .hmt-ic{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#1f9d6b;color:#fff;flex:none}.hmtoast .hmt-ic svg{width:14px;height:14px;stroke-width:2.6}
+.hmtoast a{color:var(--bg);font-weight:700;text-decoration:underline;white-space:nowrap}
+@media(min-width:900px){.hmtoast{bottom:84px}}
+.h2-pin small{opacity:.8}.h2-pin b{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+.fold-head{flex-wrap:wrap;row-gap:8px}.fold-head>div{flex:1 1 150px;min-width:0}.fold-head h1{overflow-wrap:break-word;hyphens:manual}
+@media(max-width:520px){.fold-head h1{font-size:clamp(1.3rem,6vw,1.9rem)!important}}
+/* long words in narrow tiles: hyphenate properly (Organo-phosphate) instead of breaking anywhere */
+:is(.em,.h2-spec,.h2-mod,.h2-q,.fitem,.fold,.themegrid button,.choice-card,.flowtile) :is(b,span,strong,small){hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+:is(.em,.h2-q,.fitem)>:not(.ic-tile):not(.h2-qi):not(.fitem-ic){min-width:0;overflow-wrap:anywhere}
+.aicell span{white-space:normal!important;text-overflow:clip!important;overflow:visible!important;line-height:1.1;font-size:11.5px;text-align:center;display:block}
+@media(max-width:420px){.fold-head .arr-btn span{display:none}.arrb-tip{font-size:12.5px}}
+</style>
+<style id="smoothcss">
+/* ===== 2.1 smoothness: instant taps, no grey tap flash, press feedback, crossfade between pages ===== */
+html{-webkit-tap-highlight-color:transparent;touch-action:manipulation;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a,button,input,select,textarea,label{touch-action:manipulation}
+:is(.fitem,.fold,.di,.h2-q,.h2-mod,.h2-spec,.em,.flowtile,.azi,.mbtn,.nav,.chip,.btn,.seg button,.dsgrid button,.pin){transition:transform .16s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background-color .2s,border-color .2s,color .2s}
+:is(.fitem,.fold,.di,.h2-q,.h2-mod,.h2-spec,.em,.flowtile,.azi,.pin):active:not(.dragging){transform:scale(.975)}
+:is(.mbtn,.nav,.chip,.seg button):active{transform:scale(.95)}
+body.reduce-motion :is(.fitem,.fold,.di,.h2-q,.h2-mod,.h2-spec,.em,.flowtile,.azi,.mbtn,.nav,.chip,.btn,.pin):active{transform:none}
+@supports (view-transition-name:none){
+  ::view-transition-old(root),::view-transition-new(root){animation-duration:.2s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+  ::view-transition-old(root){animation-name:vtOut}::view-transition-new(root){animation-name:vtIn}
+  @keyframes vtOut{to{opacity:0}}@keyframes vtIn{from{opacity:0;transform:translateY(6px)}}
+}
+/* ===== Clarity design: crisp, minimal and flat ===== */
+body[data-design="clarity"]{--r:12px;--cl-line:color-mix(in srgb,var(--ink) 11%,transparent)}
+body[data-design="clarity"][data-uifont="source"]{--ui-font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Source Sans 3",sans-serif}
+body[data-design="clarity"]:not(.font-custom){--head-font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Source Sans 3",sans-serif}
+:root:not([data-mode="dark"]) body[data-design="clarity"]{--bg:#ffffff;--panel:#ffffff;--panel2:#f6f7f8;background:#fff}
+:root[data-mode="dark"] body[data-design="clarity"]{--bg:#0b0d0e;--panel:#121516;--panel2:#171b1c;background:#0b0d0e}
+body[data-design="clarity"]{background-image:none!important}
+body[data-design="clarity"] h1.vt{font-weight:700;letter-spacing:-.03em;font-size:clamp(1.7rem,1.25rem + 1.6vw,2.3rem)}
+body[data-design="clarity"] .card{box-shadow:none;border-color:var(--cl-line);border-radius:14px;background:var(--panel)}
+body[data-design="clarity"] :is(.fold,.h2-mod,.h2-spec,.em,.flowtile){box-shadow:none!important;border-color:var(--cl-line)!important;border-radius:14px!important;background:var(--panel)!important}
+@media(hover:hover){body[data-design="clarity"] :is(.fold,.h2-mod,.h2-spec,.em,.flowtile,.fitem,.di):hover{background:var(--panel2)!important}}
+body[data-design="clarity"] .topbar{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);border-bottom-color:var(--cl-line)}
+@media(max-width:899px){body[data-design="clarity"] .mbar{background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);border-top:1px solid var(--cl-line);box-shadow:none}}
+body[data-design="clarity"] .nav[aria-current="page"]{background:var(--panel2);box-shadow:none;font-weight:700}
+body[data-design="clarity"] .btn{border-radius:10px;box-shadow:none}
+body[data-design="clarity"] .chip{background:var(--panel2);border-color:transparent}
+body[data-design="clarity"] :is(.fi input,.fi select,input[type=search],input[type=text],textarea){border-radius:10px;background:var(--panel2);border-color:transparent}
+body[data-design="clarity"] :is(.fi input,.fi select,input[type=search],input[type=text],textarea):focus{background:var(--panel);border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 14%,transparent);outline:none}
+body[data-design="clarity"] .pgroup{letter-spacing:.06em;font-weight:600}
+body[data-design="clarity"] .h2-head{border-radius:20px;box-shadow:none}
+body[data-design="clarity"][data-icon-style="signature"] .ic-tile{background:hsl(var(--h) 70% 46%)!important;border:0!important;box-shadow:none!important;border-radius:11px!important}
+body[data-design="clarity"][data-icon-style="signature"] .h2-mi{background:var(--mc)!important;border:0!important;box-shadow:none!important;border-radius:12px!important}
+body[data-design="clarity"] .h2-qi{background:var(--panel2);box-shadow:none}
+.dsgrid{grid-template-columns:repeat(3,minmax(0,1fr))}@media(max-width:520px){.dsgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.dsthumb.clarity{background:#fff}.dsthumb.clarity i:nth-child(1){left:8px;right:8px;top:8px;height:22px;border-radius:8px;background:#111}
+.dsthumb.clarity i:nth-child(2),.dsthumb.clarity i:nth-child(3),.dsthumb.clarity i:nth-child(4){top:38px;width:calc((100% - 32px)/3);height:38px;border-radius:9px;background:#fff;border:1px solid #e6e6e6}
+.dsthumb.clarity i:nth-child(2){left:8px}.dsthumb.clarity i:nth-child(3){left:calc(8px + (100% - 32px)/3 + 8px)}.dsthumb.clarity i:nth-child(4){right:8px}
+.dsthumb.clarity i:nth-child(2)::after,.dsthumb.clarity i:nth-child(3)::after,.dsthumb.clarity i:nth-child(4)::after{content:"";position:absolute;left:7px;top:7px;width:13px;height:13px;border-radius:4px;background:#1f6feb}
+.dsthumb.clarity i:nth-child(3)::after{background:#e5484d}.dsthumb.clarity i:nth-child(4)::after{background:#30a46c}
+</style>
+<style id="lumencss">
+/* ===== Lumen design (2.1). Everything is scoped to body[data-design="lumen"]; Classic stays exactly as before. ===== */
+body[data-design="lumen"]{--r:18px;--lm-line:color-mix(in srgb,var(--line) 75%,transparent);--lm-sh:0 1px 2px rgb(15 40 55/.05),0 10px 28px -14px rgb(15 40 55/.22);--lm-sh2:0 2px 4px rgb(15 40 55/.06),0 18px 38px -16px rgb(15 40 55/.30);--lm-glass:color-mix(in srgb,var(--panel) 74%,transparent)}
+:root[data-mode="dark"] body[data-design="lumen"]{--lm-sh:0 1px 2px rgb(0 0 0/.3),0 12px 30px -14px rgb(0 0 0/.6);--lm-sh2:0 2px 6px rgb(0 0 0/.35),0 20px 40px -16px rgb(0 0 0/.7)}
+body[data-design="lumen"][data-uifont="source"]{--ui-font:Inter,"Source Sans 3",-apple-system,"Segoe UI",Roboto,sans-serif}
+body[data-design="lumen"]:not(.font-custom){--head-font:Inter,"Source Sans 3",-apple-system,"Segoe UI",sans-serif}
+body[data-design="lumen"]{background-image:radial-gradient(1100px 520px at 0% -10%,color-mix(in srgb,var(--accent) 9%,transparent),transparent 70%),radial-gradient(900px 500px at 105% 8%,color-mix(in srgb,#7b6cf6 7%,transparent),transparent 70%),var(--page-art,none);background-attachment:fixed}
+/* titles */
+body[data-design="lumen"] h1.vt{font-weight:750;letter-spacing:-.028em;line-height:1.12;font-size:clamp(1.65rem,1.2rem + 1.6vw,2.25rem)}
+body[data-design="lumen"] .vsub{font-size:.95rem;line-height:1.55}
+body[data-design="lumen"] :is(h2,h3){letter-spacing:-.015em}
+body[data-design="lumen"] .pgroup{font-size:.72rem;letter-spacing:.09em;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:8px}
+body[data-design="lumen"] .pgroup::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+/* surfaces */
+body[data-design="lumen"] .card{border-radius:20px;border-color:var(--lm-line);background:linear-gradient(180deg,color-mix(in srgb,var(--panel) 92%,#fff),var(--panel));box-shadow:var(--lm-sh)}
+:root[data-mode="dark"] body[data-design="lumen"] .card{background:linear-gradient(180deg,color-mix(in srgb,var(--panel) 94%,#fff),var(--panel))}
+body[data-design="lumen"] :is(.dl,.fitems){border-radius:20px}
+body[data-design="lumen"] :is(.di,.fitem,.fold,.h2-mod,.h2-spec,.h2-q,.em,.flowtile,.azi){transition:transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s,border-color .22s,background .22s}
+body[data-design="lumen"] :is(.fold,.h2-mod,.h2-spec,.em,.flowtile){border-radius:20px!important;border-color:var(--lm-line)!important;box-shadow:var(--lm-sh)}
+@media(hover:hover){body[data-design="lumen"] :is(.fold,.h2-mod,.h2-spec,.em,.flowtile,.fitem,.di):hover{transform:translateY(-2px);box-shadow:var(--lm-sh2);border-color:color-mix(in srgb,var(--accent) 30%,var(--line))!important}}
+/* top bar, side rail and phone bar as frosted glass */
+body[data-design="lumen"] .topbar{background:var(--lm-glass);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);border-bottom-color:var(--lm-line)}
+body[data-design="lumen"] .rail{backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5)}
+body[data-design="lumen"] .nav{border-radius:12px}
+body[data-design="lumen"] .nav[aria-current="page"]{background:var(--accent-soft);box-shadow:none;color:var(--accent);font-weight:700}
+@media(max-width:899px){body[data-design="lumen"] .mbar{background:var(--lm-glass);backdrop-filter:blur(20px) saturate(1.7);-webkit-backdrop-filter:blur(20px) saturate(1.7);border-top:1px solid var(--lm-line);box-shadow:0 -8px 30px -12px rgb(15 40 55/.25)}}
+/* controls */
+body[data-design="lumen"] .btn{border-radius:999px;padding:10px 18px;letter-spacing:.005em;box-shadow:0 1px 0 #ffffff30 inset,0 6px 16px -8px color-mix(in srgb,var(--accent) 70%,transparent)}
+body[data-design="lumen"] :is(.btn.ghost,.btn-ghost){box-shadow:none}
+body[data-design="lumen"] .chip{border-color:var(--lm-line);background:color-mix(in srgb,var(--panel) 85%,transparent);transition:background .2s,border-color .2s,color .2s}
+body[data-design="lumen"] .chip:hover{border-color:var(--accent);color:var(--accent)}
+body[data-design="lumen"] .seg{border-radius:999px;padding:3px}body[data-design="lumen"] .seg button{border-radius:999px}
+body[data-design="lumen"] :is(.fi input,.fi select,input[type=search],input[type=text],textarea){border-radius:12px;transition:border-color .2s,box-shadow .2s}
+body[data-design="lumen"] :is(.fi input,.fi select,input[type=search],input[type=text],textarea):focus{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent);outline:none}
+body[data-design="lumen"] .res .rv{font-weight:750;letter-spacing:-.02em}
+/* home hero */
+body[data-design="lumen"] .h2-head{border-radius:28px;box-shadow:0 22px 50px -24px color-mix(in srgb,var(--hero-top,#0f5f57) 70%,transparent),0 1px 0 #ffffff25 inset}
+/* icons: "gem" tiles — rich gradient, inner light and a soft coloured glow (only with the Colourful icon style) */
+body[data-design="lumen"][data-icon-style="signature"] .ic-tile{background:radial-gradient(130% 120% at 28% 12%,hsl(var(--h) 85% 70%) 0%,hsl(var(--h) 68% 48%) 48%,hsl(var(--h) 72% 33%) 100%)!important;border-radius:16px!important;border:1px solid #ffffff38!important;box-shadow:inset 0 1px 0 #ffffff80,inset 0 -3px 8px #0000001f,0 8px 16px -8px hsl(var(--h) 70% 30% / .6)!important}
+body[data-design="lumen"][data-icon-style="signature"] .h2-mi{background:radial-gradient(130% 120% at 28% 12%,color-mix(in srgb,var(--mc) 55%,#fff) 0%,var(--mc) 50%,color-mix(in srgb,var(--mc) 72%,#000) 100%)!important;border-radius:16px!important;border:1px solid #ffffff38;box-shadow:inset 0 1px 0 #ffffff80,inset 0 -3px 8px #0000001f,0 8px 16px -8px color-mix(in srgb,var(--mc) 70%,transparent)!important}
+body[data-design="lumen"] .h2-qi{border-radius:13px;background:linear-gradient(150deg,var(--accent-soft),color-mix(in srgb,var(--accent-soft) 60%,var(--panel)));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 14%,transparent)}
+body[data-design="lumen"] :is(.ic-tile,.h2-mi) svg{stroke-width:1.9;filter:drop-shadow(0 1px 1px #00000030)}
+@media(hover:hover){body[data-design="lumen"] :is(.fold,.fitem,.h2-mod):hover :is(.ic-tile,.h2-mi){transform:scale(1.06) rotate(-2deg);transition:transform .25s cubic-bezier(.2,.7,.2,1)}}
+/* gentle page entrance */
+body[data-design="lumen"]:not(.reduce-motion) .view.vin>*{animation:lmIn .38s cubic-bezier(.2,.7,.2,1) both}
+body[data-design="lumen"]:not(.reduce-motion) .view.vin>*:nth-child(2){animation-delay:.03s}body[data-design="lumen"]:not(.reduce-motion) .view.vin>*:nth-child(3){animation-delay:.06s}body[data-design="lumen"]:not(.reduce-motion) .view.vin>*:nth-child(n+4){animation-delay:.09s}
+@keyframes lmIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* design picker in Settings */
+.dsgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%}
+.dsgrid button{display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:16px;border:1.5px solid var(--line);background:var(--panel);cursor:pointer;text-align:left;color:var(--ink);font:inherit;transition:border-color .2s,box-shadow .2s}
+.dsgrid button[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent)}
+.dsgrid small{color:var(--muted);font-size:.78rem;line-height:1.35}
+.dsthumb{height:86px;border-radius:12px;position:relative;overflow:hidden;background:#f4f3ef;border:1px solid #00000010}
+.dsthumb i{position:absolute;display:block}
+.dsthumb.classic{background:#f4f3ef}.dsthumb.classic i:nth-child(1){left:8px;right:8px;top:8px;height:22px;border-radius:8px;background:linear-gradient(125deg,#0f5f57,#123d52)}
+.dsthumb.classic i:nth-child(2),.dsthumb.classic i:nth-child(3),.dsthumb.classic i:nth-child(4){top:38px;width:calc((100% - 32px)/3);height:38px;border-radius:8px;background:#fff;border:1px solid #e0e3dd}
+.dsthumb.classic i:nth-child(2){left:8px}.dsthumb.classic i:nth-child(3){left:calc(8px + (100% - 32px)/3 + 8px)}.dsthumb.classic i:nth-child(4){right:8px}
+.dsthumb.lumen{background:radial-gradient(at 0 0,#c6efe2,transparent 60%),radial-gradient(at 100% 10%,#ddd5fb,transparent 60%),#f3f6f8}
+.dsthumb.lumen i:nth-child(1){left:8px;right:8px;top:8px;height:22px;border-radius:12px;background:linear-gradient(125deg,#14a08d,#5b4bd6);box-shadow:0 6px 12px -6px #5b4bd6aa}
+.dsthumb.lumen i:nth-child(2),.dsthumb.lumen i:nth-child(3),.dsthumb.lumen i:nth-child(4){top:38px;width:calc((100% - 32px)/3);height:38px;border-radius:12px;background:#ffffffcc;box-shadow:0 6px 14px -8px #1f3a5a66}
+.dsthumb.lumen i:nth-child(2){left:8px}.dsthumb.lumen i:nth-child(3){left:calc(8px + (100% - 32px)/3 + 8px)}.dsthumb.lumen i:nth-child(4){right:8px}
+.dsthumb.lumen i:nth-child(2)::after,.dsthumb.lumen i:nth-child(3)::after,.dsthumb.lumen i:nth-child(4)::after{content:"";position:absolute;left:7px;top:7px;width:14px;height:14px;border-radius:5px;background:radial-gradient(at 30% 15%,#8ff0dc,#14a08d 55%,#0b6e60)}
+.dsthumb.lumen i:nth-child(3)::after{background:radial-gradient(at 30% 15%,#c9bcff,#6a55e8 55%,#3d2bb0)}.dsthumb.lumen i:nth-child(4)::after{background:radial-gradient(at 30% 15%,#ffd3a8,#e07a3f 55%,#a84a1b)}
+.newbadge{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;background:linear-gradient(120deg,#0f7a6c,#5b45d6);color:#fff!important;font-size:.66rem;font-weight:700;letter-spacing:.04em;vertical-align:middle}
+/* invitation card on Home */
+.lumen-invite{display:flex;gap:12px;align-items:center;padding:12px 14px;margin:10px 0;border-radius:18px;border:1px solid color-mix(in srgb,#6a55e8 25%,var(--line));background:linear-gradient(120deg,color-mix(in srgb,#14a08d 10%,var(--panel)),color-mix(in srgb,#6a55e8 10%,var(--panel)))}
+.lumen-invite .dsthumb{width:74px;height:52px;flex:none}.lumen-invite div{flex:1;min-width:0}.lumen-invite b{display:block}.lumen-invite span{font-size:.84rem;color:var(--muted)}
+.lumen-invite .row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+/* back to top and reading progress (both designs) */
+#totop{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:40;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 85%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--accent);display:grid;place-items:center;box-shadow:0 8px 20px -8px rgb(15 40 55/.4);cursor:pointer;opacity:0;transform:translateY(10px) scale(.9);pointer-events:none;transition:opacity .25s,transform .25s}
+#totop.on{opacity:1;transform:none;pointer-events:auto}#totop svg{width:20px;height:20px}
+@media(min-width:900px){#totop{bottom:24px;right:24px}}
+body.inroom #totop,body.inludo #totop,body.innb #totop,body.inel #totop{display:none}
+#readbar{position:fixed;left:0;top:0;height:3px;width:100%;z-index:60;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 50%,#6a55e8));pointer-events:none;opacity:0;transition:opacity .2s}
+#readbar.on{opacity:1}
+.recents{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px}.recents .chip{display:inline-flex;align-items:center;gap:6px}.recents .chip svg{width:14px;height:14px;opacity:.6}
+</style>
+<style id="v21css">
+.pinfo{display:inline-grid;place-items:center;width:22px;height:22px;margin-left:8px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);color:var(--muted);font:600 13px/1 Georgia,serif;font-style:italic;vertical-align:middle;cursor:pointer;transition:all .2s}
+.pinfo:hover,.pinfo[aria-expanded=true]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.tucked{display:none!important}.tucked.open{display:block!important;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:.88rem;color:var(--muted);animation:pinfoIn .2s ease}
+@keyframes pinfoIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+details.fnote{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}details.fnote summary{cursor:pointer;font-size:.82rem;color:var(--muted);list-style:none}
+details.fnote summary::-webkit-details-marker{display:none}details.fnote summary::before{content:"ⓘ ";color:var(--accent)}details.fnote[open] summary{margin-bottom:4px}details.fnote p{margin:4px 0 0;line-height:1.5}
+.ajump{gap:6px;align-items:center;margin:0 -4px 12px;padding:2px 4px 6px;flex-wrap:nowrap!important;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.ajump::-webkit-scrollbar{display:none}.ajump:empty{display:none}
+.ajump .chip{font-size:.8rem;padding:5px 11px;white-space:nowrap;flex:none}.ajump .chip small{margin-left:5px;opacity:.6;font-size:.72rem}.ajump .chip.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+#ares .pgroup,#ares .topans{scroll-margin-top:72px}
+.nvbox{margin-top:12px}.nvbox summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px}.nvbox summary::-webkit-details-marker{display:none}
+.nvbox summary::before{content:"▸";color:var(--accent);margin-right:4px;transition:transform .2s}.nvbox[open] summary::before{transform:rotate(90deg)}
+.nvwrap{overflow-x:auto;margin-top:8px;-webkit-overflow-scrolling:touch}
+.nvt{border-collapse:collapse;width:100%;font-size:.84rem}@media(max-width:480px){.nvt{font-size:.78rem}.nvt th,.nvt td{padding:5px 6px!important}}.nvt th,.nvt td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.nvt th{font-weight:600;color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.03em}.nvt td:first-child{font-weight:600}
+.nvt tr.nvme td{background:var(--accent-soft)}.nvt tr.nvme td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+.nvl{margin:8px 0 0;padding-left:18px;font-size:.9rem}.nvl li{margin:3px 0}
 </style>
 <style id="searchfix">
 /* Ludo opens as a clean full page: no patient bar, top bar, menus or bottom bar */
@@ -2162,9 +2347,10 @@ function wre(t, g) {
   const k = t + (g ? "/g" : "");
   if (!WRE.has(k)) {
     /* British/American spellings match each other: anaemia/anemia, oedema/edema, haemorrhage/hemorrhage, paediatric/pediatric, diarrhoea/diarrhea */
-    const base = t.toLowerCase().replace(/ae/g, "e").replace(/oe/g, "e");
-    const e = base.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/e/g, "[ao]?e").replace(/z/g, "[sz]").replace(/(\\?[-\s])/g, "[-\\s]?");
-    WRE.set(k, new RegExp("(^|[^a-z0-9])(" + e + ")" + (t.length <= 3 ? "(?![a-z0-9])" : ""), g ? "gi" : "i"));
+    /* 2.1: letters and digits may be joined, hyphenated or spaced (F75 = F-75 = F 75); "a|b" matches either term (DKA|diabetic ketoacidosis) */
+    const one = a => { const base = a.toLowerCase().replace(/([a-z])(\d)/g, "$1-$2").replace(/(\d)([a-z])/g, "$1-$2").replace(/ae/g, "e").replace(/oe/g, "e");
+      return base.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/e/g, "[ao]?e").replace(/z/g, "[sz]").replace(/(\\?[-\s])/g, "[-\\s]?") + (a.length <= 3 ? "(?![a-z0-9])" : ""); };
+    WRE.set(k, new RegExp("(^|[^a-z0-9])(" + t.split("|").filter(Boolean).map(one).join("|") + ")", g ? "gi" : "i"));
   }
   const r = WRE.get(k); r.lastIndex = 0; return r;
 }
@@ -2173,7 +2359,32 @@ const countW = (hay, w, cap = 40) => { const r = wre(w, true); let n = 0; while 
 
 /* search words: drop filler words so questions like "dose of ampicillin in sepsis" work */
 const STOPW = new Set(["the", "of", "in", "for", "and", "to", "with", "a", "an", "on", "how", "what", "is", "are", "me", "give", "about", "which", "when", "show", "find", "management", "treatment", "dose", "doses", "dosage", "drug", "drugs", "guideline", "guidelines"]);
-function qwords(q) { const all = q.toLowerCase().replace(/[“”"(),;:?!]/g, " ").split(/\s+/).filter(Boolean); const w = all.filter(x => !STOPW.has(x)); return w.length ? w : all; }
+const QINTENT = new Set(["chart", "charts", "table", "tables", "protocol", "protocols", "calculator", "calculators", "calc", "calcs", "flowchart", "flowcharts", "algorithm", "algorithms", "pdf"]);
+const QALT_EXTRA = [["dka", "diabetic ketoacidosis"], ["hhs", "hyperosmolar hyperglycaemic state"], ["sam", "severe acute malnutrition"], ["pph", "postpartum haemorrhage"], ["aki", "acute kidney injury"], ["ckd", "chronic kidney disease"], ["copd", "chronic obstructive pulmonary disease"], ["uti", "urinary tract infection"], ["tb", "tuberculosis"], ["ards", "acute respiratory distress syndrome"], ["af", "atrial fibrillation"], ["svt", "supraventricular tachycardia"], ["dvt", "deep vein thrombosis"], ["pe", "pulmonary embolism"], ["mi", "myocardial infarction"], ["acs", "acute coronary syndrome"], ["hie", "hypoxic ischaemic encephalopathy"], ["nec", "necrotising enterocolitis"], ["pda", "patent ductus arteriosus"], ["cpr", "cardiopulmonary resuscitation"], ["htn", "hypertension"], ["echo", "echocardiography", "echocardiogram"], ["svr", "systemic vascular resistance"], ["svri", "systemic vascular resistance index"], ["vti", "velocity time integral"], ["lvot", "left ventricular outflow tract"], ["gcs", "glasgow coma scale"], ["bp", "blood pressure"], ["ors", "oral rehydration"]];
+const QPHRASE = ["stroke volume", "cardiac output", "cardiac index", "cardiac arrest", "heart rate", "heart failure", "septic shock", "blood pressure", "growth chart", "feed chart", "feeding chart", "vascular resistance", "tidal volume", "birth weight", "head injury", "chest pain", "snake bite", "dog bite", "first aid", "status epilepticus", "neonatal jaundice", "renal failure", "kidney injury"];
+let QALT = null;
+function qAlts() {
+  if (QALT) return QALT;
+  const m = new Map(), nrm = x => x.toLowerCase().replace(/ae/g, "e").replace(/oe/g, "e");
+  const add = (a, x) => { a = a.toLowerCase().trim(); x = nrm(x).replace(/\s*[(—–,;:/].*$/, "").replace(/[^a-z0-9\s'-]/g, "").trim(); if (!a || !x || a === x || x.length < 4 || x.split(/\s+/).length > 4) return; if (!m.has(a)) m.set(a, new Set()); m.get(a).add(x); };
+  let ok = true;
+  try { GLOSSARY.forEach(([, items]) => items.forEach(([a, x]) => { if (/^[A-Za-z][A-Za-z0-9-]{1,6}$/.test(a) && /[A-Z]/.test(a.slice(1))) add(a, x); })); } catch (e) { ok = false; }
+  QALT_EXTRA.forEach(([a, ...xs]) => xs.forEach(x => add(a, x)));
+  const phr = []; m.forEach((xs, a) => { if (xs.size === 1) phr.push([[...xs][0], a]); });
+  QPHRASE.forEach(x => { if (!phr.some(p => p[0] === x)) phr.push([x, ""]); });
+  phr.sort((p, q) => q[0].length - p[0].length);
+  const r = {m, phr}; if (ok) QALT = r; return r;
+}
+function qwords(q) {
+  let s = " " + q.toLowerCase().replace(/[“”"(),;:?!|]/g, " ").replace(/ae/g, "e").replace(/oe/g, "e").replace(/\s+/g, " ") + " ";
+  s = s.replace(/ ([a-z]) (\d{1,3}) /g, " $1$2 ");
+  const grp = [], A = qAlts();
+  for (const [x, a] of A.phr) { const i = s.indexOf(" " + x + " "); if (i >= 0) { grp.push(a ? x + "|" + a : x); s = s.slice(0, i) + " \u0001" + (grp.length - 1) + s.slice(i + 1 + x.length); } }
+  const all = s.split(" ").filter(Boolean).map(w => w[0] === "\u0001" ? grp[+w.slice(1)] : w);
+  let w = all.filter(x => !STOPW.has(x) && !QINTENT.has(x));
+  if (!w.length) w = all.filter(x => !STOPW.has(x)); if (!w.length) w = all;
+  return w.map(x => !x.includes("|") && A.m.has(x) ? x + "|" + [...A.m.get(x)].join("|") : x);
+}
 const scoreW = (hay, ws) => ws.reduce((n, w) => n + (wre(w).test(hay) ? 1 : 0), 0);
 
 /* ===== drugs: list, detail, dose engine ===== */
@@ -3683,7 +3894,7 @@ function calcsView(id) {
   if (!id) {
     return `<div class="hub-head" style="--h:222"><span class="hub-ic ic-tile" style="--h:222">${IC2.calc}</span><div><h1 class="vt">Calculators</h1><p>${CALCS.length} clinical formulas, scores and ventilator tools from published sources, in ${gs.length} folders. Values from the patient bar are pre-filled.</p></div></div>
       <div class="fi" style="max-width:480px;margin-bottom:12px"><label for="cfilter">Find a calculator</label><input id="cfilter" type="search" placeholder="e.g. ventilator, sodium, Wells, Apgar"></div>
-      <div class="arr-row">${arrBtn("calc")}</div><div id="cfolders" class="fold-grid" data-ord="calc">${gs.map((g, gi) => { const [h, ic] = groupLook(g), n = CALCS.filter(c => c.g === g).length; return `<a class="fold" href="#calc/grp/${gi}" style="--h:${h};--d:${gi * 35}ms"><span class="fold-ic ic-tile">${ic}</span><b>${esc(g)}</b><small>${n} calculator${n === 1 ? "" : "s"}</small></a>`; }).join("")}
+      ${recentCalcHtml()}<div class="arr-row">${arrBtn("calc")}</div><div id="cfolders" class="fold-grid" data-ord="calc">${gs.map((g, gi) => { const [h, ic] = groupLook(g), n = CALCS.filter(c => c.g === g).length; return `<a class="fold" href="#calc/grp/${gi}" style="--h:${h};--d:${gi * 35}ms"><span class="fold-ic ic-tile">${ic}</span><b>${esc(g)}</b><small>${n} calculator${n === 1 ? "" : "s"}</small></a>`; }).join("")}
         <a class="fold" href="#calc/grp/web" style="--h:210;--d:${gs.length * 35}ms"><span class="fold-ic ic-tile">${ICON.search}</span><b>Trusted online calculators</b><small>${EXT_CALCS.length} websites</small></a></div>
       <div id="call" class="fitems" hidden>${[...CALCS].sort((a, b) => calcRank(a) - calcRank(b)).map(c => calcTile(c)).join("")}</div><p id="cnone" class="muted" hidden>No calculator matches. Try another word.</p>`;
   }
@@ -3698,11 +3909,11 @@ function calcsView(id) {
   }
   const c = CALC_BY[id]; if (!c) return "Not found";
   const rel = CALCS.filter(x => x.g === c.g && x.id !== id).sort((a, b) => calcRank(a) - calcRank(b)).slice(0, 8);
-  return `<button class="back" onclick="goUp('#calc/grp/${gs.indexOf(c.g)}')">${ICON.back} ${esc(c.g)}</button><h1 class="vt">${esc(c.t)}</h1><p class="vsub">${esc(c.s)}</p><div class="card" id="ccard">${c.html()}</div>` +
+  return `<button class="back" onclick="goUp('#calc/grp/${gs.indexOf(c.g)}')">${ICON.back} ${esc(c.g)}</button><h1 class="vt">${esc(c.t)}</h1><p class="vsub">${esc(c.s)}</p><div class="card" id="ccard">${c.html()}</div>${normBox(c.id)}` +
     (rel.length ? `<div class="pgroup">More in ${esc(c.g)}</div><div class="chips wrap">${rel.map(x => `<a class="chip" href="#calc/${x.id}">${esc(x.t)}</a>`).join("")}</div>` : "");
 }
 function bindCalcList() { const f = $("#cfilter"); if (!f) return; f.addEventListener("input", () => { const q = f.value.trim().toLowerCase(); let n = 0; $$("#call .ctx").forEach(t => { const ok = !!q && q.split(/\s+/).every(w => t.dataset.q.includes(w)); t.style.display = ok ? "" : "none"; if (ok) n++; }); $("#cfolders").hidden = !!q; $("#call").hidden = !q; $("#cnone").hidden = !q || n > 0; }); }
-function bindCalc(id) { if (!id || id.startsWith("grp/")) return bindCalcList(); const c = CALC_BY[id]; if (!c) return; if (c.bind) c.bind(); bindAll($("#ccard"), c.run); }
+function bindCalc(id) { if (!id || id.startsWith("grp/")) return bindCalcList(); const c = CALC_BY[id]; if (!c) return; pushRecentCalc(id); if (c.bind) c.bind(); bindAll($("#ccard"), c.run); }
 
 /* ===== additional validated scores & formulas (sources named on each) ===== */
 const ptsSel = (id, label, opts) => sel(id, label, opts.map(([p, t]) => [String(p), t]));
@@ -4309,10 +4520,135 @@ const CALCS3 = [
   ], "van Swieten JC et al. Stroke 1988.", "mRS")
 ];
 CALCS.push(...CALCS3);
+/* ===== 2.1: echo haemodynamics calculator ===== */
+const ECHO = {id: "echo", g: "Cardiovascular", kw: "echocardiography echocardiogram echo pocus doppler stroke volume cardiac output cardiac index lvot vti velocity time integral pi r2 πr² svr svri pvr systemic vascular resistance pulmonary vascular resistance haemodynamics hemodynamics shock",
+  t: "Echo haemodynamics: stroke volume, cardiac output, SVR", s: "LVOT diameter and VTI → SV, SVI, CO, CI, SVR, SVRI and a PVR estimate",
+  html: () => `<p class="small" style="margin-top:0"><b>Step 1</b> LVOT diameter (parasternal long axis, mid-systole, inner edge to inner edge). <b>Step 2</b> LVOT VTI (apical 5-chamber, pulsed-wave Doppler at the same level). <b>Step 3</b> heart rate, weight and height, and BP for resistance.</p>
+    <div class="fgrid">${field("lvotd", "LVOT diameter", {u: "cm", ph: "2.0"})}${field("lvotvti", "LVOT VTI", {u: "cm", ph: "20"})}${field("hr", "Heart rate", {u: "bpm"})}${field("cwt", "Weight", {u: "kg", value: wt() ?? ""})}${htField()}
+    ${field("sbp", "Systolic BP", {u: "mmHg"})}${field("dbp", "Diastolic BP", {u: "mmHg"})}${field("emap", "MAP (if measured)", {u: "mmHg"})}${field("cvp", "CVP / RAP (if measured)", {u: "mmHg"})}
+    ${sel("ivc", "Or estimate RAP from the IVC", [["", "Not used"], ["3", "IVC ≤2.1 cm, collapses >50% → RAP 3"], ["8", "In between → RAP 8"], ["15", "IVC >2.1 cm, collapses <50% → RAP 15"]])}
+    ${field("trv", "TR peak velocity (optional)", {u: "m/s"})}${field("rvotvti", "RVOT VTI (optional)", {u: "cm"})}</div><div class="res" id="cres"></div>
+    <p class="small muted">Formulas: LVOT area = π × r² = π × (D/2)² = 0.785 × D². Stroke volume = LVOT area × VTI. Cardiac output = SV × HR. Cardiac index = CO ÷ BSA (Mosteller). SVR = 80 × (MAP − RAP) ÷ CO. SVRI = 80 × (MAP − RAP) ÷ CI. PVR estimate (Abbas 2003) = 10 × TR velocity ÷ RVOT VTI + 0.16 Wood units. The diameter is squared, so a 1 mm error changes SV by about 10%: average three measurements. The IVC estimate of RAP is validated in spontaneously breathing adults (ASE 2010), not in ventilated patients or children.</p>`,
+  run: () => {
+    const d = val("lvotd"), vti = val("lvotvti"), hr = val("hr"), w = val("cwt"), h = val("cht"), s = val("sbp"), di = val("dbp"), em = val("emap"), cvp = val("cvp"), trv = val("trv"), rv = val("rvotvti");
+    if (d == null || vti == null) return $("#cres").innerHTML = "Enter the LVOT diameter and LVOT VTI.";
+    const am = ageMonths(), child = am != null && am < 216, bsa = w && h ? Math.sqrt(w * h / 3600) : null;
+    const area = Math.PI * Math.pow(d / 2, 2), sv = area * vti, o = [];
+    const tag = (x, lo, hi) => x < lo ? ' <b style="color:var(--red)">low</b>' : x > hi ? ' <b style="color:var(--saffron)">high</b>' : ' <span class="muted">normal</span>';
+    o.push(`<div class="rv">Stroke volume ${fmtN(sv)} mL</div><div>LVOT area π × (${d}/2)² = <b>${area.toFixed(2)} cm²</b> · SV = ${area.toFixed(2)} × ${vti} = <b>${fmtN(sv)} mL</b>${child ? "" : tag(sv, 60, 100)}</div>`);
+    if (!child) o.push(`<div>LVOT VTI ${vti} cm${vti < 15 ? ' <b style="color:var(--red)">low (under 15 cm suggests low stroke volume)</b>' : vti > 22 ? ' <span class="muted">(above the usual 18–22 cm)</span>' : vti < 18 ? ' <span class="muted">(borderline: usual 18–22 cm)</span>' : ' <span class="muted">normal (18–22 cm)</span>'}</div>`);
+    if (bsa) o.push(`<div>BSA ${bsa.toFixed(2)} m² · SV index <b>${fmtN(sv / bsa)} mL/m²</b>${child ? "" : tag(sv / bsa, 33, 47)}</div>`);
+    let co = null, ci = null;
+    if (hr) {
+      co = sv * hr / 1000; o.push(`<div style="margin-top:6px">Cardiac output = ${fmtN(sv)} × ${hr} = <b>${co.toFixed(2)} L/min</b>${child ? "" : tag(co, 4, 8)}</div>`);
+      if (bsa) { ci = co / bsa; o.push(`<div>Cardiac index = ${co.toFixed(2)} ÷ ${bsa.toFixed(2)} = <b>${ci.toFixed(2)} L/min/m²</b>${child ? (ci < 3.3 ? ' <b style="color:var(--red)">below the child target 3.3–6.0</b>' : ci > 6 ? ' <b style="color:var(--saffron)">above 6.0</b>' : ' <span class="muted">within the child target 3.3–6.0</span>') : ci < 2.2 ? ' <b style="color:var(--red)">low — under 2.2 is the cardiogenic-shock threshold</b>' : tag(ci, 2.5, 4)}</div>`); }
+      if (w && child) o.push(`<div>Output per kg <b>${fmtN(co * 1000 / w)} mL/kg/min</b>${am < 1 ? ` <span class="muted">(left ventricular output in newborns usually 150–300 mL/kg/min)</span>` : ""}</div>`);
+    } else o.push(`<div class="muted">Add the heart rate for cardiac output and index.</div>`);
+    const map = em != null ? em : s && di ? (s + 2 * di) / 3 : null;
+    const rap = cvp != null ? cvp : sval("ivc") !== "" ? +sval("ivc") : null;
+    if (map != null && co) {
+      if (rap == null) o.push(`<div class="muted" style="margin-top:6px">MAP ${fmtN(map)} mmHg. For SVR, enter the CVP or choose an IVC estimate of RAP.</div>`);
+      else {
+        const svr = 80 * (map - rap) / co;
+        o.push(`<div style="margin-top:6px">MAP ${fmtN(map)} mmHg · RAP ${rap} mmHg${cvp == null ? " (IVC estimate)" : ""}</div><div>SVR = 80 × (${fmtN(map)} − ${rap}) ÷ ${co.toFixed(2)} = <b>${fmtN(svr)} dyn·s·cm⁻⁵</b>${child ? "" : tag(svr, 800, 1200)}</div>`);
+        if (ci) { const svri = 80 * (map - rap) / ci; o.push(`<div>SVRI = 80 × (${fmtN(map)} − ${rap}) ÷ ${ci.toFixed(2)} = <b>${fmtN(svri)} dyn·s·cm⁻⁵·m²</b>${child ? tag(svri, 800, 1600) + ' <span class="muted">(child target 800–1600)</span>' : tag(svri, 1970, 2390)}</div>`); }
+      }
+    } else if (co) o.push(`<div class="muted" style="margin-top:6px">Add BP (or MAP) and RAP for SVR and SVRI.</div>`);
+    if (trv && rv) { const ratio = trv / rv, pvr = 10 * ratio + 0.16; o.push(`<div style="margin-top:6px">PVR estimate = 10 × ${trv} ÷ ${rv} + 0.16 = <b>${pvr.toFixed(1)} Wood units</b> (TRV/VTI ${ratio.toFixed(3)}${ratio > 0.2 ? ' — above 0.2 suggests PVR over 2 WU' : ""}). Not reliable when PVR is very high (over 8 WU); confirm by right-heart catheter.</div>`); }
+    if (child) o.push(`<p class="small muted">Children: SV and CO depend on size, so judge them by the index (CI, SVRI) and by LVOT diameter z-score for body surface area.</p>`);
+    o.push(`<button class="btn ghost" style="margin-top:8px" onclick="calcCopy(this)">Copy result</button>`);
+    $("#cres").innerHTML = o.join("");
+  }};
+CALCS.push(ECHO);
+function calcCopy(btn) {
+  const r = $("#cres"); if (!r) return;
+  const t = r.innerText.replace(/\s*Copy result\s*$/, "").trim(), done = () => { btn.textContent = "Copied ✓"; setTimeout(() => { btn.textContent = "Copy result"; }, 1500); };
+  const a = document.createElement("textarea"); a.value = t; a.setAttribute("readonly", ""); a.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px"; document.body.appendChild(a); a.select();
+  let ok = false; try { ok = document.execCommand("copy"); } catch (e) {} a.remove();
+  if (ok) return done();
+  try { navigator.clipboard.writeText(t).then(done, () => { btn.textContent = "Select the text to copy"; }); } catch (e) { btn.textContent = "Select the text to copy"; }
+}
+Object.assign(FIELD_LIMITS, {lvotd: [0.3, 4, "LVOT diameter", "cm", 1], lvotvti: [2, 60, "LVOT VTI", "cm", 1], rvotvti: [2, 60, "RVOT VTI", "cm", 1], trv: [0.5, 7, "TR velocity", "m/s", 1], emap: [10, 250, "MAP", "mmHg", 1], cvp: [0, 40, "CVP", "mmHg", 0]});
+
+/* ===== 2.1: normal values under every calculator (the row for the patient's age is highlighted) ===== */
+function nvT(head, rows) {
+  const am = ageMonths();
+  return `<div class="nvwrap"><table class="nvt"><thead><tr>${head.map(x => `<th>${x}</th>`).join("")}</tr></thead><tbody>${rows.map(([lo, hi, ...c]) => `<tr${am != null && lo != null && am >= lo && am < hi ? ' class="nvme"' : ""}>${c.map(x => `<td>${x}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+const nvL = items => `<ul class="nvl">${items.map(x => `<li>${x}</li>`).join("")}</ul>`;
+const NV_VITALS = () => nvT(["Age", "Heart rate (awake)", "Breathing rate", "Systolic BP", "Low BP below"], [
+  [0, 1, "Newborn (0–1 month)", "100–205", "30–53", "60–76 (day 1), 67–84 (day 4)", "60"], [1, 12, "Infant (1–12 months)", "100–180", "30–53", "72–104", "70"],
+  [12, 36, "Toddler (1–2 years)", "98–140", "22–37", "86–106", "70 + 2 × age"], [36, 72, "Preschool (3–5 years)", "80–120", "20–28", "89–112", "70 + 2 × age"],
+  [72, 144, "School age (6–11 years)", "75–118", "18–25", "97–120", "70 + 2 × age (90 from 10 y)"], [144, 216, "Adolescent (12–17 years)", "60–100", "12–20", "110–131", "90"],
+  [216, 1e9, "Adult", "60–100", "12–20", "90–129 (normal under 120/80)", "90"]]);
+const NV_GAS = () => nvT(["", "Arterial", "Venous"], [[null, null, "pH", "7.35–7.45", "7.31–7.41"], [null, null, "pCO₂", "35–45 mmHg (4.7–6.0 kPa)", "41–51 mmHg"], [null, null, "HCO₃⁻", "22–26 mmol/L", "22–29 mmol/L"], [null, null, "Base excess", "−2 to +2", "—"], [null, null, "pO₂", "80–100 mmHg at sea level (lower at altitude; newborn 50–80)", "not used for oxygenation"], [null, null, "Lactate", "under 2 mmol/L", "under 2 mmol/L"], [null, null, "Anion gap (no K⁺)", "8–12 mmol/L", ""]]);
+const NV_VENT = () => nvL(["Tidal volume 6–8 mL/kg predicted body weight (adults and children); 4–6 mL/kg in ARDS", "Plateau pressure ≤30 cmH₂O adults, ≤28 children · driving pressure ≤15 cmH₂O · PEEP usually 5 to start", "Rate: adult 12–20; child and infant by age (see vital signs below)", "Targets: SpO₂ 92–96% (88–92% in COPD; 90–95% in newborns on oxygen) · PaCO₂ 35–45 mmHg unless permissive hypercapnia", "Static compliance in ventilated adults about 50–100 mL/cmH₂O (about 1 mL/cmH₂O/kg in children) · airway resistance through a tube about 5–10 cmH₂O/L/s"]) + NV_VITALS();
+const NV_SCORE = (rows) => nvT(["Score", "Meaning"], rows.map(r => [null, null, ...r]));
+const NORMALS = {
+  abg: [NV_GAS, "Arterial and venous reference ranges as used in the interpreter; WHO and ATS teaching values."],
+  cordgas: [() => nvL(["Umbilical artery: pH about 7.26 (usually ≥7.10), pCO₂ about 50 mmHg, base deficit under 12 mmol/L", "Umbilical vein: pH about 7.35, pCO₂ about 40 mmHg", "Significant acidaemia: artery pH under 7.00 and/or base deficit 12 mmol/L or more", "Artery should be lower in pH and higher in pCO₂ than vein; if not, both samples may be venous"]), "ACOG Committee Opinion 348; Victory et al. 2004."],
+  osm: [() => nvL(["Serum osmolality 275–295 mOsm/kg", "Osmolar gap under 10 mOsm/kg", "Sodium 135–145 mmol/L · glucose (fasting) 3.9–5.5 mmol/L (70–99 mg/dL) · urea 2.5–7.8 mmol/L"]), "Standard laboratory reference ranges (check your laboratory)."],
+  egfr: [() => nvT(["Age", "Normal GFR (mL/min/1.73 m²)"], [[0, 1, "Term newborn, first week", "about 40 (preterm about 15)"], [1, 2, "2–8 weeks", "about 65"], [2, 24, "2 months–2 years", "about 95 (rising to adult values by 2 years)"], [24, 156, "2–12 years", "about 133"], [156, 216, "13–17 years", "about 126–140"], [216, 1e9, "Adult", "≥90 (G1) · 60–89 G2 · 45–59 G3a · 30–44 G3b · 15–29 G4 · under 15 G5"]]) + nvL(["Serum creatinine: adult men about 60–110 µmol/L, women about 45–90 µmol/L; children lower, rising with muscle mass"]), "KDIGO 2012/2024 CKD stages; Heilbron 1991 / Schwartz for children."],
+  body: [() => nvL(["BMI 18.5–24.9 kg/m² (WHO); Asian cut-offs: 18.5–22.9 normal, ≥23 overweight, ≥27.5 high risk", "Children: BMI-for-age between −2 and +1 z-score (WHO); use the Growth tab", "Typical BSA: newborn 0.2 m², 1 year 0.45, 5 years 0.75, 10 years 1.1, adult 1.6–1.9 (1.73 is the standard)"]), "WHO 2004 expert consultation; WHO Child Growth Standards."],
+  convert: [() => nvL(["Glucose (fasting) 3.9–5.5 mmol/L = 70–99 mg/dL", "Creatinine adult 45–110 µmol/L = 0.5–1.2 mg/dL", "Urea 2.5–7.8 mmol/L (BUN 7–20 mg/dL)", "Total bilirubin 3–21 µmol/L = 0.2–1.2 mg/dL", "Calcium (total) 2.2–2.6 mmol/L = 8.8–10.4 mg/dL", "Haemoglobin: men 13–17 g/dL, women 12–15; anaemia below 11 (6 months–5 years and pregnancy), 11.5 (5–11 years), 12 (12–14 years and women), 13 (men) — WHO"]), "Standard laboratory ranges; WHO haemoglobin thresholds 2024."],
+  qtc: [() => nvT(["", "Normal", "Borderline", "Prolonged"], [[0, 216, "Children (1–15 years)", "under 440 ms", "440–460", "over 460"], [216, 1e9, "Adult men", "under 430", "430–450", "over 450"], [216, 1e9, "Adult women", "under 450", "450–470", "over 470"]]) + nvL(["Over 500 ms at any age: high risk of torsades", "Newborns: QTc up to 460–470 ms can be normal in the first week"]), "AHA/ACCF/HRS 2009 ECG standardisation; Goldenberg 2006."],
+  map: [() => nvL(["Adult MAP 70–100 mmHg; target ≥65 mmHg in septic shock", "Shock index (HR ÷ SBP) normal 0.5–0.7; over 0.9–1.0 suggests shock", "Children: age-adjusted shock index is high above 1.22 (4–6 y), 1.0 (7–12 y), 0.9 (13–16 y)", "Lowest acceptable MAP in a child ≈ 40 + 1.5 × age in years; preterm newborn MAP should be at least the gestational age in weeks"]) + NV_VITALS(), "Surviving Sepsis 2021; PALS 2020; Acker 2015 (SIPA)."],
+  echo: [() => nvT(["", "Adult normal", "Child"], [[null, null, "LVOT diameter", "about 1.8–2.4 cm", "by body size (z-score)"], [null, null, "LVOT VTI", "18–22 cm (under 15 cm = low SV)", "similar, about 15–25 cm"], [null, null, "Stroke volume", "60–100 mL", "by size"], [null, null, "SV index", "33–47 mL/m²", "about 30–60 mL/m²"], [null, null, "Cardiac output", "4–8 L/min", "by size; newborn LV output 150–300 mL/kg/min"], [null, null, "Cardiac index", "2.5–4.0 L/min/m² (under 2.2 = shock range)", "3.3–6.0 L/min/m² target in shock"], [null, null, "SVR", "800–1200 dyn·s·cm⁻⁵", "—"], [null, null, "SVRI", "1970–2390 dyn·s·cm⁻⁵·m²", "800–1600 target in shock"], [null, null, "RAP / CVP", "2–6 mmHg (IVC estimate 3)", "2–6 mmHg"], [null, null, "PVR", "under 2 Wood units", "under 3 WU·m² indexed"]]) + NV_VITALS(), "ASE/EACVI chamber and Doppler recommendations 2015–2016; Edwards normal haemodynamic values; ACCM paediatric septic shock 2017 (Davis); ESC/ERS pulmonary hypertension 2022."],
+  chads: [() => NV_SCORE([["0 (men) / 1 (women, sex point only)", "Low risk: no anticoagulation"], ["1 (men) / 2 (women)", "Consider anticoagulation"], ["≥2 (men) / ≥3 (women)", "Anticoagulation recommended"]]), "ESC AF guidelines 2020; ESC 2024 uses CHA₂DS₂-VA (sex removed)."],
+  hasbled: [() => NV_SCORE([["0–2", "Low to moderate bleeding risk"], ["≥3", "High risk: correct modifiable factors, review often"]]), "Pisters 2010; ESC AF 2020."],
+  wells: [() => NV_SCORE([["≤4", "PE unlikely: D-dimer first"], [">4", "PE likely: CT pulmonary angiogram"]]), "Wells 2000; NICE NG158."],
+  wellsdvt: [() => NV_SCORE([["≤1", "DVT unlikely: D-dimer"], ["≥2", "DVT likely: ultrasound"]]), "Wells 2003; NICE NG158."],
+  perc: [() => NV_SCORE([["All 8 criteria absent (with low clinical suspicion)", "PE ruled out without D-dimer"], ["Any present", "Not excluded: use Wells and D-dimer"]]), "Kline 2004."],
+  spesi: [() => NV_SCORE([["0", "Low risk (30-day mortality about 1%)"], ["≥1", "Not low risk: admit"]]), "Jiménez 2010; ESC PE 2019."],
+  heart: [() => NV_SCORE([["0–3", "Low risk (MACE about 2%)"], ["4–6", "Moderate: admit and observe"], ["7–10", "High: early invasive strategy"]]), "Six 2008; Backus 2013."],
+  curb: [() => NV_SCORE([["0–1", "Low severity: home treatment"], ["2", "Moderate: consider admission"], ["3–5", "Severe: admit; ICU if 4–5"]]), "Lim 2003; BTS; NICE NG138."],
+  qsofa: [() => NV_SCORE([["0–1", "Lower risk (sepsis still possible)"], ["≥2", "High risk of poor outcome: look for organ dysfunction"]]) + nvL(["Adult normal: RR under 22, SBP over 100 mmHg, GCS 15"]), "Sepsis-3, Singer 2016."],
+  news2: [() => NV_SCORE([["0", "Normal: routine observations (12-hourly)"], ["1–4", "Low: ward assessment"], ["3 in one parameter", "Low–medium: urgent ward review"], ["5–6", "Medium: urgent response"], ["≥7", "High: emergency response"]]) + nvL(["Values scoring 0: RR 12–20, SpO₂ ≥96% (scale 1), air, SBP 111–219, pulse 51–90, alert, temperature 36.1–38.0 °C"]), "Royal College of Physicians NEWS2, 2017."],
+  centor: [() => NV_SCORE([["0–1", "No test, no antibiotic"], ["2–3", "Test (rapid antigen or culture); treat if positive"], ["4–5", "Consider empirical antibiotic"]]), "McIsaac 1998; IDSA 2012."],
+  gcs: [() => NV_SCORE([["15", "Normal"], ["13–14", "Mild brain injury"], ["9–12", "Moderate"], ["≤8", "Severe: protect the airway"]]), "Teasdale & Jennett 1974; NICE head injury."],
+  abcd2: [() => NV_SCORE([["0–3", "Low 2-day stroke risk"], ["4–5", "Moderate"], ["6–7", "High"]]) + nvL(["NICE now advises specialist review within 24 hours for every suspected TIA regardless of score"]), "Johnston 2007; NICE NG128."],
+  childpugh: [() => NV_SCORE([["5–6", "Class A (well compensated)"], ["7–9", "Class B"], ["10–15", "Class C (decompensated)"]]) + nvL(["Normal: bilirubin under 21 µmol/L (1.2 mg/dL), albumin 35–50 g/L, INR 0.9–1.2"]), "Pugh 1973."],
+  meld: [() => NV_SCORE([["under 10", "Low 3-month mortality (about 2%)"], ["10–19", "About 6%"], ["20–29", "About 20%"], ["30–39", "About 50%"], ["≥40", "About 70%"]]), "Kamath 2001; UNOS."],
+  fib4: [() => NV_SCORE([["under 1.30 (under 2.0 if 65 or older)", "Advanced fibrosis unlikely"], ["1.30–2.67", "Indeterminate: elastography"], ["over 2.67", "Advanced fibrosis likely: refer"]]) + nvL(["Normal: AST and ALT under about 40 U/L (laboratory dependent); platelets 150–450 × 10⁹/L"]), "Sterling 2006; AASLD 2023."],
+  gbs: [() => NV_SCORE([["0 (≤1 in UK/NICE practice)", "Very low risk: outpatient care possible"], ["≥2", "Admit; higher scores need intervention more often"]]), "Blatchford 2000; NICE CG141."],
+  alvarado: [() => NV_SCORE([["1–4", "Appendicitis unlikely"], ["5–6", "Possible: observe or image"], ["7–8", "Probable"], ["9–10", "Very probable"]]), "Alvarado 1986."],
+  pas: [() => NV_SCORE([["≤3", "Low risk"], ["4–6", "Intermediate: ultrasound / observe"], ["≥7", "High risk: surgical review"]]), "Samuel 2002."],
+  westley: [() => NV_SCORE([["0–2", "Mild croup"], ["3–7", "Moderate"], ["8–11", "Severe"], ["≥12", "Impending respiratory failure"]]) + NV_VITALS(), "Westley 1978."],
+  apgar: [() => NV_SCORE([["7–10", "Reassuring"], ["4–6", "Moderately abnormal"], ["0–3", "Low"]]) + nvL(["Newborn: heart rate 100–205, breathing 30–60/min, SpO₂ target after birth: 1 min 60–65%, 5 min 80–85%, 10 min 85–95%"]), "AAP/ACOG 2015; NLS / NRP."],
+  bishop: [() => NV_SCORE([["≥8", "Favourable cervix"], ["≤6", "Unfavourable: ripening needed"]]), "Bishop 1964; NICE NG207."],
+  edd: [() => nvL(["Pregnancy: 280 days (40 weeks) from the last menstrual period", "Term 37+0 to 41+6 weeks; preterm before 37+0; post-term 42+0 or later", "Dating scan crown–rump length 45–84 mm (11+2 to 14+1 weeks) is the most accurate"]), "WHO; NICE NG201."],
+  corrage: [() => nvL(["Use corrected age for growth and development until 2 years (some use 3 years for under 28 weeks)", "Corrected age = chronological age − (40 − gestation at birth in weeks)"]), "AAP 2004 policy on age terminology."],
+  paeds: [NV_VITALS, "PALS 2020 (AHA)."],
+  fena: [() => NV_SCORE([["FENa under 1%", "Prerenal (unreliable on diuretics)"], ["FENa over 2%", "Intrinsic kidney injury (ATN)"], ["FEUrea under 35%", "Prerenal (valid on diuretics)"], ["FEUrea over 50%", "Intrinsic"]]) + nvL(["Newborns normally have a higher FENa (preterm can exceed 3%)"]), "Espinel 1976; Carvounis 2002."],
+  fwd: [() => nvL(["Sodium 135–145 mmol/L; correct chronic hypernatraemia by no more than 10–12 mmol/L per 24 h (0.5 mmol/L/h)", "Total body water: children and adult men 0.6 × weight, women and older men 0.5, older women 0.45, infants about 0.7"]), "Adrogué & Madias 2000."],
+  ldl: [() => nvL(["LDL under 3.0 mmol/L (116 mg/dL) in low risk; under 2.6 (100) moderate; under 1.8 (70) high; under 1.4 (55) very high risk", "Total cholesterol under 5.0 mmol/L · HDL over 1.0 (men), over 1.2 (women) · triglycerides under 1.7 mmol/L", "Friedewald is invalid when triglycerides are over 4.5 mmol/L (400 mg/dL)"]), "ESC/EAS dyslipidaemia 2019."],
+  steroid: [() => nvL(["Normal cortisol production ≈ hydrocortisone 15–25 mg/day in adults; about 8–10 mg/m²/day replacement in children", "Stress doses are higher; see the drug page"]), "Endocrine Society adrenal insufficiency guideline 2016."],
+  oxyidx: [() => NV_SCORE([["P/F over 400 (sea level)", "Normal (lower at altitude)"], ["P/F ≤300 / ≤200 / ≤100", "ARDS mild / moderate / severe (Berlin, on PEEP ≥5)"], ["OI under 16 (OSI under 12)", "Paediatric ARDS mild–moderate (PALICC-2)"], ["OI ≥16 (OSI ≥12)", "Paediatric ARDS severe"]]) + nvL(["SpO₂ normal 95–100% at sea level; lower at altitude"]), "ARDS Definition Task Force 2012; PALICC-2 2023."],
+  vent: [NV_VENT, "ARDSnet; PALICC-2 2023; BTS oxygen guideline 2017."], ventmodes: [NV_VENT, ""], ventco2: [NV_VENT, ""], ventmech: [NV_VENT, ""], venttrouble: [NV_VENT, ""],
+  ventwean: [() => nvL(["Rapid shallow breathing index (RR ÷ VT in litres) under 105 predicts successful extubation", "Spontaneous breathing trial 30–120 minutes on low pressure support (5–8 cmH₂O) or T-piece", "Readiness: FiO₂ ≤40%, PEEP ≤5–8, SpO₂ ≥90%, haemodynamically stable, awake, cough"]) + NV_VITALS(), "Yang & Tobin 1991; ATS/ACCP 2017."],
+  nyha: [() => NV_SCORE([["I", "Normal activity without symptoms"], ["IV", "Symptoms at rest"]]), "NYHA 1994."],
+  killip: [() => NV_SCORE([["I", "No heart failure (best outcome)"], ["IV", "Cardiogenic shock"]]), "Killip 1967."],
+  ccs: [() => NV_SCORE([["I", "Angina only with strenuous exertion"], ["IV", "Angina at rest"]]), "Campeau 1976."],
+  mmrc: [() => NV_SCORE([["0", "Normal: breathless only with strenuous exercise"], ["≥2", "More symptoms (GOLD)"]]), "GOLD 2024."],
+  rass: [() => NV_SCORE([["0", "Alert and calm (normal)"], ["0 to −2", "Usual target in ventilated patients"]]), "Sessler 2002."],
+  sas: [() => NV_SCORE([["4", "Calm and cooperative (normal)"], ["3–4", "Usual ICU target"]]), "Riker 1999."],
+  flacc: [() => NV_SCORE([["0", "Relaxed, comfortable"], ["1–3", "Mild"], ["4–6", "Moderate"], ["7–10", "Severe"]]), "Merkel 1997."],
+  silverman: [() => NV_SCORE([["0", "No respiratory distress (normal)"], ["1–3", "Mild"], ["4–6", "Moderate"], ["7–10", "Severe"]]) + nvL(["Newborn breathing rate 30–60/min"]), "Silverman & Andersen 1956."],
+  downes: [() => NV_SCORE([["0–3", "Mild (0 normal)"], ["4–6", "Moderate"], ["7–10", "Impending failure"]]) + nvL(["Newborn breathing rate 30–60/min"]), "Downes 1970."],
+  thompson: [() => NV_SCORE([["0", "Normal"], ["1–10", "Mild HIE"], ["11–14", "Moderate"], ["15–22", "Severe"]]), "Thompson 1997."],
+  mrs: [() => NV_SCORE([["0", "No symptoms"], ["0–2", "Functionally independent"], ["3–5", "Dependent"]]), "van Swieten 1988."]
+};
+function normBox(id) {
+  const n = NORMALS[id]; if (!n) return "";
+  let body = ""; try { body = n[0](); } catch (e) { return ""; }
+  const am = ageMonths(), hasRows = /<tr class="nvme"/.test(body);
+  return `<details class="card nvbox" open><summary><b>Normal values</b><span class="small muted"> · ${am == null ? "add age in the patient bar to highlight the right row" : hasRows ? "this patient's age is highlighted" : "for reference"}</span></summary>${body}${n[1] ? `<p class="small muted" style="margin:6px 0 0">Source: ${n[1]}</p>` : ""}</details>`;
+}
+
 const CALC_BY = Object.fromEntries(CALCS.map(c => [c.id, c]));
 /* most-used first: folders, then calculators inside each folder */
 const CALC_GROUP_ORDER = ["Paediatrics", "Obstetrics & neonates", "Infection & sepsis", "Cardiovascular", "Neurology", "Kidney", "Body size", "Acid–base & gases", "Ventilation", "Gastrointestinal & surgery", "Respiratory", "Sedation & pain", "Liver", "Drugs & conversions"];
-const CALC_RANK = ["paeds", "westley", "pas", "edd", "apgar", "bishop", "silverman", "corrage", "downes", "thompson", "qsofa", "curb", "news2", "centor", "map", "wells", "wellsdvt", "heart", "chads", "qtc", "nyha", "hasbled", "perc", "killip", "spesi", "ldl", "ccs", "gcs", "abcd2", "mrs", "egfr", "fwd", "fena", "body", "convert", "abg", "osm", "cordgas", "vent", "oxyidx", "ventco2", "venttrouble", "ventwean", "ventmodes", "ventmech", "alvarado", "gbs", "mmrc", "flacc", "rass", "sas", "childpugh", "meld", "fib4", "steroid"];
+const CALC_RANK = ["paeds", "westley", "pas", "edd", "apgar", "bishop", "silverman", "corrage", "downes", "thompson", "qsofa", "curb", "news2", "centor", "map", "echo", "wells", "wellsdvt", "heart", "chads", "qtc", "nyha", "hasbled", "perc", "killip", "spesi", "ldl", "ccs", "gcs", "abcd2", "mrs", "egfr", "fwd", "fena", "body", "convert", "abg", "osm", "cordgas", "vent", "oxyidx", "ventco2", "venttrouble", "ventwean", "ventmodes", "ventmech", "alvarado", "gbs", "mmrc", "flacc", "rass", "sas", "childpugh", "meld", "fib4", "steroid"];
 const calcRank = c => { const i = CALC_RANK.indexOf(c.id); return i < 0 ? 999 : i; };
 
 /* ===== WHO growth z-scores (Child Growth Standards 0–5 y, Growth Reference 2007 5–19 y) ===== */
@@ -6408,7 +6744,7 @@ window.addEventListener("hashchange", closePeek);
 function words(q) { return q.toLowerCase().split(/\s+/).filter(Boolean); }
 function hasAll(hay, ws) { return hasW(hay, ws); }
 function searchView(q) {
-  return `<h1 class="vt">Search</h1><p class="vsub">Type in the search bar above — results appear here as you type. Everything in the app is searched: medicines (all NEML 2025 names and common alternative names), conditions, protocols, flowcharts, calculators, fluids, equipment, abbreviations, the STG 2024, Bhutan national guidelines, WHO and international guidance, your own guides and the page index of your books.</p>
+  return `<h1 class="vt">Search</h1>
     <div id="ares"></div>`;
 }
 const searchBox = () => document.getElementById("gq");
@@ -6457,16 +6793,19 @@ function runSearch(q) {
   const res = $("#ares"); if (!res) return;
   const ws = qwords(q);
   if (!ws.length || q.trim().length < 2) {
-    res.innerHTML = `<div class="pgroup">Try</div><div class="chips wrap">${["sepsis", "ampicillin", "pneumonia", "eclampsia", "scrub typhus", "ETT size", "eGFR", "potassium", "rabies", "MDR-TB", "F-75", "dengue"].map(s => `<button class="chip" onclick="searchSet('${s}')">${s}</button>`).join("")}</div>`;
-    return;
+    res.innerHTML = recentQHtml() + `<div class="pgroup">Try</div><div class="chips wrap">${["sepsis", "ampicillin", "pneumonia", "eclampsia", "scrub typhus", "ETT size", "eGFR", "potassium", "rabies", "MDR-TB", "F-75", "dengue"].map(s => `<button class="chip" onclick="searchSet('${s}')">${s}</button>`).join("")}</div>`;
+    bindRecentQ(res); return;
   }
+  if (!res.dataset.rqb) { res.dataset.rqb = 1; res.addEventListener("click", e => { if (e.target.closest("a")) { const g = searchBox(); saveRecentQ(g && g.value ? g.value : q); } }); }
   const row = (href, t, s, cls) => `<a class="di${cls ? " " + cls : ""}" href="${href}"><div><div class="nm">${t}</div>${s ? `<div class="gp">${s}</div>` : ""}</div></a>`;
   const grp = (t, items, n) => items.length ? `<div class="pgroup">${t} · ${n || items.length}</div><div class="dl">${items.join("")}</div>` : "";
   const ql = q.toLowerCase().trim();
   /* entities named in the query (synonyms too: epinephrine → adrenaline, co-amoxiclav, PPH, DKA…) */
   const ent = {d: [], c: []};
-  q.replace(LINKALL.re, (m, pre, word) => { const e = LINKALL.map.get(word.toLowerCase()); if (e && e.t && !(e.cs && word !== e.o) && !ent[e.t].includes(e.k)) ent[e.t].push(e.k); return m; });
-  try { const ex = askEnts(q); ex.c.forEach(k => ent.c.includes(k) || ent.c.push(k)); ex.d.forEach(k => ent.d.includes(k) || ent.d.push(k)); } catch (e) {}
+  /* 2.1: "stroke volume", "heart rate"… are measurements, not the conditions stroke or heart disease */
+  const qE = QPHRASE.reduce((t, x) => t.replace(new RegExp("\\b" + x + "\\b", "gi"), " "), q);
+  qE.replace(LINKALL.re, (m, pre, word) => { const e = LINKALL.map.get(word.toLowerCase()); if (e && e.t && !(e.cs && word !== e.o) && !ent[e.t].includes(e.k)) ent[e.t].push(e.k); return m; });
+  try { const ex = askEnts(qE); ex.c.forEach(k => ent.c.includes(k) || ent.c.push(k)); ex.d.forEach(k => ent.d.includes(k) || ent.d.push(k)); } catch (e) {}
   /* full matches first; partial matches (most words) when few full matches */
   const need = ws.length <= 2 ? 1 : ws.length - 1;
   const pick = (items, hay, cmp, lim, pinned = []) => {
@@ -6511,23 +6850,33 @@ function runSearch(q) {
   const doseHtml = doseAnswer(q, ent.d.length ? ent.d : drugs.slice(0, 1).map(d => d.k));
   const topicsHtml = grp("Full clinical topics", clinicalTopics.map(t => row(`#topic/${t.id}`, esc(t.n), esc(t.ages))));
   const medsHtml = grp("Medicines", drugs.map(d => row(`#drug/${encodeURIComponent(d.k)}`, esc(d.n) + (d.calc ? ' <span class="b b-calc">dose calc</span>' : ""), esc(d.g || ""))));
-  const html = doseHtml + (doseHtml ? medsHtml : "") + lytes + topicsHtml + (best && !doseHtml ? topAnswer(best) : "") + grp("My notes", myn.map(([k, v]) => row(esc(k), esc(v.t), esc(v.txt.slice(0, 120))))) + grp("Conditions", conds.map(c => row(`#cond/${c.id}`, esc(c.n), [c.pr.length ? c.pr.length + " protocol" + (c.pr.length > 1 ? "s" : "") : "", c.stg.length ? "STG" : "", c.gl.length ? c.gl.length + " guideline sections" : ""].filter(Boolean).join(" · "), "cl-row")))
-    + (doseHtml ? "" : medsHtml)
+  /* 2.1 order: answer, protocols, calculators and flowcharts, guidelines, STG, then conditions, medicines and the rest; a jump bar on top */
+  const toolsU = tools.filter((x, i) => tools.findIndex(y => y[0] === x[0]) === i);
+  const html = `<div id="ajump" class="chips wrap ajump"></div>` + doseHtml + (doseHtml ? medsHtml : "") + lytes + topicsHtml + (best && !doseHtml ? topAnswer(best) : "")
     + grp("Protocols", prots.map(p => row(`#p/${p.id}`, esc(p.t), esc(p.s))))
-    + grp("Calculators, fluids & equipment", tools.map(x => row(x[0], esc(x[1]), esc(x[2]))))
-    + grp("Abbreviations", glos.map(([a, m, g]) => row(`#glossary`, `<span class="mono">${a}</span> — ${m}`, esc(g))))
+    + grp("Calculators, flowcharts & tools", toolsU.map(x => row(x[0], esc(x[1]), esc(x[2]))))
+    + `<div id="aglres"><div class="pgroup">Guidelines</div><div class="card muted small">Searching ${GL.books.length} guidelines…</div></div>`
     + grp("Standard Treatment Guidelines 2024", stg.map(o => row(`#stg/${o.t.n}`, `${esc(o.t.n)} ${esc(o.t.t)}`, snippet(o.low, o.t.n + " " + o.t.t + "\n" + o.t.x, ws))))
-    + grp("My library — page index of your books", libSearch(ws).map(([l, j]) => { const b = LIB_BY[l], it = b.items[j]; return row(`#lib/${l}`, esc(it[0]), `${esc(b.s)}${it[1] ? " · " + (b.pgnote === "printed page" ? "p. " : "PDF p. ") + it[1] : ""}`); }))
+    + grp("Conditions", conds.map(c => row(`#cond/${c.id}`, esc(c.n), [c.pr.length ? c.pr.length + " protocol" + (c.pr.length > 1 ? "s" : "") : "", c.stg.length ? "STG" : "", c.gl.length ? c.gl.length + " guideline sections" : ""].filter(Boolean).join(" · "), "cl-row")))
+    + (doseHtml ? "" : medsHtml)
+    + grp("My notes", myn.map(([k, v]) => row(esc(k), esc(v.t), esc(v.txt.slice(0, 120)))))
+    + grp("Abbreviations", glos.map(([a, m, g]) => row(`#glossary`, `<span class="mono">${a}</span> — ${m}`, esc(g))))
+    + grp("My library", libSearch(ws).map(([l, j]) => { const b = LIB_BY[l], it = b.items[j]; return row(`#lib/${l}`, esc(it[0]), `${esc(b.s)}${it[1] ? " · " + (b.pgnote === "printed page" ? "p. " : "PDF p. ") + it[1] : ""}`); }))
     + `<div class="pk-sec">${utdLink(q, "Search UpToDate for “" + esc(q) + "”")}</div>`
-    + `<div id="aglres"><div class="pgroup">National guidelines</div><div class="card muted small">Searching ${GL.books.length} guidelines…</div></div>`
     + grp("Medicines whose formulary indications mention this", drIdx.map(d => row(`#drug/${encodeURIComponent(d.k)}`, esc(d.n), esc(d.g || ""))));
   res.innerHTML = html;
   setTimeout(() => {
     const el = $("#aglres"); if (!el || (searchBox() && searchBox().value !== q)) return;
     const gl = glSearch(q, 40);
     const glRow = r => row(`#gl/${r.x.b}/${r.x.i}`, esc(r.x.t), `<b>${esc(GL_BY[r.x.b].s)}</b> · ${snippet(r.x.low, r.x.t + "\n" + r.x.txt, ws)}`), glTier = (t, f) => { const x = gl.filter(r => f(GL_BY[r.x.b].cat)); return x.length ? `<div class="pgroup">${t} · ${x.length}</div><div class="dl">${x.map(glRow).join("")}</div>` : ""; };
-    el.innerHTML = gl.length ? glTier("Bhutan national guidelines", c => !["who", "intl", "mine", "picu"].includes(c)) + glTier("WHO and international", c => c === "who" || c === "intl") + glTier("Your guides and ward references", c => c === "mine" || c === "picu") : "";
-    if (!res.querySelector(".di")) res.innerHTML = `<div class="card muted">Nothing matches “${esc(q)}”. Try fewer or different words.</div>`;
+    const glTierB = (t, f) => { const x = gl.filter(r => f(r.x.b, GL_BY[r.x.b].cat)); return x.length ? `<div class="pgroup">${t} · ${x.length}</div><div class="dl">${x.map(glRow).join("")}</div>` : ""; };
+    el.innerHTML = gl.length ? glTier("Bhutan national guidelines", c => !["who", "intl", "mine", "picu"].includes(c)) + glTierB("JDWNRH hospital protocols", b => /^jdw/.test(b)) + glTier("WHO and international", c => c === "who" || c === "intl") + glTierB("Your guides and ward references", (b, c) => (c === "mine" || c === "picu") && !/^jdw/.test(b)) : "";
+    if (!res.querySelector(".di")) { res.innerHTML = `<div class="card muted">Nothing matches “${esc(q)}”. Try fewer or different words, an abbreviation (DKA, PPH) or the full name.</div>`; return; }
+    const jb = $("#ajump"); if (jb) { const ta = res.querySelector(".topans"), gs = [...res.querySelectorAll(".pgroup")].filter(p => !p.closest(".topans") && p.nextElementSibling);
+      const SHORT = {"Full clinical topics": "Topics", "Calculators, flowcharts & tools": "Tools", "Bhutan national guidelines": "Bhutan guidelines", "JDWNRH hospital protocols": "JDWNRH", "WHO and international": "WHO", "Your guides and ward references": "Your guides", "Standard Treatment Guidelines 2024": "STG", "Medicines whose formulary indications mention this": "More medicines"};
+      const items = [...(ta ? [["Best answer", ta, ""]] : []), ...gs.map(p => { const [t, n] = p.textContent.split(" · "); return [SHORT[t] || t, p, n || ""]; })];
+      jb.innerHTML = items.length > 2 ? items.map(([t, , n], i) => `<button class="chip${i ? "" : " on"}" data-j="${i}">${esc(t)}${n ? `<small>${esc(n)}</small>` : ""}</button>`).join("") : "";
+      jb.querySelectorAll("button").forEach(b => b.onclick = () => { jb.querySelectorAll(".on").forEach(x => x.classList.remove("on")); b.classList.add("on"); items[+b.dataset.j][1].scrollIntoView({behavior: "smooth", block: "start"}); }); }
   }, 40);
 }
 function searchSet(s) { const g = searchBox(); if (!g) return; g.value = s; GL_Q = s; setHashQuiet("#search/" + encodeURIComponent(s)); runSearch(s); }
@@ -6650,7 +6999,7 @@ function wireSearchInput(el) {
 }
 
 /* ---------- home ---------- */
-const EMERG = [["arrest", "Cardiac arrest"], ["anaph", "Anaphylaxis"], ["status", "Status epilepticus"], ["sepsis", "Sepsis / septic shock"], ["dka", "DKA (adult)"], ["dkachild", "DKA (child)"], ["hyperk", "Hyperkalaemia"], ["neores", "Newborn resuscitation"], ["pph", "Postpartum haemorrhage"], ["eclampsia", "Eclampsia"], ["trauma", "Major trauma"], ["op", "Organophosphate"], ["snake", "Snake bite"], ["stroke", "Acute stroke"]];
+const EMERG = [["arrest", "Cardiac arrest"], ["anaph", "Anaphylaxis"], ["status", "Status epilepticus"], ["sepsis", "Sepsis / septic shock"], ["dka", "DKA (adult)"], ["dkachild", "DKA (child)"], ["hyperk", "Hyperkalaemia"], ["neores", "Newborn resuscitation"], ["pph", "Postpartum haemorrhage"], ["eclampsia", "Eclampsia"], ["trauma", "Major trauma"], ["op", "Organo­phosphate"], ["snake", "Snake bite"], ["stroke", "Acute stroke"]];
 const HERO_SVG = `<svg class="hero-art" viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
 <defs>
 <linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a3440"/><stop offset=".55" stop-color="#17675f"/><stop offset="1" stop-color="#e9a86a"/></linearGradient>
@@ -6780,6 +7129,63 @@ function meHeroInner() {
   return p ? `<a class="mecard" href="#account">${meAvatar(p, "avmd")}<span class="mctx"><span class="hh-greet">${greet},</span><b>${esc(p._nick ? p.name : (meFirst(p) || p.name || ""))}</b><small>${esc([pub ? "" : p.role, p.place].filter(Boolean).join(" · "))}${badge ? ` <i>${badge}</i>` : ""}</small></span><span class="mcgo">My profile ›</span></a>`
     : `<div class="hh-greet">${greet}${nick ? ", " + esc(nick) : ""}${hr >= 5 && hr < 12 ? " ☀️" : ""}</div><a class="mecta" href="#account">${ICON.user || ""} Create your free profile — make this app yours</a>`;
 }
+/* 2.1: any icon can live on Home. Pins carry an optional icon (svg) and hue and appear as tiles in the Home grid. */
+const PIN_KIND_HUE = {Medicine: 205, Condition: 350, Protocol: 15, Guideline: 160, "STG 2024": 140, Calculator: 265, Fluids: 195, Equipment: 30, Library: 45, Flowchart: 290};
+function homePinTiles(skip) {
+  return pinsAll().filter(p => p && p.h && !skip.includes(p.h)).map(p => { const hue = p.hue != null ? +p.hue : (PIN_KIND_HUE[p.k] ?? 180);
+    const ic = p.ic && /^<svg[\s\S]*<\/svg>$/.test(p.ic) && !/<script|on\w+=/i.test(p.ic) ? p.ic : (ICON.pin || IC2.med);
+    return `<a class="h2-mod h2-pin" href="${esc(p.h)}" style="--mc:hsl(${hue} 58% 44%)"><span class="h2-mi">${ic}</span><b>${esc(p.t)}</b><small>${esc(p.k || "Shortcut")}</small></a>`; }).join("");
+}
+function homeOrder() { return ORD.get("home.mods") || [...MODULES2.map(m => m[0]), ...pinsAll().map(p => p.h)]; }
+function homeAdd(p) {
+  const ps = pinsAll().filter(x => x.h !== p.h); store.set("pins", [p, ...ps].slice(0, 24));
+  store.set("ord.home.mods", [p.h, ...homeOrder().filter(x => x !== p.h)]);
+}
+function homeRemove(h) { store.set("pins", pinsAll().filter(x => x.h !== h)); const o = ORD.get("home.mods"); if (o) store.set("ord.home.mods", o.filter(x => x !== h)); }
+const isHomeMain = h => MODULES2.some(m => m[0] === h);
+function homeToast(t, link) {
+  $$(".hmtoast").forEach(x => x.remove());
+  const d = document.createElement("div"); d.className = "hmtoast"; d.setAttribute("role", "status");
+  d.innerHTML = `<span class="hmt-ic">${SI('<path d="m5 12 5 5L20 7"/>')}</span><span>${t}</span>${link ? `<a href="#home">Open Home</a>` : ""}`;
+  document.body.appendChild(d); requestAnimationFrame(() => d.classList.add("in")); setTimeout(() => { d.classList.remove("in"); setTimeout(() => d.remove(), 300); }, 2600);
+}
+/* the icon flies to the Home button */
+function flyHome(it) {
+  const src = it.querySelector(".ic-tile,.h2-mi,.h2-qi,.fold-ic,.fitem-ic,.nic,.hub-ic,svg"); if (!src || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const tgt = [...$$('.mbtn[data-nav="home"], .nav[data-nav="home"], [data-nav="home"]')].find(x => x.offsetParent) ; const a = src.getBoundingClientRect(); if (!a.width) return;
+  const b = tgt ? tgt.getBoundingClientRect() : {left: 20, top: 20, width: 24, height: 24};
+  const c = src.cloneNode(true); c.classList.add("flyclone"); Object.assign(c.style, {position: "fixed", left: a.left + "px", top: a.top + "px", width: a.width + "px", height: a.height + "px", margin: 0, zIndex: 200, pointerEvents: "none"});
+  document.body.appendChild(c);
+  const dx = b.left + b.width / 2 - (a.left + a.width / 2), dy = b.top + b.height / 2 - (a.top + a.height / 2);
+  c.animate([{transform: "translate(0,0) scale(1)", opacity: 1}, {transform: `translate(${dx * .45}px,${dy * .45 - 70}px) scale(1.15)`, opacity: 1, offset: .45}, {transform: `translate(${dx}px,${dy}px) scale(.3)`, opacity: .2}], {duration: 650, easing: "cubic-bezier(.45,.05,.3,1)"}).onfinish = () => { c.remove(); if (tgt) tgt.animate([{transform: "scale(1)"}, {transform: "scale(1.18)"}, {transform: "scale(1)"}], {duration: 320, easing: "ease-out"}); };
+}
+function pinFromItem(it) {
+  const h = it.getAttribute("href"); if (!h || !h.startsWith("#")) return null;
+  const tEl = it.querySelector("b,strong,.nm") || [...it.querySelectorAll("span")].find(x => x.textContent.trim() && !x.querySelector("svg"));
+  let t = ((tEl ? tEl.textContent : it.textContent) || "").trim().replace(/\s+/g, " "); if (t.length > 26) t = t.split(/:\s| \(| — | – /)[0]; t = t.slice(0, 40); if (!t) return null;
+  const svg = it.querySelector("svg"), ic = svg && svg.outerHTML.length < 6000 ? svg.outerHTML : "";
+  const hv = (it.style.getPropertyValue("--h") || (it.querySelector("[style*='--h']") || {style: {getPropertyValue: () => ""}}).style.getPropertyValue("--h") || "").trim();
+  const h1 = $("#view h1"), sec = h1 ? [...h1.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent).join("").trim() : "";
+  return {h, t, k: sec && sec.length < 40 ? sec.trim() : "Shortcut", ic, hue: /^\d+(\.\d+)?$/.test(hv) ? +hv : undefined};
+}
+function homeBadges(c) {
+  $$(".homebadge").forEach(x => x.remove()); if (!c) return;
+  const onHome = c.dataset.ord === "home.mods", pinned = new Set(pinsAll().map(p => p.h));
+  ORD.kids(c).forEach(it => { const h = it.getAttribute && it.getAttribute("href"); if (!h || !h.startsWith("#")) return;
+    if (onHome && isHomeMain(h)) return; if (!onHome && isHomeMain(h)) return;
+    const b = document.createElement("button"); b.type = "button"; b.className = "homebadge" + (onHome ? " rm" : pinned.has(h) ? " on" : "");
+    b.setAttribute("aria-label", onHome ? "Remove from Home" : pinned.has(h) ? "On Home (tap to remove)" : "Add to Home");
+    b.innerHTML = onHome ? SI('<path d="M6 12h12"/>') : pinned.has(h) ? SI('<path d="m5 12 5 5L20 7"/>') : SI('<path d="M12 5v14M5 12h14"/>');
+    it.appendChild(b); });
+}
+function homeBadgeClick(b) {
+  const it = b.parentElement, c = it && it.parentElement, h = it.getAttribute("href");
+  if (b.classList.contains("rm")) { const cc = c; it.animate([{opacity: 1, transform: "scale(1)"}, {opacity: 0, transform: "scale(.6)"}], {duration: 220, easing: "ease-in"}).onfinish = () => { flip(cc, () => it.remove()); homeRemove(h); homeToast("Removed from Home"); }; return; }
+  if (b.classList.contains("on")) { homeRemove(h); b.className = "homebadge"; b.innerHTML = SI('<path d="M12 5v14M5 12h14"/>'); b.setAttribute("aria-label", "Add to Home"); homeToast("Removed from Home"); return; }
+  const p = pinFromItem(it); if (!p) return;
+  homeAdd(p); flyHome(it); b.className = "homebadge on pop"; b.innerHTML = SI('<path d="m5 12 5 5L20 7"/>'); b.setAttribute("aria-label", "On Home (tap to remove)");
+  navigator.vibrate && navigator.vibrate(10); homeToast(`<b>${esc(p.t)}</b> is now first on Home`, true);
+}
 /* pinned shortcuts: "☆ Pin" on any page puts it on the home page */
 const pinsAll = () => store.get("pins", []) || [];
 function pinsHtml() {
@@ -6792,7 +7198,7 @@ function pinBtn(key, title, kind) {
 }
 function bindPin() {
   const b = $("#pinbtn"); if (!b) return;
-  b.onclick = () => { let ps = pinsAll(); const h = b.dataset.h; if (ps.some(x => x.h === h)) ps = ps.filter(x => x.h !== h); else ps = [{h, t: b.dataset.t, k: b.dataset.k}, ...ps].slice(0, 12); store.set("pins", ps); const on = ps.some(x => x.h === h); b.classList.toggle("on", on); b.textContent = on ? "★ Pinned to home" : "☆ Pin to home"; };
+  b.onclick = () => { const h = b.dataset.h; if (pinsAll().some(x => x.h === h)) homeRemove(h); else { homeAdd({h, t: b.dataset.t, k: b.dataset.k}); homeToast(`<b>${esc(b.dataset.t)}</b> is now first on Home`, true); } const on = pinsAll().some(x => x.h === h); b.classList.toggle("on", on); b.textContent = on ? "★ Pinned to home" : "☆ Pin to home"; };
 }
 function homeView() {
   const mine = GL.books.filter(b => b.cat === "mine"), nsec = GL.books.reduce((a, b) => a + b.toc.length, 0), rec = recentAll();
@@ -6922,8 +7328,7 @@ function homeView2() {
     <div class="search hero-s h2-search">${ICON.search}<input id="hq" type="search" placeholder="Search diseases, drugs, guidelines, calculators, protocols…" autocomplete="off" aria-label="Search the whole app"></div>
     <button class="instbtn" id="installbtn" hidden>Install app on this device</button></section>
     ${store.get("motto",true)?`<div class="home-quote" id="motto" style="--qh:${mottoHue()}"><span class="qmark" aria-hidden="true">“</span><div>${mottoHtml()}</div><button class="mnext" id="mnext" aria-label="Another quote" title="Another quote">${AP_ICONS.refresh}</button></div>`:""}
-    <div class="h2-mods hs-mods" data-ord="home.mods">${MODULES2.map(([h, ic, t, s, c]) => `<a class="h2-mod ${c}" href="${h}"><span class="h2-mi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
-    ${pinsHtml()}
+    <div class="h2-mods hs-mods" data-ord="home.mods">${MODULES2.map(([h, ic, t, s, c]) => `<a class="h2-mod ${c}" href="${h}"><span class="h2-mi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}${homePinTiles(MODULES2.map(m => m[0]))}</div>
     <div class="h2-sec hs-specs"><h2>${IC2.med.replace("<svg", '<svg class="h2-hi"')}Clinical specialties</h2>${arrBtn("specs")}<a href="#specs">View all</a></div>
     <div class="h2-specs hs-specs" data-ord="specs">${ORD.apply("specs", SPECS, s => "#spec/" + s[0]).slice(0, 24).map(tile).join("")}</div>
     <div class="h2-quick hs-quick" data-ord="home.quick"><div class="h2-qh">Quick tools &amp; resources ${arrBtn("home.quick")}</div>${QUICK2.map(([h, ic, t, s]) => `<a class="h2-q" href="${h}"><span class="h2-qi">${IC2[ic]}</span><b>${t}</b><small>${s}</small></a>`).join("")}</div>
@@ -22170,6 +22575,7 @@ const AP_ICONS = {
  quote:SI('<path d="M10 7H4v7h5v3H4M20 7h-6v7h5v3h-5"/>')
 };
 function appearanceChoices(id,values,current,type){return `<div class="choice-grid" id="${id}" role="group" aria-label="${type==='style'?'Home page style':'Page background'}">${values.map(([v,label,sub])=>`<button type="button" class="choice-card" data-v="${esc(v)}" aria-pressed="${v===current}">${type==='style'?`<span class="style-thumb ${v}" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>`:`<span class="bg-thumb" style="--sample-bg:${esc(sub)}" aria-hidden="true"></span>`}<strong>${esc(label)}</strong>${type==='style'?`<small>${esc(sub)}</small>`:''}</button>`).join('')}</div>`;}
+function designChoices() { const cur = store.get("design", "classic"); return `<div class="dsgrid" id="s_design">${[["classic", "Classic", "The current look, unchanged"], ["lumen", "Lumen", "New: glass, gem icons, modern type"], ["clarity", "Clarity", "New: crisp, minimal and flat"]].map(([v, t, d]) => `<button type="button" data-v="${v}" aria-pressed="${v === cur}"><span class="dsthumb ${v}"><i></i><i></i><i></i><i></i></span><b>${t}</b><small>${d}</small></button>`).join("")}</div>`; }
 function appearancePreview(){return `<div class="appearance-preview" aria-label="Live appearance preview"><div class="preview-rail" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="preview-page" aria-hidden="true"><div class="preview-banner"><i></i><i></i></div><div class="preview-cards"><i></i><i></i><i></i></div></div><div class="preview-caption"><b>Your clinical workspace</b><span id="appearance-summary"></span><a href="#home">View your home page →</a><div class="preview-status">${AP_ICONS.check} <span>Changes save automatically</span></div></div></div>`;}
 function appearanceShortcuts(){const ps=pinsAll();return `<div class="shortcut-manager">${ps.length?ps.map((p,i)=>`<div class="shortcut-item"><a href="${esc(p.h)}">${esc(p.t)}</a><button type="button" data-pinmove="${i}" data-dir="-1" aria-label="Move ${esc(p.t)} earlier"${i===0?' disabled':''}>${AP_ICONS.up}</button><button type="button" data-pinmove="${i}" data-dir="1" aria-label="Move ${esc(p.t)} later"${i===ps.length-1?' disabled':''}>${AP_ICONS.down}</button><button type="button" data-pinremove="${i}" aria-label="Remove ${esc(p.t)} shortcut">${AP_ICONS.close}</button></div>`).join(''):`<p class="small muted">Pin pages you use often. Your shortcuts will appear here and on Home.</p>`}</div>`;}
 function appearanceSummary(){const el=document.getElementById('appearance-summary');if(el){const style=HOME_STYLES.find(x=>x[0]===store.get('homeStyle','signature'))||HOME_STYLES[0],bg=BGS.find(x=>x[0]===(store.get('bg','')||''))||BGS[0];el.textContent=style[1]+' · '+bg[1]+' · '+(document.documentElement.dataset.mode==='dark'?'Dark':'Light');}}
@@ -22210,7 +22616,7 @@ function applyPrefs() {
  const apply2=()=>document.body.classList.toggle('font-custom',custom);if(document.body)apply2();else document.addEventListener('DOMContentLoaded',apply2);
  const bp=store.get('banner','mount')==='photo'?(store.get('bannerPhoto','')||''):'';
  if(bp)r.style.setProperty('--bphoto',`url("${bp}")`);else r.style.removeProperty('--bphoto');
- const apply=()=>{const body=document.body;body.classList.toggle('font-sans',store.get('font','serif')==='sans');body.classList.toggle('dense',store.get('density','comfy')==='compact');body.classList.toggle('squared',store.get('corners','round')==='square');body.classList.toggle('floating-rail',store.get('sidebarStyle','floating')==='floating');body.classList.toggle('railmini',!!store.get('railmini',false));body.classList.toggle('reduce-motion',!!store.get('reducemotion',false));body.dataset.banner=store.get('banner','mount')||'mount';body.dataset.header=store.get('headerStyle','balanced');body.dataset.homeStyle=store.get('homeStyle','signature');body.dataset.iconStyle=store.get('iconStyle','signature');body.dataset.uifont=font;HOME_SECS.forEach(([k])=>body.classList.toggle('hs-no-'+k,store.get('hs_'+k,true)===false));appearanceSummary();};
+ const apply=()=>{const body=document.body;body.classList.toggle('font-sans',store.get('font','serif')==='sans');body.classList.toggle('dense',store.get('density','comfy')==='compact');body.classList.toggle('squared',store.get('corners','round')==='square');body.classList.toggle('floating-rail',store.get('sidebarStyle','floating')==='floating');body.classList.toggle('railmini',!!store.get('railmini',false));body.classList.toggle('reduce-motion',!!store.get('reducemotion',false));body.dataset.banner=store.get('banner','mount')||'mount';body.dataset.header=store.get('headerStyle','balanced');body.dataset.homeStyle=store.get('homeStyle','signature');body.dataset.iconStyle=store.get('iconStyle','signature');body.dataset.design=['lumen','clarity'].includes(store.get('design','classic'))?store.get('design','classic'):'classic';if(body.dataset.design==='lumen')fontLoad('inter');body.dataset.uifont=font;HOME_SECS.forEach(([k])=>body.classList.toggle('hs-no-'+k,store.get('hs_'+k,true)===false));appearanceSummary();};
  if(document.body)apply();else document.addEventListener('DOMContentLoaded',apply);
  const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=dark?'#101413':(ac?safe(ac,'#ffffff','#000000'):'#0f5f57');
 }
@@ -22228,6 +22634,7 @@ function settingsView() {
   return `<h1 class="vt">Settings</h1><p class="vsub">Saved on this device.${STORE_OK ? "" : " <b>Storage is blocked in this preview — settings will not be kept.</b>"}</p>
     <div class="settings-nav"><a href="#settings" data-settings-jump="look">${AP_ICONS.palette} Make it yours</a><a href="#settings" data-settings-jump="access">${ICON.gear} Appearance</a><a href="#settings" data-settings-jump="ai">${ICON.spark} AI assistant</a><a href="#settings" data-settings-jump="data">${ICON.note} Your data</a></div>
     <div class="setcard card persona" id="settings-look"><div class="settings-preview-head"><h3>${AP_ICONS.palette} Make it yours</h3><small>Your app, your style</small></div>${appearancePreview()}
+      ${setRow('App design <span class="newbadge">NEW</span>', "Classic is the look you know. Lumen: glass bars, gem icons and modern type. Clarity: crisp, minimal and flat. Switch any time; nothing else changes", designChoices())}
       ${appIconRow()}
       ${setRow("Colour theme", "One tap sets a matching colour and background across the whole app", themeChoices())}
       ${setRow("Home page style", "Four views of the same clinical workspace", appearanceChoices("s_homeStyle", HOME_STYLES, store.get("homeStyle", "signature"), "style"))}
@@ -22299,6 +22706,7 @@ function bindSettings() {
   seg("s_theme", v => { store.set("theme", v || null); applyPrefs(); });
   seg("s_zoom", v => { store.set("zoom", v); applyPrefs(); });
   seg("s_icons", v => { store.set("iconStyle", v); applyPrefs(); });
+  seg("s_design", v => { store.set("design", v); store.set("designAsked", 1); applyPrefs(); });
   seg("s_homeStyle", v => { store.set("homeStyle", v); applyPrefs(); });
   seg("s_uifont", v => { store.set("uiFont", v); applyPrefs(); });
   seg("s_header", v => { store.set("headerStyle", v); applyPrefs(); });
@@ -24125,20 +24533,23 @@ function arrStart(c) {
   bar.innerHTML = `<button class="arrb-reset" id="arrreset" aria-label="Reset to the original order" title="Reset to the original order">${SI('<path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/>')}</button><span class="arrb-tip"><i class="arrb-hand">${SI('<path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.5 13a1.5 1.5 0 0 1 2.4-1.8L9 14"/>')}</i>Drag to arrange</span><button class="arrb-done" id="arrdone">${SI('<path d="m5 12 5 5L20 7"/>')}<span>Done</span></button>`;
   bar.hidden = false; bar.classList.remove("out"); void bar.offsetWidth; bar.classList.add("in");
   $("#arrdone").onclick = () => arrStop();
+  homeBadges(c); const tip = $(".arrb-tip", bar); if (tip && c.dataset.ord !== "home.mods" && $(".homebadge", c)) tip.lastChild.textContent = innerWidth < 480 ? "Drag · ＋ to Home" : "Drag to arrange · ＋ puts it on Home";
   $("#arrreset").onclick = () => { const k = ARR.dataset.ord, def = ORD.kids(ARR).slice().sort((a, b) => (+a.dataset.home || 0) - (+b.dataset.home || 0)); try { localStorage.removeItem("bcr.ord." + k); } catch (e) {} const cc = ARR; flip(cc, () => def.forEach(el => cc.appendChild(el))); arrStop(); };
 }
 function arrStop(silent) {
+  homeBadges(null);
   if (ARR) { ORD.save(ARR); const c = ARR; c.classList.add("arr-leaving"); c.classList.remove("arranging"); setTimeout(() => c.classList.remove("arr-leaving"), 350); }
   ARR = null; const b = $("#arrbar"); if (b && !b.hidden) { b.classList.remove("in"); b.classList.add("out"); setTimeout(() => { if (b.classList.contains("out")) b.hidden = true; }, 260); }
 }
 document.addEventListener("click", e => {
+  const hb = e.target.closest(".homebadge"); if (hb) { e.preventDefault(); e.stopPropagation(); homeBadgeClick(hb); return; }
   const b = e.target.closest("[data-arr]");
   if (b) { e.preventDefault(); e.stopPropagation(); const c = $(`[data-ord="${b.dataset.arr}"]`, b.closest(".mpin") || document); ARR === c ? arrStop() : arrStart(c); return; }
   if (SKIPCLICK || (ARR && e.target.closest(".arranging"))) { e.preventDefault(); e.stopPropagation(); SKIPCLICK = false; }
 }, true);
 document.addEventListener("contextmenu", e => { if (e.target.closest("[data-ord]")) e.preventDefault(); });
 document.addEventListener("pointerdown", e => {
-  if (e.button > 0) return;
+  if (e.button > 0 || e.target.closest(".homebadge")) return;
   const c = e.target.closest("[data-ord]"), it = c && e.target.closest("[data-ord] > *");
   if (!c || !it || !oidOf(it) || it.parentElement !== c) return;
   /* remember the original order once, so Reset can glide back */
@@ -24301,7 +24712,7 @@ function shell() {
   const rail = $(".rail"), endChk = () => rail.classList.toggle("atend", rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4);
   rail.addEventListener("scroll", endChk, {passive: true}); endChk();
   const cur = () => { const a = $(".nav[aria-current=page]"); if (a && a.scrollIntoView) try { a.scrollIntoView({block: "nearest", inline: "nearest"}); } catch (e) {} };
-  window.addEventListener("hashchange", () => setTimeout(cur, 50));
+  window.addEventListener("bcr:routed", () => setTimeout(cur, 50));   /* 2.1: after the page is drawn (pages may crossfade) */
   $("#theme").onclick = () => { const r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; r.dataset.theme = dark ? "light" : "dark"; store.set("theme", r.dataset.theme); applyPrefs(); if (current.view === "settings") route(); };
   const th = store.get("theme", null); if (th) document.documentElement.dataset.theme = th;
 }
@@ -24370,6 +24781,54 @@ document.addEventListener("click", e => {
   e.preventDefault();
   go(href);
 });
+/* 2.1: clean pages. Intro paragraphs longer than ~110 characters are tucked behind an ⓘ button next to the title;
+   long grey formula and source notes in calculators, fluids and equipment fold into one line. Nothing is deleted. */
+function tidyPage(v, view) {
+  $$(".vsub, .hub-head p, .fold-head p", v).forEach(p => {
+    if (p.dataset.tidy || p.textContent.trim().length <= 110) return;
+    const h = (p.previousElementSibling && p.previousElementSibling.matches("h1") ? p.previousElementSibling : null) || (p.parentElement && p.parentElement.querySelector("h1"));
+    if (!h || h.querySelector(".pinfo")) return;
+    p.dataset.tidy = 1; p.classList.add("tucked");
+    const b = document.createElement("button"); b.className = "pinfo"; b.type = "button"; b.setAttribute("aria-label", "About this page"); b.setAttribute("aria-expanded", "false"); b.textContent = "i";
+    b.onclick = e => { e.stopPropagation(); const o = p.classList.toggle("open"); b.setAttribute("aria-expanded", o); };
+    h.appendChild(b);
+  });
+  if (!["calc", "fluids", "equip", "picu", "nicu", "growth"].includes(view)) return;
+  $$(".card > p.small.muted, .card > div.small.muted:not(.res):not(.warn)", v).forEach(p => {
+    if (p.closest("details") || p.textContent.trim().length < 180) return;
+    const d = document.createElement("details"); d.className = "fnote";
+    d.innerHTML = `<summary>${/source/i.test(p.textContent) && !/=|formula|rule/i.test(p.textContent) ? "Sources" : "How it is calculated · sources"}</summary>`;
+    p.replaceWith(d); d.appendChild(p);
+  });
+}
+/* 2.1 features: recent searches, recently used calculators, back-to-top, reading progress, Lumen invitation */
+const RECENT_Q = () => { const a = store.get("recentQ", []); return Array.isArray(a) ? a : []; };
+function saveRecentQ(q) { q = String(q || "").trim(); if (q.length < 2 || q.length > 80) return; store.set("recentQ", [q, ...RECENT_Q().filter(x => x.toLowerCase() !== q.toLowerCase())].slice(0, 8)); }
+function recentQHtml() {
+  const r = RECENT_Q(); if (!r.length) return "";
+  const clock = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  return `<div class="pgroup">Recent searches</div><div class="recents">${r.map(q => `<button class="chip" data-rq="${esc(q)}">${clock}${esc(q)}</button>`).join("")}<button class="chip" id="rqclr" style="color:var(--muted)">Clear</button></div>`;
+}
+function bindRecentQ(res) {
+  $$("[data-rq]", res).forEach(b => b.onclick = () => searchSet(b.dataset.rq));
+  const c = $("#rqclr", res); if (c) c.onclick = () => { store.set("recentQ", []); runSearch(""); };
+}
+function pushRecentCalc(id) { if (!CALC_BY[id]) return; store.set("recentCalcs", [id, ...(store.get("recentCalcs", []) || []).filter(x => x !== id && CALC_BY[x])].slice(0, 6)); }
+function recentCalcHtml() { const r = (store.get("recentCalcs", []) || []).filter(x => CALC_BY[x]); return r.length ? `<div class="pgroup">Recently used</div><div class="fitems" style="margin-bottom:14px">${r.map((id, j) => calcTile(CALC_BY[id], j)).join("")}</div>` : ""; }
+let READ_ON = false;
+function uxChrome(view, arg) {
+  if (!$("#totop")) { const b = document.createElement("button"); b.id = "totop"; b.type = "button"; b.setAttribute("aria-label", "Back to top"); b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>'; b.onclick = () => scrollTo({top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); document.body.appendChild(b);
+    const bar = document.createElement("div"); bar.id = "readbar"; document.body.appendChild(bar);
+    let tick = false; addEventListener("scroll", () => { if (tick) return; tick = true; requestAnimationFrame(() => { tick = false; const y = scrollY, h = document.documentElement.scrollHeight - innerHeight; $("#totop").classList.toggle("on", y > 900); const rb = $("#readbar"); rb.classList.toggle("on", READ_ON && h > 600 && y > 40); if (READ_ON && h > 0) rb.style.transform = "scaleX(" + Math.min(1, y / h).toFixed(4) + ")"; }); }, {passive: true}); }
+  READ_ON = ["topic", "gl", "p", "stg", "drug", "flow", "cond", "aware", "idrug"].includes(view) && !!arg;
+  $("#readbar").classList.remove("on"); $("#totop").classList.remove("on");
+  if ((view === "home" || view === "home2") && !store.get("designAsked", 0) && store.get("design", "classic") !== "lumen" && STORE_OK) {
+    const v = $("#view"), anchor = v && (v.querySelector(".h2-head") || v.firstElementChild); if (!anchor || $(".lumen-invite", v)) return;
+    anchor.insertAdjacentHTML("afterend", `<div class="lumen-invite"><span class="dsthumb lumen" aria-hidden="true"><i></i><i></i><i></i><i></i></span><div><b>Try the new design: Lumen <span class="newbadge">NEW</span></b><span>Glass bars, gem icons and modern type. You can switch back to Classic any time in Settings.</span><div class="row"><button class="btn" id="lmTry">Try Lumen</button><button class="btn ghost btn-ghost" id="lmNo">Keep Classic</button></div></div></div>`);
+    $("#lmTry").onclick = () => { store.set("design", "lumen"); store.set("designAsked", 1); applyPrefs(); $(".lumen-invite").remove(); };
+    $("#lmNo").onclick = () => { store.set("designAsked", 1); $(".lumen-invite").remove(); };
+  }
+}
 function route() {
   try { if (location.hash && location.hash !== HASH) HASH = location.hash; } catch (e) {}
   const h = decodeURIComponent((HASH || "").slice(1)) || store.get("startpage", "home");
@@ -24440,6 +24899,9 @@ function route() {
   if (VIEW_KEY !== view + "/" + arg) { VIEW_KEY = view + "/" + arg; v.classList.remove("vin"); void v.offsetWidth; v.classList.add("vin"); }
   paintMe(); gateSync();
   try { afterRoute(view, arg); } catch (e) { console.error(e); }
+  try { tidyPage(v, view); } catch (e) { console.error(e); }
+  try { uxChrome(view, arg); } catch (e) { console.error(e); }
+  try { window.dispatchEvent(new Event("bcr:routed")); } catch (e) {}
   ORD.syncAll(v); document.body.classList.remove("bb-open", "bars-hidden");
   NAV_HASH[NAV_I] = "#" + h; navBtns();
   v.insertAdjacentHTML("beforeend", `<div class="foot">Bhutan guidelines. Decision support only — verify doses against the product, local protocol and clinical judgement.</div>`);
@@ -24499,8 +24961,11 @@ function openingSplash(force) {
       <div class="op-sub">Bhutan guidelines <b>v${APP_VER}</b></div></div>
     <div class="op-dev"><div class="op-by">Developed by</div><div class="op-lock">${AX_MARK}${axWord(true)}</div></div>`;
   document.body.appendChild(s);
-  const close = () => { if (s.classList.contains("out")) return; s.classList.add("out"); setTimeout(() => s.remove(), 700); };
-  s.addEventListener("click", close); setTimeout(close, matchMedia("(prefers-reduced-motion: reduce)").matches ? 1800 : 4600);
+  /* 2.1: opening the app is quick (under 1 s, every animation played 5× faster); the full 4.6 s version plays only from Settings → About → Replay */
+  const quick = !force, rm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (quick) { s.classList.add("quick"); try { s.getAnimations({subtree: true}).forEach(a => { a.playbackRate = 5; }); } catch (e) {} }
+  const close = () => { if (s.classList.contains("out")) return; s.classList.add("out"); setTimeout(() => s.remove(), quick ? 320 : 700); };
+  s.addEventListener("click", close); setTimeout(close, quick ? (rm ? 400 : 900) : rm ? 1800 : 4600);
 }
 openingSplash();
 /* ===== sign-in gate: the app stays closed until the user signs in with a verified email ===== */
@@ -24772,7 +25237,7 @@ async function setAppIcon(id) {
   else nbToast("App icon set to " + APP_ICONS.find(x => x[0] === id)[1] + ".");
 }
 document.addEventListener("click", e => { const b = e.target.closest("[data-appicon]"); if (b) { e.preventDefault(); setAppIcon(b.dataset.appicon); } });
-addEventListener("hashchange", () => setTimeout(applyAppIcon, 0));
+addEventListener("bcr:routed", () => setTimeout(applyAppIcon, 0));   /* 2.1: after the page is drawn (pages may crossfade) */
 setTimeout(applyAppIcon, 0);
 (function () { const st = document.createElement("style"); st.textContent = `.appiconrow{display:block!important}.appiconrow>div:first-child{margin-bottom:2px}
 .aigrid{display:grid;grid-template-columns:repeat(auto-fill,74px);justify-content:start;grid-auto-rows:74px;gap:8px;margin-top:10px;height:auto!important;min-height:0!important;flex:none!important}
@@ -24781,7 +25246,12 @@ setTimeout(applyAppIcon, 0);
 .aicell:hover{transform:translateY(-1px)}.aicell[aria-checked="true"]{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
 .aicell[aria-checked="true"] span::after{content:" ✓";color:var(--accent)}`; document.head.appendChild(st); })();
 /* ===== /App Icon Studio ===== */
-window.addEventListener("hashchange", () => { let h = ""; try { h = location.hash; } catch (e) {} if (h === HASH) return; HASH = h; route(); scrollTo(0, 0); });
+window.addEventListener("hashchange", () => { let h = ""; try { h = location.hash; } catch (e) {} if (h === HASH) return;
+  const go2 = () => { HASH = h; route(); scrollTo(0, 0); };
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches || document.body.classList.contains("reduce-motion");
+  const busy = typeof ARR !== "undefined" && ARR || /^#(ludo|chat\/|eluna\/)/.test(h) || document.body.classList.contains("inludo") || document.hidden;
+  if (document.startViewTransition && !calm && !busy) { try { document.startViewTransition(go2); return; } catch (e) {} }
+  go2(); });
 route();
 </script>
 <script>/* 2.0 speed: the picture and interactive-guide packs load right after the first screen is shown, one after another.
