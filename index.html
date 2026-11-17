@@ -1856,6 +1856,100 @@ body.fullpg .rail{display:none!important}
 .jr div{display:flex;flex-direction:column;line-height:1.3}.jr small{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}.jr b{font-size:14.5px;color:var(--ink)}.jr span{font-size:12.5px;color:var(--muted)}
 .about .verchip{display:inline-block;padding:3px 11px;border-radius:99px;font-weight:800;font-size:12.5px;color:#2a1d00;background:linear-gradient(135deg,#ffe08a,#ffb84d);margin-left:4px}
 </style>
+<style id="cpagecss">
+/* ===== 2.2 one page per condition ===== */
+.cpage{max-width:900px}
+.cp-head{margin:2px 0 14px}.cp-kick{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:3px 10px;border-radius:999px}
+.cp-head h1.vt{margin:8px 0 4px}.cp-sub{margin:0;color:var(--muted);font-size:.95rem;line-height:1.5}
+body.bars-hidden .cp-tabs{top:0}
+@media(max-width:640px){.cp-tw{overflow:visible;margin:0}.cp-dt{min-width:0!important;width:100%!important}.cp-dt thead{display:none}.cp-dt,.cp-dt tbody,.cp-dt tr,.cp-dt th,.cp-dt td{display:block;width:auto!important}
+  .cp-dt tr{border:1px solid var(--line);border-radius:14px;margin:0 0 10px;overflow:hidden}.cp-dt tbody th{background:var(--panel2);border-bottom:1px solid var(--line);font-size:.9rem}
+  .cp-dt td{border-bottom:1px solid var(--line)}.cp-dt td:last-child{border-bottom:0}
+  .cp-dt td::before{content:attr(data-col);display:block;font-size:.66rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px;color:hsl(214 55% 45%)}
+  .cp-dt td:nth-child(3)::before{color:hsl(24 70% 45%)}}
+.cp-part,.cp-common{scroll-margin-top:calc(var(--pbh,0px) + 96px)!important}
+.cp-tabs{position:sticky;top:var(--pbh,0px);z-index:19;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:10px 0;margin:0 0 6px;background:linear-gradient(var(--bg) 82%,transparent)}
+.cp-tab{display:flex;align-items:center;gap:12px;text-align:left;padding:12px 14px;border-radius:18px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;cursor:pointer;box-shadow:0 1px 2px rgb(0 0 0/.04);transition:background .2s,border-color .2s,box-shadow .2s,color .2s,transform .15s}
+.cp-tab:active{transform:scale(.98)}
+.cp-ti{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--accent-soft);color:var(--accent)}.cp-ti svg{width:26px;height:26px}
+.cp-tt{display:flex;flex-direction:column;min-width:0}.cp-tt b{font-size:1.02rem;line-height:1.2}.cp-tt small{color:var(--muted);font-size:.78rem;margin-top:2px}
+.cp-tab[aria-selected="true"]{background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 72%,#1b1b4a));border-color:transparent;color:#fff;box-shadow:0 10px 24px -12px color-mix(in srgb,var(--accent) 80%,transparent)}
+.cp-tab[aria-selected="true"] .cp-ti{background:#ffffff26;color:#fff}.cp-tab[aria-selected="true"] small{color:#ffffffd0}
+@media(max-width:420px){.cp-tab{padding:10px;gap:9px}.cp-ti{width:38px;height:38px;border-radius:12px}.cp-ti svg{width:22px;height:22px}.cp-tt b{font-size:.93rem}.cp-tt small{font-size:.72rem}}
+.cp-jump{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 0 10px;margin-bottom:4px}.cp-jump::-webkit-scrollbar{display:none}
+.cp-jump button{flex:none;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-size:.82rem;cursor:pointer;white-space:nowrap}
+.cp-jump button svg{width:15px;height:15px;color:var(--accent)}.cp-jump button:hover{border-color:var(--accent);color:var(--accent)}
+.cp-part,.cp-common{scroll-margin-top:96px;position:relative;margin:0 0 16px;padding:14px 16px 12px;border-radius:20px;background:var(--panel);border:1px solid var(--line);box-shadow:0 1px 2px rgb(0 0 0/.04),0 8px 22px -16px rgb(15 40 55/.25);overflow:hidden}
+.cp-part::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:hsl(var(--sh,214) 60% 48%)}
+.cp-ph,.cp-ch{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}.cp-ph h2,.cp-ch h2{margin:1px 0 2px;font-size:1.15rem;line-height:1.25}.cp-ph small{color:var(--muted);font-size:.78rem;line-height:1.35;display:block}
+.cp-pi{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:hsl(var(--sh,214) 60% 48% / .13);color:hsl(var(--sh,214) 55% 40%)}.cp-pi svg{width:22px;height:22px}
+:root[data-mode="dark"] .cp-pi{color:hsl(var(--sh,214) 70% 72%)}
+.cp-src{font-size:.68rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:hsl(var(--sh,214) 55% 42%)}:root[data-mode="dark"] .cp-src{color:hsl(var(--sh,214) 70% 70%)}
+.cp-body{overflow-x:auto}.cp-body .card{box-shadow:none;margin:6px 0}
+.cp-note{padding:10px 12px;border-radius:12px;background:var(--panel2);font-size:.92rem;line-height:1.5;margin-bottom:8px}
+.cp-none{padding:12px;border-radius:12px;background:var(--panel2);color:var(--muted);font-size:.92rem}
+details.cp-more{border-top:1px solid var(--line);margin:0 -16px;padding:0 16px}details.cp-more:last-child{margin-bottom:-12px}
+details.cp-more>summary{list-style:none;display:flex;align-items:center;gap:8px;padding:11px 0;cursor:pointer;font-weight:600;font-size:.93rem}
+details.cp-more>summary::-webkit-details-marker{display:none}details.cp-more>summary svg{width:18px;height:18px;color:var(--accent);flex:none}
+details.cp-more>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
+details.cp-more[open]>summary::after{transform:rotate(-135deg)}details.cp-more[open]>.cp-body{padding-bottom:12px}
+.cp-tw{overflow-x:auto;margin:0 -4px;-webkit-overflow-scrolling:touch}
+.cp-dt{border-collapse:separate;border-spacing:0;width:100%;min-width:520px;font-size:.88rem}
+.cp-dt th,.cp-dt td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.45}
+.cp-dt thead th{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--panel2)}
+.cp-dt thead th:first-child{border-top-left-radius:10px}.cp-dt thead th:last-child{border-top-right-radius:10px}
+.cp-dt tbody th{width:22%;font-weight:700;color:var(--ink)}
+.cp-dt td:nth-child(2){background:hsl(214 60% 50% / .05)}.cp-dt td:nth-child(3){background:hsl(24 80% 50% / .05)}
+.cp-drugs{display:grid;gap:10px}
+.cp-drug{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cp-dn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;background:var(--panel2);color:var(--ink);font:inherit;cursor:pointer;text-align:left}
+.cp-dn svg{width:18px;height:18px;color:hsl(200 60% 42%);flex:none}.cp-dn b{flex:1}.cp-go{font-size:.78rem;color:var(--accent);font-weight:700;white-space:nowrap}
+.cp-drug ul,.cds-sec ul{margin:0;padding:6px 12px 10px 12px;list-style:none}.cp-drug li,.cds-sec li{padding:6px 0;border-bottom:1px dashed var(--line);font-size:.9rem;line-height:1.45}.cp-drug li:last-child,.cds-sec li:last-child{border-bottom:0}
+.cp-tag{display:inline-block;margin-right:6px;padding:1px 7px;border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.03em;background:var(--accent-soft);color:var(--accent);vertical-align:1px}
+.cp-calc{display:inline-block;margin-left:4px;padding:1px 8px;border-radius:8px;background:color-mix(in srgb,#1f9d6b 14%,transparent);color:color-mix(in srgb,#1f9d6b 80%,var(--ink));font-weight:700;font-size:.86rem}
+.cp-hint{margin:10px 0 0}
+.cp-common::before{display:none}.cp-common{padding-bottom:0}
+.cp-links{margin:6px 0 10px}.cp-links h3{font-size:.95rem;margin:0 0 8px}.cp-lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.cp-lgrid a{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none;font-size:.88rem}.cp-lgrid a span{color:var(--accent);font-weight:700}
+.cp-lgrid a:hover{border-color:var(--accent)}
+.cp-banner{display:flex;align-items:center;gap:12px;margin:0 0 14px;padding:12px 14px;border-radius:16px;text-decoration:none;color:var(--ink);border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));background:linear-gradient(120deg,var(--accent-soft),var(--panel))}
+.cp-banner b{display:block}.cp-banner small{color:var(--muted);font-size:.8rem}.cp-bgo{margin-left:auto;font-weight:700;color:var(--accent);white-space:nowrap}
+.cp-scard{margin:0 0 14px;padding:12px;border-radius:20px;border:1px solid color-mix(in srgb,var(--accent) 28%,var(--line));background:linear-gradient(135deg,var(--accent-soft),var(--panel) 70%);scroll-margin-top:72px}
+.cp-sh{display:flex;align-items:center;gap:10px;margin-bottom:10px}.cp-sh small{display:block;color:var(--accent);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}.cp-sh b{font-size:1.1rem}
+.cp-sbtn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.cp-sbtn a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;background:var(--panel);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.cp-sbtn a b{display:block;font-size:.95rem}.cp-sbtn a small{color:var(--muted);font-size:.74rem}.cp-sbtn .cp-ti{width:38px;height:38px;border-radius:12px}.cp-sbtn .cp-ti svg{width:22px;height:22px}
+.cdsheet{position:fixed;inset:0;z-index:150;pointer-events:none}
+.cds-back{position:absolute;inset:0;background:rgb(0 0 0/.35);opacity:0;transition:opacity .25s;pointer-events:auto}
+.cds-card{position:absolute;left:50%;bottom:0;width:min(640px,100%);max-height:82vh;overflow:auto;transform:translate(-50%,100%);transition:transform .3s cubic-bezier(.2,.9,.25,1);background:var(--panel);border-radius:22px 22px 0 0;padding:6px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -18px 40px -16px rgb(0 0 0/.45);pointer-events:auto}
+.cdsheet.in .cds-back{opacity:1}.cdsheet.in .cds-card{transform:translate(-50%,0)}
+.cds-grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:4px auto 10px}
+.cds-h{display:flex;align-items:center;gap:10px;margin-bottom:8px}.cds-h small{display:block;color:var(--muted);font-size:.76rem}.cds-h b{font-size:1.08rem}
+.cds-x{margin-left:auto;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--panel2);color:var(--ink);cursor:pointer}
+.cds-sec{margin:6px 0 10px;border:1px solid var(--line);border-radius:14px}.cds-st{padding:8px 12px 0;font-size:.72rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.cds-open{width:100%;margin-top:6px}
+@media(min-width:900px){.cds-card{bottom:50%;transform:translate(-50%,calc(50% + 40px)) scale(.97);opacity:0;border-radius:22px;transition:transform .3s cubic-bezier(.2,.9,.25,1),opacity .25s}.cdsheet.in .cds-card{transform:translate(-50%,50%) scale(1);opacity:1}}
+/* 2.2b: slim pill bar, sections */
+.cp-pills{position:sticky;top:var(--pbh,0px);z-index:19;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:8px 2px 10px;margin:0 -2px 8px;background:linear-gradient(var(--bg) 78%,transparent);-webkit-overflow-scrolling:touch}
+.cp-pills::-webkit-scrollbar{display:none}
+.cp-pill{flex:none;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 13px 0 10px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink);font:inherit;font-size:.84rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s,border-color .2s,box-shadow .2s,transform .15s}
+.cp-pill svg{width:16px;height:16px;color:var(--accent);flex:none;transition:color .2s}
+.cp-pill.sec{font-weight:700}
+.cp-pill:hover{border-color:color-mix(in srgb,var(--accent) 50%,var(--line))}
+.cp-pill:active{transform:scale(.96)}
+.cp-pill.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);box-shadow:0 6px 16px -8px color-mix(in srgb,var(--accent) 80%,transparent)}.cp-pill.on svg{color:var(--accent-ink)}
+.cp-sect{scroll-margin-top:calc(var(--pbh,0px) + 58px);margin-bottom:6px}
+.cp-band{display:flex;align-items:center;gap:10px;margin:14px 0 10px;padding:10px 12px;border-radius:16px;background:linear-gradient(120deg,hsl(var(--sx,200) 70% 50% / .14),transparent 75%);border:1px solid hsl(var(--sx,200) 60% 50% / .22)}
+.cp-band h2{margin:0;font-size:1.08rem;letter-spacing:-.01em}.cp-band small{color:var(--muted);font-size:.78rem}
+.cp-bi{flex:none;display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:hsl(var(--sx,200) 65% 48%);color:#fff}.cp-bi svg{width:18px;height:18px}
+.cp-part,.cp-common,.cp-links{scroll-margin-top:calc(var(--pbh,0px) + 58px)!important}
+.cp-ih{font-size:.92rem;margin:12px 0 4px;color:var(--ink)}
+.cp-dblock+.cp-dblock{border-top:1px solid var(--line);margin-top:8px;padding-top:4px}
+.cp-nodose{margin:0;padding:8px 12px 10px;font-size:.84rem;color:var(--muted)}
+.cp-sbtn a.wide{grid-column:1/-1}
+details.cp-more>summary>span{display:flex;flex-direction:column;min-width:0}.cp-bk{font-weight:500;color:var(--muted);font-size:.76rem;margin-top:1px}
+.cp-tabs{display:none!important}
+</style>
 <style id="homebadgecss">
 .homebadge{position:absolute;top:-7px;right:-7px;z-index:5;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;padding:0;border:2px solid var(--panel);background:var(--accent);color:var(--accent-ink);box-shadow:0 4px 10px -3px rgb(0 0 0/.45);cursor:pointer;animation:hbIn .32s cubic-bezier(.3,1.6,.5,1) both;rotate:0deg}
 .homebadge svg{width:15px;height:15px;stroke-width:2.6}
@@ -2230,7 +2324,10 @@ function uLabel(u) { return UNIT_LABEL[u] || u; }
 /* text highlighting for formulary text */
 const DUR = /((?:\bx|×|\bfor|\bover)\s*(?:a\s+)?(?:max(?:imum)?\.?\s*(?:of\s*)?)?\d+(?:\.\d+)?(?:\s*(?:-|–|to)\s*\d+)?\s*(?:days?|weeks?|wks?|months?|hours?|hrs?|doses?)\b|\bSTAT\b|\bsingle dose\b)/gi;
 const WHO = /\b(ADULTS?|CHILD(?:REN)?|NEONATES?|INFANTS?|ELDERLY|PREGNANT WOMEN)\b/g;
-function hl(t) { return esc(t).replace(DUR, '<mark class="dur">$1</mark>').replace(WHO, '<b class="who">$1</b>'); }
+/* 2.2: the formulary writes ranges as "50 -100" or "6 - 12 mg"; show them as ranges (50–100) so they never read as a negative number */
+const fixRange = t => String(t).replace(/(\d)\s+-\s*(?=\d)/g, "$1–");
+function fixRangeDom(root) { if (!root) return; const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { if (/\d\s+-\s*\d/.test(n.nodeValue)) n.nodeValue = fixRange(n.nodeValue); } }
+function hl(t) { return esc(fixRange(t)).replace(DUR, '<mark class="dur">$1</mark>').replace(WHO, '<b class="who">$1</b>'); }
 
 /* icons */
 const ICON = {
@@ -6852,7 +6949,9 @@ function runSearch(q) {
   const medsHtml = grp("Medicines", drugs.map(d => row(`#drug/${encodeURIComponent(d.k)}`, esc(d.n) + (d.calc ? ' <span class="b b-calc">dose calc</span>' : ""), esc(d.g || ""))));
   /* 2.1 order: answer, protocols, calculators and flowcharts, guidelines, STG, then conditions, medicines and the rest; a jump bar on top */
   const toolsU = tools.filter((x, i) => tools.findIndex(y => y[0] === x[0]) === i);
-  const html = `<div id="ajump" class="chips wrap ajump"></div>` + doseHtml + (doseHtml ? medsHtml : "") + lytes + topicsHtml + (best && !doseHtml ? topAnswer(best) : "")
+  const cpCard = cpSearchCard([...(best ? [best.id] : []), ...ent.c, ...conds.slice(0, 4).map(c => c.id), ...clinicalTopics.slice(0, 3).map(t => t.cond)], ql, [...ent.c, ...(best ? [best.id] : [])]);
+  /* a dose question leads with the dose answer; otherwise the condition's one page comes first */
+  const html = `<div id="ajump" class="chips wrap ajump"></div>` + (doseHtml ? doseHtml + cpCard : cpCard + doseHtml) + (doseHtml ? medsHtml : "") + lytes + topicsHtml + (best && !doseHtml ? topAnswer(best) : "")
     + grp("Protocols", prots.map(p => row(`#p/${p.id}`, esc(p.t), esc(p.s))))
     + grp("Calculators, flowcharts & tools", toolsU.map(x => row(x[0], esc(x[1]), esc(x[2]))))
     + `<div id="aglres"><div class="pgroup">Guidelines</div><div class="card muted small">Searching ${GL.books.length} guidelines…</div></div>`
@@ -6874,7 +6973,7 @@ function runSearch(q) {
     if (!res.querySelector(".di")) { res.innerHTML = `<div class="card muted">Nothing matches “${esc(q)}”. Try fewer or different words, an abbreviation (DKA, PPH) or the full name.</div>`; return; }
     const jb = $("#ajump"); if (jb) { const ta = res.querySelector(".topans"), gs = [...res.querySelectorAll(".pgroup")].filter(p => !p.closest(".topans") && p.nextElementSibling);
       const SHORT = {"Full clinical topics": "Topics", "Calculators, flowcharts & tools": "Tools", "Bhutan national guidelines": "Bhutan guidelines", "JDWNRH hospital protocols": "JDWNRH", "WHO and international": "WHO", "Your guides and ward references": "Your guides", "Standard Treatment Guidelines 2024": "STG", "Medicines whose formulary indications mention this": "More medicines"};
-      const items = [...(ta ? [["Best answer", ta, ""]] : []), ...gs.map(p => { const [t, n] = p.textContent.split(" · "); return [SHORT[t] || t, p, n || ""]; })];
+      const cps = res.querySelector(".cp-scard"); const items = [...(cps ? [["One page", cps, ""]] : []), ...(ta ? [["Best answer", ta, ""]] : []), ...gs.map(p => { const [t, n] = p.textContent.split(" · "); return [SHORT[t] || t, p, n || ""]; })];
       jb.innerHTML = items.length > 2 ? items.map(([t, , n], i) => `<button class="chip${i ? "" : " on"}" data-j="${i}">${esc(t)}${n ? `<small>${esc(n)}</small>` : ""}</button>`).join("") : "";
       jb.querySelectorAll("button").forEach(b => b.onclick = () => { jb.querySelectorAll(".on").forEach(x => x.classList.remove("on")); b.classList.add("on"); items[+b.dataset.j][1].scrollIntoView({behavior: "smooth", block: "start"}); }); }
   }, 40);
@@ -7681,7 +7780,7 @@ function bindNicuPlan() {
 /* emergency tiles: each emergency has its own colour and icon */
 const SNAKE_IC = SI('<path d="M5 19c2.5 0 3.5-2 6-2s3.5 2 6 2c2 0 3.5-1.5 3.5-3.5S19 12 17 12H8.5C6.6 12 5 10.7 5 8.8S6.6 5.5 8.5 5.5H15"/><path d="M15 5.5c1.2 0 2.5.7 2.5 1.8M18 7.2l2 .3"/>');
 function emLook(id) { return ({arrest: [345, IC2.heart], anaph: [28, IC2.skin], status: [268, IC2.brain], sepsis: [158, IC2.germ], dka: [44, IC2.gland], dkachild: [24, IC2.child], hyperk: [205, IC2.emerg], neores: [318, IC2.baby], pph: [300, IC2.drop], eclampsia: [285, IC2.obg], trauma: [12, IC2.ambul], op: [95, IC2.lab], snake: [122, SNAKE_IC], stroke: [228, IC2.brain], vent: [190, IC2.vent], rsi: [172, IC2.equip]})[id] || [200, ICON.siren]; }
-function emTile(id, t, href) { const [h, ic] = emLook(id); return `<a class="em" style="--h:${h}" href="${href || "#p/" + id}"><span class="emi ic-tile" style="--h:${h}" aria-hidden="true">${ic}</span><span>${esc(t)}</span></a>`; }
+function emTile(id, t, href) { const [h, ic] = emLook(id); return `<a class="em" style="--h:${h}" href="${href || (typeof CP_EM !== "undefined" && CP_EM[id]) || "#p/" + id}"><span class="emi ic-tile" style="--h:${h}" aria-hidden="true">${ic}</span><span>${esc(t)}</span></a>`; }
 /* icons for the imaging and learning guides */
 function bookLook(b, i) { return ({h_ecg: [345, IC2.heart], h_cxr: [200, IC2.lung], h_echo: [300, IC2.heart], h_abg: [190, IC2.lab], h_lytes: [45, IC2.drop]})[b.id] || [(i * 41 + 250) % 360, b.app ? IC2.learn : IC2.guide]; }
 const bookTile = (b, i) => { const [h, ic] = bookLook(b, i); return `<span class="dic ic-tile" style="--h:${h}" aria-hidden="true">${ic}</span>`; };
@@ -22541,8 +22640,8 @@ function afterRoute(view, arg) {
   paintMe(); setTimeout(mottoToast, 600);
   const v = $("#view"), h1 = $("h1.vt", v) || $("h1", v), title = h1 ? h1.textContent.trim() : "";
   const key = "#" + (decodeURIComponent((HASH || "").slice(1)) || "home");
-  const noteable = title && ((view === "topic") || (view === "drug") || (view === "cond" && arg) || view === "p" || (view === "gl" && arg) || (view === "stg" && arg && arg !== "stg") || (view === "calc" && arg) || (view === "fluids" && arg) || (view === "equip" && arg) || (view === "lib" && arg) || (view === "flow" && arg));
-  if (noteable) { const h1e = $("h1.vt", v) || $("h1", v); if (h1e && !$("#pinbtn", v)) { h1e.insertAdjacentHTML("afterend", pinBtn(key, title, {drug: "Medicine", cond: "Condition", p: "Protocol", gl: "Guideline", stg: "STG 2024", calc: "Calculator", fluids: "Fluids", equip: "Equipment", lib: "Library", flow: "Flowchart"}[view] || "")); bindPin(); }
+  const noteable = title && ((view === "topic") || (view === "drug") || (view === "cond" && arg) || view === "p" || (view === "gl" && arg) || (view === "stg" && arg && arg !== "stg") || (view === "calc" && arg) || (view === "fluids" && arg) || (view === "equip" && arg) || (view === "lib" && arg) || (view === "flow" && arg) || (view === "c" && arg));
+  if (noteable) { const h1e = $("h1.vt", v) || $("h1", v); if (h1e && !$("#pinbtn", v)) { h1e.insertAdjacentHTML("afterend", pinBtn(key, title, {drug: "Medicine", cond: "Condition", p: "Protocol", gl: "Guideline", stg: "STG 2024", calc: "Calculator", fluids: "Fluids", equip: "Equipment", lib: "Library", flow: "Flowchart", c: "Condition"}[view] || "")); bindPin(); }
     pushRecent(key, title, view); v.insertAdjacentHTML("beforeend", notesBox(key)); bindNotes(key, title); }
 }
 
@@ -24503,6 +24602,347 @@ function bindAi(arg) {
   if (!matchMedia("(pointer:coarse)").matches) qa.focus();
 }
 
+/* ===== 2.2: ONE PAGE PER CONDITION (#c/<condition id>[/child|/adult|/all])
+   Every condition has one page with everything about it. A slim pill bar (sticky under the patient bar) jumps straight to each part:
+   Children, Adults (and Both ages) — inside each, International → Bhutan → JDWNRH → ward guides, then where the sources differ and the
+   drugs with exact doses. Below: what applies to all ages and every other page. Built automatically from the app's existing, sourced
+   protocols, flowcharts, guideline books, STG and topic pages; DKA has a hand-written comparison and dose table (CPAGES). ===== */
+const CP_SVG = p => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const CP_IC = {
+  child: CP_SVG('<circle cx="12" cy="6" r="3"/><path d="M8 21v-6l-2-3 3-2h6l3 2-2 3v6M10 21v-4h4v4"/>'),
+  adult: CP_SVG('<circle cx="12" cy="4.5" r="2.5"/><path d="M9 22v-7H7.5V9.5A2.5 2.5 0 0 1 10 7h4a2.5 2.5 0 0 1 2.5 2.5V15H15v7M12 15v7"/>'),
+  all: CP_SVG('<circle cx="8" cy="6" r="2.5"/><circle cx="17" cy="9" r="2"/><path d="M4.5 21v-6.5A3.5 3.5 0 0 1 8 11a3.5 3.5 0 0 1 3.5 3.5V21M14 21v-5a3 3 0 0 1 6 0v5"/>'),
+  intl: CP_SVG('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>'),
+  bt: CP_SVG('<path d="M5 21V4M5 4h12l-2.5 4L17 12H5"/>'),
+  jdw: CP_SVG('<path d="M4 21V8l8-5 8 5v13M9 21v-6h6v6M12 7v5M9.5 9.5h5"/>'),
+  guide: CP_SVG('<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5M8 7h7M8 11h5"/>'),
+  app: CP_SVG('<path d="M9 11l2 2 4-4"/><rect x="4" y="3" width="16" height="18" rx="2.5"/>'),
+  diff: CP_SVG('<path d="M8 3v18M16 3v18M3 8h5M16 16h5M3 16h5M16 8h5"/>'),
+  drug: CP_SVG('<rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-45 12 12.5)"/><path d="m9 9.5 5 5"/>'),
+  lab: CP_SVG('<path d="M9 3h6M10 3v6L5 19a1.5 1.5 0 0 0 1.3 2h11.4a1.5 1.5 0 0 0 1.3-2L14 9V3M7.5 15h9"/>'),
+  book: CP_SVG('<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5M8 7h7"/>'),
+  flow: CP_SVG('<rect x="8" y="3" width="8" height="5" rx="1.5"/><rect x="3" y="16" width="8" height="5" rx="1.5"/><rect x="13" y="16" width="8" height="5" rx="1.5"/><path d="M12 8v4M7 16v-2h10v2"/>'),
+  links: CP_SVG('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>')
+};
+const CP_SRC = {intl: ["International", 214], bt: ["Bhutan national", 24], jdw: ["JDWNRH", 168], guide: ["Ward guides", 150], app: ["Treatment summary", 262]};
+const CP_ORDER = ["intl", "bt", "jdw", "guide", "app"];
+const CP_SECT = {child: ["Children", 330], adult: ["Adults", 214], all: ["All ages", 160], both: ["Both ages", 160]};
+
+/* ---------- hand-written page: DKA (comparison and dose table written from the in-app sources, bicarbonate checked against ISPAD 2022 and the 2024 consensus) ---------- */
+const CPAGES = {
+  dka: {
+    t: "Diabetic ketoacidosis", kicker: "Endocrine emergency", cond: "dka", topic: "dka", short: "DKA",
+    sub: "Children and adults on one page: international guidelines, Bhutan STG 2024 and the JDWNRH protocol",
+    sections: [
+      {k: "child", t: "DKA in children", s: "ISPAD 2022 · JDWNRH SOP",
+        parts: [
+          {src: "intl", t: "International · ISPAD 2022", by: "ISPAD Clinical Practice Consensus Guidelines 2022 (with BSPED 2021)", prots: ["dkachild"], flows: ["dkachild"], gls: [["intl", 45, "International summary: DKA in children"]]},
+          {src: "bt", t: "Bhutan · STG 2024", by: "Bhutan Standard Treatment Guidelines 2024, 5.4 (one section for all ages)",
+            note: `The STG has one DKA section for all ages and no separate child regimen: <b>hydrate (20 mL/kg bolus and maintenance) and refer</b> to a higher centre. Its full text is under <a href="#c/dka/adult" data-cpgo="cp-adult-bt">DKA in adults › Bhutan</a>.`},
+          {src: "jdw", t: "JDWNRH · SOP JDW/PED/05", by: "JDWNRH Department of Paediatrics, SOP JDW/PED/05 version 01 (typed November 2026; not yet checked by the department)", prots: ["dkajdw"], flows: ["dkajdw"],
+            gls: [["jdw_peds", 6, "Nursing instructions and monitoring (Annexure 1)"], ["jdw_peds", 7, "Cerebral oedema (Annexure 2)"], ["jdw_peds", 8, "Changing to subcutaneous insulin (Annexure 3)"], ["jdw_peds", 10, "Points for the department to confirm"]]}
+        ],
+        diff: {intro: "Both regimens are safe when used consistently; choose one per patient. The main differences:", cols: ["ISPAD 2022 (international)", "JDWNRH SOP"], more: ["jdw_peds", 9, "Full comparison with notes (JDWNRH book)"],
+          rows: [
+            ["First bolus", "Shock: 20 mL/kg as fast as possible, repeat. No shock: 10–20 mL/kg over 20–30 min (BSPED: 10 mL/kg)", "Shock: 10 mL/kg over 15–30 min, repeat. No shock: 10 mL/kg over 60 min"],
+            ["Deficit replaced over", "24–48 hours (deficit 5–10%)", "48 hours (deficit 3%, 5% or 10% by severity)"],
+            ["Insulin", "0.05–0.1 units/kg/h, 1 h after fluids, no bolus", "0.05 units/kg/h (procedure allows 0.05–0.1), 1 h after fluids, no bolus"],
+            ["Potassium", "40 mmol/L once K is below 5.5 and urine is passed", "40 mEq/L under 30 kg, 60 mEq/L over 30 kg; max 0.5 mEq/kg/h; half as phosphate"],
+            ["Add dextrose", "5% when glucose is below 14–17 mmol/L (10% if falling fast)", "5% when glucose is below 250 mg/dL (13.9 mmol/L)"],
+            ["Cerebral oedema: 3% saline", "2.5–5 mL/kg over 10–15 min", "5–10 mL/kg over 30 min"],
+            ["Cerebral oedema: mannitol", "0.5–1 g/kg over 10–15 min", "0.5–1 g/kg over 30 min"],
+            ["Bicarbonate", "Not recommended, except life-threatening hyperkalaemia or venous pH below 6.9 with poor cardiac contractility", "Not routine; only venous pH below 6.9 with life-threatening hyperkalaemia: 1–2 mEq/kg in 0.45% saline over 60 min"]]},
+        drugs: [
+          ["SODIUM CHLORIDE", "0.9% sodium chloride", [["ISPAD", "Shock: 20 mL/kg as fast as possible, repeat if still shocked", [20, 20, "mL"]], ["ISPAD", "No shock: 10–20 mL/kg over 20–30 min", [10, 20, "mL"]], ["JDWNRH", "10 mL/kg bolus (shock: over 15–30 min; no shock: over 60 min)", [10, 10, "mL"]]]],
+          ["HUMAN INSULIN", "Regular insulin (IV infusion)", [["ISPAD", "0.05–0.1 units/kg/h, start 1 h after fluids; no bolus", [0.05, 0.1, "units/h"]], ["JDWNRH", "0.05 units/kg/h; 50 units in 50 mL 0.9% saline = 1 unit/mL", [0.05, 0.05, "units/h"]]]],
+          ["POTASSIUM CHLORIDE", "Potassium", [["ISPAD", "40 mmol per litre of fluid once K below 5.5 and passing urine", null], ["JDWNRH", "40 mEq/L under 30 kg, 60 mEq/L over 30 kg; not faster than 0.5 mEq/kg/h", [0.5, 0.5, "mEq/h max"]]]],
+          ["DEXTROSE", "Dextrose", [["ISPAD", "Add 5% when glucose below 14–17 mmol/L (10% if falling fast); keep insulin running", null], ["JDWNRH", "Add 5% when glucose below 250 mg/dL", null]]],
+          ["SODIUM CHLORIDE (HYPERTONIC SOLUTION)", "3% sodium chloride (cerebral oedema)", [["ISPAD", "2.5–5 mL/kg over 10–15 min", [2.5, 5, "mL"]], ["JDWNRH", "5–10 mL/kg over 30 min", [5, 10, "mL"]]]],
+          ["MANNITOL", "Mannitol (cerebral oedema)", [["ISPAD", "0.5–1 g/kg over 10–15 min", [0.5, 1, "g"]], ["JDWNRH", "0.5–1 g/kg over 30 min; repeat if no response in 30 min–2 h", [0.5, 1, "g"]]]],
+          ["SODIUM BICARBONATE", "Sodium bicarbonate", [["ISPAD", "Not recommended; only life-threatening hyperkalaemia or pH below 6.9 with poor cardiac contractility — PICU decision", null], ["JDWNRH", "pH below 6.9 with life-threatening hyperkalaemia: 1–2 mEq/kg in 0.45% saline over 60 min, cautiously", [1, 2, "mEq"]]]]
+        ]},
+      {k: "adult", t: "DKA in adults", s: "2024 consensus · JBDS · STG",
+        parts: [
+          {src: "intl", t: "International · 2024 consensus and JBDS", by: "ADA/EASD/JBDS/AACE hyperglycaemic crises consensus 2024; Joint British Diabetes Societies 2023", prots: ["dka"], flows: ["dka"], gls: [["intl", 11, "International summary: DKA and HHS in adults"]]},
+          {src: "bt", t: "Bhutan · STG 2024 and Diabetes Protocol", by: "Bhutan STG 2024, 5.4 (p. 112); Diabetes Mellitus Screening & Management Protocol v3.5 (2025)", stgs: ["5.4"],
+            note: `Diabetes Protocol v3.5 (2025), hyperglycaemic emergencies: <b>0.9% saline 1 L over 2 h, then 1 L every 4 h, and refer.</b> <a href="#gl/dm/0">Open the protocol</a>`},
+          {src: "jdw", t: "JDWNRH", none: "The app has no JDWNRH adult DKA protocol. The JDWNRH SOP JDW/PED/05 covers children only."}
+        ],
+        diff: {intro: "International hospital regimen compared with the Bhutan documents in the app:", cols: ["International (2024 consensus, JBDS)", "Bhutan (STG 2024, Protocol v3.5)"],
+          rows: [
+            ["Diagnosis", "Glucose above 11 mmol/L (or known diabetes), ketones 3 mmol/L or more, pH below 7.3 and/or HCO₃ below 18 (JBDS: below 15)", "Clinical features and investigations listed; no numeric criteria"],
+            ["First fluids", "SBP below 90: 500 mL over 10–15 min, repeat. Then 1 L over 1 h, 1 L over 2 h, 2 h, 4 h, 4 h, 6 h", "STG: 20 mL/kg bolus and maintenance, then refer. Protocol v3.5: 1 L over 2 h, then 1 L every 4 h, and refer"],
+            ["Insulin", "Fixed-rate 0.1 units/kg/h, no bolus; continue long-acting insulin", "Not stated in the app's copy (the STG refers to the SCCI flow chart, which is not in the app)"],
+            ["Potassium", "K above 5.5: none. 3.5–5.5: 40 mmol/L. Below 3.5: give potassium first, hold insulin", "Not stated"],
+            ["Bicarbonate", "Not routine; consider only if pH below 7.0", "Not stated"],
+            ["Where to treat", "Severe DKA (pH below 7.0, HCO₃ below 10, stupor or coma): ICU / HDU", "Refer to a higher centre after starting fluids"]]},
+        drugs: [
+          ["SODIUM CHLORIDE", "0.9% sodium chloride", [["2024 consensus / JBDS", "SBP below 90: 500 mL over 10–15 min, repeat. Then 1 L over 1 h → 1 L over 2 h → 1 L over 2 h → 1 L over 4 h → 1 L over 4 h → 1 L over 6 h", null], ["STG 2024", "20 mL/kg bolus and maintenance, then refer", [20, 20, "mL"]]]],
+          ["HUMAN INSULIN", "Regular insulin (fixed-rate IV infusion)", [["2024 consensus / JBDS", "0.1 units/kg/h, no bolus; U-40: 50 units (1.25 mL) in 50 mL saline = 1 unit/mL; continue long-acting insulin", [0.1, 0.1, "units/h"]]]],
+          ["POTASSIUM CHLORIDE", "Potassium", [["2024 consensus / JBDS", "Add to each litre after the first: K above 5.5 none; 3.5–5.5 40 mmol/L (20 mL of 15% KCl); below 3.5 potassium first, hold insulin; max 10 mmol/h peripherally", null]]],
+          ["DEXTROSE", "Dextrose", [["2024 consensus / JBDS", "When glucose below 14 mmol/L: 10% dextrose 125 mL/h alongside saline; keep insulin running", null]]],
+          ["SODIUM BICARBONATE", "Sodium bicarbonate", [["2024 consensus", "Not routine; consider only if pH below 7.0 — senior / ICU decision", null]]]
+        ]}
+    ],
+    common: ["Definition", "Diagnostic criteria and classification", "Symptoms and examination", "Investigations", "Complications", "Common mistakes", "Follow-up", "Advice to give", "Causes and pathophysiology", "History: questions to ask", "Differential diagnosis", "Learning summary", "Sources"],
+    openCommon: ["Investigations"], stripDiff: true
+  }
+};
+
+/* ---------- automatic page for any condition ---------- */
+const CP_CACHE = {};
+const cpAgeOf = s => { const k = /\b(child|children|paediatric|pediatric|neonat\w*|newborn|infant\w*|PICU|NICU|young infant|SAM|kids?)\b/i.test(s), a = /\badults?\b/i.test(s);
+  return k && a ? "all" : k ? "child" : a ? "adult" : "all"; };   /* "adult & child" = all ages */
+const cpSrcOfBook = b => { const B = GL_BY[b]; if (!B) return "bt"; return /^jdw/.test(b) ? "jdw" : (B.cat === "who" || B.cat === "intl") ? "intl" : (B.cat === "mine" || B.cat === "picu") ? "guide" : "bt"; };
+function cpAuto(id) {
+  if (CP_CACHE[id]) return CP_CACHE[id];
+  const c = COND_BY[id], tp = TOPIC_BY_COND[id]; if (!c) return null;
+  const items = [], flowsUsed = new Set();
+  c.pr.forEach(pid => { const p = PROT_BY[pid]; if (!p) return;
+    const fl = FLOWS.filter(f => [].concat(f.prot || []).includes(pid)).map(f => f.id); fl.forEach(x => flowsUsed.add(x));
+    items.push({age: cpAgeOf(p.id + " " + p.t + " " + p.g + " " + p.s), src: /jdw/i.test(p.id) || /JDWNRH/.test(String(p.src)) ? "jdw" : "intl", prot: pid, flows: fl, label: p.t, by: [].concat(p.src || []).join(", ")}); });
+  FLOWS.filter(f => (f.cond || []).includes(id) && !flowsUsed.has(f.id)).forEach(f => items.push({age: cpAgeOf(f.id + " " + f.t + " " + f.g), src: /JDWNRH/.test(String(f.src)) ? "jdw" : "intl", flow: f.id, label: f.t, by: String(f.src || "")}));
+  c.stg.forEach(n => { const st = STG.topics.find(t => t.n === n); items.push({age: "all", src: "bt", stg: n, label: `STG 2024, ${n}${st ? " " + st.t : ""}`, by: "Bhutan Standard Treatment Guidelines 2024"}); });
+  c.gl.forEach(([b, i]) => { const B = GL_BY[b]; if (!B || !B.toc[i]) return; const src = cpSrcOfBook(b);
+    const age = B.cat === "neo" || B.cat === "picu" ? "child" : cpAgeOf(B.toc[i][0] + " " + B.s);
+    items.push({age, src, gl: [b, i], label: B.toc[i][0], by: B.s}); });
+  /* a page for one age group only: everything is for that age */
+  const tAges = tp ? String(tp.ages || "") : "", onlyKids = /^child|^infant|^neonat|^newborn|paediatric/i.test(tAges) && !/adult/i.test(tAges), onlyAdults = /^adult/i.test(tAges) && !/child/i.test(tAges);
+  if (onlyKids) items.forEach(x => x.age = "child"); if (onlyAdults) items.forEach(x => x.age = "adult");
+  const hasC = items.some(x => x.age === "child"), hasA = items.some(x => x.age === "adult"), split = hasC && hasA;
+  const name0 = tp ? tp.n : c.n, short = (c.al || []).find(a => /^[A-Z0-9-]{2,6}$/.test(a)) || "";
+  const mkParts = list => CP_ORDER.map(src => { const its = list.filter(x => x.src === src); if (!its.length) return null;
+    const one = its.length === 1 ? its[0] : null;
+    return {src, t: one ? `${CP_SRC[src][0]} · ${one.label}` : CP_SRC[src][0] + (src === "guide" ? " and references" : src === "jdw" ? " protocols" : " guidelines"), by: one ? one.by : [...new Set(its.map(x => x.by).filter(Boolean))].slice(0, 3).join(" · "), items: its}; }).filter(Boolean);
+  const sections = [];
+  /* pill names: "Asthma in children" when the name is short, otherwise just "Children" / "Adults" */
+  const nm = c.n.replace(/ \(.*$/, ""), label = k => nm.length <= 12 && !/ & | and /.test(nm) ? `${nm} in ${k === "child" ? "children" : "adults"}` : k === "child" ? "Children" : "Adults";
+  if (split) {
+    sections.push({k: "child", t: label("child"), s: "", parts: mkParts(items.filter(x => x.age === "child"))});
+    sections.push({k: "adult", t: label("adult"), s: "", parts: mkParts(items.filter(x => x.age === "adult"))});
+    const both = items.filter(x => x.age === "all"); sections.push({k: "both", t: "Both ages", s: "", parts: [...mkParts(both), {src: "app", t: "Treatment summary", by: "This app's topic page (sources listed at the end)", topicMgmt: true}]});
+  } else {
+    const k = onlyKids || hasC ? "child" : onlyAdults || hasA ? "adult" : "all";
+    sections.push({k, t: k === "all" ? (tAges || "All ages") : k === "child" ? "Children" : "Adults", s: "", parts: [...mkParts(items), {src: "app", t: "Treatment summary", by: "This app's topic page (sources listed at the end)", topicMgmt: true}], single: true});
+  }
+  const spec = tp && tp.spec && tp.spec[0] && typeof SPECS !== "undefined" ? (SPECS.find(s => s[0] === tp.spec[0]) || [])[1] : "";
+  const srcs = CP_ORDER.filter(s => s !== "app" && items.some(x => x.src === s)).map(s => CP_SRC[s][0]);
+  /* a page covering both ages takes the condition's name, not an age-specific topic title */
+  const name = split ? c.n.replace(/ & /g, " and ") : name0;
+  return CP_CACHE[id] = {t: name, kicker: (tp && tp.emerg ? "Emergency · " : "") + (spec || "Condition"), cond: id, topic: tp ? tp.id : null, short, auto: true,
+    sub: `Everything on one page${srcs.length ? ": " + srcs.join(", ").replace(/, ([^,]*)$/, " and $1") : ""}${split ? " · children and adults" : tAges && tAges.length < 30 ? " · " + tAges.toLowerCase() : ""}`,
+    sections, common: null, openCommon: ["Investigations", "Diagnostic criteria and classification"], items};
+}
+const cpGet = key => CPAGES[key] || cpAuto(key);
+const cpForCond = id => COND_BY[id] ? id : null;
+
+/* ---------- which page each older page belongs to ---------- */
+let CP_MAP = null;
+function cpMap() {
+  if (CP_MAP) return CP_MAP; const m = {};
+  const sec = (cid, age) => { const C = cpGet(cid); if (!C) return cid; const s = C.sections.find(x => x.k === age); return s ? cid + "/" + s.k : cid; };
+  CONDS.forEach(c => { m["cond/" + c.id] = c.id; const tp = TOPIC_BY_COND[c.id]; if (tp && !m["topic/" + tp.id]) m["topic/" + tp.id] = c.id; });
+  const best = (ids, t) => { const tl = String(t || "").toLowerCase(); return ids.find(cid => { const c = COND_BY[cid]; return c && [c.n, ...c.al].some(a => tl.includes(String(a).toLowerCase())); }) || ids[0]; };
+  PROTOCOLS.forEach(p => { const owners = CONDS.filter(c => c.pr.includes(p.id)).map(c => c.id); if (owners.length) m["p/" + p.id] = sec(best(owners, p.t), cpAgeOf(p.id + " " + p.t + " " + p.g + " " + p.s)); });
+  FLOWS.forEach(f => { const owners = (f.cond || []).filter(x => COND_BY[x]); if (owners.length) m["flow/" + f.id] = sec(best(owners, f.t), cpAgeOf(f.id + " " + f.t + " " + f.g)); });
+  CONDS.forEach(c => c.stg.forEach(n => { if (!m["stg/" + n]) m["stg/" + n] = c.id; }));
+  Object.assign(m, {"p/dka": "dka/adult", "p/dkachild": "dka/child", "p/dkajdw": "dka/child", "flow/dka": "dka/adult", "flow/dkachild": "dka/child", "flow/dkajdw": "dka/child", "stg/5.4": "dka"});
+  return CP_MAP = m;
+}
+const CP_EM = new Proxy({}, {get: (o, id) => { const m = cpMap()["p/" + id]; return m ? "#c/" + m : undefined; }});
+
+/* ---------- rendering ---------- */
+function cpEmbed(html) {
+  const d = document.createElement("div"); d.innerHTML = html;
+  d.querySelectorAll(".back, h1.vt, .vsub, .utd, #pinbtn, .pinbtn, .cp-banner").forEach(e => e.remove());
+  const last = d.lastElementChild; if (last && /[←→]/.test(last.textContent) && last.querySelectorAll("a").length && last.textContent.length < 200) last.remove();
+  d.querySelectorAll("[id]").forEach(e => { e.dataset.cpid = e.id; e.removeAttribute("id"); });
+  return d.innerHTML;
+}
+const CP_TSECS = {};
+function cpTopicSecs(topicId) {
+  if (!topicId) return {}; if (CP_TSECS[topicId] && CP_TSECS[topicId].wt === wt()) return CP_TSECS[topicId].o;
+  const d = document.createElement("div"); try { d.innerHTML = topicView(topicId); } catch (e) { return {}; }
+  const o = {}; d.querySelectorAll("section.tsec").forEach(s => { const h = s.querySelector("h2,h3"); if (!h) return; const t = h.textContent.trim(); h.remove(); s.querySelectorAll("[id]").forEach(e => e.removeAttribute("id")); o[t] = s.innerHTML; });
+  CP_TSECS[topicId] = {wt: wt(), o}; return o;
+}
+const cpPer = (lo, hi, u) => { const w = wt(); if (w == null) return ""; const f = x => fmtN(x * w); const one = lo === hi && +(lo * w).toFixed(2) === 1; return ` <span class="cp-calc">= ${lo === hi ? f(lo) : f(lo) + "–" + f(hi)} ${one ? u.replace(/^units/, "unit") : u} for ${fmtN(w)} kg</span>`; };
+const cpDet = (ic, label, inner, open) => `<details class="cp-more"${open ? " open" : ""}><summary>${ic}<span>${label}</span></summary><div class="cp-body">${inner}</div></details>`;
+/* folded sections are built only when opened, so even the largest pages open instantly */
+const cpLazy = (ic, label, lz, open) => open ? cpDet(ic, label, cpLzHtml(lz), true) : `<details class="cp-more" data-lz="${esc(lz)}"><summary>${ic}<span>${label}</span></summary><div class="cp-body"></div></details>`;
+function cpLzHtml(lz) {
+  const [t, a, b] = lz.split("|");
+  try {
+    if (t === "gl") { const B = GL_BY[a]; return cpEmbed(glSecView(a, +b)) + `<p class="small"><a href="#gl/${a}/${b}">Open in ${esc(B ? B.s : "the guideline")} ›</a></p>`; }
+    if (t === "stg") return cpEmbed(stgView(a));
+    if (t === "flow") { const f = FLOWS.find(x => x.id === a); return f ? `<div class="cp-flow">${flowCard(f)}</div>` : ""; }
+  } catch (e) {}
+  return "";
+}
+function cpLzFill(det) {
+  const body = det.querySelector(":scope > .cp-body"); if (!body) return;
+  if (det.dataset.lz && !det.dataset.done) { det.dataset.done = 1; body.innerHTML = cpLzHtml(det.dataset.lz); }
+  if (!body.dataset.linked) { body.dataset.linked = 1; try { autolinkDom(body); } catch (e) {} }
+}
+function cpProt(pid, strip, diffs) {
+  const p = PROT_BY[pid]; if (!p) return ""; let pb = ""; try { pb = p.body(); } catch (e) {}
+  const dd = document.createElement("div"); dd.innerHTML = pb;
+  dd.querySelectorAll("h2").forEach(h => { if (!/where sources differ/i.test(h.textContent)) return; const frag = [h.outerHTML]; let n = h.nextElementSibling;
+    while (n && (n.classList.contains("tw") || /^Checked against/i.test(n.textContent.trim()))) { frag.push(n.outerHTML); const x = n.nextElementSibling; n.remove(); n = x; }
+    h.remove(); if (!strip && diffs) diffs.push([p.t, frag.slice(1).join("")]); });
+  return `<div class="cp-body cp-prot">${dd.innerHTML}</div>`;
+}
+function cpPartHtml(p, sk, C, diffs) {
+  const [sn, hue] = CP_SRC[p.src], id = `cp-${sk}-${p.src}`; let body = "";
+  if (p.none) body = `<div class="cp-none">${esc(p.none)}</div>`;
+  else if (p.topicMgmt) { const s = cpTopicSecs(C.topic)["Management"]; if (!s) return ""; body = `<div class="cp-body">${s}</div>`; }
+  else {
+    if (p.note) body += `<div class="cp-note">${p.note}</div>`;
+    /* hand-written parts list their pieces; automatic parts list items */
+    const its = p.items || [{prots: p.prots, flows: p.flows, stgs: p.stgs, gls: p.gls}];
+    its.forEach(it => {
+      const head = p.items && p.items.length > 1 ? `<h3 class="cp-ih">${esc(it.label)}</h3>` : "";
+      if (it.prot || (it.prots && it.prots.length)) { body += head; [].concat(it.prot || it.prots).forEach(pid => body += cpProt(pid, C.stripDiff, diffs)); }
+      [].concat(it.flows || [], it.flow || []).forEach(fid => { const f = FLOWS.find(x => x.id === fid); if (!f) return; body += cpLazy(CP_IC.flow, it.flow && !it.prot ? esc(f.t) : "Flowchart" + (p.items ? ": " + esc(f.t) : ""), "flow|" + fid, !!(it.flow && !it.prot && p.items && p.items.length === 1)); });
+      [].concat(it.stgs || [], it.stg || []).forEach(n => { body += cpLazy(CP_IC.book, `STG 2024, ${esc(n)}${(STG.topics.find(t => t.n === n) || {}).t ? ": " + esc(STG.topics.find(t => t.n === n).t) : ""}`, "stg|" + n, !!p.items && its.length === 1); });
+      const gls = it.gl ? [[it.gl[0], it.gl[1]]] : it.gls || [];
+      gls.forEach(([b, i, lab]) => { const B = GL_BY[b]; if (!B || !B.toc[i]) return; body += cpLazy(CP_IC.book, esc(lab || B.toc[i][0]) + (lab ? "" : `<small class="cp-bk">${esc(B.s)}</small>`), `gl|${b}|${i}`, false); });
+    });
+  }
+  if (!body) return "";
+  return `<section class="cp-part" id="${id}" style="--sh:${hue}"><header class="cp-ph"><span class="cp-pi">${CP_IC[p.src]}</span><div><span class="cp-src">${esc(sn)}</span><h2>${esc(p.t)}</h2>${p.by ? `<small>${esc(p.by)}</small>` : ""}</div></header>${body}</section>`;
+}
+function cpDiffHtml(s, sk, diffs) {
+  const d = s.diff;
+  if (d) return `<section class="cp-part cp-diffp" id="cp-${sk}-diff" style="--sh:280"><header class="cp-ph"><span class="cp-pi">${CP_IC.diff}</span><div><span class="cp-src">Compare</span><h2>Where the sources differ</h2><small>${esc(d.intro)}</small></div></header>
+    <div class="cp-tw"><table class="cp-dt"><thead><tr><th></th>${d.cols.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>${d.rows.map(r => `<tr><th>${esc(r[0])}</th>${r.slice(1).map((c, i) => `<td data-col="${esc(d.cols[i] || "")}">${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
+    ${d.more && GL_BY[d.more[0]] ? `<p class="small"><a href="#gl/${d.more[0]}/${d.more[1]}">${esc(d.more[2])} ›</a></p>` : ""}</section>`;
+  if (!diffs.length) return "";
+  return `<section class="cp-part cp-diffp" id="cp-${sk}-diff" style="--sh:280"><header class="cp-ph"><span class="cp-pi">${CP_IC.diff}</span><div><span class="cp-src">Compare</span><h2>Where the sources differ</h2><small>Bhutan guidance set against the international protocols above, point by point</small></div></header>
+    ${diffs.map(([t, h]) => `<div class="cp-dblock">${diffs.length > 1 ? `<h3 class="cp-ih">${esc(t)}</h3>` : ""}<div class="cp-body">${h}</div></div>`).join("")}</section>`;
+}
+function cpDrugHtml(s, sk, C) {
+  if (!s.drugs) return `<section class="cp-part cp-autodrugs" id="cp-${sk}-drugs" data-sec="${sk}" style="--sh:200"></section>`;
+  return `<section class="cp-part" id="cp-${sk}-drugs" style="--sh:200"><header class="cp-ph"><span class="cp-pi">${CP_IC.drug}</span><div><span class="cp-src">${esc(s.t)}</span><h2>Drugs and doses</h2><small>Tap a medicine for every dose in the formulary and the full drug page</small></div></header>
+    <div class="cp-drugs">${s.drugs.map(([k, n, lines]) => `<div class="cp-drug"><button type="button" class="cp-dn" data-cpdrug="${esc(k)}" data-sec="${sk}">${CP_IC.drug}<b>${esc(n)}</b><span class="cp-go">Doses ›</span></button><ul>${lines.map(([src, txt, per]) => `<li><span class="cp-tag">${esc(src)}</span>${esc(txt)}${per ? cpPer(per[0], per[1], per[2]) : ""}</li>`).join("")}</ul></div>`).join("")}</div>
+    ${wt() == null ? `<p class="small muted cp-hint">Enter the weight in the patient bar and every dose above is worked out.</p>` : ""}</section>`;
+}
+/* formulary doses for this condition, by age group */
+function cpCondRules(C, k, sk) {
+  const c = COND_BY[C.cond], terms = c ? [c.n, ...c.al].map(x => String(x).toLowerCase()).filter(x => x.length >= 3) : [];
+  const pop = sk === "child" ? /CHILD|INFANT|NEONAT/ : sk === "adult" ? /ADULT/ : null;
+  return (RULES_BY[k] || []).filter(r => !/overdose|poison|toxic/i.test(r.ind) || terms.some(t => /poison|overdose|bite|toxic/.test(t)))
+    .filter(r => { const ind = String(r.ind || "").toLowerCase(); return terms.some(t => ind.includes(t) || (t.length >= 5 && t.includes(ind.split(/[ (,]/)[0]) && ind.split(/[ (,]/)[0].length >= 5)); })
+    .filter(r => !pop || pop.test(String(r.who || "").toUpperCase()));
+}
+const cpRuleLine = r => { const w = wt(), v = [].concat(r.v); return `<li><span class="cp-tag">${esc(String(r.who || "").replace(/ \(.*$/, "").toLowerCase())}</span><b>${esc(r.ind)}</b> · ${esc(r.rt || "")}: ${esc(v.join("–"))} ${esc(r.u)}${r.k === "kg" ? "/kg" : ""}${r.f ? " " + esc(r.f) : ""}${r.mx ? ` (max ${esc(String(r.mx))} ${esc(r.u)})` : ""}${r.k === "kg" && w != null ? ` <span class="cp-calc">= ${v.map(x => fmtN(x * w)).join("–")} ${esc(r.u)}${r.mx ? " (capped at " + esc(String(r.mx)) + ")" : ""}</span>` : ""} <span class="muted small">— ${esc(r.ext ? String(r.ext).split(" (")[0] : "NEMF 2022")}</span></li>`; };
+function cpFillDrugs(root, C) {
+  $$(".cp-autodrugs", root).forEach(sec => {
+    const sk = sec.dataset.sec, scope = sec.closest(".cp-sect") || root, keys = [];
+    $$('a[href^="#drug/"]', scope).forEach(a => { const k = decodeURIComponent(a.getAttribute("href").slice(6)); if (BYKEY[k] && !keys.includes(k)) keys.push(k); });
+    if (C.topic && TOPIC_BY[C.topic]) (TOPIC_BY[C.topic].links || []).forEach(([h]) => { if (/^#drug\//.test(h)) { const k = decodeURIComponent(h.slice(6)); if (BYKEY[k] && !keys.includes(k)) keys.push(k); } });
+    if (!keys.length) { sec.remove(); return; }
+    const rows = keys.slice(0, 16).map(k => { const rs = cpCondRules(C, k, sk); return `<div class="cp-drug"><button type="button" class="cp-dn" data-cpdrug="${esc(k)}" data-sec="${sk}">${CP_IC.drug}<b>${esc(BYKEY[k].n)}</b><span class="cp-go">Doses ›</span></button>${rs.length ? `<ul>${rs.slice(0, 3).map(cpRuleLine).join("")}</ul>` : `<p class="cp-nodose">No dose listed for this condition in the formulary — tap for all doses</p>`}</div>`; });
+    sec.innerHTML = `<header class="cp-ph"><span class="cp-pi">${CP_IC.drug}</span><div><span class="cp-src">${esc((C.sections.find(s => s.k === sk) || {}).t || "")}</span><h2>Drugs and doses</h2><small>Medicines named on this page. Doses for this condition from the formulary, worked out for the patient's weight; tap for every dose</small></div></header><div class="cp-drugs">${rows.join("")}</div>${wt() == null ? `<p class="small muted cp-hint">Enter the weight in the patient bar and every dose is worked out.</p>` : ""}`;
+  });
+}
+function cpSectHtml(s, C) {
+  const diffs = [], parts = (s.parts || []).map(p => cpPartHtml(p, s.k, C, diffs)).join("");
+  const [lab, hue] = CP_SECT[s.k] || ["", 200];
+  return `<div class="cp-sect" id="cp-sec-${s.k}" data-sk="${s.k}" style="--sx:${hue}">${C.sections.length > 1 ? `<div class="cp-band"><span class="cp-bi">${CP_IC[s.k === "both" ? "all" : s.k] || CP_IC.all}</span><div><h2>${esc(s.t)}</h2>${s.s ? `<small>${esc(s.s)}</small>` : ""}</div></div>` : ""}${parts}${cpDiffHtml(s, s.k, diffs)}${cpDrugHtml(s, s.k, C)}</div>`;
+}
+function cpageView(arg) {
+  const [key] = String(arg || "").split("/"), C = cpGet(key);
+  if (!C) return `<div class="card muted">This page is not available. <a href="#cond">All conditions ›</a></div>`;
+  const secs = cpTopicSecs(C.topic), commonNames = C.common || Object.keys(secs).filter(n => !/^(Management|Related)$/.test(n));
+  const pills = [...(C.sections.length > 1 ? C.sections.map(s => [`cp-sec-${s.k}`, s.t, CP_IC[s.k === "both" ? "all" : s.k] || CP_IC.all, "sec"]) : []),
+    ...(C.sections.length === 1 ? (C.sections[0].parts || []).filter(p => !p.topicMgmt || secs.Management).map(p => [`cp-${C.sections[0].k}-${p.src}`, CP_SRC[p.src][0], CP_IC[p.src], ""]) : []),
+    ...(commonNames.length ? [["cp-common", "Recognise & investigate", CP_IC.lab, ""]] : []), ["cp-links", "All pages", CP_IC.links, ""]];
+  const more = [];
+  if (C.topic) more.push(["#topic/" + C.topic, "Full topic page"]); more.push(["#cond/" + C.cond, "Condition index page"]);
+  const c = COND_BY[C.cond]; if (c) { c.pr.forEach(pid => PROT_BY[pid] && more.push(["#p/" + pid, "Protocol: " + PROT_BY[pid].t])); FLOWS.filter(f => (f.cond || []).includes(C.cond)).forEach(f => more.push(["#flow/" + f.id, "Flowchart: " + f.t])); c.stg.forEach(n => more.push(["#stg/" + n, "STG 2024: " + n])); c.gl.forEach(([b, i]) => GL_BY[b] && GL_BY[b].toc[i] && more.push([`#gl/${b}/${i}`, GL_BY[b].toc[i][0]])); (c.tools || []).forEach(t => { const x = typeof TOOL_T === "function" ? TOOL_T(t) : null; if (x) more.push(["#" + t, x[1]]); }); }
+  return `<div class="cpage" data-cp="${esc(key)}">
+  <header class="cp-head"><span class="cp-kick">${esc(C.kicker)}</span><h1 class="vt">${esc(C.t)}</h1><p class="cp-sub">${esc(C.sub)}</p></header>
+  <nav class="cp-pills" aria-label="Jump to">${pills.map(([id, l, ic, cls]) => `<button type="button" class="cp-pill${cls ? " " + cls : ""}" data-cpgo="${id}">${ic}<span>${esc(l)}</span></button>`).join("")}</nav>
+  ${C.sections.map(s => cpSectHtml(s, C)).join("")}
+  ${commonNames.length ? `<section class="cp-common" id="cp-common"><div class="cp-ch"><span class="cp-pi" style="--sh:150">${CP_IC.lab}</span><div><span class="cp-src">${C.sections.length > 1 ? "Children and adults" : esc(C.sections[0].t)}</span><h2>Recognise, investigate, follow up</h2></div></div>
+    ${commonNames.filter(n => secs[n]).map(n => `<details class="cp-more"${(C.openCommon || []).includes(n) ? " open" : ""}><summary><span>${esc(n)}</span></summary><div class="cp-body">${secs[n]}</div></details>`).join("")}</section>` : ""}
+  <section class="cp-links" id="cp-links"><h3>Every page about ${esc(C.t.toLowerCase())}</h3><div class="cp-lgrid">${[...new Map(more.map(x => [x[0], x])).values()].map(([h, l]) => `<a href="${esc(h)}">${esc(l)}<span>›</span></a>`).join("")}</div></section>
+</div>`;
+}
+function cpGo(id) {
+  const el = document.getElementById(id); if (!el) return;
+  if (el.matches("details")) { el.open = true; cpLzFill(el); }
+  el.scrollIntoView({block: "start", behavior: "auto"});
+  const k = (el.closest(".cp-sect") || {}).dataset; if (k && k.sk) { try { history.replaceState(null, "", "#c/" + $(".cpage").dataset.cp + "/" + k.sk); HASH = location.hash; } catch (e) {} }
+}
+function cpDrugSheet(k, key, sk) {
+  $$(".cdsheet").forEach(x => x.remove());
+  const C = cpGet(key), sec = C && C.sections.find(s => s.k === sk), row = sec && sec.drugs && sec.drugs.find(d => d[0] === k), d = BYKEY[k];
+  const cond = C ? cpCondRules(C, k, sk) : [], all = (RULES_BY[k] || []).filter(r => !/overdose|poison|toxic/i.test(r.ind) && !cond.includes(r));
+  const sh = document.createElement("div"); sh.className = "cdsheet"; sh.setAttribute("role", "dialog"); sh.setAttribute("aria-label", "Doses");
+  sh.innerHTML = `<div class="cds-back"></div><div class="cds-card"><div class="cds-grab"></div><div class="cds-h"><span class="cp-pi" style="--sh:200">${CP_IC.drug}</span><div><small>${esc(C ? C.t : "")}${sec && C.sections.length > 1 ? " · " + esc(sec.t) : ""}</small><b>${esc(row ? row[1] : d ? d.n : k)}</b></div><button class="cds-x" aria-label="Close">✕</button></div>
+    ${row ? `<div class="cds-sec"><div class="cds-st">For ${esc(C.t.toLowerCase())}</div><ul>${row[2].map(([s, txt, per]) => `<li><span class="cp-tag">${esc(s)}</span>${esc(txt)}${per ? cpPer(per[0], per[1], per[2]) : ""}</li>`).join("")}</ul></div>` : ""}
+    ${!row && cond.length ? `<div class="cds-sec"><div class="cds-st">For ${esc(C.t.toLowerCase())}</div><ul>${cond.map(cpRuleLine).join("")}</ul></div>` : ""}
+    ${all.length ? `<div class="cds-sec"><div class="cds-st">${row || cond.length ? "Other formulary doses" : "All formulary doses"}</div><ul>${all.slice(0, 10).map(cpRuleLine).join("")}</ul></div>` : ""}
+    ${wt() == null ? `<p class="small muted">Add the weight in the patient bar to see each dose worked out.</p>` : ""}
+    ${d ? `<a class="btn cds-open" href="#drug/${encodeURIComponent(k)}">Open the full drug page ›</a>` : ""}</div>`;
+  document.body.appendChild(sh); requestAnimationFrame(() => sh.classList.add("in"));
+  const close = () => { sh.classList.remove("in"); setTimeout(() => sh.remove(), 260); removeEventListener("hashchange", close); };
+  sh.querySelector(".cds-back").onclick = close; sh.querySelector(".cds-x").onclick = close; addEventListener("hashchange", close);
+  document.addEventListener("keydown", function e1(e) { if (e.key === "Escape") { close(); document.removeEventListener("keydown", e1); } });
+}
+let CP_SPY = null;
+function bindCpage(arg) {
+  const root = $(".cpage"); if (!root) return; const key = root.dataset.cp, C = cpGet(key);
+  /* link drug and condition names in what is on screen now; folded parts are linked when opened */
+  $$(".cp-body", root).forEach(b => { if (b.closest("details:not([open])")) return; b.dataset.linked = 1; try { autolinkDom(b); } catch (e) {} });
+  root.addEventListener("toggle", e => { const d = e.target; if (d.matches && d.matches("details.cp-more") && d.open) cpLzFill(d); }, true);
+  cpFillDrugs(root, C);
+  const pb = $(".pbar"); try { root.style.setProperty("--pbh", (pb && getComputedStyle(pb).position === "sticky" ? pb.offsetHeight : 0) + "px"); } catch (e) {}
+  root.addEventListener("click", e => {
+    const g = e.target.closest("[data-cpgo]"); if (g) { e.preventDefault(); cpGo(g.dataset.cpgo); return; }
+    const dn = e.target.closest("[data-cpdrug]"); if (dn) { e.preventDefault(); cpDrugSheet(dn.dataset.cpdrug, key, dn.dataset.sec); return; }
+    const ln = e.target.closest('a[href^="#p/"], a[href^="#flow/"]');
+    if (ln) { const m = ln.getAttribute("href").match(/^#(p|flow)\/([^/?#]+)/); if (m) { for (const s of C.sections) for (const p of s.parts || []) { const its = p.items || [{prots: p.prots, flows: p.flows}];
+      if (its.some(it => m[1] === "p" ? [].concat(it.prot || it.prots || []).includes(m[2]) : [].concat(it.flows || [], it.flow || []).includes(m[2]))) { e.preventDefault(); cpGo(`cp-${s.k}-${p.src}`); return; } } } }
+    const a = e.target.closest('a[href^="#drug/"]'); if (a) { e.preventDefault(); const sec = a.closest(".cp-sect"); cpDrugSheet(decodeURIComponent(a.getAttribute("href").slice(6)), key, sec ? sec.dataset.sk : C.sections[0].k); }
+  });
+  /* the pill for the part on screen lights up */
+  if (CP_SPY) CP_SPY.disconnect();
+  const pills = $$(".cp-pill", root), targets = pills.map(p => document.getElementById(p.dataset.cpgo)).filter(Boolean);
+  if ("IntersectionObserver" in window && targets.length) {
+    const vis = new Map(); CP_SPY = new IntersectionObserver(es => { es.forEach(en => vis.set(en.target.id, en.isIntersecting ? en.boundingClientRect.top : null));
+      const on = targets.find(t => vis.get(t.id) != null) || null; pills.forEach(p => p.classList.toggle("on", !!on && p.dataset.cpgo === on.id));
+      const cur = pills.find(p => p.classList.contains("on")); if (cur) { const bar = cur.parentElement, r = cur.offsetLeft - bar.clientWidth / 2 + cur.clientWidth / 2; bar.scrollTo({left: r, behavior: "smooth"}); } },
+      {rootMargin: `-${(parseInt(root.style.getPropertyValue("--pbh")) || 0) + 60}px 0px -55% 0px`});
+    targets.forEach(t => CP_SPY.observe(t));
+  }
+  const want = String(arg || "").split("/")[1]; if (want && document.getElementById("cp-sec-" + want)) requestAnimationFrame(() => cpGo("cp-sec-" + want));
+}
+/* banner on the older separate pages, and a "one page" card at the top of search */
+function cpBanner(view, arg) {
+  const k = cpMap()[view + "/" + arg]; if (!k) return;
+  const v = $("#view"); if (!v || $(".cp-banner", v)) return; const [key] = k.split("/"), C = cpGet(key); if (!C) return;
+  v.insertAdjacentHTML("afterbegin", `<a class="cp-banner" href="#c/${k}"><span class="cp-pi" style="--sh:214">${CP_IC.book}</span><span><b>${esc(C.t)}: everything on one page</b><small>${C.sections.length > 1 ? C.sections.map(s => esc(s.t)).join(" · ") + " · " : ""}every source side by side</small></span><span class="cp-bgo">Open ›</span></a>`);
+}
+function cpSearchCard(condIds, q, strong) {
+  /* the condition whose name matches what was typed most closely wins ("hepatitis B" → Hepatitis B, not hepatitis) */
+  q = String(q || "").toLowerCase().trim();
+  const ids = [...new Set(condIds.filter(id => COND_BY[id]))]; if (!ids.length) return "";
+  const score = id => { const c = COND_BY[id], tp = TOPIC_BY_COND[id]; let s = 0;
+    [c.n, tp && tp.n].filter(Boolean).forEach(n => { if (String(n).toLowerCase().replace(/ \(.*$/, "") === q.replace(/ \(.*$/, "")) s = 120; });   /* its own name */
+    [c.n, tp && tp.n, ...(c.al || [])].filter(Boolean).forEach(n => { n = String(n).toLowerCase(); const m = Math.min(n.length, q.length) / 10;
+      if (n === q) s = Math.max(s, 100); else if (n.startsWith(q) || q.startsWith(n)) s = Math.max(s, 60 + m); else if (n.includes(q) || q.includes(n)) s = Math.max(s, 30 + m); });
+    return s; };
+  let key = ids[0], bs = -1; ids.forEach(id => { const s = q ? score(id) : 0; if (s > bs) { bs = s; key = id; } });
+  /* only when the search really names a condition: recognised in the words typed, or a close match to its name */
+  if (bs < 30 && !(strong || []).includes(key)) return "";
+  const C = cpGet(key); if (!C) return "";
+  const btns = C.sections.length > 1 ? C.sections.filter(s => s.k !== "both").map(s => `<a href="#c/${key}/${s.k}"><span class="cp-ti">${CP_IC[s.k]}</span><span><b>${esc(s.t)}</b>${s.s ? `<small>${esc(s.s)}</small>` : ""}</span></a>`).join("") : `<a href="#c/${key}" class="wide"><span class="cp-ti">${CP_IC.book}</span><span><b>Open the page</b><small>${esc(C.sub.replace(/^Everything on one page: ?/, ""))}</small></span></a>`;
+  return `<div class="cp-scard"><div class="cp-sh"><span class="cp-pi" style="--sh:214">${CP_IC.book}</span><div><small>Everything on one page</small><b>${esc(C.t)}</b></div></div><div class="cp-sbtn">${btns}</div></div>`;
+}
+
 /* ===== arrange icons like a phone home screen: long-press or "Arrange", drag, saved per list ===== */
 const oidOf = el => el.dataset.oid || el.dataset.nav || el.getAttribute("href") || "";
 const ORD = {
@@ -24793,6 +25233,8 @@ function tidyPage(v, view) {
     b.onclick = e => { e.stopPropagation(); const o = p.classList.toggle("open"); b.setAttribute("aria-expanded", o); };
     h.appendChild(b);
   });
+  /* "6 -12 mg/kg" in source texts becomes "6–12 mg/kg" (never read as a negative number); calculators and formulas are left alone */
+  if (["topic", "stg", "gl", "p", "cond", "c", "flow", "idrug", "aware"].includes(view)) fixRangeDom(v);
   if (!["calc", "fluids", "equip", "picu", "nicu", "growth"].includes(view)) return;
   $$(".card > p.small.muted, .card > div.small.muted:not(.res):not(.warn)", v).forEach(p => {
     if (p.closest("details") || p.textContent.trim().length < 180) return;
@@ -24876,6 +25318,7 @@ function route() {
   else if (view === "settings") { v.innerHTML = settingsView() + `<div class="card ht-replay"><b>App tour</b><p class="small muted" style="margin:4px 0 10px">A one-minute guided tour of search, drugs, conditions, tools and settings.</p><button class="btn" id="ht_again">Show the app tour</button></div>`; bindSettings(); $("#ht_again").onclick = () => helpTour(); }
   else if (view === "account" || view === "chat" || view === "members") { v.innerHTML = commView(view, arg); bindComm(view, arg); }
   else if (view === "equip" && arg === "vent") { current = {view: "calc", arg: "vent"}; v.innerHTML = calcsView("vent"); bindCalc("vent"); }
+  else if (view === "c") { v.innerHTML = cpageView(arg); bindCpage(arg); }
   else if (view === "drugs") { v.innerHTML = drugList(); bindDrugList(); }
   else if (view === "lib") { v.innerHTML = libView(arg); bindLib(arg); }
   else if (view === "idrug") { v.innerHTML = intlDrugView(arg); autolinkDom(v); }
@@ -24885,7 +25328,7 @@ function route() {
   else if (view === "picu" && arg && (arg === "case" || arg.startsWith("case/"))) { v.innerHTML = casesView(arg.slice(5)); bindCases(); }
   else if (view === "picu" && arg && arg.startsWith("dev/")) { v.innerHTML = devView(arg.slice(4)); bindDev(arg.slice(4)); }
   else if (view === "picu" || view === "nicu" || view === "criteria" || view === "opd") { v.innerHTML = hubView(view, arg && arg.startsWith("g/") ? arg.slice(2) : null); }
-  else if (view === "drug") { v.innerHTML = drugDetail(arg); autolinkDom(v); v.insertAdjacentHTML("beforeend", drugBooks(arg)); fillGlDrugBox(); }
+  else if (view === "drug") { v.innerHTML = drugDetail(arg); autolinkDom(v); v.insertAdjacentHTML("beforeend", drugBooks(arg)); fillGlDrugBox(); fixRangeDom(v); }
   else if (view === "gl" && !GL_BY[(arg || "").split("/")[0]]) { v.innerHTML = stgView(""); bindStg(""); }
   else if (view === "gl") { const [id, i] = arg.split("/"); if (i != null && i !== "" && GL_BY[id].pack && !GL_PACK[id + ":ok"]) { const now = HASH; v.innerHTML = `<p class="muted">Opening the pages…</p>`; glPack(id).then(() => { GL_PACK[id + ":ok"] = 1; if (HASH === now) route(); }).catch(() => { if (HASH === now) v.innerHTML = `<button class="back" onclick="goUp('#gl/${id}')">${ICON.back} ${esc(GL_BY[id].s)}</button><div class="warn">These pages have not been saved on this device yet. Connect to the internet once, then open this section again.</div>`; }); } else if (i != null && i !== "") v.innerHTML = glSecView(id, i); else { v.innerHTML = glBookView(id); bindGlBook(id); } }
   else if (view === "protocols" || view === "p") { v.innerHTML = protocolsView(view === "p" ? arg : ""); if (view === "p") { const fl = FLOWS_FOR_PROT(arg); const pb = $("#pbody"); if (fl.length && pb) { pb.insertAdjacentHTML("beforebegin", `<details class="protflow card" open><summary>Flowchart${fl.length > 1 ? "s" : ""} (${fl.length})</summary>${fl.map(f => flowCard(f)).join("")}</details>`); } autolinkDom($("#pbody")); $$(".protflow .fc").forEach(autolinkDom); } bindProtocols(view === "p" ? arg : ""); }
@@ -24901,6 +25344,7 @@ function route() {
   try { afterRoute(view, arg); } catch (e) { console.error(e); }
   try { tidyPage(v, view); } catch (e) { console.error(e); }
   try { uxChrome(view, arg); } catch (e) { console.error(e); }
+  try { cpBanner(view, arg); } catch (e) { console.error(e); }
   try { window.dispatchEvent(new Event("bcr:routed")); } catch (e) {}
   ORD.syncAll(v); document.body.classList.remove("bb-open", "bars-hidden");
   NAV_HASH[NAV_I] = "#" + h; navBtns();
@@ -24919,7 +25363,7 @@ function redrawKeepingInputs() {
   (touched.length ? touched : $$(sel).slice(0, 1)).forEach(el => { el.dispatchEvent(new Event("input", {bubbles: true})); el.dispatchEvent(new Event("change", {bubbles: true})); });
   scrollTo(0, y);
 }
-const PT_TOOL = ({view, arg}) => ["drug", "idrug", "p", "fluids", "equip", "growth"].includes(view) || (view === "calc" && arg && !arg.startsWith("grp/")) || (view === "picu" || view === "nicu") && /^(feed|plan|dilute|dev\/)/.test(arg || "");
+const PT_TOOL = ({view, arg}) => ["drug", "idrug", "p", "fluids", "equip", "growth", "c"].includes(view) || (view === "calc" && arg && !arg.startsWith("grp/")) || (view === "picu" || view === "nicu") && /^(feed|plan|dilute|dev\/)/.test(arg || "");
 function onPatientChanged() {
   renderSummary();
   if (PT_TOOL(current)) redrawKeepingInputs();
